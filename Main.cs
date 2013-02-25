@@ -1,4 +1,4 @@
-﻿// Licensed under the GNU GENERAL PUBLIC LICENSE V3 Unless otherwise noted
+ // Licensed under the GNU GENERAL PUBLIC LICENSE V3 Unless otherwise noted
 // Created by Kurt Cancemi
 // Donations are appreciated no matter if big or small  
 // via PayPal kurt@x64Architecture.com
@@ -13,7 +13,6 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
-using System.Runtime.InteropServices;
 
 namespace Wnmp
 {
@@ -23,11 +22,6 @@ namespace Wnmp
         {
             InitializeComponent();
         }
-        [DllImport("user32.dll")]
-        public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
-
-        [DllImport("user32.dll")]
-        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 /////////////////////////Wnmp Stuff////////////////////////////////////////////////////////////////
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -123,12 +117,6 @@ namespace Wnmp
             startphp.StartInfo.RedirectStandardOutput = true;
             startphp.StartInfo.UseShellExecute = false;
             startphp.Start();
-            IntPtr hWnd = FindWindow(null, "php-cgi.exe");
-            if (hWnd != IntPtr.Zero)
-            {
-                //Hide the window
-                ShowWindow(hWnd, 0); // 0 = SW_HIDE
-            }
             }
             else
             {
