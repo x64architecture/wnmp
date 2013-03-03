@@ -1,7 +1,3 @@
-// Licensed under the GNU GENERAL PUBLIC LICENSE V3 Unless otherwise noted
-// Created by Kurt Cancemi
-// Donations are appreciated no matter if big or small  
-// via PayPal kurt@x64Architecture.com
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
