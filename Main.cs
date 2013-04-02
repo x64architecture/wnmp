@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
+using System.Net;
+using System.Xml;
 
 namespace Wnmp
 {
@@ -69,12 +71,91 @@ namespace Wnmp
 
         private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://code.google.com/p/windows-nginx-mysql-php/");
+            System.Diagnostics.Process.Start("http://wnmp.x64Architecture.com");
         }
 
         private void donateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P7LAQRRNF6AVE");
+        }
+
+        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string downloadUrl = "";
+            Version newVersion = null;
+            string aboutUpdate = "";
+            string xmlUrl = "https://windows-nginx-mysql-php.googlecode.com/git-history/master/update.xml";
+            XmlTextReader reader = null;
+            try
+            {
+                reader = new XmlTextReader(xmlUrl);
+                reader.MoveToContent();
+                string elementName = "";
+                if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "appinfo"))
+                {
+                    while (reader.Read())
+                    {
+                        if (reader.NodeType == XmlNodeType.Element)
+                        {
+                            elementName = reader.Name;
+                        }
+                        else
+                        {
+                            if ((reader.NodeType == XmlNodeType.Text) && (reader.HasValue))
+                                switch (elementName)
+                                {
+                                    case "version":
+                                        newVersion = new Version(reader.Value);
+                                        break;
+                                    case "url":
+                                        downloadUrl = reader.Value;
+                                        break;
+                                    case "about":
+                                        aboutUpdate = reader.Value;
+                                        break;
+                                }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == ("The remote name could not be resolved: 'windows-nginx-mysql-php.googlecode.com'"))
+                {
+                    MessageBox.Show("Cannot connect to the update server");
+                }
+                else
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            finally
+            {
+                if (reader != null)
+                    reader.Close();
+            }
+            Version applicationVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            if (applicationVersion.CompareTo(newVersion) < 0)
+            {
+                string str = String.Format("New version found!\nYour version: {0}.\nNewest version: {1}. \nAdded in this version: {2}. ", applicationVersion, newVersion, aboutUpdate);
+                if (DialogResult.No != MessageBox.Show(str + "\nWould you like to download this update?", "Check for updates", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                {
+                    try
+                    {
+                        Process.Start(downloadUrl);
+                    }
+                    catch { }
+                    return;
+                }
+                else
+                {
+                    ;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Your version: " + applicationVersion + "  is up to date.", "Check for Updates", MessageBoxButtons.OK, MessageBoxIcon.None);
+            }
         }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
