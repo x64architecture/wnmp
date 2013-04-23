@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
-using System.Security.Cryptography;
 using System.Net;
 using System.Xml;
 
@@ -38,24 +37,9 @@ namespace Wnmp
             this.Show();
             this.WindowState = FormWindowState.Normal;
         }
-        protected string GetMD5Hash(string filename)
+        private void Main_Load(object sender, EventArgs e)
         {
-            FileStream file = new FileStream(filename, FileMode.Open);
-            MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] retVal = md5.ComputeHash(file);
-            file.Close();
-
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < retVal.Length; i++)
-            {
-                sb.Append(retVal[i].ToString("x2"));
-            }
-            return sb.ToString();
-        }
-
-        private static void killps(string processName)
-        {
-            Process[] process = Process.GetProcessesByName(processName);
+            Process[] process = Process.GetProcessesByName("Wnmp");
             Process current = Process.GetCurrentProcess();
             foreach (Process p in process)
             {
@@ -176,45 +160,103 @@ namespace Wnmp
 
         private void start_Click(object sender, EventArgs e)
         {
-            if ((GetMD5Hash("wnmp/start_all.bat") == "a54767b15a45d03a4113a044207c94f3"))
+            string[] prgs = new string[3];
+            prgs[0] = @"nginx.exe";
+            prgs[1] = @"php/php-cgi.exe";
+            prgs[2] = @"mariadb/bin/mysqld.exe";
+            try
             {
-            System.Diagnostics.Process start = new System.Diagnostics.Process();
-            start.StartInfo.FileName = "wnmp/start_all.bat";
-            start.StartInfo.RedirectStandardError = true;
-            start.StartInfo.RedirectStandardOutput = true;
-            start.StartInfo.UseShellExecute = false;
-            start.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            start.Start();
-            System.Diagnostics.Process startphp = new System.Diagnostics.Process();
-            startphp.StartInfo.FileName = "php/php-cgi.exe";
-            startphp.StartInfo.Arguments = "-b localhost:9000";
-            startphp.StartInfo.CreateNoWindow = true;
-            startphp.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            startphp.StartInfo.RedirectStandardError = true;
-            startphp.StartInfo.RedirectStandardOutput = true;
-            startphp.StartInfo.UseShellExecute = false;
-            startphp.Start();
+                //Create process
+                System.Diagnostics.Process nginxs = new System.Diagnostics.Process();
+                //arr4[0] is path and file name of command to run
+                nginxs.StartInfo.FileName = prgs[0].ToString();
+                nginxs.StartInfo.UseShellExecute = false;
+                //Set output of program to be written to process output stream
+                nginxs.StartInfo.RedirectStandardOutput = true;
+                nginxs.StartInfo.WorkingDirectory = Application.StartupPath;
+                nginxs.StartInfo.CreateNoWindow = true; //Excute with no window
+                nginxs.Start(); //Start the process
+                //PHP
+                System.Threading.Thread.Sleep(100); //Wait
+                System.Diagnostics.Process phps = new System.Diagnostics.Process(); //Create process
+                phps.StartInfo.FileName = prgs[1].ToString(); //arr4[1] is path and file name of command to run
+                phps.StartInfo.Arguments = "-b localhost:9000"; //Parameters to pass to program
+                phps.StartInfo.UseShellExecute = false;
+                phps.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
+                phps.StartInfo.WorkingDirectory = Application.StartupPath;
+                phps.StartInfo.CreateNoWindow = true; //Excute with no window
+                phps.Start(); //Start the process
+                System.Threading.Thread.Sleep(100); //Wait
+                //MariaDB
+                System.Diagnostics.Process mariadb = new System.Diagnostics.Process(); //Create process
+                mariadb.StartInfo.FileName = prgs[2].ToString();
+                mariadb.StartInfo.UseShellExecute = false;
+                mariadb.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
+                mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
+                mariadb.StartInfo.CreateNoWindow = true; //Excute with no window
+                mariadb.Start(); //Start the process
+                mysqlpass.Enabled = true;
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("'wnmp/start_all.bat' has been tampered with to continue reinstall Wnmp", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message.ToString());
             }
         }
 
         private void stop_Click(object sender, EventArgs e)
         {
-            if ((GetMD5Hash("wnmp/stop_all.bat") == "9457f44d9915e52d8343abc86bba97a9"))
+            string[] prgs = new string[3];
+            prgs[0] = @"nginx.exe";
+            prgs[1] = @"php/php-cgi.exe";
+            prgs[2] = @"mariadb/bin/mysqladmin.exe";
+            try
             {
-                System.Diagnostics.Process stop = new System.Diagnostics.Process();
-                stop.StartInfo.FileName = "wnmp/stop_all.bat";
-                stop.StartInfo.RedirectStandardError = true;
-                stop.StartInfo.RedirectStandardOutput = true;
-                stop.StartInfo.UseShellExecute = false;
-                stop.Start();
+                //Create process
+                System.Diagnostics.Process nginxs = new System.Diagnostics.Process();
+                //arr4[0] is path and file name of command to run
+                nginxs.StartInfo.FileName = prgs[0].ToString();
+                nginxs.StartInfo.Arguments = "-s stop";
+                nginxs.StartInfo.UseShellExecute = false;
+                //Set output of program to be written to process output stream
+                nginxs.StartInfo.RedirectStandardOutput = true;
+                nginxs.StartInfo.WorkingDirectory = Application.StartupPath;
+                nginxs.StartInfo.CreateNoWindow = true; //Execute with no window
+                nginxs.Start(); //Start the process
+                //PHP
+                try
+                {
+                    Process[] phps = System.Diagnostics.Process.GetProcessesByName("php-cgi");
+                    foreach (Process currentProc in phps)
+                    {
+                        currentProc.Kill();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+                //MariaDB
+                if (mysqlpass.Text == "")
+                {
+                    MessageBox.Show("Enter your MySQL password");
+                }
+                else
+                {
+                    System.Diagnostics.Process mariadb = new System.Diagnostics.Process(); //Create process
+                    mariadb.StartInfo.FileName = prgs[2].ToString();
+                    mariadb.StartInfo.Arguments = "-u root -p " + mysqlpass.Text + "shutdown";
+                    mariadb.StartInfo.UseShellExecute = false;
+                    mariadb.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
+                    mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
+                    mariadb.StartInfo.CreateNoWindow = true;
+                    mariadb.Start(); //Start the process
+                    mysqlpass.ResetText();
+                    mysqlpass.Enabled = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("'wnmp/stop_all.bat' has been tampered with to continue reinstall Wnmp", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message.ToString());
             }
         }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -223,52 +265,57 @@ namespace Wnmp
 
         private void nginxreload_Click(object sender, EventArgs e)
         {
-            if ((GetMD5Hash("wnmp/nginx_reload.bat") == "041f470d085ce0baf56d642004535bfa"))
+            try
             {
-            System.Diagnostics.Process reload = new System.Diagnostics.Process();
-            reload.StartInfo.FileName = "wnmp/nginx_reload.bat";
-            reload.StartInfo.RedirectStandardError = true;
-            reload.StartInfo.RedirectStandardOutput = true;
-            reload.StartInfo.UseShellExecute = false;
-            reload.Start();
+                System.Diagnostics.Process nginx = new System.Diagnostics.Process(); //Create process
+                nginx.StartInfo.FileName = "nginx.exe";
+                nginx.StartInfo.Arguments = "-s reload";
+                nginx.StartInfo.UseShellExecute = false;
+                nginx.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
+                nginx.StartInfo.WorkingDirectory = Application.StartupPath;
+                nginx.StartInfo.CreateNoWindow = true;
+                nginx.Start(); //Start the process
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("'wnmp/nginx_reload.bat' has been tampered with to continue reinstall Wnmp", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message.ToString());
             }
         }
 
         private void nginxstop_Click(object sender, EventArgs e)
         {
-            if ((GetMD5Hash("wnmp/nginx_stop.bat") == "eab8b0486d1e85253796a5c5ed92aad0"))
+            try
             {
-            System.Diagnostics.Process stop = new System.Diagnostics.Process();
-            stop.StartInfo.FileName = "wnmp/nginx_stop.bat";
-            stop.StartInfo.RedirectStandardError = true;
-            stop.StartInfo.RedirectStandardOutput = true;
-            stop.StartInfo.UseShellExecute = false;
-            stop.Start();
+                System.Diagnostics.Process nginx = new System.Diagnostics.Process(); //Create process
+                nginx.StartInfo.FileName = "nginx.exe";
+                nginx.StartInfo.Arguments = "-s stop";
+                nginx.StartInfo.UseShellExecute = false;
+                nginx.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
+                nginx.StartInfo.WorkingDirectory = Application.StartupPath;
+                nginx.StartInfo.CreateNoWindow = true;
+                nginx.Start(); //Start the process
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("'wnmp/nginx_stop.bat' has been tampered with to continue reinstall Wnmp", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message.ToString());
             }
         }
 
         private void nginxstart_Click(object sender, EventArgs e)
         {
-            if ((GetMD5Hash("wnmp/nginx_start.bat") == "d051e492c815d06d60ad6bb3f7bd3e01"))
+            try
             {
-                System.Diagnostics.Process start = new System.Diagnostics.Process();
-                start.StartInfo.FileName = "wnmp/nginx_start.bat";
-                start.StartInfo.RedirectStandardError = true;
-                start.StartInfo.RedirectStandardOutput = true;
-                start.StartInfo.UseShellExecute = false;
-                start.Start();
+                System.Diagnostics.Process nginx = new System.Diagnostics.Process(); //Create process
+                nginx.StartInfo.FileName = "nginx.exe";
+                nginx.StartInfo.UseShellExecute = false;
+                nginx.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
+                nginx.StartInfo.WorkingDirectory = Application.StartupPath;
+                nginx.StartInfo.CreateNoWindow = true;
+                nginx.Start(); //Start the process
             }
-            else 
+            catch (Exception ex)
             {
-                MessageBox.Show("'wnmp/nginx_start.bat' has been tampered with to continue reinstall Wnmp", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message.ToString());
             }
         }
 
@@ -294,31 +341,37 @@ namespace Wnmp
 /////////////////////////PHP///////////////////////////////////////////////////////////////////////
         private void phpstart_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process start = new System.Diagnostics.Process();
-            start.StartInfo.FileName = "php/php-cgi.exe";
-            start.StartInfo.Arguments = "-b localhost:9000";
-            start.StartInfo.RedirectStandardError = true;
-            start.StartInfo.RedirectStandardOutput = true;
-            start.StartInfo.UseShellExecute = false;
-            start.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            start.Start();
-            start.CloseMainWindow();
+            try
+            {
+                System.Diagnostics.Process start = new System.Diagnostics.Process();
+                start.StartInfo.FileName = @"php/php-cgi.exe";
+                start.StartInfo.Arguments = "-b localhost:9000";
+                start.StartInfo.RedirectStandardError = true;
+                start.StartInfo.RedirectStandardOutput = true;
+                start.StartInfo.UseShellExecute = false;
+                start.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                start.Start();
+                start.CloseMainWindow();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
 
         private void phpstop_Click(object sender, EventArgs e)
         {
-            if ((GetMD5Hash("wnmp/php_stop.bat") == "9f20868f493fa2c2c48ea405675a0c24"))
+            try
             {
-                System.Diagnostics.Process stop = new System.Diagnostics.Process();
-                stop.StartInfo.FileName = "wnmp/php_stop.bat";
-                stop.StartInfo.RedirectStandardError = true;
-                stop.StartInfo.RedirectStandardOutput = true;
-                stop.StartInfo.UseShellExecute = false;
-                stop.Start();
+                Process[] phps = System.Diagnostics.Process.GetProcessesByName("php-cgi");
+                foreach (Process currentProc in phps)
+                {
+                    currentProc.Kill();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("'wnmp/php_stop.bat' has been tampered with to continue reinstall Wnmp", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message.ToString());
             }
         }
         private void phpstart_MouseHover(object sender, EventArgs e)
@@ -338,35 +391,45 @@ namespace Wnmp
 
         private void mysqlstart_Click(object sender, EventArgs e)
         {
-            if ((GetMD5Hash("wnmp/mysql_start.bat") == "adca00cabaa2b5bcfa39d18474214e7b"))
+            try
             {
-                System.Diagnostics.Process start = new System.Diagnostics.Process();
-                start.StartInfo.FileName = "wnmp/mysql_start.bat";
-                start.StartInfo.RedirectStandardError = true;
-                start.StartInfo.RedirectStandardOutput = true;
-                start.StartInfo.UseShellExecute = false;
-                start.Start();
+                System.Diagnostics.Process mariadb = new System.Diagnostics.Process(); //Create process
+                mariadb.StartInfo.FileName = @"mariadb\bin\mysqld.exe";
+                mariadb.StartInfo.UseShellExecute = false;
+                mariadb.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
+                mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
+                mariadb.StartInfo.CreateNoWindow = true;
+                mariadb.Start(); //Start the process
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("'wnmp/mysql_start.bat' has been tampered with to continue reinstall Wnmp", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message.ToString());
             }
         }
 
         private void mysqlstop_Click(object sender, EventArgs e)
         {
-            if ((GetMD5Hash("wnmp/mysql_stop.bat") == "04f022158623b3d2d12eddc0b0925df5"))
+            if (textBox3.Text == "")
             {
-                System.Diagnostics.Process start = new System.Diagnostics.Process();
-                start.StartInfo.FileName = "wnmp/mysql_stop.bat";
-                start.StartInfo.RedirectStandardError = true;
-                start.StartInfo.RedirectStandardOutput = true;
-                start.StartInfo.UseShellExecute = false;
-                start.Start();
+                MessageBox.Show("Enter your MySQL password");
             }
             else
             {
-                MessageBox.Show("'wnmp/mysql_stop.bat' has been tampered with to continue reinstall Wnmp", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    System.Diagnostics.Process mariadb = new System.Diagnostics.Process(); //Create process
+                    mariadb.StartInfo.FileName = @"mariadb/bin/mysqladmin.exe";
+                    mariadb.StartInfo.Arguments = "-u root -p " + textBox3.Text + "shutdown";
+                    mariadb.StartInfo.UseShellExecute = false;
+                    mariadb.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
+                    mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
+                    mariadb.StartInfo.CreateNoWindow = true;
+                    mariadb.Start(); //Start the process
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
             }
         }
 
@@ -380,6 +443,12 @@ namespace Wnmp
         {
             ToolTip mysql_stop_Tip = new ToolTip();
             mysql_stop_Tip.Show("Stop MySQL", mysqlstop);
+        }
+
+        private void mysqlhelp_Click(object sender, EventArgs e)
+        {
+            
+            MessageBox.Show("The default login for MySQL/phpMyAdmin is:" + "\n" + "Username: root" + "\n" + "Password: password");
         }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
     }

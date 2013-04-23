@@ -34,6 +34,9 @@
             this.stop = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.mysqlpass = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.nginxstart = new System.Windows.Forms.Button();
             this.nginxstop = new System.Windows.Forms.Button();
@@ -42,11 +45,10 @@
             this.phpstart = new System.Windows.Forms.Button();
             this.phpstop = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.passlabel = new System.Windows.Forms.Label();
-            this.userlabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.mysqlhelp = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.mysqlstop = new System.Windows.Forms.Button();
             this.mysqlstart = new System.Windows.Forms.Button();
             this.icon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -101,6 +103,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.mysqlpass);
             this.tabPage1.Controls.Add(this.start);
             this.tabPage1.Controls.Add(this.stop);
             this.tabPage1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -111,6 +116,32 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(249, 147);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(184, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "* Only needed when stopping MySQL";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(162, 126);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(122, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Enter MySQL Password:";
+            // 
+            // mysqlpass
+            // 
+            this.mysqlpass.Location = new System.Drawing.Point(290, 123);
+            this.mysqlpass.Name = "mysqlpass";
+            this.mysqlpass.PasswordChar = '*';
+            this.mysqlpass.Size = new System.Drawing.Size(116, 20);
+            this.mysqlpass.TabIndex = 2;
             // 
             // tabPage2
             // 
@@ -194,11 +225,10 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.textBox2);
-            this.tabPage4.Controls.Add(this.textBox1);
-            this.tabPage4.Controls.Add(this.passlabel);
-            this.tabPage4.Controls.Add(this.userlabel);
-            this.tabPage4.Controls.Add(this.label1);
+            this.tabPage4.Controls.Add(this.mysqlhelp);
+            this.tabPage4.Controls.Add(this.label4);
+            this.tabPage4.Controls.Add(this.label5);
+            this.tabPage4.Controls.Add(this.textBox3);
             this.tabPage4.Controls.Add(this.mysqlstop);
             this.tabPage4.Controls.Add(this.mysqlstart);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
@@ -209,53 +239,41 @@
             this.tabPage4.Text = "MySQL";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // mysqlhelp
             // 
-            this.textBox2.Location = new System.Drawing.Point(201, 142);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(121, 20);
-            this.textBox2.TabIndex = 6;
-            this.textBox2.Text = "password";
+            this.mysqlhelp.Location = new System.Drawing.Point(435, 6);
+            this.mysqlhelp.Name = "mysqlhelp";
+            this.mysqlhelp.Size = new System.Drawing.Size(22, 23);
+            this.mysqlhelp.TabIndex = 10;
+            this.mysqlhelp.Text = "?";
+            this.mysqlhelp.UseVisualStyleBackColor = true;
+            this.mysqlhelp.Click += new System.EventHandler(this.mysqlhelp_Click);
             // 
-            // textBox1
+            // label4
             // 
-            this.textBox1.Location = new System.Drawing.Point(201, 118);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.Text = "root";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(222, 147);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(184, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "* Only needed when stopping MySQL";
             // 
-            // passlabel
+            // label5
             // 
-            this.passlabel.AutoSize = true;
-            this.passlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passlabel.Location = new System.Drawing.Point(118, 142);
-            this.passlabel.Name = "passlabel";
-            this.passlabel.Size = new System.Drawing.Size(73, 15);
-            this.passlabel.TabIndex = 4;
-            this.passlabel.Text = "Password:";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(156, 118);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(122, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Enter MySQL Password:";
             // 
-            // userlabel
+            // textBox3
             // 
-            this.userlabel.AutoSize = true;
-            this.userlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userlabel.Location = new System.Drawing.Point(114, 118);
-            this.userlabel.Name = "userlabel";
-            this.userlabel.Size = new System.Drawing.Size(77, 15);
-            this.userlabel.TabIndex = 3;
-            this.userlabel.Text = "Username:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(96, 95);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(290, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "The default login for MySQL/phpMyAdmin is:\r\n";
+            this.textBox3.Location = new System.Drawing.Point(290, 111);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.PasswordChar = '*';
+            this.textBox3.Size = new System.Drawing.Size(116, 20);
+            this.textBox3.TabIndex = 7;
             // 
             // mysqlstop
             // 
@@ -349,9 +367,11 @@
             this.MinimumSize = new System.Drawing.Size(487, 253);
             this.Name = "Main";
             this.Text = "Wnmp";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
@@ -385,12 +405,14 @@
         private System.Windows.Forms.ToolStripMenuItem donateToolStripMenuItem;
         private System.Windows.Forms.Button mysqlstop;
         private System.Windows.Forms.Button mysqlstart;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label passlabel;
-        private System.Windows.Forms.Label userlabel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox mysqlpass;
+        private System.Windows.Forms.Button mysqlhelp;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox3;
 
     }
 }
