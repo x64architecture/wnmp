@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Xml;
+using System.Security.Cryptography;
 
 namespace Wnmp
 {
@@ -18,6 +19,7 @@ namespace Wnmp
         public Main()
         {
             InitializeComponent();
+
         }
 /////////////////////////Wnmp Stuff////////////////////////////////////////////////////////////////
 
@@ -106,7 +108,7 @@ namespace Wnmp
             {
                 if (ex.Message == ("The remote name could not be resolved: 'windows-nginx-mysql-php.googlecode.com'"))
                 {
-                    MessageBox.Show("Cannot connect to the update server");
+                    MessageBox.Show("Couldn't connect to the update server");
                 }
                 else
                 {
@@ -145,7 +147,7 @@ namespace Wnmp
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////General///////////////////////////////////////////////////////////////////
-
+        
         private void start_MouseHover(object sender, EventArgs e)
         {
             ToolTip start_all_Tip = new ToolTip();
@@ -195,7 +197,6 @@ namespace Wnmp
                 mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
                 mariadb.StartInfo.CreateNoWindow = true; //Excute with no window
                 mariadb.Start(); //Start the process
-                mysqlpass.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -235,25 +236,16 @@ namespace Wnmp
                 {
                     MessageBox.Show(ex.Message.ToString());
                 }
+                System.Threading.Thread.Sleep(100); //Wait
                 //MariaDB
-                if (mysqlpass.Text == "")
-                {
-                    MessageBox.Show("Enter your MySQL password");
+                System.Diagnostics.Process mariadb = new System.Diagnostics.Process(); //Create process
+                mariadb.StartInfo.FileName = @"mariadb\bin\mysqladmin.exe";
+                mariadb.StartInfo.Arguments = "-u root -p shutdown";
+                mariadb.StartInfo.UseShellExecute = true;
+                mariadb.StartInfo.RedirectStandardOutput = false; //Set output of program to be written to process output stream
+                mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
+                mariadb.Start(); //Start the process
                 }
-                else
-                {
-                    System.Diagnostics.Process mariadb = new System.Diagnostics.Process(); //Create process
-                    mariadb.StartInfo.FileName = prgs[2].ToString();
-                    mariadb.StartInfo.Arguments = "-u root -p " + mysqlpass.Text + "shutdown";
-                    mariadb.StartInfo.UseShellExecute = false;
-                    mariadb.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
-                    mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
-                    mariadb.StartInfo.CreateNoWindow = true;
-                    mariadb.Start(); //Start the process
-                    mysqlpass.ResetText();
-                    mysqlpass.Enabled = false;
-                }
-            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
@@ -387,7 +379,7 @@ namespace Wnmp
         }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/////////////////////////MySQL/////////////////////////////////////////////////////////////////////
+/////////////////////////MariaDB///////////////////////////////////////////////////////////////////
 
         private void mysqlstart_Click(object sender, EventArgs e)
         {
@@ -406,45 +398,66 @@ namespace Wnmp
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-
         private void mysqlstop_Click(object sender, EventArgs e)
         {
-            if (textBox3.Text == "")
+            try
             {
-                MessageBox.Show("Enter your MySQL password");
+                //MariaDB
+                System.Diagnostics.Process mariadb = new System.Diagnostics.Process(); //Create process
+                mariadb.StartInfo.FileName = @"mariadb\bin\mysqladmin.exe";
+                mariadb.StartInfo.Arguments = "-u root -p shutdown";
+                mariadb.StartInfo.UseShellExecute = true;
+                mariadb.StartInfo.RedirectStandardOutput = false; //Set output of program to be written to process output stream
+                mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
+                mariadb.Start(); //Start the process
             }
-            else
+            catch (Exception ex)
             {
-                try
-                {
-                    System.Diagnostics.Process mariadb = new System.Diagnostics.Process(); //Create process
-                    mariadb.StartInfo.FileName = @"mariadb/bin/mysqladmin.exe";
-                    mariadb.StartInfo.Arguments = "-u root -p " + textBox3.Text + "shutdown";
-                    mariadb.StartInfo.UseShellExecute = false;
-                    mariadb.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
-                    mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
-                    mariadb.StartInfo.CreateNoWindow = true;
-                    mariadb.Start(); //Start the process
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message.ToString());
-                }
+                MessageBox.Show(ex.Message.ToString());
+            }
+            }
+        private void opnmysqlshell_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //MariaDB
+                System.Diagnostics.Process mariadbs = new System.Diagnostics.Process(); //Create process
+                mariadbs.StartInfo.FileName = @"mariadb\bin\mysqld.exe";
+                mariadbs.StartInfo.UseShellExecute = false;
+                mariadbs.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
+                mariadbs.StartInfo.WorkingDirectory = Application.StartupPath;
+                mariadbs.StartInfo.CreateNoWindow = true;
+                mariadbs.Start(); //Start the process
+                System.Threading.Thread.Sleep(100); //Wait
+                //MariaDB Shell
+                System.Diagnostics.Process mariadbsh = new System.Diagnostics.Process(); //Create process
+                mariadbsh.StartInfo.FileName = @"mariadb\bin\mysql.exe";
+                mariadbsh.StartInfo.Arguments = "-u root -p";
+                mariadbsh.StartInfo.UseShellExecute = true;
+                mariadbsh.StartInfo.RedirectStandardOutput = false; //Set output of program to be written to process output stream
+                mariadbsh.StartInfo.WorkingDirectory = Application.StartupPath;
+                mariadbsh.Start(); //Start the process
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
             }
         }
-
         private void mysqlstart_MouseHover(object sender, EventArgs e)
         {
             ToolTip mysql_start_Tip = new ToolTip();
             mysql_start_Tip.Show("Start MySQL", mysqlstart);
         }
-
         private void mysqlstop_MouseHover(object sender, EventArgs e)
         {
             ToolTip mysql_stop_Tip = new ToolTip();
             mysql_stop_Tip.Show("Stop MySQL", mysqlstop);
         }
-
+        private void opnmysqlshell_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip mysql_opnshell_Tip = new ToolTip();
+            mysql_opnshell_Tip.Show("Open MySQL Shell", opnmysqlshell);
+        }
         private void mysqlhelp_Click(object sender, EventArgs e)
         {
             

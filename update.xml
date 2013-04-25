@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <appinfo>
-<version>2.0.1.1</version>
-<url>https://windows-nginx-mysql-php.googlecode.com/files/Wnmp%202.0.1.1.exe</url>
+<version>2.0.1.2</version>
+<url>https://windows-nginx-mysql-php.googlecode.com/files/Wnmp%202.0.1.2.exe</url>
 <about>
-Wnmp 2.0.1.1
+Wnmp 2.0.1.2
 ************
 
 Updates:
 
-* PHP now on version 5.4.13
+* PHP now on version 5.4.14
 
-* MariaDB now in version 5.5.30
+* phpMyAdmin now in version 3.5.8.1
 
-* Nginx now in version 1.2.8
+* Nginx now in version 1.4.0
+  - Nginx now supports proxying of WebSocket connections, OCSP stapling, SPDY module, gunzip filter and more.
 
-* Check for updates feature added to Wnmp.exe(File > Check For Updates)
+* Removed batch scripts now it is all done in the program!
+
+* Added the option to start the MySQL shell from the program
 </about>
 </appinfo>
