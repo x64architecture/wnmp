@@ -22,5 +22,17 @@ namespace Wnmp.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("notepad.exe")]
+        public string editor {
+            get {
+                return ((string)(this["editor"]));
+            }
+            set {
+                this["editor"] = value;
+            }
+        }
     }
 }
