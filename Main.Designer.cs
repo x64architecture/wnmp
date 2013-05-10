@@ -39,6 +39,7 @@
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wnmpOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.nginxreload = new System.Windows.Forms.Button();
             this.phplogs = new System.Windows.Forms.Button();
             this.mariadblogs = new System.Windows.Forms.Button();
             this.nginxlogs = new System.Windows.Forms.Button();
@@ -61,7 +62,6 @@
             this.phpstop = new System.Windows.Forms.Button();
             this.nginxstart = new System.Windows.Forms.Button();
             this.nginxstop = new System.Windows.Forms.Button();
-            this.nginxreload = new System.Windows.Forms.Button();
             this.opnmysqlshell = new System.Windows.Forms.Button();
             this.start = new System.Windows.Forms.Button();
             this.stop = new System.Windows.Forms.Button();
@@ -146,6 +146,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.nginxreload);
             this.groupBox1.Controls.Add(this.phplogs);
             this.groupBox1.Controls.Add(this.mariadblogs);
             this.groupBox1.Controls.Add(this.nginxlogs);
@@ -168,13 +169,23 @@
             this.groupBox1.Controls.Add(this.phpstop);
             this.groupBox1.Controls.Add(this.nginxstart);
             this.groupBox1.Controls.Add(this.nginxstop);
-            this.groupBox1.Controls.Add(this.nginxreload);
             this.groupBox1.Location = new System.Drawing.Point(12, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(455, 175);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Applications";
+            // 
+            // nginxreload
+            // 
+            this.nginxreload.Location = new System.Drawing.Point(276, 45);
+            this.nginxreload.Name = "nginxreload";
+            this.nginxreload.Size = new System.Drawing.Size(50, 28);
+            this.nginxreload.TabIndex = 76;
+            this.nginxreload.Text = "Reload";
+            this.nginxreload.UseVisualStyleBackColor = true;
+            this.nginxreload.Click += new System.EventHandler(this.nginxreload_Click);
+            this.nginxreload.MouseHover += new System.EventHandler(this.nginxreload_MouseHover);
             // 
             // phplogs
             // 
@@ -348,7 +359,7 @@
             this.mysqlstop.Text = "Stop";
             this.mysqlstop.UseVisualStyleBackColor = true;
             this.mysqlstop.Click += new System.EventHandler(this.mysqlstop_Click);
-            this.mysqlstop.MouseHover += new System.EventHandler(this.mysqlstop_Click);
+            this.mysqlstop.MouseHover += new System.EventHandler(this.mysqlstop_MouseHover);
             // 
             // mysqlstart
             // 
@@ -404,17 +415,6 @@
             this.nginxstop.UseVisualStyleBackColor = true;
             this.nginxstop.Click += new System.EventHandler(this.nginxstop_Click);
             this.nginxstop.MouseHover += new System.EventHandler(this.nginxstop_MouseHover);
-            // 
-            // nginxreload
-            // 
-            this.nginxreload.Location = new System.Drawing.Point(276, 45);
-            this.nginxreload.Name = "nginxreload";
-            this.nginxreload.Size = new System.Drawing.Size(50, 28);
-            this.nginxreload.TabIndex = 51;
-            this.nginxreload.Text = "Reload";
-            this.nginxreload.UseVisualStyleBackColor = true;
-            this.nginxreload.Click += new System.EventHandler(this.nginxreload_Click);
-            this.nginxreload.MouseHover += new System.EventHandler(this.nginxreload_MouseHover);
             // 
             // opnmysqlshell
             // 
@@ -571,7 +571,6 @@
         private System.Windows.Forms.Button phpstop;
         private System.Windows.Forms.Button nginxstart;
         private System.Windows.Forms.Button nginxstop;
-        private System.Windows.Forms.Button nginxreload;
         private System.Windows.Forms.Button start;
         private System.Windows.Forms.Button stop;
         private System.Windows.Forms.Label label6;
@@ -594,6 +593,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip5;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip6;
         private System.Windows.Forms.Button wnmpdir;
+        private System.Windows.Forms.Button nginxreload;
 
     }
 }

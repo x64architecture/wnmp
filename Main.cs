@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
@@ -52,9 +51,9 @@ namespace Wnmp
 
         public void checkforapps()
         {
-            if (File.Exists("nginx.exe") == false)
+            if (File.Exists(@Application.StartupPath + "/nginx.exe") == false)
             {
-                output.AppendText("\n" + DateTime.Now.ToString() + " [Nginx]" + "                 Error: Nginx Not Found");
+                output.AppendText("\n" + DateTime.Now.ToString() + " [nginx]" + "                  Error: Nginx Not Found");
                 string searchText = "Nginx";
                 int pos = 0;
                 pos = output.Find(searchText, pos, RichTextBoxFinds.MatchCase);
@@ -69,9 +68,9 @@ namespace Wnmp
                     pos = output.Find(searchText, pos + 1, RichTextBoxFinds.MatchCase);
                 }
             }
-            if (Directory.Exists(@"mariadb") == false)
+            if (Directory.Exists(@Application.StartupPath + @"/mariadb") == false)
             {
-                output.AppendText("\n" + DateTime.Now.ToString() + " [MariaDB]" + "           Error: MariaDB Not Found");
+                output.AppendText("\n" + DateTime.Now.ToString() + " [mariadb]" + "             Error: MariaDB Not Found");
                 string searchText = "MariaDB";
                 int pos = 0;
                 pos = output.Find(searchText, pos, RichTextBoxFinds.MatchCase);
@@ -86,7 +85,7 @@ namespace Wnmp
                     pos = output.Find(searchText, pos + 1, RichTextBoxFinds.MatchCase);
                 }
             }
-            if (Directory.Exists(@"php") == false)
+            if (Directory.Exists(@Application.StartupPath + @"/php") == false)
             {
                 output.AppendText("\n" + DateTime.Now.ToString() + " [php]" + "                     Error: PHP Not Found");
                 string searchText = "php";
@@ -108,7 +107,7 @@ namespace Wnmp
         {
             string OSI = OSInfo.OSVersionInfo.Name + " " + OSInfo.OSVersionInfo.Edition + " ";
             output.AppendText(DateTime.Now.ToString() + " [Wnmp Main]" + "     Initializing Control Panel");
-            output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Wnmp Version: 2.0.1.2");
+            output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Wnmp Version: " + this.ProductVersion);
             output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     " + "Windows Version: " + OSI);
             if (OSInfo.OSVersionInfo.ServicePack != string.Empty)
             {
@@ -118,7 +117,7 @@ namespace Wnmp
             {
                 output.AppendText("");
             }
-            output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Wnmp Directory: " + Environment.CurrentDirectory);
+            output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Wnmp Directory: " + @Application.StartupPath);
             output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Checking for applications");
             checkforapps();
             output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Wnmp Ready to go!");
@@ -128,7 +127,7 @@ namespace Wnmp
         {
             try
             {
-                DirectoryInfo dinfo = new DirectoryInfo(@"conf");
+                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/conf");
                 FileInfo[] Files = dinfo.GetFiles("*");
                 foreach (FileInfo file in Files)
                 {
@@ -141,7 +140,7 @@ namespace Wnmp
             }
             try
             {
-                DirectoryInfo dinfo = new DirectoryInfo(@"mariadb/data");
+                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/mariadb/data");
                 FileInfo[] Files = dinfo.GetFiles("*.ini");
                 foreach (FileInfo file in Files)
                 {
@@ -154,7 +153,7 @@ namespace Wnmp
             }
             try
             {
-                DirectoryInfo dinfo = new DirectoryInfo(@"php");
+                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/php");
                 FileInfo[] Files = dinfo.GetFiles("php.ini");
                 foreach (FileInfo file in Files)
                 {
@@ -167,7 +166,7 @@ namespace Wnmp
             }
             try
             {
-                DirectoryInfo dinfo = new DirectoryInfo(@"logs");
+                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/logs");
                 FileInfo[] Files = dinfo.GetFiles("*.log");
                 foreach (FileInfo file in Files)
                 {
@@ -180,7 +179,7 @@ namespace Wnmp
             }
             try
             {
-                DirectoryInfo dinfo = new DirectoryInfo(@"php/logs");
+                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/php/logs");
                 FileInfo[] Files = dinfo.GetFiles("*.log");
                 foreach (FileInfo file in Files)
                 {
@@ -193,7 +192,7 @@ namespace Wnmp
             }
             try
             {
-                DirectoryInfo dinfo = new DirectoryInfo(@"mariadb/data");
+                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/mariadb/data");
                 FileInfo[] Files = dinfo.GetFiles("*.log");
                 foreach (FileInfo file in Files)
                 {
@@ -332,9 +331,9 @@ namespace Wnmp
         private void start_Click(object sender, EventArgs e)
         {
             string[] prgs = new string[3];
-            prgs[0] = @"nginx.exe";
-            prgs[1] = @"php/php-cgi.exe";
-            prgs[2] = @"mariadb/bin/mysqld.exe";
+            prgs[0] = @Application.StartupPath + @"/nginx.exe";
+            prgs[1] = @Application.StartupPath + @"/php/php-cgi.exe";
+            prgs[2] = @Application.StartupPath + @"/mariadb/bin/mysqld.exe";
             try
             {
                 //Create process
@@ -366,6 +365,13 @@ namespace Wnmp
                 mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
                 mariadb.StartInfo.CreateNoWindow = true; //Excute with no window
                 mariadb.Start(); //Start the process
+                output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Starting all applications");
+                nginxrunning.Text = "\u221A";
+                nginxrunning.ForeColor = Color.Green;
+                mariadbrunning.Text = "\u221A";
+                mariadbrunning.ForeColor = Color.Green;
+                phprunning.Text = "\u221A";
+                phprunning.ForeColor = Color.Green;
             }
             catch (Exception ex)
             {
@@ -376,9 +382,9 @@ namespace Wnmp
         private void stop_Click(object sender, EventArgs e)
         {
             string[] prgs = new string[3];
-            prgs[0] = @"nginx.exe";
-            prgs[1] = @"php/php-cgi.exe";
-            prgs[2] = @"mariadb/bin/mysqladmin.exe";
+            prgs[0] = @Application.StartupPath + @"/nginx.exe";
+            prgs[1] = @Application.StartupPath + @"/php/php-cgi.exe";
+            prgs[2] = @Application.StartupPath + @"/mariadb/bin/mysqladmin.exe";
             try
             {
                 //Create process
@@ -408,12 +414,19 @@ namespace Wnmp
                 System.Threading.Thread.Sleep(100); //Wait
                 //MariaDB
                 System.Diagnostics.Process mariadb = new System.Diagnostics.Process(); //Create process
-                mariadb.StartInfo.FileName = @"mariadb\bin\mysqladmin.exe";
+                mariadb.StartInfo.FileName = @Application.StartupPath + @"/mariadb\bin\mysqladmin.exe";
                 mariadb.StartInfo.Arguments = "-u root -p shutdown";
                 mariadb.StartInfo.UseShellExecute = true;
                 mariadb.StartInfo.RedirectStandardOutput = false; //Set output of program to be written to process output stream
                 mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
                 mariadb.Start(); //Start the process
+                nginxrunning.Text = "X";
+                nginxrunning.ForeColor = Color.DarkRed;
+                mariadbrunning.Text = "X";
+                mariadbrunning.ForeColor = Color.DarkRed;
+                phprunning.Text = "X";
+                phprunning.ForeColor = Color.DarkRed;
+                output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Stopping all applications");
             }
             catch (Exception ex)
             {
@@ -428,7 +441,7 @@ namespace Wnmp
             try
             {
                 System.Diagnostics.Process nginx = new System.Diagnostics.Process(); //Create process
-                nginx.StartInfo.FileName = "nginx.exe";
+                nginx.StartInfo.FileName = @Application.StartupPath + "/nginx.exe";
                 nginx.StartInfo.Arguments = "-s reload";
                 nginx.StartInfo.UseShellExecute = false;
                 nginx.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
@@ -448,7 +461,7 @@ namespace Wnmp
             try
             {
                 System.Diagnostics.Process nginx = new System.Diagnostics.Process(); //Create process
-                nginx.StartInfo.FileName = "nginx.exe";
+                nginx.StartInfo.FileName = @Application.StartupPath + "/nginx.exe";
                 nginx.StartInfo.Arguments = "-s stop";
                 nginx.StartInfo.UseShellExecute = false;
                 nginx.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
@@ -470,7 +483,7 @@ namespace Wnmp
             try
             {
                 System.Diagnostics.Process nginx = new System.Diagnostics.Process(); //Create process
-                nginx.StartInfo.FileName = "nginx.exe";
+                nginx.StartInfo.FileName = @Application.StartupPath + "/nginx.exe";
                 nginx.StartInfo.UseShellExecute = false;
                 nginx.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
                 nginx.StartInfo.WorkingDirectory = Application.StartupPath;
@@ -510,7 +523,7 @@ namespace Wnmp
             try
             {
                 System.Diagnostics.Process start = new System.Diagnostics.Process();
-                start.StartInfo.FileName = @"php/php-cgi.exe";
+                start.StartInfo.FileName = @Application.StartupPath + @"/php/php-cgi.exe";
                 start.StartInfo.Arguments = "-b localhost:9000";
                 start.StartInfo.RedirectStandardError = true;
                 start.StartInfo.RedirectStandardOutput = true;
@@ -566,13 +579,13 @@ namespace Wnmp
             try
             {
                 System.Diagnostics.Process mariadb = new System.Diagnostics.Process(); //Create process
-                mariadb.StartInfo.FileName = @"mariadb\bin\mysqld.exe";
+                mariadb.StartInfo.FileName = @Application.StartupPath + @"/mariadb\bin\mysqld.exe";
                 mariadb.StartInfo.UseShellExecute = false;
                 mariadb.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
                 mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
                 mariadb.StartInfo.CreateNoWindow = true;
                 mariadb.Start(); //Start the process
-                output.AppendText("\n" + DateTime.Now.ToString() + " [mariadb]" + "             Attempting to start MariaDB");
+                output.AppendText("\n" + DateTime.Now.ToString() + " [mariadb]" + "            Attempting to start MariaDB");
                 mariadbrunning.Text = "\u221A";
                 mariadbrunning.ForeColor = Color.Green;
             }
@@ -586,9 +599,9 @@ namespace Wnmp
             try
             {
                 //MariaDB
-                output.AppendText("\n" + DateTime.Now.ToString() + " [mariadb]" + "             Attempting to stop MariaDB");
+                output.AppendText("\n" + DateTime.Now.ToString() + " [mariadb]" + "            Attempting to stop MariaDB");
                 System.Diagnostics.Process mariadb = new System.Diagnostics.Process(); //Create process
-                mariadb.StartInfo.FileName = @"mariadb\bin\mysqladmin.exe";
+                mariadb.StartInfo.FileName = @Application.StartupPath + @"/mariadb\bin\mysqladmin.exe";
                 mariadb.StartInfo.Arguments = "-u root -p shutdown";
                 mariadb.StartInfo.UseShellExecute = true;
                 mariadb.StartInfo.RedirectStandardOutput = false; //Set output of program to be written to process output stream
@@ -608,7 +621,7 @@ namespace Wnmp
             {
                 //MariaDB
                 System.Diagnostics.Process mariadbs = new System.Diagnostics.Process(); //Create process
-                mariadbs.StartInfo.FileName = @"mariadb\bin\mysqld.exe";
+                mariadbs.StartInfo.FileName = @Application.StartupPath + @"/mariadb\bin\mysqld.exe";
                 mariadbs.StartInfo.UseShellExecute = false;
                 mariadbs.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
                 mariadbs.StartInfo.WorkingDirectory = Application.StartupPath;
@@ -618,7 +631,7 @@ namespace Wnmp
                 //MariaDB Shell
                 output.AppendText("\n" + DateTime.Now.ToString() + " [mariadb]" + "             Attempting to start MariaDB shell");
                 System.Diagnostics.Process mariadbsh = new System.Diagnostics.Process(); //Create process
-                mariadbsh.StartInfo.FileName = @"mariadb\bin\mysql.exe";
+                mariadbsh.StartInfo.FileName = @Directory.GetCurrentDirectory() + @"/mariadb\bin\mysql.exe";
                 mariadbsh.StartInfo.Arguments = "-u root -p";
                 mariadbsh.StartInfo.UseShellExecute = true;
                 mariadbsh.StartInfo.RedirectStandardOutput = false; //Set output of program to be written to process output stream
@@ -661,7 +674,7 @@ namespace Wnmp
         }
         void contextMenuStrip12_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, @"conf/" + Args.ClickedItem.Text);
+            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"conf/" + Args.ClickedItem.Text);
         }
 
         private void MariaDBCFG_Click(object sender, EventArgs e)
@@ -673,7 +686,7 @@ namespace Wnmp
         }
         void contextMenuStrip13_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, @"mariadb/data/" + Args.ClickedItem.Text);
+            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"mariadb/data/" + Args.ClickedItem.Text);
         }
 
         private void PHPCFG_Click(object sender, EventArgs e)
@@ -685,7 +698,7 @@ namespace Wnmp
         }
         void contextMenuStrip14_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, @"php/" + Args.ClickedItem.Text);
+            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"php/" + Args.ClickedItem.Text);
         }
         private void nginxlogs_Click(object sender, EventArgs e)
         {
@@ -696,7 +709,7 @@ namespace Wnmp
         }
         void contextMenuStrip15_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, @"logs/" + Args.ClickedItem.Text);
+            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"logs/" + Args.ClickedItem.Text);
         }
         private void mariadblogs_Click(object sender, EventArgs e)
         {
@@ -707,7 +720,7 @@ namespace Wnmp
         }
         void contextMenuStrip16_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, @"php/logs/" + Args.ClickedItem.Text);
+            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"php/logs/" + Args.ClickedItem.Text);
         }
         private void phplogs_Click(object sender, EventArgs e)
         {
@@ -718,7 +731,7 @@ namespace Wnmp
         }
         void contextMenuStrip17_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, @"mariadb/data/" + Args.ClickedItem.Text);
+            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"mariadb/data/" + Args.ClickedItem.Text);
         }
         #endregion contextmenus
         #region output
@@ -738,45 +751,6 @@ namespace Wnmp
                     output.SelectionColor = Color.DarkBlue;
                 }
                 pos = output.Find(searchText, pos + 1, RichTextBoxFinds.MatchCase);
-            }
-            string searchText2 = "Error: PHP";
-            int pos2 = 0;
-            pos2 = output.Find(searchText2, pos2, RichTextBoxFinds.MatchCase);
-            while (pos2 != -1)
-            {
-                if (output.SelectedText == searchText2 && output.SelectedText != "")
-                {
-                    output.SelectionLength = 20;
-                    output.SelectionFont = new Font("arial", 10);
-                    output.SelectionColor = Color.Red;
-                }
-                pos2 = output.Find(searchText, pos2 + 1, RichTextBoxFinds.MatchCase);
-            }
-            string searchText3 = "Error: Nginx";
-            int pos3 = 0;
-            pos3 = output.Find(searchText3, pos3, RichTextBoxFinds.MatchCase);
-            while (pos3 != -1)
-            {
-                if (output.SelectedText == searchText3 && output.SelectedText != "")
-                {
-                    output.SelectionLength = 23;
-                    output.SelectionFont = new Font("arial", 10);
-                    output.SelectionColor = Color.Red;
-                }
-                pos3 = output.Find(searchText, pos3 + 1, RichTextBoxFinds.MatchCase);
-            }
-            string searchText4 = "Error: MariaDB";
-            int pos4 = 0;
-            pos4 = output.Find(searchText4, pos4, RichTextBoxFinds.MatchCase);
-            while (pos4 != -1)
-            {
-                if (output.SelectedText == searchText4 && output.SelectedText != "")
-                {
-                    output.SelectionLength = 24;
-                    output.SelectionFont = new Font("arial", 10);
-                    output.SelectionColor = Color.Red;
-                }
-                pos4 = output.Find(searchText, pos4 + 1, RichTextBoxFinds.MatchCase);
             }
             string searchText5 = "nginx";
             int pos5 = 0;

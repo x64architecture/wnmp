@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <appinfo>
-<version>2.0.1.2</version>
-<url>https://windows-nginx-mysql-php.googlecode.com/files/Wnmp%202.0.1.2.exe</url>
+<version>2.0.2</version>
+<url>https://windows-nginx-mysql-php.googlecode.com/files/Wnmp%202.0.2.exe</url>
 <about>
-Wnmp 2.0.1.2
-************
+Wnmp 2.0.2
+**********
+Enhancements:
+
+* Lots of GUI changes
+
+* Added option to view logs inside the GUI
+
+* Added option to edit the config inside the GUI
+
+* Added the applications statuses inside the GUI
+
+* Added an output box inside the GUI
 
 Updates:
 
-* PHP now in version 5.4.14
+* PHP now in version 5.4.15
 
-* phpMyAdmin now in version 3.5.8.1
+* Nginx now in version 1.4.1
+  - Security: a stack-based buffer overflow might occur in a worker
+    process while handling a specially crafted request, potentially
+    resulting in arbitrary code execution (CVE-2013-2028).
 
-* Nginx now in version 1.4.0
-  - Nginx now supports proxying of WebSocket connections, OCSP stapling, SPDY module, gunzip filter and more.
-
-* Removed batch scripts now it is all done in the program!
-
-* Added the option to start the MySQL shell from the program
+* phpMyAdmin now in version 4.0.0
 </about>
 </appinfo>
