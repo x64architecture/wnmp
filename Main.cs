@@ -1,3 +1,19 @@
+/*
+This file is part of Wnmp.
+
+    Wnmp is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Wnmp is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
+*/
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -221,7 +237,8 @@ namespace Wnmp
         }
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Wnmp makes an easy Nginx, MySQL and PHP environment for Windows." + "\n" + "Created by Kurt Cancemi");
+            string license = "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.";
+            MessageBox.Show("Wnmp makes an easy Nginx, MySQL and PHP environment for Windows." + "\n" + "Created by Kurt Cancemi" + "\n" + "\n" + license);
         }
 
         private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -674,7 +691,7 @@ namespace Wnmp
         }
         void contextMenuStrip12_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"conf/" + Args.ClickedItem.Text);
+            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/conf/" + Args.ClickedItem.Text);
         }
 
         private void MariaDBCFG_Click(object sender, EventArgs e)
@@ -686,7 +703,7 @@ namespace Wnmp
         }
         void contextMenuStrip13_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"mariadb/data/" + Args.ClickedItem.Text);
+            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/mariadb/data/" + Args.ClickedItem.Text);
         }
 
         private void PHPCFG_Click(object sender, EventArgs e)
@@ -698,7 +715,7 @@ namespace Wnmp
         }
         void contextMenuStrip14_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"php/" + Args.ClickedItem.Text);
+            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/php/" + Args.ClickedItem.Text);
         }
         private void nginxlogs_Click(object sender, EventArgs e)
         {
@@ -709,7 +726,7 @@ namespace Wnmp
         }
         void contextMenuStrip15_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"logs/" + Args.ClickedItem.Text);
+            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/logs/" + Args.ClickedItem.Text);
         }
         private void mariadblogs_Click(object sender, EventArgs e)
         {
@@ -720,7 +737,7 @@ namespace Wnmp
         }
         void contextMenuStrip16_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"php/logs/" + Args.ClickedItem.Text);
+            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/php/logs/" + Args.ClickedItem.Text);
         }
         private void phplogs_Click(object sender, EventArgs e)
         {
@@ -731,7 +748,7 @@ namespace Wnmp
         }
         void contextMenuStrip17_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"mariadb/data/" + Args.ClickedItem.Text);
+            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/mariadb/data/" + Args.ClickedItem.Text);
         }
         #endregion contextmenus
         #region output
