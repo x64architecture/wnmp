@@ -30,7 +30,8 @@ namespace Wnmp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            Application.Run(formInstance = new Main());
         }
+        public static Main formInstance;
     }
 }
