@@ -89,7 +89,7 @@ namespace Wnmp
                 //MariaDB Shell
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [mariadb]" + "             Attempting to start MariaDB shell");
                 System.Diagnostics.Process mariadbsh = new System.Diagnostics.Process(); //Create process
-                mariadbsh.StartInfo.FileName = Directory.GetCurrentDirectory() + @"/mariadb\bin\mysql.exe";
+                mariadbsh.StartInfo.FileName = @Application.StartupPath + @"/mariadb\bin\mysql.exe";
                 mariadbsh.StartInfo.Arguments = "-u root -p";
                 mariadbsh.StartInfo.UseShellExecute = true;
                 mariadbsh.StartInfo.RedirectStandardOutput = false; //Set output of program to be written to process output stream
