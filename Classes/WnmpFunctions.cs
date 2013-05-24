@@ -38,7 +38,7 @@ namespace Wnmp
             string downloadUrl = "";
             Version newVersion = null;
             string aboutUpdate = "";
-            string xmlUrl = "https://windows-nginx-mysql-php.googlecode.com/git-history/master/update.xml";
+            string xmlUrl = "https://windows-nginx-mysql-php.googlecode.com/hg/update.xml";
             XmlTextReader reader = null;
             try
             {
