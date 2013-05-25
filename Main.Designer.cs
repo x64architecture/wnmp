@@ -14,6 +14,7 @@ This file is part of Wnmp.
     You should have received a copy of the GNU General Public License
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
+using Wnmp;
 namespace Wnmp
 {
     partial class Main
@@ -151,6 +152,7 @@ namespace Wnmp
             this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
             this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.checkForUpdatesToolStripMenuItem.Text = "Check For Updates";
+            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(WnmpFunctions.checkForUpdatesToolStripMenuItem_Click);
             // 
             // wnmpOptionsToolStripMenuItem
             // 
