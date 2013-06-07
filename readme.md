@@ -68,9 +68,13 @@ When some of the components get updated to a stable release, if there is a secur
 ###### I have a question or need some help?
 [https://groups.google.com/forum/#!forum/windows-nginx-mysql-php-discuss][6]
 
+###### Is there any announcements list for new versions, security vulnerabilities, etc.?
+[https://groups.google.com/forum/#!forum/windows-nginx-mysql-php-announce][7]
+
 [1]: https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.2.3.exe
 [2]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P7LAQRRNF6AVE
 [3]: https://i1.wp.com/www.akmodding.com/wp-content/uploads/2012/08/akdlbutton.png
 [4]: https://s0.wp.com/imgpress?url=http%3A%2F%2Fs1.softpedia-static.com/base_img/softpedia_free_award_f.gif
-[5]: http://www.wikivs.com/wiki/Apache_vs_nginx
+[5]: https://www.wikivs.com/wiki/Apache_vs_nginx
 [6]: https://groups.google.com/forum/#!forum/windows-nginx-mysql-php-discuss
+[7]: https://groups.google.com/forum/#!forum/windows-nginx-mysql-php-announce
