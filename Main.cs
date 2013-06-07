@@ -35,6 +35,7 @@ namespace Wnmp
             InitializeComponent();
 
         }
+        internal string CPVER = "2.0.1";
         #region Wnmp Stuff
         private void wnmpdir_Click(object sender, EventArgs e)
         {

@@ -174,6 +174,7 @@ namespace Wnmp
         {
             string OSI = OSInfo.OSVersionInfo.Name + " " + OSInfo.OSVersionInfo.Edition + " ";
             Program.formInstance.output.AppendText(DateTime.Now.ToString() + " [Wnmp Main]" + "     Initializing Control Panel");
+            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Control Panel Version: " + Program.formInstance.CPVER);
             Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Wnmp Version: " + Program.formInstance.ProductVersion);
             Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     " + "Windows Version: " + OSI);
             if (OSInfo.OSVersionInfo.ServicePack != string.Empty)
