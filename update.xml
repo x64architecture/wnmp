@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <appinfo>
-<version>2.0.2.2</version>
-<url>https://windows-nginx-mysql-php.googlecode.com/files/Wnmp%202.0.2.2.exe</url>
+<version>2.0.2.3</version>
+<url>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.2.3.exe</url>
 <about>
-Wnmp 2.0.2.2
+Wnmp 2.0.2.3
 ************
-
-- Wnmp:
-
-  * Fixed bug #5 (Pressing the Open MySQL Shell button gave the message "The system cannot find the file specified")
-  * Organized code into seperate files
-
+   
 - phpMyAdmin
 
-  * Updated to 4.0.1
+  * Updated to 4.0.3
 
-- MariaDB
+- Nginx
+
+  * Updated to 1.5.1
+
+- PHP
   
-  * Updated to 5.5.31
+  * Updated to 5.4.16
 </about>
 </appinfo>

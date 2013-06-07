@@ -38,7 +38,7 @@ namespace Wnmp
             string downloadUrl = "";
             Version newVersion = null;
             string aboutUpdate = "";
-            string xmlUrl = "https://windows-nginx-mysql-php.googlecode.com/hg/update.xml";
+            string xmlUrl = "https://bitbucket.org/x64architecture/windows-nginx-mysql-php/raw/tip/update.xml";
             XmlTextReader reader = null;
             try
             {
@@ -74,7 +74,7 @@ namespace Wnmp
             }
             catch (Exception ex)
             {
-                if (ex.Message == ("The remote name could not be resolved: 'windows-nginx-mysql-php.googlecode.com'"))
+                if (ex.Message == ("The remote name could not be resolved: 'bitbucket.org'"))
                 {
                     MessageBox.Show("Couldn't connect to the update server");
                 }
