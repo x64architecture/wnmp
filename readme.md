@@ -48,16 +48,16 @@ If you can, please donate to (https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclic
 
 ----
 
-### =FAQ ######
+### FAQ ######
 
-==Why Does MariaDB take up so much ram?==
+###### Why Does MariaDB take up so much ram? 
 It takes up so much ram vs all of the other programs because MariaDB works very well with that configuration. And you can buy 1GB of ram for very cheap.
 
-==Why use Wnmp over WAMP?==
+###### Why use Wnmp over WAMP?
 You should use Wnmp over WAMP because Apache is very inefficient. Read more (http://www.wikivs.com/wiki/Apache_vs_nginx "here". Also there is another reason you should use Wnmp, Wnmp values security, stability and user friendliness. And Wnmp always keeps up to date with the latest Nginx, MariaDB, PHP and phpMyAdmin releases.
 
-==When will I update this program?==
+###### When will I update this program?
 When some of the components get updated to a stable release, if there is a security vulnerability, And if the GUI has bugs or feature enhancements.
 
-==I have a question or need some help?==
+###### I have a question or need some help?
 https://groups.google.com/forum/#!forum/windows-nginx-mysql-php-discuss
