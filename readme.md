@@ -33,7 +33,7 @@ You should change $cfg['blowfish_secret'] in config.inc.php in the phpmyadmin fo
 The SSl Certificate is Self Signed by me. For added security create your own.
 
 [![Download][3]][1]
-[![Download][4]][2]
+[![Download][4]][8]
 
 [Website](http://wnmp.x64architecture.com)
 
@@ -78,3 +78,4 @@ When some of the components get updated to a stable release, if there is a secur
 [5]: https://www.wikivs.com/wiki/Apache_vs_nginx
 [6]: https://groups.google.com/forum/#!forum/windows-nginx-mysql-php-discuss
 [7]: https://groups.google.com/forum/#!forum/windows-nginx-mysql-php-announce
+[8]: http://www.softpedia.com/get/Internet/Servers/Server-Tools/Kurt-Wnmp.shtml
