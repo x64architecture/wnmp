@@ -152,7 +152,6 @@ namespace Wnmp
             this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
             this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.checkForUpdatesToolStripMenuItem.Text = "Check For Updates";
-            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(WnmpFunctions.checkForUpdatesToolStripMenuItem_Click);
             // 
             // wnmpOptionsToolStripMenuItem
             // 
@@ -201,7 +200,6 @@ namespace Wnmp
             this.nginxreload.TabIndex = 76;
             this.nginxreload.Text = "Reload";
             this.nginxreload.UseVisualStyleBackColor = true;
-            this.nginxreload.Click += new System.EventHandler(Nginx.nginxreload_Click);
             // 
             // phplogs
             // 
@@ -211,7 +209,6 @@ namespace Wnmp
             this.phplogs.TabIndex = 75;
             this.phplogs.Text = "Logs";
             this.phplogs.UseVisualStyleBackColor = true;
-            this.phplogs.Click += new System.EventHandler(WnmpFunctions.phplogs_Click);
             // 
             // mariadblogs
             // 
@@ -221,7 +218,6 @@ namespace Wnmp
             this.mariadblogs.TabIndex = 74;
             this.mariadblogs.Text = "Logs";
             this.mariadblogs.UseVisualStyleBackColor = true;
-            this.mariadblogs.Click += new System.EventHandler(WnmpFunctions.mariadblogs_Click);
             // 
             // nginxlogs
             // 
@@ -231,7 +227,6 @@ namespace Wnmp
             this.nginxlogs.TabIndex = 73;
             this.nginxlogs.Text = "Logs";
             this.nginxlogs.UseVisualStyleBackColor = true;
-            this.nginxlogs.Click += new System.EventHandler(WnmpFunctions.nginxlogs_Click);
             // 
             // PHPCFG
             // 
@@ -241,7 +236,6 @@ namespace Wnmp
             this.PHPCFG.TabIndex = 72;
             this.PHPCFG.Text = "Config";
             this.PHPCFG.UseVisualStyleBackColor = true;
-            this.PHPCFG.Click += new System.EventHandler(WnmpFunctions.PHPCFG_Click);
             // 
             // MariaDBCFG
             // 
@@ -251,7 +245,6 @@ namespace Wnmp
             this.MariaDBCFG.TabIndex = 71;
             this.MariaDBCFG.Text = "Config";
             this.MariaDBCFG.UseVisualStyleBackColor = true;
-            this.MariaDBCFG.Click += new System.EventHandler(WnmpFunctions.MariaDBCFG_Click);
             // 
             // ngxconfig
             // 
@@ -261,7 +254,6 @@ namespace Wnmp
             this.ngxconfig.TabIndex = 70;
             this.ngxconfig.Text = "Config";
             this.ngxconfig.UseVisualStyleBackColor = true;
-            this.ngxconfig.Click += new System.EventHandler(WnmpFunctions.ngxconfig_Click);
             // 
             // label8
             // 
@@ -364,7 +356,6 @@ namespace Wnmp
             this.mysqlhelp.TabIndex = 59;
             this.mysqlhelp.Text = "?";
             this.mysqlhelp.UseVisualStyleBackColor = true;
-            this.mysqlhelp.Click += new System.EventHandler(MariaDB.mysqlhelp_Click);
             // 
             // mysqlstop
             // 
@@ -374,7 +365,6 @@ namespace Wnmp
             this.mysqlstop.TabIndex = 57;
             this.mysqlstop.Text = "Stop";
             this.mysqlstop.UseVisualStyleBackColor = true;
-            this.mysqlstop.Click += new System.EventHandler(MariaDB.mysqlstop_Click);
             // 
             // mysqlstart
             // 
@@ -384,7 +374,6 @@ namespace Wnmp
             this.mysqlstart.TabIndex = 56;
             this.mysqlstart.Text = "Start";
             this.mysqlstart.UseVisualStyleBackColor = true;
-            this.mysqlstart.Click += new System.EventHandler(MariaDB.mysqlstart_Click);
             // 
             // phpstart
             // 
@@ -394,7 +383,6 @@ namespace Wnmp
             this.phpstart.TabIndex = 55;
             this.phpstart.Text = "Start";
             this.phpstart.UseVisualStyleBackColor = true;
-            this.phpstart.Click += new System.EventHandler(PHP.phpstart_Click);
             // 
             // phpstop
             // 
@@ -404,7 +392,6 @@ namespace Wnmp
             this.phpstop.TabIndex = 54;
             this.phpstop.Text = "Stop";
             this.phpstop.UseVisualStyleBackColor = true;
-            this.phpstop.Click += new System.EventHandler(PHP.phpstop_Click);
             // 
             // nginxstart
             // 
@@ -414,7 +401,6 @@ namespace Wnmp
             this.nginxstart.TabIndex = 53;
             this.nginxstart.Text = "Start";
             this.nginxstart.UseVisualStyleBackColor = true;
-            this.nginxstart.Click += new System.EventHandler(Nginx.nginxstart_Click);
             // 
             // nginxstop
             // 
@@ -424,7 +410,6 @@ namespace Wnmp
             this.nginxstop.TabIndex = 52;
             this.nginxstop.Text = "Stop";
             this.nginxstop.UseVisualStyleBackColor = true;
-            this.nginxstop.Click += new System.EventHandler(Nginx.nginxstop_Click);
             // 
             // opnmysqlshell
             // 
@@ -434,7 +419,6 @@ namespace Wnmp
             this.opnmysqlshell.TabIndex = 58;
             this.opnmysqlshell.Text = "Open MySQL Shell";
             this.opnmysqlshell.UseVisualStyleBackColor = true;
-            this.opnmysqlshell.Click += new System.EventHandler(MariaDB.opnmysqlshell_Click);
             // 
             // start
             // 
@@ -444,7 +428,6 @@ namespace Wnmp
             this.start.TabIndex = 49;
             this.start.Text = "Start all";
             this.start.UseVisualStyleBackColor = true;
-            this.start.Click += new System.EventHandler(General.start_Click);
             // 
             // stop
             // 
@@ -454,7 +437,6 @@ namespace Wnmp
             this.stop.TabIndex = 50;
             this.stop.Text = "Stop all";
             this.stop.UseVisualStyleBackColor = true;
-            this.stop.Click += new System.EventHandler(General.stop_Click);
             // 
             // panel1
             // 
