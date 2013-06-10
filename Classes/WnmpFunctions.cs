@@ -4,16 +4,16 @@ Copyright (C) Kurt Cancemi
 This file is part of Wnmp.
 
     Wnmp is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
+    it under the terms of the GNU Wnmp Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
     Wnmp is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+    GNU Wnmp Public License for more details.
 
-    You should have received a copy of the GNU General Public License
+    You should have received a copy of the GNU Wnmp Public License
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
@@ -33,7 +33,7 @@ namespace Wnmp
     class WnmpFunctions
     {
         #region checkforupdates
-        internal static void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        internal static void checkForUpdatesToolStripMenuItem_Click()
         {
             string downloadUrl = "";
             Version newVersion = null;
@@ -248,7 +248,7 @@ namespace Wnmp
         }
         static void contextMenuStrip16_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/php/logs/" + Args.ClickedItem.Text);
+            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/mariadb/data/" + Args.ClickedItem.Text);
         }
         internal static void phplogs_Click(object sender, EventArgs e)
         {
@@ -259,7 +259,7 @@ namespace Wnmp
         }
         static void contextMenuStrip17_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/mariadb/data/" + Args.ClickedItem.Text);
+            Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/php/logs/" + Args.ClickedItem.Text);
         }
         #endregion Context
 
@@ -320,11 +320,11 @@ namespace Wnmp
             }
             try
             {
-                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/php/logs");
+                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/mariadb/data");
                 FileInfo[] Files = dinfo.GetFiles("*.log");
                 foreach (FileInfo file in Files)
                 {
-                    Program.formInstance.contextMenuStrip6.Items.Add(file.Name);
+                    Program.formInstance.contextMenuStrip5.Items.Add(file.Name);
                 }
             }
             catch (Exception ex)
@@ -333,11 +333,11 @@ namespace Wnmp
             }
             try
             {
-                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/mariadb/data");
+                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/php/logs");
                 FileInfo[] Files = dinfo.GetFiles("*.log");
                 foreach (FileInfo file in Files)
                 {
-                    Program.formInstance.contextMenuStrip5.Items.Add(file.Name);
+                    Program.formInstance.contextMenuStrip6.Items.Add(file.Name);
                 }
             }
             catch (Exception ex)
@@ -354,7 +354,7 @@ namespace Wnmp
         }
         #endregion ContextMenus
 
-        internal static void timer1_Tick(object sender, EventArgs e)
+        internal static void timer1_Tick()
         {
             Process[] phps = Process.GetProcessesByName("php-cgi");
             if (phps.Length == 0)

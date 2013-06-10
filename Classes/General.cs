@@ -29,20 +29,20 @@ using System.Net;
 
 namespace Wnmp
 {
-    class General
+    public static class General
     {
-        internal static void start_MouseHover(object sender, EventArgs e)
+        internal static void start_MouseHover()
         {
             ToolTip start_all_Tip = new ToolTip();
             start_all_Tip.Show("Starts Nginx, PHP-CGI & MySQL", Program.formInstance.start);
         }
 
-        internal static void stop_MouseHover(object sender, EventArgs e)
+        internal static void stop_MouseHover()
         {
             ToolTip stop_all_Tip = new ToolTip();
             stop_all_Tip.Show("Stops Nginx, PHP-CGI & MySQL", Program.formInstance.stop);
         }
-        internal static void start_Click(object sender, EventArgs e)
+        internal static void start_Click()
         {
             string[] prgs = new string[3];
             prgs[0] = @Application.StartupPath + @"/nginx.exe";
@@ -93,7 +93,7 @@ namespace Wnmp
             }
         }
 
-        internal static void stop_Click(object sender, EventArgs e)
+        internal static void stop_Click()
         {
             string[] prgs = new string[3];
             prgs[0] = @Application.StartupPath + @"/nginx.exe";

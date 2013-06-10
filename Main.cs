@@ -151,5 +151,147 @@ namespace Wnmp
             }
         }
         #endregion output
+        #region events
+        // Do this until I figure out a better way to do this(if there is).
+        private void start_Click(object sender, EventArgs e)
+        {
+            General.start_Click();
+        }
+
+        private void stop_Click(object sender, EventArgs e)
+        {
+            General.stop_Click();
+        }
+
+        private void opnmysqlshell_Click(object sender, EventArgs e)
+        {
+            MariaDB.opnmysqlshell_Click();
+        }
+
+        private void nginxstart_Click(object sender, EventArgs e)
+        {
+            Nginx.nginxstart_Click();
+        }
+
+        private void mysqlstart_Click(object sender, EventArgs e)
+        {
+            MariaDB.mysqlstart_Click();
+        }
+
+        private void phpstart_Click(object sender, EventArgs e)
+        {
+            PHP.phpstart_Click();
+        }
+
+        private void nginxstop_Click(object sender, EventArgs e)
+        {
+            Nginx.nginxstop_Click();
+        }
+
+        private void mysqlstop_Click(object sender, EventArgs e)
+        {
+            MariaDB.mysqlstop_Click();
+        }
+
+        private void phpstop_Click(object sender, EventArgs e)
+        {
+            PHP.phpstop_Click();
+        }
+
+        private void nginxreload_Click(object sender, EventArgs e)
+        {
+            Nginx.nginxreload_Click();
+        }
+
+        private void mysqlhelp_Click(object sender, EventArgs e)
+        {
+            MariaDB.mysqlhelp_Click();
+        }
+
+        private void ngxconfig_Click(object sender, EventArgs e)
+        {
+            WnmpFunctions.nginxlogs_Click(sender,  e);
+        }
+
+        private void MariaDBCFG_Click(object sender, EventArgs e)
+        {
+            WnmpFunctions.MariaDBCFG_Click(sender, e);
+        }
+
+        private void PHPCFG_Click(object sender, EventArgs e)
+        {
+            WnmpFunctions.PHPCFG_Click(sender, e);
+        }
+
+        private void nginxlogs_Click(object sender, EventArgs e)
+        {
+            WnmpFunctions.nginxlogs_Click(sender, e);
+        }
+
+        private void mariadblogs_Click(object sender, EventArgs e)
+        {
+            WnmpFunctions.mariadblogs_Click(sender, e);
+        }
+
+        private void phplogs_Click(object sender, EventArgs e)
+        {
+            WnmpFunctions.phplogs_Click(sender, e);
+        }
+
+        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WnmpFunctions.checkForUpdatesToolStripMenuItem_Click();
+        }
+
+        private void nginxstart_MouseHover(object sender, EventArgs e)
+        {
+            Nginx.nginxstart_MouseHover();
+        }
+
+        private void mysqlstart_MouseHover(object sender, EventArgs e)
+        {
+            MariaDB.mysqlstart_MouseHover();
+        }
+
+        private void phpstart_MouseHover(object sender, EventArgs e)
+        {
+            PHP.phpstart_MouseHover();
+        }
+
+        private void nginxstop_MouseHover(object sender, EventArgs e)
+        {
+            Nginx.nginxstop_MouseHover();
+        }
+
+        private void mysqlstop_MouseHover(object sender, EventArgs e)
+        {
+            MariaDB.mysqlstop_MouseHover();
+        }
+
+        private void phpstop_MouseHover(object sender, EventArgs e)
+        {
+            PHP.phpstop_MouseHover();
+        }
+
+        private void nginxreload_MouseHover(object sender, EventArgs e)
+        {
+            Nginx.nginxreload_MouseHover();
+        }
+
+        private void start_MouseHover(object sender, EventArgs e)
+        {
+            General.start_MouseHover();
+        }
+
+        private void stop_MouseHover(object sender, EventArgs e)
+        {
+            General.stop_MouseHover();
+        }
+
+        private void opnmysqlshell_MouseHover(object sender, EventArgs e)
+        {
+            MariaDB.opnmysqlshell_MouseHover();
+        }
+        #endregion
     }
 }

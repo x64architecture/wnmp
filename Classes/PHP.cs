@@ -32,7 +32,7 @@ namespace Wnmp
 {
     class PHP
     {
-        internal static void phpstart_Click(object sender, EventArgs e)
+        internal static void phpstart_Click()
         {
             try
             {
@@ -56,7 +56,7 @@ namespace Wnmp
             }
         }
 
-        internal static void phpstop_Click(object sender, EventArgs e)
+        internal static void phpstop_Click()
         {
             try
             {
@@ -74,13 +74,13 @@ namespace Wnmp
             Program.formInstance.phprunning.Text = "X";
             Program.formInstance.phprunning.ForeColor = Color.DarkRed;
         }
-        internal static void phpstart_MouseHover(object sender, EventArgs e)
+        internal static void phpstart_MouseHover()
         {
             ToolTip mysql_start_Tip = new ToolTip();
             mysql_start_Tip.Show("Start PHP-CGI", Program.formInstance.phpstart);
         }
 
-        internal static void phpstop_MouseHover(object sender, EventArgs e)
+        internal static void phpstop_MouseHover()
         {
             ToolTip mysql_stop_Tip = new ToolTip();
             mysql_stop_Tip.Show("Stop PHP-CGI", Program.formInstance.phpstop);

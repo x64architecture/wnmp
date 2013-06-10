@@ -32,7 +32,7 @@ namespace Wnmp
 {
     class MariaDB
     {
-        internal static void mysqlstart_Click(object sender, EventArgs e)
+        internal static void mysqlstart_Click()
         {
             try
             {
@@ -52,7 +52,7 @@ namespace Wnmp
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-        internal static void mysqlstop_Click(object sender, EventArgs e)
+        internal static void mysqlstop_Click()
         {
             try
             {
@@ -73,7 +73,7 @@ namespace Wnmp
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-        internal static void opnmysqlshell_Click(object sender, EventArgs e)
+        internal static void opnmysqlshell_Click()
         {
             try
             {
@@ -101,22 +101,22 @@ namespace Wnmp
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-        internal static void mysqlstart_MouseHover(object sender, EventArgs e)
+        internal static void mysqlstart_MouseHover()
         {
             ToolTip mysql_start_Tip = new ToolTip();
             mysql_start_Tip.Show("Start MySQL", Program.formInstance.mysqlstart);
         }
-        internal static void mysqlstop_MouseHover(object sender, EventArgs e)
+        internal static void mysqlstop_MouseHover()
         {
             ToolTip mysql_stop_Tip = new ToolTip();
             mysql_stop_Tip.Show("Stop MySQL", Program.formInstance.mysqlstop);
         }
-        internal static void opnmysqlshell_MouseHover(object sender, EventArgs e)
+        internal static void opnmysqlshell_MouseHover()
         {
             ToolTip mysql_opnshell_Tip = new ToolTip();
             mysql_opnshell_Tip.Show("Open MySQL Shell", Program.formInstance.opnmysqlshell);
         }
-        internal static void mysqlhelp_Click(object sender, EventArgs e)
+        internal static void mysqlhelp_Click()
         {
 
             MessageBox.Show("The default login for MySQL/phpMyAdmin is:" + "\n" + "Username: root" + "\n" + "Password: password");

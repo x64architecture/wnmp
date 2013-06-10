@@ -31,7 +31,7 @@ namespace Wnmp
 {
     class Nginx
     {
-        internal static void nginxreload_Click(object sender, EventArgs e)
+        internal static void nginxreload_Click()
         {
             try
             {
@@ -51,7 +51,7 @@ namespace Wnmp
             }
         }
 
-        internal static void nginxstop_Click(object sender, EventArgs e)
+        internal static void nginxstop_Click()
         {
             try
             {
@@ -73,7 +73,7 @@ namespace Wnmp
             }
         }
 
-        internal static void nginxstart_Click(object sender, EventArgs e)
+        internal static void nginxstart_Click()
         {
             try
             {
@@ -94,19 +94,19 @@ namespace Wnmp
             }
         }
 
-        internal static void nginxreload_MouseHover(object sender, EventArgs e)
+        internal static void nginxreload_MouseHover()
         {
             ToolTip nginx_reload_Tip = new ToolTip();
             nginx_reload_Tip.Show("Reloads Nginx configuration without restart", Program.formInstance.nginxreload);
         }
 
-        internal static void nginxstop_MouseHover(object sender, EventArgs e)
+        internal static void nginxstop_MouseHover()
         {
             ToolTip nginx_stop_Tip = new ToolTip();
             nginx_stop_Tip.Show("Stop Nginx", Program.formInstance.nginxstop);
         }
 
-        internal static void nginxstart_MouseHover(object sender, EventArgs e)
+        internal static void nginxstart_MouseHover()
         {
             ToolTip nginx_start_Tip = new ToolTip();
             nginx_start_Tip.Show("Start Nginx", Program.formInstance.nginxstart);
