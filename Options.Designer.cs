@@ -44,6 +44,7 @@ namespace Wnmp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Options));
             this.label1 = new System.Windows.Forms.Label();
             this.editorTB = new System.Windows.Forms.TextBox();
             this.selecteditor = new System.Windows.Forms.Button();
@@ -84,6 +85,7 @@ namespace Wnmp
             this.Controls.Add(this.selecteditor);
             this.Controls.Add(this.editorTB);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(276, 91);
             this.MinimizeBox = false;
