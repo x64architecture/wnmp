@@ -51,6 +51,8 @@ If you can, please donate to [kurt@x64architecture.com][2] using paypal for my e
 -------------------------------------------------
  Disk Space		| 378 MB
 -------------------------------------------------
+.NET Framework  | 2.0
+-------------------------------------------------
 
 ----
 
