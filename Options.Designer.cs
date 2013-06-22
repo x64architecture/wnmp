@@ -48,6 +48,11 @@ namespace Wnmp
             this.label1 = new System.Windows.Forms.Label();
             this.editorTB = new System.Windows.Forms.TextBox();
             this.selecteditor = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.suwnmpcb = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.suap = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -77,19 +82,72 @@ namespace Wnmp
             this.selecteditor.UseVisualStyleBackColor = true;
             this.selecteditor.Click += new System.EventHandler(this.selecteditor_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(125, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Start Wnmp on start up?:";
+            // 
+            // suwnmpcb
+            // 
+            this.suwnmpcb.AutoSize = true;
+            this.suwnmpcb.Location = new System.Drawing.Point(168, 54);
+            this.suwnmpcb.Name = "suwnmpcb";
+            this.suwnmpcb.Size = new System.Drawing.Size(15, 14);
+            this.suwnmpcb.TabIndex = 4;
+            this.suwnmpcb.UseVisualStyleBackColor = true;
+            this.suwnmpcb.CheckedChanged += new System.EventHandler(this.suwnmpcb_CheckedChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(189, 48);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(22, 25);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "?";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 79);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(150, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Start all programs on start up?:";
+            // 
+            // suap
+            // 
+            this.suap.AutoSize = true;
+            this.suap.Location = new System.Drawing.Point(168, 79);
+            this.suap.Name = "suap";
+            this.suap.Size = new System.Drawing.Size(15, 14);
+            this.suap.TabIndex = 7;
+            this.suap.UseVisualStyleBackColor = true;
+            this.suap.CheckedChanged += new System.EventHandler(this.suap_CheckedChanged);
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(260, 53);
+            this.ClientSize = new System.Drawing.Size(264, 101);
+            this.Controls.Add(this.suap);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.suwnmpcb);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.selecteditor);
             this.Controls.Add(this.editorTB);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(276, 91);
+            this.MaximumSize = new System.Drawing.Size(280, 139);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(276, 91);
+            this.MinimumSize = new System.Drawing.Size(280, 139);
             this.Name = "Options";
             this.Text = "Options";
             this.Load += new System.EventHandler(this.Options_Load);
@@ -103,6 +161,11 @@ namespace Wnmp
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox editorTB;
         private System.Windows.Forms.Button selecteditor;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox suwnmpcb;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox suap;
 
     }
 }

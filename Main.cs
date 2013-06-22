@@ -30,10 +30,17 @@ namespace Wnmp
 {
     public partial class Main : Form
     {
-        public Main()
+        public Main(string[] args)
         {
+            foreach (string arg in args)
+            {
+                if (arg == "--start all")
+                {
+                    General.start_Click();
+                    //this.WindowState = FormWindowState.Minimized;
+                }
+            }
             InitializeComponent();
-
         }
         internal string CPVER = "2.0.1";
         #region Wnmp Stuff

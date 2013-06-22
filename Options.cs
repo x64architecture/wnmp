@@ -21,6 +21,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace Wnmp
 {
@@ -33,6 +34,22 @@ namespace Wnmp
 
         private void Options_Load(object sender, EventArgs e)
         {
+            if (Wnmp.Properties.Settings.Default.startaprgssu == false)
+            {
+                suap.Checked = false;
+            }
+            else
+            {
+                suap.Checked = true;
+            }
+            if (Wnmp.Properties.Settings.Default.startwnmpsu == false)
+            {
+                suwnmpcb.Checked = false;
+            }
+            else
+            {
+                suwnmpcb.Checked = true;
+            }
             if (Wnmp.Properties.Settings.Default.editor == "")
             {
                 editorTB.Text = "notpad.exe";
@@ -60,6 +77,50 @@ namespace Wnmp
             Wnmp.Properties.Settings.Default.Save();
             editorTB.Text = Wnmp.Properties.Settings.Default.editor;
                 return;
+        }
+
+        private void suwnmpcb_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (suwnmpcb.Checked == true)
+                {
+                    RegistryKey add = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                    add.SetValue("Wnmp", "\"" + Application.ExecutablePath.ToString() + "\"");
+                    Wnmp.Properties.Settings.Default.startwnmpsu = true;
+                    Wnmp.Properties.Settings.Default.Save();
+                }
+                else
+                {
+                    RegistryKey remove = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                    remove.DeleteValue("Wnmp");
+                    Wnmp.Properties.Settings.Default.startwnmpsu = false;
+                    Wnmp.Properties.Settings.Default.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This option may require administator privileges. \n If it dosent work or throws an error right click Wnmp.exe and click run as administator.");
+        }
+
+        private void suap_CheckedChanged(object sender, EventArgs e)
+        {
+            if (suap.Checked == true)
+            {
+                Wnmp.Properties.Settings.Default.startaprgssu = true;
+                Wnmp.Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Wnmp.Properties.Settings.Default.startaprgssu = false;
+                Wnmp.Properties.Settings.Default.Save();
+            }
         }
     }
 }

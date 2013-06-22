@@ -34,5 +34,29 @@ namespace Wnmp.Properties {
                 this["editor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool startwnmpsu {
+            get {
+                return ((bool)(this["startwnmpsu"]));
+            }
+            set {
+                this["startwnmpsu"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool startaprgssu {
+            get {
+                return ((bool)(this["startaprgssu"]));
+            }
+            set {
+                this["startaprgssu"] = value;
+            }
+        }
     }
 }

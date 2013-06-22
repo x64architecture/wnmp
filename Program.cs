@@ -26,11 +26,11 @@ namespace Wnmp
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(formInstance = new Main());
+            Application.Run(formInstance = new Main(args));
         }
         public static Main formInstance;
     }

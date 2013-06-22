@@ -189,6 +189,10 @@ namespace Wnmp
             Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Checking for applications");
             checkforapps();
             Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Wnmp Ready to go!");
+            if (Wnmp.Properties.Settings.Default.startaprgssu == true)
+            {
+                General.start_Click();
+            }
             Program.formInstance.output.ScrollToCaret();
         }
 
