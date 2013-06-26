@@ -116,9 +116,9 @@ namespace Wnmp
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 79);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(150, 13);
+            this.label3.Size = new System.Drawing.Size(147, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Start all programs on start up?:";
+            this.label3.Text = "Start all programs on launch?:";
             // 
             // suap
             // 
