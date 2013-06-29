@@ -46,7 +46,7 @@ namespace Wnmp
                 start.StartInfo.CreateNoWindow = true;
                 start.Start();
                 start.CloseMainWindow();
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [php]" + "                     Attempting to start PHP");
+                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp PHP]" + " - Attempting to start PHP");
                 Program.formInstance.phprunning.Text = "\u221A";
                 Program.formInstance.phprunning.ForeColor = Color.Green;
             }
@@ -70,7 +70,7 @@ namespace Wnmp
             {
                 MessageBox.Show(ex.Message.ToString());
             }
-            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [php]" + "                     Attempting to stop PHP");
+            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp PHP]" + " - Attempting to stop PHP");
             Program.formInstance.phprunning.Text = "X";
             Program.formInstance.phprunning.ForeColor = Color.DarkRed;
         }

@@ -43,7 +43,7 @@ namespace Wnmp
                 mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
                 mariadb.StartInfo.CreateNoWindow = true;
                 mariadb.Start(); //Start the process
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [mariadb]" + "            Attempting to start MariaDB");
+                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Attempting to start MariaDB");
                 Program.formInstance.mariadbrunning.Text = "\u221A";
                 Program.formInstance.mariadbrunning.ForeColor = Color.Green;
             }
@@ -57,7 +57,7 @@ namespace Wnmp
             try
             {
                 //MariaDB
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [mariadb]" + "            Attempting to stop MariaDB");
+                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Attempting to stop MariaDB");
                 System.Diagnostics.Process mariadb = new System.Diagnostics.Process(); //Create process
                 mariadb.StartInfo.FileName = @Application.StartupPath + @"/mariadb\bin\mysqladmin.exe";
                 mariadb.StartInfo.Arguments = "-u root -p shutdown";
@@ -87,7 +87,7 @@ namespace Wnmp
                 mariadbs.Start(); //Start the process
                 System.Threading.Thread.Sleep(100); //Wait
                 //MariaDB Shell
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [mariadb]" + "             Attempting to start MariaDB shell");
+                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Attempting to start MariaDB shell");
                 System.Diagnostics.Process mariadbsh = new System.Diagnostics.Process(); //Create process
                 mariadbsh.StartInfo.FileName = @Application.StartupPath + @"/mariadb\bin\mysql.exe";
                 mariadbsh.StartInfo.Arguments = "-u root -p";

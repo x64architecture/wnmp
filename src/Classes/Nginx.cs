@@ -43,7 +43,7 @@ namespace Wnmp
                 nginx.StartInfo.WorkingDirectory = Application.StartupPath;
                 nginx.StartInfo.CreateNoWindow = true;
                 nginx.Start(); //Start the process
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [nginx]" + "                  Attempting to reload Nginx");
+                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to reload Nginx");
             }
             catch (Exception ex)
             {
@@ -63,7 +63,7 @@ namespace Wnmp
                 nginx.StartInfo.WorkingDirectory = Application.StartupPath;
                 nginx.StartInfo.CreateNoWindow = true;
                 nginx.Start(); //Start the process
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [nginx]" + "                  Attempting to stop Nginx");
+                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to stop Nginx");
                 Program.formInstance.nginxrunning.Text = "X";
                 Program.formInstance.nginxrunning.ForeColor = Color.DarkRed;
             }
@@ -84,7 +84,7 @@ namespace Wnmp
                 nginx.StartInfo.WorkingDirectory = Application.StartupPath;
                 nginx.StartInfo.CreateNoWindow = true;
                 nginx.Start(); //Start the process
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [nginx]" + "                  Attempting to start Nginx");
+                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to start Nginx");
                 Program.formInstance.nginxrunning.Text = "\u221A";
                 Program.formInstance.nginxrunning.ForeColor = Color.Green;
             }

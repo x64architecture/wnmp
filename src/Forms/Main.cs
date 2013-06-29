@@ -110,40 +110,40 @@ namespace Wnmp
                 }
                 pos = output.Find(searchText, pos + 1, RichTextBoxFinds.MatchCase);
             }
-            string searchText5 = "nginx";
+            string searchText5 = "Wnmp Nginx";
             int pos5 = 0;
             pos5 = output.Find(searchText5, pos5, RichTextBoxFinds.MatchCase);
             while (pos5 != -1)
             {
                 if (output.SelectedText == searchText5 && output.SelectedText != "")
                 {
-                    output.SelectionLength = 5;
+                    output.SelectionLength = 10;
                     output.SelectionFont = new Font("arial", 10);
                     output.SelectionColor = Color.DarkBlue;
                 }
                 pos5 = output.Find(searchText5, pos5 + 1, RichTextBoxFinds.MatchCase);
             }
-            string searchText6 = "php";
+            string searchText6 = "Wnmp PHP";
             int pos6 = 0;
             pos6 = output.Find(searchText6, pos6, RichTextBoxFinds.MatchCase);
             while (pos6 != -1)
             {
                 if (output.SelectedText == searchText6 && output.SelectedText != "")
                 {
-                    output.SelectionLength = 3;
+                    output.SelectionLength = 8;
                     output.SelectionFont = new Font("arial", 10);
                     output.SelectionColor = Color.DarkBlue;
                 }
                 pos6 = output.Find(searchText6, pos6 + 1, RichTextBoxFinds.MatchCase);
             }
-            string searchText7 = "mariadb";
+            string searchText7 = "Wnmp MariaDB";
             int pos7 = 0;
             pos7 = output.Find(searchText7, pos7, RichTextBoxFinds.MatchCase);
             while (pos7 != -1)
             {
                 if (output.SelectedText == searchText7 && output.SelectedText != "")
                 {
-                    output.SelectionLength = 7;
+                    output.SelectionLength = 12;
                     output.SelectionFont = new Font("arial", 10);
                     output.SelectionColor = Color.DarkBlue;
                 }

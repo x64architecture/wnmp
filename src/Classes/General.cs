@@ -79,7 +79,7 @@ namespace Wnmp
                 mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
                 mariadb.StartInfo.CreateNoWindow = true; //Excute with no window
                 mariadb.Start(); //Start the process
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Starting all applications");
+                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Starting all applications");
                 Program.formInstance.nginxrunning.Text = "\u221A";
                 Program.formInstance.nginxrunning.ForeColor = Color.Green;
                 Program.formInstance.mariadbrunning.Text = "\u221A";
@@ -140,7 +140,7 @@ namespace Wnmp
                 Program.formInstance.mariadbrunning.ForeColor = Color.DarkRed;
                 Program.formInstance.phprunning.Text = "X";
                 Program.formInstance.phprunning.ForeColor = Color.DarkRed;
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Stopping all applications");
+                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Stopping all applications");
             }
             catch (Exception ex)
             {

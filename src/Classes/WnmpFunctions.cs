@@ -118,7 +118,7 @@ namespace Wnmp
         {
             if (File.Exists(@Application.StartupPath + "/nginx.exe") == false)
             {
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [nginx]" + "                  Error: Nginx Not Found");
+                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Error: Nginx Not Found");
                 string searchText = "Nginx";
                 int pos = 0;
                 pos = Program.formInstance.output.Find(searchText, pos, RichTextBoxFinds.MatchCase);
@@ -135,7 +135,7 @@ namespace Wnmp
             }
             if (Directory.Exists(@Application.StartupPath + @"/mariadb") == false)
             {
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [mariadb]" + "             Error: MariaDB Not Found");
+                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Error: MariaDB Not Found");
                 string searchText = "MariaDB";
                 int pos = 0;
                 pos = Program.formInstance.output.Find(searchText, pos, RichTextBoxFinds.MatchCase);
@@ -152,7 +152,7 @@ namespace Wnmp
             }
             if (Directory.Exists(@Application.StartupPath + @"/php") == false)
             {
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [php]" + "                     Error: PHP Not Found");
+                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp PHP]" + " - Error: PHP Not Found");
                 string searchText = "php";
                 int pos = 0;
                 pos = Program.formInstance.output.Find(searchText, pos, RichTextBoxFinds.MatchCase);
@@ -173,10 +173,10 @@ namespace Wnmp
         internal static void startup()
         {
             string OSI = OSInfo.OSVersionInfo.Name + " " + OSInfo.OSVersionInfo.Edition + " ";
-            Program.formInstance.output.AppendText(DateTime.Now.ToString() + " [Wnmp Main]" + "     Initializing Control Panel");
-            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Control Panel Version: " + Program.formInstance.CPVER);
-            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Wnmp Version: " + Program.formInstance.ProductVersion);
-            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     " + "Windows Version: " + OSI);
+            Program.formInstance.output.AppendText(DateTime.Now.ToString() + " [Wnmp Main]" + " - Initializing Control Panel");
+            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Control Panel Version: " + Program.formInstance.CPVER);
+            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Wnmp Version: " + Program.formInstance.ProductVersion);
+            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Windows Version: " + OSI);
             if (OSInfo.OSVersionInfo.ServicePack != string.Empty)
             {
                 Program.formInstance.output.AppendText(String.Format(OSInfo.OSVersionInfo.ServicePack));
@@ -185,10 +185,10 @@ namespace Wnmp
             {
                 Program.formInstance.output.AppendText("");
             }
-            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Wnmp Directory: " + @Application.StartupPath);
-            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Checking for applications");
+            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Wnmp Directory: " + @Application.StartupPath);
+            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Checking for applications");
             checkforapps();
-            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Wnmp Ready to go!");
+            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Wnmp Ready to go!");
             if (Wnmp.Properties.Settings.Default.startaprgssu == true)
             {
                 General.start_Click();
