@@ -2,6 +2,7 @@
 <appinfo>
 <version>2.0.2.3</version>
 <url>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.2.3.exe</url>
+<upgradeurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.2.3.exe</upgradeurl>
 <about>
 Wnmp 2.0.2.3
 ************

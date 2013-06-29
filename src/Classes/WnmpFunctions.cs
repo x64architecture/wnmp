@@ -33,6 +33,7 @@ namespace Wnmp
     class WnmpFunctions
     {
         #region checkforupdates
+        public static string updurl = "";
         internal static void checkForUpdatesToolStripMenuItem_Click()
         {
             string downloadUrl = "";
@@ -63,6 +64,9 @@ namespace Wnmp
                                         break;
                                     case "url":
                                         downloadUrl = reader.Value;
+                                        break;
+                                    case "upgradeurl":
+                                        updurl = reader.Value;
                                         break;
                                     case "about":
                                         aboutUpdate = reader.Value;
@@ -96,7 +100,28 @@ namespace Wnmp
                 {
                     try
                     {
-                        Process.Start(downloadUrl);
+                        Wnmp.Forms.dlUpdateProgress frm = new Wnmp.Forms.dlUpdateProgress();
+                        frm.Show();
+                        frm.Focus();
+                        WebClient webClient = new WebClient();
+                        webClient.DownloadProgressChanged += (s, e) =>
+                        {
+                            frm.progressBar1.Value = e.ProgressPercentage;
+                        };
+                        webClient.DownloadFileCompleted += (s, e) =>
+                        {
+                            frm.progressBar1.Visible = false;
+                            frm.Close();
+                            Process.Start(@Application.StartupPath + "/Wnmp-Upgrade.exe");
+                            cfa();
+                            Application.Exit();
+                        };
+                        webClient.DownloadFileAsync(new Uri(updurl),
+                            @Application.StartupPath + "/Wnmp-Upgrade.exe");
+                        frm.FormClosed += (s, e) =>
+                        {
+                            webClient.CancelAsync();
+                        };
                     }
                     catch { }
                     return;
@@ -108,7 +133,7 @@ namespace Wnmp
             }
             else
             {
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + "     Your version: " + applicationVersion + "  is up to date.");
+                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Your version: " + applicationVersion + "  is up to date.");
             }
         }
         #endregion checkforupdates
@@ -392,6 +417,25 @@ namespace Wnmp
             {
                 Program.formInstance.mariadbrunning.Text = "\u221A";
                 Program.formInstance.mariadbrunning.ForeColor = Color.Green;
+            }
+        }
+        internal static void cfa()
+        {
+            Process[] current = Process.GetProcesses();
+            foreach (Process p in current)
+            {
+                if (p.ProcessName == "php-cgi")
+                {
+                    p.Kill();
+                }
+                else if (p.ProcessName == "nginx")
+                {
+                    p.Kill();
+                }
+                else if (p.ProcessName == "mysqld")
+                {
+                    p.Kill();
+                }
             }
         }
     }
