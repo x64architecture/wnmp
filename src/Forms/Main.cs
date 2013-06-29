@@ -65,16 +65,23 @@ namespace Wnmp
         }
         private void Main_Load(object sender, EventArgs e)
         {
+            WnmpFunctions.ContextMenus();
+            WnmpFunctions.startup();
+        }
+
+        private void icp()
+        {
             Process[] process = Process.GetProcessesByName("Wnmp");
             Process current = Process.GetCurrentProcess();
             foreach (Process p in process)
             {
                 if (p.Id != current.Id)
-                MessageBox.Show("Wnmp is already running");
-                Application.Exit();
+                {
+                    MessageBox.Show("Wnmp is already running");
+                    Application.Exit();
+                }
+            else { }
             }
-            WnmpFunctions.ContextMenus();
-            WnmpFunctions.startup();
         }
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
