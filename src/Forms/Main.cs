@@ -100,11 +100,10 @@ namespace Wnmp
         }
         #endregion Wnmp Stuff
         #region output
-        private void output_TextChanged(object sender, EventArgs e)
+        public void tc(string text, string oColor)
         {
-            output.SelectionStart = output.Text.Length;
-            output.ScrollToCaret();
-            string searchText = "Wnmp Main";
+            System.Drawing.ColorConverter colConvert = new ColorConverter();
+            string searchText = text;
             int pos = 0;
             pos = output.Find(searchText, pos, RichTextBoxFinds.MatchCase);
             while (pos != -1)
@@ -113,49 +112,19 @@ namespace Wnmp
                 {
                     output.SelectionLength = searchText.Length;
                     output.SelectionFont = new Font("arial", 10);
-                    output.SelectionColor = Color.DarkBlue;
+                    output.SelectionColor = (System.Drawing.Color)colConvert.ConvertFromString(oColor);
                 }
                 pos = output.Find(searchText, pos + 1, RichTextBoxFinds.MatchCase);
             }
-            string searchText5 = "Wnmp Nginx";
-            int pos5 = 0;
-            pos5 = output.Find(searchText5, pos5, RichTextBoxFinds.MatchCase);
-            while (pos5 != -1)
-            {
-                if (output.SelectedText == searchText5 && output.SelectedText != "")
-                {
-                    output.SelectionLength = 10;
-                    output.SelectionFont = new Font("arial", 10);
-                    output.SelectionColor = Color.DarkBlue;
-                }
-                pos5 = output.Find(searchText5, pos5 + 1, RichTextBoxFinds.MatchCase);
-            }
-            string searchText6 = "Wnmp PHP";
-            int pos6 = 0;
-            pos6 = output.Find(searchText6, pos6, RichTextBoxFinds.MatchCase);
-            while (pos6 != -1)
-            {
-                if (output.SelectedText == searchText6 && output.SelectedText != "")
-                {
-                    output.SelectionLength = 8;
-                    output.SelectionFont = new Font("arial", 10);
-                    output.SelectionColor = Color.DarkBlue;
-                }
-                pos6 = output.Find(searchText6, pos6 + 1, RichTextBoxFinds.MatchCase);
-            }
-            string searchText7 = "Wnmp MariaDB";
-            int pos7 = 0;
-            pos7 = output.Find(searchText7, pos7, RichTextBoxFinds.MatchCase);
-            while (pos7 != -1)
-            {
-                if (output.SelectedText == searchText7 && output.SelectedText != "")
-                {
-                    output.SelectionLength = 12;
-                    output.SelectionFont = new Font("arial", 10);
-                    output.SelectionColor = Color.DarkBlue;
-                }
-                pos7 = output.Find(searchText7, pos7 + 1, RichTextBoxFinds.MatchCase);
-            }
+        }
+        private void output_TextChanged(object sender, EventArgs e)
+        {
+            output.SelectionStart = output.Text.Length;
+            output.ScrollToCaret();
+            tc("Wnmp Main", "DarkBlue");
+            tc("Wnmp Nginx", "DarkBlue");
+            tc("Wnmp PHP", "DarkBlue");
+            tc("Wnmp MariaDB", "DarkBlue");
         }
         #endregion output
         #region events

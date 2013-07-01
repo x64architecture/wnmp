@@ -139,58 +139,39 @@ namespace Wnmp
         #endregion checkforupdates
 
         #region checkforapps
+        public static void tc(string text, string oColor)
+        {
+            System.Drawing.ColorConverter colConvert = new ColorConverter();
+            string searchText = text;
+            int pos = 0;
+            pos = Program.formInstance.output.Find(searchText, pos, RichTextBoxFinds.MatchCase);
+            while (pos != -1)
+            {
+                if (Program.formInstance.output.SelectedText == searchText && Program.formInstance.output.SelectedText != "")
+                {
+                    Program.formInstance.output.SelectionLength = searchText.Length;
+                    Program.formInstance.output.SelectionFont = new Font("arial", 10);
+                    Program.formInstance.output.SelectionColor = (System.Drawing.Color)colConvert.ConvertFromString(oColor);
+                }
+                pos = Program.formInstance.output.Find(searchText, pos + 1, RichTextBoxFinds.MatchCase);
+            }
+        }
         internal static void checkforapps()
         {
             if (File.Exists(@Application.StartupPath + "/nginx.exe") == false)
             {
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Error: Nginx Not Found");
-                string searchText = "Nginx";
-                int pos = 0;
-                pos = Program.formInstance.output.Find(searchText, pos, RichTextBoxFinds.MatchCase);
-                while (pos != -1)
-                {
-                    if (Program.formInstance.output.SelectedText == searchText && Program.formInstance.output.SelectedText != "")
-                    {
-                        Program.formInstance.output.SelectionLength = searchText.Length;
-                        Program.formInstance.output.SelectionFont = new Font("arial", 10);
-                        Program.formInstance.output.SelectionColor = Color.Red;
-                    }
-                    pos = Program.formInstance.output.Find(searchText, pos + 1, RichTextBoxFinds.MatchCase);
-                }
+                tc("Wnmp Nginx", "Red");
             }
             if (Directory.Exists(@Application.StartupPath + @"/mariadb") == false)
             {
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Error: MariaDB Not Found");
-                string searchText = "MariaDB";
-                int pos = 0;
-                pos = Program.formInstance.output.Find(searchText, pos, RichTextBoxFinds.MatchCase);
-                while (pos != -1)
-                {
-                    if (Program.formInstance.output.SelectedText == searchText && Program.formInstance.output.SelectedText != "")
-                    {
-                        Program.formInstance.output.SelectionLength = searchText.Length;
-                        Program.formInstance.output.SelectionFont = new Font("arial", 10);
-                        Program.formInstance.output.SelectionColor = Color.Red;
-                    }
-                    pos = Program.formInstance.output.Find(searchText, pos + 1, RichTextBoxFinds.MatchCase);
-                }
+                tc("Wnmp MariaDB", "Red");
             }
             if (Directory.Exists(@Application.StartupPath + @"/php") == false)
             {
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp PHP]" + " - Error: PHP Not Found");
-                string searchText = "php";
-                int pos = 0;
-                pos = Program.formInstance.output.Find(searchText, pos, RichTextBoxFinds.MatchCase);
-                while (pos != -1)
-                {
-                    if (Program.formInstance.output.SelectedText == searchText && Program.formInstance.output.SelectedText != "")
-                    {
-                        Program.formInstance.output.SelectionLength = searchText.Length;
-                        Program.formInstance.output.SelectionFont = new Font("arial", 10);
-                        Program.formInstance.output.SelectionColor = Color.Red;
-                    }
-                    pos = Program.formInstance.output.Find(searchText, pos + 1, RichTextBoxFinds.MatchCase);
-                }
+                tc("Wnmp PHP", "Red");
             }
         }
         #endregion checkforapps
