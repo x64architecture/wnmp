@@ -44,7 +44,8 @@ namespace Wnmp
         private void wnmpOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Options form = new Options();
-            form.ShowDialog();
+            form.StartPosition = FormStartPosition.CenterParent;
+            form.ShowDialog(this);
             form.Focus();
         }
         private void Main_Resize(object sender, EventArgs e)
@@ -86,6 +87,7 @@ namespace Wnmp
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Wnmp.Forms.About aboutfrm = new Wnmp.Forms.About();
+            aboutfrm.StartPosition = FormStartPosition.CenterParent;
             aboutfrm.ShowDialog(this);
             aboutfrm.Focus();
         }
