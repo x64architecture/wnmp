@@ -59,5 +59,12 @@ namespace Wnmp.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Bitmap wnmp {
+            get {
+                object obj = ResourceManager.GetObject("wnmp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
