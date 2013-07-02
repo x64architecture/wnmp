@@ -65,6 +65,7 @@ namespace Wnmp
         }
         private void Main_Load(object sender, EventArgs e)
         {
+            icp();
             WnmpFunctions.ContextMenus();
             WnmpFunctions.startup();
         }
