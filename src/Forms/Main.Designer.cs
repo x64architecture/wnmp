@@ -551,7 +551,7 @@ namespace Wnmp
             this.Name = "Main";
             this.Text = "Wnmp";
             this.Load += new System.EventHandler(this.Main_Load);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
+            this.Resize += new System.EventHandler(this.Main_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
