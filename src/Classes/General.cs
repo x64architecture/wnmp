@@ -42,6 +42,18 @@ namespace Wnmp
             ToolTip stop_all_Tip = new ToolTip();
             stop_all_Tip.Show("Stops Nginx, PHP-CGI & MySQL", Program.formInstance.stop);
         }
+        public static void startprocess(string p, string args, bool shellexc, bool redirectso)
+        {
+            System.Threading.Thread.Sleep(100); //Wait
+            System.Diagnostics.Process ps = new System.Diagnostics.Process(); //Create process
+            ps.StartInfo.FileName = p; //p is the path and file name of the file to run
+            ps.StartInfo.Arguments = args; //Parameters to pass to program
+            ps.StartInfo.UseShellExecute = shellexc;
+            ps.StartInfo.RedirectStandardOutput = redirectso; //Set output of program to be written to process output stream
+            ps.StartInfo.WorkingDirectory = Application.StartupPath;
+            ps.StartInfo.CreateNoWindow = true; //Excute with no window
+            ps.Start(); //Start the process
+        }
         internal static void start_Click()
         {
             string[] prgs = new string[3];
@@ -50,35 +62,12 @@ namespace Wnmp
             prgs[2] = @Application.StartupPath + @"/mariadb/bin/mysqld.exe";
             try
             {
-                //Create process
-                System.Diagnostics.Process nginxs = new System.Diagnostics.Process();
-                //arr4[0] is path and file name of command to run
-                nginxs.StartInfo.FileName = prgs[0].ToString();
-                nginxs.StartInfo.UseShellExecute = false;
-                //Set output of program to be written to process output stream
-                nginxs.StartInfo.RedirectStandardOutput = true;
-                nginxs.StartInfo.WorkingDirectory = Application.StartupPath;
-                nginxs.StartInfo.CreateNoWindow = true; //Excute with no window
-                nginxs.Start(); //Start the process
+                //Nginx
+                startprocess(prgs[0], "", false, true);
                 //PHP
-                System.Threading.Thread.Sleep(100); //Wait
-                System.Diagnostics.Process phps = new System.Diagnostics.Process(); //Create process
-                phps.StartInfo.FileName = prgs[1].ToString(); //arr4[1] is path and file name of command to run
-                phps.StartInfo.Arguments = "-b localhost:9000"; //Parameters to pass to program
-                phps.StartInfo.UseShellExecute = false;
-                phps.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
-                phps.StartInfo.WorkingDirectory = Application.StartupPath;
-                phps.StartInfo.CreateNoWindow = true; //Excute with no window
-                phps.Start(); //Start the process
-                System.Threading.Thread.Sleep(100); //Wait
+                startprocess(prgs[1], "-b localhost:9000", false, true);
                 //MariaDB
-                System.Diagnostics.Process mariadb = new System.Diagnostics.Process(); //Create process
-                mariadb.StartInfo.FileName = prgs[2].ToString();
-                mariadb.StartInfo.UseShellExecute = false;
-                mariadb.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
-                mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
-                mariadb.StartInfo.CreateNoWindow = true; //Excute with no window
-                mariadb.Start(); //Start the process
+                startprocess(prgs[2], "", false, true);
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Starting all applications");
                 Program.formInstance.nginxrunning.Text = "\u221A";
                 Program.formInstance.nginxrunning.ForeColor = Color.Green;
@@ -95,23 +84,13 @@ namespace Wnmp
 
         internal static void stop_Click()
         {
-            string[] prgs = new string[3];
+            string[] prgs = new string[2];
             prgs[0] = @Application.StartupPath + @"/nginx.exe";
-            prgs[1] = @Application.StartupPath + @"/php/php-cgi.exe";
-            prgs[2] = @Application.StartupPath + @"/mariadb/bin/mysqladmin.exe";
+            prgs[1] = @Application.StartupPath + @"/mariadb/bin/mysqladmin.exe";
             try
             {
-                //Create process
-                System.Diagnostics.Process nginxs = new System.Diagnostics.Process();
-                //arr4[0] is path and file name of command to run
-                nginxs.StartInfo.FileName = prgs[0].ToString();
-                nginxs.StartInfo.Arguments = "-s stop";
-                nginxs.StartInfo.UseShellExecute = false;
-                //Set output of program to be written to process output stream
-                nginxs.StartInfo.RedirectStandardOutput = true;
-                nginxs.StartInfo.WorkingDirectory = Application.StartupPath;
-                nginxs.StartInfo.CreateNoWindow = true; //Execute with no window
-                nginxs.Start(); //Start the process
+                //Nginx
+                startprocess(prgs[0], "-s stop", false, true);
                 //PHP
                 try
                 {
@@ -125,15 +104,8 @@ namespace Wnmp
                 {
                     MessageBox.Show(ex.Message.ToString());
                 }
-                System.Threading.Thread.Sleep(100); //Wait
                 //MariaDB
-                System.Diagnostics.Process mariadb = new System.Diagnostics.Process(); //Create process
-                mariadb.StartInfo.FileName = @Application.StartupPath + @"/mariadb\bin\mysqladmin.exe";
-                mariadb.StartInfo.Arguments = "-u root -p shutdown";
-                mariadb.StartInfo.UseShellExecute = true;
-                mariadb.StartInfo.RedirectStandardOutput = false; //Set output of program to be written to process output stream
-                mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
-                mariadb.Start(); //Start the process
+                startprocess(prgs[1], "-u root -p shutdown", true, false);
                 Program.formInstance.nginxrunning.Text = "X";
                 Program.formInstance.nginxrunning.ForeColor = Color.DarkRed;
                 Program.formInstance.mariadbrunning.Text = "X";

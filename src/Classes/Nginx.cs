@@ -31,18 +31,23 @@ namespace Wnmp
 {
     class Nginx
     {
+        public static void startprocess(string p, string args)
+        {
+            System.Threading.Thread.Sleep(100); //Wait
+            System.Diagnostics.Process ps = new System.Diagnostics.Process(); //Create process
+            ps.StartInfo.FileName = p; //p is the path and file name of the file to run
+            ps.StartInfo.Arguments = args; //Parameters to pass to program
+            ps.StartInfo.UseShellExecute = false;
+            ps.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
+            ps.StartInfo.WorkingDirectory = Application.StartupPath;
+            ps.StartInfo.CreateNoWindow = true; //Excute with no window
+            ps.Start(); //Start the process
+        }
         internal static void nginxreload_Click()
         {
             try
             {
-                System.Diagnostics.Process nginx = new System.Diagnostics.Process(); //Create process
-                nginx.StartInfo.FileName = @Application.StartupPath + "/nginx.exe";
-                nginx.StartInfo.Arguments = "-s reload";
-                nginx.StartInfo.UseShellExecute = false;
-                nginx.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
-                nginx.StartInfo.WorkingDirectory = Application.StartupPath;
-                nginx.StartInfo.CreateNoWindow = true;
-                nginx.Start(); //Start the process
+                startprocess(@Application.StartupPath + "/nginx.exe", "-s reload");
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to reload Nginx");
             }
             catch (Exception ex)
@@ -55,14 +60,7 @@ namespace Wnmp
         {
             try
             {
-                System.Diagnostics.Process nginx = new System.Diagnostics.Process(); //Create process
-                nginx.StartInfo.FileName = @Application.StartupPath + "/nginx.exe";
-                nginx.StartInfo.Arguments = "-s stop";
-                nginx.StartInfo.UseShellExecute = false;
-                nginx.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
-                nginx.StartInfo.WorkingDirectory = Application.StartupPath;
-                nginx.StartInfo.CreateNoWindow = true;
-                nginx.Start(); //Start the process
+                startprocess(@Application.StartupPath + "/nginx.exe", "-s stop");
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to stop Nginx");
                 Program.formInstance.nginxrunning.Text = "X";
                 Program.formInstance.nginxrunning.ForeColor = Color.DarkRed;
@@ -77,13 +75,7 @@ namespace Wnmp
         {
             try
             {
-                System.Diagnostics.Process nginx = new System.Diagnostics.Process(); //Create process
-                nginx.StartInfo.FileName = @Application.StartupPath + "/nginx.exe";
-                nginx.StartInfo.UseShellExecute = false;
-                nginx.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
-                nginx.StartInfo.WorkingDirectory = Application.StartupPath;
-                nginx.StartInfo.CreateNoWindow = true;
-                nginx.Start(); //Start the process
+                startprocess(@Application.StartupPath + "/nginx.exe", "");
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to start Nginx");
                 Program.formInstance.nginxrunning.Text = "\u221A";
                 Program.formInstance.nginxrunning.ForeColor = Color.Green;

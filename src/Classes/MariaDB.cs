@@ -32,17 +32,23 @@ namespace Wnmp
 {
     class MariaDB
     {
+        public static void startprocess(string p, string args, bool shellexc, bool redirectso)
+        {
+            System.Threading.Thread.Sleep(100); //Wait
+            System.Diagnostics.Process ps = new System.Diagnostics.Process(); //Create process
+            ps.StartInfo.FileName = p; //p is the path and file name of the file to run
+            ps.StartInfo.Arguments = args; //Parameters to pass to program
+            ps.StartInfo.UseShellExecute = shellexc;
+            ps.StartInfo.RedirectStandardOutput = redirectso; //Set output of program to be written to process output stream
+            ps.StartInfo.WorkingDirectory = Application.StartupPath;
+            ps.StartInfo.CreateNoWindow = true; //Excute with no window
+            ps.Start(); //Start the process
+        }
         internal static void mysqlstart_Click()
         {
             try
             {
-                System.Diagnostics.Process mariadb = new System.Diagnostics.Process(); //Create process
-                mariadb.StartInfo.FileName = @Application.StartupPath + @"/mariadb\bin\mysqld.exe";
-                mariadb.StartInfo.UseShellExecute = false;
-                mariadb.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
-                mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
-                mariadb.StartInfo.CreateNoWindow = true;
-                mariadb.Start(); //Start the process
+                startprocess(@Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true);
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Attempting to start MariaDB");
                 Program.formInstance.mariadbrunning.Text = "\u221A";
                 Program.formInstance.mariadbrunning.ForeColor = Color.Green;
@@ -58,13 +64,7 @@ namespace Wnmp
             {
                 //MariaDB
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Attempting to stop MariaDB");
-                System.Diagnostics.Process mariadb = new System.Diagnostics.Process(); //Create process
-                mariadb.StartInfo.FileName = @Application.StartupPath + @"/mariadb\bin\mysqladmin.exe";
-                mariadb.StartInfo.Arguments = "-u root -p shutdown";
-                mariadb.StartInfo.UseShellExecute = true;
-                mariadb.StartInfo.RedirectStandardOutput = false; //Set output of program to be written to process output stream
-                mariadb.StartInfo.WorkingDirectory = Application.StartupPath;
-                mariadb.Start(); //Start the process
+                startprocess(@Application.StartupPath + @"\mariadb\bin\mysqladmin.exe", "-u root -p shutdown", true, false);
                 Program.formInstance.mariadbrunning.Text = "X";
                 Program.formInstance.mariadbrunning.ForeColor = Color.DarkRed;
             }
@@ -77,24 +77,11 @@ namespace Wnmp
         {
             try
             {
-                //MariaDB
-                System.Diagnostics.Process mariadbs = new System.Diagnostics.Process(); //Create process
-                mariadbs.StartInfo.FileName = @Application.StartupPath + @"/mariadb\bin\mysqld.exe";
-                mariadbs.StartInfo.UseShellExecute = false;
-                mariadbs.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
-                mariadbs.StartInfo.WorkingDirectory = Application.StartupPath;
-                mariadbs.StartInfo.CreateNoWindow = true;
-                mariadbs.Start(); //Start the process
-                System.Threading.Thread.Sleep(100); //Wait
-                //MariaDB Shell
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Attempting to start MariaDB shell");
-                System.Diagnostics.Process mariadbsh = new System.Diagnostics.Process(); //Create process
-                mariadbsh.StartInfo.FileName = @Application.StartupPath + @"/mariadb\bin\mysql.exe";
-                mariadbsh.StartInfo.Arguments = "-u root -p";
-                mariadbsh.StartInfo.UseShellExecute = true;
-                mariadbsh.StartInfo.RedirectStandardOutput = false; //Set output of program to be written to process output stream
-                mariadbsh.StartInfo.WorkingDirectory = Application.StartupPath;
-                mariadbsh.Start(); //Start the process
+                //MariaDB
+                startprocess(@Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true);
+                //MariaDB Shell
+                startprocess(@Application.StartupPath + @"\mariadb\bin\mysql.exe", "-u root -p", true, false);
             }
             catch (Exception ex)
             {

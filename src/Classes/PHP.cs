@@ -32,20 +32,24 @@ namespace Wnmp
 {
     class PHP
     {
+        public static void startprocess(string p, string args)
+        {
+            System.Threading.Thread.Sleep(100); //Wait
+            System.Diagnostics.Process ps = new System.Diagnostics.Process(); //Create process
+            ps.StartInfo.FileName = p; //p is the path and file name of the file to run
+            ps.StartInfo.Arguments = args; //Parameters to pass to program
+            ps.StartInfo.UseShellExecute = false;
+            ps.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
+            ps.StartInfo.WorkingDirectory = Application.StartupPath;
+            ps.StartInfo.CreateNoWindow = true; //Excute with no window
+            ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            ps.Start(); //Start the process
+        }
         internal static void phpstart_Click()
         {
             try
             {
-                System.Diagnostics.Process start = new System.Diagnostics.Process();
-                start.StartInfo.FileName = @Application.StartupPath + @"/php/php-cgi.exe";
-                start.StartInfo.Arguments = "-b localhost:9000";
-                start.StartInfo.RedirectStandardError = true;
-                start.StartInfo.RedirectStandardOutput = true;
-                start.StartInfo.UseShellExecute = false;
-                start.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                start.StartInfo.CreateNoWindow = true;
-                start.Start();
-                start.CloseMainWindow();
+                startprocess(@Application.StartupPath + "/php/php-cgi.exe", "-b localhost:9000");
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp PHP]" + " - Attempting to start PHP");
                 Program.formInstance.phprunning.Text = "\u221A";
                 Program.formInstance.phprunning.ForeColor = Color.Green;

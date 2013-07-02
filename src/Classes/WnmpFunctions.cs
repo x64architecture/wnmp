@@ -291,8 +291,8 @@ namespace Wnmp
             }
             try
             {
-                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/mariadb/data");
-                FileInfo[] Files = dinfo.GetFiles("*.ini");
+                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/mariadb");
+                FileInfo[] Files = dinfo.GetFiles("my.ini");
                 foreach (FileInfo file in Files)
                 {
                     Program.formInstance.contextMenuStrip2.Items.Add(file.Name);
