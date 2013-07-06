@@ -50,13 +50,17 @@ namespace Wnmp
         }
         private void Main_Resize(object sender, EventArgs e)
         {
-            if (WindowState == FormWindowState.Minimized)
+            if (Wnmp.Properties.Settings.Default.mwttbs == true)
             {
-                this.Hide();
-                icon.BalloonTipTitle = "Wnmp";
-                icon.BalloonTipText = "Wnmp has been minimized to the taskbar.";
-                icon.ShowBalloonTip(3000);
+                if (WindowState == FormWindowState.Minimized)
+                {
+                    this.Hide();
+                    icon.BalloonTipTitle = "Wnmp";
+                    icon.BalloonTipText = "Wnmp has been minimized to the taskbar.";
+                    icon.ShowBalloonTip(3000);
+                }
             }
+            else { }
         }
 
         private void icon_Click(object sender, EventArgs e)

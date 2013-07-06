@@ -53,6 +53,8 @@ namespace Wnmp
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.suap = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.mwttb = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -94,7 +96,7 @@ namespace Wnmp
             // suwnmpcb
             // 
             this.suwnmpcb.AutoSize = true;
-            this.suwnmpcb.Location = new System.Drawing.Point(168, 54);
+            this.suwnmpcb.Location = new System.Drawing.Point(182, 54);
             this.suwnmpcb.Name = "suwnmpcb";
             this.suwnmpcb.Size = new System.Drawing.Size(15, 14);
             this.suwnmpcb.TabIndex = 4;
@@ -103,7 +105,7 @@ namespace Wnmp
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(189, 48);
+            this.button1.Location = new System.Drawing.Point(203, 48);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(22, 25);
             this.button1.TabIndex = 5;
@@ -123,18 +125,39 @@ namespace Wnmp
             // suap
             // 
             this.suap.AutoSize = true;
-            this.suap.Location = new System.Drawing.Point(168, 79);
+            this.suap.Location = new System.Drawing.Point(182, 78);
             this.suap.Name = "suap";
             this.suap.Size = new System.Drawing.Size(15, 14);
             this.suap.TabIndex = 7;
             this.suap.UseVisualStyleBackColor = true;
             this.suap.CheckedChanged += new System.EventHandler(this.suap_CheckedChanged);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 104);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(158, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Minimize Wnmp to the taskbar?:";
+            // 
+            // mwttb
+            // 
+            this.mwttb.AutoSize = true;
+            this.mwttb.Location = new System.Drawing.Point(182, 104);
+            this.mwttb.Name = "mwttb";
+            this.mwttb.Size = new System.Drawing.Size(15, 14);
+            this.mwttb.TabIndex = 9;
+            this.mwttb.UseVisualStyleBackColor = true;
+            this.mwttb.CheckedChanged += new System.EventHandler(this.mwttb_CheckedChanged);
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(264, 101);
+            this.ClientSize = new System.Drawing.Size(266, 130);
+            this.Controls.Add(this.mwttb);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.suap);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
@@ -145,9 +168,9 @@ namespace Wnmp
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(280, 139);
+            this.MaximumSize = new System.Drawing.Size(282, 168);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(280, 139);
+            this.MinimumSize = new System.Drawing.Size(282, 168);
             this.Name = "Options";
             this.Text = "Options";
             this.Load += new System.EventHandler(this.Options_Load);
@@ -166,6 +189,8 @@ namespace Wnmp
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox suap;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox mwttb;
 
     }
 }

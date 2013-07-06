@@ -122,5 +122,19 @@ namespace Wnmp
                 Wnmp.Properties.Settings.Default.Save();
             }
         }
+
+        private void mwttb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mwttb.Checked == true)
+            {
+                Wnmp.Properties.Settings.Default.mwttbs = true;
+                Wnmp.Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Wnmp.Properties.Settings.Default.mwttbs = false;
+                Wnmp.Properties.Settings.Default.Save();
+            }
+        }
     }
 }
