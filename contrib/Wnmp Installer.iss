@@ -2,7 +2,7 @@
 ;Inno Setup http://www.jrsoftware.org/isdl.php#stable
 
 #define Name "Wnmp"
-#define Version "2.0.2.3"
+#define Version "2.0.2.4"
 #define Publisher "Kurt Cancemi"
 #define URL "http://wnmp.x64architecture.com"
 #define ExeName "Wnmp.exe"
@@ -46,7 +46,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: "Wnmp.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "*"; Excludes: "mariadb\mysql-test\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -56,4 +56,4 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#Name}"; Filename
 
 [Run]
 Filename: "{app}\{#ExeName}"; Description: "{cm:LaunchProgram,{#StringChange(Name, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
-
+Filename: "{app}\contrib\ReadMe.html"; Description: "View the ReadMe.html"; Flags: postinstall shellexec skipifsilent
