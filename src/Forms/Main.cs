@@ -48,6 +48,18 @@ namespace Wnmp
             form.ShowDialog(this);
             form.Focus();
         }
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        private void SupportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://groups.google.com/group/windows-nginx-mysql-php-discuss");
+        }
+        private void Report_BugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://bitbucket.org/x64architecture/windows-nginx-mysql-php/issues/new");
+        }
         private void Main_Resize(object sender, EventArgs e)
         {
             if (Wnmp.Properties.Settings.Default.mwttbs == true)
