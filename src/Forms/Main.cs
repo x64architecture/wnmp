@@ -145,7 +145,7 @@ namespace Wnmp
         private void phpstop_Click(object sender, EventArgs e) { PHP.phpstop_Click(); } // phpstop_Click
         private void nginxreload_Click(object sender, EventArgs e) { Nginx.nginxreload_Click(); } // nginxreload_Click
         private void mysqlhelp_Click(object sender, EventArgs e) { MariaDB.mysqlhelp_Click(); } // mysqlhelp_Click
-        private void ngxconfig_Click(object sender, EventArgs e) { WnmpFunctions.nginxlogs_Click(sender,  e); } // ngxconfig_Click
+        private void ngxconfig_Click(object sender, EventArgs e) { WnmpFunctions.ngxconfig_Click(sender,  e); } // ngxconfig_Click
         private void MariaDBCFG_Click(object sender, EventArgs e) { WnmpFunctions.MariaDBCFG_Click(sender, e); } // MariaDBCFG_Click
         private void PHPCFG_Click(object sender, EventArgs e) { WnmpFunctions.PHPCFG_Click(sender, e); } // PHPCFG_Click
         private void nginxlogs_Click(object sender, EventArgs e) { WnmpFunctions.nginxlogs_Click(sender, e); } // nginxlogs_Click
