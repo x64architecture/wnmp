@@ -75,6 +75,9 @@ namespace Wnmp
                 Program.formInstance.mariadbrunning.ForeColor = Color.Green;
                 Program.formInstance.phprunning.Text = "\u221A";
                 Program.formInstance.phprunning.ForeColor = Color.Green;
+                Nginx.ngxstatus = (int)ProcessStatus.ps.STARTED;
+                MariaDB.mariadbstatus = (int)ProcessStatus.ps.STARTED;
+                PHP.phpstatus = (int)ProcessStatus.ps.STARTED;
             }
             catch (Exception ex)
             {
@@ -113,6 +116,9 @@ namespace Wnmp
                 Program.formInstance.phprunning.Text = "X";
                 Program.formInstance.phprunning.ForeColor = Color.DarkRed;
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Stopping all applications");
+                Nginx.ngxstatus = (int)ProcessStatus.ps.STOPPED;
+                MariaDB.mariadbstatus = (int)ProcessStatus.ps.STOPPED;
+                PHP.phpstatus = (int)ProcessStatus.ps.STOPPED;
             }
             catch (Exception ex)
             {

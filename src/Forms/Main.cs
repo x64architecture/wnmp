@@ -30,6 +30,7 @@ namespace Wnmp
 {
     public partial class Main : Form
     {
+        public static string getappsupath = Application.StartupPath;
         public Main(string[] args)
         {
             InitializeComponent();

@@ -32,6 +32,7 @@ namespace Wnmp
 {
     class PHP
     {
+        public static int phpstatus = (int)ProcessStatus.ps.STOPPED;
         public static void startprocess(string p, string args)
         {
             System.Threading.Thread.Sleep(100); //Wait
@@ -53,6 +54,7 @@ namespace Wnmp
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp PHP]" + " - Attempting to start PHP");
                 Program.formInstance.phprunning.Text = "\u221A";
                 Program.formInstance.phprunning.ForeColor = Color.Green;
+                phpstatus = (int)ProcessStatus.ps.STARTED;
             }
             catch (Exception ex)
             {
@@ -69,6 +71,7 @@ namespace Wnmp
                 {
                     currentProc.Kill();
                 }
+                phpstatus = (int)ProcessStatus.ps.STOPPED;
             }
             catch (Exception ex)
             {
@@ -78,6 +81,7 @@ namespace Wnmp
             Program.formInstance.phprunning.Text = "X";
             Program.formInstance.phprunning.ForeColor = Color.DarkRed;
         }
+        public static int PHPStatus { get { return phpstatus; } }
         internal static void phpstart_MouseHover()
         {
             ToolTip mysql_start_Tip = new ToolTip();

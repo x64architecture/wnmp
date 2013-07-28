@@ -32,6 +32,7 @@ namespace Wnmp
 {
     class MariaDB
     {
+        public static int mariadbstatus = (int)ProcessStatus.ps.STOPPED;
         public static void startprocess(string p, string args, bool shellexc, bool redirectso)
         {
             System.Threading.Thread.Sleep(100); //Wait
@@ -52,6 +53,7 @@ namespace Wnmp
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Attempting to start MariaDB");
                 Program.formInstance.mariadbrunning.Text = "\u221A";
                 Program.formInstance.mariadbrunning.ForeColor = Color.Green;
+                mariadbstatus = (int)ProcessStatus.ps.STARTED;
             }
             catch (Exception ex)
             {
@@ -67,6 +69,7 @@ namespace Wnmp
                 startprocess(@Application.StartupPath + @"\mariadb\bin\mysqladmin.exe", "-u root -p shutdown", true, false);
                 Program.formInstance.mariadbrunning.Text = "X";
                 Program.formInstance.mariadbrunning.ForeColor = Color.DarkRed;
+                mariadbstatus = (int)ProcessStatus.ps.STOPPED;
             }
             catch (Exception ex)
             {
@@ -88,6 +91,7 @@ namespace Wnmp
                 MessageBox.Show(ex.Message.ToString());
             }
         }
+        public static int MariaDBStatus { get { return mariadbstatus; } }
         internal static void mysqlstart_MouseHover()
         {
             ToolTip mysql_start_Tip = new ToolTip();

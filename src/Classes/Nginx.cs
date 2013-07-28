@@ -31,6 +31,7 @@ namespace Wnmp
 {
     class Nginx
     {
+        public static int ngxstatus = (int)ProcessStatus.ps.STOPPED;
         public static void startprocess(string p, string args)
         {
             System.Threading.Thread.Sleep(100); //Wait
@@ -64,6 +65,7 @@ namespace Wnmp
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to stop Nginx");
                 Program.formInstance.nginxrunning.Text = "X";
                 Program.formInstance.nginxrunning.ForeColor = Color.DarkRed;
+                ngxstatus = (int)ProcessStatus.ps.STOPPED;
             }
             catch (Exception ex)
             {
@@ -79,13 +81,14 @@ namespace Wnmp
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to start Nginx");
                 Program.formInstance.nginxrunning.Text = "\u221A";
                 Program.formInstance.nginxrunning.ForeColor = Color.Green;
+                ngxstatus = (int)ProcessStatus.ps.STARTED;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-
+        public static int NgxStatus { get { return ngxstatus; } }
         internal static void nginxreload_MouseHover()
         {
             ToolTip nginx_reload_Tip = new ToolTip();
