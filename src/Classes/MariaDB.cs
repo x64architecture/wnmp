@@ -82,7 +82,10 @@ namespace Wnmp
             {
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Attempting to start MariaDB shell");
                 //MariaDB
-                startprocess(@Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true);
+                if (MariaDBStatus != 0)
+                {
+                    startprocess(@Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true);
+                }
                 //MariaDB Shell
                 startprocess(@Application.StartupPath + @"\mariadb\bin\mysql.exe", "-u root -p", true, false);
             }
