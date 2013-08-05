@@ -137,9 +137,9 @@ namespace Wnmp
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 104);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(158, 13);
+            this.label4.Size = new System.Drawing.Size(140, 13);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Minimize Wnmp to the taskbar?:";
+            this.label4.Text = "Minimize Wnmp to the tray?:";
             // 
             // mwttb
             // 
