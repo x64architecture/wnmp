@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <appinfo>
-<version>2.0.2.4</version>
-<url>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.2.4.exe</url>
-<upgradeurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%20Upgrade%20Installer%202.0.2.4.exe</upgradeurl>
+<version>2.0.2.5</version>
+<url>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.2.5.exe</url>
+<upgradeurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%20Upgrade%20Installer%202.0.2.5.exe</upgradeurl>
 <about>
-Wnmp 2.0.2.4
+Wnmp 2.0.2.5
 ************
 
 - Wnmp
   
-  * Fixed issue #1: Missing icon
-  * Fixed issue #3: Faulty MariaDB configuration file
-  * Added option to start Wnmp at startup and option to start all applications upon Wnmp launch. See issue #2.
-  * Added option to make Wnmp minimize to the taskbar, and disabled it by defualt. See issue #4.
-  * Improved check for updates feature, it now downloads updates through the application and does not remove configuration files.
-  * Changed the About Messagebox to a nicer looking form.
-  * New installer using Inno Setup.
+  * Fixed bug #6, Nginx config button showes Nginx logs menu.
+  * Enhanced menu, see issue #5.
+  * Implemented a process revival class, see issue #7.
+  * Fixed incorrect term, "tray" instead of "taskbar".
+  * Fixed incorrect my.ini path
+  * Added check to see if MariaDB is running before launching MariaDB
 
 - phpMyAdmin
   
-  * Updated to 4.0.4.1
+  * Updated to 4.0.4.2
 
 - Nginx
  
-  * Updated to 1.5.2
+  * Updated to 1.5.3
 
-- PHP 
+- MariaDB
   
-  * Updated to 5.4.17
+  * Updated to 5.5.32
 </about>
 </appinfo>
