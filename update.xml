@@ -1,31 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <appinfo>
-<version>2.0.2.5</version>
-<url>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.2.5.exe</url>
-<upgradeurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%20Upgrade%20Installer%202.0.2.5.exe</upgradeurl>
+<version>2.0.2.6</version>
+<url>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.2.6.exe</url>
+<upgradeurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%20Upgrade%20Installer%202.0.2.6.exe</upgradeurl>
 <about>
-Wnmp 2.0.2.5
+Wnmp 2.0.2.6
 ************
 
 - Wnmp
   
-  * Fixed bug #6, Nginx config button showes Nginx logs menu.
-  * Enhanced menu, see issue #5.
-  * Implemented a process revival class, see issue #7.
-  * Fixed incorrect term, "tray" instead of "taskbar".
-  * Fixed incorrect my.ini path
-  * Added check to see if MariaDB is running before launching MariaDB
-
-- phpMyAdmin
-  
-  * Updated to 4.0.5
-
-- Nginx
- 
-  * Updated to 1.5.3
-
-- MariaDB
-  
-  * Updated to 5.5.32
+  * Fixed Critical bug #8, PHP Crashes
 </about>
 </appinfo>
