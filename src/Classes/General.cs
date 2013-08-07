@@ -65,7 +65,7 @@ namespace Wnmp
                 //Nginx
                 startprocess(prgs[0], "", false, true);
                 //PHP
-                startprocess(prgs[1], "-b localhost:9000", false, true);
+                PHP.startprocess(prgs[1], "-b localhost:9000");
                 //MariaDB
                 startprocess(prgs[2], "", false, true);
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Starting all applications");

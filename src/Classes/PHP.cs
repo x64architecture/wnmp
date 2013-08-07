@@ -44,7 +44,19 @@ namespace Wnmp
             ps.StartInfo.WorkingDirectory = Application.StartupPath;
             ps.StartInfo.CreateNoWindow = true; //Excute with no window
             ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            ps.StartInfo.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", "2000"); // After 2000 requests php-cgi.exe will kill its process
+            ps.EnableRaisingEvents = true;
+            ps.Exited += new EventHandler(ps_Exited); // Were going to have to restart PHP after its process is killed.
             ps.Start(); //Start the process
+        }
+        static void ps_Exited(object sender, EventArgs e)
+        {
+            /* The Win-PHP developers thought is was smart to kill php after a certain amount of requests (Probably 500). 
+               so we have to restart it once it exits or set 'PHP_FCGI_MAX_REQUESTS' variable to 0. I've looked and people are recommending just to restart it. */
+            if (PHPStatus == 0) // Check if PHP is set to run
+            {
+                startprocess(@Application.StartupPath + "/php/php-cgi.exe", "-b localhost:9000");
+            }
         }
         internal static void phpstart_Click()
         {
