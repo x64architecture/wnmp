@@ -33,7 +33,7 @@ namespace Wnmp
         {
             cfc = new Timer();
             cfc.Elapsed += new ElapsedEventHandler(OnTimer);
-            cfc.Interval = 10000;
+            cfc.Interval = 5000;
             cfc.Enabled = true;
         }
         private static Timer cfc;
