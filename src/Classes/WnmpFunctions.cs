@@ -106,21 +106,29 @@ namespace Wnmp
                         WebClient webClient = new WebClient();
                         webClient.DownloadProgressChanged += (s, e) =>
                         {
-                            frm.progressBar1.Value = e.ProgressPercentage;
+                            frm.progressBar1.Value = e.ProgressPercentage; 
+                            frm.label2.Text = e.ProgressPercentage.ToString() + "%";
                         };
                         webClient.DownloadFileCompleted += (s, e) =>
                         {
-                            frm.progressBar1.Visible = false;
-                            frm.Close();
-                            Process.Start(@Application.StartupPath + "/Wnmp-Upgrade.exe");
-                            cfa();
-                            Application.Exit();
+                            try
+                            {
+                                frm.Close();
+                                Process.Start(@Application.StartupPath + "/Wnmp-Upgrade.exe");
+                                cfa();
+                                Application.Exit();
+                            }
+                            catch { }
                         };
                         webClient.DownloadFileAsync(new Uri(updurl),
-                            @Application.StartupPath + "/Wnmp-Upgrade.exe");
+                            @Application.StartupPath + "/Wnmp-Upgrade-" + newVersion + ".exe");
                         frm.FormClosed += (s, e) =>
                         {
-                            webClient.CancelAsync();
+                            try
+                            {
+                                webClient.CancelAsync();
+                            }
+                            catch { }
                         };
                     }
                     catch { }
