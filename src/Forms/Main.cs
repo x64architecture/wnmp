@@ -84,6 +84,7 @@ namespace Wnmp
         private void Main_Load(object sender, EventArgs e)
         {
             icp();
+            timer1.Enabled = true;
             WnmpFunctions.ContextMenus();
             WnmpFunctions.startup();
         }

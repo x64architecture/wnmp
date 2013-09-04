@@ -158,17 +158,17 @@ namespace Wnmp
         }
         internal static void checkforapps()
         {
-            if (File.Exists(@Application.StartupPath + "/nginx.exe") == false)
+            if (!File.Exists(@Application.StartupPath + "/nginx.exe"))
             {
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Error: Nginx Not Found");
                 tc("Wnmp Nginx", "Red");
             }
-            if (Directory.Exists(@Application.StartupPath + @"/mariadb") == false)
+            if (!Directory.Exists(@Application.StartupPath + @"/mariadb"))
             {
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Error: MariaDB Not Found");
                 tc("Wnmp MariaDB", "Red");
             }
-            if (Directory.Exists(@Application.StartupPath + @"/php") == false)
+            if (!Directory.Exists(@Application.StartupPath + @"/php"))
             {
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp PHP]" + " - Error: PHP Not Found");
                 tc("Wnmp PHP", "Red");
@@ -402,20 +402,23 @@ namespace Wnmp
         }
         internal static void cfa()
         {
-            Process[] current = Process.GetProcesses();
-            foreach (Process p in current)
+            string[] processtokill = { "php-cgi", "nginx", "mysqld" };
+            Process[] processes = Process.GetProcesses();
+
+            for (int i = 0; i < processes.Length; i++)
             {
-                if (p.ProcessName == "php-cgi")
+                for (int j = 0; j < processtokill.Length; j++)
                 {
-                    p.Kill();
-                }
-                else if (p.ProcessName == "nginx")
-                {
-                    p.Kill();
-                }
-                else if (p.ProcessName == "mysqld")
-                {
-                    p.Kill();
+                    try
+                    {
+                        string tempProcess = processes[i].ProcessName;
+
+                        if (tempProcess == processtokill[j]) // If the proccess is the proccess we want to kill
+                        {
+                            processes[i].Kill(); break; // Kill the proccess
+                        }
+                    }
+                    catch { }
                 }
             }
         }
