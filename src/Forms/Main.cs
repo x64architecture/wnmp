@@ -111,11 +111,16 @@ namespace Wnmp
         }
         private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://wnmp.x64Architecture.com");
+            Process.Start("http://wnmp.x64Architecture.com");
         }
         private void donateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P7LAQRRNF6AVE");
+            Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P7LAQRRNF6AVE");
+        }
+
+        private void localhostToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://localhost");
         }
         #endregion Wnmp Stuff
         #region output

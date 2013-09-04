@@ -97,6 +97,7 @@ namespace Wnmp
             this.contextMenuStrip4 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip5 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip6 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.localhostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -113,7 +114,8 @@ namespace Wnmp
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.helpToolStripMenuItem,
+            this.localhostToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(648, 24);
@@ -585,6 +587,13 @@ namespace Wnmp
             this.contextMenuStrip6.Name = "contextMenuStrip6";
             this.contextMenuStrip6.Size = new System.Drawing.Size(61, 4);
             // 
+            // localhostToolStripMenuItem
+            // 
+            this.localhostToolStripMenuItem.Name = "localhostToolStripMenuItem";
+            this.localhostToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.localhostToolStripMenuItem.Text = "localhost";
+            this.localhostToolStripMenuItem.Click += new System.EventHandler(this.localhostToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -664,6 +673,7 @@ namespace Wnmp
         private System.Windows.Forms.ToolStripMenuItem supportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportBugToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem localhostToolStripMenuItem;
 
     }
 }
