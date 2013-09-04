@@ -181,6 +181,7 @@ namespace Wnmp
         private void start_MouseHover(object sender, EventArgs e) { General.start_MouseHover(); } // start_MouseHover
         private void stop_MouseHover(object sender, EventArgs e) { General.stop_MouseHover(); } // stop_MouseHover
         private void opnmysqlshell_MouseHover(object sender, EventArgs e) { MariaDB.opnmysqlshell_MouseHover(); } // opnmysqlshell_MouseHover
+        private void timer1_Tick(object sender, EventArgs e) { WnmpFunctions.timer1_Tick(); }
         #endregion
     }
 }

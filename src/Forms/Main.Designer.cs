@@ -60,6 +60,7 @@ namespace Wnmp
             this.websiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.localhostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nginxreload = new System.Windows.Forms.Button();
             this.phplogs = new System.Windows.Forms.Button();
@@ -97,7 +98,6 @@ namespace Wnmp
             this.contextMenuStrip4 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip5 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip6 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.localhostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -211,6 +211,13 @@ namespace Wnmp
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // localhostToolStripMenuItem
+            // 
+            this.localhostToolStripMenuItem.Name = "localhostToolStripMenuItem";
+            this.localhostToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.localhostToolStripMenuItem.Text = "localhost";
+            this.localhostToolStripMenuItem.Click += new System.EventHandler(this.localhostToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -571,6 +578,7 @@ namespace Wnmp
             // timer1
             // 
             this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // contextMenuStrip4
             // 
@@ -586,13 +594,6 @@ namespace Wnmp
             // 
             this.contextMenuStrip6.Name = "contextMenuStrip6";
             this.contextMenuStrip6.Size = new System.Drawing.Size(61, 4);
-            // 
-            // localhostToolStripMenuItem
-            // 
-            this.localhostToolStripMenuItem.Name = "localhostToolStripMenuItem";
-            this.localhostToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.localhostToolStripMenuItem.Text = "localhost";
-            this.localhostToolStripMenuItem.Click += new System.EventHandler(this.localhostToolStripMenuItem_Click);
             // 
             // Main
             // 

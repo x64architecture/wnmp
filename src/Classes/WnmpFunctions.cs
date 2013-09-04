@@ -202,6 +202,7 @@ namespace Wnmp
             Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Wnmp Directory: " + @Application.StartupPath);
             Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Checking for applications");
             checkforapps();
+            cifpsr();
             Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Wnmp Ready to go!");
             if (Wnmp.Properties.Settings.Default.startaprgssu == true)
             {
@@ -373,6 +374,10 @@ namespace Wnmp
         #endregion ContextMenus
 
         internal static void timer1_Tick()
+        {
+            cifpsr();
+        }
+        internal static void cifpsr()
         {
             Process[] phps = Process.GetProcessesByName("php-cgi");
             if (phps.Length == 0)
