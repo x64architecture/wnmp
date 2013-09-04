@@ -42,42 +42,18 @@ namespace Wnmp
             ToolTip stop_all_Tip = new ToolTip();
             stop_all_Tip.Show("Stops Nginx, PHP-CGI & MySQL", Program.formInstance.stop);
         }
-        public static void startprocess(string p, string args, bool shellexc, bool redirectso)
-        {
-            System.Threading.Thread.Sleep(100); //Wait
-            System.Diagnostics.Process ps = new System.Diagnostics.Process(); //Create process
-            ps.StartInfo.FileName = p; //p is the path and file name of the file to run
-            ps.StartInfo.Arguments = args; //Parameters to pass to program
-            ps.StartInfo.UseShellExecute = shellexc;
-            ps.StartInfo.RedirectStandardOutput = redirectso; //Set output of program to be written to process output stream
-            ps.StartInfo.WorkingDirectory = Application.StartupPath;
-            ps.StartInfo.CreateNoWindow = true; //Excute with no window
-            ps.Start(); //Start the process
-        }
+
         internal static void start_Click()
         {
-            string[] prgs = new string[3];
-            prgs[0] = @Application.StartupPath + @"/nginx.exe";
-            prgs[1] = @Application.StartupPath + @"/php/php-cgi.exe";
-            prgs[2] = @Application.StartupPath + @"/mariadb/bin/mysqld.exe";
             try
             {
-                //Nginx
-                startprocess(prgs[0], "", false, true);
-                //PHP
-                PHP.startprocess(prgs[1], "-b localhost:9000");
-                //MariaDB
-                startprocess(prgs[2], "", false, true);
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Starting all applications");
-                Program.formInstance.nginxrunning.Text = "\u221A";
-                Program.formInstance.nginxrunning.ForeColor = Color.Green;
-                Program.formInstance.mariadbrunning.Text = "\u221A";
-                Program.formInstance.mariadbrunning.ForeColor = Color.Green;
-                Program.formInstance.phprunning.Text = "\u221A";
-                Program.formInstance.phprunning.ForeColor = Color.Green;
-                Nginx.ngxstatus = (int)ProcessStatus.ps.STARTED;
-                MariaDB.mariadbstatus = (int)ProcessStatus.ps.STARTED;
-                PHP.phpstatus = (int)ProcessStatus.ps.STARTED;
+                //Nginx
+                Nginx.nginxstart_Click();
+                //PHP
+                PHP.phpstart_Click();
+                //MariaDB
+                MariaDB.mysqlstart_Click();
             }
             catch (Exception ex)
             {
@@ -87,38 +63,15 @@ namespace Wnmp
 
         internal static void stop_Click()
         {
-            string[] prgs = new string[2];
-            prgs[0] = @Application.StartupPath + @"/nginx.exe";
-            prgs[1] = @Application.StartupPath + @"/mariadb/bin/mysqladmin.exe";
             try
             {
                 //Nginx
-                startprocess(prgs[0], "-s stop", false, true);
+                Nginx.nginxstop_Click();
                 //PHP
-                try
-                {
-                    Process[] phps = System.Diagnostics.Process.GetProcessesByName("php-cgi");
-                    foreach (Process currentProc in phps)
-                    {
-                        currentProc.Kill();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message.ToString());
-                }
+                PHP.phpstop_Click();
                 //MariaDB
-                startprocess(prgs[1], "-u root -p shutdown", true, false);
-                Program.formInstance.nginxrunning.Text = "X";
-                Program.formInstance.nginxrunning.ForeColor = Color.DarkRed;
-                Program.formInstance.mariadbrunning.Text = "X";
-                Program.formInstance.mariadbrunning.ForeColor = Color.DarkRed;
-                Program.formInstance.phprunning.Text = "X";
-                Program.formInstance.phprunning.ForeColor = Color.DarkRed;
+                MariaDB.mysqlstop_Click();
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Stopping all applications");
-                Nginx.ngxstatus = (int)ProcessStatus.ps.STOPPED;
-                MariaDB.mariadbstatus = (int)ProcessStatus.ps.STOPPED;
-                PHP.phpstatus = (int)ProcessStatus.ps.STOPPED;
             }
             catch (Exception ex)
             {

@@ -32,11 +32,12 @@ namespace Wnmp
 {
     class PHP
     {
+        public static Process ps; // Avoid GC
         public static int phpstatus = (int)ProcessStatus.ps.STOPPED;
         public static void startprocess(string p, string args)
         {
             System.Threading.Thread.Sleep(100); //Wait
-            System.Diagnostics.Process ps = new System.Diagnostics.Process(); //Create process
+            ps = new Process(); //Create process
             ps.StartInfo.FileName = p; //p is the path and file name of the file to run
             ps.StartInfo.Arguments = args; //Parameters to pass to program
             ps.StartInfo.UseShellExecute = false;
