@@ -63,6 +63,12 @@ namespace Wnmp
             try
             {
                 startprocess(@Application.StartupPath + "/nginx.exe", "-s stop");
+                /* Ensure Nginx gets killed (No leftover useless proccess) */
+                Process[] ngx = System.Diagnostics.Process.GetProcessesByName("nginx");
+                foreach (Process currentProc in ngx)
+                {
+                    currentProc.Kill();
+                }
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to stop Nginx");
                 Program.formInstance.nginxrunning.Text = "X";
                 Program.formInstance.nginxrunning.ForeColor = Color.DarkRed;

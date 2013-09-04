@@ -34,7 +34,7 @@ namespace Wnmp
     {
         public static Process ps; // Avoid GC
         public static int mariadbstatus = (int)ProcessStatus.ps.STOPPED;
-        public static void startprocess(string p, string args, bool shellexc, bool redirectso)
+        public static void startprocess(string p, string args, bool shellexc, bool redirectso, bool wfe)
         {
             System.Threading.Thread.Sleep(100); //Wait
             ps = new Process(); //Create process
@@ -45,12 +45,16 @@ namespace Wnmp
             ps.StartInfo.WorkingDirectory = Application.StartupPath;
             ps.StartInfo.CreateNoWindow = true; //Excute with no window
             ps.Start(); //Start the process
+            if (wfe)
+            {
+                ps.WaitForExit();
+            }
         }
         internal static void mysqlstart_Click()
         {
             try
             {
-                startprocess(@Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true);
+                startprocess(@Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true, false);
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Attempting to start MariaDB");
                 Program.formInstance.mariadbrunning.Text = "\u221A";
                 Program.formInstance.mariadbrunning.ForeColor = Color.Green;
@@ -67,7 +71,14 @@ namespace Wnmp
             {
                 //MariaDB
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Attempting to stop MariaDB");
-                startprocess(@Application.StartupPath + @"\mariadb\bin\mysqladmin.exe", "-u root -p shutdown", true, false);
+                startprocess(@Application.StartupPath + @"\mariadb\bin\mysqladmin.exe", "-u root -p shutdown", true, false, true);
+
+                /* Ensure MariaD gets killed (No leftover useless proccess) */
+                Process[] ngx = System.Diagnostics.Process.GetProcessesByName("mysqld");
+                foreach (Process currentProc in ngx)
+                {
+                    currentProc.Kill();
+                }
                 Program.formInstance.mariadbrunning.Text = "X";
                 Program.formInstance.mariadbrunning.ForeColor = Color.DarkRed;
                 mariadbstatus = (int)ProcessStatus.ps.STOPPED;
@@ -85,10 +96,10 @@ namespace Wnmp
                 //MariaDB
                 if (MariaDBStatus != 0)
                 {
-                    startprocess(@Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true);
+                    startprocess(@Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true, false);
                 }
                 //MariaDB Shell
-                startprocess(@Application.StartupPath + @"\mariadb\bin\mysql.exe", "-u root -p", true, false);
+                startprocess(@Application.StartupPath + @"\mariadb\bin\mysql.exe", "-u root -p", true, false, false);
             }
             catch (Exception ex)
             {

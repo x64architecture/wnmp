@@ -68,7 +68,7 @@ namespace Wnmp
                         {
                             if (ciair("mariadb") == false)
                             {
-                                MariaDB.startprocess(Main.getappsupath + "/mariadb/bin/mysqld.exe", "", false, true);
+                                MariaDB.startprocess(Main.getappsupath + "/mariadb/bin/mysqld.exe", "", false, true, false);
                                 Program.formInstance.output.Invoke(new Action(() => Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Attempting to restart crashed MariaDB")));
                                 mariadbfails++;
                             }
