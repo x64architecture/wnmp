@@ -33,6 +33,7 @@ namespace Wnmp
     class PHP
     {
         public static Process ps; // Avoid GC
+        internal static string pini = Application.StartupPath + "/php/php.ini";
         public static int phpstatus = (int)ProcessStatus.ps.STOPPED;
         public static void startprocess(string p, string args)
         {
@@ -56,14 +57,14 @@ namespace Wnmp
                so we have to restart it once it exits or set 'PHP_FCGI_MAX_REQUESTS' variable to 0. I've looked and people are recommending just to restart it. */
             if (PHPStatus == 0) // Check if PHP is set to run
             {
-                startprocess(@Application.StartupPath + "/php/php-cgi.exe", "-b localhost:9000");
+                startprocess(@Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
             }
         }
         internal static void phpstart_Click()
         {
             try
             {
-                startprocess(@Application.StartupPath + "/php/php-cgi.exe", "-b localhost:9000");
+                startprocess(@Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp PHP]" + " - Attempting to start PHP");
                 Program.formInstance.phprunning.Text = "\u221A";
                 Program.formInstance.phprunning.ForeColor = Color.Green;
