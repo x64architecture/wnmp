@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <appinfo>
-<version>2.0.2.6</version>
-<url>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.2.6.exe</url>
-<upgradeurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%20Upgrade%20Installer%202.0.2.6.exe</upgradeurl>
+<version>2.0.2.7</version>
+<url>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.2.7.exe</url>
+<upgradeurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%20Upgrade%20Installer%202.0.2.7.exe</upgradeurl>
 <about>
-Wnmp 2.0.2.6
+Wnmp 2.0.2.7
 ************
 
 - Wnmp
+ 
+  * Added link to localhost
+  * Added percent for update download progress
+  * Fixed checking if application was already running when starting Wnmp and at other times
+  * Other internal fixes and improvments
+
+- PHP
+
+  * Updated to 5.4.19
+  * Now compiled with extra extensions (apc, apcu, Zend OPcache, etc.) and other stuff!
+
+- Nginx 
   
-  * Fixed Critical bug #8, PHP Crashes
+  * Updated to 1.5.4
+
+- phpMyAdmin
+
+  * Updated to 4.0.6
 </about>
 </appinfo>
