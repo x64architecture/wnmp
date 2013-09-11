@@ -33,7 +33,7 @@ namespace Wnmp
     {
         public static Process ps; // Avoid GC
         public static int ngxstatus = (int)ProcessStatus.ps.STOPPED;
-        public static void startprocess(string p, string args)
+        public static void startprocess(string p, string args, bool wfe)
         {
             System.Threading.Thread.Sleep(100); //Wait
             ps = new Process(); //Create process
@@ -44,12 +44,16 @@ namespace Wnmp
             ps.StartInfo.WorkingDirectory = Application.StartupPath;
             ps.StartInfo.CreateNoWindow = true; //Excute with no window
             ps.Start(); //Start the process
+            if (wfe)
+            {
+                ps.WaitForExit();
+            }
         }
         internal static void nginxreload_Click()
         {
             try
             {
-                startprocess(@Application.StartupPath + "/nginx.exe", "-s reload");
+                startprocess(@Application.StartupPath + "/nginx.exe", "-s reload", false);
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to reload Nginx");
             }
             catch (Exception ex)
@@ -62,7 +66,7 @@ namespace Wnmp
         {
             try
             {
-                startprocess(@Application.StartupPath + "/nginx.exe", "-s stop");
+                startprocess(@Application.StartupPath + "/nginx.exe", "-s stop", true);
                 /* Ensure Nginx gets killed (No leftover useless proccess) */
                 Process[] ngx = System.Diagnostics.Process.GetProcessesByName("nginx");
                 foreach (Process currentProc in ngx)
@@ -84,7 +88,7 @@ namespace Wnmp
         {
             try
             {
-                startprocess(@Application.StartupPath + "/nginx.exe", "");
+                startprocess(@Application.StartupPath + "/nginx.exe", "", false);
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to start Nginx");
                 Program.formInstance.nginxrunning.Text = "\u221A";
                 Program.formInstance.nginxrunning.ForeColor = Color.Green;

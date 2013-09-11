@@ -51,7 +51,7 @@ namespace Wnmp
                         {
                             if (ciair("nginx") == false)
                             {
-                                Nginx.startprocess(Main.getappsupath + "/nginx.exe", "");
+                                Nginx.startprocess(Main.getappsupath + "/nginx.exe", "", false);
                                 Program.formInstance.output.Invoke(new Action(() => Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to restart crashed Nginx")));
                                 ngxfails++;
                             }
