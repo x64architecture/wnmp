@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <appinfo>
-<version>2.0.2.7.1</version>
-<url>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.2.7.1.exe</url>
-<upgradeurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%20Upgrade%20Installer%202.0.2.7.1.exe</upgradeurl>
+<version>2.0.2.8</version>
+<url>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.2.8.exe</url>
+<upgradeurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%20Upgrade%20Installer%202.0.2.8.exe</upgradeurl>
 <about>
-Wnmp 2.0.2.7.1
+Wnmp 2.0.2.8
 ************
 
 - Wnmp
