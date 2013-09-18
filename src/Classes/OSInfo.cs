@@ -13,162 +13,6 @@ namespace OSInfo
     /// </summary>
     public static class OSVersionInfo
     {
-        #region ENUMS
-        public enum SoftwareArchitecture
-        {
-            Unknown = 0,
-            Bit32 = 1,
-            Bit64 = 2
-        }
-
-        public enum ProcessorArchitecture
-        {
-            Unknown = 0,
-            Bit32 = 1,
-            Bit64 = 2,
-            Itanium64 = 3
-        }
-        #endregion ENUMS
-
-        #region DELEGATE DECLARATION
-        private delegate bool IsWow64ProcessDelegate([In] IntPtr handle, [Out] out bool isWow64Process);
-        #endregion DELEGATE DECLARATION
-
-        #region BITS
-        /// <summary>
-        /// Determines if the current application is 32 or 64-bit.
-        /// </summary>
-        static public SoftwareArchitecture ProgramBits
-        {
-            get
-            {
-                SoftwareArchitecture pbits = SoftwareArchitecture.Unknown;
-
-                System.Collections.IDictionary test = Environment.GetEnvironmentVariables();
-
-                switch (IntPtr.Size * 8)
-                {
-                    case 64:
-                        pbits = SoftwareArchitecture.Bit64;
-                        break;
-
-                    case 32:
-                        pbits = SoftwareArchitecture.Bit32;
-                        break;
-
-                    default:
-                        pbits = SoftwareArchitecture.Unknown;
-                        break;
-                }
-
-                return pbits;
-                // int getOSArchitecture()
-                //{
-                //    string pa = Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE");
-                //    return ((String.IsNullOrEmpty(pa) || String.Compare(pa, 0, "x86", 0, 3, true) == 0) ? 32 : 64);
-                //}
-
-
-
-                //ProcessorArchitecture pbits = ProcessorArchitecture.Unknown;
-
-                //try
-                //{
-                //    SYSTEM_INFO l_System_Info = new SYSTEM_INFO();
-                //    GetSystemInfo(ref l_System_Info);
-
-                //    switch (l_System_Info.uProcessorInfo.wProcessorArchitecture)
-                //    {
-                //        case 9: // PROCESSOR_ARCHITECTURE_AMD64
-                //            pbits = ProcessorArchitecture.Bit64;
-                //            break;
-                //        case 6: // PROCESSOR_ARCHITECTURE_IA64
-                //            pbits = ProcessorArchitecture.Itanium64;
-                //            break;
-                //        case 0: // PROCESSOR_ARCHITECTURE_INTEL
-                //            pbits = ProcessorArchitecture.Bit32;
-                //            break;
-                //        default: // PROCESSOR_ARCHITECTURE_UNKNOWN
-                //            pbits = ProcessorArchitecture.Unknown;
-                //            break;
-                //    }
-                //}
-                //catch
-                //{
-                //     Ignore        
-                //}
-
-                //return pbits;
-            }
-        }
-
-        static public SoftwareArchitecture OSBits
-        {
-            get
-            {
-                SoftwareArchitecture osbits = SoftwareArchitecture.Unknown;
-
-                switch (IntPtr.Size * 8)
-                {
-                    case 64:
-                        osbits = SoftwareArchitecture.Bit64;
-                        break;
-
-                    case 32:
-                        if (Is32BitProcessOn64BitProcessor())
-                            osbits = SoftwareArchitecture.Bit64;
-                        else
-                            osbits = SoftwareArchitecture.Bit32;
-                        break;
-
-                    default:
-                        osbits = SoftwareArchitecture.Unknown;
-                        break;
-                }
-
-                return osbits;
-            }
-        }
-
-        /// <summary>
-        /// Determines if the current processor is 32 or 64-bit.
-        /// </summary>
-        static public ProcessorArchitecture ProcessorBits
-        {
-            get
-            {
-                ProcessorArchitecture pbits = ProcessorArchitecture.Unknown;
-
-                try
-                {
-                    SYSTEM_INFO l_System_Info = new SYSTEM_INFO();
-                    GetNativeSystemInfo(ref l_System_Info);
-
-                    switch (l_System_Info.uProcessorInfo.wProcessorArchitecture)
-                    {
-                        case 9: // PROCESSOR_ARCHITECTURE_AMD64
-                            pbits = ProcessorArchitecture.Bit64;
-                            break;
-                        case 6: // PROCESSOR_ARCHITECTURE_IA64
-                            pbits = ProcessorArchitecture.Itanium64;
-                            break;
-                        case 0: // PROCESSOR_ARCHITECTURE_INTEL
-                            pbits = ProcessorArchitecture.Bit32;
-                            break;
-                        default: // PROCESSOR_ARCHITECTURE_UNKNOWN
-                            pbits = ProcessorArchitecture.Unknown;
-                            break;
-                    }
-                }
-                catch
-                {
-                    // Ignore        
-                }
-
-                return pbits;
-            }
-        }
-        #endregion BITS
 
         #region EDITION
         static private string s_Edition;
@@ -659,7 +503,6 @@ namespace OSInfo
 
         #region PINVOKE
 
-        #region GET
         #region PRODUCT INFO
         [DllImport("Kernel32.dll")]
         internal static extern bool GetProductInfo(
@@ -680,16 +523,6 @@ namespace OSInfo
         public static extern int GetSystemMetrics(int nIndex);
         #endregion SYSTEMMETRICS
 
-        #region SYSTEMINFO
-        [DllImport("kernel32.dll")]
-        public static extern void GetSystemInfo([MarshalAs(UnmanagedType.Struct)] ref SYSTEM_INFO lpSystemInfo);
-
-        [DllImport("kernel32.dll")]
-        public static extern void GetNativeSystemInfo([MarshalAs(UnmanagedType.Struct)] ref SYSTEM_INFO lpSystemInfo);
-        #endregion SYSTEMINFO
-
-        #endregion GET
-
         #region OSVERSIONINFOEX
         [StructLayout(LayoutKind.Sequential)]
         private struct OSVERSIONINFOEX
@@ -708,44 +541,6 @@ namespace OSInfo
             public byte wReserved;
         }
         #endregion OSVERSIONINFOEX
-
-        #region SYSTEM_INFO
-        [StructLayout(LayoutKind.Sequential)]
-        public struct SYSTEM_INFO
-        {
-            internal _PROCESSOR_INFO_UNION uProcessorInfo;
-            public uint dwPageSize;
-            public IntPtr lpMinimumApplicationAddress;
-            public IntPtr lpMaximumApplicationAddress;
-            public IntPtr dwActiveProcessorMask;
-            public uint dwNumberOfProcessors;
-            public uint dwProcessorType;
-            public uint dwAllocationGranularity;
-            public ushort dwProcessorLevel;
-            public ushort dwProcessorRevision;
-        }
-        #endregion SYSTEM_INFO
-
-        #region _PROCESSOR_INFO_UNION
-        [StructLayout(LayoutKind.Explicit)]
-        public struct _PROCESSOR_INFO_UNION
-        {
-            [FieldOffset(0)]
-            internal uint dwOemId;
-            [FieldOffset(0)]
-            internal ushort wProcessorArchitecture;
-            [FieldOffset(2)]
-            internal ushort wReserved;
-        }
-        #endregion _PROCESSOR_INFO_UNION
-
-        #region 64 BIT OS DETECTION
-        [DllImport("kernel32", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
-        public extern static IntPtr LoadLibrary(string libraryName);
-
-        [DllImport("kernel32", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
-        public extern static IntPtr GetProcAddress(IntPtr hwnd, string procedureName);
-        #endregion 64 BIT OS DETECTION
 
         #region PRODUCT
         private const int PRODUCT_UNDEFINED = 0x00000000;
@@ -942,44 +737,5 @@ namespace OSInfo
         }
         #endregion REVISION
         #endregion VERSION
-
-        #region 64 BIT OS DETECTION
-        private static IsWow64ProcessDelegate GetIsWow64ProcessDelegate()
-        {
-            IntPtr handle = LoadLibrary("kernel32");
-
-            if (handle != IntPtr.Zero)
-            {
-                IntPtr fnPtr = GetProcAddress(handle, "IsWow64Process");
-
-                if (fnPtr != IntPtr.Zero)
-                {
-                    return (IsWow64ProcessDelegate)Marshal.GetDelegateForFunctionPointer((IntPtr)fnPtr, typeof(IsWow64ProcessDelegate));
-                }
-            }
-
-            return null;
-        }
-
-        private static bool Is32BitProcessOn64BitProcessor()
-        {
-            IsWow64ProcessDelegate fnDelegate = GetIsWow64ProcessDelegate();
-
-            if (fnDelegate == null)
-            {
-                return false;
-            }
-
-            bool isWow64;
-            bool retVal = fnDelegate.Invoke(Process.GetCurrentProcess().Handle, out isWow64);
-
-            if (retVal == false)
-            {
-                return false;
-            }
-
-            return isWow64;
-        }
-        #endregion 64 BIT OS DETECTION
     }
 }
