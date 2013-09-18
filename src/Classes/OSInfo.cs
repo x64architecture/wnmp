@@ -347,6 +347,72 @@ namespace OSInfo
                                 case PRODUCT_WEB_SERVER_CORE:
                                     edition = "Web Server (core installation)";
                                     break;
+                                case PRODUCT_ENTERPRISE_EVALUATION:
+                                    edition = "Server Enterprise (evaluation installation)";
+                                    break;
+                                case PRODUCT_MULTIPOINT_STANDARD_SERVER:
+                                    edition = "Windows MultiPoint Server Standard (full installation)";
+                                    break;
+                                case PRODUCT_MULTIPOINT_PREMIUM_SERVER:
+                                    edition = "Windows MultiPoint Server Premium (full installation)";
+                                        break;
+                                case PRODUCT_STANDARD_EVALUATION_SERVER:
+                                    edition = "Server Standard (evaluation installation)";
+                                    break;
+                                case PRODUCT_DATACENTER_EVALUATION_SERVER:
+                                    edition = "Server Datacenter (evaluation installation)";
+                                    break;
+                                case PRODUCT_ENTERPRISE_N_EVALUATION:
+                                    edition = "Enterprise N (evaluation installation)";
+                                    break;
+                                case PRODUCT_EMBEDDED_AUTOMOTIVE:
+                                    edition = "PRODUCT_EMBEDDED_AUTOMOTIVE"; // No known definition
+                                        break;
+                                case PRODUCT_EMBEDDED_INDUSTRY_A:
+                                        edition = "PRODUCT_EMBEDDED_INDUSTRY_A"; // No known definition
+                                        break;
+                                case PRODUCT_THINPC:
+                                        edition = "PRODUCT_THINPC"; // No known definition
+                                        break;
+                                case PRODUCT_EMBEDDED_A:
+                                    edition = "PRODUCT_EMBEDDED_A"; // No known definition
+                                        break;
+                                case PRODUCT_EMBEDDED_INDUSTRY:
+                                        edition = "PRODUCT_EMBEDDED_INDUSTRY"; // No known definition
+                                        break;
+                                case PRODUCT_EMBEDDED_E:
+                                        edition = "PRODUCT_EMBEDDED_E"; // No known definition
+                                        break;
+                                case PRODUCT_EMBEDDED_INDUSTRY_E:
+                                    edition = "PRODUCT_EMBEDDED_INDUSTRY_E"; // No known definition
+                                    break;
+                                case PRODUCT_EMBEDDED_INDUSTRY_A_E:
+                                    edition = "PRODUCT_EMBEDDED_INDUSTRY_A_E"; // No known definition
+                                    break;
+                                case PRODUCT_STORAGE_WORKGROUP_EVALUATION_SERVER:
+                                    edition = "Storage Server Workgroup (evaluation installation)"; 
+                                    break;
+                                case PRODUCT_STORAGE_STANDARD_EVALUATION_SERVER:
+                                    edition = "Storage Server Standard (evaluation installation)";
+                                    break;
+                                case PRODUCT_CORE_ARM:
+                                    edition = "PRODUCT_CORE_ARM"; // No known definition
+                                    break;
+                                case PRODUCT_CORE_N:
+                                    edition = "Windows 8 N";
+                                    break;
+                                case PRODUCT_CORE_COUNTRYSPECIFIC:
+                                    edition = "Windows 8 China";
+                                    break;
+                                case PRODUCT_CORE_SINGLELANGUAGE:
+                                    edition = "Windows 8 Single Language";
+                                    break;
+                                case PRODUCT_CORE:
+                                    edition = "Windows 8";
+                                    break;
+                                case PRODUCT_PROFESSIONAL_WMC:
+                                    edition = "Professional with Media Center";
+                                    break;
                             }
                         }
                     }
@@ -615,6 +681,29 @@ namespace OSInfo
         private const int PRODUCT_PROFESSIONAL_E = 0x00000045;
         private const int PRODUCT_ENTERPRISE_E = 0x00000046;
         private const int PRODUCT_ULTIMATE_E = 0x00000047;
+        private const int PRODUCT_ENTERPRISE_EVALUATION = 0x00000048;
+        private const int PRODUCT_MULTIPOINT_STANDARD_SERVER = 0x0000004C;
+        private const int PRODUCT_MULTIPOINT_PREMIUM_SERVER  = 0x0000004D; //
+        private const int PRODUCT_STANDARD_EVALUATION_SERVER = 0x0000004F;
+        private const int PRODUCT_DATACENTER_EVALUATION_SERVER = 0x00000050;
+        private const int PRODUCT_ENTERPRISE_N_EVALUATION = 0x00000054;
+        private const int PRODUCT_EMBEDDED_AUTOMOTIVE = 0x00000055;
+        private const int PRODUCT_EMBEDDED_INDUSTRY_A = 0x00000056;
+        private const int PRODUCT_THINPC = 0x00000057;
+        private const int PRODUCT_EMBEDDED_A = 0x00000058;
+        private const int PRODUCT_EMBEDDED_INDUSTRY = 0x00000059;
+        private const int PRODUCT_EMBEDDED_E = 0x0000005A;
+        private const int PRODUCT_EMBEDDED_INDUSTRY_E = 0x0000005B;
+        private const int PRODUCT_EMBEDDED_INDUSTRY_A_E = 0x0000005C;
+        private const int PRODUCT_STORAGE_WORKGROUP_EVALUATION_SERVER = 0x0000005F;
+        private const int PRODUCT_STORAGE_STANDARD_EVALUATION_SERVER  = 0x00000060;
+        private const int PRODUCT_CORE_ARM = 0x00000061;
+        private const int PRODUCT_CORE_N = 0x00000062;
+        private const int PRODUCT_CORE_COUNTRYSPECIFIC = 0x00000063;
+        private const int PRODUCT_CORE_SINGLELANGUAGE = 0x00000064;
+        private const int PRODUCT_CORE = 0x00000065;
+        private const int PRODUCT_PROFESSIONAL_WMC = 0x00000067;
+
         //private const int PRODUCT_UNLICENSED = 0xABCDABCD;
         #endregion PRODUCT
 
