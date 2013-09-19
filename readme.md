@@ -1,4 +1,4 @@
-Windows, Nginx, MySQL & PHP(Wnmp)
+Windows, Nginx, MariaDB & PHP(Wnmp)
 =================================
 Wnmp values security, stability and user friendliness.
 ------------------------------------------------------
@@ -26,7 +26,7 @@ Wnmp values security, stability and user friendliness.
 
 ### Notes ######
 
-The Username and Password for MySQL is: user: *root* password: *password* (I recommend changing the password)
+The Username and Password for MariaDB is: user: *root* password: *password* (I recommend changing the password)
 
 You should change $cfg['blowfish_secret'] in config.inc.php in the phpmyadmin folder for added security.
 

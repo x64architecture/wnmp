@@ -50,7 +50,7 @@ namespace Wnmp
                 ps.WaitForExit();
             }
         }
-        internal static void mysqlstart_Click()
+        internal static void MariaDBstart_Click()
         {
             try
             {
@@ -65,7 +65,7 @@ namespace Wnmp
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-        internal static void mysqlstop_Click()
+        internal static void MariaDBstop_Click()
         {
             try
             {
@@ -88,7 +88,7 @@ namespace Wnmp
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-        internal static void opnmysqlshell_Click()
+        internal static void opnMariaDBshell_Click()
         {
             try
             {
@@ -107,25 +107,25 @@ namespace Wnmp
             }
         }
         public static int MariaDBStatus { get { return mariadbstatus; } }
-        internal static void mysqlstart_MouseHover()
+        internal static void MariaDBstart_MouseHover()
         {
-            ToolTip mysql_start_Tip = new ToolTip();
-            mysql_start_Tip.Show("Start MySQL", Program.formInstance.mysqlstart);
+            ToolTip MariaDB_start_Tip = new ToolTip();
+            MariaDB_start_Tip.Show("Start MariaDB", Program.formInstance.MariaDBstart);
         }
-        internal static void mysqlstop_MouseHover()
+        internal static void MariaDBstop_MouseHover()
         {
-            ToolTip mysql_stop_Tip = new ToolTip();
-            mysql_stop_Tip.Show("Stop MySQL", Program.formInstance.mysqlstop);
+            ToolTip MariaDB_stop_Tip = new ToolTip();
+            MariaDB_stop_Tip.Show("Stop MariaDB", Program.formInstance.MariaDBstop);
         }
-        internal static void opnmysqlshell_MouseHover()
+        internal static void opnMariaDBshell_MouseHover()
         {
-            ToolTip mysql_opnshell_Tip = new ToolTip();
-            mysql_opnshell_Tip.Show("Open MySQL Shell", Program.formInstance.opnmysqlshell);
+            ToolTip MariaDB_opnshell_Tip = new ToolTip();
+            MariaDB_opnshell_Tip.Show("Open MariaDB Shell", Program.formInstance.opnMariaDBshell);
         }
-        internal static void mysqlhelp_Click()
+        internal static void MariaDBhelp_Click()
         {
 
-            MessageBox.Show("The default login for MySQL/phpMyAdmin is:" + "\n" + "Username: root" + "\n" + "Password: password");
+            MessageBox.Show("The default login for MariaDB/phpMyAdmin is:" + "\n" + "Username: root" + "\n" + "Password: password");
         }
     }
 }

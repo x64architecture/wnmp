@@ -174,15 +174,15 @@ namespace Wnmp
         // TODO: figure out a better way to do this(though there may not be)
         private void start_Click(object sender, EventArgs e) { General.start_Click(); } // start_Click
         private void stop_Click(object sender, EventArgs e) { General.stop_Click(); } // stop_Click
-        private void opnmysqlshell_Click(object sender, EventArgs e) { MariaDB.opnmysqlshell_Click(); } // opnmysqlshell_Click
+        private void opnMariaDBshell_Click(object sender, EventArgs e) { MariaDB.opnMariaDBshell_Click(); } // opnMariaDBshell_Click
         private void nginxstart_Click(object sender, EventArgs e) { Nginx.nginxstart_Click(); } // nginxstart_Click
-        private void mysqlstart_Click(object sender, EventArgs e) { MariaDB.mysqlstart_Click(); } // mysqlstart_Click
+        private void MariaDBstart_Click(object sender, EventArgs e) { MariaDB.MariaDBstart_Click(); } // MariaDBstart_Click
         private void phpstart_Click(object sender, EventArgs e) { PHP.phpstart_Click(); } // phpstart_Click
         private void nginxstop_Click(object sender, EventArgs e) { Nginx.nginxstop_Click(); } // nginxstop_Click
-        private void mysqlstop_Click(object sender, EventArgs e) { MariaDB.mysqlstop_Click(); } // mysqlstop_Click
+        private void MariaDBstop_Click(object sender, EventArgs e) { MariaDB.MariaDBstop_Click(); } // MariaDBstop_Click
         private void phpstop_Click(object sender, EventArgs e) { PHP.phpstop_Click(); } // phpstop_Click
         private void nginxreload_Click(object sender, EventArgs e) { Nginx.nginxreload_Click(); } // nginxreload_Click
-        private void mysqlhelp_Click(object sender, EventArgs e) { MariaDB.mysqlhelp_Click(); } // mysqlhelp_Click
+        private void MariaDBhelp_Click(object sender, EventArgs e) { MariaDB.MariaDBhelp_Click(); } // MariaDBhelp_Click
         private void ngxconfig_Click(object sender, EventArgs e) { WnmpFunctions.ngxconfig_Click(sender,  e); } // ngxconfig_Click
         private void MariaDBCFG_Click(object sender, EventArgs e) { WnmpFunctions.MariaDBCFG_Click(sender, e); } // MariaDBCFG_Click
         private void PHPCFG_Click(object sender, EventArgs e) { WnmpFunctions.PHPCFG_Click(sender, e); } // PHPCFG_Click
@@ -191,15 +191,15 @@ namespace Wnmp
         private void phplogs_Click(object sender, EventArgs e){ WnmpFunctions.phplogs_Click(sender, e); } // phplogs_Click
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e) { WnmpFunctions.checkForUpdatesToolStripMenuItem_Click(); } // checkForUpdatesToolStripMenuItem_Click
         private void nginxstart_MouseHover(object sender, EventArgs e) { Nginx.nginxstart_MouseHover(); } // nginxstart_MouseHover
-        private void mysqlstart_MouseHover(object sender, EventArgs e) { MariaDB.mysqlstart_MouseHover(); } // mysqlstart_MouseHover
+        private void MariaDBstart_MouseHover(object sender, EventArgs e) { MariaDB.MariaDBstart_MouseHover(); } // MariaDBstart_MouseHover
         private void phpstart_MouseHover(object sender, EventArgs e) { PHP.phpstart_MouseHover(); } // phpstart_MouseHover
         private void nginxstop_MouseHover(object sender, EventArgs e) { Nginx.nginxstop_MouseHover(); } // nginxstop_MouseHover
-        private void mysqlstop_MouseHover(object sender, EventArgs e) { MariaDB.mysqlstop_MouseHover(); } // mysqlstop_MouseHover
+        private void MariaDBstop_MouseHover(object sender, EventArgs e) { MariaDB.MariaDBstop_MouseHover(); } // MariaDBstop_MouseHover
         private void phpstop_MouseHover(object sender, EventArgs e) { PHP.phpstop_MouseHover(); } // phpstop_MouseHover
         private void nginxreload_MouseHover(object sender, EventArgs e) { Nginx.nginxreload_MouseHover(); } // nginxreload_MouseHover
         private void start_MouseHover(object sender, EventArgs e) { General.start_MouseHover(); } // start_MouseHover
         private void stop_MouseHover(object sender, EventArgs e) { General.stop_MouseHover(); } // stop_MouseHover
-        private void opnmysqlshell_MouseHover(object sender, EventArgs e) { MariaDB.opnmysqlshell_MouseHover(); } // opnmysqlshell_MouseHover
+        private void opnMariaDBshell_MouseHover(object sender, EventArgs e) { MariaDB.opnMariaDBshell_MouseHover(); } // opnMariaDBshell_MouseHover
         private void timer1_Tick(object sender, EventArgs e) { WnmpFunctions.timer1_Tick(); }
         #endregion
     }

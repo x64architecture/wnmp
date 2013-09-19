@@ -34,13 +34,13 @@ namespace Wnmp
         internal static void start_MouseHover()
         {
             ToolTip start_all_Tip = new ToolTip();
-            start_all_Tip.Show("Starts Nginx, PHP-CGI & MySQL", Program.formInstance.start);
+            start_all_Tip.Show("Starts Nginx, PHP-CGI & MariaDB", Program.formInstance.start);
         }
 
         internal static void stop_MouseHover()
         {
             ToolTip stop_all_Tip = new ToolTip();
-            stop_all_Tip.Show("Stops Nginx, PHP-CGI & MySQL", Program.formInstance.stop);
+            stop_all_Tip.Show("Stops Nginx, PHP-CGI & MariaDB", Program.formInstance.stop);
         }
 
         internal static void start_Click()
@@ -53,7 +53,7 @@ namespace Wnmp
                 //PHP
                 PHP.phpstart_Click();
                 //MariaDB
-                MariaDB.mysqlstart_Click();
+                MariaDB.MariaDBstart_Click();
             }
             catch (Exception ex)
             {
@@ -70,7 +70,7 @@ namespace Wnmp
                 //PHP
                 PHP.phpstop_Click();
                 //MariaDB
-                MariaDB.mysqlstop_Click();
+                MariaDB.MariaDBstop_Click();
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Stopping all applications");
             }
             catch (Exception ex)

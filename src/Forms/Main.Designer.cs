@@ -78,14 +78,14 @@ namespace Wnmp
             this.label3 = new System.Windows.Forms.Label();
             this.nginxrunning = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.mysqlhelp = new System.Windows.Forms.Button();
-            this.mysqlstop = new System.Windows.Forms.Button();
-            this.mysqlstart = new System.Windows.Forms.Button();
+            this.MariaDBhelp = new System.Windows.Forms.Button();
+            this.MariaDBstop = new System.Windows.Forms.Button();
+            this.MariaDBstart = new System.Windows.Forms.Button();
             this.phpstart = new System.Windows.Forms.Button();
             this.phpstop = new System.Windows.Forms.Button();
             this.nginxstart = new System.Windows.Forms.Button();
             this.nginxstop = new System.Windows.Forms.Button();
-            this.opnmysqlshell = new System.Windows.Forms.Button();
+            this.opnMariaDBshell = new System.Windows.Forms.Button();
             this.start = new System.Windows.Forms.Button();
             this.stop = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -237,9 +237,9 @@ namespace Wnmp
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.nginxrunning);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.mysqlhelp);
-            this.groupBox1.Controls.Add(this.mysqlstop);
-            this.groupBox1.Controls.Add(this.mysqlstart);
+            this.groupBox1.Controls.Add(this.MariaDBhelp);
+            this.groupBox1.Controls.Add(this.MariaDBstop);
+            this.groupBox1.Controls.Add(this.MariaDBstart);
             this.groupBox1.Controls.Add(this.phpstart);
             this.groupBox1.Controls.Add(this.phpstop);
             this.groupBox1.Controls.Add(this.nginxstart);
@@ -415,37 +415,37 @@ namespace Wnmp
             this.label1.TabIndex = 60;
             this.label1.Text = "Running";
             // 
-            // mysqlhelp
+            // MariaDBhelp
             // 
-            this.mysqlhelp.Location = new System.Drawing.Point(276, 83);
-            this.mysqlhelp.Name = "mysqlhelp";
-            this.mysqlhelp.Size = new System.Drawing.Size(50, 28);
-            this.mysqlhelp.TabIndex = 59;
-            this.mysqlhelp.Text = "?";
-            this.mysqlhelp.UseVisualStyleBackColor = true;
-            this.mysqlhelp.Click += new System.EventHandler(this.mysqlhelp_Click);
+            this.MariaDBhelp.Location = new System.Drawing.Point(276, 83);
+            this.MariaDBhelp.Name = "MariaDBhelp";
+            this.MariaDBhelp.Size = new System.Drawing.Size(50, 28);
+            this.MariaDBhelp.TabIndex = 59;
+            this.MariaDBhelp.Text = "?";
+            this.MariaDBhelp.UseVisualStyleBackColor = true;
+            this.MariaDBhelp.Click += new System.EventHandler(this.MariaDBhelp_Click);
             // 
-            // mysqlstop
+            // MariaDBstop
             // 
-            this.mysqlstop.Location = new System.Drawing.Point(220, 82);
-            this.mysqlstop.Name = "mysqlstop";
-            this.mysqlstop.Size = new System.Drawing.Size(50, 28);
-            this.mysqlstop.TabIndex = 57;
-            this.mysqlstop.Text = "Stop";
-            this.mysqlstop.UseVisualStyleBackColor = true;
-            this.mysqlstop.Click += new System.EventHandler(this.mysqlstop_Click);
-            this.mysqlstop.MouseHover += new System.EventHandler(this.mysqlstop_MouseHover);
+            this.MariaDBstop.Location = new System.Drawing.Point(220, 82);
+            this.MariaDBstop.Name = "MariaDBstop";
+            this.MariaDBstop.Size = new System.Drawing.Size(50, 28);
+            this.MariaDBstop.TabIndex = 57;
+            this.MariaDBstop.Text = "Stop";
+            this.MariaDBstop.UseVisualStyleBackColor = true;
+            this.MariaDBstop.Click += new System.EventHandler(this.MariaDBstop_Click);
+            this.MariaDBstop.MouseHover += new System.EventHandler(this.MariaDBstop_MouseHover);
             // 
-            // mysqlstart
+            // MariaDBstart
             // 
-            this.mysqlstart.Location = new System.Drawing.Point(164, 82);
-            this.mysqlstart.Name = "mysqlstart";
-            this.mysqlstart.Size = new System.Drawing.Size(50, 28);
-            this.mysqlstart.TabIndex = 56;
-            this.mysqlstart.Text = "Start";
-            this.mysqlstart.UseVisualStyleBackColor = true;
-            this.mysqlstart.Click += new System.EventHandler(this.mysqlstart_Click);
-            this.mysqlstart.MouseHover += new System.EventHandler(this.mysqlstart_MouseHover);
+            this.MariaDBstart.Location = new System.Drawing.Point(164, 82);
+            this.MariaDBstart.Name = "MariaDBstart";
+            this.MariaDBstart.Size = new System.Drawing.Size(50, 28);
+            this.MariaDBstart.TabIndex = 56;
+            this.MariaDBstart.Text = "Start";
+            this.MariaDBstart.UseVisualStyleBackColor = true;
+            this.MariaDBstart.Click += new System.EventHandler(this.MariaDBstart_Click);
+            this.MariaDBstart.MouseHover += new System.EventHandler(this.MariaDBstart_MouseHover);
             // 
             // phpstart
             // 
@@ -491,16 +491,16 @@ namespace Wnmp
             this.nginxstop.Click += new System.EventHandler(this.nginxstop_Click);
             this.nginxstop.MouseHover += new System.EventHandler(this.nginxstop_MouseHover);
             // 
-            // opnmysqlshell
+            // opnMariaDBshell
             // 
-            this.opnmysqlshell.Location = new System.Drawing.Point(576, 93);
-            this.opnmysqlshell.Name = "opnmysqlshell";
-            this.opnmysqlshell.Size = new System.Drawing.Size(63, 49);
-            this.opnmysqlshell.TabIndex = 58;
-            this.opnmysqlshell.Text = "Open MySQL Shell";
-            this.opnmysqlshell.UseVisualStyleBackColor = true;
-            this.opnmysqlshell.Click += new System.EventHandler(this.opnmysqlshell_Click);
-            this.opnmysqlshell.MouseHover += new System.EventHandler(this.opnmysqlshell_MouseHover);
+            this.opnMariaDBshell.Location = new System.Drawing.Point(576, 93);
+            this.opnMariaDBshell.Name = "opnMariaDBshell";
+            this.opnMariaDBshell.Size = new System.Drawing.Size(63, 49);
+            this.opnMariaDBshell.TabIndex = 58;
+            this.opnMariaDBshell.Text = "Open MariaDB Shell";
+            this.opnMariaDBshell.UseVisualStyleBackColor = true;
+            this.opnMariaDBshell.Click += new System.EventHandler(this.opnMariaDBshell_Click);
+            this.opnMariaDBshell.MouseHover += new System.EventHandler(this.opnMariaDBshell_MouseHover);
             // 
             // start
             // 
@@ -531,7 +531,7 @@ namespace Wnmp
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.start);
             this.panel1.Controls.Add(this.stop);
-            this.panel1.Controls.Add(this.opnmysqlshell);
+            this.panel1.Controls.Add(this.opnMariaDBshell);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
@@ -630,9 +630,9 @@ namespace Wnmp
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button mysqlhelp;
-        internal System.Windows.Forms.Button opnmysqlshell;
-        internal System.Windows.Forms.Button mysqlstop;
+        private System.Windows.Forms.Button MariaDBhelp;
+        internal System.Windows.Forms.Button opnMariaDBshell;
+        internal System.Windows.Forms.Button MariaDBstop;
         internal System.Windows.Forms.Button phpstart;
         internal System.Windows.Forms.Button phpstop;
         internal System.Windows.Forms.Button nginxstop;
@@ -655,7 +655,7 @@ namespace Wnmp
         internal System.Windows.Forms.Label nginxrunning;
         internal System.Windows.Forms.Label phprunning;
         internal System.Windows.Forms.Label mariadbrunning;
-        internal System.Windows.Forms.Button mysqlstart;
+        internal System.Windows.Forms.Button MariaDBstart;
         internal System.Windows.Forms.Button nginxstart;
         internal System.Windows.Forms.Button nginxreload;
         internal System.Windows.Forms.ContextMenuStrip contextMenuStrip1;

@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Wnmp")]
-[assembly: AssemblyDescription("Windows, Nginx, MySQL & PHP Contol Panel")]
+[assembly: AssemblyDescription("Windows, Nginx, MariaDB & PHP Contol Panel")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kurt Cancemi")]
 [assembly: AssemblyProduct("Wnmp")]
