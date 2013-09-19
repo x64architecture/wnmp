@@ -683,7 +683,7 @@ namespace OSInfo
         private const int PRODUCT_ULTIMATE_E = 0x00000047;
         private const int PRODUCT_ENTERPRISE_EVALUATION = 0x00000048;
         private const int PRODUCT_MULTIPOINT_STANDARD_SERVER = 0x0000004C;
-        private const int PRODUCT_MULTIPOINT_PREMIUM_SERVER  = 0x0000004D; //
+        private const int PRODUCT_MULTIPOINT_PREMIUM_SERVER = 0x0000004D;
         private const int PRODUCT_STANDARD_EVALUATION_SERVER = 0x0000004F;
         private const int PRODUCT_DATACENTER_EVALUATION_SERVER = 0x00000050;
         private const int PRODUCT_ENTERPRISE_N_EVALUATION = 0x00000054;
