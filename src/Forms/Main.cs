@@ -36,6 +36,7 @@ namespace Wnmp
         public Main(string[] args)
         {
             InitializeComponent();
+            setevents();
         }
         internal string CPVER = "2.0.7";
         #region Wnmp Stuff
@@ -171,36 +172,45 @@ namespace Wnmp
         }
         #endregion output
         #region events
-        // TODO: figure out a better way to do this(though there may not be)
-        private void start_Click(object sender, EventArgs e) { General.start_Click(); } // start_Click
-        private void stop_Click(object sender, EventArgs e) { General.stop_Click(); } // stop_Click
-        private void opnMariaDBshell_Click(object sender, EventArgs e) { MariaDB.opnMariaDBshell_Click(); } // opnMariaDBshell_Click
-        private void nginxstart_Click(object sender, EventArgs e) { Nginx.nginxstart_Click(); } // nginxstart_Click
-        private void MariaDBstart_Click(object sender, EventArgs e) { MariaDB.MariaDBstart_Click(); } // MariaDBstart_Click
-        private void phpstart_Click(object sender, EventArgs e) { PHP.phpstart_Click(); } // phpstart_Click
-        private void nginxstop_Click(object sender, EventArgs e) { Nginx.nginxstop_Click(); } // nginxstop_Click
-        private void MariaDBstop_Click(object sender, EventArgs e) { MariaDB.MariaDBstop_Click(); } // MariaDBstop_Click
-        private void phpstop_Click(object sender, EventArgs e) { PHP.phpstop_Click(); } // phpstop_Click
-        private void nginxreload_Click(object sender, EventArgs e) { Nginx.nginxreload_Click(); } // nginxreload_Click
-        private void MariaDBhelp_Click(object sender, EventArgs e) { MariaDB.MariaDBhelp_Click(); } // MariaDBhelp_Click
-        private void ngxconfig_Click(object sender, EventArgs e) { WnmpFunctions.ngxconfig_Click(sender,  e); } // ngxconfig_Click
-        private void MariaDBCFG_Click(object sender, EventArgs e) { WnmpFunctions.MariaDBCFG_Click(sender, e); } // MariaDBCFG_Click
-        private void PHPCFG_Click(object sender, EventArgs e) { WnmpFunctions.PHPCFG_Click(sender, e); } // PHPCFG_Click
-        private void nginxlogs_Click(object sender, EventArgs e) { WnmpFunctions.nginxlogs_Click(sender, e); } // nginxlogs_Click
-        private void mariadblogs_Click(object sender, EventArgs e) { WnmpFunctions.mariadblogs_Click(sender, e); } // mariadblogs_Click
-        private void phplogs_Click(object sender, EventArgs e){ WnmpFunctions.phplogs_Click(sender, e); } // phplogs_Click
-        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e) { WnmpFunctions.checkForUpdatesToolStripMenuItem_Click(); } // checkForUpdatesToolStripMenuItem_Click
-        private void nginxstart_MouseHover(object sender, EventArgs e) { Nginx.nginxstart_MouseHover(); } // nginxstart_MouseHover
-        private void MariaDBstart_MouseHover(object sender, EventArgs e) { MariaDB.MariaDBstart_MouseHover(); } // MariaDBstart_MouseHover
-        private void phpstart_MouseHover(object sender, EventArgs e) { PHP.phpstart_MouseHover(); } // phpstart_MouseHover
-        private void nginxstop_MouseHover(object sender, EventArgs e) { Nginx.nginxstop_MouseHover(); } // nginxstop_MouseHover
-        private void MariaDBstop_MouseHover(object sender, EventArgs e) { MariaDB.MariaDBstop_MouseHover(); } // MariaDBstop_MouseHover
-        private void phpstop_MouseHover(object sender, EventArgs e) { PHP.phpstop_MouseHover(); } // phpstop_MouseHover
-        private void nginxreload_MouseHover(object sender, EventArgs e) { Nginx.nginxreload_MouseHover(); } // nginxreload_MouseHover
-        private void start_MouseHover(object sender, EventArgs e) { General.start_MouseHover(); } // start_MouseHover
-        private void stop_MouseHover(object sender, EventArgs e) { General.stop_MouseHover(); } // stop_MouseHover
-        private void opnMariaDBshell_MouseHover(object sender, EventArgs e) { MariaDB.opnMariaDBshell_MouseHover(); } // opnMariaDBshell_MouseHover
-        private void timer1_Tick(object sender, EventArgs e) { WnmpFunctions.timer1_Tick(); }
+        private void setevents()
+        {
+            // General Events Start
+            start.Click += General.start_Click;
+            stop.Click += General.stop_Click;
+            // End
+            // Nginx Events Start
+            ngx_start.Click += Nginx.ngx_start_Click;
+            ngx_stop.Click += Nginx.ngx_stop_Click;
+            ngx_reload.Click += Nginx.ngx_reload_Click;
+            ngx_config.Click += WnmpFunctions.ngx_config_Click;
+            ngx_log.Click += WnmpFunctions.ngx_log_Click;
+            ngx_start.MouseHover += Nginx.ngx_start_MouseHover;
+            ngx_stop.MouseHover += Nginx.ngx_stop_MouseHover;
+            ngx_reload.MouseHover += Nginx.ngx_reload_MouseHover;
+            // End
+            // MariaDB Events Start
+            mdb_start.Click += MariaDB.mdb_start_Click;
+            mdb_stop.Click += MariaDB.mdb_stop_Click;
+            mdb_help.Click += MariaDB.mdb_help_Click;
+            mdb_shell.Click += MariaDB.mdb_shell_Click;
+            mdb_cfg.Click += WnmpFunctions.mdb_cfg_Click;
+            mdb_log.Click += WnmpFunctions.mdb_log_Click;
+            mdb_start.MouseHover += MariaDB.mdb_start_MouseHover;
+            mdb_stop.MouseHover += MariaDB.mdb_stop_MouseHover;
+            mdb_shell.MouseHover += MariaDB.mdb_shell_MouseHover;
+            // End
+            // PHP Events Start
+            php_start.Click += PHP.php_start_Click;
+            php_stop.Click += PHP.php_stop_Click;
+            php_cfg.Click += WnmpFunctions.php_cfg_Click;
+            php_log.Click += WnmpFunctions.php_log_Click;
+            php_start.MouseHover += PHP.php_start_MouseHover;
+            php_stop.MouseHover += PHP.php_stop_MouseHover;
+            // End
+            // Toolstrip Events Start
+            checkForUpdatesToolStripMenuItem.Click += WnmpFunctions.checkForUpdatesToolStripMenuItem_Click;
+            // End
+        }
         #endregion
     }
 }

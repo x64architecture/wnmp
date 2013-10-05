@@ -60,7 +60,7 @@ namespace Wnmp
                 startprocess(@Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
             }
         }
-        internal static void phpstart_Click()
+        internal static void php_start_Click(object sender, EventArgs e)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace Wnmp
             }
         }
 
-        internal static void phpstop_Click()
+        internal static void php_stop_Click(object sender, EventArgs e)
         {
             try
             {
@@ -96,16 +96,16 @@ namespace Wnmp
             Program.formInstance.phprunning.ForeColor = Color.DarkRed;
         }
         public static int PHPStatus { get { return phpstatus; } }
-        internal static void phpstart_MouseHover()
+        internal static void php_start_MouseHover(object sender, EventArgs e)
         {
             ToolTip mysql_start_Tip = new ToolTip();
-            mysql_start_Tip.Show("Start PHP-CGI", Program.formInstance.phpstart);
+            mysql_start_Tip.Show("Start PHP-CGI", Program.formInstance.php_start);
         }
 
-        internal static void phpstop_MouseHover()
+        internal static void php_stop_MouseHover(object sender, EventArgs e)
         {
             ToolTip mysql_stop_Tip = new ToolTip();
-            mysql_stop_Tip.Show("Stop PHP-CGI", Program.formInstance.phpstop);
+            mysql_stop_Tip.Show("Stop PHP-CGI", Program.formInstance.php_stop);
         }
     }
 }

@@ -43,17 +43,17 @@ namespace Wnmp
             stop_all_Tip.Show("Stops Nginx, PHP-CGI & MariaDB", Program.formInstance.stop);
         }
 
-        internal static void start_Click()
+        internal static void start_Click(object sender, EventArgs e)
         {
             try
             {
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Starting all applications");
                 //Nginx
-                Nginx.nginxstart_Click();
+                Nginx.ngx_start_Click(sender, e);
                 //PHP
-                PHP.phpstart_Click();
+                PHP.php_start_Click(sender, e);
                 //MariaDB
-                MariaDB.MariaDBstart_Click();
+                MariaDB.mdb_start_Click(sender, e);
             }
             catch (Exception ex)
             {
@@ -61,16 +61,16 @@ namespace Wnmp
             }
         }
 
-        internal static void stop_Click()
+        internal static void stop_Click(object sender, EventArgs e)
         {
             try
             {
                 //Nginx
-                Nginx.nginxstop_Click();
+                Nginx.ngx_stop_Click(sender, e);
                 //PHP
-                PHP.phpstop_Click();
+                PHP.php_stop_Click(sender, e);
                 //MariaDB
-                MariaDB.MariaDBstop_Click();
+                MariaDB.mdb_stop_Click(sender, e);
                 Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Stopping all applications");
             }
             catch (Exception ex)

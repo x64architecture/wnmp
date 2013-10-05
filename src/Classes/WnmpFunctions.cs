@@ -34,7 +34,7 @@ namespace Wnmp
     {
         #region checkforupdates
         public static string updurl = "";
-        internal static void checkForUpdatesToolStripMenuItem_Click()
+        internal static void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs ea)
         {
             string downloadUrl = "";
             Version newVersion = null;
@@ -206,13 +206,13 @@ namespace Wnmp
             Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Wnmp Ready to go!");
             if (Wnmp.Properties.Settings.Default.startaprgssu == true)
             {
-                General.start_Click();
+                General.start_Click(null, null);
             }
             Program.formInstance.output.ScrollToCaret();
         }
 
         #region Context
-        internal static void ngxconfig_Click(object sender, EventArgs e)
+        internal static void ngx_config_Click(object sender, EventArgs e)
         {
             Button btnSender = (Button)sender;
             Point ptLowerLeft = new Point(0, btnSender.Height);
@@ -224,7 +224,7 @@ namespace Wnmp
             Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/conf/" + Args.ClickedItem.Text);
         }
 
-        internal static void MariaDBCFG_Click(object sender, EventArgs e)
+        internal static void mdb_cfg_Click(object sender, EventArgs e)
         {
             Button btnSender = (Button)sender;
             Point ptLowerLeft = new Point(0, btnSender.Height);
@@ -236,7 +236,7 @@ namespace Wnmp
             Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/mariadb/" + Args.ClickedItem.Text);
         }
 
-        internal static void PHPCFG_Click(object sender, EventArgs e)
+        internal static void php_cfg_Click(object sender, EventArgs e)
         {
             Button btnSender = (Button)sender;
             Point ptLowerLeft = new Point(0, btnSender.Height);
@@ -247,7 +247,7 @@ namespace Wnmp
         {
             Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/php/" + Args.ClickedItem.Text);
         }
-        internal static void nginxlogs_Click(object sender, EventArgs e)
+        internal static void ngx_log_Click(object sender, EventArgs e)
         {
             Button btnSender = (Button)sender;
             Point ptLowerLeft = new Point(0, btnSender.Height);
@@ -258,7 +258,7 @@ namespace Wnmp
         {
             Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/logs/" + Args.ClickedItem.Text);
         }
-        internal static void mariadblogs_Click(object sender, EventArgs e)
+        internal static void mdb_log_Click(object sender, EventArgs e)
         {
             Button btnSender = (Button)sender;
             Point ptLowerLeft = new Point(0, btnSender.Height);
@@ -269,7 +269,7 @@ namespace Wnmp
         {
             Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/mariadb/data/" + Args.ClickedItem.Text);
         }
-        internal static void phplogs_Click(object sender, EventArgs e)
+        internal static void php_log_Click(object sender, EventArgs e)
         {
             Button btnSender = (Button)sender;
             Point ptLowerLeft = new Point(0, btnSender.Height);

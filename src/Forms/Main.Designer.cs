@@ -62,13 +62,13 @@ namespace Wnmp
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.localhostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.nginxreload = new System.Windows.Forms.Button();
-            this.phplogs = new System.Windows.Forms.Button();
-            this.mariadblogs = new System.Windows.Forms.Button();
-            this.nginxlogs = new System.Windows.Forms.Button();
-            this.PHPCFG = new System.Windows.Forms.Button();
-            this.MariaDBCFG = new System.Windows.Forms.Button();
-            this.ngxconfig = new System.Windows.Forms.Button();
+            this.ngx_reload = new System.Windows.Forms.Button();
+            this.php_log = new System.Windows.Forms.Button();
+            this.mdb_log = new System.Windows.Forms.Button();
+            this.ngx_log = new System.Windows.Forms.Button();
+            this.php_cfg = new System.Windows.Forms.Button();
+            this.mdb_cfg = new System.Windows.Forms.Button();
+            this.ngx_config = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.phprunning = new System.Windows.Forms.Label();
@@ -78,14 +78,14 @@ namespace Wnmp
             this.label3 = new System.Windows.Forms.Label();
             this.nginxrunning = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.MariaDBhelp = new System.Windows.Forms.Button();
-            this.MariaDBstop = new System.Windows.Forms.Button();
-            this.MariaDBstart = new System.Windows.Forms.Button();
-            this.phpstart = new System.Windows.Forms.Button();
-            this.phpstop = new System.Windows.Forms.Button();
-            this.nginxstart = new System.Windows.Forms.Button();
-            this.nginxstop = new System.Windows.Forms.Button();
-            this.opnMariaDBshell = new System.Windows.Forms.Button();
+            this.mdb_help = new System.Windows.Forms.Button();
+            this.mdb_stop = new System.Windows.Forms.Button();
+            this.mdb_start = new System.Windows.Forms.Button();
+            this.php_start = new System.Windows.Forms.Button();
+            this.php_stop = new System.Windows.Forms.Button();
+            this.ngx_start = new System.Windows.Forms.Button();
+            this.ngx_stop = new System.Windows.Forms.Button();
+            this.mdb_shell = new System.Windows.Forms.Button();
             this.start = new System.Windows.Forms.Button();
             this.stop = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -145,7 +145,6 @@ namespace Wnmp
             this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
             this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.checkForUpdatesToolStripMenuItem.Text = "Check For Updates";
-            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -221,13 +220,13 @@ namespace Wnmp
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.nginxreload);
-            this.groupBox1.Controls.Add(this.phplogs);
-            this.groupBox1.Controls.Add(this.mariadblogs);
-            this.groupBox1.Controls.Add(this.nginxlogs);
-            this.groupBox1.Controls.Add(this.PHPCFG);
-            this.groupBox1.Controls.Add(this.MariaDBCFG);
-            this.groupBox1.Controls.Add(this.ngxconfig);
+            this.groupBox1.Controls.Add(this.ngx_reload);
+            this.groupBox1.Controls.Add(this.php_log);
+            this.groupBox1.Controls.Add(this.mdb_log);
+            this.groupBox1.Controls.Add(this.ngx_log);
+            this.groupBox1.Controls.Add(this.php_cfg);
+            this.groupBox1.Controls.Add(this.mdb_cfg);
+            this.groupBox1.Controls.Add(this.ngx_config);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.phprunning);
@@ -237,13 +236,13 @@ namespace Wnmp
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.nginxrunning);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.MariaDBhelp);
-            this.groupBox1.Controls.Add(this.MariaDBstop);
-            this.groupBox1.Controls.Add(this.MariaDBstart);
-            this.groupBox1.Controls.Add(this.phpstart);
-            this.groupBox1.Controls.Add(this.phpstop);
-            this.groupBox1.Controls.Add(this.nginxstart);
-            this.groupBox1.Controls.Add(this.nginxstop);
+            this.groupBox1.Controls.Add(this.mdb_help);
+            this.groupBox1.Controls.Add(this.mdb_stop);
+            this.groupBox1.Controls.Add(this.mdb_start);
+            this.groupBox1.Controls.Add(this.php_start);
+            this.groupBox1.Controls.Add(this.php_stop);
+            this.groupBox1.Controls.Add(this.ngx_start);
+            this.groupBox1.Controls.Add(this.ngx_stop);
             this.groupBox1.Location = new System.Drawing.Point(12, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(455, 175);
@@ -251,76 +250,68 @@ namespace Wnmp
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Applications";
             // 
-            // nginxreload
+            // ngx_reload
             // 
-            this.nginxreload.Location = new System.Drawing.Point(276, 45);
-            this.nginxreload.Name = "nginxreload";
-            this.nginxreload.Size = new System.Drawing.Size(50, 28);
-            this.nginxreload.TabIndex = 76;
-            this.nginxreload.Text = "Reload";
-            this.nginxreload.UseVisualStyleBackColor = true;
-            this.nginxreload.Click += new System.EventHandler(this.nginxreload_Click);
-            this.nginxreload.MouseHover += new System.EventHandler(this.nginxreload_MouseHover);
+            this.ngx_reload.Location = new System.Drawing.Point(276, 45);
+            this.ngx_reload.Name = "ngx_reload";
+            this.ngx_reload.Size = new System.Drawing.Size(50, 28);
+            this.ngx_reload.TabIndex = 76;
+            this.ngx_reload.Text = "Reload";
+            this.ngx_reload.UseVisualStyleBackColor = true;
             // 
-            // phplogs
+            // php_log
             // 
-            this.phplogs.Location = new System.Drawing.Point(388, 126);
-            this.phplogs.Name = "phplogs";
-            this.phplogs.Size = new System.Drawing.Size(50, 28);
-            this.phplogs.TabIndex = 75;
-            this.phplogs.Text = "Logs";
-            this.phplogs.UseVisualStyleBackColor = true;
-            this.phplogs.Click += new System.EventHandler(this.phplogs_Click);
+            this.php_log.Location = new System.Drawing.Point(388, 126);
+            this.php_log.Name = "php_log";
+            this.php_log.Size = new System.Drawing.Size(50, 28);
+            this.php_log.TabIndex = 75;
+            this.php_log.Text = "Logs";
+            this.php_log.UseVisualStyleBackColor = true;
             // 
-            // mariadblogs
+            // mdb_log
             // 
-            this.mariadblogs.Location = new System.Drawing.Point(388, 83);
-            this.mariadblogs.Name = "mariadblogs";
-            this.mariadblogs.Size = new System.Drawing.Size(50, 28);
-            this.mariadblogs.TabIndex = 74;
-            this.mariadblogs.Text = "Logs";
-            this.mariadblogs.UseVisualStyleBackColor = true;
-            this.mariadblogs.Click += new System.EventHandler(this.mariadblogs_Click);
+            this.mdb_log.Location = new System.Drawing.Point(388, 83);
+            this.mdb_log.Name = "mdb_log";
+            this.mdb_log.Size = new System.Drawing.Size(50, 28);
+            this.mdb_log.TabIndex = 74;
+            this.mdb_log.Text = "Logs";
+            this.mdb_log.UseVisualStyleBackColor = true;
             // 
-            // nginxlogs
+            // ngx_log
             // 
-            this.nginxlogs.Location = new System.Drawing.Point(388, 45);
-            this.nginxlogs.Name = "nginxlogs";
-            this.nginxlogs.Size = new System.Drawing.Size(50, 28);
-            this.nginxlogs.TabIndex = 73;
-            this.nginxlogs.Text = "Logs";
-            this.nginxlogs.UseVisualStyleBackColor = true;
-            this.nginxlogs.Click += new System.EventHandler(this.nginxlogs_Click);
+            this.ngx_log.Location = new System.Drawing.Point(388, 45);
+            this.ngx_log.Name = "ngx_log";
+            this.ngx_log.Size = new System.Drawing.Size(50, 28);
+            this.ngx_log.TabIndex = 73;
+            this.ngx_log.Text = "Logs";
+            this.ngx_log.UseVisualStyleBackColor = true;
             // 
-            // PHPCFG
+            // php_cfg
             // 
-            this.PHPCFG.Location = new System.Drawing.Point(332, 126);
-            this.PHPCFG.Name = "PHPCFG";
-            this.PHPCFG.Size = new System.Drawing.Size(50, 28);
-            this.PHPCFG.TabIndex = 72;
-            this.PHPCFG.Text = "Config";
-            this.PHPCFG.UseVisualStyleBackColor = true;
-            this.PHPCFG.Click += new System.EventHandler(this.PHPCFG_Click);
+            this.php_cfg.Location = new System.Drawing.Point(332, 126);
+            this.php_cfg.Name = "php_cfg";
+            this.php_cfg.Size = new System.Drawing.Size(50, 28);
+            this.php_cfg.TabIndex = 72;
+            this.php_cfg.Text = "Config";
+            this.php_cfg.UseVisualStyleBackColor = true;
             // 
-            // MariaDBCFG
+            // mdb_cfg
             // 
-            this.MariaDBCFG.Location = new System.Drawing.Point(332, 83);
-            this.MariaDBCFG.Name = "MariaDBCFG";
-            this.MariaDBCFG.Size = new System.Drawing.Size(50, 28);
-            this.MariaDBCFG.TabIndex = 71;
-            this.MariaDBCFG.Text = "Config";
-            this.MariaDBCFG.UseVisualStyleBackColor = true;
-            this.MariaDBCFG.Click += new System.EventHandler(this.MariaDBCFG_Click);
+            this.mdb_cfg.Location = new System.Drawing.Point(332, 83);
+            this.mdb_cfg.Name = "mdb_cfg";
+            this.mdb_cfg.Size = new System.Drawing.Size(50, 28);
+            this.mdb_cfg.TabIndex = 71;
+            this.mdb_cfg.Text = "Config";
+            this.mdb_cfg.UseVisualStyleBackColor = true;
             // 
-            // ngxconfig
+            // ngx_config
             // 
-            this.ngxconfig.Location = new System.Drawing.Point(332, 45);
-            this.ngxconfig.Name = "ngxconfig";
-            this.ngxconfig.Size = new System.Drawing.Size(50, 28);
-            this.ngxconfig.TabIndex = 70;
-            this.ngxconfig.Text = "Config";
-            this.ngxconfig.UseVisualStyleBackColor = true;
-            this.ngxconfig.Click += new System.EventHandler(this.ngxconfig_Click);
+            this.ngx_config.Location = new System.Drawing.Point(332, 45);
+            this.ngx_config.Name = "ngx_config";
+            this.ngx_config.Size = new System.Drawing.Size(50, 28);
+            this.ngx_config.TabIndex = 70;
+            this.ngx_config.Text = "Config";
+            this.ngx_config.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -415,92 +406,77 @@ namespace Wnmp
             this.label1.TabIndex = 60;
             this.label1.Text = "Running";
             // 
-            // MariaDBhelp
+            // mdb_help
             // 
-            this.MariaDBhelp.Location = new System.Drawing.Point(276, 83);
-            this.MariaDBhelp.Name = "MariaDBhelp";
-            this.MariaDBhelp.Size = new System.Drawing.Size(50, 28);
-            this.MariaDBhelp.TabIndex = 59;
-            this.MariaDBhelp.Text = "?";
-            this.MariaDBhelp.UseVisualStyleBackColor = true;
-            this.MariaDBhelp.Click += new System.EventHandler(this.MariaDBhelp_Click);
+            this.mdb_help.Location = new System.Drawing.Point(276, 83);
+            this.mdb_help.Name = "mdb_help";
+            this.mdb_help.Size = new System.Drawing.Size(50, 28);
+            this.mdb_help.TabIndex = 59;
+            this.mdb_help.Text = "?";
+            this.mdb_help.UseVisualStyleBackColor = true;
             // 
-            // MariaDBstop
+            // mdb_stop
             // 
-            this.MariaDBstop.Location = new System.Drawing.Point(220, 82);
-            this.MariaDBstop.Name = "MariaDBstop";
-            this.MariaDBstop.Size = new System.Drawing.Size(50, 28);
-            this.MariaDBstop.TabIndex = 57;
-            this.MariaDBstop.Text = "Stop";
-            this.MariaDBstop.UseVisualStyleBackColor = true;
-            this.MariaDBstop.Click += new System.EventHandler(this.MariaDBstop_Click);
-            this.MariaDBstop.MouseHover += new System.EventHandler(this.MariaDBstop_MouseHover);
+            this.mdb_stop.Location = new System.Drawing.Point(220, 82);
+            this.mdb_stop.Name = "mdb_stop";
+            this.mdb_stop.Size = new System.Drawing.Size(50, 28);
+            this.mdb_stop.TabIndex = 57;
+            this.mdb_stop.Text = "Stop";
+            this.mdb_stop.UseVisualStyleBackColor = true;
             // 
-            // MariaDBstart
+            // mdb_start
             // 
-            this.MariaDBstart.Location = new System.Drawing.Point(164, 82);
-            this.MariaDBstart.Name = "MariaDBstart";
-            this.MariaDBstart.Size = new System.Drawing.Size(50, 28);
-            this.MariaDBstart.TabIndex = 56;
-            this.MariaDBstart.Text = "Start";
-            this.MariaDBstart.UseVisualStyleBackColor = true;
-            this.MariaDBstart.Click += new System.EventHandler(this.MariaDBstart_Click);
-            this.MariaDBstart.MouseHover += new System.EventHandler(this.MariaDBstart_MouseHover);
+            this.mdb_start.Location = new System.Drawing.Point(164, 82);
+            this.mdb_start.Name = "mdb_start";
+            this.mdb_start.Size = new System.Drawing.Size(50, 28);
+            this.mdb_start.TabIndex = 56;
+            this.mdb_start.Text = "Start";
+            this.mdb_start.UseVisualStyleBackColor = true;
             // 
-            // phpstart
+            // php_start
             // 
-            this.phpstart.Location = new System.Drawing.Point(164, 127);
-            this.phpstart.Name = "phpstart";
-            this.phpstart.Size = new System.Drawing.Size(50, 28);
-            this.phpstart.TabIndex = 55;
-            this.phpstart.Text = "Start";
-            this.phpstart.UseVisualStyleBackColor = true;
-            this.phpstart.Click += new System.EventHandler(this.phpstart_Click);
-            this.phpstart.MouseHover += new System.EventHandler(this.phpstart_MouseHover);
+            this.php_start.Location = new System.Drawing.Point(164, 127);
+            this.php_start.Name = "php_start";
+            this.php_start.Size = new System.Drawing.Size(50, 28);
+            this.php_start.TabIndex = 55;
+            this.php_start.Text = "Start";
+            this.php_start.UseVisualStyleBackColor = true;
             // 
-            // phpstop
+            // php_stop
             // 
-            this.phpstop.Location = new System.Drawing.Point(220, 127);
-            this.phpstop.Name = "phpstop";
-            this.phpstop.Size = new System.Drawing.Size(50, 28);
-            this.phpstop.TabIndex = 54;
-            this.phpstop.Text = "Stop";
-            this.phpstop.UseVisualStyleBackColor = true;
-            this.phpstop.Click += new System.EventHandler(this.phpstop_Click);
-            this.phpstop.MouseHover += new System.EventHandler(this.phpstop_MouseHover);
+            this.php_stop.Location = new System.Drawing.Point(220, 127);
+            this.php_stop.Name = "php_stop";
+            this.php_stop.Size = new System.Drawing.Size(50, 28);
+            this.php_stop.TabIndex = 54;
+            this.php_stop.Text = "Stop";
+            this.php_stop.UseVisualStyleBackColor = true;
             // 
-            // nginxstart
+            // ngx_start
             // 
-            this.nginxstart.Location = new System.Drawing.Point(164, 45);
-            this.nginxstart.Name = "nginxstart";
-            this.nginxstart.Size = new System.Drawing.Size(50, 28);
-            this.nginxstart.TabIndex = 53;
-            this.nginxstart.Text = "Start";
-            this.nginxstart.UseVisualStyleBackColor = true;
-            this.nginxstart.Click += new System.EventHandler(this.nginxstart_Click);
-            this.nginxstart.MouseHover += new System.EventHandler(this.nginxstart_MouseHover);
+            this.ngx_start.Location = new System.Drawing.Point(164, 45);
+            this.ngx_start.Name = "ngx_start";
+            this.ngx_start.Size = new System.Drawing.Size(50, 28);
+            this.ngx_start.TabIndex = 53;
+            this.ngx_start.Text = "Start";
+            this.ngx_start.UseVisualStyleBackColor = true;
             // 
-            // nginxstop
+            // ngx_stop
             // 
-            this.nginxstop.Location = new System.Drawing.Point(220, 45);
-            this.nginxstop.Name = "nginxstop";
-            this.nginxstop.Size = new System.Drawing.Size(50, 28);
-            this.nginxstop.TabIndex = 52;
-            this.nginxstop.Text = "Stop";
-            this.nginxstop.UseVisualStyleBackColor = true;
-            this.nginxstop.Click += new System.EventHandler(this.nginxstop_Click);
-            this.nginxstop.MouseHover += new System.EventHandler(this.nginxstop_MouseHover);
+            this.ngx_stop.Location = new System.Drawing.Point(220, 45);
+            this.ngx_stop.Name = "ngx_stop";
+            this.ngx_stop.Size = new System.Drawing.Size(50, 28);
+            this.ngx_stop.TabIndex = 52;
+            this.ngx_stop.Text = "Stop";
+            this.ngx_stop.UseVisualStyleBackColor = true;
             // 
-            // opnMariaDBshell
+            // mdb_shell
             // 
-            this.opnMariaDBshell.Location = new System.Drawing.Point(576, 93);
-            this.opnMariaDBshell.Name = "opnMariaDBshell";
-            this.opnMariaDBshell.Size = new System.Drawing.Size(63, 49);
-            this.opnMariaDBshell.TabIndex = 58;
-            this.opnMariaDBshell.Text = "Open MariaDB Shell";
-            this.opnMariaDBshell.UseVisualStyleBackColor = true;
-            this.opnMariaDBshell.Click += new System.EventHandler(this.opnMariaDBshell_Click);
-            this.opnMariaDBshell.MouseHover += new System.EventHandler(this.opnMariaDBshell_MouseHover);
+            this.mdb_shell.Location = new System.Drawing.Point(576, 93);
+            this.mdb_shell.Name = "mdb_shell";
+            this.mdb_shell.Size = new System.Drawing.Size(63, 49);
+            this.mdb_shell.TabIndex = 58;
+            this.mdb_shell.Text = "Open MariaDB Shell";
+            this.mdb_shell.UseVisualStyleBackColor = true;
             // 
             // start
             // 
@@ -510,8 +486,6 @@ namespace Wnmp
             this.start.TabIndex = 49;
             this.start.Text = "Start all";
             this.start.UseVisualStyleBackColor = true;
-            this.start.Click += new System.EventHandler(this.start_Click);
-            this.start.MouseHover += new System.EventHandler(this.start_MouseHover);
             // 
             // stop
             // 
@@ -521,8 +495,6 @@ namespace Wnmp
             this.stop.TabIndex = 50;
             this.stop.Text = "Stop all";
             this.stop.UseVisualStyleBackColor = true;
-            this.stop.Click += new System.EventHandler(this.stop_Click);
-            this.stop.MouseHover += new System.EventHandler(this.stop_MouseHover);
             // 
             // panel1
             // 
@@ -531,7 +503,7 @@ namespace Wnmp
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.start);
             this.panel1.Controls.Add(this.stop);
-            this.panel1.Controls.Add(this.opnMariaDBshell);
+            this.panel1.Controls.Add(this.mdb_shell);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
@@ -578,7 +550,6 @@ namespace Wnmp
             // timer1
             // 
             this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // contextMenuStrip4
             // 
@@ -630,23 +601,23 @@ namespace Wnmp
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button MariaDBhelp;
-        internal System.Windows.Forms.Button opnMariaDBshell;
-        internal System.Windows.Forms.Button MariaDBstop;
-        internal System.Windows.Forms.Button phpstart;
-        internal System.Windows.Forms.Button phpstop;
-        internal System.Windows.Forms.Button nginxstop;
+        private System.Windows.Forms.Button mdb_help;
+        internal System.Windows.Forms.Button mdb_shell;
+        internal System.Windows.Forms.Button mdb_stop;
+        internal System.Windows.Forms.Button php_start;
+        internal System.Windows.Forms.Button php_stop;
+        internal System.Windows.Forms.Button ngx_stop;
         internal System.Windows.Forms.Button start;
         internal System.Windows.Forms.Button stop;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button ngxconfig;
-        private System.Windows.Forms.Button PHPCFG;
-        private System.Windows.Forms.Button MariaDBCFG;
+        private System.Windows.Forms.Button ngx_config;
+        private System.Windows.Forms.Button php_cfg;
+        private System.Windows.Forms.Button mdb_cfg;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem wnmpOptionsToolStripMenuItem;
-        private System.Windows.Forms.Button phplogs;
-        private System.Windows.Forms.Button mariadblogs;
-        private System.Windows.Forms.Button nginxlogs;
+        private System.Windows.Forms.Button php_log;
+        private System.Windows.Forms.Button mdb_log;
+        private System.Windows.Forms.Button ngx_log;
         private System.Windows.Forms.Button wnmpdir;
         internal System.Windows.Forms.RichTextBox output;
         protected System.Windows.Forms.Label label4;
@@ -655,9 +626,9 @@ namespace Wnmp
         internal System.Windows.Forms.Label nginxrunning;
         internal System.Windows.Forms.Label phprunning;
         internal System.Windows.Forms.Label mariadbrunning;
-        internal System.Windows.Forms.Button MariaDBstart;
-        internal System.Windows.Forms.Button nginxstart;
-        internal System.Windows.Forms.Button nginxreload;
+        internal System.Windows.Forms.Button mdb_start;
+        internal System.Windows.Forms.Button ngx_start;
+        internal System.Windows.Forms.Button ngx_reload;
         internal System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         internal System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         internal System.Windows.Forms.ContextMenuStrip contextMenuStrip3;

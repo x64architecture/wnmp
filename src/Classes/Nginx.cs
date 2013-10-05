@@ -33,6 +33,7 @@ namespace Wnmp
     {
         public static Process ps; // Avoid GC
         public static int ngxstatus = (int)ProcessStatus.ps.STOPPED;
+        public static int NgxStatus { get { return ngxstatus; } }
         public static void startprocess(string p, string args, bool wfe)
         {
             System.Threading.Thread.Sleep(100); //Wait
@@ -49,12 +50,16 @@ namespace Wnmp
                 ps.WaitForExit();
             }
         }
-        internal static void nginxreload_Click()
+
+        internal static void ngx_start_Click(object sender, EventArgs e)
         {
             try
             {
-                startprocess(@Application.StartupPath + "/nginx.exe", "-s reload", false);
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to reload Nginx");
+                startprocess(@Application.StartupPath + "/nginx.exe", "", false);
+                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to start Nginx");
+                Program.formInstance.nginxrunning.Text = "\u221A";
+                Program.formInstance.nginxrunning.ForeColor = Color.Green;
+                ngxstatus = (int)ProcessStatus.ps.STARTED;
             }
             catch (Exception ex)
             {
@@ -62,7 +67,7 @@ namespace Wnmp
             }
         }
 
-        internal static void nginxstop_Click()
+        internal static void ngx_stop_Click(object sender, EventArgs e)
         {
             try
             {
@@ -84,38 +89,34 @@ namespace Wnmp
             }
         }
 
-        internal static void nginxstart_Click()
+        internal static void ngx_reload_Click(object sender, EventArgs e)
         {
             try
             {
-                startprocess(@Application.StartupPath + "/nginx.exe", "", false);
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to start Nginx");
-                Program.formInstance.nginxrunning.Text = "\u221A";
-                Program.formInstance.nginxrunning.ForeColor = Color.Green;
-                ngxstatus = (int)ProcessStatus.ps.STARTED;
+                startprocess(@Application.StartupPath + "/nginx.exe", "-s reload", false);
+                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to reload Nginx");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-        public static int NgxStatus { get { return ngxstatus; } }
-        internal static void nginxreload_MouseHover()
-        {
-            ToolTip nginx_reload_Tip = new ToolTip();
-            nginx_reload_Tip.Show("Reloads Nginx configuration without restart", Program.formInstance.nginxreload);
-        }
 
-        internal static void nginxstop_MouseHover()
+        internal static void ngx_stop_MouseHover(object sender, EventArgs e)
         {
             ToolTip nginx_stop_Tip = new ToolTip();
-            nginx_stop_Tip.Show("Stop Nginx", Program.formInstance.nginxstop);
+            nginx_stop_Tip.Show("Stop Nginx", Program.formInstance.ngx_stop);
         }
 
-        internal static void nginxstart_MouseHover()
+        internal static void ngx_start_MouseHover(object sender, EventArgs e)
         {
             ToolTip nginx_start_Tip = new ToolTip();
-            nginx_start_Tip.Show("Start Nginx", Program.formInstance.nginxstart);
+            nginx_start_Tip.Show("Start Nginx", Program.formInstance.ngx_start);
+        }
+        internal static void ngx_reload_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip nginx_reload_Tip = new ToolTip();
+            nginx_reload_Tip.Show("Reloads Nginx configuration without restart", Program.formInstance.ngx_reload);
         }
     }
 }
