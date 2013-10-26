@@ -47,7 +47,7 @@ If you can, please donate to [kurt@x64architecture.com][2] using paypal for my e
 -------------------------------------------------
  PHP FastCGI    | 15-20 MB of ram		
 -------------------------------------------------
- Nginx		    | 512 MB of ram		
+ MariaDB	    | 512 MB of ram		
 -------------------------------------------------
  Disk Space		| 378 MB
 -------------------------------------------------
