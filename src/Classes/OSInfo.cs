@@ -553,6 +553,17 @@ namespace OSInfo
                                                         break;
                                                 }
                                                 break;
+                                            case 3:
+                                                switch (productType)
+                                                {
+                                                    case 1:
+                                                        name = "Windows 8.1";
+                                                        break;
+                                                    case 3:
+                                                        name = "Windows Server 2012 R2";
+                                                        break;
+                                                }
+                                                break;
                                         }
                                         break;
                                 }
