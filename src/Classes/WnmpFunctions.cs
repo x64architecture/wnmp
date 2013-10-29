@@ -32,120 +32,6 @@ namespace Wnmp
 {
     class WnmpFunctions
     {
-        #region checkforupdates
-        public static string updurl = "";
-        internal static void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs ea)
-        {
-            string downloadUrl = "";
-            Version newVersion = null;
-            string aboutUpdate = "";
-            string xmlUrl = "https://bitbucket.org/x64architecture/windows-nginx-mysql-php/raw/tip/update.xml";
-            XmlTextReader reader = null;
-            try
-            {
-                reader = new XmlTextReader(xmlUrl);
-                reader.MoveToContent();
-                string elementName = "";
-                if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "appinfo"))
-                {
-                    while (reader.Read())
-                    {
-                        if (reader.NodeType == XmlNodeType.Element)
-                        {
-                            elementName = reader.Name;
-                        }
-                        else
-                        {
-                            if ((reader.NodeType == XmlNodeType.Text) && (reader.HasValue))
-                                switch (elementName)
-                                {
-                                    case "version":
-                                        newVersion = new Version(reader.Value);
-                                        break;
-                                    case "url":
-                                        downloadUrl = reader.Value;
-                                        break;
-                                    case "upgradeurl":
-                                        updurl = reader.Value;
-                                        break;
-                                    case "about":
-                                        aboutUpdate = reader.Value;
-                                        break;
-                                }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message == ("The remote name could not be resolved: 'bitbucket.org'"))
-                {
-                    MessageBox.Show("Couldn't connect to the update server");
-                }
-                else
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            finally
-            {
-                if (reader != null)
-                    reader.Close();
-            }
-            Version applicationVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            if (applicationVersion.CompareTo(newVersion) < 0)
-            {
-                string str = String.Format("New version found!\nYour version: {0}.\nNewest version: {1}. \nAdded in this version: {2}. ", applicationVersion, newVersion, aboutUpdate);
-                if (DialogResult.No != MessageBox.Show(str + "\nWould you like to download this update?", "Check for updates", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                {
-                    try
-                    {
-                        Wnmp.Forms.dlUpdateProgress frm = new Wnmp.Forms.dlUpdateProgress();
-                        frm.Show();
-                        frm.Focus();
-                        WebClient webClient = new WebClient();
-                        webClient.DownloadProgressChanged += (s, e) =>
-                        {
-                            frm.progressBar1.Value = e.ProgressPercentage; 
-                            frm.label2.Text = e.ProgressPercentage.ToString() + "%";
-                        };
-                        webClient.DownloadFileCompleted += (s, e) =>
-                        {
-                            try
-                            {
-                                frm.Close();
-                                Process.Start(@Application.StartupPath + "/Wnmp-Upgrade.exe");
-                                cfa();
-                                Application.Exit();
-                            }
-                            catch { }
-                        };
-                        webClient.DownloadFileAsync(new Uri(updurl),
-                            @Application.StartupPath + "/Wnmp-Upgrade-" + newVersion + ".exe");
-                        frm.FormClosed += (s, e) =>
-                        {
-                            try
-                            {
-                                webClient.CancelAsync();
-                            }
-                            catch { }
-                        };
-                    }
-                    catch { }
-                    return;
-                }
-                else
-                {
-                    ;
-                }
-            }
-            else
-            {
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Your version: " + applicationVersion + "  is up to date.");
-            }
-        }
-        #endregion checkforupdates
-
         #region checkforapps
         public static void tc(string text, string oColor)
         {
@@ -204,6 +90,7 @@ namespace Wnmp
             checkforapps();
             cifpsr();
             Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Wnmp Ready to go!");
+            Program.formInstance.output.ScrollToCaret();
             if (Wnmp.Properties.Settings.Default.startaprgssu == true)
             {
                 General.start_Click(null, null);

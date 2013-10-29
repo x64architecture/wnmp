@@ -21,4 +21,13 @@ Wnmp 2.0.2.9
 - phpMyAdmin
   * Updated to 4.0.7
 </about>
+<cpversion>2.0.7</cpversion>
+<cpupdateurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/raw/tip/updatefiles/Wnmp.exe</cpupdateurl>
+<cpupdaterurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/raw/tip/updatefiles/updater.exe</cpupdaterurl>
+<cpabout>
+- Wnmp
+  * Removed All occurrences of the word "MySQL" and replaced them with "MariaDB"
+  * Updated PRODUCT_* definitions
+  * Some internal changes
+</cpabout>
 </appinfo>

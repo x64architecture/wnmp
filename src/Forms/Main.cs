@@ -38,8 +38,13 @@ namespace Wnmp
             InitializeComponent();
             setevents();
         }
-        internal string CPVER = "2.0.7";
+        internal Version CPVER = new Version("2.0.7");
         #region Wnmp Stuff
+        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            const string xmlUrl = "https://bitbucket.org/x64architecture/windows-nginx-mysql-php/raw/tip/update.xml";
+            Updater _Updater = new Updater(xmlUrl, CPVER);
+        }
         private void wnmpdir_Click(object sender, EventArgs e)
         {
             Process.Start("explorer.exe", @Application.StartupPath);
@@ -103,6 +108,14 @@ namespace Wnmp
         }
         private void Main_Load(object sender, EventArgs e)
         {
+            if (File.Exists(@Application.StartupPath + "/updater.exe"))
+            {
+                try
+                {
+                    File.Delete(@Application.StartupPath + "/updater.exe");
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
             icp();
             timer1.Enabled = true;
             WnmpFunctions.ContextMenus();
@@ -206,9 +219,6 @@ namespace Wnmp
             php_log.Click += WnmpFunctions.php_log_Click;
             php_start.MouseHover += PHP.php_start_MouseHover;
             php_stop.MouseHover += PHP.php_stop_MouseHover;
-            // End
-            // Toolstrip Events Start
-            checkForUpdatesToolStripMenuItem.Click += WnmpFunctions.checkForUpdatesToolStripMenuItem_Click;
             // End
         }
         #endregion
