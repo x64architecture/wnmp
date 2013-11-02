@@ -118,7 +118,12 @@ namespace Wnmp
             }
             icp();
             timer1.Enabled = true;
-            WnmpFunctions.ContextMenus();
+            WnmpFunctions.DirFiles("/conf", "*", 0);
+            WnmpFunctions.DirFiles("/mariadb", "my.ini", 1);
+            WnmpFunctions.DirFiles("/php", "php.ini", 2);
+            WnmpFunctions.DirFiles("/logs", "*.log", 3);
+            WnmpFunctions.DirFiles("/mariadb/data", "*.log", 4);
+            WnmpFunctions.DirFiles("/php/logs", "*.log", 5);
             WnmpFunctions.startup();
         }
         private void icp()

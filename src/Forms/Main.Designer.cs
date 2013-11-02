@@ -91,13 +91,13 @@ namespace Wnmp
             this.panel1 = new System.Windows.Forms.Panel();
             this.wnmpdir = new System.Windows.Forms.Button();
             this.output = new System.Windows.Forms.RichTextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ngx_conf = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mdb_conf = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.php_conf = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.contextMenuStrip4 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.contextMenuStrip5 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.contextMenuStrip6 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.logs = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mdb_logs = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.php_logs = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -533,39 +533,39 @@ namespace Wnmp
             this.output.Text = "";
             this.output.TextChanged += new System.EventHandler(this.output_TextChanged);
             // 
-            // contextMenuStrip1
+            // ngx_conf
             // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.ngx_conf.Name = "contextMenuStrip1";
+            this.ngx_conf.Size = new System.Drawing.Size(61, 4);
             // 
-            // contextMenuStrip2
+            // mdb_conf
             // 
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            this.mdb_conf.Name = "contextMenuStrip2";
+            this.mdb_conf.Size = new System.Drawing.Size(61, 4);
             // 
-            // contextMenuStrip3
+            // php_conf
             // 
-            this.contextMenuStrip3.Name = "contextMenuStrip3";
-            this.contextMenuStrip3.Size = new System.Drawing.Size(61, 4);
+            this.php_conf.Name = "contextMenuStrip3";
+            this.php_conf.Size = new System.Drawing.Size(61, 4);
             // 
             // timer1
             // 
             this.timer1.Interval = 1000;
             // 
-            // contextMenuStrip4
+            // logs
             // 
-            this.contextMenuStrip4.Name = "contextMenuStrip4";
-            this.contextMenuStrip4.Size = new System.Drawing.Size(61, 4);
+            this.logs.Name = "contextMenuStrip4";
+            this.logs.Size = new System.Drawing.Size(61, 4);
             // 
-            // contextMenuStrip5
+            // mdb_logs
             // 
-            this.contextMenuStrip5.Name = "contextMenuStrip5";
-            this.contextMenuStrip5.Size = new System.Drawing.Size(61, 4);
+            this.mdb_logs.Name = "contextMenuStrip5";
+            this.mdb_logs.Size = new System.Drawing.Size(61, 4);
             // 
-            // contextMenuStrip6
+            // php_logs
             // 
-            this.contextMenuStrip6.Name = "contextMenuStrip6";
-            this.contextMenuStrip6.Size = new System.Drawing.Size(61, 4);
+            this.php_logs.Name = "contextMenuStrip6";
+            this.php_logs.Size = new System.Drawing.Size(153, 26);
             // 
             // Main
             // 
@@ -630,12 +630,12 @@ namespace Wnmp
         internal System.Windows.Forms.Button mdb_start;
         internal System.Windows.Forms.Button ngx_start;
         internal System.Windows.Forms.Button ngx_reload;
-        internal System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        internal System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
-        internal System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
-        internal System.Windows.Forms.ContextMenuStrip contextMenuStrip4;
-        internal System.Windows.Forms.ContextMenuStrip contextMenuStrip5;
-        internal System.Windows.Forms.ContextMenuStrip contextMenuStrip6;
+        internal System.Windows.Forms.ContextMenuStrip ngx_conf;
+        internal System.Windows.Forms.ContextMenuStrip mdb_conf;
+        internal System.Windows.Forms.ContextMenuStrip php_conf;
+        internal System.Windows.Forms.ContextMenuStrip logs;
+        internal System.Windows.Forms.ContextMenuStrip mdb_logs;
+        internal System.Windows.Forms.ContextMenuStrip php_logs;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem donateToolStripMenuItem;

@@ -99,165 +99,126 @@ namespace Wnmp
         }
 
         #region Context
-        internal static void ngx_config_Click(object sender, EventArgs e)
+        private static void ctx2button(object sender, EventArgs e, int button)
         {
             Button btnSender = (Button)sender;
             Point ptLowerLeft = new Point(0, btnSender.Height);
             ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
-            Program.formInstance.contextMenuStrip1.Show(ptLowerLeft);
+            switch (button)
+            {
+                case 0:
+                    Program.formInstance.ngx_conf.Show(ptLowerLeft);
+                    break;
+                case 1:
+                    Program.formInstance.mdb_conf.Show(ptLowerLeft);
+                    break;
+                case 2:
+                    Program.formInstance.php_conf.Show(ptLowerLeft);
+                    break;
+                case 3:
+                    Program.formInstance.logs.Show(ptLowerLeft);
+                    break;
+                case 4:
+                    Program.formInstance.mdb_logs.Show(ptLowerLeft);
+                    break;
+                case 5:
+                    Program.formInstance.php_logs.Show(ptLowerLeft);
+                    break;
+            }
         }
-        static void contextMenuStrip12_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
+        internal static void ngx_config_Click(object sender, EventArgs e)
+        {
+            ctx2button(sender, e, 0);
+        }
+        static void ngx_conf_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
             Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/conf/" + Args.ClickedItem.Text);
         }
 
         internal static void mdb_cfg_Click(object sender, EventArgs e)
         {
-            Button btnSender = (Button)sender;
-            Point ptLowerLeft = new Point(0, btnSender.Height);
-            ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
-            Program.formInstance.contextMenuStrip2.Show(ptLowerLeft);
+            ctx2button(sender, e, 1);
         }
-        static void contextMenuStrip13_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
+        static void mdb_conf_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
             Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/mariadb/" + Args.ClickedItem.Text);
         }
 
         internal static void php_cfg_Click(object sender, EventArgs e)
         {
-            Button btnSender = (Button)sender;
-            Point ptLowerLeft = new Point(0, btnSender.Height);
-            ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
-            Program.formInstance.contextMenuStrip3.Show(ptLowerLeft);
+            ctx2button(sender, e, 2);
         }
-        static void contextMenuStrip14_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
+        static void php_conf_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
             Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/php/" + Args.ClickedItem.Text);
         }
         internal static void ngx_log_Click(object sender, EventArgs e)
         {
-            Button btnSender = (Button)sender;
-            Point ptLowerLeft = new Point(0, btnSender.Height);
-            ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
-            Program.formInstance.contextMenuStrip4.Show(ptLowerLeft);
+            ctx2button(sender, e, 3);
         }
-        static void contextMenuStrip15_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
+        static void logs_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
             Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/logs/" + Args.ClickedItem.Text);
         }
         internal static void mdb_log_Click(object sender, EventArgs e)
         {
-            Button btnSender = (Button)sender;
-            Point ptLowerLeft = new Point(0, btnSender.Height);
-            ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
-            Program.formInstance.contextMenuStrip5.Show(ptLowerLeft);
+            ctx2button(sender, e, 4);
         }
-        static void contextMenuStrip16_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
+        static void mdb_logs_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
             Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/mariadb/data/" + Args.ClickedItem.Text);
         }
         internal static void php_log_Click(object sender, EventArgs e)
         {
-            Button btnSender = (Button)sender;
-            Point ptLowerLeft = new Point(0, btnSender.Height);
-            ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
-            Program.formInstance.contextMenuStrip6.Show(ptLowerLeft);
+            ctx2button(sender, e, 5);
         }
-        static void contextMenuStrip17_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
+        static void php_logs_ItemClicked(object Sender, System.Windows.Forms.ToolStripItemClickedEventArgs Args)
         {
             Process.Start(Wnmp.Properties.Settings.Default.editor, @Application.StartupPath + @"/php/logs/" + Args.ClickedItem.Text);
         }
         #endregion Context
 
         #region ContextMenus
-        internal static void ContextMenus()
+        internal static void DirFiles(string path, string GetFiles, int ctxmenu)
         {
             try
             {
-                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/conf");
-                FileInfo[] Files = dinfo.GetFiles("*");
+                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + path);
+                FileInfo[] Files = dinfo.GetFiles(GetFiles);
                 foreach (FileInfo file in Files)
                 {
-                    Program.formInstance.contextMenuStrip1.Items.Add(file.Name);
+                    switch (ctxmenu)
+                    {
+                        case 0:
+                            Program.formInstance.ngx_conf.Items.Add(file.Name);
+                            break;
+                        case 1:
+                            Program.formInstance.mdb_conf.Items.Add(file.Name);
+                            break;
+                        case 2:
+                            Program.formInstance.php_conf.Items.Add(file.Name);
+                            break;
+                        case 3:
+                            Program.formInstance.logs.Items.Add(file.Name);
+                            break;
+                        case 4:
+                            Program.formInstance.mdb_logs.Items.Add(file.Name);
+                            break;
+                        case 5:
+                            Program.formInstance.php_logs.Items.Add(file.Name);
+                            break;
+                    }
                 }
+                Program.formInstance.ngx_conf.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(ngx_conf_ItemClicked);
+                Program.formInstance.mdb_conf.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(mdb_conf_ItemClicked);
+                Program.formInstance.php_conf.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(php_conf_ItemClicked);
+                Program.formInstance.logs.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(logs_ItemClicked);
+                Program.formInstance.mdb_logs.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(mdb_logs_ItemClicked);
+                Program.formInstance.php_logs.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(php_logs_ItemClicked);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-            try
-            {
-                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/mariadb");
-                FileInfo[] Files = dinfo.GetFiles("my.ini");
-                foreach (FileInfo file in Files)
-                {
-                    Program.formInstance.contextMenuStrip2.Items.Add(file.Name);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-            try
-            {
-                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/php");
-                FileInfo[] Files = dinfo.GetFiles("php.ini");
-                foreach (FileInfo file in Files)
-                {
-                    Program.formInstance.contextMenuStrip3.Items.Add("php.ini");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-            try
-            {
-                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/logs");
-                FileInfo[] Files = dinfo.GetFiles("*.log");
-                foreach (FileInfo file in Files)
-                {
-                    Program.formInstance.contextMenuStrip4.Items.Add(file.Name);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-            try
-            {
-                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/mariadb/data");
-                FileInfo[] Files = dinfo.GetFiles("*.log");
-                foreach (FileInfo file in Files)
-                {
-                    Program.formInstance.contextMenuStrip5.Items.Add(file.Name);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-            try
-            {
-                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + @"/php/logs");
-                FileInfo[] Files = dinfo.GetFiles("*.log");
-                foreach (FileInfo file in Files)
-                {
-                    Program.formInstance.contextMenuStrip6.Items.Add(file.Name);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-
-            Program.formInstance.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(contextMenuStrip12_ItemClicked);
-            Program.formInstance.contextMenuStrip2.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(contextMenuStrip13_ItemClicked);
-            Program.formInstance.contextMenuStrip3.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(contextMenuStrip14_ItemClicked);
-            Program.formInstance.contextMenuStrip4.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(contextMenuStrip15_ItemClicked);
-            Program.formInstance.contextMenuStrip5.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(contextMenuStrip16_ItemClicked);
-            Program.formInstance.contextMenuStrip6.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(contextMenuStrip17_ItemClicked);
+            catch { }
         }
+
         #endregion ContextMenus
 
         internal static void timer1_Tick()
