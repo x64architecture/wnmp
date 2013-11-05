@@ -90,7 +90,7 @@ namespace Wnmp
             this.stop = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.wnmpdir = new System.Windows.Forms.Button();
-            this.output = new System.Windows.Forms.RichTextBox();
+            this.log_rtb = new System.Windows.Forms.RichTextBox();
             this.ngx_conf = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mdb_conf = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.php_conf = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -500,7 +500,7 @@ namespace Wnmp
             // panel1
             // 
             this.panel1.Controls.Add(this.wnmpdir);
-            this.panel1.Controls.Add(this.output);
+            this.panel1.Controls.Add(this.log_rtb);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.start);
             this.panel1.Controls.Add(this.stop);
@@ -521,17 +521,16 @@ namespace Wnmp
             this.wnmpdir.UseVisualStyleBackColor = true;
             this.wnmpdir.Click += new System.EventHandler(this.wnmpdir_Click);
             // 
-            // output
+            // log_rtb
             // 
-            this.output.BackColor = System.Drawing.Color.White;
-            this.output.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.output.Location = new System.Drawing.Point(0, 200);
-            this.output.Name = "output";
-            this.output.ReadOnly = true;
-            this.output.Size = new System.Drawing.Size(645, 139);
-            this.output.TabIndex = 49;
-            this.output.Text = "";
-            this.output.TextChanged += new System.EventHandler(this.output_TextChanged);
+            this.log_rtb.BackColor = System.Drawing.Color.White;
+            this.log_rtb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.log_rtb.Location = new System.Drawing.Point(0, 200);
+            this.log_rtb.Name = "log_rtb";
+            this.log_rtb.ReadOnly = true;
+            this.log_rtb.Size = new System.Drawing.Size(645, 139);
+            this.log_rtb.TabIndex = 49;
+            this.log_rtb.Text = "";
             // 
             // ngx_conf
             // 
@@ -565,7 +564,7 @@ namespace Wnmp
             // php_logs
             // 
             this.php_logs.Name = "contextMenuStrip6";
-            this.php_logs.Size = new System.Drawing.Size(153, 26);
+            this.php_logs.Size = new System.Drawing.Size(61, 4);
             // 
             // Main
             // 
@@ -620,12 +619,11 @@ namespace Wnmp
         private System.Windows.Forms.Button mdb_log;
         private System.Windows.Forms.Button ngx_log;
         private System.Windows.Forms.Button wnmpdir;
-        internal System.Windows.Forms.RichTextBox output;
+        internal System.Windows.Forms.RichTextBox log_rtb;
         protected System.Windows.Forms.Label label4;
         protected System.Windows.Forms.Label label8;
         protected System.Windows.Forms.Label label7;
         internal System.Windows.Forms.Label nginxrunning;
-        internal System.Windows.Forms.Label phprunning;
         internal System.Windows.Forms.Label mariadbrunning;
         internal System.Windows.Forms.Button mdb_start;
         internal System.Windows.Forms.Button ngx_start;
@@ -647,6 +645,7 @@ namespace Wnmp
         private System.Windows.Forms.ToolStripMenuItem reportBugToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem localhostToolStripMenuItem;
+        internal System.Windows.Forms.Label phprunning;
 
     }
 }

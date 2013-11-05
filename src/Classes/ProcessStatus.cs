@@ -52,7 +52,7 @@ namespace Wnmp
                             if (ciair("nginx") == false)
                             {
                                 Nginx.startprocess(Main.getappsupath + "/nginx.exe", "", false);
-                                Program.formInstance.output.Invoke(new Action(() => Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to restart crashed Nginx")));
+                                Log.wnmp_log_error("Attempting to restart crashed Nginx", Log.LogSection.WNMP_NGINX);
                                 ngxfails++;
                             }
                         }
@@ -69,7 +69,7 @@ namespace Wnmp
                             if (ciair("mariadb") == false)
                             {
                                 MariaDB.startprocess(Main.getappsupath + "/mariadb/bin/mysqld.exe", "", false, true, false);
-                                Program.formInstance.output.Invoke(new Action(() => Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Attempting to restart crashed MariaDB")));
+                                Log.wnmp_log_error("Attempting to restart crashed MariaDB", Log.LogSection.WNMP_MARIADB);
                                 mariadbfails++;
                             }
                         }
@@ -86,7 +86,7 @@ namespace Wnmp
                             if (ciair("php-cgi") == false)
                             {
                                 PHP.startprocess(Main.getappsupath + "/php/php-cgi.exe", "-b localhost:9000");
-                                Program.formInstance.output.Invoke(new Action(() => Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp PHP]" + " - Attempting to restart crashed PHP")));
+                                Log.wnmp_log_error("Attempting to restart crashed PHP", Log.LogSection.WNMP_PHP);
                                 phpfails++;
                             }
                         }

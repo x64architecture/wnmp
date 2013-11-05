@@ -47,7 +47,7 @@ namespace Wnmp
         {
             try
             {
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Starting all applications");
+                Log.wnmp_log_notice("Attempting to start all the applications", Log.LogSection.WNMP_MAIN);
                 //Nginx
                 Nginx.ngx_start_Click(sender, e);
                 //PHP
@@ -57,7 +57,7 @@ namespace Wnmp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
             }
         }
 
@@ -71,11 +71,11 @@ namespace Wnmp
                 PHP.php_stop_Click(sender, e);
                 //MariaDB
                 MariaDB.mdb_stop_Click(sender, e);
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Stopping all applications");
+                Log.wnmp_log_notice("Attempting to stop all the applications", Log.LogSection.WNMP_MAIN);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
             }
         }
     }

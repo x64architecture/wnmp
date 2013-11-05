@@ -100,7 +100,7 @@ namespace Wnmp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
             }
         }
 

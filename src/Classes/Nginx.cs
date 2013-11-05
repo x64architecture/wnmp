@@ -56,14 +56,14 @@ namespace Wnmp
             try
             {
                 startprocess(@Application.StartupPath + "/nginx.exe", "", false);
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to start Nginx");
+                Log.wnmp_log_notice("Attempting to start Nginx", Log.LogSection.WNMP_NGINX);
                 Program.formInstance.nginxrunning.Text = "\u221A";
                 Program.formInstance.nginxrunning.ForeColor = Color.Green;
                 ngxstatus = (int)ProcessStatus.ps.STARTED;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_NGINX);
             }
         }
 
@@ -78,14 +78,14 @@ namespace Wnmp
                 {
                     currentProc.Kill();
                 }
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to stop Nginx");
+                Log.wnmp_log_notice("Attempting to stop Nginx", Log.LogSection.WNMP_NGINX);
                 Program.formInstance.nginxrunning.Text = "X";
                 Program.formInstance.nginxrunning.ForeColor = Color.DarkRed;
                 ngxstatus = (int)ProcessStatus.ps.STOPPED;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_NGINX);
             }
         }
 
@@ -94,11 +94,11 @@ namespace Wnmp
             try
             {
                 startprocess(@Application.StartupPath + "/nginx.exe", "-s reload", false);
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Attempting to reload Nginx");
+                Log.wnmp_log_notice("Attempting to reload Nginx", Log.LogSection.WNMP_NGINX);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_NGINX);
             }
         }
 

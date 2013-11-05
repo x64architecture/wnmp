@@ -33,69 +33,38 @@ namespace Wnmp
     class WnmpFunctions
     {
         #region checkforapps
-        public static void tc(string text, string oColor)
-        {
-            System.Drawing.ColorConverter colConvert = new ColorConverter();
-            string searchText = text;
-            int pos = 0;
-            pos = Program.formInstance.output.Find(searchText, pos, RichTextBoxFinds.MatchCase);
-            while (pos != -1)
-            {
-                if (Program.formInstance.output.SelectedText == searchText && Program.formInstance.output.SelectedText != "")
-                {
-                    Program.formInstance.output.SelectionLength = searchText.Length;
-                    Program.formInstance.output.SelectionFont = new Font("arial", 10);
-                    Program.formInstance.output.SelectionColor = (System.Drawing.Color)colConvert.ConvertFromString(oColor);
-                }
-                pos = Program.formInstance.output.Find(searchText, pos + 1, RichTextBoxFinds.MatchCase);
-            }
-        }
         internal static void checkforapps()
         {
+            Log.wnmp_log_notice("Checking for applications", Log.LogSection.WNMP_MAIN);
             if (!File.Exists(@Application.StartupPath + "/nginx.exe"))
-            {
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Nginx]" + " - Error: Nginx Not Found");
-                tc("Wnmp Nginx", "Red");
-            }
+                Log.wnmp_log_error("Error: Nginx Not Found", Log.LogSection.WNMP_NGINX);
+
             if (!Directory.Exists(@Application.StartupPath + @"/mariadb"))
-            {
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Error: MariaDB Not Found");
-                tc("Wnmp MariaDB", "Red");
-            }
+                Log.wnmp_log_error("Error: MariaDB Not Found", Log.LogSection.WNMP_MARIADB);
+
             if (!Directory.Exists(@Application.StartupPath + @"/php"))
-            {
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp PHP]" + " - Error: PHP Not Found");
-                tc("Wnmp PHP", "Red");
-            }
+                Log.wnmp_log_error("Error: PHP Not Found", Log.LogSection.WNMP_PHP);
         }
         #endregion checkforapps
 
         internal static void startup()
         {
-            string OSI = OSInfo.OSVersionInfo.Name + " " + OSInfo.OSVersionInfo.Edition + " ";
-            Program.formInstance.output.AppendText(DateTime.Now.ToString() + " [Wnmp Main]" + " - Initializing Control Panel");
-            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Control Panel Version: " + Program.formInstance.CPVER);
-            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Wnmp Version: " + Program.formInstance.ProductVersion);
-            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Windows Version: " + OSI);
-            if (OSInfo.OSVersionInfo.ServicePack != string.Empty)
-            {
-                Program.formInstance.output.AppendText(String.Format(OSInfo.OSVersionInfo.ServicePack));
-            }
-            else
-            {
-                Program.formInstance.output.AppendText("");
-            }
-            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Wnmp Directory: " + @Application.StartupPath);
-            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Checking for applications");
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Windows Version: " + OSInfo.OSVersionInfo.Name + " " + OSInfo.OSVersionInfo.Edition);
+            if (OSInfo.OSVersionInfo.ServicePack != "")
+                sb.Append(" " + OSInfo.OSVersionInfo.ServicePack);
+            Log.wnmp_log_notice("Control Panel Version: " + Program.formInstance.CPVER, Log.LogSection.WNMP_MAIN);
+            Log.wnmp_log_notice("Wnmp Version: " + Program.formInstance.ProductVersion, Log.LogSection.WNMP_MAIN);
+            Log.wnmp_log_notice(sb.ToString(), Log.LogSection.WNMP_MAIN);
+            Log.wnmp_log_notice("Wnmp Directory: " + Application.StartupPath, Log.LogSection.WNMP_MAIN);
             checkforapps();
             cifpsr();
-            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Wnmp Ready to go!");
-            Program.formInstance.output.ScrollToCaret();
+            Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
+
             if (Wnmp.Properties.Settings.Default.startaprgssu == true)
             {
                 General.start_Click(null, null);
             }
-            Program.formInstance.output.ScrollToCaret();
         }
 
         #region Context

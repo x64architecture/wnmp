@@ -55,14 +55,14 @@ namespace Wnmp
             try
             {
                 startprocess(@Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true, false);
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Attempting to start MariaDB");
+                Log.wnmp_log_notice("Attempting to start MariaDB", Log.LogSection.WNMP_MARIADB);
                 Program.formInstance.mariadbrunning.Text = "\u221A";
                 Program.formInstance.mariadbrunning.ForeColor = Color.Green;
                 mariadbstatus = (int)ProcessStatus.ps.STARTED;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
             }
         }
         internal static void mdb_stop_Click(object sender, EventArgs e)
@@ -70,7 +70,7 @@ namespace Wnmp
             try
             {
                 //MariaDB
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Attempting to stop MariaDB");
+                Log.wnmp_log_notice("Attempting to stop MariaDB", Log.LogSection.WNMP_MARIADB);
                 startprocess(@Application.StartupPath + @"\mariadb\bin\mysqladmin.exe", "-u root -p shutdown", true, false, true);
 
                 /* Ensure MariaDB gets killed (No leftover useless proccess) */
@@ -85,14 +85,14 @@ namespace Wnmp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
             }
         }
         internal static void mdb_shell_Click(object sender, EventArgs e)
         {
             try
             {
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp MariaDB]" + " - Attempting to start MariaDB shell");
+                Log.wnmp_log_notice("Attempting to start MariaDB shell", Log.LogSection.WNMP_MARIADB);
                 //MariaDB
                 if (MariaDBStatus != 0)
                 {
@@ -103,7 +103,7 @@ namespace Wnmp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
             }
         }
         public static int MariaDBStatus { get { return mariadbstatus; } }

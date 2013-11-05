@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Log.cs" />
     <Compile Include="Forms\ChangelogViewer.cs">
       <SubType>Form</SubType>
     </Compile>

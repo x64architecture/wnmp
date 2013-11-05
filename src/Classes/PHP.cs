@@ -65,14 +65,14 @@ namespace Wnmp
             try
             {
                 startprocess(@Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp PHP]" + " - Attempting to start PHP");
+                Log.wnmp_log_notice("Attempting to start PHP", Log.LogSection.WNMP_PHP);
                 Program.formInstance.phprunning.Text = "\u221A";
                 Program.formInstance.phprunning.ForeColor = Color.Green;
                 phpstatus = (int)ProcessStatus.ps.STARTED;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_PHP);
             }
         }
 
@@ -89,9 +89,9 @@ namespace Wnmp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_PHP);
             }
-            Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp PHP]" + " - Attempting to stop PHP");
+            Log.wnmp_log_notice("Attempting to stop PHP", Log.LogSection.WNMP_PHP);
             Program.formInstance.phprunning.Text = "X";
             Program.formInstance.phprunning.ForeColor = Color.DarkRed;
         }

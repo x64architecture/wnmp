@@ -33,7 +33,7 @@ namespace Wnmp
     public partial class Main : Form
     {
         public static string getappsupath = Application.StartupPath;
-        public Main(string[] args)
+        public Main()
         {
             InitializeComponent();
             setevents();
@@ -83,7 +83,7 @@ namespace Wnmp
                 MessageBox.Show(String.Format("Attach the error log inside the {0} folder to the issue report that is associated with the problem you are facing.", desktoppath + @"\Wnmpissuefiles"));
                 Process.Start("https://bitbucket.org/x64architecture/windows-nginx-mysql-php/issues/new");
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
         }
 
         private void Main_Resize(object sender, EventArgs e)
@@ -114,7 +114,7 @@ namespace Wnmp
                 {
                     File.Delete(@Application.StartupPath + "/updater.exe");
                 }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
+                catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
             }
             icp();
             timer1.Enabled = true;
@@ -161,37 +161,10 @@ namespace Wnmp
             Process.Start("http://localhost");
         }
         #endregion Wnmp Stuff
-        #region output
-        public void tc(string text, string oColor)
-        {
-            System.Drawing.ColorConverter colConvert = new ColorConverter();
-            string searchText = text;
-            int pos = 0;
-            pos = output.Find(searchText, pos, RichTextBoxFinds.MatchCase);
-            while (pos != -1)
-            {
-                if (output.SelectedText == searchText && output.SelectedText != "")
-                {
-                    output.SelectionLength = searchText.Length;
-                    output.SelectionFont = new Font("arial", 10);
-                    output.SelectionColor = (System.Drawing.Color)colConvert.ConvertFromString(oColor);
-                }
-                pos = output.Find(searchText, pos + 1, RichTextBoxFinds.MatchCase);
-            }
-        }
-        private void output_TextChanged(object sender, EventArgs e)
-        {
-            output.SelectionStart = output.Text.Length;
-            output.ScrollToCaret();
-            tc("Wnmp Main", "DarkBlue");
-            tc("Wnmp Nginx", "DarkBlue");
-            tc("Wnmp PHP", "DarkBlue");
-            tc("Wnmp MariaDB", "DarkBlue");
-        }
-        #endregion output
         #region events
         private void setevents()
         {
+            Log.setLogComponent(log_rtb);
             // General Events Start
             start.Click += General.start_Click;
             stop.Click += General.stop_Click;

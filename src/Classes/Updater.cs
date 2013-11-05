@@ -87,15 +87,7 @@ namespace Wnmp
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains("The remote name could not be resolved:"))
-                {
-                    MessageBox.Show("Couldn't connect to the update server");
-                    MessageBox.Show(ex.Message);
-                }
-                else
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                    Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
             }
             finally
             {
@@ -143,7 +135,7 @@ namespace Wnmp
             }
             else
             {
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Your version: " + applicationVersion + " is up to date.");
+                Log.wnmp_log_notice("Your version: " + applicationVersion + " is up to date.", Log.LogSection.WNMP_MAIN);
             }
             if (CurVer.CompareTo(cpVersion) < 0)
             {
@@ -189,7 +181,7 @@ namespace Wnmp
             }
             else
             {
-                Program.formInstance.output.AppendText("\n" + DateTime.Now.ToString() + " [Wnmp Main]" + " - Your control panel version: " + CurVer + " is up to date.");
+                Log.wnmp_log_notice("Your control panel version: " + CurVer + " is up to date.", Log.LogSection.WNMP_MAIN);
             }
         }
         private void cfa()
