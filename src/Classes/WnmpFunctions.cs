@@ -196,39 +196,44 @@ namespace Wnmp
         }
         internal static void cifpsr()
         {
-            Process[] phps = Process.GetProcessesByName("php-cgi");
-            if (phps.Length == 0)
-            {
-                Program.formInstance.phprunning.Text = "X";
-                Program.formInstance.phprunning.ForeColor = Color.DarkRed;
-            }
-            else
-            {
-                Program.formInstance.phprunning.Text = "\u221A";
-                Program.formInstance.phprunning.ForeColor = Color.Green;
-            }
-            Process[] nginxs = Process.GetProcessesByName("nginx");
-            if (nginxs.Length == 0)
-            {
-                Program.formInstance.nginxrunning.Text = "X";
-                Program.formInstance.nginxrunning.ForeColor = Color.DarkRed;
-            }
-            else
+            if (check_if_running("nginx"))
             {
                 Program.formInstance.nginxrunning.Text = "\u221A";
                 Program.formInstance.nginxrunning.ForeColor = Color.Green;
             }
-            Process[] mariadbs = Process.GetProcessesByName("mysqld");
-            if (mariadbs.Length == 0)
-            {
-                Program.formInstance.mariadbrunning.Text = "X";
-                Program.formInstance.mariadbrunning.ForeColor = Color.DarkRed;
-            }
             else
+            {
+                Program.formInstance.nginxrunning.Text = "X";
+                Program.formInstance.nginxrunning.ForeColor = Color.DarkRed;
+            }
+            if (check_if_running("mysqld"))
             {
                 Program.formInstance.mariadbrunning.Text = "\u221A";
                 Program.formInstance.mariadbrunning.ForeColor = Color.Green;
             }
+            else
+            {
+                Program.formInstance.mariadbrunning.Text = "X";
+                Program.formInstance.mariadbrunning.ForeColor = Color.DarkRed;
+            }
+            if (check_if_running("php-cgi"))
+            {
+                Program.formInstance.phprunning.Text = "\u221A";
+                Program.formInstance.phprunning.ForeColor = Color.Green;
+            }
+            else
+            {
+                Program.formInstance.phprunning.Text = "X";
+                Program.formInstance.phprunning.ForeColor = Color.DarkRed;
+            }
+        }
+        private static bool check_if_running(string application)
+        {
+            Process[] _Process = Process.GetProcessesByName(application);
+            if (_Process.Length != 0)
+                return true;
+            else
+                return false;
         }
         internal static void cfa()
         {
