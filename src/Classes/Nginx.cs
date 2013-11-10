@@ -26,6 +26,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Security.Permissions;
 
 namespace Wnmp
 {
@@ -34,6 +35,7 @@ namespace Wnmp
         public static Process ps; // Avoid GC
         public static int ngxstatus = (int)ProcessStatus.ps.STOPPED;
         public static int NgxStatus { get { return ngxstatus; } }
+        [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
         public static void startprocess(string p, string args, bool wfe)
         {
             System.Threading.Thread.Sleep(100); //Wait

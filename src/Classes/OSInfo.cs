@@ -3,24 +3,139 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Security;
+using System.Security.Permissions;
 using System.Text;
 #endregion USINGS
 
-namespace OSInfo
+namespace Wnmp
 {
     /// <summary>
     /// Provides detailed information about the host operating system.
     /// </summary>
     public static class OSVersionInfo
     {
-
         #region EDITION
+
+        #region PRODUCT
+        internal const int PRODUCT_UNDEFINED = 0x00000000;
+        internal const int PRODUCT_ULTIMATE = 0x00000001;
+        internal const int PRODUCT_HOME_BASIC = 0x00000002;
+        internal const int PRODUCT_HOME_PREMIUM = 0x00000003;
+        internal const int PRODUCT_ENTERPRISE = 0x00000004;
+        internal const int PRODUCT_HOME_BASIC_N = 0x00000005;
+        internal const int PRODUCT_BUSINESS = 0x00000006;
+        internal const int PRODUCT_STANDARD_SERVER = 0x00000007;
+        internal const int PRODUCT_DATACENTER_SERVER = 0x00000008;
+        internal const int PRODUCT_SMALLBUSINESS_SERVER = 0x00000009;
+        internal const int PRODUCT_ENTERPRISE_SERVER = 0x0000000A;
+        internal const int PRODUCT_STARTER = 0x0000000B;
+        internal const int PRODUCT_DATACENTER_SERVER_CORE = 0x0000000C;
+        internal const int PRODUCT_STANDARD_SERVER_CORE = 0x0000000D;
+        internal const int PRODUCT_ENTERPRISE_SERVER_CORE = 0x0000000E;
+        internal const int PRODUCT_ENTERPRISE_SERVER_IA64 = 0x0000000F;
+        internal const int PRODUCT_BUSINESS_N = 0x00000010;
+        internal const int PRODUCT_WEB_SERVER = 0x00000011;
+        internal const int PRODUCT_CLUSTER_SERVER = 0x00000012;
+        internal const int PRODUCT_HOME_SERVER = 0x00000013;
+        internal const int PRODUCT_STORAGE_EXPRESS_SERVER = 0x00000014;
+        internal const int PRODUCT_STORAGE_STANDARD_SERVER = 0x00000015;
+        internal const int PRODUCT_STORAGE_WORKGROUP_SERVER = 0x00000016;
+        internal const int PRODUCT_STORAGE_ENTERPRISE_SERVER = 0x00000017;
+        internal const int PRODUCT_SERVER_FOR_SMALLBUSINESS = 0x00000018;
+        internal const int PRODUCT_SMALLBUSINESS_SERVER_PREMIUM = 0x00000019;
+        internal const int PRODUCT_HOME_PREMIUM_N = 0x0000001A;
+        internal const int PRODUCT_ENTERPRISE_N = 0x0000001B;
+        internal const int PRODUCT_ULTIMATE_N = 0x0000001C;
+        internal const int PRODUCT_WEB_SERVER_CORE = 0x0000001D;
+        internal const int PRODUCT_MEDIUMBUSINESS_SERVER_MANAGEMENT = 0x0000001E;
+        internal const int PRODUCT_MEDIUMBUSINESS_SERVER_SECURITY = 0x0000001F;
+        internal const int PRODUCT_MEDIUMBUSINESS_SERVER_MESSAGING = 0x00000020;
+        internal const int PRODUCT_SERVER_FOUNDATION = 0x00000021;
+        internal const int PRODUCT_HOME_PREMIUM_SERVER = 0x00000022;
+        internal const int PRODUCT_SERVER_FOR_SMALLBUSINESS_V = 0x00000023;
+        internal const int PRODUCT_STANDARD_SERVER_V = 0x00000024;
+        internal const int PRODUCT_DATACENTER_SERVER_V = 0x00000025;
+        internal const int PRODUCT_ENTERPRISE_SERVER_V = 0x00000026;
+        internal const int PRODUCT_DATACENTER_SERVER_CORE_V = 0x00000027;
+        internal const int PRODUCT_STANDARD_SERVER_CORE_V = 0x00000028;
+        internal const int PRODUCT_ENTERPRISE_SERVER_CORE_V = 0x00000029;
+        internal const int PRODUCT_HYPERV = 0x0000002A;
+        internal const int PRODUCT_STORAGE_EXPRESS_SERVER_CORE = 0x0000002B;
+        internal const int PRODUCT_STORAGE_STANDARD_SERVER_CORE = 0x0000002C;
+        internal const int PRODUCT_STORAGE_WORKGROUP_SERVER_CORE = 0x0000002D;
+        internal const int PRODUCT_STORAGE_ENTERPRISE_SERVER_CORE = 0x0000002E;
+        internal const int PRODUCT_STARTER_N = 0x0000002F;
+        internal const int PRODUCT_PROFESSIONAL = 0x00000030;
+        internal const int PRODUCT_PROFESSIONAL_N = 0x00000031;
+        internal const int PRODUCT_SB_SOLUTION_SERVER = 0x00000032;
+        internal const int PRODUCT_SERVER_FOR_SB_SOLUTIONS = 0x00000033;
+        internal const int PRODUCT_STANDARD_SERVER_SOLUTIONS = 0x00000034;
+        internal const int PRODUCT_STANDARD_SERVER_SOLUTIONS_CORE = 0x00000035;
+        internal const int PRODUCT_SB_SOLUTION_SERVER_EM = 0x00000036;
+        internal const int PRODUCT_SERVER_FOR_SB_SOLUTIONS_EM = 0x00000037;
+        internal const int PRODUCT_SOLUTION_EMBEDDEDSERVER = 0x00000038;
+        internal const int PRODUCT_SOLUTION_EMBEDDEDSERVER_CORE = 0x00000039;
+        //internal const int ???? = 0x0000003A;
+        internal const int PRODUCT_ESSENTIALBUSINESS_SERVER_MGMT = 0x0000003B;
+        internal const int PRODUCT_ESSENTIALBUSINESS_SERVER_ADDL = 0x0000003C;
+        internal const int PRODUCT_ESSENTIALBUSINESS_SERVER_MGMTSVC = 0x0000003D;
+        internal const int PRODUCT_ESSENTIALBUSINESS_SERVER_ADDLSVC = 0x0000003E;
+        internal const int PRODUCT_SMALLBUSINESS_SERVER_PREMIUM_CORE = 0x0000003F;
+        internal const int PRODUCT_CLUSTER_SERVER_V = 0x00000040;
+        internal const int PRODUCT_EMBEDDED = 0x00000041;
+        internal const int PRODUCT_STARTER_E = 0x00000042;
+        internal const int PRODUCT_HOME_BASIC_E = 0x00000043;
+        internal const int PRODUCT_HOME_PREMIUM_E = 0x00000044;
+        internal const int PRODUCT_PROFESSIONAL_E = 0x00000045;
+        internal const int PRODUCT_ENTERPRISE_E = 0x00000046;
+        internal const int PRODUCT_ULTIMATE_E = 0x00000047;
+        internal const int PRODUCT_ENTERPRISE_EVALUATION = 0x00000048;
+        internal const int PRODUCT_MULTIPOINT_STANDARD_SERVER = 0x0000004C;
+        internal const int PRODUCT_MULTIPOINT_PREMIUM_SERVER = 0x0000004D;
+        internal const int PRODUCT_STANDARD_EVALUATION_SERVER = 0x0000004F;
+        internal const int PRODUCT_DATACENTER_EVALUATION_SERVER = 0x00000050;
+        internal const int PRODUCT_ENTERPRISE_N_EVALUATION = 0x00000054;
+        internal const int PRODUCT_EMBEDDED_AUTOMOTIVE = 0x00000055;
+        internal const int PRODUCT_EMBEDDED_INDUSTRY_A = 0x00000056;
+        internal const int PRODUCT_THINPC = 0x00000057;
+        internal const int PRODUCT_EMBEDDED_A = 0x00000058;
+        internal const int PRODUCT_EMBEDDED_INDUSTRY = 0x00000059;
+        internal const int PRODUCT_EMBEDDED_E = 0x0000005A;
+        internal const int PRODUCT_EMBEDDED_INDUSTRY_E = 0x0000005B;
+        internal const int PRODUCT_EMBEDDED_INDUSTRY_A_E = 0x0000005C;
+        internal const int PRODUCT_STORAGE_WORKGROUP_EVALUATION_SERVER = 0x0000005F;
+        internal const int PRODUCT_STORAGE_STANDARD_EVALUATION_SERVER = 0x00000060;
+        internal const int PRODUCT_CORE_ARM = 0x00000061;
+        internal const int PRODUCT_CORE_N = 0x00000062;
+        internal const int PRODUCT_CORE_COUNTRYSPECIFIC = 0x00000063;
+        internal const int PRODUCT_CORE_SINGLELANGUAGE = 0x00000064;
+        internal const int PRODUCT_CORE = 0x00000065;
+        internal const int PRODUCT_PROFESSIONAL_WMC = 0x00000067;
+
+        //internal const int PRODUCT_UNLICENSED = 0xABCDABCD;
+        #endregion PRODUCT
+
+        #region VERSIONS
+        internal const int VER_NT_WORKSTATION = 1;
+        internal const int VER_NT_DOMAIN_CONTROLLER = 2;
+        internal const int VER_NT_SERVER = 3;
+        internal const int VER_SUITE_SMALLBUSINESS = 1;
+        internal const int VER_SUITE_ENTERPRISE = 2;
+        internal const int VER_SUITE_TERMINAL = 16;
+        internal const int VER_SUITE_DATACENTER = 128;
+        internal const int VER_SUITE_SINGLEUSERTS = 256;
+        internal const int VER_SUITE_PERSONAL = 512;
+        internal const int VER_SUITE_BLADE = 1024;
+        #endregion VERSIONS
+
         static private string s_Edition;
         /// <summary>
         /// Gets the edition of the operating system running on this computer.
         /// </summary>
         static public string Edition
         {
+            [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
             get
             {
                 if (s_Edition != null)
@@ -29,10 +144,10 @@ namespace OSInfo
                 string edition = String.Empty;
 
                 OperatingSystem osVersion = Environment.OSVersion;
-                OSVERSIONINFOEX osVersionInfo = new OSVERSIONINFOEX();
-                osVersionInfo.dwOSVersionInfoSize = Marshal.SizeOf(typeof(OSVERSIONINFOEX));
+                NativeMethods.OSVERSIONINFOEX osVersionInfo = new NativeMethods.OSVERSIONINFOEX();
+                osVersionInfo.dwOSVersionInfoSize = Marshal.SizeOf(typeof(NativeMethods.OSVERSIONINFOEX));
 
-                if (GetVersionEx(ref osVersionInfo))
+                if (NativeMethods.GetVersionEx(ref osVersionInfo))
                 {
                     int majorVersion = osVersion.Version.Major;
                     int minorVersion = osVersion.Version.Minor;
@@ -74,7 +189,7 @@ namespace OSInfo
                             }
                             else
                             {
-                                if (GetSystemMetrics(86) == 0) // 86 == SM_TABLETPC
+                                if (NativeMethods.GetSystemMetrics(86) == 0) // 86 == SM_TABLETPC
                                     edition = "Professional";
                                 else
                                     edition = "Tablet Edition";
@@ -131,7 +246,7 @@ namespace OSInfo
                     else if (majorVersion == 6)
                     {
                         int ed;
-                        if (GetProductInfo(majorVersion, minorVersion,
+                        if (NativeMethods.GetProductInfo(majorVersion, minorVersion,
                             osVersionInfo.wServicePackMajor, osVersionInfo.wServicePackMinor,
                             out ed))
                         {
@@ -432,6 +547,7 @@ namespace OSInfo
         /// </summary>
         static public string Name
         {
+            [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
             get
             {
                 if (s_Name != null)
@@ -440,10 +556,10 @@ namespace OSInfo
                 string name = "unknown";
 
                 OperatingSystem osVersion = Environment.OSVersion;
-                OSVERSIONINFOEX osVersionInfo = new OSVERSIONINFOEX();
-                osVersionInfo.dwOSVersionInfoSize = Marshal.SizeOf(typeof(OSVERSIONINFOEX));
+                NativeMethods.OSVERSIONINFOEX osVersionInfo = new NativeMethods.OSVERSIONINFOEX();
+                osVersionInfo.dwOSVersionInfoSize = Marshal.SizeOf(typeof(NativeMethods.OSVERSIONINFOEX));
 
-                if (GetVersionEx(ref osVersionInfo))
+                if (NativeMethods.GetVersionEx(ref osVersionInfo))
                 {
                     int majorVersion = osVersion.Version.Major;
                     int minorVersion = osVersion.Version.Minor;
@@ -578,175 +694,22 @@ namespace OSInfo
         }
         #endregion NAME
 
-        #region PINVOKE
-
-        #region PRODUCT INFO
-        [DllImport("Kernel32.dll")]
-        internal static extern bool GetProductInfo(
-            int osMajorVersion,
-            int osMinorVersion,
-            int spMajorVersion,
-            int spMinorVersion,
-            out int edition);
-        #endregion PRODUCT INFO
-
-        #region VERSION
-        [DllImport("kernel32.dll")]
-        private static extern bool GetVersionEx(ref OSVERSIONINFOEX osVersionInfo);
-        #endregion VERSION
-
-        #region SYSTEMMETRICS
-        [DllImport("user32")]
-        public static extern int GetSystemMetrics(int nIndex);
-        #endregion SYSTEMMETRICS
-
-        #region OSVERSIONINFOEX
-        [StructLayout(LayoutKind.Sequential)]
-        private struct OSVERSIONINFOEX
-        {
-            public int dwOSVersionInfoSize;
-            public int dwMajorVersion;
-            public int dwMinorVersion;
-            public int dwBuildNumber;
-            public int dwPlatformId;
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-            public string szCSDVersion;
-            public short wServicePackMajor;
-            public short wServicePackMinor;
-            public short wSuiteMask;
-            public byte wProductType;
-            public byte wReserved;
-        }
-        #endregion OSVERSIONINFOEX
-
-        #region PRODUCT
-        private const int PRODUCT_UNDEFINED = 0x00000000;
-        private const int PRODUCT_ULTIMATE = 0x00000001;
-        private const int PRODUCT_HOME_BASIC = 0x00000002;
-        private const int PRODUCT_HOME_PREMIUM = 0x00000003;
-        private const int PRODUCT_ENTERPRISE = 0x00000004;
-        private const int PRODUCT_HOME_BASIC_N = 0x00000005;
-        private const int PRODUCT_BUSINESS = 0x00000006;
-        private const int PRODUCT_STANDARD_SERVER = 0x00000007;
-        private const int PRODUCT_DATACENTER_SERVER = 0x00000008;
-        private const int PRODUCT_SMALLBUSINESS_SERVER = 0x00000009;
-        private const int PRODUCT_ENTERPRISE_SERVER = 0x0000000A;
-        private const int PRODUCT_STARTER = 0x0000000B;
-        private const int PRODUCT_DATACENTER_SERVER_CORE = 0x0000000C;
-        private const int PRODUCT_STANDARD_SERVER_CORE = 0x0000000D;
-        private const int PRODUCT_ENTERPRISE_SERVER_CORE = 0x0000000E;
-        private const int PRODUCT_ENTERPRISE_SERVER_IA64 = 0x0000000F;
-        private const int PRODUCT_BUSINESS_N = 0x00000010;
-        private const int PRODUCT_WEB_SERVER = 0x00000011;
-        private const int PRODUCT_CLUSTER_SERVER = 0x00000012;
-        private const int PRODUCT_HOME_SERVER = 0x00000013;
-        private const int PRODUCT_STORAGE_EXPRESS_SERVER = 0x00000014;
-        private const int PRODUCT_STORAGE_STANDARD_SERVER = 0x00000015;
-        private const int PRODUCT_STORAGE_WORKGROUP_SERVER = 0x00000016;
-        private const int PRODUCT_STORAGE_ENTERPRISE_SERVER = 0x00000017;
-        private const int PRODUCT_SERVER_FOR_SMALLBUSINESS = 0x00000018;
-        private const int PRODUCT_SMALLBUSINESS_SERVER_PREMIUM = 0x00000019;
-        private const int PRODUCT_HOME_PREMIUM_N = 0x0000001A;
-        private const int PRODUCT_ENTERPRISE_N = 0x0000001B;
-        private const int PRODUCT_ULTIMATE_N = 0x0000001C;
-        private const int PRODUCT_WEB_SERVER_CORE = 0x0000001D;
-        private const int PRODUCT_MEDIUMBUSINESS_SERVER_MANAGEMENT = 0x0000001E;
-        private const int PRODUCT_MEDIUMBUSINESS_SERVER_SECURITY = 0x0000001F;
-        private const int PRODUCT_MEDIUMBUSINESS_SERVER_MESSAGING = 0x00000020;
-        private const int PRODUCT_SERVER_FOUNDATION = 0x00000021;
-        private const int PRODUCT_HOME_PREMIUM_SERVER = 0x00000022;
-        private const int PRODUCT_SERVER_FOR_SMALLBUSINESS_V = 0x00000023;
-        private const int PRODUCT_STANDARD_SERVER_V = 0x00000024;
-        private const int PRODUCT_DATACENTER_SERVER_V = 0x00000025;
-        private const int PRODUCT_ENTERPRISE_SERVER_V = 0x00000026;
-        private const int PRODUCT_DATACENTER_SERVER_CORE_V = 0x00000027;
-        private const int PRODUCT_STANDARD_SERVER_CORE_V = 0x00000028;
-        private const int PRODUCT_ENTERPRISE_SERVER_CORE_V = 0x00000029;
-        private const int PRODUCT_HYPERV = 0x0000002A;
-        private const int PRODUCT_STORAGE_EXPRESS_SERVER_CORE = 0x0000002B;
-        private const int PRODUCT_STORAGE_STANDARD_SERVER_CORE = 0x0000002C;
-        private const int PRODUCT_STORAGE_WORKGROUP_SERVER_CORE = 0x0000002D;
-        private const int PRODUCT_STORAGE_ENTERPRISE_SERVER_CORE = 0x0000002E;
-        private const int PRODUCT_STARTER_N = 0x0000002F;
-        private const int PRODUCT_PROFESSIONAL = 0x00000030;
-        private const int PRODUCT_PROFESSIONAL_N = 0x00000031;
-        private const int PRODUCT_SB_SOLUTION_SERVER = 0x00000032;
-        private const int PRODUCT_SERVER_FOR_SB_SOLUTIONS = 0x00000033;
-        private const int PRODUCT_STANDARD_SERVER_SOLUTIONS = 0x00000034;
-        private const int PRODUCT_STANDARD_SERVER_SOLUTIONS_CORE = 0x00000035;
-        private const int PRODUCT_SB_SOLUTION_SERVER_EM = 0x00000036;
-        private const int PRODUCT_SERVER_FOR_SB_SOLUTIONS_EM = 0x00000037;
-        private const int PRODUCT_SOLUTION_EMBEDDEDSERVER = 0x00000038;
-        private const int PRODUCT_SOLUTION_EMBEDDEDSERVER_CORE = 0x00000039;
-        //private const int ???? = 0x0000003A;
-        private const int PRODUCT_ESSENTIALBUSINESS_SERVER_MGMT = 0x0000003B;
-        private const int PRODUCT_ESSENTIALBUSINESS_SERVER_ADDL = 0x0000003C;
-        private const int PRODUCT_ESSENTIALBUSINESS_SERVER_MGMTSVC = 0x0000003D;
-        private const int PRODUCT_ESSENTIALBUSINESS_SERVER_ADDLSVC = 0x0000003E;
-        private const int PRODUCT_SMALLBUSINESS_SERVER_PREMIUM_CORE = 0x0000003F;
-        private const int PRODUCT_CLUSTER_SERVER_V = 0x00000040;
-        private const int PRODUCT_EMBEDDED = 0x00000041;
-        private const int PRODUCT_STARTER_E = 0x00000042;
-        private const int PRODUCT_HOME_BASIC_E = 0x00000043;
-        private const int PRODUCT_HOME_PREMIUM_E = 0x00000044;
-        private const int PRODUCT_PROFESSIONAL_E = 0x00000045;
-        private const int PRODUCT_ENTERPRISE_E = 0x00000046;
-        private const int PRODUCT_ULTIMATE_E = 0x00000047;
-        private const int PRODUCT_ENTERPRISE_EVALUATION = 0x00000048;
-        private const int PRODUCT_MULTIPOINT_STANDARD_SERVER = 0x0000004C;
-        private const int PRODUCT_MULTIPOINT_PREMIUM_SERVER = 0x0000004D;
-        private const int PRODUCT_STANDARD_EVALUATION_SERVER = 0x0000004F;
-        private const int PRODUCT_DATACENTER_EVALUATION_SERVER = 0x00000050;
-        private const int PRODUCT_ENTERPRISE_N_EVALUATION = 0x00000054;
-        private const int PRODUCT_EMBEDDED_AUTOMOTIVE = 0x00000055;
-        private const int PRODUCT_EMBEDDED_INDUSTRY_A = 0x00000056;
-        private const int PRODUCT_THINPC = 0x00000057;
-        private const int PRODUCT_EMBEDDED_A = 0x00000058;
-        private const int PRODUCT_EMBEDDED_INDUSTRY = 0x00000059;
-        private const int PRODUCT_EMBEDDED_E = 0x0000005A;
-        private const int PRODUCT_EMBEDDED_INDUSTRY_E = 0x0000005B;
-        private const int PRODUCT_EMBEDDED_INDUSTRY_A_E = 0x0000005C;
-        private const int PRODUCT_STORAGE_WORKGROUP_EVALUATION_SERVER = 0x0000005F;
-        private const int PRODUCT_STORAGE_STANDARD_EVALUATION_SERVER  = 0x00000060;
-        private const int PRODUCT_CORE_ARM = 0x00000061;
-        private const int PRODUCT_CORE_N = 0x00000062;
-        private const int PRODUCT_CORE_COUNTRYSPECIFIC = 0x00000063;
-        private const int PRODUCT_CORE_SINGLELANGUAGE = 0x00000064;
-        private const int PRODUCT_CORE = 0x00000065;
-        private const int PRODUCT_PROFESSIONAL_WMC = 0x00000067;
-
-        //private const int PRODUCT_UNLICENSED = 0xABCDABCD;
-        #endregion PRODUCT
-
-        #region VERSIONS
-        private const int VER_NT_WORKSTATION = 1;
-        private const int VER_NT_DOMAIN_CONTROLLER = 2;
-        private const int VER_NT_SERVER = 3;
-        private const int VER_SUITE_SMALLBUSINESS = 1;
-        private const int VER_SUITE_ENTERPRISE = 2;
-        private const int VER_SUITE_TERMINAL = 16;
-        private const int VER_SUITE_DATACENTER = 128;
-        private const int VER_SUITE_SINGLEUSERTS = 256;
-        private const int VER_SUITE_PERSONAL = 512;
-        private const int VER_SUITE_BLADE = 1024;
-        #endregion VERSIONS
-
-        #endregion PINVOKE
-
         #region SERVICE PACK
         /// <summary>
         /// Gets the service pack information of the operating system running on this computer.
         /// </summary>
         static public string ServicePack
         {
+            [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
             get
             {
+
                 string servicePack = String.Empty;
-                OSVERSIONINFOEX osVersionInfo = new OSVERSIONINFOEX();
+                NativeMethods.OSVERSIONINFOEX osVersionInfo = new NativeMethods.OSVERSIONINFOEX();
 
-                osVersionInfo.dwOSVersionInfoSize = Marshal.SizeOf(typeof(OSVERSIONINFOEX));
+                osVersionInfo.dwOSVersionInfoSize = Marshal.SizeOf(typeof(NativeMethods.OSVERSIONINFOEX));
 
-                if (GetVersionEx(ref osVersionInfo))
+                if (NativeMethods.GetVersionEx(ref osVersionInfo))
                 {
                     servicePack = osVersionInfo.szCSDVersion;
                 }

@@ -27,6 +27,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Xml;
+using System.Security.Permissions;
 
 namespace Wnmp
 {
@@ -34,6 +35,7 @@ namespace Wnmp
     {
         public static Process ps; // Avoid GC
         public static int mariadbstatus = (int)ProcessStatus.ps.STOPPED;
+        [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
         public static void startprocess(string p, string args, bool shellexc, bool redirectso, bool wfe)
         {
             System.Threading.Thread.Sleep(100); //Wait

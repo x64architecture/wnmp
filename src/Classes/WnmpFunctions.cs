@@ -50,9 +50,9 @@ namespace Wnmp
         internal static void startup()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("Windows Version: " + OSInfo.OSVersionInfo.Name + " " + OSInfo.OSVersionInfo.Edition);
-            if (OSInfo.OSVersionInfo.ServicePack != "")
-                sb.Append(" " + OSInfo.OSVersionInfo.ServicePack);
+            sb.Append("Windows Version: " + OSVersionInfo.Name + " " + OSVersionInfo.Edition);
+            if (OSVersionInfo.ServicePack != "")
+                sb.Append(" " + OSVersionInfo.ServicePack);
             Log.wnmp_log_notice("Control Panel Version: " + Program.formInstance.CPVER, Log.LogSection.WNMP_MAIN);
             Log.wnmp_log_notice("Wnmp Version: " + Program.formInstance.ProductVersion, Log.LogSection.WNMP_MAIN);
             Log.wnmp_log_notice(sb.ToString(), Log.LogSection.WNMP_MAIN);

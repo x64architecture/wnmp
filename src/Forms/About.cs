@@ -22,6 +22,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Security.Permissions;
 
 namespace Wnmp.Forms
 {
@@ -37,6 +38,7 @@ namespace Wnmp.Forms
             this.Close();
         }
 
+        [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
         private void label5_Click(object sender, EventArgs e)
         {
             Process.Start("http://wnmp.x64architecture.com");

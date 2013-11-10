@@ -19,6 +19,7 @@ This file is part of Wnmp.
 using System;
 using System.Timers;
 using System.Diagnostics;
+using System.Security.Permissions;
 
 namespace Wnmp
 {
@@ -38,6 +39,7 @@ namespace Wnmp
         }
         private static Timer cfc;
         public delegate void Action();
+        [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
         public static void OnTimer(Object source, ElapsedEventArgs e)
         {
             int ngxfails = 0;
@@ -95,6 +97,7 @@ namespace Wnmp
                 case 1: phpfails = 0; break;
             }
         }
+        [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
         private static bool ciair(string process)
         {
             Process[] ptcf = Process.GetProcessesByName(process);
