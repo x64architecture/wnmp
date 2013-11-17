@@ -116,7 +116,6 @@ namespace Wnmp
                 }
                 catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
             }
-            icp();
             timer1.Enabled = true;
             WnmpFunctions.DirFiles("/conf", "*", 0);
             WnmpFunctions.DirFiles("/mariadb", "my.ini", 1);
@@ -125,20 +124,6 @@ namespace Wnmp
             WnmpFunctions.DirFiles("/mariadb/data", "*.log", 4);
             WnmpFunctions.DirFiles("/php/logs", "*.log", 5);
             WnmpFunctions.startup();
-        }
-        private void icp()
-        {
-            Process[] process = Process.GetProcessesByName("Wnmp");
-            Process current = Process.GetCurrentProcess();
-            foreach (Process p in process)
-            {
-                if (p.Id != current.Id)
-                {
-                    MessageBox.Show("Wnmp is already running");
-                    Application.Exit();
-                }
-            else { }
-            }
         }
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {

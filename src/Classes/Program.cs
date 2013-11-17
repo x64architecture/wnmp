@@ -16,6 +16,7 @@ This file is part of Wnmp.
 */
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Wnmp
@@ -28,10 +29,39 @@ namespace Wnmp
         [STAThread]
         static void Main(string[] args)
         {
+            if (!IsVistaOrGreater())
+            {
+                MessageBox.Show("Wnmp is unsupported on your Operating System please upgrade to Vista/2008 or later.",
+                    "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+                return;
+            }
+            if (icp())
+            {
+                MessageBox.Show("Wnmp is already running.");
+                Application.Exit();
+                return;
+            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(formInstance = new Main());
         }
         public static Main formInstance;
+        static bool icp()
+        {
+            Process[] process = Process.GetProcessesByName("Wnmp");
+            Process current = Process.GetCurrentProcess();
+            foreach (Process p in process)
+            {
+                if (p.Id != current.Id)
+                    return true;
+            }
+            return false;
+        }
+        static bool IsVistaOrGreater()
+        {
+            OperatingSystem OS = Environment.OSVersion;
+            return (OS.Platform == PlatformID.Win32NT) && (OS.Version.Major >= 6);
+        }
     }
 }
