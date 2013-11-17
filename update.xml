@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <appinfo>
-<version>2.0.2.9</version>
-<url>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.2.9.exe</url>
-<upgradeurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%20Upgrade%20Installer%202.0.2.9.exe</upgradeurl>
+<version>2.0.3</version>
+<url>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.3.exe</url>
+<upgradeurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%20Upgrade%20Installer%202.0.3.exe</upgradeurl>
 <about>
-Wnmp 2.0.2.9
-************
+Wnmp 2.0.3
+**********
+- Wnmp Control Panel 2.0.8
 
-- Wnmp
-  * Removed All occurrences of the word "MySQL" and replaced them with "MariaDB"
-  * Updated PRODUCT_* definitions
-  * Some internal changes
-  
-- Nginx
-  * Updated to 1.5.6
-  
-- MariaDB
-  * Updated to 5.5.33a
-  
+  * Faster control panel startup(0.15348 vs. 0.183).
+  * Windows XP/2003 support dropped.
+  * Added Windows version definitions for Windows 8.1 and Windows Server 2012 R2.
+  * Added control panel updater and changelog viewer and fixed some minor bugs.
+  * Removed the border around the icon.
+  * Various fixes and improvments.
+
+- PHP
+
+  * Updated to 5.5.6
+
 - phpMyAdmin
-  * Updated to 4.0.7
+
+  * Updated to 4.0.9 
 </about>
-<cpversion>2.0.7</cpversion>
+<cpversion>2.0.8</cpversion>
 <cpupdateurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/raw/tip/updatefiles/Wnmp.exe</cpupdateurl>
 <cpupdaterurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/raw/tip/updatefiles/updater.exe</cpupdaterurl>
 <cpabout>
-- Wnmp
-  * Removed All occurrences of the word "MySQL" and replaced them with "MariaDB"
-  * Updated PRODUCT_* definitions
-  * Some internal changes
+Wnmp Control Panel 2.0.8
+************************
+
+  * Faster control panel startup(0.15348 vs. 0.183).
+  * Windows XP/2003 support dropped.
+  * Added Windows version definitions for Windows 8.1 and Windows Server 2012 R2.
+  * Added control panel updater and changelog viewer and fixed some minor bugs.
+  * Removed the border around the icon.
+  * Various fixes and improvments.
 </cpabout>
 </appinfo>

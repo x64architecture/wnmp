@@ -4,18 +4,18 @@ Wnmp values security, stability and user friendliness.
 ------------------------------------------------------
 
 
-### Versions of the software(Updated: October 3rd 2013): ######
+### Versions of the software(Updated: November 16th 2013): ######
 
   * Nginx 1.5.6
 
   * MariaDB 5.5.33a
 
-  * PHP 5.4.20 (Non Thread Safe + FastCGI)
+  * PHP 5.4.22 (Non Thread Safe + FastCGI)
 
-  * phpMyAdmin 4.0.7
+  * phpMyAdmin 4.0.9
 ### How to Install ######
 
-  1. To install download the latest version of Wnmp [here][1] (latest version 2.0.2.9)
+  1. To install download the latest version of Wnmp [here][1] (latest version 2.0.3)
   2. Then open *Wnmp.exe* and install it anywhere.
   3. And then run *Wnmp.exe*(which is located in the Wnmp folder)
   4. And then press the Start all button.
@@ -37,7 +37,7 @@ The SSl Certificate is Self Signed by me. For added security create your own.
 
 [Website](http://wnmp.x64architecture.com)
 
-If you can, please donate to [kurt@x64architecture.com][2] using paypal for my effort. All donations are appreciated no matter if big or small. 
+If you can, please donate to [Wnmp][2] using PayPal to support the development of Wnmp. All donations are appreciated no matter if big or small. 
 
 ----
 
@@ -73,7 +73,7 @@ When some of the components get updated to a stable release, if there is a secur
 ###### Is there any announcements list for new versions, security vulnerabilities, etc.?
 [https://groups.google.com/forum/#!forum/windows-nginx-mysql-php-announce][7]
 
-[1]: https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.2.9.exe
+[1]: https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.3.exe
 [2]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P7LAQRRNF6AVE
 [3]: https://i1.wp.com/www.akmodding.com/wp-content/uploads/2012/08/akdlbutton.png
 [4]: https://s0.wp.com/imgpress?url=http%3A%2F%2Fs1.softpedia-static.com/base_img/softpedia_free_award_f.gif
