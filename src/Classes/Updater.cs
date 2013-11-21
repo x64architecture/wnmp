@@ -21,6 +21,8 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Net;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
 
 namespace Wnmp
 {
@@ -121,6 +123,7 @@ namespace Wnmp
                             frm.Close();
                             Process.Start(@Application.StartupPath + "/Wnmp-Upgrade-" + newVersion + ".exe");
                             cfa();
+                            DoBackUp();
                             Application.Exit();
                             Process.GetCurrentProcess().Kill();
                         }
@@ -182,6 +185,23 @@ namespace Wnmp
             else
             {
                 Log.wnmp_log_notice("Your control panel version: " + CurVer + " is up to date.", Log.LogSection.WNMP_MAIN);
+            }
+        }
+
+        private void DoBackUp()
+        {
+            string wd = Main.getappsupath;
+            string[] files = { wd + "/php/php.ini", wd + "/conf/nginx.conf" };
+            foreach (string file in files)
+            {
+                if (File.Exists(file))
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append(file + ".old");
+                    string dest = sb.ToString();
+                    File.Copy(file, dest, true);
+                    Log.wnmp_log_notice("Backed up " + file + " to " + dest, Log.LogSection.WNMP_MAIN);
+                }
             }
         }
         private void cfa()

@@ -47,7 +47,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: "Wnmp.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "*"; Excludes: "html\favicon.ico, logs\*, mariadb\data\*, php\php.ini, temp\*, mariadb\mysql-test\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "*"; Excludes: "logs\*, mariadb\data\*, mariadb\mysql-test\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "vc_2008_sp1_redist_x86.exe"; DestDir: {tmp}; Flags: deleteafterinstall
 Source: "vc_2012_update4_redist_x86.exe"; DestDir: {tmp}; Flags: deleteafterinstall
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
