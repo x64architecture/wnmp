@@ -42,7 +42,7 @@ namespace Wnmp
         #region Wnmp Stuff
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            const string xmlUrl = "https://bitbucket.org/x64architecture/windows-nginx-mysql-php/raw/tip/update.xml";
+            const string xmlUrl = "https://bitbucket.org/Wnmp/wnmp/raw/tip/update.xml";
             Updater _Updater = new Updater(xmlUrl, CPVER);
         }
         private void wnmpdir_Click(object sender, EventArgs e)

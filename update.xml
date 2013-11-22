@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <appinfo>
 <version>2.0.3</version>
-<url>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%202.0.3.exe</url>
-<upgradeurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/downloads/Wnmp%20Upgrade%20Installer%202.0.3.exe</upgradeurl>
+<url>https://bitbucket.org/Wnmp/wnmp/downloads/Wnmp%202.0.3.exe</url>
+<upgradeurl>https://bitbucket.org/Wnmp/wnmp/downloads/Wnmp%20Upgrade%20Installer%202.0.3.exe</upgradeurl>
 <about>
 Wnmp 2.0.3
 **********
@@ -24,8 +24,8 @@ Wnmp 2.0.3
   * Updated to 4.0.9 
 </about>
 <cpversion>2.0.8</cpversion>
-<cpupdateurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/raw/tip/updatefiles/Wnmp.exe</cpupdateurl>
-<cpupdaterurl>https://bitbucket.org/x64architecture/windows-nginx-mysql-php/raw/tip/updatefiles/updater.exe</cpupdaterurl>
+<cpupdateurl>https://bitbucket.org/Wnmp/wnmp/raw/tip/updatefiles/Wnmp.exe</cpupdateurl>
+<cpupdaterurl>https://bitbucket.org/Wnmp/wnmp/raw/tip/updatefiles/updater.exe</cpupdaterurl>
 <cpabout>
 Wnmp Control Panel 2.0.8
 ************************
