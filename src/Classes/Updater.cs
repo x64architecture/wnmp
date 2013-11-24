@@ -22,7 +22,6 @@ using System.Xml;
 using System.Net;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
 
 namespace Wnmp
 {
@@ -196,9 +195,7 @@ namespace Wnmp
             {
                 if (File.Exists(file))
                 {
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append(file + ".old");
-                    string dest = sb.ToString();
+                    string dest = String.Format("{0}.old", file);
                     File.Copy(file, dest, true);
                     Log.wnmp_log_notice("Backed up " + file + " to " + dest, Log.LogSection.WNMP_MAIN);
                 }
