@@ -118,7 +118,8 @@ namespace Wnmp
             this.localhostToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(648, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(861, 28);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -130,32 +131,32 @@ namespace Wnmp
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // wnmpOptionsToolStripMenuItem
             // 
             this.wnmpOptionsToolStripMenuItem.Name = "wnmpOptionsToolStripMenuItem";
-            this.wnmpOptionsToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.wnmpOptionsToolStripMenuItem.Size = new System.Drawing.Size(201, 24);
             this.wnmpOptionsToolStripMenuItem.Text = "Wnmp Options";
             this.wnmpOptionsToolStripMenuItem.Click += new System.EventHandler(this.wnmpOptionsToolStripMenuItem_Click);
             // 
             // checkForUpdatesToolStripMenuItem
             // 
             this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(201, 24);
             this.checkForUpdatesToolStripMenuItem.Text = "Check For Updates";
             this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(170, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(198, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(201, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -169,53 +170,53 @@ namespace Wnmp
             this.donateToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // supportToolStripMenuItem
             // 
             this.supportToolStripMenuItem.Name = "supportToolStripMenuItem";
-            this.supportToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.supportToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
             this.supportToolStripMenuItem.Text = "Support";
             this.supportToolStripMenuItem.Click += new System.EventHandler(this.SupportToolStripMenuItem_Click);
             // 
             // reportBugToolStripMenuItem
             // 
             this.reportBugToolStripMenuItem.Name = "reportBugToolStripMenuItem";
-            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
             this.reportBugToolStripMenuItem.Text = "Report Bug";
             this.reportBugToolStripMenuItem.Click += new System.EventHandler(this.Report_BugToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(130, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(150, 6);
             // 
             // websiteToolStripMenuItem
             // 
             this.websiteToolStripMenuItem.Name = "websiteToolStripMenuItem";
-            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
             this.websiteToolStripMenuItem.Text = "Website";
             this.websiteToolStripMenuItem.Click += new System.EventHandler(this.websiteToolStripMenuItem_Click);
             // 
             // donateToolStripMenuItem
             // 
             this.donateToolStripMenuItem.Name = "donateToolStripMenuItem";
-            this.donateToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.donateToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
             this.donateToolStripMenuItem.Text = "Donate";
             this.donateToolStripMenuItem.Click += new System.EventHandler(this.donateToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // localhostToolStripMenuItem
             // 
             this.localhostToolStripMenuItem.Name = "localhostToolStripMenuItem";
-            this.localhostToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.localhostToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
             this.localhostToolStripMenuItem.Text = "localhost";
             this.localhostToolStripMenuItem.Click += new System.EventHandler(this.localhostToolStripMenuItem_Click);
             // 
@@ -244,72 +245,81 @@ namespace Wnmp
             this.groupBox1.Controls.Add(this.php_stop);
             this.groupBox1.Controls.Add(this.ngx_start);
             this.groupBox1.Controls.Add(this.ngx_stop);
-            this.groupBox1.Location = new System.Drawing.Point(12, 6);
+            this.groupBox1.Location = new System.Drawing.Point(16, 7);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(455, 175);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(607, 215);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Applications";
             // 
             // ngx_reload
             // 
-            this.ngx_reload.Location = new System.Drawing.Point(276, 45);
+            this.ngx_reload.Location = new System.Drawing.Point(368, 55);
+            this.ngx_reload.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ngx_reload.Name = "ngx_reload";
-            this.ngx_reload.Size = new System.Drawing.Size(50, 28);
+            this.ngx_reload.Size = new System.Drawing.Size(67, 34);
             this.ngx_reload.TabIndex = 76;
             this.ngx_reload.Text = "Reload";
             this.ngx_reload.UseVisualStyleBackColor = true;
             // 
             // php_log
             // 
-            this.php_log.Location = new System.Drawing.Point(388, 126);
+            this.php_log.Location = new System.Drawing.Point(517, 155);
+            this.php_log.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.php_log.Name = "php_log";
-            this.php_log.Size = new System.Drawing.Size(50, 28);
+            this.php_log.Size = new System.Drawing.Size(67, 34);
             this.php_log.TabIndex = 75;
             this.php_log.Text = "Logs";
             this.php_log.UseVisualStyleBackColor = true;
             // 
             // mdb_log
             // 
-            this.mdb_log.Location = new System.Drawing.Point(388, 83);
+            this.mdb_log.Location = new System.Drawing.Point(517, 102);
+            this.mdb_log.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mdb_log.Name = "mdb_log";
-            this.mdb_log.Size = new System.Drawing.Size(50, 28);
+            this.mdb_log.Size = new System.Drawing.Size(67, 34);
             this.mdb_log.TabIndex = 74;
             this.mdb_log.Text = "Logs";
             this.mdb_log.UseVisualStyleBackColor = true;
             // 
             // ngx_log
             // 
-            this.ngx_log.Location = new System.Drawing.Point(388, 45);
+            this.ngx_log.Location = new System.Drawing.Point(517, 55);
+            this.ngx_log.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ngx_log.Name = "ngx_log";
-            this.ngx_log.Size = new System.Drawing.Size(50, 28);
+            this.ngx_log.Size = new System.Drawing.Size(67, 34);
             this.ngx_log.TabIndex = 73;
             this.ngx_log.Text = "Logs";
             this.ngx_log.UseVisualStyleBackColor = true;
             // 
             // php_cfg
             // 
-            this.php_cfg.Location = new System.Drawing.Point(332, 126);
+            this.php_cfg.Location = new System.Drawing.Point(443, 155);
+            this.php_cfg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.php_cfg.Name = "php_cfg";
-            this.php_cfg.Size = new System.Drawing.Size(50, 28);
+            this.php_cfg.Size = new System.Drawing.Size(67, 34);
             this.php_cfg.TabIndex = 72;
             this.php_cfg.Text = "Config";
             this.php_cfg.UseVisualStyleBackColor = true;
             // 
             // mdb_cfg
             // 
-            this.mdb_cfg.Location = new System.Drawing.Point(332, 83);
+            this.mdb_cfg.Location = new System.Drawing.Point(443, 102);
+            this.mdb_cfg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mdb_cfg.Name = "mdb_cfg";
-            this.mdb_cfg.Size = new System.Drawing.Size(50, 28);
+            this.mdb_cfg.Size = new System.Drawing.Size(67, 34);
             this.mdb_cfg.TabIndex = 71;
             this.mdb_cfg.Text = "Config";
             this.mdb_cfg.UseVisualStyleBackColor = true;
             // 
             // ngx_config
             // 
-            this.ngx_config.Location = new System.Drawing.Point(332, 45);
+            this.ngx_config.Location = new System.Drawing.Point(443, 55);
+            this.ngx_config.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ngx_config.Name = "ngx_config";
-            this.ngx_config.Size = new System.Drawing.Size(50, 28);
+            this.ngx_config.Size = new System.Drawing.Size(67, 34);
             this.ngx_config.TabIndex = 70;
             this.ngx_config.Text = "Config";
             this.ngx_config.UseVisualStyleBackColor = true;
@@ -318,9 +328,10 @@ namespace Wnmp
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(79, 138);
+            this.label8.Location = new System.Drawing.Point(105, 170);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(36, 16);
+            this.label8.Size = new System.Drawing.Size(44, 20);
             this.label8.TabIndex = 69;
             this.label8.Text = "PHP";
             // 
@@ -328,9 +339,10 @@ namespace Wnmp
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(79, 95);
+            this.label7.Location = new System.Drawing.Point(105, 117);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(61, 16);
+            this.label7.Size = new System.Drawing.Size(76, 20);
             this.label7.TabIndex = 68;
             this.label7.Text = "MariaDB";
             // 
@@ -339,9 +351,10 @@ namespace Wnmp
             this.phprunning.AutoSize = true;
             this.phprunning.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.phprunning.ForeColor = System.Drawing.Color.DarkRed;
-            this.phprunning.Location = new System.Drawing.Point(22, 135);
+            this.phprunning.Location = new System.Drawing.Point(29, 166);
+            this.phprunning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.phprunning.Name = "phprunning";
-            this.phprunning.Size = new System.Drawing.Size(21, 20);
+            this.phprunning.Size = new System.Drawing.Size(27, 25);
             this.phprunning.TabIndex = 67;
             this.phprunning.Text = "X";
             // 
@@ -350,9 +363,10 @@ namespace Wnmp
             this.mariadbrunning.AutoSize = true;
             this.mariadbrunning.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mariadbrunning.ForeColor = System.Drawing.Color.DarkRed;
-            this.mariadbrunning.Location = new System.Drawing.Point(22, 91);
+            this.mariadbrunning.Location = new System.Drawing.Point(29, 112);
+            this.mariadbrunning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.mariadbrunning.Name = "mariadbrunning";
-            this.mariadbrunning.Size = new System.Drawing.Size(21, 20);
+            this.mariadbrunning.Size = new System.Drawing.Size(27, 25);
             this.mariadbrunning.TabIndex = 66;
             this.mariadbrunning.Text = "X";
             // 
@@ -360,9 +374,10 @@ namespace Wnmp
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(164, 23);
+            this.label6.Location = new System.Drawing.Point(219, 28);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(50, 13);
+            this.label6.Size = new System.Drawing.Size(64, 17);
             this.label6.TabIndex = 65;
             this.label6.Text = "Options";
             // 
@@ -370,9 +385,10 @@ namespace Wnmp
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(79, 51);
+            this.label4.Location = new System.Drawing.Point(105, 63);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 16);
+            this.label4.Size = new System.Drawing.Size(51, 20);
             this.label4.TabIndex = 63;
             this.label4.Text = "Nginx";
             // 
@@ -380,9 +396,10 @@ namespace Wnmp
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(79, 23);
+            this.label3.Location = new System.Drawing.Point(105, 28);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 13);
+            this.label3.Size = new System.Drawing.Size(88, 17);
             this.label3.TabIndex = 62;
             this.label3.Text = "Application";
             // 
@@ -391,9 +408,10 @@ namespace Wnmp
             this.nginxrunning.AutoSize = true;
             this.nginxrunning.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nginxrunning.ForeColor = System.Drawing.Color.DarkRed;
-            this.nginxrunning.Location = new System.Drawing.Point(22, 47);
+            this.nginxrunning.Location = new System.Drawing.Point(29, 58);
+            this.nginxrunning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nginxrunning.Name = "nginxrunning";
-            this.nginxrunning.Size = new System.Drawing.Size(21, 20);
+            this.nginxrunning.Size = new System.Drawing.Size(27, 25);
             this.nginxrunning.TabIndex = 61;
             this.nginxrunning.Text = "X";
             // 
@@ -401,98 +419,109 @@ namespace Wnmp
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 23);
+            this.label1.Location = new System.Drawing.Point(8, 28);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 13);
+            this.label1.Size = new System.Drawing.Size(68, 17);
             this.label1.TabIndex = 60;
             this.label1.Text = "Running";
             // 
             // mdb_help
             // 
-            this.mdb_help.Location = new System.Drawing.Point(276, 83);
+            this.mdb_help.Location = new System.Drawing.Point(368, 102);
+            this.mdb_help.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mdb_help.Name = "mdb_help";
-            this.mdb_help.Size = new System.Drawing.Size(50, 28);
+            this.mdb_help.Size = new System.Drawing.Size(67, 34);
             this.mdb_help.TabIndex = 59;
             this.mdb_help.Text = "?";
             this.mdb_help.UseVisualStyleBackColor = true;
             // 
             // mdb_stop
             // 
-            this.mdb_stop.Location = new System.Drawing.Point(220, 82);
+            this.mdb_stop.Location = new System.Drawing.Point(293, 101);
+            this.mdb_stop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mdb_stop.Name = "mdb_stop";
-            this.mdb_stop.Size = new System.Drawing.Size(50, 28);
+            this.mdb_stop.Size = new System.Drawing.Size(67, 34);
             this.mdb_stop.TabIndex = 57;
             this.mdb_stop.Text = "Stop";
             this.mdb_stop.UseVisualStyleBackColor = true;
             // 
             // mdb_start
             // 
-            this.mdb_start.Location = new System.Drawing.Point(164, 82);
+            this.mdb_start.Location = new System.Drawing.Point(219, 101);
+            this.mdb_start.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mdb_start.Name = "mdb_start";
-            this.mdb_start.Size = new System.Drawing.Size(50, 28);
+            this.mdb_start.Size = new System.Drawing.Size(67, 34);
             this.mdb_start.TabIndex = 56;
             this.mdb_start.Text = "Start";
             this.mdb_start.UseVisualStyleBackColor = true;
             // 
             // php_start
             // 
-            this.php_start.Location = new System.Drawing.Point(164, 127);
+            this.php_start.Location = new System.Drawing.Point(219, 156);
+            this.php_start.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.php_start.Name = "php_start";
-            this.php_start.Size = new System.Drawing.Size(50, 28);
+            this.php_start.Size = new System.Drawing.Size(67, 34);
             this.php_start.TabIndex = 55;
             this.php_start.Text = "Start";
             this.php_start.UseVisualStyleBackColor = true;
             // 
             // php_stop
             // 
-            this.php_stop.Location = new System.Drawing.Point(220, 127);
+            this.php_stop.Location = new System.Drawing.Point(293, 156);
+            this.php_stop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.php_stop.Name = "php_stop";
-            this.php_stop.Size = new System.Drawing.Size(50, 28);
+            this.php_stop.Size = new System.Drawing.Size(67, 34);
             this.php_stop.TabIndex = 54;
             this.php_stop.Text = "Stop";
             this.php_stop.UseVisualStyleBackColor = true;
             // 
             // ngx_start
             // 
-            this.ngx_start.Location = new System.Drawing.Point(164, 45);
+            this.ngx_start.Location = new System.Drawing.Point(219, 55);
+            this.ngx_start.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ngx_start.Name = "ngx_start";
-            this.ngx_start.Size = new System.Drawing.Size(50, 28);
+            this.ngx_start.Size = new System.Drawing.Size(67, 34);
             this.ngx_start.TabIndex = 53;
             this.ngx_start.Text = "Start";
             this.ngx_start.UseVisualStyleBackColor = true;
             // 
             // ngx_stop
             // 
-            this.ngx_stop.Location = new System.Drawing.Point(220, 45);
+            this.ngx_stop.Location = new System.Drawing.Point(293, 55);
+            this.ngx_stop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ngx_stop.Name = "ngx_stop";
-            this.ngx_stop.Size = new System.Drawing.Size(50, 28);
+            this.ngx_stop.Size = new System.Drawing.Size(67, 34);
             this.ngx_stop.TabIndex = 52;
             this.ngx_stop.Text = "Stop";
             this.ngx_stop.UseVisualStyleBackColor = true;
             // 
             // mdb_shell
             // 
-            this.mdb_shell.Location = new System.Drawing.Point(576, 93);
+            this.mdb_shell.Location = new System.Drawing.Point(768, 114);
+            this.mdb_shell.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mdb_shell.Name = "mdb_shell";
-            this.mdb_shell.Size = new System.Drawing.Size(63, 49);
+            this.mdb_shell.Size = new System.Drawing.Size(84, 60);
             this.mdb_shell.TabIndex = 58;
             this.mdb_shell.Text = "Open MariaDB Shell";
             this.mdb_shell.UseVisualStyleBackColor = true;
             // 
             // start
             // 
-            this.start.Location = new System.Drawing.Point(576, 3);
+            this.start.Location = new System.Drawing.Point(768, 4);
+            this.start.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.start.Name = "start";
-            this.start.Size = new System.Drawing.Size(63, 36);
+            this.start.Size = new System.Drawing.Size(84, 44);
             this.start.TabIndex = 49;
             this.start.Text = "Start all";
             this.start.UseVisualStyleBackColor = true;
             // 
             // stop
             // 
-            this.stop.Location = new System.Drawing.Point(576, 51);
+            this.stop.Location = new System.Drawing.Point(768, 63);
+            this.stop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.stop.Name = "stop";
-            this.stop.Size = new System.Drawing.Size(63, 36);
+            this.stop.Size = new System.Drawing.Size(84, 44);
             this.stop.TabIndex = 50;
             this.stop.Text = "Stop all";
             this.stop.UseVisualStyleBackColor = true;
@@ -506,16 +535,18 @@ namespace Wnmp
             this.panel1.Controls.Add(this.stop);
             this.panel1.Controls.Add(this.mdb_shell);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Location = new System.Drawing.Point(0, 28);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(648, 340);
+            this.panel1.Size = new System.Drawing.Size(861, 411);
             this.panel1.TabIndex = 5;
             // 
             // wnmpdir
             // 
-            this.wnmpdir.Location = new System.Drawing.Point(576, 148);
+            this.wnmpdir.Location = new System.Drawing.Point(768, 182);
+            this.wnmpdir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.wnmpdir.Name = "wnmpdir";
-            this.wnmpdir.Size = new System.Drawing.Size(63, 40);
+            this.wnmpdir.Size = new System.Drawing.Size(84, 49);
             this.wnmpdir.TabIndex = 59;
             this.wnmpdir.Text = "Wnmp Directory";
             this.wnmpdir.UseVisualStyleBackColor = true;
@@ -525,10 +556,11 @@ namespace Wnmp
             // 
             this.log_rtb.BackColor = System.Drawing.Color.White;
             this.log_rtb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.log_rtb.Location = new System.Drawing.Point(0, 200);
+            this.log_rtb.Location = new System.Drawing.Point(0, 246);
+            this.log_rtb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.log_rtb.Name = "log_rtb";
             this.log_rtb.ReadOnly = true;
-            this.log_rtb.Size = new System.Drawing.Size(645, 139);
+            this.log_rtb.Size = new System.Drawing.Size(859, 170);
             this.log_rtb.TabIndex = 49;
             this.log_rtb.Text = "";
             // 
@@ -568,16 +600,17 @@ namespace Wnmp
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(648, 364);
+            this.ClientSize = new System.Drawing.Size(861, 439);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(664, 402);
-            this.MinimumSize = new System.Drawing.Size(664, 402);
+            this.MaximumSize = new System.Drawing.Size(879, 484);
+            this.MinimumSize = new System.Drawing.Size(879, 484);
             this.Name = "Main";
             this.Text = "Wnmp";
             this.Load += new System.EventHandler(this.Main_Load);
