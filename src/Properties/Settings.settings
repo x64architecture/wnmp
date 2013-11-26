@@ -14,5 +14,14 @@
     <Setting Name="mwttbs" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="autocheckforupdates" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cfuevery" Type="System.String" Scope="User">
+      <Value Profile="(Default)">week</Value>
+    </Setting>
+    <Setting Name="lastcheckforupdate" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

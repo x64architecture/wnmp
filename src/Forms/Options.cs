@@ -1,17 +1,19 @@
 ﻿/*
+Copyright (C) Kurt Cancemi
+
 This file is part of Wnmp.
 
     Wnmp is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Wnmp Public License as published by
+    it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
     Wnmp is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Wnmp Public License for more details.
+    GNU General Public License for more details.
 
-    You should have received a copy of the GNU Wnmp Public License
+    You should have received a copy of the GNU General Public License
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
@@ -22,6 +24,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using Wnmp.Properties;
 
 namespace Wnmp
 {
@@ -34,32 +37,65 @@ namespace Wnmp
 
         private void Options_Load(object sender, EventArgs e)
         {
-            if (Wnmp.Properties.Settings.Default.startaprgssu == false)
-            {
-                suap.Checked = false;
-            }
-            else
-            {
-                suap.Checked = true;
-            }
-            if (Wnmp.Properties.Settings.Default.startwnmpsu == false)
-            {
-                suwnmpcb.Checked = false;
-            }
-            else
-            {
-                suwnmpcb.Checked = true;
-            }
-            if (Wnmp.Properties.Settings.Default.editor == "")
-            {
-                editorTB.Text = "notpad.exe";
-            }
-            else
-            {
-                editorTB.Text = Wnmp.Properties.Settings.Default.editor;
-            }
+            UpdateOptions();
         }
 
+        #region UpdateOptions
+        private void UpdateOptions()
+        {
+            switch (Settings.Default.startaprgssu)
+            {
+                case false:
+                    suap.Checked = false;
+                    break;
+                case true:
+                    suap.Checked = true;
+                    break;
+            }
+            switch (Settings.Default.startwnmpsu)
+            {
+                case false:
+                    suwnmpcb.Checked = false;
+                    break;
+                case true:
+                    suwnmpcb.Checked = true;
+                    break;
+            }
+            switch (Settings.Default.editor)
+            {
+                case "":
+                    editorTB.Text = "notepad.exe";
+                    break;
+                default:
+                    editorTB.Text = Settings.Default.editor;
+                    break;
+            }
+            switch (Settings.Default.autocheckforupdates)
+            {
+                case true:
+                    autoupdate.Checked = true;
+                    break;
+                case false:
+                    autoupdate.Checked = false;
+                    break;
+            }
+            switch (Settings.Default.cfuevery)
+            {
+                case "day":
+                    autoupdateopt.SelectedIndex = 0;
+                    break;
+                case "week":
+                    autoupdateopt.SelectedIndex = 1;
+                    break;
+                case "month":
+                    autoupdateopt.SelectedIndex = 2;
+                    break;
+                default:
+                    autoupdateopt.SelectedIndex = 1; /* Default: To check for updates every week. */
+                    break;
+            }
+        }
+        #endregion
         private void selecteditor_Click(object sender, EventArgs e)
         {
              String input = string.Empty;
@@ -70,12 +106,12 @@ namespace Wnmp
             if (dialog.ShowDialog() == DialogResult.OK)
                 input = dialog.FileName;
             editorTB.Text = dialog.FileName;
-            Wnmp.Properties.Settings.Default.editor = dialog.FileName;
-            Wnmp.Properties.Settings.Default.Save();
+            Settings.Default.editor = dialog.FileName;
+            Settings.Default.Save();
             if (input == String.Empty)
-            Wnmp.Properties.Settings.Default.editor = "notepad.exe";
-            Wnmp.Properties.Settings.Default.Save();
-            editorTB.Text = Wnmp.Properties.Settings.Default.editor;
+            Settings.Default.editor = "notepad.exe";
+            Settings.Default.Save();
+            editorTB.Text = Settings.Default.editor;
                 return;
         }
 
@@ -87,15 +123,15 @@ namespace Wnmp
                 {
                     RegistryKey add = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
                     add.SetValue("Wnmp", "\"" + Application.ExecutablePath.ToString() + "\"");
-                    Wnmp.Properties.Settings.Default.startwnmpsu = true;
-                    Wnmp.Properties.Settings.Default.Save();
+                    Settings.Default.startwnmpsu = true;
+                    Settings.Default.Save();
                 }
                 else
                 {
                     RegistryKey remove = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
                     remove.DeleteValue("Wnmp");
-                    Wnmp.Properties.Settings.Default.startwnmpsu = false;
-                    Wnmp.Properties.Settings.Default.Save();
+                    Settings.Default.startwnmpsu = false;
+                    Settings.Default.Save();
                 }
             }
             catch (Exception ex)
@@ -113,13 +149,13 @@ namespace Wnmp
         {
             if (suap.Checked == true)
             {
-                Wnmp.Properties.Settings.Default.startaprgssu = true;
-                Wnmp.Properties.Settings.Default.Save();
+                Settings.Default.startaprgssu = true;
+                Settings.Default.Save();
             }
             else
             {
-                Wnmp.Properties.Settings.Default.startaprgssu = false;
-                Wnmp.Properties.Settings.Default.Save();
+                Settings.Default.startaprgssu = false;
+                Settings.Default.Save();
             }
         }
 
@@ -127,13 +163,52 @@ namespace Wnmp
         {
             if (mwttb.Checked == true)
             {
-                Wnmp.Properties.Settings.Default.mwttbs = true;
-                Wnmp.Properties.Settings.Default.Save();
+                Settings.Default.mwttbs = true;
+                Settings.Default.Save();
             }
             else
             {
-                Wnmp.Properties.Settings.Default.mwttbs = false;
-                Wnmp.Properties.Settings.Default.Save();
+                Settings.Default.mwttbs = false;
+                Settings.Default.Save();
+            }
+        }
+
+        private void autoupdateopt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            switch (autoupdateopt.SelectedIndex)
+            {
+                case 0:
+                    Settings.Default.cfuevery = "day";
+                    Settings.Default.Save();
+                    break;
+                case 1:
+                    Settings.Default.cfuevery = "week";
+                    Settings.Default.Save();
+                    break;
+                case 2:
+                    Settings.Default.cfuevery = "month";
+                    Settings.Default.Save();
+                    break;
+                default:
+                    Settings.Default.cfuevery = "day";
+                    Settings.Default.Save();
+                    break;
+            }
+        }
+
+        private void autoupdate_CheckedChanged(object sender, EventArgs e)
+        {
+            switch (autoupdate.Checked)
+            {
+                case true:
+                    Settings.Default.autocheckforupdates = true;
+                    Settings.Default.Save();
+                    break;
+                case false:
+                    Settings.Default.autocheckforupdates = false;
+                    Settings.Default.Save();
+                    break;
             }
         }
     }

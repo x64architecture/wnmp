@@ -55,6 +55,9 @@ namespace Wnmp
             this.suap = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.mwttb = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.autoupdate = new System.Windows.Forms.CheckBox();
+            this.autoupdateopt = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -151,11 +154,46 @@ namespace Wnmp
             this.mwttb.UseVisualStyleBackColor = true;
             this.mwttb.CheckedChanged += new System.EventHandler(this.mwttb_CheckedChanged);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 128);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(167, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Automatically check for updates?:";
+            // 
+            // autoupdate
+            // 
+            this.autoupdate.AutoSize = true;
+            this.autoupdate.Location = new System.Drawing.Point(182, 128);
+            this.autoupdate.Name = "autoupdate";
+            this.autoupdate.Size = new System.Drawing.Size(15, 14);
+            this.autoupdate.TabIndex = 11;
+            this.autoupdate.UseVisualStyleBackColor = true;
+            this.autoupdate.CheckedChanged += new System.EventHandler(this.autoupdate_CheckedChanged);
+            // 
+            // autoupdateopt
+            // 
+            this.autoupdateopt.FormattingEnabled = true;
+            this.autoupdateopt.Items.AddRange(new object[] {
+            "Every Day",
+            "Every Week",
+            "Every Month"});
+            this.autoupdateopt.Location = new System.Drawing.Point(31, 144);
+            this.autoupdateopt.Name = "autoupdateopt";
+            this.autoupdateopt.Size = new System.Drawing.Size(121, 21);
+            this.autoupdateopt.TabIndex = 12;
+            this.autoupdateopt.SelectedIndexChanged += new System.EventHandler(this.autoupdateopt_SelectedIndexChanged);
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(266, 130);
+            this.ClientSize = new System.Drawing.Size(267, 176);
+            this.Controls.Add(this.autoupdateopt);
+            this.Controls.Add(this.autoupdate);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.mwttb);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.suap);
@@ -168,9 +206,9 @@ namespace Wnmp
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(282, 168);
+            this.MaximumSize = new System.Drawing.Size(283, 214);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(282, 168);
+            this.MinimumSize = new System.Drawing.Size(283, 214);
             this.Name = "Options";
             this.Text = "Options";
             this.Load += new System.EventHandler(this.Options_Load);
@@ -191,6 +229,9 @@ namespace Wnmp
         private System.Windows.Forms.CheckBox suap;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox mwttb;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox autoupdate;
+        private System.Windows.Forms.ComboBox autoupdateopt;
 
     }
 }

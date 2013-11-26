@@ -124,6 +124,40 @@ namespace Wnmp
             WnmpFunctions.DirFiles("/mariadb/data", "*.log", 4);
             WnmpFunctions.DirFiles("/php/logs", "*.log", 5);
             WnmpFunctions.startup();
+            DoAutoCheckForUpdate();
+        }
+
+        private void DoAutoCheckForUpdate()
+        {
+            if (Wnmp.Properties.Settings.Default.autocheckforupdates == true)
+            {
+                switch (Wnmp.Properties.Settings.Default.cfuevery)
+                {
+                    case "day":
+                        DoDateEclasped(1);
+                        break;
+                    case "week":
+                        DoDateEclasped(7);
+                        break;
+                    case "month":
+                        DoDateEclasped(30);
+                        break;
+                    default:
+                        DoDateEclasped(7); /* Default: To check for updates every week. */
+                        break;
+                }
+            }
+        }
+
+        private void DoDateEclasped(double days)
+        {
+            DateTime LastCheckForUpdate = Wnmp.Properties.Settings.Default.lastcheckforupdate;
+            DateTime expiryDate = LastCheckForUpdate.AddDays(days);
+            if (DateTime.Now > expiryDate)
+            {
+                const string xmlUrl = "https://bitbucket.org/Wnmp/wnmp/raw/tip/update.xml";
+                Updater _Updater = new Updater(xmlUrl, CPVER);
+            }
         }
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
