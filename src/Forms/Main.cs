@@ -148,15 +148,29 @@ namespace Wnmp
                 }
             }
         }
-
+        public bool IsSet(string s)
+        {
+            if (s != "")
+                return true;
+            else
+                return false;
+        }
         private void DoDateEclasped(double days)
         {
-            DateTime LastCheckForUpdate = Wnmp.Properties.Settings.Default.lastcheckforupdate;
-            DateTime expiryDate = LastCheckForUpdate.AddDays(days);
-            if (DateTime.Now > expiryDate)
+            if (IsSet(Wnmp.Properties.Settings.Default.lastcheckforupdate))
             {
-                const string xmlUrl = "https://wnmp.x64architecture.com/update.xml";
-                Updater _Updater = new Updater(xmlUrl, CPVER);
+                DateTime LastCheckForUpdate = DateTime.Parse(Wnmp.Properties.Settings.Default.lastcheckforupdate);
+                DateTime expiryDate = LastCheckForUpdate.AddDays(days);
+                if (DateTime.Now > expiryDate)
+                {
+                    const string xmlUrl = "https://wnmp.x64architecture.com/update.xml";
+                    Updater _Updater = new Updater(xmlUrl, CPVER);
+                }
+            }
+            else
+            {
+                Wnmp.Properties.Settings.Default.lastcheckforupdate = DateTime.Now.ToString();
+                Wnmp.Properties.Settings.Default.Save();
             }
         }
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)

@@ -185,7 +185,7 @@ namespace Wnmp
             {
                 Log.wnmp_log_notice("Your control panel version: " + CurVer + " is up to date.", Log.LogSection.WNMP_MAIN);
             }
-            Wnmp.Properties.Settings.Default.lastcheckforupdate = DateTime.Now;
+            Wnmp.Properties.Settings.Default.lastcheckforupdate = DateTime.Now.ToString();
             Wnmp.Properties.Settings.Default.Save();
         }
 

@@ -97,9 +97,10 @@ namespace Wnmp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.DateTime lastcheckforupdate {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string lastcheckforupdate {
             get {
-                return ((global::System.DateTime)(this["lastcheckforupdate"]));
+                return ((string)(this["lastcheckforupdate"]));
             }
             set {
                 this["lastcheckforupdate"] = value;
