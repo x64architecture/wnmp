@@ -1,40 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <appinfo>
-<version>2.0.3</version>
-<url>https://bitbucket.org/Wnmp/wnmp/downloads/Wnmp%202.0.3.exe</url>
-<upgradeurl>https://bitbucket.org/Wnmp/wnmp/downloads/Wnmp%20Upgrade%20Installer%202.0.3.exe</upgradeurl>
+<version>2.0.4</version>
+<url>https://github.com/wnmp/wnmp/releases/download/2.0.4/Wnmp-2.0.4.exe</url>
+<upgradeurl>https://github.com/wnmp/wnmp/releases/download/2.0.4/Wnmp-Upgrade-Installer-2.0.4.exe</upgradeurl>
 <about>
-Wnmp 2.0.3
+Wnmp 2.0.4
 **********
-- Wnmp Control Panel 2.0.8
+- Wnmp Control Panel 2.0.9
 
-  * Faster control panel startup(0.15348 vs. 0.183).
-  * Windows XP/2003 support dropped.
-  * Added Windows version definitions for Windows 8.1 and Windows Server 2012 R2.
-  * Added control panel updater and changelog viewer and fixed some minor bugs.
-  * Removed the border around the icon.
-  * Various fixes and improvments.
+  * Wnmp now backups configuration files and overwrite the old ones.
+  * Implemented Automatic Check For Updates Feature, see #15.
 
-- PHP
+- Nginx
 
-  * Updated to 5.5.6
+  * Updated to 1.5.7
 
-- phpMyAdmin
+- MariaDB
 
-  * Updated to 4.0.9 
+  * Updated to 5.5.34
 </about>
-<cpversion>2.0.8</cpversion>
-<cpupdateurl>https://bitbucket.org/Wnmp/wnmp/raw/tip/updatefiles/Wnmp.exe</cpupdateurl>
-<cpupdaterurl>https://bitbucket.org/Wnmp/wnmp/raw/tip/updatefiles/updater.exe</cpupdaterurl>
+<cpversion>2.0.9</cpversion>
+<cpupdateurl>https://github.com/wnmp/wnmp/blob/master/updatefiles/Wnmp.exe</cpupdateurl>
+<cpupdaterurl>https://github.com/wnmp/wnmp/blob/master/updatefiles/updater.exe</cpupdaterurl>
 <cpabout>
-Wnmp Control Panel 2.0.8
+Wnmp Control Panel 2.0.9
 ************************
 
-  * Faster control panel startup(0.15348 vs. 0.183).
-  * Windows XP/2003 support dropped.
-  * Added Windows version definitions for Windows 8.1 and Windows Server 2012 R2.
-  * Added control panel updater and changelog viewer and fixed some minor bugs.
-  * Removed the border around the icon.
-  * Various fixes and improvments.
+  * Wnmp now backups configuration files and overwrite the old ones.
+  * Implemented Automatic Check For Updates Feature, see #15.
 </cpabout>
 </appinfo>

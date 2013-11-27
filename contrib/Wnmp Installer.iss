@@ -2,7 +2,7 @@
 ;Inno Setup http://www.jrsoftware.org/isdl.php#stable
 
 #define Name "Wnmp"
-#define Version "2.0.3"
+#define Version "2.0.4"
 #define Publisher "Kurt Cancemi"
 #define URL "http://wnmp.x64architecture.com"
 #define ExeName "Wnmp.exe"
@@ -29,7 +29,7 @@ VersionInfoCompany=Kurt Cancemi
 DefaultGroupName={#Name}
 LicenseFile=license.txt
 InfoAfterFile=contrib\postinstall.txt
-OutputBaseFilename=Wnmp {#Version} 
+OutputBaseFilename=Wnmp-{#Version} 
 OutputDir=../Wnmp Output
 SetupIconFile=contrib\logo.ico
 Compression=lzma2

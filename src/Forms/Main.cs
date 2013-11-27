@@ -38,7 +38,7 @@ namespace Wnmp
             InitializeComponent();
             setevents();
         }
-        internal Version CPVER = new Version("2.0.8");
+        internal Version CPVER = new Version("2.0.9");
         #region Wnmp Stuff
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
