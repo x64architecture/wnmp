@@ -42,7 +42,7 @@ namespace Wnmp
         #region Wnmp Stuff
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            const string xmlUrl = "https://bitbucket.org/Wnmp/wnmp/raw/tip/update.xml";
+            const string xmlUrl = "https://wnmp.x64architecture.com/update.xml";
             Updater _Updater = new Updater(xmlUrl, CPVER);
         }
         private void wnmpdir_Click(object sender, EventArgs e)
@@ -81,7 +81,7 @@ namespace Wnmp
                     Directory.CreateDirectory(desktoppath + @"\Wnmpissuefiles");
                 File.Copy(Application.StartupPath + "/php/logs/sys.log", desktoppath + @"\Wnmpissuefiles\sys.log", true);
                 MessageBox.Show(String.Format("Attach the error log inside the {0} folder to the issue report that is associated with the problem you are facing.", desktoppath + @"\Wnmpissuefiles"));
-                Process.Start("https://bitbucket.org/x64architecture/windows-nginx-mysql-php/issues/new");
+                Process.Start("https://github.com/wnmp/wnmp/issues/new");
             }
             catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
         }
@@ -155,7 +155,7 @@ namespace Wnmp
             DateTime expiryDate = LastCheckForUpdate.AddDays(days);
             if (DateTime.Now > expiryDate)
             {
-                const string xmlUrl = "https://bitbucket.org/Wnmp/wnmp/raw/tip/update.xml";
+                const string xmlUrl = "https://wnmp.x64architecture.com/update.xml";
                 Updater _Updater = new Updater(xmlUrl, CPVER);
             }
         }
