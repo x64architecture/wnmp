@@ -8,7 +8,7 @@ Wnmp 2.0.4
 **********
 - Wnmp Control Panel 2.0.9
 
-  * Wnmp now backups configuration files and overwrite the old ones.
+  * Wnmp now backups configuration files and overwrites the old ones.
   * Implemented Automatic Check For Updates Feature, see #15.
 
 - Nginx
