@@ -15,7 +15,7 @@ Wnmp values security, stability and user friendliness.
   * phpMyAdmin 4.0.9
 ### How to Install ######
 
-  1. To install download the latest version of Wnmp [here][1] (latest version 2.0.3)
+  1. To install download the latest version of Wnmp [here][1] (latest version 2.0.4)
   2. Then open *Wnmp.exe* and install it anywhere.
   3. And then run *Wnmp.exe*(which is located in the Wnmp folder)
   4. And then press the Start all button.
