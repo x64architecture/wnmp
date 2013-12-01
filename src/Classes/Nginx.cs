@@ -33,6 +33,8 @@ namespace Wnmp
     class Nginx
     {
         public static Process ps; // Avoid GC
+        public static ContextMenuStrip cms = new ContextMenuStrip();
+        public static ContextMenuStrip lms = new ContextMenuStrip();
         public static int ngxstatus = (int)ProcessStatus.ps.STOPPED;
         public static int NgxStatus { get { return ngxstatus; } }
         [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
@@ -119,6 +121,34 @@ namespace Wnmp
         {
             ToolTip nginx_reload_Tip = new ToolTip();
             nginx_reload_Tip.Show("Reloads Nginx configuration without restart", Program.formInstance.ngx_reload);
+        }
+
+        internal static void ngx_cfg_Click(object sender, EventArgs e)
+        {
+            Button btnSender = (Button)sender;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
+            ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
+            cms.Show(ptLowerLeft);
+            cms.ItemClicked -= cms_ItemClicked;
+            cms.ItemClicked += cms_ItemClicked;
+        }
+
+        static void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            Process.Start(Wnmp.Properties.Settings.Default.editor, Application.StartupPath + "/conf/" + e.ClickedItem.Text);
+        }
+        internal static void ngx_log_Click(object sender, EventArgs e)
+        {
+            Button btnSender = (Button)sender;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
+            ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
+            lms.Show(ptLowerLeft);
+            lms.ItemClicked -= lms_ItemClicked;
+            lms.ItemClicked += lms_ItemClicked;
+        }
+        static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            Process.Start(Wnmp.Properties.Settings.Default.editor, Application.StartupPath + "/logs/" + e.ClickedItem.Text);
         }
     }
 }

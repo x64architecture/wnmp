@@ -117,12 +117,6 @@ namespace Wnmp
                 catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
             }
             timer1.Enabled = true;
-            WnmpFunctions.DirFiles("/conf", "*", 0);
-            WnmpFunctions.DirFiles("/mariadb", "my.ini", 1);
-            WnmpFunctions.DirFiles("/php", "php.ini", 2);
-            WnmpFunctions.DirFiles("/logs", "*.log", 3);
-            WnmpFunctions.DirFiles("/mariadb/data", "*.log", 4);
-            WnmpFunctions.DirFiles("/php/logs", "*.log", 5);
             WnmpFunctions.startup();
             DoAutoCheckForUpdate();
         }
@@ -206,8 +200,8 @@ namespace Wnmp
             ngx_start.Click += Nginx.ngx_start_Click;
             ngx_stop.Click += Nginx.ngx_stop_Click;
             ngx_reload.Click += Nginx.ngx_reload_Click;
-            ngx_config.Click += WnmpFunctions.ngx_config_Click;
-            ngx_log.Click += WnmpFunctions.ngx_log_Click;
+            ngx_config.Click += Nginx.ngx_cfg_Click;
+            ngx_log.Click += Nginx.ngx_log_Click;
             ngx_start.MouseHover += Nginx.ngx_start_MouseHover;
             ngx_stop.MouseHover += Nginx.ngx_stop_MouseHover;
             ngx_reload.MouseHover += Nginx.ngx_reload_MouseHover;
@@ -217,8 +211,8 @@ namespace Wnmp
             mdb_stop.Click += MariaDB.mdb_stop_Click;
             mdb_help.Click += MariaDB.mdb_help_Click;
             mdb_shell.Click += MariaDB.mdb_shell_Click;
-            mdb_cfg.Click += WnmpFunctions.mdb_cfg_Click;
-            mdb_log.Click += WnmpFunctions.mdb_log_Click;
+            mdb_cfg.Click += MariaDB.mdb_cfg_Click;
+            //mdb_log.Click += WnmpFunctions.mdb_log_Click;
             mdb_start.MouseHover += MariaDB.mdb_start_MouseHover;
             mdb_stop.MouseHover += MariaDB.mdb_stop_MouseHover;
             mdb_shell.MouseHover += MariaDB.mdb_shell_MouseHover;
@@ -226,8 +220,8 @@ namespace Wnmp
             // PHP Events Start
             php_start.Click += PHP.php_start_Click;
             php_stop.Click += PHP.php_stop_Click;
-            php_cfg.Click += WnmpFunctions.php_cfg_Click;
-            php_log.Click += WnmpFunctions.php_log_Click;
+            php_cfg.Click += PHP.php_cfg_Click;
+            php_log.Click += PHP.php_log_Click;
             php_start.MouseHover += PHP.php_start_MouseHover;
             php_stop.MouseHover += PHP.php_stop_MouseHover;
             // End

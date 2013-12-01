@@ -34,6 +34,8 @@ namespace Wnmp
     class MariaDB
     {
         public static Process ps; // Avoid GC
+        public static ContextMenuStrip cms = new ContextMenuStrip();
+        public static ContextMenuStrip lms = new ContextMenuStrip();
         public static int mariadbstatus = (int)ProcessStatus.ps.STOPPED;
         [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
         public static void startprocess(string p, string args, bool shellexc, bool redirectso, bool wfe)
@@ -127,6 +129,35 @@ namespace Wnmp
         internal static void mdb_help_Click(object sender, EventArgs e)
         {
             MessageBox.Show("The default login for MariaDB/phpMyAdmin is:" + "\n" + "Username: root" + "\n" + "Password: password");
+        }
+        internal static void mdb_cfg_Click(object sender, EventArgs e)
+        {
+            Button btnSender = (Button)sender;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
+            ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
+            cms.Show(ptLowerLeft);
+            cms.ItemClicked -= cms_ItemClicked;
+            cms.ItemClicked += cms_ItemClicked;
+        }
+
+        static void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            Process.Start(Wnmp.Properties.Settings.Default.editor, Application.StartupPath + "/mariadb/" + e.ClickedItem.Text);
+        }
+
+        internal static void mdb_log_Click(object sender, EventArgs e)
+        {
+            Button btnSender = (Button)sender;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
+            ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
+            lms.Show(ptLowerLeft);
+            lms.ItemClicked -= cms_ItemClicked;
+            lms.ItemClicked += cms_ItemClicked;
+        }
+
+        static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            Process.Start(Wnmp.Properties.Settings.Default.editor, Application.StartupPath + "/mariadb/data/" + e.ClickedItem.Text);
         }
     }
 }

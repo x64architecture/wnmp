@@ -33,6 +33,8 @@ namespace Wnmp
     class PHP
     {
         public static Process ps; // Avoid GC
+        public static ContextMenuStrip cms = new ContextMenuStrip();
+        public static ContextMenuStrip lms = new ContextMenuStrip();
         internal static string pini = Application.StartupPath + "/php/php.ini";
         public static int phpstatus = (int)ProcessStatus.ps.STOPPED;
         public static void startprocess(string p, string args)
@@ -106,6 +108,33 @@ namespace Wnmp
         {
             ToolTip mysql_stop_Tip = new ToolTip();
             mysql_stop_Tip.Show("Stop PHP-CGI", Program.formInstance.php_stop);
+        }
+        internal static void php_cfg_Click(object sender, EventArgs e)
+        {
+            Button btnSender = (Button)sender;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
+            ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
+            cms.Show(ptLowerLeft);
+            cms.ItemClicked -= cms_ItemClicked;
+            cms.ItemClicked += cms_ItemClicked;
+        }
+
+        static void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            Process.Start(Wnmp.Properties.Settings.Default.editor, Application.StartupPath + "/php/" + e.ClickedItem.Text);
+        }
+        internal static void php_log_Click(object sender, EventArgs e)
+        {
+            Button btnSender = (Button)sender;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
+            ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
+            lms.Show(ptLowerLeft);
+            lms.ItemClicked -= lms_ItemClicked;
+            lms.ItemClicked += lms_ItemClicked;
+        }
+        static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            Process.Start(Wnmp.Properties.Settings.Default.editor, Application.StartupPath + "/php/logs/" + e.ClickedItem.Text);
         }
     }
 }
