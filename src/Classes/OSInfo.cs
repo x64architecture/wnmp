@@ -514,16 +514,16 @@ namespace Wnmp
                                     edition = "PRODUCT_CORE_ARM"; // No known definition
                                     break;
                                 case PRODUCT_CORE_N:
-                                    edition = "Windows 8 N";
+                                    edition = "N";
                                     break;
                                 case PRODUCT_CORE_COUNTRYSPECIFIC:
-                                    edition = "Windows 8 China";
+                                    edition = "China";
                                     break;
                                 case PRODUCT_CORE_SINGLELANGUAGE:
-                                    edition = "Windows 8 Single Language";
+                                    edition = "Single Language";
                                     break;
                                 case PRODUCT_CORE:
-                                    edition = "Windows 8";
+                                    edition = "";
                                     break;
                                 case PRODUCT_PROFESSIONAL_WMC:
                                     edition = "Professional with Media Center";
