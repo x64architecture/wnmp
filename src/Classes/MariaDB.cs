@@ -78,8 +78,8 @@ namespace Wnmp
                 startprocess(@Application.StartupPath + @"\mariadb\bin\mysqladmin.exe", "-u root -p shutdown", true, false, true);
 
                 /* Ensure MariaDB gets killed (No leftover useless proccess) */
-                Process[] ngx = System.Diagnostics.Process.GetProcessesByName("mysqld");
-                foreach (Process currentProc in ngx)
+                Process[] mdb = System.Diagnostics.Process.GetProcessesByName("mysqld");
+                foreach (Process currentProc in mdb)
                 {
                     currentProc.Kill();
                 }
