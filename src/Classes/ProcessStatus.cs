@@ -27,8 +27,8 @@ namespace Wnmp
     {
         internal enum ps
         {
-            STARTED,
-            STOPPED
+            STOPPED,
+            STARTED
         }
         public static void timer()
         {
@@ -47,7 +47,7 @@ namespace Wnmp
             int phpfails = 0;
             switch (Nginx.NgxStatus)
             {
-                case 0:
+                case (int)ProcessStatus.ps.STARTED:
                     {
                         if (ngxfails <= 10) // If Nginx fails to start over 10 times quit trying to restart it.
                         {
@@ -60,11 +60,11 @@ namespace Wnmp
                         }
                         break;
                     }
-                case 1: ngxfails = 0; break;
+                case (int)ProcessStatus.ps.STOPPED: ngxfails = 0; break;
             }
             switch (MariaDB.MariaDBStatus)
             {
-                case 0:
+                case (int)ProcessStatus.ps.STARTED:
                     {
                         if (mariadbfails <= 10) // If MariaDB fails to start over 10 times quit trying to restart it.
                         {
@@ -77,11 +77,11 @@ namespace Wnmp
                         }
                         break;
                     }
-                case 1: mariadbfails = 0; break;
+                case (int)ProcessStatus.ps.STOPPED: mariadbfails = 0; break;
             }
             switch (PHP.PHPStatus)
             {
-                case 0:
+                case (int)ProcessStatus.ps.STARTED:
                     {
                         if (phpfails <= 10) // If PHP fails to start over 10 times quit trying to restart it.
                         {
@@ -94,7 +94,7 @@ namespace Wnmp
                         }
                         break;
                     }
-                case 1: phpfails = 0; break;
+                case (int)ProcessStatus.ps.STOPPED: phpfails = 0; break;
             }
         }
         [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]

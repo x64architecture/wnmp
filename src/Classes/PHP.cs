@@ -57,7 +57,7 @@ namespace Wnmp
         {
             /* The Win-PHP developers thought is was smart to kill php after a certain amount of requests (Probably 500). 
                so we have to restart it once it exits or set 'PHP_FCGI_MAX_REQUESTS' variable to 0. I've looked and people are recommending just to restart it. */
-            if (PHPStatus == 0) // Check if PHP is set to run
+            if (PHPStatus == (int)ProcessStatus.ps.STARTED) // Check if PHP is set to run
             {
                 startprocess(@Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
             }
