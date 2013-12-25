@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <appinfo>
-<version>2.0.4</version>
-<url>https://github.com/wnmp/wnmp/releases/download/2.0.4/Wnmp-2.0.4.exe</url>
-<upgradeurl>https://github.com/wnmp/wnmp/releases/download/2.0.4/Wnmp-Upgrade-Installer-2.0.4.exe</upgradeurl>
+<version>2.0.5</version>
+<url>https://github.com/wnmp/wnmp/releases/download/2.0.5/Wnmp-2.0.5.exe</url>
+<upgradeurl>https://github.com/wnmp/wnmp/releases/download/2.0.5/Wnmp-Upgrade-Installer-2.0.5.exe</upgradeurl>
 <about>
-Wnmp 2.0.4
+Wnmp 2.0.5
 **********
-- Wnmp Control Panel 2.0.9
+- Wnmp Control Panel 2.1.0
 
-  * Wnmp now backups configuration files and overwrites the old ones.
-  * Implemented Automatic Check For Updates Feature, see #15.
+  * Fixed #17, Bug with config and log button menu items.
+  * Fixed #18, Wnmp shows two windows when an update if found.
+  * Fixed incorrect windows edition definitions
 
 - Nginx
 
-  * Updated to 1.5.7
+  * Updated to 1.5.8
 
-- MariaDB
+- phpMyAdmin
 
-  * Updated to 5.5.34
+  * Updated to 4.1.2
 </about>
-<cpversion>2.0.9</cpversion>
+<cpversion>2.1.0</cpversion>
 <cpupdateurl>https://github.com/wnmp/wnmp/blob/master/updatefiles/Wnmp.exe</cpupdateurl>
 <cpupdaterurl>https://github.com/wnmp/wnmp/blob/master/updatefiles/updater.exe</cpupdaterurl>
 <cpabout>
-Wnmp Control Panel 2.0.9
+Wnmp Control Panel 2.1.0
 ************************
 
-  * Wnmp now backups configuration files and overwrite the old ones.
-  * Implemented Automatic Check For Updates Feature, see #15.
+  * Fixed #17, Bug with config and log button menu items.
+  * Fixed #18, Wnmp shows two windows when an update if found.
+  * Fixed incorrect windows edition definitions
 </cpabout>
 </appinfo>

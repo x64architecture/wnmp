@@ -2,7 +2,7 @@
 ;Inno Setup http://www.jrsoftware.org/isdl.php#stable
 
 #define Name "Wnmp"
-#define Version "2.0.4"
+#define Version "2.0.5"
 #define Publisher "Kurt Cancemi"
 #define URL "http://wnmp.x64architecture.com"
 #define ExeName "Wnmp.exe"
@@ -48,8 +48,8 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 [Files]
 Source: "Wnmp.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "*"; Excludes: "logs\*, mariadb\data\*, mariadb\mysql-test\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "vc_2008_sp1_redist_x86.exe"; DestDir: {tmp}; Flags: deleteafterinstall
-Source: "vc_2012_update4_redist_x86.exe"; DestDir: {tmp}; Flags: deleteafterinstall
+Source: "../vc_2008_sp1_redist_x86.exe"; DestDir: {tmp}; Flags: deleteafterinstall
+Source: "../vc_2012_update4_redist_x86.exe"; DestDir: {tmp}; Flags: deleteafterinstall
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
