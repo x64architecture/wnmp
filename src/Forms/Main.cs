@@ -37,6 +37,7 @@ namespace Wnmp
         {
             InitializeComponent();
             setevents();
+            
         }
         internal Version CPVER = new Version("2.0.9");
         #region Wnmp Stuff
@@ -119,8 +120,29 @@ namespace Wnmp
             timer1.Enabled = true;
             WnmpFunctions.startup();
             DoAutoCheckForUpdate();
+            DateTime now = DateTime.Now;
+            if (now.Month == 12 && now.Day == 25)
+                DoChristmas();
         }
-
+        private void DoChristmas()
+        {
+            this.BackgroundImage = Wnmp.Properties.Resources.background;
+            Font font = new Font("Microsoft Sans Serif", 9.75f, FontStyle.Bold);
+            Font Rfont = new Font("Microsoft Sans Serif", 16f, FontStyle.Bold);
+            ToolStripMenuItem item = new ToolStripMenuItem("Merry Christmas From Kurt!", null);
+            item.Font = new Font("Segoe Script",14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            item.ForeColor = Color.DarkGreen;
+            menuStrip1.Items.Add(item);
+            this.menuStrip1.Font = font;
+            this.label4.Font = font;
+            this.label7.Font = font;
+            this.label8.Font = font;
+            this.nginxrunning.Font = Rfont;
+            this.phprunning.Font = Rfont;
+            this.mariadbrunning.Font = Rfont;
+            this.log_rtb.BackColor = Color.LightGreen;
+            Log.wnmp_log_notice("Merry Christmas From Kurt!", Log.LogSection.WNMP_MAIN);
+        }
         private void DoAutoCheckForUpdate()
         {
             if (Wnmp.Properties.Settings.Default.autocheckforupdates == true)

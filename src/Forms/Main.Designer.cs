@@ -108,6 +108,7 @@ namespace Wnmp
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.helpToolStripMenuItem,
@@ -495,6 +496,7 @@ namespace Wnmp
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.wnmpdir);
             this.panel1.Controls.Add(this.log_rtb);
             this.panel1.Controls.Add(this.groupBox1);
@@ -520,11 +522,12 @@ namespace Wnmp
             // log_rtb
             // 
             this.log_rtb.BackColor = System.Drawing.Color.White;
+            this.log_rtb.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.log_rtb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.log_rtb.Location = new System.Drawing.Point(0, 200);
+            this.log_rtb.Location = new System.Drawing.Point(0, 205);
             this.log_rtb.Name = "log_rtb";
             this.log_rtb.ReadOnly = true;
-            this.log_rtb.Size = new System.Drawing.Size(645, 139);
+            this.log_rtb.Size = new System.Drawing.Size(647, 133);
             this.log_rtb.TabIndex = 49;
             this.log_rtb.Text = "";
             // 
