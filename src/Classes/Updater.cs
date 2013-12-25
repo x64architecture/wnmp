@@ -41,49 +41,57 @@ namespace Wnmp
             XmlTextReader reader = null;
             try
             {
-                reader = new XmlTextReader(xmlUrl);
-                reader.MoveToContent();
-                string elementName = "";
-                if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "appinfo"))
+                int returnvalue;
+                if (NativeMethods.InternetGetConnectedState(out returnvalue, 0)) 
                 {
-                    while (reader.Read())
+                    reader = new XmlTextReader(xmlUrl);
+                    reader.MoveToContent();
+                    string elementName = "";
+                    if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "appinfo"))
                     {
-                        if (reader.NodeType == XmlNodeType.Element)
+                        while (reader.Read())
                         {
-                            elementName = reader.Name;
-                        }
-                        else
-                        {
-                            if ((reader.NodeType == XmlNodeType.Text) && (reader.HasValue))
-                                switch (elementName)
-                                {
-                                    case "version":
-                                        newVersion = new Version(reader.Value);
-                                        break;
-                                    case "url":
-                                        downloadUrl = reader.Value;
-                                        break;
-                                    case "upgradeurl":
-                                        updurl = reader.Value;
-                                        break;
-                                    case "about":
-                                        aboutUpdate = reader.Value;
-                                        break;
-                                    case "cpversion":
-                                        cpVersion = new Version(reader.Value);
-                                        break;
-                                    case "cpupdateurl":
-                                        cpUpdateUrl = reader.Value;
-                                        break;
-                                    case "cpupdaterurl":
-                                        cpUpdaterUrl = reader.Value;
-                                        break;
-                                    case "cpabout":
-                                        cpAbout = reader.Value;
-                                        break;
-                                }
+                            if (reader.NodeType == XmlNodeType.Element)
+                            {
+                                elementName = reader.Name;
+                            }
+                            else
+                            {
+                                if ((reader.NodeType == XmlNodeType.Text) && (reader.HasValue))
+                                    switch (elementName)
+                                    {
+                                        case "version":
+                                            newVersion = new Version(reader.Value);
+                                            break;
+                                        case "url":
+                                            downloadUrl = reader.Value;
+                                            break;
+                                        case "upgradeurl":
+                                            updurl = reader.Value;
+                                            break;
+                                        case "about":
+                                            aboutUpdate = reader.Value;
+                                            break;
+                                        case "cpversion":
+                                            cpVersion = new Version(reader.Value);
+                                            break;
+                                        case "cpupdateurl":
+                                            cpUpdateUrl = reader.Value;
+                                            break;
+                                        case "cpupdaterurl":
+                                            cpUpdaterUrl = reader.Value;
+                                            break;
+                                        case "cpabout":
+                                            cpAbout = reader.Value;
+                                            break;
+                                    }
+                            }
                         }
                     }
+                }
+                else
+                {
+                    return;
                 }
             }
             catch (Exception ex)

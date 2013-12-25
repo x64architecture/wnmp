@@ -48,6 +48,22 @@ namespace Wnmp
         }
         #endregion OSVERSIONINFOEX
 
+        #region InternetGetConnectedState
+        [DllImport("wininet.dll", SetLastError = true)]
+        internal static extern bool InternetGetConnectedState(out int lpdwFlags, int dwReserved);
+
+        [Flags]
+        internal enum ConnectionStates
+        {
+            Modem = 0x1, // 1
+            LAN = 0x2, // 2
+            Proxy = 0x4, // 4
+            RasInstalled = 0x10, // 16
+            Offline = 0x20, // 32
+            Configured = 0x40, // 64
+        }
+        #endregion
+
         #endregion PINVOKE
     }
 }
