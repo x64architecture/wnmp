@@ -35,6 +35,8 @@ The SSl Certificate is Self Signed by me. For added security create your own.
 [![Download][3]][1]
 [![Download][4]][8]
 
+<a href='https://pledgie.com/campaigns/23544'><img alt='Click here to lend your support to: Wnmp - An easy Nginx, MariaDB and PHP environment for Windows. and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/23544.png?skin_name=chrome' border='0' ></a>
+
 [Website](http://wnmp.x64architecture.com)
 
 If you can, please donate to [Wnmp][2] using PayPal to support the development of Wnmp. All donations are appreciated no matter if big or small. 
