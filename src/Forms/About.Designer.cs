@@ -107,7 +107,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(282, 18);
             this.label4.TabIndex = 4;
-            this.label4.Text = "Copyright (C) 2012-2013 by Kurt Cancemi";
+            this.label4.Text = "Copyright (C) 2012-2014 by Kurt Cancemi";
             // 
             // pictureBox1
             // 

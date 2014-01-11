@@ -6,7 +6,7 @@
 #define Publisher "Kurt Cancemi"
 #define URL "http://wnmp.x64architecture.com"
 #define ExeName "Wnmp.exe"
-#define Year "2013"
+#define Year "2014"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
