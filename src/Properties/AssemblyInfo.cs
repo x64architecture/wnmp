@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kurt Cancemi")]
 [assembly: AssemblyProduct("Wnmp")]
-[assembly: AssemblyCopyright("Copyright © 2012-2013 Kurt Cancemi")]
+[assembly: AssemblyCopyright("Copyright © 2012-2014 Kurt Cancemi")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
