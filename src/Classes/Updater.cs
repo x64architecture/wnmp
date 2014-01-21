@@ -119,7 +119,7 @@ namespace Wnmp
                     frm.Show();
                     frm.Focus();
                     WebClient webClient = new WebClient();
-                    webClient.DownloadFileAsync(new Uri(updurl), @Application.StartupPath + "/Wnmp-Upgrade-" + newVersion + ".exe");
+                    webClient.DownloadFileAsync(new Uri(updurl), @Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
                     webClient.DownloadProgressChanged += (s, e) =>
                     {
                         frm.progressBar1.Value = e.ProgressPercentage;
@@ -130,7 +130,7 @@ namespace Wnmp
                         try
                         {
                             frm.Close();
-                            Process.Start(@Application.StartupPath + "/Wnmp-Upgrade-" + newVersion + ".exe");
+                            Process.Start(@Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
                             cfa();
                             DoBackUp();
                             Application.Exit();

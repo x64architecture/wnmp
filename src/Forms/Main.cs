@@ -117,6 +117,14 @@ namespace Wnmp
                 }
                 catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
             }
+            else if (File.Exists(@Application.StartupPath + "/Wnmp-Upgrade-Installer.exe"))
+            {
+                try
+                {
+                    File.Delete(@Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
+                }
+                catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
+            }
             timer1.Enabled = true;
             WnmpFunctions.startup();
             DoAutoCheckForUpdate();
@@ -179,7 +187,7 @@ namespace Wnmp
                 DateTime expiryDate = LastCheckForUpdate.AddDays(days);
                 if (DateTime.Now > expiryDate)
                 {
-                    const string xmlUrl = "https://wnmp.x64architecture.com/update.xml";
+                    const string xmlUrl = "https://s3.amazonaws.com/wnmp/update.xml";
                     Updater _Updater = new Updater(xmlUrl, CPVER);
                 }
             }
