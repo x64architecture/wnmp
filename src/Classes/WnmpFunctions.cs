@@ -47,8 +47,10 @@ namespace Wnmp
         }
         #endregion checkforapps
 
-        internal static void startup()
+        internal static void DoStartup()
         {
+            Updater.DoAutoCheckForUpdate();
+
             StringBuilder sb = new StringBuilder();
             sb.Append("Windows Version: " + OSVersionInfo.Name);
             if (OSVersionInfo.Edition != "")
@@ -93,6 +95,7 @@ namespace Wnmp
         {
             cifpsr();
         }
+        #region CheckIfRunning
         internal static void cifpsr()
         {
             if (check_if_running("nginx"))
@@ -134,6 +137,7 @@ namespace Wnmp
             else
                 return false;
         }
+        #endregion
         internal static void KillProcesses()
         {
             string[] processtokill = { "php-cgi", "nginx", "mysqld" };

@@ -131,7 +131,7 @@ namespace Wnmp
                         {
                             frm.Close();
                             Process.Start(@Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
-                            cfa();
+                            KillProcesses();
                             DoBackUp();
                             Application.Exit();
                             Process.GetCurrentProcess().Kill();
@@ -180,7 +180,7 @@ namespace Wnmp
                                 frm.Close();
                                 System.Threading.Thread.Sleep(200);
                                 Process.Start(@Application.StartupPath + "/updater.exe");
-                                cfa();
+                                KillProcesses();
                                 Application.Exit();
                                 Process.GetCurrentProcess().Kill();
                             }
@@ -216,7 +216,57 @@ namespace Wnmp
                 }
             }
         }
-        private void cfa()
+
+        #region AutoCheckForUpdates
+        public static bool IsSet(string s)
+        {
+            if (s != "")
+                return true;
+            else
+                return false;
+        }
+        private static void DoDateEclasped(double days)
+        {
+            if (IsSet(Wnmp.Properties.Settings.Default.lastcheckforupdate))
+            {
+                DateTime LastCheckForUpdate = DateTime.Parse(Wnmp.Properties.Settings.Default.lastcheckforupdate);
+                DateTime expiryDate = LastCheckForUpdate.AddDays(days);
+                if (DateTime.Now > expiryDate)
+                {
+                    const string xmlUrl = "https://s3.amazonaws.com/wnmp/update.xml";
+                    Updater _Updater = new Updater(xmlUrl, Program.formInstance.CPVER);
+                }
+            }
+            else
+            {
+                Wnmp.Properties.Settings.Default.lastcheckforupdate = DateTime.Now.ToString();
+                Wnmp.Properties.Settings.Default.Save();
+            }
+        }
+        public static void DoAutoCheckForUpdate()
+        {
+            if (Wnmp.Properties.Settings.Default.autocheckforupdates == true)
+            {
+                switch (Wnmp.Properties.Settings.Default.cfuevery)
+                {
+                    case "day":
+                        DoDateEclasped(1);
+                        break;
+                    case "week":
+                        DoDateEclasped(7);
+                        break;
+                    case "month":
+                        DoDateEclasped(30);
+                        break;
+                    default:
+                        DoDateEclasped(7); /* Default: To check for updates every week. */
+                        break;
+                }
+            }
+        }
+        #endregion
+
+        private void KillProcesses()
         {
             string[] processtokill = { "php-cgi", "nginx", "mysqld" };
             Process[] processes = Process.GetProcesses();
@@ -237,6 +287,6 @@ namespace Wnmp
                     catch { }
                 }
             }
-        }
+        } //
     }
 }

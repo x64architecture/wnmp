@@ -33,22 +33,22 @@ namespace Wnmp
     public partial class Main : Form
     {
         public static string getappsupath = Application.StartupPath;
+        internal Version CPVER = new Version("2.1.1");
+        internal const string UpdateXMLURL = "https://s3.amazonaws.com/wnmp/update.xml";
+
         public Main()
         {
             InitializeComponent();
             setevents();
-            
         }
-        internal Version CPVER = new Version("2.1.1");
+
         #region Wnmp Stuff
+
+        #region MenuStripItems
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            const string xmlUrl = "https://s3.amazonaws.com/wnmp/update.xml";
+            const string xmlUrl = UpdateXMLURL;
             Updater _Updater = new Updater(xmlUrl, CPVER);
-        }
-        private void wnmpdir_Click(object sender, EventArgs e)
-        {
-            Process.Start("explorer.exe", @Application.StartupPath);
         }
 
         private void wnmpOptionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -58,6 +58,7 @@ namespace Wnmp
             form.ShowDialog(this);
             form.Focus();
         }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -87,116 +88,6 @@ namespace Wnmp
             catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
         }
 
-        private void Main_Resize(object sender, EventArgs e)
-        {
-            if (Wnmp.Properties.Settings.Default.mwttbs == true)
-            {
-                if (WindowState == FormWindowState.Minimized)
-                {
-                    this.Hide();
-                    icon.BalloonTipTitle = "Wnmp";
-                    icon.BalloonTipText = "Wnmp has been minimized to the taskbar.";
-                    icon.ShowBalloonTip(3000);
-                }
-            }
-            else { }
-        }
-
-        private void icon_Click(object sender, EventArgs e)
-        {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
-        }
-        private void Main_Load(object sender, EventArgs e)
-        {
-            if (File.Exists(@Application.StartupPath + "/updater.exe"))
-            {
-                try
-                {
-                    File.Delete(@Application.StartupPath + "/updater.exe");
-                }
-                catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
-            }
-            else if (File.Exists(@Application.StartupPath + "/Wnmp-Upgrade-Installer.exe"))
-            {
-                try
-                {
-                    File.Delete(@Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
-                }
-                catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
-            }
-            timer1.Enabled = true;
-            WnmpFunctions.startup();
-            DoAutoCheckForUpdate();
-            DateTime now = DateTime.Now;
-            if (now.Month == 12 && now.Day == 25)
-                DoChristmas();
-        }
-        private void DoChristmas()
-        {
-            this.BackgroundImage = Wnmp.Properties.Resources.background;
-            Font font = new Font("Microsoft Sans Serif", 9.75f, FontStyle.Bold);
-            Font Rfont = new Font("Microsoft Sans Serif", 16f, FontStyle.Bold);
-            ToolStripMenuItem item = new ToolStripMenuItem("Merry Christmas From Kurt!", null);
-            item.Font = new Font("Segoe Script",14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            item.ForeColor = Color.DarkGreen;
-            menuStrip1.Items.Add(item);
-            this.menuStrip1.Font = font;
-            this.label4.Font = font;
-            this.label7.Font = font;
-            this.label8.Font = font;
-            this.nginxrunning.Font = Rfont;
-            this.phprunning.Font = Rfont;
-            this.mariadbrunning.Font = Rfont;
-            this.log_rtb.BackColor = Color.LightGreen;
-            Log.wnmp_log_notice("Merry Christmas From Kurt!", Log.LogSection.WNMP_MAIN);
-        }
-        private void DoAutoCheckForUpdate()
-        {
-            if (Wnmp.Properties.Settings.Default.autocheckforupdates == true)
-            {
-                switch (Wnmp.Properties.Settings.Default.cfuevery)
-                {
-                    case "day":
-                        DoDateEclasped(1);
-                        break;
-                    case "week":
-                        DoDateEclasped(7);
-                        break;
-                    case "month":
-                        DoDateEclasped(30);
-                        break;
-                    default:
-                        DoDateEclasped(7); /* Default: To check for updates every week. */
-                        break;
-                }
-            }
-        }
-        public bool IsSet(string s)
-        {
-            if (s != "")
-                return true;
-            else
-                return false;
-        }
-        private void DoDateEclasped(double days)
-        {
-            if (IsSet(Wnmp.Properties.Settings.Default.lastcheckforupdate))
-            {
-                DateTime LastCheckForUpdate = DateTime.Parse(Wnmp.Properties.Settings.Default.lastcheckforupdate);
-                DateTime expiryDate = LastCheckForUpdate.AddDays(days);
-                if (DateTime.Now > expiryDate)
-                {
-                    const string xmlUrl = "https://s3.amazonaws.com/wnmp/update.xml";
-                    Updater _Updater = new Updater(xmlUrl, CPVER);
-                }
-            }
-            else
-            {
-                Wnmp.Properties.Settings.Default.lastcheckforupdate = DateTime.Now.ToString();
-                Wnmp.Properties.Settings.Default.Save();
-            }
-        }
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Wnmp.Forms.About aboutfrm = new Wnmp.Forms.About();
@@ -217,7 +108,86 @@ namespace Wnmp
         {
             Process.Start("http://localhost");
         }
-        #endregion Wnmp Stuff
+
+        #endregion
+
+        #region Functions
+
+        private void DeleteFile(string file)
+        {
+            if (File.Exists(file))
+            {
+                try
+                {
+                    File.Delete(file);
+                }
+                catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
+            }
+        }
+
+        private void DoChristmas()
+        {
+            this.BackgroundImage = Wnmp.Properties.Resources.background;
+            Font font = new Font("Microsoft Sans Serif", 9.75f, FontStyle.Bold);
+            Font Rfont = new Font("Microsoft Sans Serif", 16f, FontStyle.Bold);
+            ToolStripMenuItem item = new ToolStripMenuItem("Merry Christmas From Kurt!", null);
+            item.Font = new Font("Segoe Script", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            item.ForeColor = Color.DarkGreen;
+            menuStrip1.Items.Add(item);
+            this.menuStrip1.Font = font;
+            this.label4.Font = font;
+            this.label7.Font = font;
+            this.label8.Font = font;
+            this.nginxrunning.Font = Rfont;
+            this.phprunning.Font = Rfont;
+            this.mariadbrunning.Font = Rfont;
+            this.log_rtb.BackColor = Color.LightGreen;
+            Log.wnmp_log_notice("Merry Christmas From Kurt!", Log.LogSection.WNMP_MAIN);
+        }
+
+        #endregion
+
+        #region FormEvents
+
+        private void Main_Resize(object sender, EventArgs e)
+        {
+            if (Wnmp.Properties.Settings.Default.mwttbs == true)
+            {
+                if (WindowState == FormWindowState.Minimized)
+                {
+                    this.Hide();
+                    icon.BalloonTipTitle = "Wnmp";
+                    icon.BalloonTipText = "Wnmp has been minimized to the taskbar.";
+                    icon.ShowBalloonTip(3000);
+                }
+            }
+            else { }
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            DeleteFile(@Application.StartupPath + "/updater.exe");
+            DeleteFile(@Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
+
+            DateTime now = DateTime.Now;
+            if (now.Month == 12 && now.Day == 25)
+                DoChristmas();
+
+            timer1.Enabled = true;
+            WnmpFunctions.DoStartup();
+        }
+
+        private void icon_Click(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void wnmpdir_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer.exe", @Application.StartupPath);
+        }
+
         #region events
         private void setevents()
         {
@@ -257,5 +227,9 @@ namespace Wnmp
             // End
         }
         #endregion
+
+        #endregion
+
+        #endregion Wnmp Stuff
     }
 }
