@@ -233,7 +233,7 @@ namespace Wnmp
                 DateTime expiryDate = LastCheckForUpdate.AddDays(days);
                 if (DateTime.Now > expiryDate)
                 {
-                    const string xmlUrl = "https://s3.amazonaws.com/wnmp/update.xml";
+                    const string xmlUrl = Main.UpdateXMLURL;
                     Updater _Updater = new Updater(xmlUrl, Program.formInstance.CPVER);
                 }
             }
