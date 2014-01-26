@@ -555,7 +555,6 @@ namespace Wnmp
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(663, 400);
             this.MinimumSize = new System.Drawing.Size(663, 400);
             this.Name = "Main";
             this.Text = "Wnmp";

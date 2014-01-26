@@ -33,6 +33,16 @@ namespace Wnmp.Forms
             InitializeComponent();
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.Style = myCp.Style & ~Declarations.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
+                return myCp;
+            }
+        }
+
         private void Closebtn_Click(object sender, EventArgs e)
         {
             this.Close();

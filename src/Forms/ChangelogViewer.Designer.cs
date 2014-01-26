@@ -176,6 +176,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(424, 523);
             this.Name = "ChangelogViewer";
             this.Text = "Check For Updates";
             this.panel1.ResumeLayout(false);

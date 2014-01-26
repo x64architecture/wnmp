@@ -42,6 +42,16 @@ namespace Wnmp
             setevents();
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.Style = myCp.Style & ~Declarations.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
+                return myCp;
+            }
+        }
+
         #region Wnmp Stuff
 
         #region MenuStripItems
