@@ -506,7 +506,7 @@ namespace Wnmp
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(647, 338);
+            this.panel1.Size = new System.Drawing.Size(647, 337);
             this.panel1.TabIndex = 5;
             // 
             // wnmpdir
@@ -524,7 +524,7 @@ namespace Wnmp
             this.log_rtb.BackColor = System.Drawing.Color.White;
             this.log_rtb.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.log_rtb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.log_rtb.Location = new System.Drawing.Point(0, 205);
+            this.log_rtb.Location = new System.Drawing.Point(0, 204);
             this.log_rtb.Name = "log_rtb";
             this.log_rtb.ReadOnly = true;
             this.log_rtb.Size = new System.Drawing.Size(647, 133);
@@ -549,7 +549,7 @@ namespace Wnmp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 362);
+            this.ClientSize = new System.Drawing.Size(647, 361);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
