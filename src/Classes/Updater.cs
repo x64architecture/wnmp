@@ -38,11 +38,12 @@ namespace Wnmp
             string cpUpdaterUrl = "";
             string cpAbout = "";
 
+
             XmlTextReader reader = null;
             try
             {
                 int returnvalue;
-                if (NativeMethods.InternetGetConnectedState(out returnvalue, 0)) 
+                if (NativeMethods.InternetGetConnectedState(out returnvalue, 0))
                 {
                     reader = new XmlTextReader(xmlUrl);
                     reader.MoveToContent();
@@ -96,110 +97,118 @@ namespace Wnmp
             }
             catch (Exception ex)
             {
-                    Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
+                return;
             }
             finally
             {
                 if (reader != null)
+                {
                     reader.Close();
-            }
-            bool FoundUpdate = false;
-            Version applicationVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            if (applicationVersion.CompareTo(newVersion) < 0)
-            {
-                FoundUpdate = true;
-                ChangelogViewer CV = new ChangelogViewer();
-                CV.cversion.Text = applicationVersion.ToString();
-                CV.newversion.Text = newVersion.ToString();
-                CV.changelog.Text = aboutUpdate.Trim();
-                #region AShowDialog
-                if (CV.ShowDialog() == DialogResult.Yes)
-                {
-                    dlUpdateProgress frm = new dlUpdateProgress();
-                    frm.Show();
-                    frm.Focus();
-                    WebClient webClient = new WebClient();
-                    webClient.DownloadFileAsync(new Uri(updurl), @Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
-                    webClient.DownloadProgressChanged += (s, e) =>
+                    bool FoundUpdate = false;
+                    Version applicationVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+                    if (applicationVersion.CompareTo(newVersion) < 0)
                     {
-                        frm.progressBar1.Value = e.ProgressPercentage;
-                        frm.label2.Text = e.ProgressPercentage.ToString() + "%";
-                    };
-                    webClient.DownloadFileCompleted += (s, e) =>
-                    {
-                        try
+                        FoundUpdate = true;
+                        ChangelogViewer CV = new ChangelogViewer();
+                        CV.cversion.Text = applicationVersion.ToString();
+                        CV.newversion.Text = newVersion.ToString();
+                        CV.changelog.Text = aboutUpdate.Trim();
+                        #region AShowDialog
+                        if (CV.ShowDialog() == DialogResult.Yes)
                         {
-                            frm.Close();
-                            Process.Start(@Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
-                            KillProcesses();
-                            DoBackUp();
-                            Application.Exit();
-                            Process.GetCurrentProcess().Kill();
-                        }
-                        catch { }
-                    };
-                    frm.FormClosed += (s, e) =>
-                    {
-                        webClient.CancelAsync();
-                    };
-                }
-                #endregion
-            }
-            else
-            {
-                Log.wnmp_log_notice("Your version: " + applicationVersion + " is up to date.", Log.LogSection.WNMP_MAIN);
-            }
-            if (!FoundUpdate)
-            {
-                if (CurVer.CompareTo(cpVersion) < 0)
-                {
-                    ChangelogViewer CV = new ChangelogViewer();
-                    CV.cversion.Text = CurVer.ToString();
-                    CV.newversion.Text = cpVersion.ToString();
-                    CV.changelog.Text = cpAbout.Trim();
-                    #region AShowDialog
-                    if (CV.ShowDialog() == DialogResult.Yes)
-                    {
-                        dlUpdateProgress frm = new dlUpdateProgress();
-                        frm.Show();
-                        frm.Focus();
-                        WebClient webClient = new WebClient();
-                        WebClient webClient2 = new WebClient();
-                        webClient.DownloadFileAsync(new Uri(cpUpdateUrl), @Application.StartupPath + "/Wnmp_new.exe");
-                        System.Threading.Thread.Sleep(500);
-                        webClient2.DownloadFileAsync(new Uri(cpUpdaterUrl), @Application.StartupPath + "/updater.exe");
-                        webClient.DownloadProgressChanged += (s, e) =>
-                        {
-                            frm.progressBar1.Value = e.ProgressPercentage;
-                            frm.label2.Text = e.ProgressPercentage.ToString() + "%";
-                        };
-                        webClient.DownloadFileCompleted += (s, e) =>
-                        {
-                            try
+                            dlUpdateProgress frm = new dlUpdateProgress();
+                            frm.Show();
+                            frm.Focus();
+                            WebClient webClient = new WebClient();
+                            webClient.DownloadFileAsync(new Uri(updurl), @Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
+                            webClient.DownloadProgressChanged += (s, e) =>
                             {
-                                frm.Close();
-                                System.Threading.Thread.Sleep(200);
-                                Process.Start(@Application.StartupPath + "/updater.exe");
-                                KillProcesses();
-                                Application.Exit();
-                                Process.GetCurrentProcess().Kill();
-                            }
-                            catch { }
-                        };
-                        frm.FormClosed += (s, e) =>
-                        {
-                            webClient.CancelAsync();
-                        };
+                                frm.progressBar1.Value = e.ProgressPercentage;
+                                frm.label2.Text = e.ProgressPercentage.ToString() + "%";
+                            };
+                            webClient.DownloadFileCompleted += (s, e) =>
+                            {
+                                try
+                                {
+                                    frm.Close();
+                                    Process.Start(@Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
+                                    KillProcesses();
+                                    DoBackUp();
+                                    Application.Exit();
+                                    Process.GetCurrentProcess().Kill();
+                                }
+                                catch { }
+                            };
+                            frm.FormClosed += (s, e) =>
+                            {
+                                webClient.CancelAsync();
+                            };
+                        }
+                        #endregion
                     }
-                    #endregion
+                    else
+                    {
+                        Log.wnmp_log_notice("Your version: " + applicationVersion + " is up to date.", Log.LogSection.WNMP_MAIN);
+                    }
+                    if (!FoundUpdate)
+                    {
+                        if (CurVer.CompareTo(cpVersion) < 0)
+                        {
+                            ChangelogViewer CV = new ChangelogViewer();
+                            CV.cversion.Text = CurVer.ToString();
+                            CV.newversion.Text = cpVersion.ToString();
+                            CV.changelog.Text = cpAbout.Trim();
+                            #region AShowDialog
+                            if (CV.ShowDialog() == DialogResult.Yes)
+                            {
+                                dlUpdateProgress frm = new dlUpdateProgress();
+                                frm.Show();
+                                frm.Focus();
+                                WebClient webClient = new WebClient();
+                                WebClient webClient2 = new WebClient();
+                                webClient.DownloadFileAsync(new Uri(cpUpdateUrl), @Application.StartupPath + "/Wnmp_new.exe");
+                                System.Threading.Thread.Sleep(500);
+                                webClient2.DownloadFileAsync(new Uri(cpUpdaterUrl), @Application.StartupPath + "/updater.exe");
+                                webClient.DownloadProgressChanged += (s, e) =>
+                                {
+                                    frm.progressBar1.Value = e.ProgressPercentage;
+                                    frm.label2.Text = e.ProgressPercentage.ToString() + "%";
+                                };
+                                webClient.DownloadFileCompleted += (s, e) =>
+                                {
+                                    try
+                                    {
+                                        frm.Close();
+                                        System.Threading.Thread.Sleep(200);
+                                        Process.Start(@Application.StartupPath + "/updater.exe");
+                                        KillProcesses();
+                                        Application.Exit();
+                                        Process.GetCurrentProcess().Kill();
+                                    }
+                                    catch { }
+                                };
+                                frm.FormClosed += (s, e) =>
+                                {
+                                    webClient.CancelAsync();
+                                };
+                            }
+                            #endregion
+                        }
+                        else
+                        {
+                            Log.wnmp_log_notice("Your control panel version: " + CurVer + " is up to date.", Log.LogSection.WNMP_MAIN);
+                        }
+                    }
+                    Wnmp.Properties.Settings.Default.lastcheckforupdate = DateTime.Now.ToString();
+                    Wnmp.Properties.Settings.Default.Save();
                 }
                 else
                 {
-                    Log.wnmp_log_notice("Your control panel version: " + CurVer + " is up to date.", Log.LogSection.WNMP_MAIN);
+                    reader.Close();
+                    Log.wnmp_log_error("Parsuing the update xml failed.", Log.LogSection.WNMP_MAIN);
                 }
             }
-            Wnmp.Properties.Settings.Default.lastcheckforupdate = DateTime.Now.ToString();
-            Wnmp.Properties.Settings.Default.Save();
         }
 
         private void DoBackUp()

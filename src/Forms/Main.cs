@@ -57,8 +57,7 @@ namespace Wnmp
         #region MenuStripItems
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            const string xmlUrl = UpdateXMLURL;
-            Updater _Updater = new Updater(xmlUrl, CPVER);
+            Updater _Updater = new Updater(UpdateXMLURL, CPVER);
         }
 
         private void wnmpOptionsToolStripMenuItem_Click(object sender, EventArgs e)
