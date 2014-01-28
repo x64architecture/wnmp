@@ -1,0 +1,334 @@
+Wnmp 2.0.7: Released 01/??/2014
+*******************************
+- Wnmp Control Panel 2.1.2
+  
+  * Fixed: Windows 8.1 version detection.
+  * Fixed: an invalid url and other misc changes
+  * Changed: Forms can't be resized now using ~WS_THICKFRAME
+
+- Nginx
+
+ * Updated to 1.5.9
+ * Compiled with OpenSSL 1.0.1f to fix CVE-2013-4353 & CVE-2013-6450
+
+- PHP
+
+  * Updated to 5.5.8
+
+- phpMyAdmin
+  
+  * Updated to 4.1.6
+
+Wnmp 2.0.6
+**********
+- Wnmp Control Panel 2.1.1
+
+  * Fixed #19, Checking for updates crashes the application
+
+Wnmp 2.0.5
+**********
+- Wnmp Control Panel 2.1.0
+
+  * Fixed #17, Bug with config and log button menu items.
+  * Fixed #18, Wnmp shows two windows when an update if found.
+  * Fixed incorrect windows edition definitions
+
+- Nginx
+
+  * Updated to 1.5.8
+
+- phpMyAdmin
+
+  * Updated to 4.1.2
+
+Wnmp 2.0.4
+**********
+- Wnmp Control Panel 2.0.9
+
+  * Wnmp now backups configuration files and overwrite the old ones.
+  * Implemented Automatic Check For Updates Feature, see #15.
+
+- Nginx
+
+  * Updated to 1.5.7
+
+- MariaDB
+
+  * Updated to 5.5.34
+
+Wnmp 2.0.3
+**********
+- Wnmp Control Panel 2.0.8
+
+  * Faster control panel startup(0.15348 vs. 0.183).
+  * Windows XP/2003 support dropped.
+  * Added Windows version definitions for Windows 8.1 and Windows Server 2012 R2.
+  * Added control panel updater and changelog viewer and fixed some minor bugs.
+  * Removed the border around the icon.
+  * Various fixes and improvments.
+
+- PHP
+
+  * Updated to 5.5.6
+
+- phpMyAdmin
+
+  * Updated to 4.0.9 
+
+Wnmp 2.0.2.9
+
+************
+
+
+- Wnmp
+ 
+  
+  * Removed All occurrences of the word "MySQL" and replaced them with "MariaDB"
+  
+  * Updated PRODUCT_* definitions
+
+  * Some internal changes
+ 
+ 
+
+- Nginx
+
+
+  * Updated to 1.5.6
+  
+
+
+- MariaDB
+
+
+  * Updated to 5.5.33a
+  
+
+
+- phpMyAdmin
+
+
+  * Updated to 4.0.7
+
+Wnmp 2.0.2.8
+************
+
+- Wnmp
+
+  * Fixed some things: Changed installer files due to modified configuration files.
+
+Wnmp 2.0.2.7
+************
+
+
+
+- Wnmp
+  
+ 
+ 
+  * Added link to localhost
+  * Added percent for update download progress
+  * Fixed checking if application was already running when starting Wnmp and at other times
+  * Other internal fixes and improvments
+
+- PHP
+
+  * Updated to 5.4.19
+  * Now compiled with extra extensions (apc, apcu, Zend OPcache, etc.) and other stuff!
+
+- Nginx 
+  
+  * Updated to 1.5.4
+
+- phpMyAdmin
+
+  * Updated to 4.0.6
+
+Wnmp 2.0.2.6
+
+************
+
+
+
+- Wnmp
+  
+ 
+ 
+  * Fixed Critical bug #8, PHP Crashes
+
+Wnmp 2.0.2.5
+************
+
+- Wnmp
+  
+  * Fixed bug #6, Nginx config button showes Nginx logs menu.
+  * Enhanced menu, see issue #5.
+  * Implemented a process revival class, see issue #7.
+  * Fixed incorrect term, "tray" instead of "taskbar".
+  * Fixed incorrect my.ini path
+  * Added check to see if MariaDB is running before launching MariaDB
+
+- phpMyAdmin
+  
+  * Updated to 4.0.5
+
+- Nginx
+ 
+  * Updated to 1.5.3
+
+- MariaDB
+  
+  * Updated to 5.5.32
+
+Wnmp 2.0.2.4
+************
+
+- Wnmp
+  
+  * Fixed issue #1: Missing icon
+  * Fixed issue #3: Faulty MariaDB configuration file
+  * Added option to start Wnmp at startup & option to start all applications upon Wnmp launch. See issue #2.
+  * Added option to make Wnmp minimize to the taskbar, and disabled it by defualt. See issue #4.
+  * Improved check for updates feature, it now downloads updates through the application and does not remove configuration files.
+  * Changed the About Messagebox to a nicer looking form.
+  * New installer using Inno Setup.
+
+- phpMyAdmin
+  
+  * Updated to 4.0.4.1
+
+- Nginx
+ 
+  * Updated to 1.5.2
+
+- PHP 
+  
+  * Updated to 5.4.17
+
+Wnmp 2.0.2.3
+************
+   
+- phpMyAdmin
+
+  * Updated to 4.0.3
+
+- Nginx
+
+  * Updated to 1.5.1
+
+- PHP
+  
+  * Updated to 5.4.16
+
+Wnmp 2.0.2.2
+************
+
+- Wnmp:
+
+  * Fixed bug #5 (Pressing the Open MySQL Shell button gave the message "The system cannot find the file specified")
+  * Organized code into seperate files
+
+- phpMyAdmin
+
+  * Updated to 4.0.1
+
+- MariaDB
+  
+  * Updated to 5.5.31
+
+Wnmp 2.0.2.1
+************
+
+Bug Fixes:
+
+* Fixed viewing of config files and log files
+
+Wnmp 2.0.2
+**********
+Enhancements:
+
+* Lots of GUI changes
+
+* Added option to view logs inside the GUI
+
+* Added option to edit the config inside the GUI
+
+* Added the applications statuses inside the GUI
+
+* Added an output box inside the GUI
+
+Updates:
+
+* PHP now in version 5.4.15
+
+* Nginx now in version 1.4.1
+  - Security: a stack-based buffer overflow might occur in a worker
+    process while handling a specially crafted request, potentially
+    resulting in arbitrary code execution (CVE-2013-2028).
+
+* phpMyAdmin now in version 4.0.0
+
+Wnmp 2.0.1.2
+************
+
+Updates:
+
+* PHP now in version 5.4.14
+
+* phpMyAdmin now in version 3.5.8.1
+
+* Nginx now in version 1.4.0
+  - Nginx now supports proxying of WebSocket connections, OCSP stapling, SPDY module, gunzip filter and more.
+
+* Removed batch scripts now it is all done in the program!
+
+* Added the option to start the MySQL shell from the program
+
+Wnmp 2.0.1.1
+************
+
+Updates:
+
+* PHP now in version 5.4.13
+
+* MariaDB now in version 5.5.30
+
+* Nginx now in version 1.2.8
+
+* Check for updates feature added to Wnmp.exe(File > Check For Updates)
+
+Wnmp 2.0.1
+**********
+Enhancements:
+
+* PHP is now hidden
+
+
+Updates:
+
+* phpMyAdmin now in version 3.5.7
+
+* PHP now in version 5.4.12
+
+* The control panel is now in version 1.0.0.1
+
+
+Wnmp 2.0
+********
+Enhancements:
+
+* Added control panel, wnmp.exe 1.0.0  
+
+* Cleaned  up nginx.conf
+
+* You can now place the Wnmp folder anywhere
+
+* Changed from MySQL Server to MariaDB
+
+Bug Fixes:
+
+* phpMyAdmin wasn't working due to apc 3.1.14
+
+Updates:
+
+* Nginx now in version 1.2.7
