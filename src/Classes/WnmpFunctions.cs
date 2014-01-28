@@ -57,8 +57,13 @@ namespace Wnmp
                 sb.Append(" " + OSVersionInfo.Edition);
             if (OSVersionInfo.ServicePack != "")
                 sb.Append(" " + OSVersionInfo.ServicePack);
+#if DEBUG
+            Log.wnmp_log_notice("Control Panel Version: " + Program.formInstance.CPVER + "-Dev", Log.LogSection.WNMP_MAIN);
+            Log.wnmp_log_notice("Wnmp Version: " + Program.formInstance.ProductVersion + "-Dev", Log.LogSection.WNMP_MAIN);
+#else
             Log.wnmp_log_notice("Control Panel Version: " + Program.formInstance.CPVER, Log.LogSection.WNMP_MAIN);
             Log.wnmp_log_notice("Wnmp Version: " + Program.formInstance.ProductVersion, Log.LogSection.WNMP_MAIN);
+#endif
             Log.wnmp_log_notice(sb.ToString(), Log.LogSection.WNMP_MAIN);
             Log.wnmp_log_notice("Wnmp Directory: " + Application.StartupPath, Log.LogSection.WNMP_MAIN);
             checkforapps();
