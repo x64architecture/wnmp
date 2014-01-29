@@ -5,6 +5,8 @@ Wnmp 2.0.7: Released: 01/??/2014
   * Fixed: Windows 8.1 version detection.
   * Fixed: an invalid url and other misc changes
   * Changed: Forms can't be resized now using ~WS_THICKFRAME
+  * Feature: Double click the Log RichTextBox and it will pop up a notepad with the current log
+  * Feature: When Wnmp closes it saves a log to the start up path
 
 - Nginx
 
