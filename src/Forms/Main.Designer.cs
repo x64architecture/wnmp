@@ -530,6 +530,7 @@ namespace Wnmp
             this.log_rtb.Size = new System.Drawing.Size(647, 133);
             this.log_rtb.TabIndex = 49;
             this.log_rtb.Text = "";
+            this.log_rtb.DoubleClick += new System.EventHandler(this.log_rtb_DoubleClick);
             // 
             // timer1
             // 
@@ -558,6 +559,7 @@ namespace Wnmp
             this.MinimumSize = new System.Drawing.Size(663, 400);
             this.Name = "Main";
             this.Text = "Wnmp";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.Resize += new System.EventHandler(this.Main_Resize);
             this.menuStrip1.ResumeLayout(false);

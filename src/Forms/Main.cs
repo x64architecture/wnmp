@@ -117,6 +117,40 @@ namespace Wnmp
 
         #region Functions
 
+        private void DoSaveLog()
+        {
+            try
+            {
+                string path = @Application.StartupPath;
+                StreamWriter sw = new StreamWriter(path + @"\Wnmp.log", true);
+                sw.WriteLine(DateTime.Now.ToLongDateString());
+                foreach (string str in log_rtb.Lines)
+                {
+                    sw.WriteLine(str);
+                }
+                sw.Close();
+            }
+            catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
+        }
+
+        private void DoTempLog()
+        {
+            try
+            {
+                string temppath = Path.GetTempPath() + "Wnmp";
+                if (!Directory.Exists(temppath))
+                    Directory.CreateDirectory(temppath);
+                StreamWriter sw = new StreamWriter(temppath + @"\Wnmp.log");
+                foreach (string str in log_rtb.Lines)
+                {
+                    sw.WriteLine(str);
+                }
+                sw.Close();
+                Process.Start("notepad.exe ", temppath + @"\Wnmp.log");
+            }
+            catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
+        }
+
         private void DeleteFile(string file)
         {
             if (File.Exists(file))
@@ -190,6 +224,16 @@ namespace Wnmp
         private void wnmpdir_Click(object sender, EventArgs e)
         {
             Process.Start("explorer.exe", @Application.StartupPath);
+        }
+
+        private void log_rtb_DoubleClick(object sender, EventArgs e)
+        {
+            DoTempLog();
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DoSaveLog();
         }
 
         #region events
