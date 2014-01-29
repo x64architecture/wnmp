@@ -16,17 +16,12 @@ This file is part of Wnmp.
     You should have received a copy of the GNU General Public License
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
-using System.Net;
-using System.Collections.Specialized;
+using System.Windows.Forms;
 
 namespace Wnmp
 {
