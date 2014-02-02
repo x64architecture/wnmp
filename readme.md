@@ -4,7 +4,7 @@ Wnmp values security, stability and user friendliness.
 ------------------------------------------------------
 
 
-### Versions of the software(Updated: February 1st 2013): ######
+### Versions of the software(Updated: February 2nd 2014): ######
 
   * Nginx 1.5.9
 
