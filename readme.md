@@ -10,11 +10,7 @@ Wnmp values security, stability and user friendliness.
 
   * MariaDB 5.5.35
 
-<<<<<<< HEAD
-  * PHP 5.5.9RC1 (Non Thread Safe + FastCGI)
-=======
-  * PHP 5.5.7 (Non Thread Safe + FastCGI)
->>>>>>> 2b68a722b845bd8339b194ac254779753a3e4fbf
+  * PHP 5.5.8 (Non Thread Safe + FastCGI)
 
   * phpMyAdmin 4.1.6
 ### How to Install ######
