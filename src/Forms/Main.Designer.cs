@@ -94,6 +94,7 @@ namespace Wnmp
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.logs = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mdb_logs = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.weNeedYourSupportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -112,7 +113,8 @@ namespace Wnmp
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.helpToolStripMenuItem,
-            this.localhostToolStripMenuItem});
+            this.localhostToolStripMenuItem,
+            this.weNeedYourSupportToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(647, 24);
@@ -172,40 +174,40 @@ namespace Wnmp
             // supportToolStripMenuItem
             // 
             this.supportToolStripMenuItem.Name = "supportToolStripMenuItem";
-            this.supportToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.supportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.supportToolStripMenuItem.Text = "Support";
             this.supportToolStripMenuItem.Click += new System.EventHandler(this.SupportToolStripMenuItem_Click);
             // 
             // reportBugToolStripMenuItem
             // 
             this.reportBugToolStripMenuItem.Name = "reportBugToolStripMenuItem";
-            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.reportBugToolStripMenuItem.Text = "Report Bug";
             this.reportBugToolStripMenuItem.Click += new System.EventHandler(this.Report_BugToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(130, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // websiteToolStripMenuItem
             // 
             this.websiteToolStripMenuItem.Name = "websiteToolStripMenuItem";
-            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.websiteToolStripMenuItem.Text = "Website";
             this.websiteToolStripMenuItem.Click += new System.EventHandler(this.websiteToolStripMenuItem_Click);
             // 
             // donateToolStripMenuItem
             // 
             this.donateToolStripMenuItem.Name = "donateToolStripMenuItem";
-            this.donateToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.donateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.donateToolStripMenuItem.Text = "Donate";
             this.donateToolStripMenuItem.Click += new System.EventHandler(this.donateToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -546,6 +548,13 @@ namespace Wnmp
             this.mdb_logs.Name = "contextMenuStrip5";
             this.mdb_logs.Size = new System.Drawing.Size(61, 4);
             // 
+            // weNeedYourSupportToolStripMenuItem
+            // 
+            this.weNeedYourSupportToolStripMenuItem.Name = "weNeedYourSupportToolStripMenuItem";
+            this.weNeedYourSupportToolStripMenuItem.Size = new System.Drawing.Size(341, 20);
+            this.weNeedYourSupportToolStripMenuItem.Text = "We Need Your Support To Buy a $60 Code Signing Certificate";
+            this.weNeedYourSupportToolStripMenuItem.Click += new System.EventHandler(this.weNeedYourSupportToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -622,6 +631,7 @@ namespace Wnmp
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem localhostToolStripMenuItem;
         internal System.Windows.Forms.Label phprunning;
+        private System.Windows.Forms.ToolStripMenuItem weNeedYourSupportToolStripMenuItem;
 
     }
 }

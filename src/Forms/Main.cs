@@ -225,7 +225,10 @@ namespace Wnmp
         {
             Process.Start("explorer.exe", @Application.StartupPath);
         }
-
+        private void weNeedYourSupportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://www.gofundme.com/certforwnmp");
+        }
         private void log_rtb_DoubleClick(object sender, EventArgs e)
         {
             DoTempLog();
@@ -275,6 +278,7 @@ namespace Wnmp
             // End
         }
         #endregion
+
 
         #endregion
 
