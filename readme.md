@@ -3,6 +3,12 @@ Windows, Nginx, MariaDB And PHP(Wnmp)
 Wnmp values security, stability and user friendliness.
 ------------------------------------------------------
 
+### Current Wnmp Versions: ######
+
+  * Wnmp 2.0.7
+  * Wnmp Control Panel 2.1.2
+
+----
 
 ### Versions of the software(Updated: February 2nd 2014): ######
 
@@ -13,6 +19,9 @@ Wnmp values security, stability and user friendliness.
   * PHP 5.5.8 (Non Thread Safe + FastCGI)
 
   * phpMyAdmin 4.1.6
+  
+----
+
 ### How to Install ######
 
   1. To install download the latest version of Wnmp [here][1] (latest version 2.0.7)
