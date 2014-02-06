@@ -34,10 +34,10 @@ Wnmp 2.0.7: Released: 01/02/2014
   * Updated to 4.1.6  
 </about>
 <cpversion>2.1.3</cpversion>
-<cpupdateurl>https://github.com/wnmp/wnmp/blob/master/updatefiles/Wnmp.exe</cpupdateurl>
-<cpupdaterurl>https://github.com/wnmp/wnmp/blob/master/updatefiles/updater.exe</cpupdaterurl>
+<cpupdateurl>https://github.com/wnmp/wnmp/blob/master/updatefiles/Wnmp.exe?raw=true</cpupdateurl>
+<cpupdaterurl>https://github.com/wnmp/wnmp/blob/master/updatefiles/updater.exe?raw=true</cpupdaterurl>
 <cpabout>
-Wnmp Control Panel 2.1.2
+Wnmp Control Panel 2.1.3
 ************************
 
   * Signed using new certificate.

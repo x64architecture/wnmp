@@ -61,6 +61,7 @@ namespace Wnmp
             this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.localhostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.weNeedYourSupportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ngx_reload = new System.Windows.Forms.Button();
             this.php_log = new System.Windows.Forms.Button();
@@ -94,7 +95,6 @@ namespace Wnmp
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.logs = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mdb_logs = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.weNeedYourSupportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -174,40 +174,40 @@ namespace Wnmp
             // supportToolStripMenuItem
             // 
             this.supportToolStripMenuItem.Name = "supportToolStripMenuItem";
-            this.supportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.supportToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.supportToolStripMenuItem.Text = "Support";
             this.supportToolStripMenuItem.Click += new System.EventHandler(this.SupportToolStripMenuItem_Click);
             // 
             // reportBugToolStripMenuItem
             // 
             this.reportBugToolStripMenuItem.Name = "reportBugToolStripMenuItem";
-            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.reportBugToolStripMenuItem.Text = "Report Bug";
             this.reportBugToolStripMenuItem.Click += new System.EventHandler(this.Report_BugToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(130, 6);
             // 
             // websiteToolStripMenuItem
             // 
             this.websiteToolStripMenuItem.Name = "websiteToolStripMenuItem";
-            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.websiteToolStripMenuItem.Text = "Website";
             this.websiteToolStripMenuItem.Click += new System.EventHandler(this.websiteToolStripMenuItem_Click);
             // 
             // donateToolStripMenuItem
             // 
             this.donateToolStripMenuItem.Name = "donateToolStripMenuItem";
-            this.donateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.donateToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.donateToolStripMenuItem.Text = "Donate";
             this.donateToolStripMenuItem.Click += new System.EventHandler(this.donateToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -217,6 +217,13 @@ namespace Wnmp
             this.localhostToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.localhostToolStripMenuItem.Text = "localhost";
             this.localhostToolStripMenuItem.Click += new System.EventHandler(this.localhostToolStripMenuItem_Click);
+            // 
+            // weNeedYourSupportToolStripMenuItem
+            // 
+            this.weNeedYourSupportToolStripMenuItem.Name = "weNeedYourSupportToolStripMenuItem";
+            this.weNeedYourSupportToolStripMenuItem.Size = new System.Drawing.Size(341, 20);
+            this.weNeedYourSupportToolStripMenuItem.Text = "We Need Your Support To Buy a $60 Code Signing Certificate";
+            this.weNeedYourSupportToolStripMenuItem.Click += new System.EventHandler(this.weNeedYourSupportToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -548,13 +555,6 @@ namespace Wnmp
             this.mdb_logs.Name = "contextMenuStrip5";
             this.mdb_logs.Size = new System.Drawing.Size(61, 4);
             // 
-            // weNeedYourSupportToolStripMenuItem
-            // 
-            this.weNeedYourSupportToolStripMenuItem.Name = "weNeedYourSupportToolStripMenuItem";
-            this.weNeedYourSupportToolStripMenuItem.Size = new System.Drawing.Size(341, 20);
-            this.weNeedYourSupportToolStripMenuItem.Text = "We Need Your Support To Buy a $60 Code Signing Certificate";
-            this.weNeedYourSupportToolStripMenuItem.Click += new System.EventHandler(this.weNeedYourSupportToolStripMenuItem_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -567,6 +567,7 @@ namespace Wnmp
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(663, 400);
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Wnmp";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
