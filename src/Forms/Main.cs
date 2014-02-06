@@ -28,7 +28,7 @@ namespace Wnmp
     public partial class Main : Form
     {
         public static string getappsupath = Application.StartupPath;
-        internal Version CPVER = new Version("2.1.2");
+        internal Version CPVER = new Version("2.1.3");
         internal const string UpdateXMLURL = "https://s3.amazonaws.com/wnmp/update.xml";
 
         public Main()
