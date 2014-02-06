@@ -21,6 +21,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Windows.Forms;
 
 namespace Wnmp
@@ -117,12 +118,36 @@ namespace Wnmp
 
         #region Functions
 
+        private void DoLogSizeCheck(string path)
+        {
+            try
+            {
+                var file = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+
+                if (file.Length > 1048576) // 1048576 = 1MB
+                {
+                    Log.wnmp_log_notice("Wnmp.log is greator than 1MB compressing it to Wnmp.log.gz...", Log.LogSection.WNMP_MAIN);
+                    CompressFile(path);
+                    file.Dispose();
+                    File.Delete(path);
+                }
+                else
+                {
+                    file.Dispose();
+                }
+            }
+            catch { }
+        }
+
         private void DoSaveLog()
         {
             try
             {
-                string path = @Application.StartupPath;
-                StreamWriter sw = new StreamWriter(path + @"\Wnmp.log", true);
+                string path = Application.StartupPath + "/Wnmp.log";
+
+                DoLogSizeCheck(path);
+
+                StreamWriter sw = new StreamWriter(path, true);
                 sw.WriteLine(DateTime.Now.ToLongDateString());
                 foreach (string str in log_rtb.Lines)
                 {
@@ -131,6 +156,28 @@ namespace Wnmp
                 sw.Close();
             }
             catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
+        }
+
+        private void CompressFile(string path)
+        {
+            FileStream sourceFile = File.OpenRead(path);
+            FileStream destinationFile = File.Create(path + ".gz");
+
+            byte[] buffer = new byte[sourceFile.Length];
+            sourceFile.Read(buffer, 0, buffer.Length);
+
+            using (GZipStream output = new GZipStream(destinationFile,
+                CompressionMode.Compress))
+            {
+                Console.WriteLine("Compressing {0} to {1}.", sourceFile.Name,
+                    destinationFile.Name, false);
+
+                output.Write(buffer, 0, buffer.Length);
+            }
+
+            // Close the files.
+            sourceFile.Close();
+            destinationFile.Close();
         }
 
         private void DoTempLog()
