@@ -6,7 +6,7 @@ Wnmp values security, stability and user friendliness.
 ### Current Wnmp Versions: ######
 
   * Wnmp 2.0.7
-  * Wnmp Control Panel 2.1.2
+  * Wnmp Control Panel 2.1.3
 
 ----
 
