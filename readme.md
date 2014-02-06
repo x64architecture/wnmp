@@ -1,5 +1,5 @@
-Windows, Nginx, MariaDB And PHP(Wnmp)
-=====================================
+Windows, Nginx, MariaDB And PHP (Wnmp)
+======================================
 Wnmp values security, stability and user friendliness.
 ------------------------------------------------------
 
