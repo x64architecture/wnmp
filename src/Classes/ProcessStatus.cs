@@ -30,6 +30,7 @@ namespace Wnmp
             STOPPED,
             STARTED
         }
+
         public static void timer()
         {
             cfc = new Timer();
@@ -37,6 +38,7 @@ namespace Wnmp
             cfc.Interval = 5000;
             cfc.Enabled = true;
         }
+
         private static Timer cfc;
         public delegate void Action();
         [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
@@ -53,7 +55,7 @@ namespace Wnmp
                         {
                             if (ciair("nginx") == false)
                             {
-                                Nginx.startprocess(Main.getappsupath + "/nginx.exe", "", false);
+                                Nginx.startprocess(Main.StartupPath + "/nginx.exe", "", false);
                                 Log.wnmp_log_error("Attempting to restart crashed Nginx", Log.LogSection.WNMP_NGINX);
                                 ngxfails++;
                             }
@@ -70,7 +72,7 @@ namespace Wnmp
                         {
                             if (ciair("mariadb") == false)
                             {
-                                MariaDB.startprocess(Main.getappsupath + "/mariadb/bin/mysqld.exe", "", false, true, false);
+                                MariaDB.startprocess(Main.StartupPath + "/mariadb/bin/mysqld.exe", "", false, true, false);
                                 Log.wnmp_log_error("Attempting to restart crashed MariaDB", Log.LogSection.WNMP_MARIADB);
                                 mariadbfails++;
                             }
@@ -87,7 +89,7 @@ namespace Wnmp
                         {
                             if (ciair("php-cgi") == false)
                             {
-                                PHP.startprocess(Main.getappsupath + "/php/php-cgi.exe", "-b localhost:9000");
+                                PHP.startprocess(Main.StartupPath + "/php/php-cgi.exe", "-b localhost:9000");
                                 Log.wnmp_log_error("Attempting to restart crashed PHP", Log.LogSection.WNMP_PHP);
                                 phpfails++;
                             }
@@ -97,6 +99,7 @@ namespace Wnmp
                 case (int)ProcessStatus.ps.STOPPED: phpfails = 0; break;
             }
         }
+
         [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
         private static bool ciair(string process)
         {

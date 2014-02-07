@@ -76,7 +76,7 @@ namespace Wnmp
         private const int PRODUCT_SERVER_FOR_SB_SOLUTIONS_EM = 0x00000037;
         private const int PRODUCT_SOLUTION_EMBEDDEDSERVER = 0x00000038;
         private const int PRODUCT_SOLUTION_EMBEDDEDSERVER_CORE = 0x00000039;
-        //private const int ???? = 0x0000003A;
+        // private const int ???? = 0x0000003A;
         private const int PRODUCT_ESSENTIALBUSINESS_SERVER_MGMT = 0x0000003B;
         private const int PRODUCT_ESSENTIALBUSINESS_SERVER_ADDL = 0x0000003C;
         private const int PRODUCT_ESSENTIALBUSINESS_SERVER_MGMTSVC = 0x0000003D;
@@ -113,7 +113,7 @@ namespace Wnmp
         private const int PRODUCT_CORE = 0x00000065;
         private const int PRODUCT_PROFESSIONAL_WMC = 0x00000067;
 
-        //internal const int PRODUCT_UNLICENSED = 0xABCDABCD;
+        // private const int PRODUCT_UNLICENSED = 0xABCDABCD;
         #endregion PRODUCT
 
         #region VERSIONS

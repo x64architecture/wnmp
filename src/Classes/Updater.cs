@@ -84,7 +84,6 @@ namespace Wnmp
                     }
                 }
             }
-
         }
 
         #region ReadUpdateXML
@@ -238,7 +237,7 @@ namespace Wnmp
 
         private void DoBackUp()
         {
-            string wd = Main.getappsupath;
+            string wd = Main.StartupPath;
             string[] files = { wd + "/php/php.ini", wd + "/conf/nginx.conf" };
             foreach (string file in files)
             {
@@ -259,6 +258,7 @@ namespace Wnmp
             else
                 return false;
         }
+
         private static void DoDateEclasped(double days)
         {
             if (IsSet(Wnmp.Properties.Settings.Default.lastcheckforupdate))
@@ -268,7 +268,7 @@ namespace Wnmp
                 if (DateTime.Now > expiryDate)
                 {
                     const string xmlUrl = Main.UpdateXMLURL;
-                    Updater _Updater = new Updater(xmlUrl, Program.formInstance.CPVER);
+                    Updater _Updater = new Updater(xmlUrl, Program.formInstance.GetCPVER);
                 }
             }
             else
@@ -277,6 +277,7 @@ namespace Wnmp
                 Wnmp.Properties.Settings.Default.Save();
             }
         }
+
         public static void DoAutoCheckForUpdate()
         {
             if (Wnmp.Properties.Settings.Default.autocheckforupdates == true)

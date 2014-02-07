@@ -36,6 +36,7 @@ namespace Wnmp
             {
                 return ((DescriptionAttribute)customAttributes[0]).Description;
             }
+
             return string.Empty;
         }
 
@@ -49,6 +50,7 @@ namespace Wnmp
                 rtfLog.SelectionLength = GetEnumDescription(logSection).Length;
                 rtfLog.SelectionColor = color;
             }
+
             rtfLog.ScrollToCaret();
         }
 

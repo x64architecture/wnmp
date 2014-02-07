@@ -37,23 +37,25 @@ namespace Wnmp
         public static ContextMenuStrip cms = new ContextMenuStrip();
         public static ContextMenuStrip lms = new ContextMenuStrip();
         public static int mariadbstatus = (int)ProcessStatus.ps.STOPPED;
+
         [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
         public static void startprocess(string p, string args, bool shellexc, bool redirectso, bool wfe)
         {
-            System.Threading.Thread.Sleep(100); //Wait
-            ps = new Process(); //Create process
-            ps.StartInfo.FileName = p; //p is the path and file name of the file to run
-            ps.StartInfo.Arguments = args; //Parameters to pass to program
+            System.Threading.Thread.Sleep(100); // Wait
+            ps = new Process(); // Create process
+            ps.StartInfo.FileName = p; // p is the path and file name of the file to run
+            ps.StartInfo.Arguments = args; // Parameters to pass to program
             ps.StartInfo.UseShellExecute = shellexc;
-            ps.StartInfo.RedirectStandardOutput = redirectso; //Set output of program to be written to process output stream
+            ps.StartInfo.RedirectStandardOutput = redirectso; // Set output of program to be written to process output stream
             ps.StartInfo.WorkingDirectory = Application.StartupPath;
-            ps.StartInfo.CreateNoWindow = true; //Excute with no window
-            ps.Start(); //Start the process
+            ps.StartInfo.CreateNoWindow = true; // Excute with no window
+            ps.Start(); // Start the process
             if (wfe)
             {
                 ps.WaitForExit();
             }
         }
+
         internal static void mdb_start_Click(object sender, EventArgs e)
         {
             try
@@ -69,11 +71,12 @@ namespace Wnmp
                 Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
             }
         }
+
         internal static void mdb_stop_Click(object sender, EventArgs e)
         {
             try
             {
-                //MariaDB
+                // MariaDB
                 Log.wnmp_log_notice("Attempting to stop MariaDB", Log.LogSection.WNMP_MARIADB);
                 startprocess(@Application.StartupPath + @"\mariadb\bin\mysqladmin.exe", "-u root -p shutdown", true, false, true);
 
@@ -92,17 +95,18 @@ namespace Wnmp
                 Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
             }
         }
+
         internal static void mdb_shell_Click(object sender, EventArgs e)
         {
             try
             {
                 Log.wnmp_log_notice("Attempting to start MariaDB shell", Log.LogSection.WNMP_MARIADB);
-                //MariaDB
+                // MariaDB
                 if (MariaDBStatus != 0)
                 {
                     startprocess(@Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true, false);
                 }
-                //MariaDB Shell
+                // MariaDB Shell
                 startprocess(@Application.StartupPath + @"\mariadb\bin\mysql.exe", "-u root -p", true, false, false);
             }
             catch (Exception ex)
@@ -110,26 +114,32 @@ namespace Wnmp
                 Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
             }
         }
+
         public static int MariaDBStatus { get { return mariadbstatus; } }
+
         internal static void mdb_start_MouseHover(object sender, EventArgs e)
         {
             ToolTip MariaDB_start_Tip = new ToolTip();
             MariaDB_start_Tip.Show("Start MariaDB", Program.formInstance.mdb_start);
         }
+
         internal static void mdb_stop_MouseHover(object sender, EventArgs e)
         {
             ToolTip MariaDB_stop_Tip = new ToolTip();
             MariaDB_stop_Tip.Show("Stop MariaDB", Program.formInstance.mdb_stop);
         }
+
         internal static void mdb_shell_MouseHover(object sender, EventArgs e)
         {
             ToolTip MariaDB_opnshell_Tip = new ToolTip();
             MariaDB_opnshell_Tip.Show("Open MariaDB Shell", Program.formInstance.mdb_shell);
         }
+
         internal static void mdb_help_Click(object sender, EventArgs e)
         {
             MessageBox.Show("The default login for MariaDB/phpMyAdmin is:" + "\n" + "Username: root" + "\n" + "Password: password");
         }
+
         internal static void mdb_cfg_Click(object sender, EventArgs e)
         {
             Button btnSender = (Button)sender;

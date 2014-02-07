@@ -40,15 +40,15 @@ namespace Wnmp
         [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
         public static void startprocess(string p, string args, bool wfe)
         {
-            System.Threading.Thread.Sleep(100); //Wait
-            ps = new Process(); //Create process
-            ps.StartInfo.FileName = p; //p is the path and file name of the file to run
-            ps.StartInfo.Arguments = args; //Parameters to pass to program
+            System.Threading.Thread.Sleep(100); // Wait
+            ps = new Process(); // Create process
+            ps.StartInfo.FileName = p; // p is the path and file name of the file to run
+            ps.StartInfo.Arguments = args; // Parameters to pass to program
             ps.StartInfo.UseShellExecute = false;
-            ps.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
+            ps.StartInfo.RedirectStandardOutput = true; // Set output of program to be written to process output stream
             ps.StartInfo.WorkingDirectory = Application.StartupPath;
-            ps.StartInfo.CreateNoWindow = true; //Excute with no window
-            ps.Start(); //Start the process
+            ps.StartInfo.CreateNoWindow = true; // Excute with no window
+            ps.Start(); // Start the process
             if (wfe)
             {
                 ps.WaitForExit();
@@ -117,6 +117,7 @@ namespace Wnmp
             ToolTip nginx_start_Tip = new ToolTip();
             nginx_start_Tip.Show("Start Nginx", Program.formInstance.ngx_start);
         }
+
         internal static void ngx_reload_MouseHover(object sender, EventArgs e)
         {
             ToolTip nginx_reload_Tip = new ToolTip();
@@ -137,6 +138,7 @@ namespace Wnmp
         {
             Process.Start(Wnmp.Properties.Settings.Default.editor, Application.StartupPath + "/conf/" + e.ClickedItem.Text);
         }
+
         internal static void ngx_log_Click(object sender, EventArgs e)
         {
             Button btnSender = (Button)sender;
@@ -146,6 +148,7 @@ namespace Wnmp
             lms.ItemClicked -= lms_ItemClicked;
             lms.ItemClicked += lms_ItemClicked;
         }
+
         static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             Process.Start(Wnmp.Properties.Settings.Default.editor, Application.StartupPath + "/logs/" + e.ClickedItem.Text);

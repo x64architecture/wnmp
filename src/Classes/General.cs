@@ -48,11 +48,11 @@ namespace Wnmp
             try
             {
                 Log.wnmp_log_notice("Attempting to start all the applications", Log.LogSection.WNMP_MAIN);
-                //Nginx
+                // Nginx
                 Nginx.ngx_start_Click(sender, e);
-                //PHP
+                // PHP
                 PHP.php_start_Click(sender, e);
-                //MariaDB
+                // MariaDB
                 MariaDB.mdb_start_Click(sender, e);
             }
             catch (Exception ex)
@@ -65,11 +65,11 @@ namespace Wnmp
         {
             try
             {
-                //Nginx
+                // Nginx
                 Nginx.ngx_stop_Click(sender, e);
-                //PHP
+                // PHP
                 PHP.php_stop_Click(sender, e);
-                //MariaDB
+                // MariaDB
                 MariaDB.mdb_stop_Click(sender, e);
                 Log.wnmp_log_notice("Attempting to stop all the applications", Log.LogSection.WNMP_MAIN);
             }

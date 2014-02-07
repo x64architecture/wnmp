@@ -58,7 +58,7 @@ namespace Wnmp.Forms
         {
 #if DEBUG
             label1.Text = "Wnmp Version: " + Application.ProductVersion + "-Dev";
-            label2.Text = "Wnmp Control Panel Version: " + Program.formInstance.CPVER + "-Dev";
+            label2.Text = "Wnmp Control Panel Version: " + Program.formInstance.GetCPVER + "-Dev";
 #else
             label1.Text = "Wnmp Version: " + Application.ProductVersion;
             label2.Text = "Wnmp Control Panel Version: " + Program.formInstance.CPVER;

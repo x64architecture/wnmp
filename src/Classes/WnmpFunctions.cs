@@ -58,7 +58,7 @@ namespace Wnmp
             if (OSVersionInfo.ServicePack != "")
                 sb.Append(" " + OSVersionInfo.ServicePack);
 #if DEBUG
-            Log.wnmp_log_notice("Control Panel Version: " + Program.formInstance.CPVER + "-Dev", Log.LogSection.WNMP_MAIN);
+            Log.wnmp_log_notice("Control Panel Version: " + Program.formInstance.GetCPVER + "-Dev", Log.LogSection.WNMP_MAIN);
             Log.wnmp_log_notice("Wnmp Version: " + Program.formInstance.ProductVersion + "-Dev", Log.LogSection.WNMP_MAIN);
 #else
             Log.wnmp_log_notice("Control Panel Version: " + Program.formInstance.CPVER, Log.LogSection.WNMP_MAIN);
@@ -82,6 +82,7 @@ namespace Wnmp
             DirFiles("/mariadb/data", "*.log", MariaDB.lms);
             DirFiles("/php/logs", "*.log", PHP.lms);
         }
+
         internal static void DirFiles(string path, string GetFiles, ContextMenuStrip cms)
         {
             try
@@ -134,6 +135,7 @@ namespace Wnmp
                 Program.formInstance.phprunning.ForeColor = Color.DarkRed;
             }
         }
+
         private static bool check_if_running(string application)
         {
             Process[] _Process = Process.GetProcessesByName(application);
@@ -143,6 +145,7 @@ namespace Wnmp
                 return false;
         }
         #endregion
+
         internal static void KillProcesses()
         {
             string[] processtokill = { "php-cgi", "nginx", "mysqld" };

@@ -28,8 +28,11 @@ namespace Wnmp
 {
     public partial class Main : Form
     {
-        public static string getappsupath = Application.StartupPath;
-        internal Version CPVER = new Version("2.1.3");
+        public static string StartupPath { get { return Application.StartupPath; } }
+
+        private Version CPVER = new Version("2.1.3");
+        public Version GetCPVER { get { return CPVER; } }
+
         internal const string UpdateXMLURL = "https://s3.amazonaws.com/wnmp/update.xml";
 
         public Main()
@@ -53,7 +56,7 @@ namespace Wnmp
         #region MenuStripItems
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Updater _Updater = new Updater(UpdateXMLURL, CPVER);
+            Updater _Updater = new Updater(UpdateXMLURL, GetCPVER);
         }
 
         private void wnmpOptionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -68,10 +71,12 @@ namespace Wnmp
         {
             Application.Exit();
         }
+
         private void SupportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("https://groups.google.com/group/windows-nginx-mysql-php-discuss");
         }
+
         private void Report_BugToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string desktoppath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -87,7 +92,7 @@ namespace Wnmp
                 if (!Directory.Exists(desktoppath + @"\Wnmpissuefiles"))
                     Directory.CreateDirectory(desktoppath + @"\Wnmpissuefiles");
                 File.Copy(Application.StartupPath + "/php/logs/sys.log", desktoppath + @"\Wnmpissuefiles\sys.log", true);
-                MessageBox.Show(String.Format("Attach the error log inside the {0} folder to the issue report that is associated with the problem you are facing.", desktoppath + @"\Wnmpissuefiles"));
+                MessageBox.Show(string.Format("Attach the error log inside the {0} folder to the issue report that is associated with the problem you are facing.", desktoppath + @"\Wnmpissuefiles"));
                 Process.Start("https://github.com/wnmp/wnmp/issues/new");
             }
             catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
@@ -100,10 +105,12 @@ namespace Wnmp
             aboutfrm.ShowDialog(this);
             aboutfrm.Focus();
         }
+
         private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("http://wnmp.x64Architecture.com");
         }
+
         private void donateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P7LAQRRNF6AVE");
@@ -216,7 +223,7 @@ namespace Wnmp
             Font font = new Font("Microsoft Sans Serif", 9.75f, FontStyle.Bold);
             Font Rfont = new Font("Microsoft Sans Serif", 16f, FontStyle.Bold);
             ToolStripMenuItem item = new ToolStripMenuItem("Merry Christmas From Kurt!", null);
-            item.Font = new Font("Segoe Script", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            item.Font = new Font("Segoe Script", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, (byte)0);
             item.ForeColor = Color.DarkGreen;
             menuStrip1.Items.Add(item);
             this.menuStrip1.Font = font;
@@ -272,10 +279,12 @@ namespace Wnmp
         {
             Process.Start("explorer.exe", @Application.StartupPath);
         }
+
         private void weNeedYourSupportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("http://www.gofundme.com/certforwnmp");
         }
+
         private void log_rtb_DoubleClick(object sender, EventArgs e)
         {
             DoTempLog();
@@ -310,7 +319,7 @@ namespace Wnmp
             mdb_help.Click += MariaDB.mdb_help_Click;
             mdb_shell.Click += MariaDB.mdb_shell_Click;
             mdb_cfg.Click += MariaDB.mdb_cfg_Click;
-            //mdb_log.Click += WnmpFunctions.mdb_log_Click;
+            // mdb_log.Click += WnmpFunctions.mdb_log_Click;
             mdb_start.MouseHover += MariaDB.mdb_start_MouseHover;
             mdb_stop.MouseHover += MariaDB.mdb_stop_MouseHover;
             mdb_shell.MouseHover += MariaDB.mdb_shell_MouseHover;

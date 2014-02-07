@@ -538,7 +538,7 @@ namespace Wnmp
             this.log_rtb.ReadOnly = true;
             this.log_rtb.Size = new System.Drawing.Size(647, 133);
             this.log_rtb.TabIndex = 49;
-            this.log_rtb.Text = "";
+            this.log_rtb.Text = string.Empty;
             this.log_rtb.DoubleClick += new System.EventHandler(this.log_rtb_DoubleClick);
             // 
             // timer1

@@ -35,24 +35,26 @@ namespace Wnmp
         public static Process ps; // Avoid GC
         public static ContextMenuStrip cms = new ContextMenuStrip();
         public static ContextMenuStrip lms = new ContextMenuStrip();
-        internal static string pini = Application.StartupPath + "/php/php.ini";
         public static int phpstatus = (int)ProcessStatus.ps.STOPPED;
+        internal static string pini = Application.StartupPath + "/php/php.ini";
+
         public static void startprocess(string p, string args)
         {
-            System.Threading.Thread.Sleep(100); //Wait
-            ps = new Process(); //Create process
-            ps.StartInfo.FileName = p; //p is the path and file name of the file to run
-            ps.StartInfo.Arguments = args; //Parameters to pass to program
+            System.Threading.Thread.Sleep(100); // Wait
+            ps = new Process(); // Create process
+            ps.StartInfo.FileName = p; // p is the path and file name of the file to run
+            ps.StartInfo.Arguments = args; // Parameters to pass to program
             ps.StartInfo.UseShellExecute = false;
-            ps.StartInfo.RedirectStandardOutput = true; //Set output of program to be written to process output stream
+            ps.StartInfo.RedirectStandardOutput = true; // Set output of program to be written to process output stream
             ps.StartInfo.WorkingDirectory = Application.StartupPath;
-            ps.StartInfo.CreateNoWindow = true; //Excute with no window
+            ps.StartInfo.CreateNoWindow = true; // Excute with no window
             ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             ps.StartInfo.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", "2000"); // After 2000 requests php-cgi.exe will kill its process
             ps.EnableRaisingEvents = true;
             ps.Exited += new EventHandler(ps_Exited); // Were going to have to restart PHP after its process is killed.
-            ps.Start(); //Start the process
+            ps.Start(); // Start the process
         }
+
         static void ps_Exited(object sender, EventArgs e)
         {
             /* The Win-PHP developers thought is was smart to kill php after a certain amount of requests (Probably 500). 
@@ -62,6 +64,7 @@ namespace Wnmp
                 startprocess(@Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
             }
         }
+
         internal static void php_start_Click(object sender, EventArgs e)
         {
             try
@@ -97,7 +100,9 @@ namespace Wnmp
             Program.formInstance.phprunning.Text = "X";
             Program.formInstance.phprunning.ForeColor = Color.DarkRed;
         }
+
         public static int PHPStatus { get { return phpstatus; } }
+
         internal static void php_start_MouseHover(object sender, EventArgs e)
         {
             ToolTip mysql_start_Tip = new ToolTip();
@@ -109,6 +114,7 @@ namespace Wnmp
             ToolTip mysql_stop_Tip = new ToolTip();
             mysql_stop_Tip.Show("Stop PHP-CGI", Program.formInstance.php_stop);
         }
+
         internal static void php_cfg_Click(object sender, EventArgs e)
         {
             Button btnSender = (Button)sender;
@@ -123,6 +129,7 @@ namespace Wnmp
         {
             Process.Start(Wnmp.Properties.Settings.Default.editor, Application.StartupPath + "/php/" + e.ClickedItem.Text);
         }
+
         internal static void php_log_Click(object sender, EventArgs e)
         {
             Button btnSender = (Button)sender;
@@ -132,6 +139,7 @@ namespace Wnmp
             lms.ItemClicked -= lms_ItemClicked;
             lms.ItemClicked += lms_ItemClicked;
         }
+
         static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             Process.Start(Wnmp.Properties.Settings.Default.editor, Application.StartupPath + "/php/logs/" + e.ClickedItem.Text);
