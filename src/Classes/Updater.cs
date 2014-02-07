@@ -52,35 +52,38 @@ namespace Wnmp
                     CV.cversion.Text = WNMP_VER.ToString();
                     CV.newversion.Text = NEW_WNMP_VERSION.ToString();
                     CV.changelog.Text = ABOUT_WNMP_UPDATE.Trim();
-                     if (CV.ShowDialog() == DialogResult.Yes)
-                     {
-                         DownloadWnmpUpdate();
-                         FoundWnmpUpdate = true;
-                     }
+                    if (CV.ShowDialog() == DialogResult.Yes)
+                    {
+                        DownloadWnmpUpdate();
+                        FoundWnmpUpdate = true;
+                    }
                 }
                 else
                 {
                     Log.wnmp_log_notice("Your version: " + WNMP_VER + " is up to date.", Log.LogSection.WNMP_MAIN);
                 }
 
-                if (FoundWnmpUpdate != true)
+                if (Failed != true)
                 {
-                    if (CurCPVer.CompareTo(NEW_CP_VERSION) < 0)
+                    if (FoundWnmpUpdate != true)
                     {
-                        ChangelogViewer CV = new ChangelogViewer();
-                        CV.StartPosition = FormStartPosition.CenterScreen;
-                        CV.cversion.Text = CurCPVer.ToString();
-                        CV.newversion.Text = NEW_CP_VERSION.ToString();
-                        CV.changelog.Text = ABOUT_CP_UPDATE.Trim();
-
-                        if (CV.ShowDialog() == DialogResult.Yes)
+                        if (CurCPVer.CompareTo(NEW_CP_VERSION) < 0)
                         {
-                            Download_CP_Update();
+                            ChangelogViewer CV = new ChangelogViewer();
+                            CV.StartPosition = FormStartPosition.CenterScreen;
+                            CV.cversion.Text = CurCPVer.ToString();
+                            CV.newversion.Text = NEW_CP_VERSION.ToString();
+                            CV.changelog.Text = ABOUT_CP_UPDATE.Trim();
+
+                            if (CV.ShowDialog() == DialogResult.Yes)
+                            {
+                                Download_CP_Update();
+                            }
                         }
-                    }
-                    else
-                    {
-                        Log.wnmp_log_notice("Your control panel version: " + CurCPVer + " is up to date.", Log.LogSection.WNMP_MAIN);
+                        else
+                        {
+                            Log.wnmp_log_notice("Your control panel version: " + CurCPVer + " is up to date.", Log.LogSection.WNMP_MAIN);
+                        }
                     }
                 }
             }
