@@ -58,6 +58,7 @@ namespace Wnmp
             this.label5 = new System.Windows.Forms.Label();
             this.autoupdate = new System.Windows.Forms.CheckBox();
             this.autoupdateopt = new System.Windows.Forms.ComboBox();
+            this.Save = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -186,11 +187,22 @@ namespace Wnmp
             this.autoupdateopt.TabIndex = 12;
             this.autoupdateopt.SelectedIndexChanged += new System.EventHandler(this.autoupdateopt_SelectedIndexChanged);
             // 
+            // Save
+            // 
+            this.Save.Location = new System.Drawing.Point(182, 177);
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(75, 23);
+            this.Save.TabIndex = 13;
+            this.Save.Text = "Save";
+            this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.Save_Click);
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(267, 175);
+            this.ClientSize = new System.Drawing.Size(282, 211);
+            this.Controls.Add(this.Save);
             this.Controls.Add(this.autoupdateopt);
             this.Controls.Add(this.autoupdate);
             this.Controls.Add(this.label5);
@@ -207,9 +219,10 @@ namespace Wnmp
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(283, 214);
+            this.MinimumSize = new System.Drawing.Size(298, 250);
             this.Name = "Options";
             this.Text = "Options";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Options_FormClosed);
             this.Load += new System.EventHandler(this.Options_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -231,6 +244,7 @@ namespace Wnmp
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox autoupdate;
         private System.Windows.Forms.ComboBox autoupdateopt;
+        private System.Windows.Forms.Button Save;
 
     }
 }

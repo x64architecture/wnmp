@@ -117,10 +117,9 @@ namespace Wnmp
                 input = dialog.FileName;
             editorTB.Text = dialog.FileName;
             Settings.Default.editor = dialog.FileName;
-            Settings.Default.Save();
+            
             if (input == String.Empty)
             Settings.Default.editor = "notepad.exe";
-            Settings.Default.Save();
             editorTB.Text = Settings.Default.editor;
                 return;
         }
@@ -134,14 +133,12 @@ namespace Wnmp
                     RegistryKey add = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
                     add.SetValue("Wnmp", "\"" + Application.ExecutablePath.ToString() + "\"");
                     Settings.Default.startwnmpsu = true;
-                    Settings.Default.Save();
                 }
                 else
                 {
                     RegistryKey remove = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
                     remove.DeleteValue("Wnmp");
                     Settings.Default.startwnmpsu = false;
-                    Settings.Default.Save();
                 }
             }
             catch (Exception ex)
@@ -160,12 +157,10 @@ namespace Wnmp
             if (suap.Checked == true)
             {
                 Settings.Default.startaprgssu = true;
-                Settings.Default.Save();
             }
             else
             {
                 Settings.Default.startaprgssu = false;
-                Settings.Default.Save();
             }
         }
 
@@ -174,12 +169,10 @@ namespace Wnmp
             if (mwttb.Checked == true)
             {
                 Settings.Default.mwttbs = true;
-                Settings.Default.Save();
             }
             else
             {
                 Settings.Default.mwttbs = false;
-                Settings.Default.Save();
             }
         }
 
@@ -190,19 +183,15 @@ namespace Wnmp
             {
                 case 0:
                     Settings.Default.cfuevery = "day";
-                    Settings.Default.Save();
                     break;
                 case 1:
                     Settings.Default.cfuevery = "week";
-                    Settings.Default.Save();
                     break;
                 case 2:
                     Settings.Default.cfuevery = "month";
-                    Settings.Default.Save();
                     break;
                 default:
                     Settings.Default.cfuevery = "day";
-                    Settings.Default.Save();
                     break;
             }
         }
@@ -213,13 +202,22 @@ namespace Wnmp
             {
                 case true:
                     Settings.Default.autocheckforupdates = true;
-                    Settings.Default.Save();
                     break;
                 case false:
                     Settings.Default.autocheckforupdates = false;
-                    Settings.Default.Save();
                     break;
             }
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            Settings.Default.Save();
+            this.Close();
+        }
+
+        private void Options_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Settings.Default.Reload();
         }
     }
 }
