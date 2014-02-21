@@ -51,7 +51,6 @@ namespace Wnmp
                     CV.StartPosition = FormStartPosition.CenterScreen;
                     CV.cversion.Text = WNMP_VER.ToString();
                     CV.newversion.Text = NEW_WNMP_VERSION.ToString();
-                    CV.changelog.Text = ABOUT_WNMP_UPDATE.Trim();
                     if (CV.ShowDialog() == DialogResult.Yes)
                     {
                         DownloadWnmpUpdate();
@@ -73,7 +72,6 @@ namespace Wnmp
                             CV.StartPosition = FormStartPosition.CenterScreen;
                             CV.cversion.Text = CurCPVer.ToString();
                             CV.newversion.Text = NEW_CP_VERSION.ToString();
-                            CV.changelog.Text = ABOUT_CP_UPDATE.Trim();
 
                             if (CV.ShowDialog() == DialogResult.Yes)
                             {

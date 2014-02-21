@@ -36,5 +36,10 @@ namespace Wnmp
             this.DialogResult = DialogResult.No;
             this.Close();
         }
+
+        private void viewchange_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://wnmp.x64architecture.com/WhatsNew");
+        }
     }
 }
