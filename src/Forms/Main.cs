@@ -108,7 +108,7 @@ namespace Wnmp
 
         private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("http://wnmp.x64Architecture.com");
+            Process.Start("http://getwnmp.org");
         }
 
         private void donateToolStripMenuItem_Click(object sender, EventArgs e)

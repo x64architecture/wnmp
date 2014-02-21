@@ -6,4 +6,4 @@ file that comes with this package.
 
 Also check the release notes at:
 
- http://wnmp.x64architecture.com/WhatsNew
+ http://getwnmp.org/WhatsNew
