@@ -59,22 +59,22 @@ namespace Wnmp
         /// </summary>
         private void UpdateOptions()
         {
-            switch (Settings.Default.startaprgssu)
+            switch (Settings.Default.startallappsatlaunch)
             {
                 case false:
-                    suap.Checked = false;
+                    StartAllProgramsOnLaunch.Checked = false;
                     break;
                 case true:
-                    suap.Checked = true;
+                    StartAllProgramsOnLaunch.Checked = true;
                     break;
             }
-            switch (Settings.Default.startwnmpsu)
+            switch (Settings.Default.startupwithwindows)
             {
                 case false:
-                    suwnmpcb.Checked = false;
+                    StartWnmpWithWindows.Checked = false;
                     break;
                 case true:
-                    suwnmpcb.Checked = true;
+                    StartWnmpWithWindows.Checked = true;
                     break;
             }
             switch (Settings.Default.editor)
@@ -89,25 +89,25 @@ namespace Wnmp
             switch (Settings.Default.autocheckforupdates)
             {
                 case true:
-                    autoupdate.Checked = true;
+                    AutoUpdate.Checked = true;
                     break;
                 case false:
-                    autoupdate.Checked = false;
+                    AutoUpdate.Checked = false;
                     break;
             }
-            switch (Settings.Default.cfuevery)
+            switch (Settings.Default.checkforupdatefrequency)
             {
                 case "day":
-                    autoupdateopt.SelectedIndex = 0;
+                    AutoUpdateFrequency.SelectedIndex = 0;
                     break;
                 case "week":
-                    autoupdateopt.SelectedIndex = 1;
+                    AutoUpdateFrequency.SelectedIndex = 1;
                     break;
                 case "month":
-                    autoupdateopt.SelectedIndex = 2;
+                    AutoUpdateFrequency.SelectedIndex = 2;
                     break;
                 default:
-                    autoupdateopt.SelectedIndex = 1; /* Default: To check for updates every week. */
+                    AutoUpdateFrequency.SelectedIndex = 1; /* Default: To check for updates every week. */
                     break;
             }
         }
@@ -130,21 +130,21 @@ namespace Wnmp
                 return;
         }
 
-        private void suwnmpcb_CheckedChanged(object sender, EventArgs e)
+        private void StartWnmpWithWindows_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
-                if (suwnmpcb.Checked == true)
+                if (StartWnmpWithWindows.Checked == true)
                 {
                     RegistryKey add = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
                     add.SetValue("Wnmp", "\"" + Application.ExecutablePath.ToString() + "\"");
-                    Settings.Default.startwnmpsu = true;
+                    Settings.Default.startupwithwindows = true;
                 }
                 else
                 {
                     RegistryKey remove = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
                     remove.DeleteValue("Wnmp");
-                    Settings.Default.startwnmpsu = false;
+                    Settings.Default.startupwithwindows = false;
                 }
             }
             catch (Exception ex)
@@ -158,53 +158,53 @@ namespace Wnmp
             MessageBox.Show("This option may require administator privileges. \n If it dosent work or throws an error right click Wnmp.exe and click run as administator.");
         }
 
-        private void suap_CheckedChanged(object sender, EventArgs e)
+        private void StartAllProgramsOnLaunch_CheckedChanged(object sender, EventArgs e)
         {
-            if (suap.Checked == true)
+            if (StartAllProgramsOnLaunch.Checked == true)
             {
-                Settings.Default.startaprgssu = true;
+                Settings.Default.startallappsatlaunch = true;
             }
             else
             {
-                Settings.Default.startaprgssu = false;
+                Settings.Default.startallappsatlaunch = false;
             }
         }
 
-        private void mwttb_CheckedChanged(object sender, EventArgs e)
+        private void MinimizeWnmpToTray_CheckedChanged(object sender, EventArgs e)
         {
-            if (mwttb.Checked == true)
+            if (MinimizeWnmpToTray.Checked == true)
             {
-                Settings.Default.mwttbs = true;
+                Settings.Default.minimizewnmptotray = true;
             }
             else
             {
-                Settings.Default.mwttbs = false;
+                Settings.Default.minimizewnmptotray = false;
             }
         }
 
-        private void autoupdateopt_SelectedIndexChanged(object sender, EventArgs e)
+        private void AutoUpdateFrequency_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            switch (autoupdateopt.SelectedIndex)
+            switch (AutoUpdateFrequency.SelectedIndex)
             {
                 case 0:
-                    Settings.Default.cfuevery = "day";
+                    Settings.Default.checkforupdatefrequency = "day";
                     break;
                 case 1:
-                    Settings.Default.cfuevery = "week";
+                    Settings.Default.checkforupdatefrequency = "week";
                     break;
                 case 2:
-                    Settings.Default.cfuevery = "month";
+                    Settings.Default.checkforupdatefrequency = "month";
                     break;
                 default:
-                    Settings.Default.cfuevery = "day";
+                    Settings.Default.checkforupdatefrequency = "day";
                     break;
             }
         }
 
-        private void autoupdate_CheckedChanged(object sender, EventArgs e)
+        private void AutoUpdate_CheckedChanged(object sender, EventArgs e)
         {
-            switch (autoupdate.Checked)
+            switch (AutoUpdate.Checked)
             {
                 case true:
                     Settings.Default.autocheckforupdates = true;

@@ -64,7 +64,7 @@ namespace Wnmp.Helpers
             CheckIfAppsAreRunning();
             Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
 
-            if (Wnmp.Properties.Settings.Default.startaprgssu == true)
+            if (Wnmp.Properties.Settings.Default.startallappsatlaunch == true)
             {
                 General.start_Click(null, null);
             }

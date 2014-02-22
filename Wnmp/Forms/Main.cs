@@ -260,7 +260,7 @@ namespace Wnmp
 
         private void Main_Resize(object sender, EventArgs e)
         {
-            if (Wnmp.Properties.Settings.Default.mwttbs == true)
+            if (Wnmp.Properties.Settings.Default.minimizewnmptotray == true)
             {
                 if (WindowState == FormWindowState.Minimized)
                 {

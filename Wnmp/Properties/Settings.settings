@@ -5,19 +5,19 @@
     <Setting Name="editor" Type="System.String" Scope="User">
       <Value Profile="(Default)">notepad.exe</Value>
     </Setting>
-    <Setting Name="startwnmpsu" Type="System.Boolean" Scope="User">
+    <Setting Name="startupwithwindows" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="startaprgssu" Type="System.Boolean" Scope="User">
+    <Setting Name="startallappsatlaunch" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="mwttbs" Type="System.Boolean" Scope="User">
+    <Setting Name="minimizewnmptotray" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="autocheckforupdates" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="cfuevery" Type="System.String" Scope="User">
+    <Setting Name="checkforupdatefrequency" Type="System.String" Scope="User">
       <Value Profile="(Default)">week</Value>
     </Setting>
     <Setting Name="lastcheckforupdate" Type="System.String" Scope="User">

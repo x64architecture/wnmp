@@ -310,7 +310,7 @@ namespace Wnmp.Helpers
         {
             if (Wnmp.Properties.Settings.Default.autocheckforupdates == true)
             {
-                switch (Wnmp.Properties.Settings.Default.cfuevery)
+                switch (Wnmp.Properties.Settings.Default.checkforupdatefrequency)
                 {
                     case "day":
                         DoDateEclasped(1);

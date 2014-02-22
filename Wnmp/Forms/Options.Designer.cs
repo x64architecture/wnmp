@@ -49,15 +49,15 @@ namespace Wnmp
             this.editorTB = new System.Windows.Forms.TextBox();
             this.selecteditor = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.suwnmpcb = new System.Windows.Forms.CheckBox();
+            this.StartWnmpWithWindows = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.suap = new System.Windows.Forms.CheckBox();
+            this.StartAllProgramsOnLaunch = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.mwttb = new System.Windows.Forms.CheckBox();
+            this.MinimizeWnmpToTray = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.autoupdate = new System.Windows.Forms.CheckBox();
-            this.autoupdateopt = new System.Windows.Forms.ComboBox();
+            this.AutoUpdate = new System.Windows.Forms.CheckBox();
+            this.AutoUpdateFrequency = new System.Windows.Forms.ComboBox();
             this.Save = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -97,15 +97,15 @@ namespace Wnmp
             this.label2.TabIndex = 3;
             this.label2.Text = "Start Wnmp on start up?:";
             // 
-            // suwnmpcb
+            // StartWnmpWithWindows
             // 
-            this.suwnmpcb.AutoSize = true;
-            this.suwnmpcb.Location = new System.Drawing.Point(182, 54);
-            this.suwnmpcb.Name = "suwnmpcb";
-            this.suwnmpcb.Size = new System.Drawing.Size(15, 14);
-            this.suwnmpcb.TabIndex = 4;
-            this.suwnmpcb.UseVisualStyleBackColor = true;
-            this.suwnmpcb.CheckedChanged += new System.EventHandler(this.suwnmpcb_CheckedChanged);
+            this.StartWnmpWithWindows.AutoSize = true;
+            this.StartWnmpWithWindows.Location = new System.Drawing.Point(182, 54);
+            this.StartWnmpWithWindows.Name = "StartWnmpWithWindows";
+            this.StartWnmpWithWindows.Size = new System.Drawing.Size(15, 14);
+            this.StartWnmpWithWindows.TabIndex = 4;
+            this.StartWnmpWithWindows.UseVisualStyleBackColor = true;
+            this.StartWnmpWithWindows.CheckedChanged += new System.EventHandler(this.StartWnmpWithWindows_CheckedChanged);
             // 
             // button1
             // 
@@ -126,15 +126,15 @@ namespace Wnmp
             this.label3.TabIndex = 6;
             this.label3.Text = "Start all programs on launch?:";
             // 
-            // suap
+            // StartAllProgramsOnLaunch
             // 
-            this.suap.AutoSize = true;
-            this.suap.Location = new System.Drawing.Point(182, 78);
-            this.suap.Name = "suap";
-            this.suap.Size = new System.Drawing.Size(15, 14);
-            this.suap.TabIndex = 7;
-            this.suap.UseVisualStyleBackColor = true;
-            this.suap.CheckedChanged += new System.EventHandler(this.suap_CheckedChanged);
+            this.StartAllProgramsOnLaunch.AutoSize = true;
+            this.StartAllProgramsOnLaunch.Location = new System.Drawing.Point(182, 78);
+            this.StartAllProgramsOnLaunch.Name = "StartAllProgramsOnLaunch";
+            this.StartAllProgramsOnLaunch.Size = new System.Drawing.Size(15, 14);
+            this.StartAllProgramsOnLaunch.TabIndex = 7;
+            this.StartAllProgramsOnLaunch.UseVisualStyleBackColor = true;
+            this.StartAllProgramsOnLaunch.CheckedChanged += new System.EventHandler(this.StartAllProgramsOnLaunch_CheckedChanged);
             // 
             // label4
             // 
@@ -145,15 +145,15 @@ namespace Wnmp
             this.label4.TabIndex = 8;
             this.label4.Text = "Minimize Wnmp to the tray?:";
             // 
-            // mwttb
+            // MinimizeWnmpToTray
             // 
-            this.mwttb.AutoSize = true;
-            this.mwttb.Location = new System.Drawing.Point(182, 104);
-            this.mwttb.Name = "mwttb";
-            this.mwttb.Size = new System.Drawing.Size(15, 14);
-            this.mwttb.TabIndex = 9;
-            this.mwttb.UseVisualStyleBackColor = true;
-            this.mwttb.CheckedChanged += new System.EventHandler(this.mwttb_CheckedChanged);
+            this.MinimizeWnmpToTray.AutoSize = true;
+            this.MinimizeWnmpToTray.Location = new System.Drawing.Point(182, 104);
+            this.MinimizeWnmpToTray.Name = "MinimizeWnmpToTray";
+            this.MinimizeWnmpToTray.Size = new System.Drawing.Size(15, 14);
+            this.MinimizeWnmpToTray.TabIndex = 9;
+            this.MinimizeWnmpToTray.UseVisualStyleBackColor = true;
+            this.MinimizeWnmpToTray.CheckedChanged += new System.EventHandler(this.MinimizeWnmpToTray_CheckedChanged);
             // 
             // label5
             // 
@@ -164,28 +164,28 @@ namespace Wnmp
             this.label5.TabIndex = 10;
             this.label5.Text = "Automatically check for updates?:";
             // 
-            // autoupdate
+            // AutoUpdate
             // 
-            this.autoupdate.AutoSize = true;
-            this.autoupdate.Location = new System.Drawing.Point(182, 128);
-            this.autoupdate.Name = "autoupdate";
-            this.autoupdate.Size = new System.Drawing.Size(15, 14);
-            this.autoupdate.TabIndex = 11;
-            this.autoupdate.UseVisualStyleBackColor = true;
-            this.autoupdate.CheckedChanged += new System.EventHandler(this.autoupdate_CheckedChanged);
+            this.AutoUpdate.AutoSize = true;
+            this.AutoUpdate.Location = new System.Drawing.Point(182, 128);
+            this.AutoUpdate.Name = "AutoUpdate";
+            this.AutoUpdate.Size = new System.Drawing.Size(15, 14);
+            this.AutoUpdate.TabIndex = 11;
+            this.AutoUpdate.UseVisualStyleBackColor = true;
+            this.AutoUpdate.CheckedChanged += new System.EventHandler(this.AutoUpdate_CheckedChanged);
             // 
-            // autoupdateopt
+            // AutoUpdateFrequency
             // 
-            this.autoupdateopt.FormattingEnabled = true;
-            this.autoupdateopt.Items.AddRange(new object[] {
+            this.AutoUpdateFrequency.FormattingEnabled = true;
+            this.AutoUpdateFrequency.Items.AddRange(new object[] {
             "Every Day",
             "Every Week",
             "Every Month"});
-            this.autoupdateopt.Location = new System.Drawing.Point(31, 144);
-            this.autoupdateopt.Name = "autoupdateopt";
-            this.autoupdateopt.Size = new System.Drawing.Size(121, 21);
-            this.autoupdateopt.TabIndex = 12;
-            this.autoupdateopt.SelectedIndexChanged += new System.EventHandler(this.autoupdateopt_SelectedIndexChanged);
+            this.AutoUpdateFrequency.Location = new System.Drawing.Point(31, 144);
+            this.AutoUpdateFrequency.Name = "AutoUpdateFrequency";
+            this.AutoUpdateFrequency.Size = new System.Drawing.Size(121, 21);
+            this.AutoUpdateFrequency.TabIndex = 12;
+            this.AutoUpdateFrequency.SelectedIndexChanged += new System.EventHandler(this.AutoUpdateFrequency_SelectedIndexChanged);
             // 
             // Save
             // 
@@ -203,15 +203,15 @@ namespace Wnmp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(282, 211);
             this.Controls.Add(this.Save);
-            this.Controls.Add(this.autoupdateopt);
-            this.Controls.Add(this.autoupdate);
+            this.Controls.Add(this.AutoUpdateFrequency);
+            this.Controls.Add(this.AutoUpdate);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.mwttb);
+            this.Controls.Add(this.MinimizeWnmpToTray);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.suap);
+            this.Controls.Add(this.StartAllProgramsOnLaunch);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.suwnmpcb);
+            this.Controls.Add(this.StartWnmpWithWindows);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.selecteditor);
             this.Controls.Add(this.editorTB);
@@ -235,15 +235,15 @@ namespace Wnmp
         private System.Windows.Forms.TextBox editorTB;
         private System.Windows.Forms.Button selecteditor;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox suwnmpcb;
+        private System.Windows.Forms.CheckBox StartWnmpWithWindows;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox suap;
+        private System.Windows.Forms.CheckBox StartAllProgramsOnLaunch;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox mwttb;
+        private System.Windows.Forms.CheckBox MinimizeWnmpToTray;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox autoupdate;
-        private System.Windows.Forms.ComboBox autoupdateopt;
+        private System.Windows.Forms.CheckBox AutoUpdate;
+        private System.Windows.Forms.ComboBox AutoUpdateFrequency;
         private System.Windows.Forms.Button Save;
 
     }
