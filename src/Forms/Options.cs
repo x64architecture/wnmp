@@ -26,6 +26,9 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using Wnmp.Properties;
 
+using Wnmp.Helpers;
+using Wnmp.Internals;
+
 namespace Wnmp
 {
     public partial class Options : Form

@@ -24,6 +24,9 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Security.Permissions;
 
+using Wnmp.Helpers;
+using Wnmp.Internals;
+
 namespace Wnmp.Forms
 {
     public partial class About : Form

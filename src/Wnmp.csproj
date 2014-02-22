@@ -51,7 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\logo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -65,29 +65,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Declarations.cs" />
-    <Compile Include="Classes\Log.cs" />
-    <Compile Include="Classes\NativeMethods.cs" />
+    <Compile Include="Internals\Declarations.cs" />
+    <Compile Include="Helpers\Log.cs" />
+    <Compile Include="Internals\NativeMethods.cs" />
     <Compile Include="Forms\ChangelogViewer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ChangelogViewer.Designer.cs">
       <DependentUpon>ChangelogViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\General.cs" />
-    <Compile Include="Classes\ProcessStatus.cs" />
-    <Compile Include="Classes\Updater.cs" />
+    <Compile Include="Programs\General.cs" />
+    <Compile Include="Helpers\ProcessStatus.cs" />
+    <Compile Include="Helpers\Updater.cs" />
     <Compile Include="Forms\About.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\dlUpdateProgress.cs">
+    <Compile Include="Forms\UpdateProgress.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\dlUpdateProgress.Designer.cs">
-      <DependentUpon>dlUpdateProgress.cs</DependentUpon>
+    <Compile Include="Forms\UpdateProgress.Designer.cs">
+      <DependentUpon>UpdateProgress.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Main.cs">
       <SubType>Form</SubType>
@@ -95,27 +95,27 @@
     <Compile Include="Forms\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\MariaDB.cs" />
-    <Compile Include="Classes\Nginx.cs" />
+    <Compile Include="Programs\MariaDB.cs" />
+    <Compile Include="Programs\Nginx.cs" />
     <Compile Include="Forms\Options.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Options.Designer.cs">
       <DependentUpon>Options.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\OSInfo.cs" />
-    <Compile Include="Classes\PHP.cs" />
-    <Compile Include="Classes\Program.cs" />
+    <Compile Include="Helpers\OSInfo.cs" />
+    <Compile Include="Programs\PHP.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Classes\WnmpFunctions.cs" />
+    <Compile Include="Helpers\MainFormHelper.cs" />
     <EmbeddedResource Include="Forms\ChangelogViewer.resx">
       <DependentUpon>ChangelogViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\dlUpdateProgress.resx">
-      <DependentUpon>dlUpdateProgress.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\UpdateProgress.resx">
+      <DependentUpon>UpdateProgress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -172,8 +172,9 @@
   <ItemGroup>
     <None Include="Resources\background.jpg" />
     <None Include="Resources\Wnmp.png" />
-    <Content Include="logo.ico" />
+    <Content Include="Resources\logo.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

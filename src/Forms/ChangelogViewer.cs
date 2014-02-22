@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+using Wnmp.Internals;
+
 namespace Wnmp
 {
     public partial class ChangelogViewer : Form

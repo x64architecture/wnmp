@@ -23,7 +23,10 @@ using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Windows.Forms;
+using Wnmp.Programs;
+using Wnmp.Helpers;
 
+using Wnmp.Internals;
 namespace Wnmp
 {
     public partial class Main : Form
@@ -266,7 +269,7 @@ namespace Wnmp
                 DoChristmas();
 
             timer1.Enabled = true;
-            WnmpFunctions.DoStartup();
+            MainHelper.DoStartup();
         }
 
         private void icon_Click(object sender, EventArgs e)
