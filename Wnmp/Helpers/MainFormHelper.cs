@@ -53,18 +53,12 @@ namespace Wnmp.Helpers
         {
             Updater.DoAutoCheckForUpdate();
 
-            StringBuilder sb = new StringBuilder();
-            sb.Append("Windows Version: " + OSVersionInfo.Name);
-            if (OSVersionInfo.Edition != "")
-                sb.Append(" " + OSVersionInfo.Edition);
-            if (OSVersionInfo.ServicePack != "")
-                sb.Append(" " + OSVersionInfo.ServicePack);
             Log.wnmp_log_notice("Control Panel Version: " + Program.formInstance.GetCPVER, Log.LogSection.WNMP_MAIN);
             Log.wnmp_log_notice("Wnmp Version: " + Program.formInstance.ProductVersion, Log.LogSection.WNMP_MAIN);
-            Log.wnmp_log_notice(sb.ToString(), Log.LogSection.WNMP_MAIN);
+            Log.wnmp_log_notice(OSVersionInfo.WindowsVersionString(), Log.LogSection.WNMP_MAIN);
             Log.wnmp_log_notice("Wnmp Directory: " + Application.StartupPath, Log.LogSection.WNMP_MAIN);
             checkforapps();
-            cifpsr();
+            CheckIfAppsAreRunning();
             Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
 
             if (Wnmp.Properties.Settings.Default.startaprgssu == true)
@@ -96,10 +90,10 @@ namespace Wnmp.Helpers
 
         internal static void timer1_Tick()
         {
-            cifpsr();
+            CheckIfAppsAreRunning();
         }
         #region CheckIfRunning
-        internal static void cifpsr()
+        internal static void CheckIfAppsAreRunning()
         {
             if (check_if_running("nginx"))
             {

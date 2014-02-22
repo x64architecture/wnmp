@@ -801,5 +801,18 @@ namespace Wnmp.Helpers
         }
         #endregion REVISION
         #endregion VERSION
+
+        #region WINDOWSVERSIONSTRING
+        static public string WindowsVersionString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Windows Version: " + OSVersionInfo.Name);
+            if (OSVersionInfo.Edition != "")
+                sb.Append(" " + OSVersionInfo.Edition);
+            if (OSVersionInfo.ServicePack != "")
+                sb.Append(" " + OSVersionInfo.ServicePack);
+            return sb.ToString();
+        }
+        #endregion
     }
 }
