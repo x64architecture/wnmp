@@ -59,13 +59,13 @@ namespace Wnmp
         /// </summary>
         private void UpdateOptions()
         {
-            switch (Settings.Default.startallappsatlaunch)
+            switch (Settings.Default.editor)
             {
-                case false:
-                    StartAllProgramsOnLaunch.Checked = false;
+                case "":
+                    editorTB.Text = "notepad.exe";
                     break;
-                case true:
-                    StartAllProgramsOnLaunch.Checked = true;
+                default:
+                    editorTB.Text = Settings.Default.editor;
                     break;
             }
             switch (Settings.Default.startupwithwindows)
@@ -77,13 +77,22 @@ namespace Wnmp
                     StartWnmpWithWindows.Checked = true;
                     break;
             }
-            switch (Settings.Default.editor)
+            switch (Settings.Default.startallappsatlaunch)
             {
-                case "":
-                    editorTB.Text = "notepad.exe";
+                case false:
+                    StartAllProgramsOnLaunch.Checked = false;
                     break;
-                default:
-                    editorTB.Text = Settings.Default.editor;
+                case true:
+                    StartAllProgramsOnLaunch.Checked = true;
+                    break;
+            }
+            switch (Settings.Default.minimizewnmptotray)
+            {
+                case true:
+                    MinimizeWnmpToTray.Checked = true;
+                    break;
+                case false:
+                    MinimizeWnmpToTray.Checked = false;
                     break;
             }
             switch (Settings.Default.autocheckforupdates)
