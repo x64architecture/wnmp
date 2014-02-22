@@ -50,8 +50,6 @@ namespace Wnmp.Helpers
         /// Checks the status of Nginx, MariaDB, and PHP and
         /// restarts them if they crashed while they were already started.
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="e"></param>
         public static void CheckProcessStatus(Object source, ElapsedEventArgs e)
         {
             int ngxfails = 0;
@@ -112,7 +110,6 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Check if Process is running
         /// </summary>
-        /// <param name="process"></param>
         /// <returns>True if Process is running and false if not</returns>
         private static bool ciair(string process)
         {

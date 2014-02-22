@@ -79,9 +79,6 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Adds configuration files to the Config buttons context menu strip
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="GetFiles"></param>
-        /// <param name="cms"></param>
         internal static void DirFiles(string path, string GetFiles, ContextMenuStrip cms)
         {
             try

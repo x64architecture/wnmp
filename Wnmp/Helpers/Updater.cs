@@ -29,7 +29,7 @@ namespace Wnmp.Helpers
 {
     class Updater
     {
-        private string Wnmp_Upgrade_URL = ""; //
+        private string Wnmp_Upgrade_URL = ""; // Wnmp upgrade installer url
         private string WNMP_INSTALLER_URL = ""; // Wnmp first installer url (useless to this application)
         private Version NEW_WNMP_VERSION = null; // Wnmp version in the XML
         private Version NEW_CP_VERSION = null; // Control panel version in the XML
@@ -40,8 +40,6 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Checks for updates
         /// </summary>
-        /// <param name="xmlUrl"></param>
-        /// <param name="CurCPVer"></param>
         public Updater(string xmlUrl, Version CurCPVer)
         {
             bool FoundWnmpUpdate = false; // Since were checking for two updates we have to check if it found the main one.
@@ -96,8 +94,6 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Parses the update XML
         /// </summary>
-        /// <param name="xmlUrl"></param>
-        /// <param name="Failed"></param>
         private void ReadUpdateXML(string xmlUrl, out bool Failed)
         {
             try

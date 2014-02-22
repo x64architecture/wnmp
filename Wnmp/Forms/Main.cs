@@ -33,7 +33,7 @@ namespace Wnmp
     {
         public static string StartupPath { get { return Application.StartupPath; } }
 
-        private Version CPVER = new Version("2.1.2");
+        private Version CPVER = new Version("2.1.3");
         public Version GetCPVER { get { return CPVER; } }
 
         internal const string UpdateXMLURL = "https://s3.amazonaws.com/wnmp/update.xml";
@@ -128,6 +128,10 @@ namespace Wnmp
 
         #region Functions
 
+        /// <summary>
+        /// Checks if the size of Wnmp.log is greator than 1MB and 
+        /// if it is it gzips it
+        /// </summary>
         private void DoLogSizeCheck(string path)
         {
             try
@@ -148,7 +152,9 @@ namespace Wnmp
             }
             catch { }
         }
-
+        /// <summary>
+        /// Saves the current Wnmp log to Wnmp.log
+        /// </summary>
         private void DoSaveLog()
         {
             try
@@ -167,7 +173,9 @@ namespace Wnmp
             }
             catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
         }
-
+        /// <summary>
+        /// Compresses a file using gzip
+        /// </summary>
         private void CompressFile(string path)
         {
             FileStream sourceFile = File.OpenRead(path);
@@ -189,7 +197,9 @@ namespace Wnmp
             sourceFile.Close();
             destinationFile.Close();
         }
-
+        /// <summary>
+        /// Shows the current Wnmp log in notepad
+        /// </summary>
         private void DoTempLog()
         {
             try
@@ -207,7 +217,9 @@ namespace Wnmp
             }
             catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
         }
-
+        /// <summary>
+        /// Deletes a file
+        /// </summary>
         private void DeleteFile(string file)
         {
             if (File.Exists(file))
@@ -219,7 +231,9 @@ namespace Wnmp
                 catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
             }
         }
-
+        /// <summary>
+        /// Changes the UI to a Christmas theme
+        /// </summary>
         private void DoChristmas()
         {
             this.BackgroundImage = Wnmp.Properties.Resources.background;

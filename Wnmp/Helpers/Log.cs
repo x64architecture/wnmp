@@ -31,7 +31,6 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Returns the DescriptionAttribute string
         /// </summary>
-        /// <param name="value"></param>
         /// <returns>Enum DescriptionAttribute string</returns>
         public static string GetEnumDescription(Enum value)
         {
@@ -60,8 +59,6 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Log error
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="logSection"></param>
         public static void wnmp_log_error(string message, LogSection logSection)
         {
             wnmp_log(message, Color.Red, logSection);
@@ -69,8 +66,6 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Log information
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="logSection"></param>
         public static void wnmp_log_notice(string message, LogSection logSection)
         {
             wnmp_log(message, Color.DarkBlue, logSection);

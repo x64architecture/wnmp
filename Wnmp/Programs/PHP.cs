@@ -42,8 +42,6 @@ namespace Wnmp.Programs
         /// <summary>
         /// Starts an executable file
         /// </summary>
-        /// <param name="p"></param>
-        /// <param name="args"></param>
         public static void startprocess(string p, string args)
         {
             System.Threading.Thread.Sleep(100); // Wait

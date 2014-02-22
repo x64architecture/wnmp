@@ -44,11 +44,6 @@ namespace Wnmp.Programs
         /// <summary>
         /// Starts an executable file
         /// </summary>
-        /// <param name="p"></param>
-        /// <param name="args"></param>
-        /// <param name="shellexc"></param>
-        /// <param name="redirectso"></param>
-        /// <param name="wfe"></param>
         public static void startprocess(string p, string args, bool shellexc, bool redirectso, bool wfe)
         {
             System.Threading.Thread.Sleep(100); // Wait
