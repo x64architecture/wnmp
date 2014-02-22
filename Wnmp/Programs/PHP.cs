@@ -34,11 +34,16 @@ namespace Wnmp.Programs
     class PHP
     {
         public static Process ps; // Avoid GC
-        public static ContextMenuStrip cms = new ContextMenuStrip();
-        public static ContextMenuStrip lms = new ContextMenuStrip();
-        public static int phpstatus = (int)ProcessStatus.ps.STOPPED;
-        internal static string pini = Application.StartupPath + "/php/php.ini";
+        public static ContextMenuStrip cms = new ContextMenuStrip(); // Config button context menu
+        public static ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
+        public static int phpstatus = (int)ProcessStatus.ps.STOPPED; // Status
+        internal static string pini = Application.StartupPath + "/php/php.ini"; // Location of php.ini to pass on to php
 
+        /// <summary>
+        /// Starts an executable file
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="args"></param>
         public static void startprocess(string p, string args)
         {
             System.Threading.Thread.Sleep(100); // Wait

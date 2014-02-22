@@ -54,6 +54,9 @@ namespace Wnmp
         }
 
         #region UpdateOptions
+        /// <summary>
+        /// Populates the options with there saved values
+        /// </summary>
         private void UpdateOptions()
         {
             switch (Settings.Default.startaprgssu)

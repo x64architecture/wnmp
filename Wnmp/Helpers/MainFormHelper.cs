@@ -35,6 +35,9 @@ namespace Wnmp.Helpers
     class MainHelper
     {
         #region checkforapps
+        /// <summary>
+        /// Checks if Nginx, MariaDB, and PHP exist in the Wnmp directory
+        /// </summary>
         internal static void checkforapps()
         {
             Log.wnmp_log_notice("Checking for applications", Log.LogSection.WNMP_MAIN);
@@ -73,7 +76,12 @@ namespace Wnmp.Helpers
             DirFiles("/mariadb/data", "*.log", MariaDB.lms);
             DirFiles("/php/logs", "*.log", PHP.lms);
         }
-
+        /// <summary>
+        /// Adds configuration files to the Config buttons context menu strip
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="GetFiles"></param>
+        /// <param name="cms"></param>
         internal static void DirFiles(string path, string GetFiles, ContextMenuStrip cms)
         {
             try
@@ -92,7 +100,11 @@ namespace Wnmp.Helpers
         {
             CheckIfAppsAreRunning();
         }
+
         #region CheckIfRunning
+        /// <summary>
+        /// Checks if Nginx, MariaDB or PHP is running
+        /// </summary>
         internal static void CheckIfAppsAreRunning()
         {
             if (check_if_running("nginx"))
@@ -136,28 +148,5 @@ namespace Wnmp.Helpers
                 return false;
         }
         #endregion
-
-        internal static void KillProcesses()
-        {
-            string[] processtokill = { "php-cgi", "nginx", "mysqld" };
-            Process[] processes = Process.GetProcesses();
-
-            for (int i = 0; i < processes.Length; i++)
-            {
-                for (int j = 0; j < processtokill.Length; j++)
-                {
-                    try
-                    {
-                        string tempProcess = processes[i].ProcessName;
-
-                        if (tempProcess == processtokill[j]) // If the proccess is the proccess we want to kill
-                        {
-                            processes[i].Kill(); break; // Kill the proccess
-                        }
-                    }
-                    catch { }
-                }
-            }
-        }
     }
 }

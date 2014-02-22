@@ -28,7 +28,11 @@ namespace Wnmp.Helpers
     public static class Log
     {
         private static RichTextBox rtfLog;
-
+        /// <summary>
+        /// Returns the DescriptionAttribute string
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>Enum DescriptionAttribute string</returns>
         public static string GetEnumDescription(Enum value)
         {
             object[] customAttributes = value.GetType().GetField(value.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), true);
@@ -53,12 +57,20 @@ namespace Wnmp.Helpers
 
             rtfLog.ScrollToCaret();
         }
-
+        /// <summary>
+        /// Log error
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="logSection"></param>
         public static void wnmp_log_error(string message, LogSection logSection)
         {
             wnmp_log(message, Color.Red, logSection);
         }
-
+        /// <summary>
+        /// Log information
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="logSection"></param>
         public static void wnmp_log_notice(string message, LogSection logSection)
         {
             wnmp_log(message, Color.DarkBlue, logSection);

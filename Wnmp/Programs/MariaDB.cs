@@ -35,11 +35,20 @@ namespace Wnmp.Programs
     class MariaDB
     {
         public static Process ps; // Avoid GC
-        public static ContextMenuStrip cms = new ContextMenuStrip();
-        public static ContextMenuStrip lms = new ContextMenuStrip();
-        public static int mariadbstatus = (int)ProcessStatus.ps.STOPPED;
+        public static ContextMenuStrip cms = new ContextMenuStrip(); // Config button context menu
+        public static ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
+        public static int mariadbstatus = (int)ProcessStatus.ps.STOPPED; // Status
 
-        [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
+        public static int MariaDBStatus { get { return mariadbstatus; } }
+
+        /// <summary>
+        /// Starts an executable file
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="args"></param>
+        /// <param name="shellexc"></param>
+        /// <param name="redirectso"></param>
+        /// <param name="wfe"></param>
         public static void startprocess(string p, string args, bool shellexc, bool redirectso, bool wfe)
         {
             System.Threading.Thread.Sleep(100); // Wait
@@ -115,8 +124,6 @@ namespace Wnmp.Programs
                 Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
             }
         }
-
-        public static int MariaDBStatus { get { return mariadbstatus; } }
 
         internal static void mdb_start_MouseHover(object sender, EventArgs e)
         {

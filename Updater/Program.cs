@@ -27,6 +27,11 @@ namespace Updater
     class Program
     {
         
+        /// <summary>
+        /// Trys to find the process in the name parameter
+        /// and if it does it kills it
+        /// </summary>
+        /// <returns>True on sucess else false</returns>
         public static bool FindAndKillProcess(string name)
         {
             foreach (Process process in Process.GetProcesses())
@@ -48,6 +53,9 @@ namespace Updater
             }
             return true;
         }
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
         static void Main(string[] args)
         {
         bool print_log = false;

@@ -228,8 +228,8 @@ namespace Wnmp
             ToolStripMenuItem item = new ToolStripMenuItem("Merry Christmas From Kurt!", null);
             item.Font = new Font("Segoe Script", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, (byte)0);
             item.ForeColor = Color.DarkGreen;
-            menuStrip1.Items.Add(item);
-            this.menuStrip1.Font = font;
+            MainFormMenuStrip.Items.Add(item);
+            this.MainFormMenuStrip.Font = font;
             this.label4.Font = font;
             this.label7.Font = font;
             this.label8.Font = font;
@@ -268,7 +268,7 @@ namespace Wnmp
             if (now.Month == 12 && now.Day == 25)
                 DoChristmas();
 
-            timer1.Enabled = true;
+            CheckIfAppsAreRunningTimer.Enabled = true;
             MainHelper.DoStartup();
         }
 

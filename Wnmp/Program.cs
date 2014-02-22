@@ -36,7 +36,7 @@ namespace Wnmp
                 Application.Exit();
                 return;
             }
-            if (icp())
+            if (AlreadyRunning())
             {
                 MessageBox.Show("Wnmp is already running.");
                 Application.Exit();
@@ -47,7 +47,12 @@ namespace Wnmp
             Application.Run(formInstance = new Main());
         }
         public static Main formInstance;
-        static bool icp()
+
+        /// <summary>
+        /// Checks if Wnmp is already running
+        /// </summary>
+        /// <returns>true if Wnmp is running else false</returns>
+        private static bool AlreadyRunning()
         {
             Process[] process = Process.GetProcessesByName("Wnmp");
             Process current = Process.GetCurrentProcess();
@@ -58,7 +63,11 @@ namespace Wnmp
             }
             return false;
         }
-        static bool IsVistaOrGreater()
+        /// <summary>
+        /// Checks if operating system is vista or greator
+        /// </summary>
+        /// <returns>True if OS is greater or equal to Vista else returns false</returns>
+        private static bool IsVistaOrGreater()
         {
             OperatingSystem OS = Environment.OSVersion;
             return (OS.Platform == PlatformID.Win32NT) && (OS.Version.Major >= 6);

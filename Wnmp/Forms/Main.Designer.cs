@@ -47,7 +47,7 @@ namespace Wnmp
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.icon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.MainFormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wnmpOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,10 +92,8 @@ namespace Wnmp
             this.panel1 = new System.Windows.Forms.Panel();
             this.wnmpdir = new System.Windows.Forms.Button();
             this.log_rtb = new System.Windows.Forms.RichTextBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.logs = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mdb_logs = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuStrip1.SuspendLayout();
+            this.CheckIfAppsAreRunningTimer = new System.Windows.Forms.Timer(this.components);
+            this.MainFormMenuStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -107,19 +105,19 @@ namespace Wnmp
             this.icon.Visible = true;
             this.icon.Click += new System.EventHandler(this.icon_Click);
             // 
-            // menuStrip1
+            // MainFormMenuStrip
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MainFormMenuStrip.BackColor = System.Drawing.Color.Transparent;
+            this.MainFormMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.helpToolStripMenuItem,
             this.localhostToolStripMenuItem,
             this.weNeedYourSupportToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(647, 24);
-            this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
+            this.MainFormMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MainFormMenuStrip.Name = "MainFormMenuStrip";
+            this.MainFormMenuStrip.Size = new System.Drawing.Size(647, 24);
+            this.MainFormMenuStrip.TabIndex = 4;
+            this.MainFormMenuStrip.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -538,22 +536,12 @@ namespace Wnmp
             this.log_rtb.ReadOnly = true;
             this.log_rtb.Size = new System.Drawing.Size(647, 133);
             this.log_rtb.TabIndex = 49;
-            this.log_rtb.Text = string.Empty;
+            this.log_rtb.Text = "";
             this.log_rtb.DoubleClick += new System.EventHandler(this.log_rtb_DoubleClick);
             // 
-            // timer1
+            // CheckIfAppsAreRunningTimer
             // 
-            this.timer1.Interval = 1000;
-            // 
-            // logs
-            // 
-            this.logs.Name = "contextMenuStrip4";
-            this.logs.Size = new System.Drawing.Size(61, 4);
-            // 
-            // mdb_logs
-            // 
-            this.mdb_logs.Name = "contextMenuStrip5";
-            this.mdb_logs.Size = new System.Drawing.Size(61, 4);
+            this.CheckIfAppsAreRunningTimer.Interval = 1000;
             // 
             // Main
             // 
@@ -561,9 +549,9 @@ namespace Wnmp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 361);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.MainFormMenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.MainFormMenuStrip;
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(663, 400);
             this.Name = "Main";
@@ -572,8 +560,8 @@ namespace Wnmp
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.Resize += new System.EventHandler(this.Main_Resize);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.MainFormMenuStrip.ResumeLayout(false);
+            this.MainFormMenuStrip.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -585,7 +573,7 @@ namespace Wnmp
         #endregion
 
         private System.Windows.Forms.NotifyIcon icon;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip MainFormMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panel1;
@@ -603,7 +591,7 @@ namespace Wnmp
         private System.Windows.Forms.Button ngx_config;
         private System.Windows.Forms.Button php_cfg;
         private System.Windows.Forms.Button mdb_cfg;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer CheckIfAppsAreRunningTimer;
         private System.Windows.Forms.ToolStripMenuItem wnmpOptionsToolStripMenuItem;
         private System.Windows.Forms.Button php_log;
         private System.Windows.Forms.Button mdb_log;
@@ -618,8 +606,6 @@ namespace Wnmp
         internal System.Windows.Forms.Button mdb_start;
         internal System.Windows.Forms.Button ngx_start;
         internal System.Windows.Forms.Button ngx_reload;
-        internal System.Windows.Forms.ContextMenuStrip logs;
-        internal System.Windows.Forms.ContextMenuStrip mdb_logs;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem donateToolStripMenuItem;

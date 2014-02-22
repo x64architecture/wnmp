@@ -29,16 +29,19 @@ namespace Wnmp.Helpers
 {
     class Updater
     {
-        private string Wnmp_Upgrade_URL = "";
-        private string WNMP_INSTALLER_URL = "";
-        private Version NEW_WNMP_VERSION = null;
-        private string ABOUT_WNMP_UPDATE = "";
-        private Version NEW_CP_VERSION = null;
-        private string CP_UPDATE_URL = "";
-        private string CP_UPDATER_URL = "";
-        private string ABOUT_CP_UPDATE = "";
-        private Version WNMP_VER = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+        private string Wnmp_Upgrade_URL = ""; //
+        private string WNMP_INSTALLER_URL = ""; // Wnmp first installer url (useless to this application)
+        private Version NEW_WNMP_VERSION = null; // Wnmp version in the XML
+        private Version NEW_CP_VERSION = null; // Control panel version in the XML
+        private string CP_UPDATE_URL = ""; // Control panel url (link to CP exe)
+        private string CP_UPDATER_URL = ""; // Control panel updater url (program that replaces the control panel with the new version)
+        private Version WNMP_VER = new Version(Application.ProductVersion); // Current program version
 
+        /// <summary>
+        /// Checks for updates
+        /// </summary>
+        /// <param name="xmlUrl"></param>
+        /// <param name="CurCPVer"></param>
         public Updater(string xmlUrl, Version CurCPVer)
         {
             bool FoundWnmpUpdate = false; // Since were checking for two updates we have to check if it found the main one.
@@ -90,6 +93,11 @@ namespace Wnmp.Helpers
         }
 
         #region ReadUpdateXML
+        /// <summary>
+        /// Parses the update XML
+        /// </summary>
+        /// <param name="xmlUrl"></param>
+        /// <param name="Failed"></param>
         private void ReadUpdateXML(string xmlUrl, out bool Failed)
         {
             try
@@ -126,7 +134,7 @@ namespace Wnmp.Helpers
                                             Wnmp_Upgrade_URL = reader.Value;
                                             break;
                                         case "about":
-                                            ABOUT_WNMP_UPDATE = reader.Value;
+                                            // No longer used
                                             break;
                                         case "cpversion":
                                             NEW_CP_VERSION = new Version(reader.Value);
@@ -138,7 +146,7 @@ namespace Wnmp.Helpers
                                             CP_UPDATER_URL = reader.Value;
                                             break;
                                         case "cpabout":
-                                            ABOUT_CP_UPDATE = reader.Value;
+                                            // No longer used
                                             break;
                                     }
                             }
@@ -159,11 +167,14 @@ namespace Wnmp.Helpers
         #endregion
 
         #region MainWnmpUpdate
+        /// <summary>
+        /// Downloads the update for Wnmp
+        /// </summary>
         private void DownloadWnmpUpdate()
         {
             string UpdateExe = @Application.StartupPath + "/Wnmp-Upgrade-Installer.exe";
 
-            dlUpdateProgress frm = new dlUpdateProgress();
+            UpdateProgress frm = new UpdateProgress();
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
             frm.Focus();
@@ -199,11 +210,14 @@ namespace Wnmp.Helpers
         #endregion
 
         #region CP_Update
+        /// <summary>
+        /// Downloads the update for the control panel
+        /// </summary>
         private void Download_CP_Update()
         {
             string WNMP_NEW = @Application.StartupPath + "/Wnmp_new.exe";
             string UPDATER = @Application.StartupPath + "/updater.exe";
-            dlUpdateProgress frm = new dlUpdateProgress();
+            UpdateProgress frm = new UpdateProgress();
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
             frm.Focus();
@@ -238,10 +252,13 @@ namespace Wnmp.Helpers
         }
         #endregion
 
+        /// <summary>
+        /// Backs up the configuration files for Nginx, MariaDB, and PHP
+        /// </summary>
         private void DoBackUp()
         {
             string wd = Main.StartupPath;
-            string[] files = { wd + "/php/php.ini", wd + "/conf/nginx.conf" };
+            string[] files = { wd + "/php/php.ini", wd + "/conf/nginx.conf", wd + "/mariadb/my.ini" };
             foreach (string file in files)
             {
                 if (File.Exists(file))
@@ -254,6 +271,11 @@ namespace Wnmp.Helpers
         }
 
         #region AutoCheckForUpdates
+        /// <summary>
+        /// Checks if a string is empty
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns>True if the string isn't empty else it returns false</returns>
         public static bool IsSet(string s)
         {
             if (s != "")
@@ -262,6 +284,11 @@ namespace Wnmp.Helpers
                 return false;
         }
 
+        /// <summary>
+        /// Checks if the curent date if greater than the selected update freqency
+        /// and excutes the updater if true.
+        /// </summary>
+        /// <param name="days"></param>
         private static void DoDateEclasped(double days)
         {
             if (IsSet(Wnmp.Properties.Settings.Default.lastcheckforupdate))
@@ -280,7 +307,9 @@ namespace Wnmp.Helpers
                 Wnmp.Properties.Settings.Default.Save();
             }
         }
-
+        /// <summary>
+        /// Tells the Updater the selected update frequency
+        /// </summary>
         public static void DoAutoCheckForUpdate()
         {
             if (Wnmp.Properties.Settings.Default.autocheckforupdates == true)
@@ -304,6 +333,9 @@ namespace Wnmp.Helpers
         }
         #endregion
 
+        /// <summary>
+        /// Kills Nginx, MariaDB, and PHP
+        /// </summary>
         private void KillProcesses()
         {
             string[] processtokill = { "php-cgi", "nginx", "mysqld" };
@@ -325,6 +357,6 @@ namespace Wnmp.Helpers
                     catch { }
                 }
             }
-        } //
+        } // End of KillProcesses()
     }
 }

@@ -27,6 +27,9 @@ namespace Wnmp.Helpers
 {
     public class ProcessStatus
     {
+        /// <summary>
+        /// Status of Process (ex. when the start button is clicked it is true)
+        /// </summary>
         internal enum ps
         {
             STOPPED,
@@ -36,15 +39,20 @@ namespace Wnmp.Helpers
         public static void timer()
         {
             cfc = new Timer();
-            cfc.Elapsed += new ElapsedEventHandler(OnTimer);
+            cfc.Elapsed += new ElapsedEventHandler(CheckProcessStatus);
             cfc.Interval = 5000;
             cfc.Enabled = true;
         }
 
         private static Timer cfc;
         public delegate void Action();
-        [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
-        public static void OnTimer(Object source, ElapsedEventArgs e)
+        /// <summary>
+        /// Checks the status of Nginx, MariaDB, and PHP and
+        /// restarts them if they crashed while they were already started.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
+        public static void CheckProcessStatus(Object source, ElapsedEventArgs e)
         {
             int ngxfails = 0;
             int mariadbfails = 0;
@@ -101,8 +109,11 @@ namespace Wnmp.Helpers
                 case (int)ProcessStatus.ps.STOPPED: phpfails = 0; break;
             }
         }
-
-        [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
+        /// <summary>
+        /// Check if Process is running
+        /// </summary>
+        /// <param name="process"></param>
+        /// <returns>True if Process is running and false if not</returns>
         private static bool ciair(string process)
         {
             Process[] ptcf = Process.GetProcessesByName(process);

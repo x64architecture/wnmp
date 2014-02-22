@@ -34,11 +34,17 @@ namespace Wnmp.Programs
     class Nginx
     {
         public static Process ps; // Avoid GC
-        public static ContextMenuStrip cms = new ContextMenuStrip();
-        public static ContextMenuStrip lms = new ContextMenuStrip();
-        public static int ngxstatus = (int)ProcessStatus.ps.STOPPED;
+        public static ContextMenuStrip cms = new ContextMenuStrip(); // Config button context menu
+        public static ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
+        public static int ngxstatus = (int)ProcessStatus.ps.STOPPED; // Status
         public static int NgxStatus { get { return ngxstatus; } }
-        [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
+
+        /// <summary>
+        /// Starts an executable file
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="args"></param>
+        /// <param name="wfe"></param>
         public static void startprocess(string p, string args, bool wfe)
         {
             System.Threading.Thread.Sleep(100); // Wait

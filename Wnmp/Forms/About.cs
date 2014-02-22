@@ -51,7 +51,6 @@ namespace Wnmp.Forms
             this.Close();
         }
 
-        [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
         private void label5_Click(object sender, EventArgs e)
         {
             Process.Start("http://wnmp.x64architecture.com");
@@ -59,13 +58,8 @@ namespace Wnmp.Forms
 
         private void About_Load(object sender, EventArgs e)
         {
-#if DEBUG
-            label1.Text = "Wnmp Version: " + Application.ProductVersion + "-Dev";
-            label2.Text = "Wnmp Control Panel Version: " + Program.formInstance.GetCPVER + "-Dev";
-#else
             label1.Text = "Wnmp Version: " + Application.ProductVersion;
-            label2.Text = "Wnmp Control Panel Version: " + Program.formInstance.CPVER;
-#endif
+            label2.Text = "Wnmp Control Panel Version: " + Program.formInstance.GetCPVER;
         }
 
         private void label5_MouseHover(object sender, EventArgs e)
