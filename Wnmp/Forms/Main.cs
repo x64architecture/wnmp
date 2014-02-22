@@ -38,6 +38,8 @@ namespace Wnmp
 
         internal const string UpdateXMLURL = "https://s3.amazonaws.com/wnmp/update.xml";
 
+        private NotifyIcon WnmpTrayIcon = new NotifyIcon();
+
         public Main()
         {
             InitializeComponent();
@@ -265,9 +267,9 @@ namespace Wnmp
                 if (WindowState == FormWindowState.Minimized)
                 {
                     this.Hide();
-                    icon.BalloonTipTitle = "Wnmp";
-                    icon.BalloonTipText = "Wnmp has been minimized to the taskbar.";
-                    icon.ShowBalloonTip(3000);
+                    WnmpTrayIcon.BalloonTipTitle = "Wnmp";
+                    WnmpTrayIcon.BalloonTipText = "Wnmp has been minimized to the taskbar.";
+                    WnmpTrayIcon.ShowBalloonTip(4000);
                 }
             }
             else { }
@@ -282,11 +284,13 @@ namespace Wnmp
             if (now.Month == 12 && now.Day == 25)
                 DoChristmas();
 
-            CheckIfAppsAreRunningTimer.Enabled = true;
+            WnmpTrayIcon.Icon = Wnmp.Properties.Resources.logo;
+            WnmpTrayIcon.Visible = true;
+
             MainHelper.DoStartup();
         }
 
-        private void icon_Click(object sender, EventArgs e)
+        private void WnmpTrayIcon_Click(object sender, EventArgs e)
         {
             this.Show();
             this.WindowState = FormWindowState.Normal;
@@ -316,6 +320,7 @@ namespace Wnmp
         private void setevents()
         {
             Log.setLogComponent(log_rtb);
+            WnmpTrayIcon.Click += WnmpTrayIcon_Click;
             // General Events Start
             start.Click += General.start_Click;
             stop.Click += General.stop_Click;

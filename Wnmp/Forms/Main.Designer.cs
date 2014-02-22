@@ -44,9 +44,7 @@ namespace Wnmp
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.icon = new System.Windows.Forms.NotifyIcon(this.components);
             this.MainFormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wnmpOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,18 +90,10 @@ namespace Wnmp
             this.panel1 = new System.Windows.Forms.Panel();
             this.wnmpdir = new System.Windows.Forms.Button();
             this.log_rtb = new System.Windows.Forms.RichTextBox();
-            this.CheckIfAppsAreRunningTimer = new System.Windows.Forms.Timer(this.components);
             this.MainFormMenuStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // icon
-            // 
-            this.icon.Icon = ((System.Drawing.Icon)(resources.GetObject("icon.Icon")));
-            this.icon.Text = "Wnmp";
-            this.icon.Visible = true;
-            this.icon.Click += new System.EventHandler(this.icon_Click);
             // 
             // MainFormMenuStrip
             // 
@@ -539,10 +529,6 @@ namespace Wnmp
             this.log_rtb.Text = "";
             this.log_rtb.DoubleClick += new System.EventHandler(this.log_rtb_DoubleClick);
             // 
-            // CheckIfAppsAreRunningTimer
-            // 
-            this.CheckIfAppsAreRunningTimer.Interval = 1000;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -572,7 +558,6 @@ namespace Wnmp
 
         #endregion
 
-        private System.Windows.Forms.NotifyIcon icon;
         private System.Windows.Forms.MenuStrip MainFormMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -591,7 +576,6 @@ namespace Wnmp
         private System.Windows.Forms.Button ngx_config;
         private System.Windows.Forms.Button php_cfg;
         private System.Windows.Forms.Button mdb_cfg;
-        private System.Windows.Forms.Timer CheckIfAppsAreRunningTimer;
         private System.Windows.Forms.ToolStripMenuItem wnmpOptionsToolStripMenuItem;
         private System.Windows.Forms.Button php_log;
         private System.Windows.Forms.Button mdb_log;
