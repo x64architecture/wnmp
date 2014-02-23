@@ -9,6 +9,9 @@ using Wnmp.Internals;
 
 namespace Wnmp
 {
+    /// <summary>
+    /// Form to show the update progress.
+    /// </summary>
     public partial class UpdateProgress : Form
     {
         public UpdateProgress()

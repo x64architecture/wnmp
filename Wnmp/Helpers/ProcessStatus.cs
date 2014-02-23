@@ -25,6 +25,9 @@ using Wnmp.Helpers;
 
 namespace Wnmp.Helpers
 {
+    /// <summary>
+    /// Checks the status of a process to see if it matches the set ps value
+    /// </summary>
     public class ProcessStatus
     {
         /// <summary>

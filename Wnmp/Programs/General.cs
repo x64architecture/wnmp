@@ -30,6 +30,9 @@ using Wnmp.Helpers;
 
 namespace Wnmp.Programs
 {
+    /// <summary>
+    /// Functions/Handlers releated to the general applications (ex. start all apps)
+    /// </summary>
     public static class General
     {
         internal static void start_MouseHover()

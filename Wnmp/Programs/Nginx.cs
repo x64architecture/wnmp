@@ -31,6 +31,9 @@ using Wnmp.Helpers;
 
 namespace Wnmp.Programs
 {
+    /// <summary>
+    /// Functions/Handlers releated to Nginx
+    /// </summary>
     class Nginx
     {
         public static Process ps; // Avoid GC

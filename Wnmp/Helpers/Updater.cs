@@ -27,6 +27,9 @@ using Wnmp.Internals;
 
 namespace Wnmp.Helpers
 {
+    /// <summary>
+    /// Updater for Wnmp and the control panel
+    /// </summary>
     class Updater
     {
         private string Wnmp_Upgrade_URL = ""; // Wnmp upgrade installer url

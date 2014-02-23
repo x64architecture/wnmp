@@ -19,6 +19,9 @@ This file is part of Wnmp.
 
 namespace Wnmp.Internals
 {
+    /// <summary>
+    /// Commonly used variables
+    /// </summary>
     class Declarations
     {
         public const int WS_THICKFRAME = 0x00040000;

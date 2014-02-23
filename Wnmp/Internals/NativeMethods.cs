@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Wnmp.Internals
 {
+    /// <summary>
+    /// Native methods (P/Invokes)
+    /// </summary>
     static class NativeMethods
     {
         #region PINVOKE

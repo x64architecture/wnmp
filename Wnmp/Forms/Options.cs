@@ -31,6 +31,9 @@ using Wnmp.Internals;
 
 namespace Wnmp
 {
+    /// <summary>
+    /// Form that allows configuring Wnmp options.
+    /// </summary>
     public partial class Options : Form
     {
         public Options()

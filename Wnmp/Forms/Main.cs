@@ -29,6 +29,9 @@ using Wnmp.Helpers;
 using Wnmp.Internals;
 namespace Wnmp
 {
+    /// <summary>
+    /// Main form of Wnmp
+    /// </summary>
     public partial class Main : Form
     {
         public static string StartupPath { get { return Application.StartupPath; } }

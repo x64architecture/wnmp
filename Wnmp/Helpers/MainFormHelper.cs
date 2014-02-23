@@ -32,6 +32,9 @@ using Wnmp.Helpers;
 
 namespace Wnmp.Helpers
 {
+    /// <summary>
+    /// Additional functions for the Main form
+    /// </summary>
     class MainHelper
     {
         #region checkforapps

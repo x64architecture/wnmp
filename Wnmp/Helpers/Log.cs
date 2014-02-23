@@ -25,6 +25,9 @@ using System.Windows.Forms;
 
 namespace Wnmp.Helpers
 {
+    /// <summary>
+    /// Logs information and errors to a RichTextBox
+    /// </summary>
     public static class Log
     {
         private static RichTextBox rtfLog;

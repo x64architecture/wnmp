@@ -32,6 +32,9 @@ using Wnmp.Helpers;
 
 namespace Wnmp.Programs
 {
+    /// <summary>
+    /// Functions/Handlers releated to MariaDB
+    /// </summary>
     class MariaDB
     {
         public static Process ps; // Avoid GC

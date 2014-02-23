@@ -29,6 +29,9 @@ using Wnmp.Internals;
 
 namespace Wnmp.Forms
 {
+    /// <summary>
+    /// Form that shows info about Wnmp
+    /// </summary>
     public partial class About : Form
     {
         public About()
