@@ -290,20 +290,27 @@ namespace Wnmp.Helpers
         /// <param name="days"></param>
         private static void DoDateEclasped(double days)
         {
-            if (IsSet(Wnmp.Properties.Settings.Default.lastcheckforupdate))
+            try
             {
-                DateTime LastCheckForUpdate = DateTime.Parse(Wnmp.Properties.Settings.Default.lastcheckforupdate);
-                DateTime expiryDate = LastCheckForUpdate.AddDays(days);
-                if (DateTime.Now > expiryDate)
+                if (IsSet(Wnmp.Properties.Settings.Default.lastcheckforupdate))
                 {
-                    const string xmlUrl = Main.UpdateXMLURL;
-                    Updater _Updater = new Updater(xmlUrl, Program.formInstance.GetCPVER);
+                    DateTime LastCheckForUpdate = DateTime.Parse(Wnmp.Properties.Settings.Default.lastcheckforupdate);
+                    DateTime expiryDate = LastCheckForUpdate.AddDays(days);
+                    if (DateTime.Now > expiryDate)
+                    {
+                        const string xmlUrl = Main.UpdateXMLURL;
+                        Updater _Updater = new Updater(xmlUrl, Program.formInstance.GetCPVER);
+                    }
+                }
+                else
+                {
+                    Wnmp.Properties.Settings.Default.lastcheckforupdate = DateTime.Now.ToString();
+                    Wnmp.Properties.Settings.Default.Save();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Wnmp.Properties.Settings.Default.lastcheckforupdate = DateTime.Now.ToString();
-                Wnmp.Properties.Settings.Default.Save();
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
             }
         }
         /// <summary>
