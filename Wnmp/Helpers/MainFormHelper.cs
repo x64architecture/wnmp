@@ -57,8 +57,6 @@ namespace Wnmp.Helpers
 
         internal static void DoStartup()
         {
-            Updater.DoAutoCheckForUpdate();
-
             Log.wnmp_log_notice("Control Panel Version: " + Program.formInstance.GetCPVER, Log.LogSection.WNMP_MAIN);
             Log.wnmp_log_notice("Wnmp Version: " + Program.formInstance.ProductVersion, Log.LogSection.WNMP_MAIN);
             Log.wnmp_log_notice(OSVersionInfo.WindowsVersionString(), Log.LogSection.WNMP_MAIN);
@@ -78,6 +76,8 @@ namespace Wnmp.Helpers
             DirFiles("/logs", "*.log", Nginx.lms);
             DirFiles("/mariadb/data", "*.log", MariaDB.lms);
             DirFiles("/php/logs", "*.log", PHP.lms);
+
+            Updater.DoAutoCheckForUpdate();
         }
         /// <summary>
         /// Adds configuration files to the Config buttons context menu strip
