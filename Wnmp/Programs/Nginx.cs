@@ -83,6 +83,7 @@ namespace Wnmp.Programs
             try
             {
                 startprocess(@Application.StartupPath + "/nginx.exe", "-s stop", true);
+                System.Threading.Thread.Sleep(300); // Lets give nginx 300 miliseconds to stop
                 /* Ensure Nginx gets killed (No leftover useless proccess) */
                 Process[] ngx = System.Diagnostics.Process.GetProcessesByName("nginx");
                 foreach (Process currentProc in ngx)
