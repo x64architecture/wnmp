@@ -277,7 +277,39 @@ namespace Wnmp
             }
             else { }
         }
+        private bool IsFirstRun()
+        {
+            if (Wnmp.Properties.Settings.Default.firstrun)
+                return true;
+            else
+                return false;
+        }
 
+        private void FirstRun()
+        {
+            if (IsFirstRun())
+            {
+                try
+                {
+                    File.WriteAllBytes(Application.StartupPath + "/CertGen.exe", Wnmp.Properties.Resources.CertGen);
+                    if (Directory.Exists(Application.StartupPath + "/conf"))
+                    {
+                        using (Process ps = new Process())
+                        {
+                            ps.StartInfo.FileName = Application.StartupPath + "/CertGen.exe";
+                            ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                            ps.Start();
+                            ps.WaitForExit();
+                            File.Delete(Application.StartupPath + "/CertGen.exe");
+                        }
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+        }
         private void Main_Load(object sender, EventArgs e)
         {
             DeleteFile(@Application.StartupPath + "/updater.exe");
@@ -291,6 +323,8 @@ namespace Wnmp
             WnmpTrayIcon.Visible = true;
 
             MainHelper.DoStartup();
+
+            FirstRun();
         }
 
         private void WnmpTrayIcon_Click(object sender, EventArgs e)

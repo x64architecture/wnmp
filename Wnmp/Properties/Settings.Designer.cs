@@ -106,5 +106,17 @@ namespace Wnmp.Properties {
                 this["lastcheckforupdate"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool firstrun {
+            get {
+                return ((bool)(this["firstrun"]));
+            }
+            set {
+                this["firstrun"] = value;
+            }
+        }
     }
 }

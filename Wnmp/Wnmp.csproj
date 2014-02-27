@@ -172,6 +172,7 @@
   <ItemGroup>
     <None Include="Resources\background.jpg" />
     <None Include="Resources\Wnmp.png" />
+    <None Include="Resources\CertGen.exe" />
     <Content Include="Resources\logo.ico" />
   </ItemGroup>
   <ItemGroup />
