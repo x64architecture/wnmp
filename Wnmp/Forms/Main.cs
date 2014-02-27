@@ -301,13 +301,12 @@ namespace Wnmp
                             ps.Start();
                             ps.WaitForExit();
                             File.Delete(Application.StartupPath + "/CertGen.exe");
+                            Wnmp.Properties.Settings.Default.firstrun = false;
+                            Wnmp.Properties.Settings.Default.Save();
                         }
                     }
                 }
-                catch
-                {
-
-                }
+                catch { }
             }
         }
         private void Main_Load(object sender, EventArgs e)
