@@ -36,6 +36,7 @@ Compression=lzma2
 InternalCompressLevel=max
 SolidCompression=yes
 PrivilegesRequired=none
+RestartIfNeededByRun=no
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
