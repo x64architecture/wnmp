@@ -52,21 +52,6 @@ If you can, please donate to [Wnmp][2] using PayPal to support the development o
 
 ----
 
-### System Requirements ######
--------------------------------------------------
- Nginx		    | 8-12 MB of ram		
--------------------------------------------------
- PHP FastCGI    | 15-20 MB of ram		
--------------------------------------------------
- MariaDB	    | 512 MB of ram		
--------------------------------------------------
- Disk Space		| 378 MB
--------------------------------------------------
-.NET Framework  | 2.0
--------------------------------------------------
-
-----
-
 ### FAQ ######
 
 ###### [View the FAQ on getwnmp.org][6]
