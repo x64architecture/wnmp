@@ -325,7 +325,8 @@ namespace Wnmp
 
             MainHelper.DoStartup();
 
-            FirstRun();
+            System.Threading.Thread worker = new System.Threading.Thread(FirstRun);
+            worker.Start();
         }
 
         private void WnmpTrayIcon_Click(object sender, EventArgs e)
