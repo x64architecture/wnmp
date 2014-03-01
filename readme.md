@@ -3,6 +3,8 @@ Windows, Nginx, MariaDB And PHP (Wnmp)
 Wnmp values security, stability and user friendliness.
 ------------------------------------------------------
 
+[![Build status](https://ci.appveyor.com/api/projects/status?id=oegwjib2n0wv45e9)](https://ci.appveyor.com/project/wnmp-wnmp)
+
 ### Current Wnmp Versions: ######
 
   * Wnmp 2.0.7
