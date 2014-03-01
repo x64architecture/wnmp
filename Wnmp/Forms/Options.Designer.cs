@@ -59,6 +59,8 @@ namespace Wnmp
             this.AutoUpdate = new System.Windows.Forms.CheckBox();
             this.AutoUpdateFrequency = new System.Windows.Forms.ComboBox();
             this.Save = new System.Windows.Forms.Button();
+            this.lastcheckforupdateTB = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -189,7 +191,7 @@ namespace Wnmp
             // 
             // Save
             // 
-            this.Save.Location = new System.Drawing.Point(182, 177);
+            this.Save.Location = new System.Drawing.Point(182, 205);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(75, 23);
             this.Save.TabIndex = 13;
@@ -197,11 +199,31 @@ namespace Wnmp
             this.Save.UseVisualStyleBackColor = true;
             this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
+            // lastcheckforupdateTB
+            // 
+            this.lastcheckforupdateTB.Location = new System.Drawing.Point(132, 175);
+            this.lastcheckforupdateTB.MaxLength = 100;
+            this.lastcheckforupdateTB.Name = "lastcheckforupdateTB";
+            this.lastcheckforupdateTB.ReadOnly = true;
+            this.lastcheckforupdateTB.Size = new System.Drawing.Size(121, 20);
+            this.lastcheckforupdateTB.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 178);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(114, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Last check for update:";
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 211);
+            this.ClientSize = new System.Drawing.Size(285, 240);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lastcheckforupdateTB);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.AutoUpdateFrequency);
             this.Controls.Add(this.AutoUpdate);
@@ -245,6 +267,8 @@ namespace Wnmp
         private System.Windows.Forms.CheckBox AutoUpdate;
         private System.Windows.Forms.ComboBox AutoUpdateFrequency;
         private System.Windows.Forms.Button Save;
+        private System.Windows.Forms.TextBox lastcheckforupdateTB;
+        private System.Windows.Forms.Label label6;
 
     }
 }

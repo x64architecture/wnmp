@@ -47,6 +47,7 @@ namespace Wnmp
         {
             InitializeComponent();
             setevents();
+            Options.settings.ReadSettings();
         }
 
         protected override CreateParams CreateParams
@@ -265,7 +266,7 @@ namespace Wnmp
 
         private void Main_Resize(object sender, EventArgs e)
         {
-            if (Wnmp.Properties.Settings.Default.minimizewnmptotray == true)
+            if (Options.settings.minimizewnmptotray == true)
             {
                 if (WindowState == FormWindowState.Minimized)
                 {
@@ -279,7 +280,7 @@ namespace Wnmp
         }
         private bool IsFirstRun()
         {
-            if (Wnmp.Properties.Settings.Default.firstrun)
+            if (Options.settings.firstrun)
                 return true;
             else
                 return false;
@@ -291,19 +292,20 @@ namespace Wnmp
             {
                 try
                 {
-                    File.WriteAllBytes(Application.StartupPath + "/CertGen.exe", Wnmp.Properties.Resources.CertGen);
-                    if (Directory.Exists(Application.StartupPath + "/conf"))
+                    if (!Directory.Exists(Application.StartupPath + "/conf"))
                     {
-                        using (Process ps = new Process())
-                        {
-                            ps.StartInfo.FileName = Application.StartupPath + "/CertGen.exe";
-                            ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                            ps.Start();
-                            ps.WaitForExit();
-                            File.Delete(Application.StartupPath + "/CertGen.exe");
-                            Wnmp.Properties.Settings.Default.firstrun = false;
-                            Wnmp.Properties.Settings.Default.Save();
-                        }
+                        Directory.CreateDirectory(Application.StartupPath + "/conf");
+                    }
+                    File.WriteAllBytes(Application.StartupPath + "/CertGen.exe", Wnmp.Properties.Resources.CertGen);
+                    using (Process ps = new Process())
+                    {
+                        ps.StartInfo.FileName = Application.StartupPath + "/CertGen.exe";
+                        ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                        ps.Start();
+                        ps.WaitForExit();
+                        DeleteFile(Application.StartupPath + "/CertGen.exe");
+                        Options.settings.firstrun = false;
+                        Options.settings.UpdateSettings();
                     }
                 }
                 catch { }

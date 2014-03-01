@@ -134,7 +134,7 @@ namespace Wnmp.Programs
 
         static void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, Application.StartupPath + "/php/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.editor, Application.StartupPath + "/php/" + e.ClickedItem.Text);
         }
 
         internal static void php_log_Click(object sender, EventArgs e)
@@ -149,7 +149,7 @@ namespace Wnmp.Programs
 
         static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, Application.StartupPath + "/php/logs/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.editor, Application.StartupPath + "/php/logs/" + e.ClickedItem.Text);
         }
     }
 }

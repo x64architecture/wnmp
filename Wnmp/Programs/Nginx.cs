@@ -144,7 +144,7 @@ namespace Wnmp.Programs
 
         static void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, Application.StartupPath + "/conf/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.editor, Application.StartupPath + "/conf/" + e.ClickedItem.Text);
         }
 
         internal static void ngx_log_Click(object sender, EventArgs e)
@@ -159,7 +159,7 @@ namespace Wnmp.Programs
 
         static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, Application.StartupPath + "/logs/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.editor, Application.StartupPath + "/logs/" + e.ClickedItem.Text);
         }
     }
 }

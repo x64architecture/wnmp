@@ -36,6 +36,7 @@ namespace Wnmp
     /// </summary>
     public partial class Options : Form
     {
+        public static Configuration.Ini settings = new Configuration.Ini();
         public Options()
         {
             InitializeComponent();
@@ -53,6 +54,7 @@ namespace Wnmp
 
         private void Options_Load(object sender, EventArgs e)
         {
+            settings.ReadSettings();
             UpdateOptions();
         }
 
@@ -62,16 +64,16 @@ namespace Wnmp
         /// </summary>
         private void UpdateOptions()
         {
-            switch (Settings.Default.editor)
+            switch (settings.editor)
             {
                 case "":
                     editorTB.Text = "notepad.exe";
                     break;
                 default:
-                    editorTB.Text = Settings.Default.editor;
+                    editorTB.Text = settings.editor;
                     break;
             }
-            switch (Settings.Default.startupwithwindows)
+            switch (settings.startupwithwindows)
             {
                 case false:
                     StartWnmpWithWindows.Checked = false;
@@ -80,7 +82,7 @@ namespace Wnmp
                     StartWnmpWithWindows.Checked = true;
                     break;
             }
-            switch (Settings.Default.startallappsatlaunch)
+            switch (settings.startallapplicationsatlaunch)
             {
                 case false:
                     StartAllProgramsOnLaunch.Checked = false;
@@ -89,7 +91,7 @@ namespace Wnmp
                     StartAllProgramsOnLaunch.Checked = true;
                     break;
             }
-            switch (Settings.Default.minimizewnmptotray)
+            switch (settings.minimizewnmptotray)
             {
                 case true:
                     MinimizeWnmpToTray.Checked = true;
@@ -98,7 +100,7 @@ namespace Wnmp
                     MinimizeWnmpToTray.Checked = false;
                     break;
             }
-            switch (Settings.Default.autocheckforupdates)
+            switch (settings.autocheckforupdates)
             {
                 case true:
                     AutoUpdate.Checked = true;
@@ -107,21 +109,25 @@ namespace Wnmp
                     AutoUpdate.Checked = false;
                     break;
             }
-            switch (Settings.Default.checkforupdatefrequency)
+            switch (settings.checkforupdatefrequency)
             {
-                case "day":
+                case 1:
                     AutoUpdateFrequency.SelectedIndex = 0;
                     break;
-                case "week":
+                case 7:
                     AutoUpdateFrequency.SelectedIndex = 1;
                     break;
-                case "month":
+                case 30:
                     AutoUpdateFrequency.SelectedIndex = 2;
                     break;
                 default:
                     AutoUpdateFrequency.SelectedIndex = 1; /* Default: To check for updates every week. */
                     break;
             }
+            if (settings.lastcheckforupdate == DateTime.MinValue)
+                lastcheckforupdateTB.Text = "Never";
+            else
+                lastcheckforupdateTB.Text = settings.lastcheckforupdate.ToString();
         }
         #endregion
         private void selecteditor_Click(object sender, EventArgs e)
@@ -134,11 +140,11 @@ namespace Wnmp
             if (dialog.ShowDialog() == DialogResult.OK)
                 input = dialog.FileName;
             editorTB.Text = dialog.FileName;
-            Settings.Default.editor = dialog.FileName;
+            settings.editor = dialog.FileName;
             
             if (input == String.Empty)
-            Settings.Default.editor = "notepad.exe";
-            editorTB.Text = Settings.Default.editor;
+            settings.editor = "notepad.exe";
+            editorTB.Text = settings.editor;
                 return;
         }
 
@@ -150,13 +156,13 @@ namespace Wnmp
                 {
                     RegistryKey add = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
                     add.SetValue("Wnmp", "\"" + Application.ExecutablePath.ToString() + "\"");
-                    Settings.Default.startupwithwindows = true;
+                    settings.startupwithwindows = true;
                 }
                 else
                 {
                     RegistryKey remove = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
                     remove.DeleteValue("Wnmp");
-                    Settings.Default.startupwithwindows = false;
+                    settings.startupwithwindows = false;
                 }
             }
             catch (Exception ex)
@@ -167,18 +173,18 @@ namespace Wnmp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This option may require administator privileges. \n If it dosent work or throws an error right click Wnmp.exe and click run as administator.");
+            MessageBox.Show("This option may require administator privileges. \n If it doesn't work or throws an error right click Wnmp.exe and click run as administator.");
         }
 
         private void StartAllProgramsOnLaunch_CheckedChanged(object sender, EventArgs e)
         {
             if (StartAllProgramsOnLaunch.Checked == true)
             {
-                Settings.Default.startallappsatlaunch = true;
+                settings.startallapplicationsatlaunch = true;
             }
             else
             {
-                Settings.Default.startallappsatlaunch = false;
+                settings.startallapplicationsatlaunch = false;
             }
         }
 
@@ -186,30 +192,29 @@ namespace Wnmp
         {
             if (MinimizeWnmpToTray.Checked == true)
             {
-                Settings.Default.minimizewnmptotray = true;
+                settings.minimizewnmptotray = true;
             }
             else
             {
-                Settings.Default.minimizewnmptotray = false;
+                settings.minimizewnmptotray = false;
             }
         }
 
         private void AutoUpdateFrequency_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             switch (AutoUpdateFrequency.SelectedIndex)
             {
                 case 0:
-                    Settings.Default.checkforupdatefrequency = "day";
+                    settings.checkforupdatefrequency = 1;
                     break;
                 case 1:
-                    Settings.Default.checkforupdatefrequency = "week";
+                    settings.checkforupdatefrequency = 7;
                     break;
                 case 2:
-                    Settings.Default.checkforupdatefrequency = "month";
+                    settings.checkforupdatefrequency = 30;
                     break;
                 default:
-                    Settings.Default.checkforupdatefrequency = "day";
+                    settings.checkforupdatefrequency = 7;
                     break;
             }
         }
@@ -219,23 +224,22 @@ namespace Wnmp
             switch (AutoUpdate.Checked)
             {
                 case true:
-                    Settings.Default.autocheckforupdates = true;
+                    settings.autocheckforupdates = true;
                     break;
                 case false:
-                    Settings.Default.autocheckforupdates = false;
+                    settings.autocheckforupdates = false;
                     break;
             }
         }
 
         private void Save_Click(object sender, EventArgs e)
         {
-            Settings.Default.Save();
+            settings.UpdateSettings();
             this.Close();
         }
 
         private void Options_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Settings.Default.Reload();
         }
     }
 }

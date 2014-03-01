@@ -158,7 +158,7 @@ namespace Wnmp.Programs
 
         static void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, Application.StartupPath + "/mariadb/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.editor, Application.StartupPath + "/mariadb/" + e.ClickedItem.Text);
         }
 
         internal static void mdb_log_Click(object sender, EventArgs e)
@@ -173,7 +173,7 @@ namespace Wnmp.Programs
 
         static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Wnmp.Properties.Settings.Default.editor, Application.StartupPath + "/mariadb/data/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.editor, Application.StartupPath + "/mariadb/data/" + e.ClickedItem.Text);
         }
     }
 }

@@ -89,6 +89,8 @@ namespace Wnmp.Helpers
                             Log.wnmp_log_notice("Your control panel version: " + CurCPVer + " is up to date.", Log.LogSection.WNMP_MAIN);
                         }
                     }
+                    Options.settings.lastcheckforupdate = DateTime.Now;
+                    Options.settings.UpdateSettings();
                 }
             }
         }
@@ -274,10 +276,10 @@ namespace Wnmp.Helpers
         /// Checks if a string is empty
         /// </summary>
         /// <param name="s"></param>
-        /// <returns>True if the string isn't empty else it returns false</returns>
-        public static bool IsSet(string s)
+        /// <returns>True if the datetime is set else it returns false</returns>
+        public static bool IsSet(DateTime dt)
         {
-            if (s != "")
+            if (dt != DateTime.MinValue)
                 return true;
             else
                 return false;
@@ -292,9 +294,9 @@ namespace Wnmp.Helpers
         {
             try
             {
-                if (IsSet(Wnmp.Properties.Settings.Default.lastcheckforupdate))
+                if (IsSet(Options.settings.lastcheckforupdate))
                 {
-                    DateTime LastCheckForUpdate = DateTime.Parse(Wnmp.Properties.Settings.Default.lastcheckforupdate);
+                    DateTime LastCheckForUpdate = Options.settings.lastcheckforupdate;
                     DateTime expiryDate = LastCheckForUpdate.AddDays(days);
                     if (DateTime.Now > expiryDate)
                     {
@@ -304,8 +306,8 @@ namespace Wnmp.Helpers
                 }
                 else
                 {
-                    Wnmp.Properties.Settings.Default.lastcheckforupdate = DateTime.Now.ToString();
-                    Wnmp.Properties.Settings.Default.Save();
+                    Options.settings.lastcheckforupdate = DateTime.Now;
+                    Options.settings.UpdateSettings();
                 }
             }
             catch (Exception ex)
@@ -318,17 +320,17 @@ namespace Wnmp.Helpers
         /// </summary>
         public static void DoAutoCheckForUpdate()
         {
-            if (Wnmp.Properties.Settings.Default.autocheckforupdates == true)
+            if (Options.settings.autocheckforupdates == true)
             {
-                switch (Wnmp.Properties.Settings.Default.checkforupdatefrequency)
+                switch (Options.settings.checkforupdatefrequency)
                 {
-                    case "day":
+                    case 1:
                         DoDateEclasped(1);
                         break;
-                    case "week":
+                    case 7:
                         DoDateEclasped(7);
                         break;
-                    case "month":
+                    case 30:
                         DoDateEclasped(30);
                         break;
                     default:
