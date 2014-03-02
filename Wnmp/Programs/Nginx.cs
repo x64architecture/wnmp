@@ -42,6 +42,8 @@ namespace Wnmp.Programs
         public static int ngxstatus = (int)ProcessStatus.ps.STOPPED; // Status
         public static int NgxStatus { get { return ngxstatus; } }
 
+        private static string NginxExe = Application.StartupPath.Replace(@"\", "/") + "/nginx.exe";
+
         /// <summary>
         /// Starts an executable file
         /// </summary>
@@ -66,7 +68,7 @@ namespace Wnmp.Programs
         {
             try
             {
-                startprocess(@Application.StartupPath + "/nginx.exe", "", false);
+                startprocess(NginxExe, "", false);
                 Log.wnmp_log_notice("Attempting to start Nginx", Log.LogSection.WNMP_NGINX);
                 Program.formInstance.nginxrunning.Text = "\u221A";
                 Program.formInstance.nginxrunning.ForeColor = Color.Green;
@@ -82,7 +84,7 @@ namespace Wnmp.Programs
         {
             try
             {
-                startprocess(@Application.StartupPath + "/nginx.exe", "-s stop", true);
+                startprocess(NginxExe, "-s stop", true);
                 System.Threading.Thread.Sleep(300); // Lets give nginx 300 miliseconds to stop
                 /* Ensure Nginx gets killed (No leftover useless proccess) */
                 Process[] ngx = System.Diagnostics.Process.GetProcessesByName("nginx");
@@ -105,7 +107,7 @@ namespace Wnmp.Programs
         {
             try
             {
-                startprocess(@Application.StartupPath + "/nginx.exe", "-s reload", false);
+                startprocess(NginxExe, "-s reload", false);
                 Log.wnmp_log_notice("Attempting to reload Nginx", Log.LogSection.WNMP_NGINX);
             }
             catch (Exception ex)
