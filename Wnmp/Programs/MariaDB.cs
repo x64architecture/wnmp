@@ -40,6 +40,9 @@ namespace Wnmp.Programs
         public static Process ps; // Avoid GC
         public static ContextMenuStrip cms = new ContextMenuStrip(); // Config button context menu
         public static ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
+        public static ToolTip MariaDB_start_Tip = new ToolTip(); // Start button ToolTip
+        public static ToolTip MariaDB_stop_Tip = new ToolTip(); // Stop button ToolTip
+        public static ToolTip MariaDB_opnshell_Tip = new ToolTip(); // Open Shell button ToolTip
         public static int mariadbstatus = (int)ProcessStatus.ps.STOPPED; // Status
 
         public static int MariaDBStatus { get { return mariadbstatus; } }
@@ -125,19 +128,16 @@ namespace Wnmp.Programs
 
         internal static void mdb_start_MouseHover(object sender, EventArgs e)
         {
-            ToolTip MariaDB_start_Tip = new ToolTip();
             MariaDB_start_Tip.Show("Start MariaDB", Program.formInstance.mdb_start);
         }
 
         internal static void mdb_stop_MouseHover(object sender, EventArgs e)
         {
-            ToolTip MariaDB_stop_Tip = new ToolTip();
             MariaDB_stop_Tip.Show("Stop MariaDB", Program.formInstance.mdb_stop);
         }
 
         internal static void mdb_shell_MouseHover(object sender, EventArgs e)
         {
-            ToolTip MariaDB_opnshell_Tip = new ToolTip();
             MariaDB_opnshell_Tip.Show("Open MariaDB Shell", Program.formInstance.mdb_shell);
         }
 

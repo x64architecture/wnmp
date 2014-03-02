@@ -39,6 +39,10 @@ namespace Wnmp.Programs
         public static Process ps; // Avoid GC
         public static ContextMenuStrip cms = new ContextMenuStrip(); // Config button context menu
         public static ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
+        private static ToolTip nginx_start_Tip = new ToolTip(); // Start button ToolTip
+        private static ToolTip nginx_stop_Tip = new ToolTip(); // Stop button ToolTip
+        private static ToolTip nginx_reload_Tip = new ToolTip(); // Reload button ToolTip
+
         public static int ngxstatus = (int)ProcessStatus.ps.STOPPED; // Status
         public static int NgxStatus { get { return ngxstatus; } }
 
@@ -118,19 +122,16 @@ namespace Wnmp.Programs
 
         internal static void ngx_stop_MouseHover(object sender, EventArgs e)
         {
-            ToolTip nginx_stop_Tip = new ToolTip();
             nginx_stop_Tip.Show("Stop Nginx", Program.formInstance.ngx_stop);
         }
 
         internal static void ngx_start_MouseHover(object sender, EventArgs e)
         {
-            ToolTip nginx_start_Tip = new ToolTip();
             nginx_start_Tip.Show("Start Nginx", Program.formInstance.ngx_start);
         }
 
         internal static void ngx_reload_MouseHover(object sender, EventArgs e)
         {
-            ToolTip nginx_reload_Tip = new ToolTip();
             nginx_reload_Tip.Show("Reloads Nginx configuration without restart", Program.formInstance.ngx_reload);
         }
 
