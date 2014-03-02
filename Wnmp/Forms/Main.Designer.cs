@@ -51,6 +51,8 @@ namespace Wnmp
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hostToIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,6 +102,7 @@ namespace Wnmp
             this.MainFormMenuStrip.BackColor = System.Drawing.Color.Transparent;
             this.MainFormMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem,
             this.localhostToolStripMenuItem,
             this.weNeedYourSupportToolStripMenuItem});
@@ -145,6 +148,21 @@ namespace Wnmp
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hostToIPToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // hostToIPToolStripMenuItem
+            // 
+            this.hostToIPToolStripMenuItem.Name = "hostToIPToolStripMenuItem";
+            this.hostToIPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hostToIPToolStripMenuItem.Text = "Host To IP";
+            this.hostToIPToolStripMenuItem.Click += new System.EventHandler(this.hostToIPToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -603,6 +621,8 @@ namespace Wnmp
         private System.Windows.Forms.ToolStripMenuItem localhostToolStripMenuItem;
         internal System.Windows.Forms.Label phprunning;
         private System.Windows.Forms.ToolStripMenuItem weNeedYourSupportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hostToIPToolStripMenuItem;
 
     }
 }

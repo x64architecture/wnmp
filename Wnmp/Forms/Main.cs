@@ -27,6 +27,7 @@ using Wnmp.Programs;
 using Wnmp.Helpers;
 
 using Wnmp.Internals;
+using Wnmp.Forms;
 namespace Wnmp
 {
     /// <summary>
@@ -395,6 +396,13 @@ namespace Wnmp
             // End
         }
         #endregion
+
+        private void hostToIPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HostToIPForm frm = new HostToIPForm();
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.ShowDialog();
+        }
 
 
         #endregion
