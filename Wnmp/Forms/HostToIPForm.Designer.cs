@@ -102,8 +102,9 @@
             this.Controls.Add(this.Go);
             this.Controls.Add(this.host);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "HostToIPForm";
-            this.Text = "HostToIP";
+            this.Text = "Host To IP";
             this.ResumeLayout(false);
             this.PerformLayout();
 
