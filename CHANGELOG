@@ -1,4 +1,30 @@
-Wnmp 2.0.7: Released: 01/02/2014
+Wnmp 2.0.8: Released: 03/02/2014
+********************************
+- Wnmp Control Panel 2.2
+  
+  * Feature: Wnmp now generates a SSL certificate for you!
+  * Feature: Wnmps has a new configuration system. Wnmp path/Wnmp.ini so
+    you can now easily take your Wnmp settings to go!
+  * Feature: Host to IP. New feature is at Tools->Host To IP.
+  * Many fixes and improvements. 
+
+- Nginx
+
+ * Updated to 1.5.10
+ 
+ - MariaDB
+
+ * Updated to 5.5.36
+
+- PHP
+
+  * Updated to 5.5.10
+
+- phpMyAdmin
+  
+  * Updated to 4.1.8
+  
+Wnmp 2.0.7: Released: 02/02/2014
 ********************************
 - Wnmp Control Panel 2.1.2
   
