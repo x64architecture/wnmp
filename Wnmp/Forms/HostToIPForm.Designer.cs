@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HostToIPForm));
             this.host = new System.Windows.Forms.TextBox();
             this.Go = new System.Windows.Forms.Button();
             this.close = new System.Windows.Forms.Button();
@@ -100,6 +101,7 @@
             this.Controls.Add(this.close);
             this.Controls.Add(this.Go);
             this.Controls.Add(this.host);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HostToIPForm";
             this.Text = "HostToIP";
             this.ResumeLayout(false);
