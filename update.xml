@@ -1,45 +1,41 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <appinfo>
-<version>2.0.7</version>
-<url>https://github.com/wnmp/wnmp/releases/download/2.0.7/Wnmp-2.0.7.exe</url>
-<upgradeurl>https://github.com/wnmp/wnmp/releases/download/2.0.7/Wnmp-Upgrade-Installer-2.0.7.exe</upgradeurl>
-<about>
-Wnmp 2.0.7: Released: 01/02/2014
+  <version>2.0.8</version>
+  <url>https://github.com/wnmp/wnmp/releases/download/2.0.8/Wnmp-2.0.8.exe</url>
+  <upgradeurl>https://github.com/wnmp/wnmp/releases/download/2.0.8/Wnmp-Upgrade-Installer-2.0.8.exe</upgradeurl>
+  <about>Wnmp 2.0.8: Released: 03/02/2014
 ********************************
-- Wnmp Control Panel 2.1.2
+- Wnmp Control Panel 2.2
   
-  * Fixed: Windows 8.1 version detection.
-  * Fixed: an invalid url and other misc changes
-  * Changed: Forms can't be resized now using ~WS_THICKFRAME
-  * Feature: Double click the Log RichTextBox and it will pop up a notepad with the current log
-  * Feature: When Wnmp closes it saves a log to the start up path
-  * Feature: When Wnmp is closed it saves a log to Wnmp.log
+  * Feature: Wnmp now generates a SSL certificate for you!
+  * Feature: Wnmps has a new configuration system. Wnmp path/Wnmp.ini so
+    you can now easily take your Wnmp settings to go!
+  * Feature: Host to IP. New feature is at Tools-&gt;Host To IP.
+  * Many fixes and improvements. 
 
 - Nginx
 
- * Updated to 1.5.9
- * Compiled with OpenSSL 1.0.1f to fix CVE-2013-4353 And CVE-2013-6450
- * SPDY/3.1 Support!
+ * Updated to 1.5.10
  
  - MariaDB
 
- * Updated to 5.5.35
+ * Updated to 5.5.36
 
 - PHP
 
-  * Updated to 5.5.8
+  * Updated to 5.5.10
 
 - phpMyAdmin
   
-  * Updated to 4.1.6  
-</about>
-<cpversion>2.1.3</cpversion>
-<cpupdateurl>http://getwnmp.org/wnmp-updater/Wnmp.exe</cpupdateurl>
-<cpupdaterurl>http://getwnmp.org/wnmp-updater/updater.exe</cpupdaterurl>
-<cpabout>
-Wnmp Control Panel 2.1.3
-************************
-
-  * Signed using new certificate.
-</cpabout>
+  * Updated to 4.1.8</about>
+  <cpversion>2.2</cpversion>
+  <cpupdateurl>http://getwnmp.org/wnmp-updater/Wnmp.exe</cpupdateurl>
+  <cpupdaterurl>http://getwnmp.org/wnmp-updater/updater.exe</cpupdaterurl>
+  <cpabout>- Wnmp Control Panel 2.2
+  
+  * Feature: Wnmp now generates a SSL certificate for you!
+  * Feature: Wnmps has a new configuration system. Wnmp path/Wnmp.ini so
+    you can now easily take your Wnmp settings to go!
+  * Feature: Host to IP. New feature is at Tools-&gt;Host To IP.
+  * Many fixes and improvements. </cpabout>
 </appinfo>
