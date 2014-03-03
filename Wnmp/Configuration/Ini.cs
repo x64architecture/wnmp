@@ -104,7 +104,7 @@ namespace Wnmp.Configuration
                 sw.WriteLine("; Start Wnmp with Windows\r\nstartupwithwindows=" + startupwithwindows);
                 sw.WriteLine("; Start all applications when Wnmp starts\r\nstartallapplicationsatlaunch=" + startallapplicationsatlaunch);
                 sw.WriteLine("; Minimize Wnmp to tray when minimized\r\nminimizewnmptotray=" + minimizewnmptotray);
-                sw.WriteLine("; Automaticaly check for updates\r\nautocheckforupdates=" + autocheckforupdates);
+                sw.WriteLine("; Automatically check for updates\r\nautocheckforupdates=" + autocheckforupdates);
                 sw.WriteLine("; Update frequency(1, 7, 30)\r\ncheckforupdatefrequency=" + checkforupdatefrequency);
                 sw.WriteLine("; Last check for update\r\nlastcheckforupdate=" + lastcheckforupdate);
                 sw.WriteLine("; First run\r\nfirstrun=" + firstrun);
