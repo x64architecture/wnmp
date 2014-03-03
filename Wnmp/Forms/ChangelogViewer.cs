@@ -44,7 +44,7 @@ namespace Wnmp
 
         private void viewchange_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://wnmp.x64architecture.com/WhatsNew");
+            System.Diagnostics.Process.Start("http://getwnmp.org/WhatsNew");
         }
     }
 }

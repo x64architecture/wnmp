@@ -56,7 +56,7 @@ namespace Wnmp.Forms
 
         private void label5_Click(object sender, EventArgs e)
         {
-            Process.Start("http://wnmp.x64architecture.com");
+            Process.Start("http://getwnmp.org");
         }
 
         private void About_Load(object sender, EventArgs e)
