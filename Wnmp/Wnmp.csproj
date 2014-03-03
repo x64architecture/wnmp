@@ -82,7 +82,6 @@
       <DependentUpon>ChangelogViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Programs\General.cs" />
-    <Compile Include="Helpers\ProcessStatus.cs" />
     <Compile Include="Helpers\Updater.cs" />
     <Compile Include="Forms\About.cs">
       <SubType>Form</SubType>

@@ -41,7 +41,6 @@ namespace Wnmp.Programs
         public static ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
         public static ToolTip PHP_start_Tip = new ToolTip(); // Start button ToolTip
         public static ToolTip PHP_stop_Tip = new ToolTip(); // Stop button ToolTip
-        public static int phpstatus = (int)ProcessStatus.ps.STOPPED; // Status
         internal static string pini = Application.StartupPath + "/php/php.ini"; // Location of php.ini to pass on to php
 
         /// <summary>
@@ -68,10 +67,7 @@ namespace Wnmp.Programs
         {
             /* The Win-PHP developers thought is was smart to kill php after a certain amount of requests (Probably 500). 
                so we have to restart it once it exits or set 'PHP_FCGI_MAX_REQUESTS' variable to 0. I've looked and people are recommending just to restart it. */
-            if (PHPStatus == (int)ProcessStatus.ps.STARTED) // Check if PHP is set to run
-            {
                 startprocess(@Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
-            }
         }
 
         internal static void php_start_Click(object sender, EventArgs e)
@@ -82,7 +78,6 @@ namespace Wnmp.Programs
                 Log.wnmp_log_notice("Attempting to start PHP", Log.LogSection.WNMP_PHP);
                 Program.formInstance.phprunning.Text = "\u221A";
                 Program.formInstance.phprunning.ForeColor = Color.Green;
-                phpstatus = (int)ProcessStatus.ps.STARTED;
             }
             catch (Exception ex)
             {
@@ -99,7 +94,6 @@ namespace Wnmp.Programs
                 {
                     currentProc.Kill();
                 }
-                phpstatus = (int)ProcessStatus.ps.STOPPED;
             }
             catch (Exception ex)
             {
@@ -109,8 +103,6 @@ namespace Wnmp.Programs
             Program.formInstance.phprunning.Text = "X";
             Program.formInstance.phprunning.ForeColor = Color.DarkRed;
         }
-
-        public static int PHPStatus { get { return phpstatus; } }
 
         internal static void php_start_MouseHover(object sender, EventArgs e)
         {

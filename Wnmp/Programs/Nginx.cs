@@ -43,9 +43,6 @@ namespace Wnmp.Programs
         private static ToolTip nginx_stop_Tip = new ToolTip(); // Stop button ToolTip
         private static ToolTip nginx_reload_Tip = new ToolTip(); // Reload button ToolTip
 
-        public static int ngxstatus = (int)ProcessStatus.ps.STOPPED; // Status
-        public static int NgxStatus { get { return ngxstatus; } }
-
         private static string NginxExe = Application.StartupPath.Replace(@"\", "/") + "/nginx.exe";
 
         /// <summary>
@@ -76,7 +73,6 @@ namespace Wnmp.Programs
                 Log.wnmp_log_notice("Attempting to start Nginx", Log.LogSection.WNMP_NGINX);
                 Program.formInstance.nginxrunning.Text = "\u221A";
                 Program.formInstance.nginxrunning.ForeColor = Color.Green;
-                ngxstatus = (int)ProcessStatus.ps.STARTED;
             }
             catch (Exception ex)
             {
@@ -99,7 +95,6 @@ namespace Wnmp.Programs
                 Log.wnmp_log_notice("Attempting to stop Nginx", Log.LogSection.WNMP_NGINX);
                 Program.formInstance.nginxrunning.Text = "X";
                 Program.formInstance.nginxrunning.ForeColor = Color.DarkRed;
-                ngxstatus = (int)ProcessStatus.ps.STOPPED;
             }
             catch (Exception ex)
             {

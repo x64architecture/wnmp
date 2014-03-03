@@ -43,9 +43,6 @@ namespace Wnmp.Programs
         public static ToolTip MariaDB_start_Tip = new ToolTip(); // Start button ToolTip
         public static ToolTip MariaDB_stop_Tip = new ToolTip(); // Stop button ToolTip
         public static ToolTip MariaDB_opnshell_Tip = new ToolTip(); // Open Shell button ToolTip
-        public static int mariadbstatus = (int)ProcessStatus.ps.STOPPED; // Status
-
-        public static int MariaDBStatus { get { return mariadbstatus; } }
 
         /// <summary>
         /// Starts an executable file
@@ -75,7 +72,6 @@ namespace Wnmp.Programs
                 Log.wnmp_log_notice("Attempting to start MariaDB", Log.LogSection.WNMP_MARIADB);
                 Program.formInstance.mariadbrunning.Text = "\u221A";
                 Program.formInstance.mariadbrunning.ForeColor = Color.Green;
-                mariadbstatus = (int)ProcessStatus.ps.STARTED;
             }
             catch (Exception ex)
             {
@@ -99,21 +95,27 @@ namespace Wnmp.Programs
                 }
                 Program.formInstance.mariadbrunning.Text = "X";
                 Program.formInstance.mariadbrunning.ForeColor = Color.DarkRed;
-                mariadbstatus = (int)ProcessStatus.ps.STOPPED;
             }
             catch (Exception ex)
             {
                 Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
             }
         }
-
+        private static bool MariaDBIsRunning()
+        {
+            Process[] ptcf = Process.GetProcessesByName("mysqld");
+            if (ptcf.Length == 0)
+                return false;
+            else
+                return true;
+        }
         internal static void mdb_shell_Click(object sender, EventArgs e)
         {
             try
             {
                 Log.wnmp_log_notice("Attempting to start MariaDB shell", Log.LogSection.WNMP_MARIADB);
                 // MariaDB
-                if (MariaDBStatus != 0)
+                if (!MariaDBIsRunning())
                 {
                     startprocess(@Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true, false);
                 }
