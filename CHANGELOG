@@ -1,3 +1,22 @@
+Wnmp 2.0.9: Released: 03/07/2014
+********************************
+- Wnmp Control Panel 2.2.1
+  
+  * Fixed: The million tooltips that would show up if you hovered over the buttons a few times.
+  * Fixed: Calling session_destroy results in 502 gateway error. (#23)
+
+- Nginx
+
+ * Updated to 1.5.11
+
+- PHP
+
+  * Updated to 5.5.10
+
+- phpMyAdmin
+  
+  * Updated to 4.1.9
+
 Wnmp 2.0.8: Released: 03/02/2014
 ********************************
 - Wnmp Control Panel 2.2
