@@ -89,23 +89,7 @@ namespace Wnmp
 
         private void Report_BugToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string desktoppath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            try
-            {
-                foreach (string file in Directory.GetFiles(Application.StartupPath + @"\logs", "*error*"))
-                {
-                    if (!Directory.Exists(desktoppath + @"\Wnmpissuefiles"))
-                        Directory.CreateDirectory(desktoppath + @"\Wnmpissuefiles");
-                    if (File.Exists(file))
-                        File.Copy(file, desktoppath + @"\Wnmpissuefiles\" + Path.GetFileName(file), true);
-                }
-                if (!Directory.Exists(desktoppath + @"\Wnmpissuefiles"))
-                    Directory.CreateDirectory(desktoppath + @"\Wnmpissuefiles");
-                File.Copy(Application.StartupPath + "/php/logs/sys.log", desktoppath + @"\Wnmpissuefiles\sys.log", true);
-                MessageBox.Show(string.Format("Attach the error log inside the {0} folder to the issue report that is associated with the problem you are facing.", desktoppath + @"\Wnmpissuefiles"));
                 Process.Start("https://github.com/wnmp/wnmp/issues/new");
-            }
-            catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
