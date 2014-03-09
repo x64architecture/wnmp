@@ -36,33 +36,12 @@ namespace Wnmp
                 Application.Exit();
                 return;
             }
-            if (AlreadyRunning())
-            {
-                MessageBox.Show("Wnmp is already running.");
-                Application.Exit();
-                return;
-            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(formInstance = new Main());
         }
         public static Main formInstance;
 
-        /// <summary>
-        /// Checks if Wnmp is already running
-        /// </summary>
-        /// <returns>true if Wnmp is running else false</returns>
-        private static bool AlreadyRunning()
-        {
-            Process[] process = Process.GetProcessesByName("Wnmp");
-            Process current = Process.GetCurrentProcess();
-            foreach (Process p in process)
-            {
-                if (p.Id != current.Id)
-                    return true;
-            }
-            return false;
-        }
         /// <summary>
         /// Checks if operating system is vista or greator
         /// </summary>
