@@ -50,7 +50,7 @@ namespace Wnmp.Programs
         /// <summary>
         /// Starts an executable file
         /// </summary>
-        public static void startprocess(string p, string args, bool wfe)
+        public static void startprocess(string p, string args)
         {
             System.Threading.Thread.Sleep(100); // Wait
             ps = new Process(); // Create process
@@ -61,17 +61,13 @@ namespace Wnmp.Programs
             ps.StartInfo.WorkingDirectory = Application.StartupPath;
             ps.StartInfo.CreateNoWindow = true; // Excute with no window
             ps.Start(); // Start the process
-            if (wfe)
-            {
-                ps.WaitForExit();
-            }
         }
 
         internal static void ngx_start_Click(object sender, EventArgs e)
         {
             try
             {
-                startprocess(NginxExe, "", false);
+                startprocess(NginxExe, "");
                 Log.wnmp_log_notice("Attempting to start Nginx", Log.LogSection.WNMP_NGINX);
                 Declarations.ToStartedLabel(Program.formInstance.nginxrunning);
             }
@@ -85,14 +81,7 @@ namespace Wnmp.Programs
         {
             try
             {
-                startprocess(NginxExe, "-s stop", true);
-                System.Threading.Thread.Sleep(300); // Lets give nginx 300 miliseconds to stop
-                /* Ensure Nginx gets killed (No leftover useless proccess) */
-                Process[] ngx = System.Diagnostics.Process.GetProcessesByName("nginx");
-                foreach (Process currentProc in ngx)
-                {
-                    currentProc.Kill();
-                }
+                startprocess(NginxExe, "-s stop");
                 Log.wnmp_log_notice("Attempting to stop Nginx", Log.LogSection.WNMP_NGINX);
                 Declarations.ToStoppedLabel(Program.formInstance.nginxrunning);
             }
@@ -106,7 +95,7 @@ namespace Wnmp.Programs
         {
             try
             {
-                startprocess(NginxExe, "-s reload", false);
+                startprocess(NginxExe, "-s reload");
                 Log.wnmp_log_notice("Attempting to reload Nginx", Log.LogSection.WNMP_NGINX);
             }
             catch (Exception ex)

@@ -49,7 +49,7 @@ namespace Wnmp.Programs
         /// <summary>
         /// Starts an executable file
         /// </summary>
-        public static void startprocess(string p, string args, bool shellexc, bool redirectso, bool wfe)
+        public static void startprocess(string p, string args, bool shellexc, bool redirectso)
         {
             System.Threading.Thread.Sleep(100); // Wait
             ps = new Process(); // Create process
@@ -70,7 +70,7 @@ namespace Wnmp.Programs
         {
             try
             {
-                startprocess(@Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true, false);
+                startprocess(Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true);
                 Log.wnmp_log_notice("Attempting to start MariaDB", Log.LogSection.WNMP_MARIADB);
                 Declarations.ToStartedLabel(Program.formInstance.mariadbrunning);
             }
@@ -86,14 +86,7 @@ namespace Wnmp.Programs
             {
                 // MariaDB
                 Log.wnmp_log_notice("Attempting to stop MariaDB", Log.LogSection.WNMP_MARIADB);
-                startprocess(@Application.StartupPath + @"\mariadb\bin\mysqladmin.exe", "-u root -p shutdown", true, false, true);
-
-                /* Ensure MariaDB gets killed (No leftover useless proccess) */
-                Process[] mdb = System.Diagnostics.Process.GetProcessesByName("mysqld");
-                foreach (Process currentProc in mdb)
-                {
-                    currentProc.Kill();
-                }
+                startprocess(Application.StartupPath + @"\mariadb\bin\mysqladmin.exe", "-u root -p shutdown", true, false);
                 Declarations.ToStoppedLabel(Program.formInstance.mariadbrunning);
             }
             catch (Exception ex)
@@ -117,10 +110,10 @@ namespace Wnmp.Programs
                 // MariaDB
                 if (!MariaDBIsRunning())
                 {
-                    startprocess(@Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true, false);
+                    startprocess(Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true);
                 }
                 // MariaDB Shell
-                startprocess(@Application.StartupPath + @"\mariadb\bin\mysql.exe", "-u root -p", true, false, false);
+                startprocess(Application.StartupPath + @"\mariadb\bin\mysql.exe", "-u root -p", true, false);
             }
             catch (Exception ex)
             {
