@@ -177,7 +177,7 @@ namespace Wnmp.Helpers
 
             UpdateProgress frm = new UpdateProgress();
             frm.StartPosition = FormStartPosition.CenterScreen;
-            frm.Show();
+            frm.ShowDialog();
             frm.Focus();
 
             WebClient webClient = new WebClient();
@@ -220,7 +220,7 @@ namespace Wnmp.Helpers
             string UPDATER = @Application.StartupPath + "/updater.exe";
             UpdateProgress frm = new UpdateProgress();
             frm.StartPosition = FormStartPosition.CenterScreen;
-            frm.Show();
+            frm.ShowDialog();
             frm.Focus();
             WebClient webClient = new WebClient();
             WebClient webClient2 = new WebClient();
