@@ -115,6 +115,20 @@ namespace Wnmp
             Process.Start("http://localhost");
         }
 
+        private void hostToIPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HostToIPForm frm = new HostToIPForm();
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.ShowDialog();
+        }
+
+        private void getHTTPHeadersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HttpHeaders form = new HttpHeaders();
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.ShowDialog();
+        }
+
         #endregion
 
         #region Functions
@@ -380,13 +394,6 @@ namespace Wnmp
             // End
         }
         #endregion
-
-        private void hostToIPToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            HostToIPForm frm = new HostToIPForm();
-            frm.StartPosition = FormStartPosition.CenterScreen;
-            frm.ShowDialog();
-        }
 
 
         #endregion

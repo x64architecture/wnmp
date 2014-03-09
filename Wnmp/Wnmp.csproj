@@ -72,6 +72,12 @@
     <Compile Include="Forms\HostToIPForm.Designer.cs">
       <DependentUpon>HostToIPForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\HttpHeaders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HttpHeaders.designer.cs">
+      <DependentUpon>HttpHeaders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Internals\Declarations.cs" />
     <Compile Include="Helpers\Log.cs" />
     <Compile Include="Internals\NativeMethods.cs" />
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\HostToIPForm.resx">
       <DependentUpon>HostToIPForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HttpHeaders.resx">
+      <DependentUpon>HttpHeaders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UpdateProgress.resx">
       <DependentUpon>UpdateProgress.cs</DependentUpon>
