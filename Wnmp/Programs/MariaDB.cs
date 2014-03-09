@@ -60,10 +60,6 @@ namespace Wnmp.Programs
             ps.StartInfo.WorkingDirectory = Application.StartupPath;
             ps.StartInfo.CreateNoWindow = true; // Excute with no window
             ps.Start(); // Start the process
-            if (wfe)
-            {
-                ps.WaitForExit();
-            }
         }
 
         internal static void mdb_start_Click(object sender, EventArgs e)

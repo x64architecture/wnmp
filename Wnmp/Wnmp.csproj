@@ -72,6 +72,7 @@
     <Compile Include="Forms\HostToIPForm.Designer.cs">
       <DependentUpon>HostToIPForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Processes.cs" />
     <Compile Include="Internals\Declarations.cs" />
     <Compile Include="Helpers\Log.cs" />
     <Compile Include="Internals\NativeMethods.cs" />
