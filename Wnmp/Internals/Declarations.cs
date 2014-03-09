@@ -17,6 +17,9 @@ This file is part of Wnmp.
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using System.Drawing;
+using System.Windows.Forms;
+
 namespace Wnmp.Internals
 {
     /// <summary>
@@ -25,5 +28,24 @@ namespace Wnmp.Internals
     class Declarations
     {
         public const int WS_THICKFRAME = 0x00040000;
+
+        /// <summary>
+        /// Changes the labels apperance to started
+        /// </summary>
+        /// <param name="label"></param>
+        public static void ToStartedLabel(Label label)
+        {
+            label.Text = "\u221A";
+            label.ForeColor = Color.Green;
+        }
+        /// <summary>
+        /// Changes the labels apperance to stopped
+        /// </summary>
+        /// <param name="label"></param>
+        public static void ToStoppedLabel(Label label)
+        {
+            label.Text = "X";
+            label.ForeColor = Color.DarkRed;
+        }
     }
 }

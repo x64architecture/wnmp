@@ -27,8 +27,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Xml;
+
 using Wnmp.Programs;
 using Wnmp.Helpers;
+using Wnmp.Internals;
 
 namespace Wnmp.Helpers
 {
@@ -109,33 +111,27 @@ namespace Wnmp.Helpers
         {
             if (check_if_running("nginx"))
             {
-                Program.formInstance.nginxrunning.Text = "\u221A";
-                Program.formInstance.nginxrunning.ForeColor = Color.Green;
+                Declarations.ToStartedLabel(Program.formInstance.nginxrunning);
             }
             else
             {
-                Program.formInstance.nginxrunning.Text = "X";
-                Program.formInstance.nginxrunning.ForeColor = Color.DarkRed;
+                Declarations.ToStoppedLabel(Program.formInstance.nginxrunning);
             }
             if (check_if_running("mysqld"))
             {
-                Program.formInstance.mariadbrunning.Text = "\u221A";
-                Program.formInstance.mariadbrunning.ForeColor = Color.Green;
+                Declarations.ToStartedLabel(Program.formInstance.mariadbrunning);
             }
             else
             {
-                Program.formInstance.mariadbrunning.Text = "X";
-                Program.formInstance.mariadbrunning.ForeColor = Color.DarkRed;
+                Declarations.ToStoppedLabel(Program.formInstance.mariadbrunning);
             }
             if (check_if_running("php-cgi"))
             {
-                Program.formInstance.phprunning.Text = "\u221A";
-                Program.formInstance.phprunning.ForeColor = Color.Green;
+                Declarations.ToStartedLabel(Program.formInstance.phprunning);
             }
             else
             {
-                Program.formInstance.phprunning.Text = "X";
-                Program.formInstance.phprunning.ForeColor = Color.DarkRed;
+                Declarations.ToStoppedLabel(Program.formInstance.phprunning);
             }
         }
 

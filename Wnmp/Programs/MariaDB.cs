@@ -28,7 +28,9 @@ using System.IO;
 using System.Net;
 using System.Xml;
 using System.Security.Permissions;
+
 using Wnmp.Helpers;
+using Wnmp.Internals;
 
 namespace Wnmp.Programs
 {
@@ -70,8 +72,7 @@ namespace Wnmp.Programs
             {
                 startprocess(@Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true, false);
                 Log.wnmp_log_notice("Attempting to start MariaDB", Log.LogSection.WNMP_MARIADB);
-                Program.formInstance.mariadbrunning.Text = "\u221A";
-                Program.formInstance.mariadbrunning.ForeColor = Color.Green;
+                Declarations.ToStartedLabel(Program.formInstance.mariadbrunning);
             }
             catch (Exception ex)
             {
@@ -93,8 +94,7 @@ namespace Wnmp.Programs
                 {
                     currentProc.Kill();
                 }
-                Program.formInstance.mariadbrunning.Text = "X";
-                Program.formInstance.mariadbrunning.ForeColor = Color.DarkRed;
+                Declarations.ToStoppedLabel(Program.formInstance.mariadbrunning);
             }
             catch (Exception ex)
             {

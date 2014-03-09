@@ -27,7 +27,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Xml;
+
 using Wnmp.Helpers;
+using Wnmp.Internals;
 
 namespace Wnmp.Programs
 {
@@ -76,8 +78,7 @@ namespace Wnmp.Programs
             {
                 startprocess(@Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
                 Log.wnmp_log_notice("Attempting to start PHP", Log.LogSection.WNMP_PHP);
-                Program.formInstance.phprunning.Text = "\u221A";
-                Program.formInstance.phprunning.ForeColor = Color.Green;
+                Declarations.ToStartedLabel(Program.formInstance.phprunning);
             }
             catch (Exception ex)
             {
@@ -100,8 +101,7 @@ namespace Wnmp.Programs
                 Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_PHP);
             }
             Log.wnmp_log_notice("Attempting to stop PHP", Log.LogSection.WNMP_PHP);
-            Program.formInstance.phprunning.Text = "X";
-            Program.formInstance.phprunning.ForeColor = Color.DarkRed;
+            Declarations.ToStoppedLabel(Program.formInstance.phprunning);
         }
 
         internal static void php_start_MouseHover(object sender, EventArgs e)

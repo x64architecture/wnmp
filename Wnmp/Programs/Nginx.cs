@@ -27,7 +27,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Security.Permissions;
+
 using Wnmp.Helpers;
+using Wnmp.Internals;
 
 namespace Wnmp.Programs
 {
@@ -71,8 +73,7 @@ namespace Wnmp.Programs
             {
                 startprocess(NginxExe, "", false);
                 Log.wnmp_log_notice("Attempting to start Nginx", Log.LogSection.WNMP_NGINX);
-                Program.formInstance.nginxrunning.Text = "\u221A";
-                Program.formInstance.nginxrunning.ForeColor = Color.Green;
+                Declarations.ToStartedLabel(Program.formInstance.nginxrunning);
             }
             catch (Exception ex)
             {
@@ -93,8 +94,7 @@ namespace Wnmp.Programs
                     currentProc.Kill();
                 }
                 Log.wnmp_log_notice("Attempting to stop Nginx", Log.LogSection.WNMP_NGINX);
-                Program.formInstance.nginxrunning.Text = "X";
-                Program.formInstance.nginxrunning.ForeColor = Color.DarkRed;
+                Declarations.ToStoppedLabel(Program.formInstance.nginxrunning);
             }
             catch (Exception ex)
             {
