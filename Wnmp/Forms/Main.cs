@@ -84,7 +84,7 @@ namespace Wnmp
 
         private void SupportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("https://groups.google.com/group/windows-nginx-mysql-php-discuss");
+            Process.Start("https://mailman.getwnmp.org/mailman/listinfo/wnmp");
         }
 
         private void Report_BugToolStripMenuItem_Click(object sender, EventArgs e)
