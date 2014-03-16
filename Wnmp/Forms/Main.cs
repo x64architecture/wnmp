@@ -253,7 +253,6 @@ namespace Wnmp
                     WnmpTrayIcon.ShowBalloonTip(4000);
                 }
             }
-            else { }
         }
         private bool IsFirstRun()
         {
