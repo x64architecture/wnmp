@@ -290,8 +290,8 @@ namespace Wnmp
         }
         private void Main_Load(object sender, EventArgs e)
         {
-            DeleteFile(@Application.StartupPath + "/updater.exe");
-            DeleteFile(@Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
+            DeleteFile(Application.StartupPath + "/updater.exe");
+            DeleteFile(Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
 
             WnmpTrayIcon.Icon = Wnmp.Properties.Resources.logo;
             WnmpTrayIcon.Visible = true;
@@ -310,7 +310,7 @@ namespace Wnmp
 
         private void wnmpdir_Click(object sender, EventArgs e)
         {
-            Process.Start("explorer.exe", @Application.StartupPath);
+            Process.Start("explorer.exe", Application.StartupPath);
         }
 
         private void weNeedYourSupportToolStripMenuItem_Click(object sender, EventArgs e)
@@ -327,6 +327,10 @@ namespace Wnmp
         {
             DoSaveLog();
         }
+
+        #endregion
+
+        #endregion Wnmp Stuff
 
         #region events
         private void setevents()
@@ -368,10 +372,5 @@ namespace Wnmp
             // End
         }
         #endregion
-
-
-        #endregion
-
-        #endregion Wnmp Stuff
     }
 }
