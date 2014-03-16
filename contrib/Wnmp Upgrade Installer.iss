@@ -60,9 +60,11 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#Name}"; Filename
 
 [Run]
 Filename: "{app}\{#ExeName}"; Description: "{cm:LaunchProgram,{#StringChange(Name, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
-Filename: "{app}\contrib\ReadMe.html"; Description: "View the ReadMe.html"; Flags: postinstall shellexec skipifsilent
+Filename: "{app}\contrib\ReadMe.html"; Description: "View the ReadMe.html"; Flags: postinstall shellexec skipifsilent unchecked
 Filename: "{tmp}\vc_2008_sp1_redist_x86.exe"; Parameters: "/q"; Check: VC2008RedistNeedsInstall
 Filename: "{tmp}\vc_2012_update4_redist_x86.exe"; Parameters: "/q"; Check: VC2012RedistNeedsInstall
+Filename: "http://getwnmp.org/"; Flags: shellexec runasoriginaluser postinstall unchecked; Description: "View Wnmp Website";
+Filename: "http://getwnmp.org/contributing/"; Flags: shellexec runasoriginaluser postinstall; Description: "Make a contribution to Wnmp";
 
 [Code]
 #IFDEF UNICODE
