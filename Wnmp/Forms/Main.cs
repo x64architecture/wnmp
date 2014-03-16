@@ -69,12 +69,17 @@ namespace Wnmp
             Updater _Updater = new Updater(UpdateXMLURL, GetCPVER);
         }
 
-        private void wnmpOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ShowForm(Form form)
         {
-            Options form = new Options();
             form.StartPosition = FormStartPosition.CenterParent;
             form.ShowDialog(this);
             form.Focus();
+        }
+
+        private void wnmpOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Options form = new Options();
+            ShowForm(form);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -94,10 +99,8 @@ namespace Wnmp
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Wnmp.Forms.About aboutfrm = new Wnmp.Forms.About();
-            aboutfrm.StartPosition = FormStartPosition.CenterParent;
-            aboutfrm.ShowDialog(this);
-            aboutfrm.Focus();
+            About aboutfrm = new About();
+            ShowForm(aboutfrm);
         }
 
         private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -117,16 +120,14 @@ namespace Wnmp
 
         private void hostToIPToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HostToIPForm frm = new HostToIPForm();
-            frm.StartPosition = FormStartPosition.CenterScreen;
-            frm.ShowDialog();
+            HostToIPForm form = new HostToIPForm();
+            ShowForm(form);
         }
 
         private void getHTTPHeadersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HttpHeaders form = new HttpHeaders();
-            form.StartPosition = FormStartPosition.CenterScreen;
-            form.ShowDialog();
+            ShowForm(form);
         }
 
         #endregion
