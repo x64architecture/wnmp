@@ -1,5 +1,5 @@
 /*
-Copyright (C) Kurt Cancemi
+Copyright (c) Kurt Cancemi 2012-2014
 
 This file is part of Wnmp.
 
@@ -60,81 +60,10 @@ namespace Wnmp
                 return myCp;
             }
         }
-
-        #region Wnmp Stuff
-
-        #region MenuStripItems
-        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Updater _Updater = new Updater(UpdateXMLURL, GetCPVER);
-        }
-
-        private void ShowForm(Form form)
-        {
-            form.StartPosition = FormStartPosition.CenterParent;
-            form.ShowDialog(this);
-            form.Focus();
-        }
-
-        private void wnmpOptionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Options form = new Options();
-            ShowForm(form);
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void SupportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://mailman.getwnmp.org/mailman/listinfo/wnmp");
-        }
-
-        private void Report_BugToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-                Process.Start("https://github.com/wnmp/wnmp/issues/new");
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            About aboutfrm = new About();
-            ShowForm(aboutfrm);
-        }
-
-        private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("http://getwnmp.org");
-        }
-
-        private void donateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P7LAQRRNF6AVE");
-        }
-
-        private void localhostToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("http://localhost");
-        }
-
-        private void hostToIPToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            HostToIPForm form = new HostToIPForm();
-            ShowForm(form);
-        }
-
-        private void getHTTPHeadersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            HttpHeaders form = new HttpHeaders();
-            ShowForm(form);
-        }
-
-        #endregion
-
-        #region Functions
-
-        /// <summary>
+		
+		#region functions
+		
+		        /// <summary>
         /// Checks if the size of Wnmp.log is greator than 1MB and 
         /// if it is it gzips it
         /// </summary>
@@ -237,25 +166,18 @@ namespace Wnmp
                 catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
             }
         }
-
-        #endregion
-
-        #region FormEvents
-
-        private void Main_Resize(object sender, EventArgs e)
+		
+        /// <summary>
+        /// Takes a form and displays it
+        /// </summary>
+		private void ShowForm(Form form)
         {
-            if (Options.settings.minimizewnmptotray == true)
-            {
-                if (WindowState == FormWindowState.Minimized)
-                {
-                    this.Hide();
-                    WnmpTrayIcon.BalloonTipTitle = "Wnmp";
-                    WnmpTrayIcon.BalloonTipText = "Wnmp has been minimized to the taskbar.";
-                    WnmpTrayIcon.ShowBalloonTip(4000);
-                }
-            }
+            form.StartPosition = FormStartPosition.CenterParent;
+            form.ShowDialog(this);
+            form.Focus();
         }
-        private bool IsFirstRun()
+		
+		        private bool IsFirstRun()
         {
             if (Options.settings.firstrun)
                 return true;
@@ -288,6 +210,87 @@ namespace Wnmp
                 catch { }
             }
         }
+		
+		#endregion
+
+        #region MenuStripItems
+        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Updater _Updater = new Updater(UpdateXMLURL, GetCPVER);
+        }
+
+        private void wnmpOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Options form = new Options();
+            ShowForm(form);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void SupportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://mailman.getwnmp.org/mailman/listinfo/wnmp");
+        }
+
+        private void Report_BugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+                Process.Start("https://github.com/wnmp/wnmp/issues/new");
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About aboutfrm = new About();
+            ShowForm(aboutfrm);
+        }
+
+        private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://getwnmp.org");
+        }
+
+        private void donateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P7LAQRRNF6AVE");
+        }
+
+        private void localhostToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://localhost");
+        }
+
+        private void hostToIPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HostToIPForm form = new HostToIPForm();
+            ShowForm(form);
+        }
+
+        private void getHTTPHeadersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HttpHeaders form = new HttpHeaders();
+            ShowForm(form);
+        }
+
+        #endregion
+
+        #region FormEvents
+
+        private void Main_Resize(object sender, EventArgs e)
+        {
+            if (Options.settings.minimizewnmptotray == true)
+            {
+                if (WindowState == FormWindowState.Minimized)
+                {
+                    this.Hide();
+                    WnmpTrayIcon.BalloonTipTitle = "Wnmp";
+                    WnmpTrayIcon.BalloonTipText = "Wnmp has been minimized to the taskbar.";
+                    WnmpTrayIcon.ShowBalloonTip(4000);
+                }
+            }
+        }
+
         private void Main_Load(object sender, EventArgs e)
         {
             DeleteFile(Application.StartupPath + "/updater.exe");
@@ -313,11 +316,6 @@ namespace Wnmp
             Process.Start("explorer.exe", Application.StartupPath);
         }
 
-        private void weNeedYourSupportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("http://www.gofundme.com/certforwnmp");
-        }
-
         private void log_rtb_DoubleClick(object sender, EventArgs e)
         {
             DoTempLog();
@@ -329,8 +327,6 @@ namespace Wnmp
         }
 
         #endregion
-
-        #endregion Wnmp Stuff
 
         #region events
         private void setevents()
