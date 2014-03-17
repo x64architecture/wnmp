@@ -45,6 +45,14 @@ namespace Wnmp.Programs
         public static ToolTip PHP_stop_Tip = new ToolTip(); // Stop button ToolTip
         internal static string pini = Application.StartupPath + "/php/php.ini"; // Location of php.ini to pass on to php
 
+        private enum Status
+        {
+            Stopped = 0,
+            Started = 1
+        }
+
+        private static Status PHPStatus = Status.Stopped;
+
         /// <summary>
         /// Starts an executable file
         /// </summary>
@@ -60,8 +68,11 @@ namespace Wnmp.Programs
             ps.StartInfo.CreateNoWindow = true; // Excute with no window
             ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             ps.StartInfo.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", "2000"); // After 2000 requests php-cgi.exe will kill its process
-            ps.EnableRaisingEvents = true;
-            ps.Exited += new EventHandler(ps_Exited); // Were going to have to restart PHP after its process is killed.
+            if (PHPStatus != Status.Stopped)
+            {
+                ps.EnableRaisingEvents = true;
+                ps.Exited += new EventHandler(ps_Exited); // Were going to have to restart PHP after its process is killed.
+            }
             ps.Start(); // Start the process
         }
 
@@ -69,7 +80,10 @@ namespace Wnmp.Programs
         {
             /* The Win-PHP developers thought is was smart to kill php after a certain amount of requests (Probably 500). 
                so we have to restart it once it exits or set 'PHP_FCGI_MAX_REQUESTS' variable to 0. I've looked and people are recommending just to restart it. */
+            if (PHPStatus != Status.Stopped)
+            {
                 startprocess(@Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
+            }
         }
 
         internal static void php_start_Click(object sender, EventArgs e)
@@ -77,6 +91,7 @@ namespace Wnmp.Programs
             try
             {
                 startprocess(@Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
+                PHPStatus = Status.Started;
                 Log.wnmp_log_notice("Attempting to start PHP", Log.LogSection.WNMP_PHP);
                 Declarations.ToStartedLabel(Program.formInstance.phprunning);
             }
@@ -95,6 +110,7 @@ namespace Wnmp.Programs
                 {
                     currentProc.Kill();
                 }
+                PHPStatus = Status.Stopped;
             }
             catch (Exception ex)
             {
