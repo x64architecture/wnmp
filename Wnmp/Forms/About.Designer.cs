@@ -126,10 +126,10 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(141, 156);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(518, 32);
+            this.label3.Size = new System.Drawing.Size(505, 32);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Wnmp is a client which launches Nginx, MariaDB & PHP on Windows Vista - Windows 8" +
-    ". \r\nWhen Wnmp is distributed it includes Nginx, MariaDB, PHP, and phpMyAdmin.";
+            this.label3.Text = "Wnmp is a client which launches Nginx, MariaDB & PHP on Windows XP - Windows 8. \r" +
+    "\nWhen Wnmp is distributed it includes Nginx, MariaDB, PHP, and phpMyAdmin.";
             // 
             // label2
             // 
@@ -200,7 +200,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(681, 395);
+            this.ClientSize = new System.Drawing.Size(681, 396);
             this.Controls.Add(this.AboutTabCtrl);
             this.Controls.Add(this.Closebtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

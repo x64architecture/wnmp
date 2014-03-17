@@ -29,27 +29,10 @@ namespace Wnmp
         [STAThread]
         static void Main(string[] args)
         {
-            if (!IsVistaOrGreater())
-            {
-                MessageBox.Show("Wnmp is unsupported on your Operating System please upgrade to Vista/2008 or later.",
-                    "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-                return;
-            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(formInstance = new Main());
         }
         public static Main formInstance;
-
-        /// <summary>
-        /// Checks if operating system is vista or greator
-        /// </summary>
-        /// <returns>True if OS is greater or equal to Vista else returns false</returns>
-        private static bool IsVistaOrGreater()
-        {
-            OperatingSystem OS = Environment.OSVersion;
-            return (OS.Platform == PlatformID.Win32NT) && (OS.Version.Major >= 6);
-        }
     }
 }
