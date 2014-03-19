@@ -63,7 +63,7 @@ namespace Wnmp
 		
 		#region functions
 		
-		        /// <summary>
+        /// <summary>
         /// Checks if the size of Wnmp.log is greator than 1MB and 
         /// if it is it gzips it
         /// </summary>
