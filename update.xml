@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <appinfo>
-  <version>2.0.9</version>
-  <cpversion>2.2.1</cpversion>
-  <upgradeurl>https://github.com/wnmp/wnmp/releases/download/2.0.9/Wnmp-Upgrade-Installer-2.0.9.exe</upgradeurl>
+  <version>2.0.10</version>
+  <cpversion>2.2.2</cpversion>
+  <upgradeurl>https://github.com/wnmp/wnmp/releases/download/2.0.10/Wnmp-Upgrade-Installer-2.0.10.exe</upgradeurl>
   <cpupdateurl>http://getwnmp.org/wnmp-updater/Wnmp.exe</cpupdateurl>
   <cpupdaterurl>http://getwnmp.org/wnmp-updater/updater.exe</cpupdaterurl>
 </appinfo>
