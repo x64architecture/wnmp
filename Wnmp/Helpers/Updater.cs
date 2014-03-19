@@ -33,7 +33,6 @@ namespace Wnmp.Helpers
     class Updater
     {
         private string Wnmp_Upgrade_URL = ""; // Wnmp upgrade installer url
-        private string WNMP_INSTALLER_URL = ""; // Wnmp first installer url (useless to this application)
         private Version NEW_WNMP_VERSION = null; // Wnmp version in the XML
         private Version NEW_CP_VERSION = null; // Control panel version in the XML
         private string CP_UPDATE_URL = ""; // Control panel url (link to CP exe)
@@ -128,14 +127,8 @@ namespace Wnmp.Helpers
                                         case "version":
                                             NEW_WNMP_VERSION = new Version(reader.Value);
                                             break;
-                                        case "url":
-                                            WNMP_INSTALLER_URL = reader.Value;
-                                            break;
                                         case "upgradeurl":
                                             Wnmp_Upgrade_URL = reader.Value;
-                                            break;
-                                        case "about":
-                                            // No longer used
                                             break;
                                         case "cpversion":
                                             NEW_CP_VERSION = new Version(reader.Value);
@@ -145,9 +138,6 @@ namespace Wnmp.Helpers
                                             break;
                                         case "cpupdaterurl":
                                             CP_UPDATER_URL = reader.Value;
-                                            break;
-                                        case "cpabout":
-                                            // No longer used
                                             break;
                                     }
                             }
