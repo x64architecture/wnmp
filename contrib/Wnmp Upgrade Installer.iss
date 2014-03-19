@@ -50,7 +50,6 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 Source: "Wnmp.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "*"; Excludes: "logs\*, mariadb\data\*, mariadb\mysql-test\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "../vc_2008_sp1_redist_x86.exe"; DestDir: {tmp}; Flags: deleteafterinstall
-Source: "../vc_2012_update4_redist_x86.exe"; DestDir: {tmp}; Flags: deleteafterinstall
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -61,8 +60,7 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#Name}"; Filename
 [Run]
 Filename: "{app}\{#ExeName}"; Description: "{cm:LaunchProgram,{#StringChange(Name, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 Filename: "{app}\contrib\ReadMe.html"; Description: "View the ReadMe.html"; Flags: postinstall shellexec skipifsilent unchecked
-Filename: "{tmp}\vc_2008_sp1_redist_x86.exe"; Parameters: "/q"; Check: VC2008RedistNeedsInstall
-Filename: "{tmp}\vc_2012_update4_redist_x86.exe"; Parameters: "/q"; Check: VC2012RedistNeedsInstall
+Filename: "{tmp}\vc_2008_sp1_redist_x86.exe"; Check: VC2008RedistNeedsInstall
 Filename: "http://getwnmp.org/"; Flags: shellexec runasoriginaluser postinstall unchecked; Description: "View Wnmp Website";
 Filename: "http://getwnmp.org/contributing/"; Flags: shellexec runasoriginaluser postinstall; Description: "Make a contribution to Wnmp";
 
@@ -82,7 +80,6 @@ const
   INSTALLSTATE_DEFAULT = 5;      // The product is installed for the current user.
 
   VC_2008_SP1_REDIST_X86 = '{9A25302D-30C0-39D9-BD6F-21E6EC160475}';
-  VC_2012_UPDATE_4_x86 = '{BD95A8CD-1D9F-35AD-981A-3E7925026EBB}';
 
 function MsiQueryProductState(szProduct: string): INSTALLSTATE; 
   external 'MsiQueryProductState{#AW}@msi.dll stdcall';
@@ -95,9 +92,4 @@ end;
 function VC2008RedistNeedsInstall: Boolean;
 begin
   Result := not (VCVersionInstalled(VC_2008_SP1_REDIST_X86));
-end;
-
-function VC2012RedistNeedsInstall: Boolean;
-begin
-  Result := not (VCVersionInstalled(VC_2012_UPDATE_4_x86));
 end;
