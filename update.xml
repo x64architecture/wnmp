@@ -1,31 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <appinfo>
   <version>2.0.9</version>
-  <url>https://github.com/wnmp/wnmp/releases/download/2.0.9/Wnmp-2.0.9.exe</url>
   <upgradeurl>https://github.com/wnmp/wnmp/releases/download/2.0.9/Wnmp-Upgrade-Installer-2.0.9.exe</upgradeurl>
-  <about>Wnmp 2.0.9: Released: 03/07/2014
-********************************
-- Wnmp Control Panel 2.2.1
-  
-  * Fixed: The million tooltips that would show up if you hovered over the buttons a few times.
-  * Fixed: Calling session_destroy results in 502 gateway error. (#23)
-
-- Nginx
-
- * Updated to 1.5.11
-
-- PHP
-
-  * Updated to 5.5.10
-
-- phpMyAdmin
-  
-  * Updated to 4.1.9</about>
   <cpversion>2.2.1</cpversion>
   <cpupdateurl>http://getwnmp.org/wnmp-updater/Wnmp.exe</cpupdateurl>
   <cpupdaterurl>http://getwnmp.org/wnmp-updater/updater.exe</cpupdaterurl>
-  <cpabout>- Wnmp Control Panel 2.2.1
-  
-  * Fixed: The million tooltips that would show up if you hovered over the buttons a few times.
-  * Fixed: Calling session_destroy results in 502 gateway error. (#23)</cpabout>
 </appinfo>
