@@ -37,7 +37,7 @@ namespace Wnmp
     {
         public static string StartupPath { get { return Application.StartupPath; } }
 
-        private static Version CPVER = new Version("2.2.2");
+        private static Version CPVER = new Version("2.2.4");
         public static Version GetCPVER { get { return CPVER; } }
 
         internal const string UpdateXMLURL = "https://s3.amazonaws.com/wnmp/update.xml";
