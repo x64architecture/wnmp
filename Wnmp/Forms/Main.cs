@@ -37,8 +37,8 @@ namespace Wnmp
     {
         public static string StartupPath { get { return Application.StartupPath; } }
 
-        private Version CPVER = new Version("2.2.2");
-        public Version GetCPVER { get { return CPVER; } }
+        private static Version CPVER = new Version("2.2.2");
+        public static Version GetCPVER { get { return CPVER; } }
 
         internal const string UpdateXMLURL = "https://s3.amazonaws.com/wnmp/update.xml";
 
@@ -216,7 +216,7 @@ namespace Wnmp
         #region MenuStripItems
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Updater _Updater = new Updater(UpdateXMLURL, GetCPVER);
+            Updater.CheckForUpdates();
         }
 
         private void wnmpOptionsToolStripMenuItem_Click(object sender, EventArgs e)

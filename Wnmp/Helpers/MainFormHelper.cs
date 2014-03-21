@@ -59,8 +59,8 @@ namespace Wnmp.Helpers
 
         internal static void DoStartup()
         {
-            Log.wnmp_log_notice("Control Panel Version: " + Program.formInstance.GetCPVER, Log.LogSection.WNMP_MAIN);
-            Log.wnmp_log_notice("Wnmp Version: " + Program.formInstance.ProductVersion, Log.LogSection.WNMP_MAIN);
+            Log.wnmp_log_notice("Control Panel Version: " + Main.GetCPVER, Log.LogSection.WNMP_MAIN);
+            Log.wnmp_log_notice("Wnmp Version: " + Application.ProductVersion, Log.LogSection.WNMP_MAIN);
             Log.wnmp_log_notice(OSVersionInfo.WindowsVersionString(), Log.LogSection.WNMP_MAIN);
             Log.wnmp_log_notice("Wnmp Directory: " + Application.StartupPath, Log.LogSection.WNMP_MAIN);
             checkforapps();
