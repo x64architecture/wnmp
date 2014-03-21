@@ -1,3 +1,25 @@
+Wnmp 2.0.11: Released: 03/21/2014
+*********************************
+- Wnmp Control Panel 2.2.4
+   
+   * Feature: Get the http headers of a website. (Tools->Get HTTP Headers)
+   * Fixed: Added Windows XP/2008 support back!
+ 
+ - Nginx
+ 
+  * Updated to 1.5.12
+  * Security Notice: CVE-2014-0133
+  * This vulnerability did not affect nginx in Wnmp because it was compiled with the "--with-debug"
+    build flag.
+ 
+ - PHP
+ 
+   * Now supports Windows XP!
+
+Wnmp 2.0.10: Released: 03/20/2014
+*********************************
+REMOVED DUE TO A REGGRESSION
+  
 Wnmp 2.0.9: Released: 03/07/2014
 ********************************
 - Wnmp Control Panel 2.2.1
