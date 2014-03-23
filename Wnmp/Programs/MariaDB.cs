@@ -17,18 +17,10 @@ This file is part of Wnmp.
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Xml;
-using System.Security.Permissions;
-
+using Wnmp.Forms;
 using Wnmp.Helpers;
 using Wnmp.Internals;
 
@@ -93,10 +85,8 @@ namespace Wnmp.Programs
         private static bool MariaDBIsRunning()
         {
             Process[] ptcf = Process.GetProcessesByName("mysqld");
-            if (ptcf.Length == 0)
-                return false;
-            else
-                return true;
+
+            return ptcf.Length == 0;
         }
         internal static void mdb_shell_Click(object sender, EventArgs e)
         {
@@ -149,7 +139,7 @@ namespace Wnmp.Programs
 
         static void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.editor, Application.StartupPath + "/mariadb/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.Editor, Application.StartupPath + "/mariadb/" + e.ClickedItem.Text);
         }
 
         internal static void mdb_log_Click(object sender, EventArgs e)
@@ -164,7 +154,7 @@ namespace Wnmp.Programs
 
         static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.editor, Application.StartupPath + "/mariadb/data/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.Editor, Application.StartupPath + "/mariadb/data/" + e.ClickedItem.Text);
         }
     }
 }

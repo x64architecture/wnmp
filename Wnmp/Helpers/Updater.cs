@@ -22,7 +22,7 @@ using System.Xml;
 using System.Net;
 using System.Diagnostics;
 using System.IO;
-
+using Wnmp.Forms;
 using Wnmp.Internals;
 
 namespace Wnmp.Helpers
@@ -33,13 +33,13 @@ namespace Wnmp.Helpers
     class Updater
     {
         private static Uri Wnmp_Upgrade_URL; // Wnmp upgrade installer url
-        private static Version NEW_WNMP_VERSION = null; // Wnmp version in the XML
-        private static Version NEW_CP_VERSION = null; // Control panel version in the XML
+        private static Version NEW_WNMP_VERSION; // Wnmp version in the XML
+        private static Version NEW_CP_VERSION; // Control panel version in the XML
         private static Uri CP_UPDATE_URL; // Control panel url (link to CP exe)
-        private static Version WNMP_VER = new Version(Application.ProductVersion); // Current program version
-        private static string UpdateExe = Application.StartupPath + "/Wnmp-Upgrade-Installer.exe";
-        private static string WNMP_NEW = Application.StartupPath + "/Wnmp_new.exe";
-        private static string UPDATER = Application.StartupPath + "/updater.exe";
+        private static readonly Version WNMP_VER = new Version(Application.ProductVersion); // Current program version
+        private static readonly string UpdateExe = Application.StartupPath + "/Wnmp-Upgrade-Installer.exe";
+        private static readonly string WNMP_NEW = Application.StartupPath + "/Wnmp_new.exe";
+        private static readonly string UPDATER = Application.StartupPath + "/updater.exe";
         private static WebClient webClient;
 
         #region ReadUpdateXML
@@ -49,8 +49,7 @@ namespace Wnmp.Helpers
         /// <returns>True on sucess and False on failure</returns>
         private static bool ReadUpdateXML()
         {
-            string xmlUrl = Main.UpdateXMLURL;
-            XmlTextReader reader;
+            const string xmlUrl = Main.UpdateXMLURL;
             string elementName = "";
 
             int returnvalue;
@@ -62,7 +61,7 @@ namespace Wnmp.Helpers
 
             try
             {
-                reader = new XmlTextReader(xmlUrl);
+                XmlTextReader reader = new XmlTextReader(xmlUrl);
                 reader.MoveToContent();
 
                 if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "appinfo"))
@@ -245,7 +244,7 @@ namespace Wnmp.Helpers
                         Log.wnmp_log_notice("Your control panel version: " + Main.GetCPVER + " is up to date.", Log.LogSection.WNMP_MAIN);
                     }
                 }
-                Options.settings.lastcheckforupdate = DateTime.Now;
+                Options.settings.Lastcheckforupdate = DateTime.Now;
                 Options.settings.UpdateSettings();
             }
         }
@@ -272,14 +271,11 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Checks if a string is empty
         /// </summary>
-        /// <param name="s"></param>
+        /// <param name="dt"></param>
         /// <returns>True if the datetime is set else it returns false</returns>
         public static bool IsSet(DateTime dt)
         {
-            if (dt != DateTime.MinValue)
-                return true;
-            else
-                return false;
+            return dt != DateTime.MinValue;
         }
 
         /// <summary>
@@ -291,9 +287,9 @@ namespace Wnmp.Helpers
         {
             try
             {
-                if (IsSet(Options.settings.lastcheckforupdate))
+                if (IsSet(Options.settings.Lastcheckforupdate))
                 {
-                    DateTime LastCheckForUpdate = Options.settings.lastcheckforupdate;
+                    DateTime LastCheckForUpdate = Options.settings.Lastcheckforupdate;
                     DateTime expiryDate = LastCheckForUpdate.AddDays(days);
                     if (DateTime.Now > expiryDate)
                     {
@@ -302,7 +298,7 @@ namespace Wnmp.Helpers
                 }
                 else
                 {
-                    Options.settings.lastcheckforupdate = DateTime.Now;
+                    Options.settings.Lastcheckforupdate = DateTime.Now;
                     Options.settings.UpdateSettings();
                 }
             }
@@ -316,9 +312,9 @@ namespace Wnmp.Helpers
         /// </summary>
         public static void DoAutoCheckForUpdate()
         {
-            if (Options.settings.autocheckforupdates == true)
+            if (Options.settings.Autocheckforupdates)
             {
-                switch (Options.settings.checkforupdatefrequency)
+                switch (Options.settings.Checkforupdatefrequency)
                 {
                     case 1:
                         DoDateEclasped(1);

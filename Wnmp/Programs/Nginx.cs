@@ -17,17 +17,10 @@ This file is part of Wnmp.
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Security.Permissions;
-
+using Wnmp.Forms;
 using Wnmp.Helpers;
 using Wnmp.Internals;
 
@@ -41,11 +34,11 @@ namespace Wnmp.Programs
         public static Process ps; // Avoid GC
         public static ContextMenuStrip cms = new ContextMenuStrip(); // Config button context menu
         public static ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
-        private static ToolTip nginx_start_Tip = new ToolTip(); // Start button ToolTip
-        private static ToolTip nginx_stop_Tip = new ToolTip(); // Stop button ToolTip
-        private static ToolTip nginx_reload_Tip = new ToolTip(); // Reload button ToolTip
+        private static readonly ToolTip nginx_start_Tip = new ToolTip(); // Start button ToolTip
+        private static readonly ToolTip nginx_stop_Tip = new ToolTip(); // Stop button ToolTip
+        private static readonly ToolTip nginx_reload_Tip = new ToolTip(); // Reload button ToolTip
 
-        private static string NginxExe = Application.StartupPath.Replace(@"\", "/") + "/nginx.exe";
+        private static readonly string NginxExe = Application.StartupPath.Replace(@"\", "/") + "/nginx.exe";
 
         /// <summary>
         /// Starts an executable file
@@ -131,7 +124,7 @@ namespace Wnmp.Programs
 
         static void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.editor, Application.StartupPath + "/conf/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.Editor, Application.StartupPath + "/conf/" + e.ClickedItem.Text);
         }
 
         internal static void ngx_log_Click(object sender, EventArgs e)
@@ -146,7 +139,7 @@ namespace Wnmp.Programs
 
         static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.editor, Application.StartupPath + "/logs/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.Editor, Application.StartupPath + "/logs/" + e.ClickedItem.Text);
         }
     }
 }

@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using Wnmp.Internals;
 
-namespace Wnmp
+namespace Wnmp.Forms
 {
     /// <summary>
     /// Form to show the update progress.

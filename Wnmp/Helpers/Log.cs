@@ -19,8 +19,6 @@ This file is part of Wnmp.
 using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Wnmp.Helpers

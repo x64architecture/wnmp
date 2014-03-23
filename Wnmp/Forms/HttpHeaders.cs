@@ -35,11 +35,9 @@ namespace Wnmp.Forms
         /// <returns></returns>
         private bool StringContainsHTTPProtocol(string s)
         {
-            if (s.Contains("http://") || s.Contains("https://"))
-                return true;
-            else
-                return false;
+            return s.Contains("http://") || s.Contains("https://");
         }
+
         private void getHeadersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (StringContainsHTTPProtocol(urlTextBox.Text))

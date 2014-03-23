@@ -16,20 +16,11 @@ This file is part of Wnmp.
     You should have received a copy of the GNU Wnmp Public License
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
-using System.Xml;
-
+using Wnmp.Forms;
 using Wnmp.Programs;
-using Wnmp.Helpers;
 using Wnmp.Internals;
 
 namespace Wnmp.Helpers
@@ -67,7 +58,7 @@ namespace Wnmp.Helpers
             CheckIfAppsAreRunning();
             Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
 
-            if (Options.settings.startallapplicationsatlaunch == true)
+            if (Options.settings.Startallapplicationsatlaunch)
             {
                 General.start_Click(null, null);
             }
@@ -138,10 +129,7 @@ namespace Wnmp.Helpers
         private static bool check_if_running(string application)
         {
             Process[] _Process = Process.GetProcessesByName(application);
-            if (_Process.Length != 0)
-                return true;
-            else
-                return false;
+            return _Process.Length != 0;
         }
         #endregion
     }

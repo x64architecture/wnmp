@@ -19,7 +19,6 @@ This file is part of Wnmp.
 
 using System;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Windows.Forms;
@@ -27,8 +26,7 @@ using Wnmp.Programs;
 using Wnmp.Helpers;
 
 using Wnmp.Internals;
-using Wnmp.Forms;
-namespace Wnmp
+namespace Wnmp.Forms
 {
     /// <summary>
     /// Main form of Wnmp
@@ -37,12 +35,12 @@ namespace Wnmp
     {
         public static string StartupPath { get { return Application.StartupPath; } }
 
-        private static Version CPVER = new Version("2.2.4");
+        private static readonly Version CPVER = new Version("2.2.4");
         public static Version GetCPVER { get { return CPVER; } }
 
         internal const string UpdateXMLURL = "https://s3.amazonaws.com/wnmp/update.xml";
 
-        private NotifyIcon WnmpTrayIcon = new NotifyIcon();
+        private readonly NotifyIcon WnmpTrayIcon = new NotifyIcon();
 
         public Main()
         {
@@ -177,12 +175,9 @@ namespace Wnmp
             form.Focus();
         }
 		
-		        private bool IsFirstRun()
+        private bool IsFirstRun()
         {
-            if (Options.settings.firstrun)
-                return true;
-            else
-                return false;
+            return (Options.settings.Firstrun);
         }
 
         private void FirstRun()
@@ -195,7 +190,7 @@ namespace Wnmp
                     {
                         Directory.CreateDirectory(Application.StartupPath + "/conf");
                     }
-                    File.WriteAllBytes(Application.StartupPath + "/CertGen.exe", Wnmp.Properties.Resources.CertGen);
+                    File.WriteAllBytes(Application.StartupPath + "/CertGen.exe", Properties.Resources.CertGen);
                     using (Process ps = new Process())
                     {
                         ps.StartInfo.FileName = Application.StartupPath + "/CertGen.exe";
@@ -203,7 +198,7 @@ namespace Wnmp
                         ps.Start();
                         ps.WaitForExit();
                         DeleteFile(Application.StartupPath + "/CertGen.exe");
-                        Options.settings.firstrun = false;
+                        Options.settings.Firstrun = false;
                         Options.settings.UpdateSettings();
                     }
                 }
@@ -279,7 +274,7 @@ namespace Wnmp
 
         private void Main_Resize(object sender, EventArgs e)
         {
-            if (Options.settings.minimizewnmptotray == true)
+            if (Options.settings.Minimizewnmptotray)
             {
                 if (WindowState == FormWindowState.Minimized)
                 {
@@ -296,7 +291,7 @@ namespace Wnmp
             DeleteFile(Application.StartupPath + "/updater.exe");
             DeleteFile(Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
 
-            WnmpTrayIcon.Icon = Wnmp.Properties.Resources.logo;
+            WnmpTrayIcon.Icon = Properties.Resources.logo;
             WnmpTrayIcon.Visible = true;
 
             MainHelper.DoStartup();

@@ -17,17 +17,11 @@ This file is part of Wnmp.
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Xml;
-
+using Wnmp.Forms;
 using Wnmp.Helpers;
 using Wnmp.Internals;
 
@@ -58,7 +52,7 @@ namespace Wnmp.Programs
         /// </summary>
         public static void startprocess(string p, string args)
         {
-            System.Threading.Thread.Sleep(100); // Wait
+            Thread.Sleep(100); // Wait
             ps = new Process(); // Create process
             ps.StartInfo.FileName = p; // p is the path and file name of the file to run
             ps.StartInfo.Arguments = args; // Parameters to pass to program
@@ -71,7 +65,7 @@ namespace Wnmp.Programs
             if (PHPStatus != Status.Stopped)
             {
                 ps.EnableRaisingEvents = true;
-                ps.Exited += new EventHandler(ps_Exited); // Were going to have to restart PHP after its process is killed.
+                ps.Exited += ps_Exited; // Were going to have to restart PHP after its process is killed.
             }
             ps.Start(); // Start the process
         }
@@ -105,7 +99,7 @@ namespace Wnmp.Programs
         {
             try
             {
-                Process[] phps = System.Diagnostics.Process.GetProcessesByName("php-cgi");
+                Process[] phps = Process.GetProcessesByName("php-cgi");
                 foreach (Process currentProc in phps)
                 {
                     currentProc.Kill();
@@ -142,7 +136,7 @@ namespace Wnmp.Programs
 
         static void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.editor, Application.StartupPath + "/php/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.Editor, Application.StartupPath + "/php/" + e.ClickedItem.Text);
         }
 
         internal static void php_log_Click(object sender, EventArgs e)
@@ -157,7 +151,7 @@ namespace Wnmp.Programs
 
         static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.editor, Application.StartupPath + "/php/logs/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.Editor, Application.StartupPath + "/php/logs/" + e.ClickedItem.Text);
         }
     }
 }

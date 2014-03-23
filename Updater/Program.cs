@@ -70,7 +70,7 @@ namespace Updater
             }
             if (print_log)
             {
-                Console.WriteLine(print_log);
+                Console.WriteLine(true);
             }
             if (!FindAndKillProcess("Wnmp"))
             {
@@ -116,7 +116,6 @@ namespace Updater
             {
                 File.WriteAllText("updaterlog.txt", ex.ToString());
                 Console.WriteLine(ex.Message);
-                return;
             }
         }
     }

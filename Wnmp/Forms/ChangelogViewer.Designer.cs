@@ -1,4 +1,4 @@
-﻿namespace Wnmp
+﻿namespace Wnmp.Forms
 {
     partial class ChangelogViewer
     {
