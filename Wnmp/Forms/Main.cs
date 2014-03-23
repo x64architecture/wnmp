@@ -121,7 +121,7 @@ namespace Wnmp.Forms
                 CompressionMode.Compress))
             {
                 Console.WriteLine("Compressing {0} to {1}.", sourceFile.Name,
-                    destinationFile.Name, false);
+                    destinationFile.Name);
 
                 output.Write(buffer, 0, buffer.Length);
             }
