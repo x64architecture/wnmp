@@ -5,14 +5,14 @@ Wnmp values security, stability and user friendliness.
 
 
 
-### Current Wnmp Versions: ######
+### Current Wnmp Versions:
 
   * Wnmp 2.0.11
   * Wnmp Control Panel 2.2.4
 
 ----
 
-### Versions of the software(Updated: March 21st 2014): ######
+### Versions of the software(Updated: March 21st 2014):
 
   * Nginx 1.5.12
 
@@ -24,7 +24,7 @@ Wnmp values security, stability and user friendliness.
   
 ----
 
-### How to Install ######
+### How to Install
 
   1. To install download the latest version of Wnmp [here][1] (latest version 2.0.11)
   2. Then open *Wnmp.exe* and install it anywhere.
@@ -35,7 +35,7 @@ Wnmp values security, stability and user friendliness.
 
 ----
 
-### Notes ######
+### Notes
 
 The Username and Password for MariaDB is: user: *root* password: *password* (I recommend changing the password)
 
@@ -58,7 +58,7 @@ If you can, please donate to [Wnmp][2] using PayPal to support the development o
 
 If you do please tell us your suggestions [here][10].
 
-### Mailing list links ######
+### Mailing list links
 
 ###### Report any issues with the mailing list to kurt@x64architecture.com
 
@@ -68,7 +68,7 @@ If you do please tell us your suggestions [here][10].
 
 [wnmp development mailing list][9]
 
-### FAQ ######
+### FAQ
 
 ###### [View the FAQ on getwnmp.org][6]
 
