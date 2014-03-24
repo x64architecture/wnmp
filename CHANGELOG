@@ -1,5 +1,13 @@
+Wnmp 2.0.12: Released: ??/??/2014
+=================================
+- Wnmp Control Panel 2.2.5
+   
+   * GUI: Added restart buttons for MariaDB and PHP
+   * GUI: Renamed the Config button to Configuration
+ 
+   
 Wnmp 2.0.11: Released: 03/21/2014
-*********************************
+=================================
 - Wnmp Control Panel 2.2.4
    
    * Feature: Get the http headers of a website. (Tools->Get HTTP Headers)
@@ -17,11 +25,11 @@ Wnmp 2.0.11: Released: 03/21/2014
    * Now supports Windows XP!
 
 Wnmp 2.0.10: Released: 03/20/2014
-*********************************
+=================================
 REMOVED DUE TO A REGGRESSION
   
 Wnmp 2.0.9: Released: 03/07/2014
-********************************
+================================
 - Wnmp Control Panel 2.2.1
   
   * Fixed: The million tooltips that would show up if you hovered over the buttons a few times.
@@ -40,7 +48,7 @@ Wnmp 2.0.9: Released: 03/07/2014
   * Updated to 4.1.9
 
 Wnmp 2.0.8: Released: 03/02/2014
-********************************
+================================
 - Wnmp Control Panel 2.2
   
   * Feature: Wnmp now generates a SSL certificate for you!
@@ -66,7 +74,7 @@ Wnmp 2.0.8: Released: 03/02/2014
   * Updated to 4.1.8
   
 Wnmp 2.0.7: Released: 02/02/2014
-********************************
+================================
 - Wnmp Control Panel 2.1.2
   
   * Fixed: Windows 8.1 version detection.
@@ -94,13 +102,13 @@ Wnmp 2.0.7: Released: 02/02/2014
   * Updated to 4.1.6
 
 Wnmp 2.0.6: Released: 12/25/2013
-********************************
+================================
 - Wnmp Control Panel 2.1.1
 
   * Fixed #19, Checking for updates crashes the application
 
 Wnmp 2.0.5: Released: 12/24/2013
-********************************
+================================
 - Wnmp Control Panel 2.1.0
 
   * Fixed #17, Bug with config and log button menu items.
@@ -116,7 +124,7 @@ Wnmp 2.0.5: Released: 12/24/2013
   * Updated to 4.1.2
 
 Wnmp 2.0.4: Released: 11/26/2013
-********************************
+================================
 - Wnmp Control Panel 2.0.9
 
   * Wnmp now backups configuration files and overwrite the old ones.
@@ -131,7 +139,7 @@ Wnmp 2.0.4: Released: 11/26/2013
   * Updated to 5.5.34
 
 Wnmp 2.0.3: Released: 11/17/2013
-********************************
+================================
 - Wnmp Control Panel 2.0.8
 
   * Faster control panel startup(0.15348 vs. 0.183).
@@ -150,7 +158,7 @@ Wnmp 2.0.3: Released: 11/17/2013
   * Updated to 4.0.9 
 
 Wnmp 2.0.2.9: Released: 10/03/2013
-**********************************
+==================================
 
 - Wnmp
  
@@ -171,14 +179,14 @@ Wnmp 2.0.2.9: Released: 10/03/2013
   * Updated to 4.0.7
 
 Wnmp 2.0.2.8: Released: 09/10/2013
-**********************************
+==================================
 
 - Wnmp
 
   * Fixed some things: Changed installer files due to modified configuration files.
 
 Wnmp 2.0.2.7: Released: 09/08/2013
-**********************************
+==================================
 
 - Wnmp
  
@@ -201,14 +209,14 @@ Wnmp 2.0.2.7: Released: 09/08/2013
   * Updated to 4.0.6
 
 Wnmp 2.0.2.6 Released: 08/07/2013
-*********************************
+=================================
 
 - Wnmp
 
   * Fixed Critical bug #8, PHP Crashes
 
 Wnmp 2.0.2.5 Released: 08/06/2013
-*********************************
+=================================
 
 - Wnmp
   
@@ -232,7 +240,7 @@ Wnmp 2.0.2.5 Released: 08/06/2013
   * Updated to 5.5.32
 
 Wnmp 2.0.2.4 Released: 07/05/2013
-*********************************
+=================================
 
 - Wnmp
   
@@ -257,7 +265,7 @@ Wnmp 2.0.2.4 Released: 07/05/2013
   * Updated to 5.4.17
 
 Wnmp 2.0.2.3 Released: 07/05/2013
-*********************************
+=================================
    
 - phpMyAdmin
 
@@ -272,7 +280,7 @@ Wnmp 2.0.2.3 Released: 07/05/2013
   * Updated to 5.4.16
 
 Wnmp 2.0.2.2 Released: 05/23/2013
-*********************************
+=================================
 
 - Wnmp:
 
@@ -288,14 +296,14 @@ Wnmp 2.0.2.2 Released: 05/23/2013
   * Updated to 5.5.31
 
 Wnmp 2.0.2.1 Released: 05/11/2013
-*********************************
+=================================
 
 Bug Fixes:
 
 * Fixed viewing of config files and log files
 
 Wnmp 2.0.2: Released: 05/09/2013
-********************************
+================================
 Enhancements:
 
 * Lots of GUI changes
@@ -320,7 +328,7 @@ Updates:
 * phpMyAdmin now in version 4.0.0
 
 Wnmp 2.0.1.2: Released: 04/25/2013
-**********************************
+==================================
 
 Updates:
 
@@ -336,7 +344,7 @@ Updates:
 * Added the option to start the MySQL shell from the program
 
 Wnmp 2.0.1.1: Released: 04/02/2013
-**********************************
+==================================
 
 Updates:
 
@@ -349,7 +357,7 @@ Updates:
 * Check for updates feature added to Wnmp.exe(File > Check For Updates)
 
 Wnmp 2.0.1: Released: 02/24/2013
-********************************
+================================
 Enhancements:
 
 * PHP is now hidden
@@ -364,7 +372,7 @@ Updates:
 
 
 Wnmp 2.0: Released: 02/14/2013
-******************************
+==============================
 Enhancements:
 
 * Added control panel, wnmp.exe 1.0.0  
@@ -384,7 +392,7 @@ Updates:
 * Nginx now in version 1.2.7
 
 Wnmp 1.3: Released: 01/20/2013
-******************************
+==============================
   * Nginx 1.2.6
 
   * MySQL Server 5.5.29
@@ -394,7 +402,7 @@ Wnmp 1.3: Released: 01/20/2013
   * phpMyAdmin 3.5.5
   
 Wnmp 1.0: Released: 10/07/2012
-******************************
+==============================
   * Nginx 1.2.4
 
   * MySQL Server 5.5
