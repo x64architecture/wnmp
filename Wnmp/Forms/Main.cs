@@ -345,21 +345,24 @@ namespace Wnmp.Forms
             // MariaDB Events Start
             mdb_start.Click += MariaDB.mdb_start_Click;
             mdb_stop.Click += MariaDB.mdb_stop_Click;
-            mdb_help.Click += MariaDB.mdb_help_Click;
+            mdb_restart.Click += MariaDB.mdb_restart_Click;
             mdb_shell.Click += MariaDB.mdb_shell_Click;
             mdb_cfg.Click += MariaDB.mdb_cfg_Click;
-            // mdb_log.Click += WnmpFunctions.mdb_log_Click;
+            mdb_log.Click += MariaDB.mdb_log_Click;
             mdb_start.MouseHover += MariaDB.mdb_start_MouseHover;
             mdb_stop.MouseHover += MariaDB.mdb_stop_MouseHover;
             mdb_shell.MouseHover += MariaDB.mdb_shell_MouseHover;
+            mdb_restart.MouseHover += MariaDB.mdb_restart_MouseHover;
             // End
             // PHP Events Start
             php_start.Click += PHP.php_start_Click;
             php_stop.Click += PHP.php_stop_Click;
+            php_restart.Click += PHP.php_restart_Click;
             php_cfg.Click += PHP.php_cfg_Click;
             php_log.Click += PHP.php_log_Click;
             php_start.MouseHover += PHP.php_start_MouseHover;
             php_stop.MouseHover += PHP.php_stop_MouseHover;
+            php_restart.MouseHover += PHP.php_restart_MouseHover;
             // End
         }
         #endregion

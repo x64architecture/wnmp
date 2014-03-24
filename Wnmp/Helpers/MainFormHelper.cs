@@ -37,13 +37,13 @@ namespace Wnmp.Helpers
         internal static void checkforapps()
         {
             Log.wnmp_log_notice("Checking for applications", Log.LogSection.WNMP_MAIN);
-            if (!File.Exists(@Application.StartupPath + "/nginx.exe"))
+            if (!File.Exists(Application.StartupPath + "/nginx.exe"))
                 Log.wnmp_log_error("Error: Nginx Not Found", Log.LogSection.WNMP_NGINX);
 
-            if (!Directory.Exists(@Application.StartupPath + @"/mariadb"))
+            if (!Directory.Exists(Application.StartupPath + "/mariadb"))
                 Log.wnmp_log_error("Error: MariaDB Not Found", Log.LogSection.WNMP_MARIADB);
 
-            if (!Directory.Exists(@Application.StartupPath + @"/php"))
+            if (!Directory.Exists(Application.StartupPath + "/php"))
                 Log.wnmp_log_error("Error: PHP Not Found", Log.LogSection.WNMP_PHP);
         }
         #endregion checkforapps
@@ -63,7 +63,7 @@ namespace Wnmp.Helpers
                 General.start_Click(null, null);
             }
 
-            DirFiles("/conf", "*", Nginx.cms);
+            DirFiles("/conf", "*.conf", Nginx.cms);
             DirFiles("/mariadb", "my.ini", MariaDB.cms);
             DirFiles("/php", "php.ini", PHP.cms);
             DirFiles("/logs", "*.log", Nginx.lms);
@@ -79,7 +79,7 @@ namespace Wnmp.Helpers
         {
             try
             {
-                DirectoryInfo dinfo = new DirectoryInfo(@Application.StartupPath + path);
+                DirectoryInfo dinfo = new DirectoryInfo(Application.StartupPath + path);
                 FileInfo[] Files = dinfo.GetFiles(GetFiles);
                 foreach (FileInfo file in Files)
                 {

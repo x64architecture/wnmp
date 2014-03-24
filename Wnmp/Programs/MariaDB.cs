@@ -18,6 +18,7 @@ This file is part of Wnmp.
 */
 using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 using System.Diagnostics;
 using Wnmp.Forms;
@@ -41,7 +42,7 @@ namespace Wnmp.Programs
         /// <summary>
         /// Starts an executable file
         /// </summary>
-        public static void startprocess(string p, string args, bool shellexc, bool redirectso)
+        public static void startprocess(string p, string args, bool shellexc, bool redirectso, bool wfe)
         {
             System.Threading.Thread.Sleep(100); // Wait
             ps = new Process(); // Create process
@@ -52,13 +53,15 @@ namespace Wnmp.Programs
             ps.StartInfo.WorkingDirectory = Application.StartupPath;
             ps.StartInfo.CreateNoWindow = true; // Excute with no window
             ps.Start(); // Start the process
+            if (wfe)
+                ps.WaitForExit();
         }
 
         internal static void mdb_start_Click(object sender, EventArgs e)
         {
             try
             {
-                startprocess(Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true);
+                startprocess(Application.StartupPath + "/mariadb/bin/mysqld.exe", "", false, true, false);
                 Log.wnmp_log_notice("Attempting to start MariaDB", Log.LogSection.WNMP_MARIADB);
                 Declarations.ToStartedLabel(Program.formInstance.mariadbrunning);
             }
@@ -74,13 +77,34 @@ namespace Wnmp.Programs
             {
                 // MariaDB
                 Log.wnmp_log_notice("Attempting to stop MariaDB", Log.LogSection.WNMP_MARIADB);
-                startprocess(Application.StartupPath + @"\mariadb\bin\mysqladmin.exe", "-u root -p shutdown", true, false);
+                startprocess(Application.StartupPath + "/mariadb/bin/mysqladmin.exe", "-u root -p shutdown", true, false, false);
                 Declarations.ToStoppedLabel(Program.formInstance.mariadbrunning);
             }
             catch (Exception ex)
             {
                 Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
             }
+        }
+        internal static void mdb_restart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // MariaDB
+                Log.wnmp_log_notice("Attempting to restart MariaDB", Log.LogSection.WNMP_MARIADB);
+                Thread thread = new Thread(mdb_restart);
+                thread.Start();
+                Declarations.ToStartedLabel((Program.formInstance.mariadbrunning));
+            }
+            catch (Exception ex)
+            {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
+            }
+        }
+
+        private static void mdb_restart()
+        {
+            startprocess(Application.StartupPath + "/mariadb/bin/mysqladmin.exe", "-u root -p shutdown", true, false, true);
+            startprocess(Application.StartupPath + "/mariadb/bin/mysqld.exe", "", false, true, false);
         }
         private static bool MariaDBIsRunning()
         {
@@ -96,10 +120,10 @@ namespace Wnmp.Programs
                 // MariaDB
                 if (!MariaDBIsRunning())
                 {
-                    startprocess(Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true);
+                    startprocess(Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true, false);
                 }
                 // MariaDB Shell
-                startprocess(Application.StartupPath + @"\mariadb\bin\mysql.exe", "-u root -p", true, false);
+                startprocess(Application.StartupPath + @"\mariadb\bin\mysql.exe", "-u root -p", true, false, false);
             }
             catch (Exception ex)
             {
@@ -120,6 +144,11 @@ namespace Wnmp.Programs
         internal static void mdb_shell_MouseHover(object sender, EventArgs e)
         {
             MariaDB_opnshell_Tip.Show("Open MariaDB Shell", Program.formInstance.mdb_shell);
+        }
+
+        internal static void mdb_restart_MouseHover(object sender, EventArgs e)
+        {
+            MariaDB_opnshell_Tip.Show("Restart MariaDB", Program.formInstance.mdb_restart);
         }
 
         internal static void mdb_help_Click(object sender, EventArgs e)

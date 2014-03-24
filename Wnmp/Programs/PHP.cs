@@ -76,7 +76,7 @@ namespace Wnmp.Programs
                so we have to restart it once it exits or set 'PHP_FCGI_MAX_REQUESTS' variable to 0. I've looked and people are recommending just to restart it. */
             if (PHPStatus != Status.Stopped)
             {
-                startprocess(@Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
+                startprocess(Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
             }
         }
 
@@ -84,7 +84,7 @@ namespace Wnmp.Programs
         {
             try
             {
-                startprocess(@Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
+                startprocess(Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
                 PHPStatus = Status.Started;
                 Log.wnmp_log_notice("Attempting to start PHP", Log.LogSection.WNMP_PHP);
                 Declarations.ToStartedLabel(Program.formInstance.phprunning);
@@ -99,12 +99,12 @@ namespace Wnmp.Programs
         {
             try
             {
+                PHPStatus = Status.Stopped;
                 Process[] phps = Process.GetProcessesByName("php-cgi");
                 foreach (Process currentProc in phps)
                 {
                     currentProc.Kill();
                 }
-                PHPStatus = Status.Stopped;
             }
             catch (Exception ex)
             {
@@ -112,6 +112,29 @@ namespace Wnmp.Programs
             }
             Log.wnmp_log_notice("Attempting to stop PHP", Log.LogSection.WNMP_PHP);
             Declarations.ToStoppedLabel(Program.formInstance.phprunning);
+        }
+
+        internal static void php_restart_Click(object sender, EventArgs e)
+        {
+            Log.wnmp_log_notice("Attempting to restart PHP", Log.LogSection.WNMP_PHP);
+            try
+            {
+                // Kill PHP
+                PHPStatus = Status.Stopped;
+                Process[] phps = Process.GetProcessesByName("php-cgi");
+                foreach (Process currentProc in phps)
+                {
+                    currentProc.Kill();
+                }
+
+                // Start PHP
+                startprocess(Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
+            }
+            catch (Exception ex)
+            {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_PHP);
+            }
+            Declarations.ToStartedLabel(Program.formInstance.phprunning);
         }
 
         internal static void php_start_MouseHover(object sender, EventArgs e)
@@ -122,6 +145,11 @@ namespace Wnmp.Programs
         internal static void php_stop_MouseHover(object sender, EventArgs e)
         {
             PHP_stop_Tip.Show("Stop PHP-CGI", Program.formInstance.php_stop);
+        }
+
+        internal static void php_restart_MouseHover(object sender, EventArgs e)
+        {
+            PHP_stop_Tip.Show("Restart PHP-CGI", Program.formInstance.php_restart);
         }
 
         internal static void php_cfg_Click(object sender, EventArgs e)
