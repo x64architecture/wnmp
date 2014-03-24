@@ -54,6 +54,10 @@ If you can, please donate to [Wnmp][2] using PayPal to support the development o
 
 ----
 
+### Do you want a new feature added to Wnmp or think something could be improved?
+
+If you do please tell us your suggestions [here][10].
+
 ### Mailing list links ######
 
 ###### Report any issues with the mailing list to kurt@x64architecture.com
@@ -78,3 +82,4 @@ If you can, please donate to [Wnmp][2] using PayPal to support the development o
 [7]: https://mailman.getwnmp.org/mailman/listinfo/wnmp
 [8]: https://mailman.getwnmp.org/mailman/listinfo/wnmp-announce
 [9]: https://mailman.getwnmp.org/mailman/listinfo/wnmp-dev
+[10]: https://github.com/wnmp/wnmp/issues/new
