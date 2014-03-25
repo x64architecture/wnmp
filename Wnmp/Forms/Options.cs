@@ -1,5 +1,5 @@
 ﻿/*
-Copyright (C) Kurt Cancemi
+Copyright (c) Kurt Cancemi 2012-2014
 
 This file is part of Wnmp.
 
@@ -15,6 +15,7 @@ This file is part of Wnmp.
 
     You should have received a copy of the GNU General Public License
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
+*/along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;

@@ -1,5 +1,5 @@
 ﻿/*
-Copyright (C) Kurt Cancemi
+Copyright (c) Kurt Cancemi 2012-2014
 
 This file is part of Wnmp.
 

@@ -1,5 +1,5 @@
 ﻿/*
-Copyright (C) Kurt Cancemi
+Copyright (c) Kurt Cancemi 2013-2014
 
 This file is part of Updater.
 
