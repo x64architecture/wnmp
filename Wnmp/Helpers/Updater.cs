@@ -17,7 +17,6 @@ This file is part of Wnmp.
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
-using System.Configuration;
 using System.Windows.Forms;
 using System.Xml;
 using System.Net;
