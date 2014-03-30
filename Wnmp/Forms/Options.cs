@@ -96,12 +96,6 @@ namespace Wnmp.Forms
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(
-                "This option may require administator privileges. \n If it doesn't work or throws an error right click Wnmp.exe and click run as administator.");
-        }
-
         private void StartAllProgramsOnLaunch_CheckedChanged(object sender, EventArgs e)
         {
             settings.Startallapplicationsatlaunch = StartAllProgramsOnLaunch.Checked;
@@ -110,25 +104,6 @@ namespace Wnmp.Forms
         private void MinimizeWnmpToTray_CheckedChanged(object sender, EventArgs e)
         {
             settings.Minimizewnmptotray = MinimizeWnmpToTray.Checked;
-        }
-
-        private void AutoUpdateFrequency_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (AutoUpdateFrequency.SelectedIndex)
-            {
-                case 0:
-                    settings.Checkforupdatefrequency = 1;
-                    break;
-                case 1:
-                    settings.Checkforupdatefrequency = 7;
-                    break;
-                case 2:
-                    settings.Checkforupdatefrequency = 30;
-                    break;
-                default:
-                    settings.Checkforupdatefrequency = 7;
-                    break;
-            }
         }
 
         private void AutoUpdate_CheckedChanged(object sender, EventArgs e)
@@ -144,14 +119,15 @@ namespace Wnmp.Forms
             }
         }
 
+        private void PHP_PORT_ValueChanged(object sender, EventArgs e)
+        {
+            settings.PHPPort = Convert.ToInt32(PHP_PORT.Value);
+        }
+
         private void Save_Click(object sender, EventArgs e)
         {
             settings.UpdateSettings();
             Close();
-        }
-
-        private void Options_FormClosed(object sender, FormClosedEventArgs e)
-        {
         }
 
         #region UpdateOptions
@@ -206,27 +182,15 @@ namespace Wnmp.Forms
                     AutoUpdate.Checked = false;
                     break;
             }
-            switch (settings.Checkforupdatefrequency)
-            {
-                case 1:
-                    AutoUpdateFrequency.SelectedIndex = 0;
-                    break;
-                case 7:
-                    AutoUpdateFrequency.SelectedIndex = 1;
-                    break;
-                case 30:
-                    AutoUpdateFrequency.SelectedIndex = 2;
-                    break;
-                default:
-                    AutoUpdateFrequency.SelectedIndex = 1; /* Default: To check for updates every week. */
-                    break;
-            }
-            if (settings.Lastcheckforupdate != DateTime.MinValue)
-                lastcheckforupdateTB.Text = settings.Lastcheckforupdate.ToString();
-            else
-                lastcheckforupdateTB.Text = "Never";
+            UpdateCheckInterval.Value = settings.Checkforupdatefrequency;
+            PHP_PORT.Value = settings.PHPPort;
         }
 
         #endregion
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

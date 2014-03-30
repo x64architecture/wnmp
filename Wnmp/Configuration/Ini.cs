@@ -19,6 +19,7 @@ This file is part of Wnmp.
 using System;
 using System.IO;
 using Wnmp.Forms;
+using Wnmp.Programs;
 
 namespace Wnmp.Configuration
 {
@@ -35,6 +36,7 @@ namespace Wnmp.Configuration
         public bool Minimizewnmptotray = false; // Minimize Wnmp to tray when minimized
         public bool Autocheckforupdates = true; // Auto check for updates
         public int Checkforupdatefrequency = 7; // Check for update frequency
+        public int PHPPort = 9000; // PHP Port
         public DateTime Lastcheckforupdate = DateTime.MinValue;
         public bool Firstrun = true; // First run
 
@@ -83,6 +85,10 @@ namespace Wnmp.Configuration
                         {
                             DateTime.TryParse(line.Remove(0, 19), out Lastcheckforupdate);
                         }
+                        if (line.StartsWith("phpport="))
+                        {
+                            int.TryParse(line.Remove(0, 8), out PHPPort);
+                        }
                         if (line.StartsWith("firstrun="))
                         {
                             Boolean.TryParse(line.Remove(0, 9), out Firstrun);
@@ -106,6 +112,7 @@ namespace Wnmp.Configuration
                 sw.WriteLine("; Automatically check for updates\r\nautocheckforupdates=" + Autocheckforupdates);
                 sw.WriteLine("; Update frequency(1, 7, 30)\r\ncheckforupdatefrequency=" + Checkforupdatefrequency);
                 sw.WriteLine("; Last check for update\r\nlastcheckforupdate=" + Lastcheckforupdate);
+                sw.WriteLine("; PHP Port\r\nphpport=" + PHPPort);
                 sw.WriteLine("; First run\r\nfirstrun=" + Firstrun);
             }
         }

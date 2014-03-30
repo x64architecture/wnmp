@@ -17,6 +17,7 @@ This file is part of Wnmp.
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
+using System.Configuration;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
@@ -24,6 +25,7 @@ using System.Diagnostics;
 using Wnmp.Forms;
 using Wnmp.Helpers;
 using Wnmp.Internals;
+using Wnmp.Configuration;
 
 namespace Wnmp.Programs
 {
@@ -76,7 +78,7 @@ namespace Wnmp.Programs
                so we have to restart it once it exits or set 'PHP_FCGI_MAX_REQUESTS' variable to 0. I've looked and people are recommending just to restart it. */
             if (PHPStatus != Status.Stopped)
             {
-                startprocess(Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
+                startprocess(Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
             }
         }
 
@@ -84,7 +86,8 @@ namespace Wnmp.Programs
         {
             try
             {
-                startprocess(Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
+                startprocess(Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
+                MessageBox.Show(Options.settings.PHPPort.ToString());
                 PHPStatus = Status.Started;
                 Log.wnmp_log_notice("Attempting to start PHP", Log.LogSection.WNMP_PHP);
                 Declarations.ToStartedLabel(Program.formInstance.phprunning);
@@ -128,7 +131,7 @@ namespace Wnmp.Programs
                 }
 
                 // Start PHP
-                startprocess(Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:9000 -c {0}", pini));
+                startprocess(Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
             }
             catch (Exception ex)
             {
