@@ -70,7 +70,8 @@ namespace Wnmp.Helpers
             DirFiles("/mariadb/data", "*.log", MariaDB.lms);
             DirFiles("/php/logs", "*.log", PHP.lms);
 
-            Updater.DoAutoCheckForUpdate();
+            if (Options.settings.Autocheckforupdates)
+                Updater.DoDateEclasped();
         }
         /// <summary>
         /// Adds configuration files to the Config buttons context menu strip

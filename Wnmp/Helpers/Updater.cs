@@ -17,6 +17,7 @@ This file is part of Wnmp.
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
+using System.Configuration;
 using System.Windows.Forms;
 using System.Xml;
 using System.Net;
@@ -286,14 +287,14 @@ namespace Wnmp.Helpers
         /// and excutes the updater if true.
         /// </summary>
         /// <param name="days"></param>
-        private static void DoDateEclasped(double days)
+        internal static void DoDateEclasped()
         {
             try
             {
                 if (IsSet(Options.settings.Lastcheckforupdate))
                 {
                     var LastCheckForUpdate = Options.settings.Lastcheckforupdate;
-                    var expiryDate = LastCheckForUpdate.AddDays(days);
+                    var expiryDate = LastCheckForUpdate.AddDays(Options.settings.Checkforupdatefrequency);
                     if (DateTime.Now > expiryDate)
                     {
                         CheckForUpdates(true);
@@ -308,30 +309,6 @@ namespace Wnmp.Helpers
             catch (Exception ex)
             {
                 Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
-            }
-        }
-        /// <summary>
-        /// Tells the Updater the selected update frequency
-        /// </summary>
-        public static void DoAutoCheckForUpdate()
-        {
-            if (Options.settings.Autocheckforupdates)
-            {
-                switch (Options.settings.Checkforupdatefrequency)
-                {
-                    case 1:
-                        DoDateEclasped(1);
-                        break;
-                    case 7:
-                        DoDateEclasped(7);
-                        break;
-                    case 30:
-                        DoDateEclasped(30);
-                        break;
-                    default:
-                        DoDateEclasped(7); /* Default: To check for updates every week. */
-                        break;
-                }
             }
         }
         #endregion
