@@ -211,7 +211,7 @@ namespace Wnmp.Forms
         #region MenuStripItems
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Updater.CheckForUpdates();
+            Updater.CheckForUpdates(false);
         }
 
         private void wnmpOptionsToolStripMenuItem_Click(object sender, EventArgs e)

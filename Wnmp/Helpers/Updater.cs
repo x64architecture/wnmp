@@ -201,7 +201,7 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Checks for updates
         /// </summary>
-        public static void CheckForUpdates()
+        public static void CheckForUpdates(bool AutoUpdate)
         {
             var FoundWnmpUpdate = false; // Since were checking for two updates we have to check if it found the main one.
 
@@ -244,8 +244,11 @@ namespace Wnmp.Helpers
                         Log.wnmp_log_notice("Your control panel version: " + Main.GetCPVER + " is up to date.", Log.LogSection.WNMP_MAIN);
                     }
                 }
-                Options.settings.Lastcheckforupdate = DateTime.Now;
-                Options.settings.UpdateSettings();
+                if (AutoUpdate)
+                {
+                    Options.settings.Lastcheckforupdate = DateTime.Now;
+                    Options.settings.UpdateSettings();
+                }
             }
         }
 
@@ -293,7 +296,7 @@ namespace Wnmp.Helpers
                     var expiryDate = LastCheckForUpdate.AddDays(days);
                     if (DateTime.Now > expiryDate)
                     {
-                        CheckForUpdates();
+                        CheckForUpdates(true);
                     }
                 }
                 else
