@@ -133,56 +133,22 @@ namespace Wnmp.Forms
         #region UpdateOptions
 
         /// <summary>
-        ///     Populates the options with there saved values
+        /// Populates the options with there saved values
         /// </summary>
         private void UpdateOptions()
         {
-            switch (settings.Editor)
-            {
-                case "":
-                    editorTB.Text = "notepad.exe";
-                    break;
-                default:
-                    editorTB.Text = settings.Editor;
-                    break;
-            }
-            switch (settings.Startupwithwindows)
-            {
-                case false:
-                    StartWnmpWithWindows.Checked = false;
-                    break;
-                case true:
-                    StartWnmpWithWindows.Checked = true;
-                    break;
-            }
-            switch (settings.Startallapplicationsatlaunch)
-            {
-                case false:
-                    StartAllProgramsOnLaunch.Checked = false;
-                    break;
-                case true:
-                    StartAllProgramsOnLaunch.Checked = true;
-                    break;
-            }
-            switch (settings.Minimizewnmptotray)
-            {
-                case true:
-                    MinimizeWnmpToTray.Checked = true;
-                    break;
-                case false:
-                    MinimizeWnmpToTray.Checked = false;
-                    break;
-            }
-            switch (settings.Autocheckforupdates)
-            {
-                case true:
-                    AutoUpdate.Checked = true;
-                    break;
-                case false:
-                    AutoUpdate.Checked = false;
-                    break;
-            }
+            editorTB.Text = settings.Editor;
+
+            StartWnmpWithWindows.Checked = settings.Startupwithwindows;
+
+            StartAllProgramsOnLaunch.Checked = settings.Startallapplicationsatlaunch;
+
+            MinimizeWnmpToTray.Checked = settings.Minimizewnmptotray;
+
+            AutoUpdate.Checked = settings.Autocheckforupdates;
+
             UpdateCheckInterval.Value = settings.Checkforupdatefrequency;
+
             PHP_PORT.Value = settings.PHPPort;
         }
 
