@@ -35,7 +35,7 @@ namespace Wnmp.Helpers
         /// <returns>Enum DescriptionAttribute string</returns>
         public static string GetEnumDescription(Enum value)
         {
-            object[] customAttributes = value.GetType().GetField(value.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), true);
+            var customAttributes = value.GetType().GetField(value.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), true);
             if (customAttributes.Length > 0)
             {
                 return ((DescriptionAttribute)customAttributes[0]).Description;
@@ -46,8 +46,8 @@ namespace Wnmp.Helpers
 
         private static void wnmp_log(string message, Color color, LogSection logSection)
         {
-            string str = string.Format("{0} [{1}] - {2}", DateTime.Now.ToString(), GetEnumDescription(logSection), message);
-            int textLength = rtfLog.TextLength;
+            var str = string.Format("{0} [{1}] - {2}", DateTime.Now.ToString(), GetEnumDescription(logSection), message);
+            var textLength = rtfLog.TextLength;
             rtfLog.AppendText(str + "\n");
             if (rtfLog.Find(GetEnumDescription(logSection), textLength, RichTextBoxFinds.MatchCase) != -1)
             {

@@ -9,8 +9,8 @@ namespace Wnmp.Tests
         [Test]
         public void TestW81OSName()
         {
-            int major = Environment.OSVersion.Version.Major;
-            int minor = Environment.OSVersion.Version.Minor;
+            var major = Environment.OSVersion.Version.Major;
+            var minor = Environment.OSVersion.Version.Minor;
 
             if (major == 6 && minor == 3)
             {

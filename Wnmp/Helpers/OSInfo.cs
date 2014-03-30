@@ -160,18 +160,18 @@ namespace Wnmp.Helpers
                 if (s_Edition != null)
                     return s_Edition;  //***** RETURN *****//
 
-                string edition = String.Empty;
+                var edition = String.Empty;
 
-                OperatingSystem osVersion = Environment.OSVersion;
-                NativeMethods.OSVERSIONINFOEX osVersionInfo = new NativeMethods.OSVERSIONINFOEX();
+                var osVersion = Environment.OSVersion;
+                var osVersionInfo = new NativeMethods.OSVERSIONINFOEX();
                 osVersionInfo.dwOSVersionInfoSize = Marshal.SizeOf(typeof(NativeMethods.OSVERSIONINFOEX));
 
                 if (NativeMethods.GetVersionEx(ref osVersionInfo))
                 {
-                    int majorVersion = osVersion.Version.Major;
-                    int minorVersion = osVersion.Version.Minor;
-                    byte productType = osVersionInfo.wProductType;
-                    short suiteMask = osVersionInfo.wSuiteMask;
+                    var majorVersion = osVersion.Version.Major;
+                    var minorVersion = osVersion.Version.Minor;
+                    var productType = osVersionInfo.wProductType;
+                    var suiteMask = osVersionInfo.wSuiteMask;
 
                     #region VERSION 4
                     if (majorVersion == 4)
@@ -572,16 +572,16 @@ namespace Wnmp.Helpers
                 if (s_Name != null)
                     return s_Name;  //***** RETURN *****//
 
-                string name = "unknown";
+                var name = "unknown";
 
-                OperatingSystem osVersion = Environment.OSVersion;
-                NativeMethods.OSVERSIONINFOEX osVersionInfo = new NativeMethods.OSVERSIONINFOEX();
+                var osVersion = Environment.OSVersion;
+                var osVersionInfo = new NativeMethods.OSVERSIONINFOEX();
                 osVersionInfo.dwOSVersionInfoSize = Marshal.SizeOf(typeof(NativeMethods.OSVERSIONINFOEX));
 
                 if (NativeMethods.GetVersionEx(ref osVersionInfo))
                 {
-                    int majorVersion = osVersion.Version.Major;
-                    int minorVersion = osVersion.Version.Minor;
+                    var majorVersion = osVersion.Version.Major;
+                    var minorVersion = osVersion.Version.Minor;
 
                     switch (osVersion.Platform)
                     {
@@ -595,7 +595,7 @@ namespace Wnmp.Helpers
                             {
                                 if (majorVersion == 4)
                                 {
-                                    string csdVersion = osVersionInfo.szCSDVersion;
+                                    var csdVersion = osVersionInfo.szCSDVersion;
                                     switch (minorVersion)
                                     {
                                         case 0:
@@ -619,7 +619,7 @@ namespace Wnmp.Helpers
                             }
                         case PlatformID.Win32NT:
                             {
-                                byte productType = osVersionInfo.wProductType;
+                                var productType = osVersionInfo.wProductType;
 
                                 switch (majorVersion)
                                 {
@@ -723,8 +723,8 @@ namespace Wnmp.Helpers
             get
             {
 
-                string servicePack = String.Empty;
-                NativeMethods.OSVERSIONINFOEX osVersionInfo = new NativeMethods.OSVERSIONINFOEX();
+                var servicePack = String.Empty;
+                var osVersionInfo = new NativeMethods.OSVERSIONINFOEX();
 
                 osVersionInfo.dwOSVersionInfoSize = Marshal.SizeOf(typeof(NativeMethods.OSVERSIONINFOEX));
 
@@ -823,7 +823,7 @@ namespace Wnmp.Helpers
         #region WINDOWSVERSIONSTRING
         static public string WindowsVersionString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("Windows Version: " + OSVersionInfo.Name);
             if (OSVersionInfo.Edition != "")
                 sb.Append(" " + OSVersionInfo.Edition);

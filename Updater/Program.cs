@@ -34,7 +34,7 @@ namespace Updater
         /// <returns>True on sucess else false</returns>
         public static bool FindAndKillProcess(string name)
         {
-            foreach (Process process in Process.GetProcesses())
+            foreach (var process in Process.GetProcesses())
             {
                 if (process.ProcessName.Contains(name))
                 {
@@ -58,12 +58,12 @@ namespace Updater
         /// </summary>
         static void Main(string[] args)
         {
-        bool print_log = false;
-        string curDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        string _orig = Path.Combine(curDir, "Wnmp.exe");
-        string _new = Path.Combine(curDir, "Wnmp_new.exe");
-        string _old = Path.Combine(curDir, "Wnmp_old.exe");
-            foreach (string s in args)
+        var print_log = false;
+        var curDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        var _orig = Path.Combine(curDir, "Wnmp.exe");
+        var _new = Path.Combine(curDir, "Wnmp_new.exe");
+        var _old = Path.Combine(curDir, "Wnmp_old.exe");
+            foreach (var s in args)
             {
                 if (s == "-t")
                     print_log = true;

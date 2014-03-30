@@ -34,7 +34,7 @@ namespace Wnmp.Forms
         {
             get
             {
-                CreateParams myCp = base.CreateParams;
+                var myCp = base.CreateParams;
                 myCp.Style = myCp.Style & ~Declarations.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
                 return myCp;
             }
@@ -64,7 +64,7 @@ namespace Wnmp.Forms
                         IPAddress[] ips;
                         HostToIP(host.Text, out ips);
 
-                        foreach (IPAddress ip in ips)
+                        foreach (var ip in ips)
                         {
                             IPAddresses.Items.Add(ip.ToString());
                         }

@@ -29,13 +29,13 @@ namespace Wnmp.Programs
     {
         internal static void start_MouseHover()
         {
-            ToolTip start_all_Tip = new ToolTip();
+            var start_all_Tip = new ToolTip();
             start_all_Tip.Show("Starts Nginx, PHP-CGI & MariaDB", Program.formInstance.start);
         }
 
         internal static void stop_MouseHover()
         {
-            ToolTip stop_all_Tip = new ToolTip();
+            var stop_all_Tip = new ToolTip();
             stop_all_Tip.Show("Stops Nginx, PHP-CGI & MariaDB", Program.formInstance.stop);
         }
 

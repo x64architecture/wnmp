@@ -50,7 +50,7 @@ namespace Wnmp.Configuration
 
             if (File.Exists(iniPath))
             {
-                using (StreamReader sr = new StreamReader(iniPath))
+                using (var sr = new StreamReader(iniPath))
                 {
                     string line;
                     while ((line = sr.ReadLine()) != null) // Read every line while not null
@@ -96,7 +96,7 @@ namespace Wnmp.Configuration
         /// </summary>
         public void UpdateSettings()
         {
-            using (StreamWriter sw = new StreamWriter(iniPath))
+            using (var sw = new StreamWriter(iniPath))
             {
                 sw.WriteLine("; Wnmp Configuration File\r\n;");
                 sw.WriteLine("; editor path\r\neditorpath=" + Editor);

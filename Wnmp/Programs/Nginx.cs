@@ -114,8 +114,8 @@ namespace Wnmp.Programs
 
         internal static void ngx_cfg_Click(object sender, EventArgs e)
         {
-            Button btnSender = (Button)sender;
-            Point ptLowerLeft = new Point(0, btnSender.Height);
+            var btnSender = (Button)sender;
+            var ptLowerLeft = new Point(0, btnSender.Height);
             ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
             cms.Show(ptLowerLeft);
             cms.ItemClicked -= cms_ItemClicked;
@@ -129,8 +129,8 @@ namespace Wnmp.Programs
 
         internal static void ngx_log_Click(object sender, EventArgs e)
         {
-            Button btnSender = (Button)sender;
-            Point ptLowerLeft = new Point(0, btnSender.Height);
+            var btnSender = (Button)sender;
+            var ptLowerLeft = new Point(0, btnSender.Height);
             ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
             lms.Show(ptLowerLeft);
             lms.ItemClicked -= lms_ItemClicked;

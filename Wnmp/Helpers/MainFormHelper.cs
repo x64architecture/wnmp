@@ -79,9 +79,9 @@ namespace Wnmp.Helpers
         {
             try
             {
-                DirectoryInfo dinfo = new DirectoryInfo(Application.StartupPath + path);
-                FileInfo[] Files = dinfo.GetFiles(GetFiles);
-                foreach (FileInfo file in Files)
+                var dinfo = new DirectoryInfo(Application.StartupPath + path);
+                var Files = dinfo.GetFiles(GetFiles);
+                foreach (var file in Files)
                 {
                     cms.Items.Add(file.Name, null);
                 }
@@ -128,7 +128,7 @@ namespace Wnmp.Helpers
 
         private static bool check_if_running(string application)
         {
-            Process[] _Process = Process.GetProcessesByName(application);
+            var _Process = Process.GetProcessesByName(application);
             return _Process.Length != 0;
         }
         #endregion

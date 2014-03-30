@@ -37,7 +37,7 @@ namespace Wnmp.Forms
         {
             get
             {
-                CreateParams myCp = base.CreateParams;
+                var myCp = base.CreateParams;
                 myCp.Style = myCp.Style & ~Declarations.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
                 return myCp;
             }

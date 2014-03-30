@@ -100,8 +100,8 @@ namespace Wnmp.Programs
             try
             {
                 PHPStatus = Status.Stopped;
-                Process[] phps = Process.GetProcessesByName("php-cgi");
-                foreach (Process currentProc in phps)
+                var phps = Process.GetProcessesByName("php-cgi");
+                foreach (var currentProc in phps)
                 {
                     currentProc.Kill();
                 }
@@ -121,8 +121,8 @@ namespace Wnmp.Programs
             {
                 // Kill PHP
                 PHPStatus = Status.Stopped;
-                Process[] phps = Process.GetProcessesByName("php-cgi");
-                foreach (Process currentProc in phps)
+                var phps = Process.GetProcessesByName("php-cgi");
+                foreach (var currentProc in phps)
                 {
                     currentProc.Kill();
                 }
@@ -154,8 +154,8 @@ namespace Wnmp.Programs
 
         internal static void php_cfg_Click(object sender, EventArgs e)
         {
-            Button btnSender = (Button)sender;
-            Point ptLowerLeft = new Point(0, btnSender.Height);
+            var btnSender = (Button)sender;
+            var ptLowerLeft = new Point(0, btnSender.Height);
             ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
             cms.Show(ptLowerLeft);
             cms.ItemClicked -= cms_ItemClicked;
@@ -169,8 +169,8 @@ namespace Wnmp.Programs
 
         internal static void php_log_Click(object sender, EventArgs e)
         {
-            Button btnSender = (Button)sender;
-            Point ptLowerLeft = new Point(0, btnSender.Height);
+            var btnSender = (Button)sender;
+            var ptLowerLeft = new Point(0, btnSender.Height);
             ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
             lms.Show(ptLowerLeft);
             lms.ItemClicked -= lms_ItemClicked;

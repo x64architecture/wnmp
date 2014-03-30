@@ -91,7 +91,7 @@ namespace Wnmp.Programs
             {
                 // MariaDB
                 Log.wnmp_log_notice("Attempting to restart MariaDB", Log.LogSection.WNMP_MARIADB);
-                Thread thread = new Thread(mdb_restart);
+                var thread = new Thread(mdb_restart);
                 thread.Start();
                 Declarations.ToStartedLabel((Program.formInstance.mariadbrunning));
             }
@@ -108,7 +108,7 @@ namespace Wnmp.Programs
         }
         private static bool MariaDBIsRunning()
         {
-            Process[] ptcf = Process.GetProcessesByName("mysqld");
+            var ptcf = Process.GetProcessesByName("mysqld");
 
             return ptcf.Length == 0;
         }
@@ -158,8 +158,8 @@ namespace Wnmp.Programs
 
         internal static void mdb_cfg_Click(object sender, EventArgs e)
         {
-            Button btnSender = (Button)sender;
-            Point ptLowerLeft = new Point(0, btnSender.Height);
+            var btnSender = (Button)sender;
+            var ptLowerLeft = new Point(0, btnSender.Height);
             ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
             cms.Show(ptLowerLeft);
             cms.ItemClicked -= cms_ItemClicked;
@@ -173,8 +173,8 @@ namespace Wnmp.Programs
 
         internal static void mdb_log_Click(object sender, EventArgs e)
         {
-            Button btnSender = (Button)sender;
-            Point ptLowerLeft = new Point(0, btnSender.Height);
+            var btnSender = (Button)sender;
+            var ptLowerLeft = new Point(0, btnSender.Height);
             ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
             lms.Show(ptLowerLeft);
             lms.ItemClicked -= cms_ItemClicked;

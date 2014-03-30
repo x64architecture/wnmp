@@ -53,7 +53,7 @@ namespace Wnmp.Forms
         {
             get
             {
-                CreateParams myCp = base.CreateParams;
+                var myCp = base.CreateParams;
                 myCp.Style = myCp.Style & ~Declarations.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
                 return myCp;
             }
@@ -92,13 +92,13 @@ namespace Wnmp.Forms
         {
             try
             {
-                string path = Application.StartupPath + "/Wnmp.log";
+                var path = Application.StartupPath + "/Wnmp.log";
 
                 DoLogSizeCheck(path);
 
-                StreamWriter sw = new StreamWriter(path, true);
+                var sw = new StreamWriter(path, true);
                 sw.WriteLine(DateTime.Now.ToLongDateString());
-                foreach (string str in log_rtb.Lines)
+                foreach (var str in log_rtb.Lines)
                 {
                     sw.WriteLine(str);
                 }
@@ -111,13 +111,13 @@ namespace Wnmp.Forms
         /// </summary>
         private void CompressFile(string path)
         {
-            FileStream sourceFile = File.OpenRead(path);
-            FileStream destinationFile = File.Create(path + ".gz");
+            var sourceFile = File.OpenRead(path);
+            var destinationFile = File.Create(path + ".gz");
 
-            byte[] buffer = new byte[sourceFile.Length];
+            var buffer = new byte[sourceFile.Length];
             sourceFile.Read(buffer, 0, buffer.Length);
 
-            using (GZipStream output = new GZipStream(destinationFile,
+            using (var output = new GZipStream(destinationFile,
                 CompressionMode.Compress))
             {
                 Console.WriteLine("Compressing {0} to {1}.", sourceFile.Name,
@@ -137,11 +137,11 @@ namespace Wnmp.Forms
         {
             try
             {
-                string temppath = Path.GetTempPath() + "Wnmp";
+                var temppath = Path.GetTempPath() + "Wnmp";
                 if (!Directory.Exists(temppath))
                     Directory.CreateDirectory(temppath);
-                StreamWriter sw = new StreamWriter(temppath + @"\Wnmp.log");
-                foreach (string str in log_rtb.Lines)
+                var sw = new StreamWriter(temppath + @"\Wnmp.log");
+                foreach (var str in log_rtb.Lines)
                 {
                     sw.WriteLine(str);
                 }
@@ -191,7 +191,7 @@ namespace Wnmp.Forms
                         Directory.CreateDirectory(Application.StartupPath + "/conf");
                     }
                     File.WriteAllBytes(Application.StartupPath + "/CertGen.exe", Properties.Resources.CertGen);
-                    using (Process ps = new Process())
+                    using (var ps = new Process())
                     {
                         ps.StartInfo.FileName = Application.StartupPath + "/CertGen.exe";
                         ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -216,7 +216,7 @@ namespace Wnmp.Forms
 
         private void wnmpOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Options form = new Options();
+            var form = new Options();
             ShowForm(form);
         }
 
@@ -237,7 +237,7 @@ namespace Wnmp.Forms
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            About aboutfrm = new About();
+            var aboutfrm = new About();
             ShowForm(aboutfrm);
         }
 
@@ -258,13 +258,13 @@ namespace Wnmp.Forms
 
         private void hostToIPToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HostToIPForm form = new HostToIPForm();
+            var form = new HostToIPForm();
             ShowForm(form);
         }
 
         private void getHTTPHeadersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HttpHeaders form = new HttpHeaders();
+            var form = new HttpHeaders();
             ShowForm(form);
         }
 
@@ -296,7 +296,7 @@ namespace Wnmp.Forms
 
             MainHelper.DoStartup();
 
-            System.Threading.Thread worker = new System.Threading.Thread(FirstRun);
+            var worker = new System.Threading.Thread(FirstRun);
             worker.Start();
         }
 

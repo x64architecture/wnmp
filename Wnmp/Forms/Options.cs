@@ -42,7 +42,7 @@ namespace Wnmp.Forms
         {
             get
             {
-                CreateParams myCp = base.CreateParams;
+                var myCp = base.CreateParams;
                 myCp.Style = myCp.Style & ~Declarations.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
                 return myCp;
             }
@@ -56,7 +56,7 @@ namespace Wnmp.Forms
 
         private void selecteditor_Click(object sender, EventArgs e)
         {
-            String input = string.Empty;
+            var input = string.Empty;
             var dialog = new OpenFileDialog();
             dialog.Filter =
                 "excutable files (*.exe)|*.exe|All files (*.*)|*.*";
@@ -77,14 +77,14 @@ namespace Wnmp.Forms
             {
                 if (StartWnmpWithWindows.Checked)
                 {
-                    RegistryKey add =
+                    var add =
                         Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
                     add.SetValue("Wnmp", "\"" + Application.ExecutablePath + "\"");
                     settings.Startupwithwindows = true;
                 }
                 else
                 {
-                    RegistryKey remove =
+                    var remove =
                         Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
                     remove.DeleteValue("Wnmp");
                     settings.Startupwithwindows = false;

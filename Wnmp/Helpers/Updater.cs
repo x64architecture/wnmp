@@ -50,7 +50,7 @@ namespace Wnmp.Helpers
         private static bool ReadUpdateXML()
         {
             const string xmlUrl = Main.UpdateXMLURL;
-            string elementName = "";
+            var elementName = "";
 
             int returnvalue;
             if (!NativeMethods.InternetGetConnectedState(out returnvalue, 0))
@@ -61,7 +61,7 @@ namespace Wnmp.Helpers
 
             try
             {
-                XmlTextReader reader = new XmlTextReader(xmlUrl);
+                var reader = new XmlTextReader(xmlUrl);
                 reader.MoveToContent();
 
                 if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "appinfo"))
@@ -109,7 +109,7 @@ namespace Wnmp.Helpers
         /// <param name="path"></param>
         private static void DownloadWnmpUpdate(Uri uri, string path)
         {
-            UpdateProgress frm = new UpdateProgress();
+            var frm = new UpdateProgress();
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
             Program.formInstance.Enabled = false;
@@ -159,7 +159,7 @@ namespace Wnmp.Helpers
         private static void DownloadCPUpdate(Uri uri, string path)
         {
             webClient = new WebClient();
-            UpdateProgress frm = new UpdateProgress();
+            var frm = new UpdateProgress();
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
             Program.formInstance.Enabled = false;
@@ -203,14 +203,14 @@ namespace Wnmp.Helpers
         /// </summary>
         public static void CheckForUpdates()
         {
-            bool FoundWnmpUpdate = false; // Since were checking for two updates we have to check if it found the main one.
+            var FoundWnmpUpdate = false; // Since were checking for two updates we have to check if it found the main one.
 
             if (ReadUpdateXML())
             {
 
                 if (WNMP_VER.CompareTo(NEW_WNMP_VERSION) < 0) // If it returns less than 0 than theres a new version
                 {
-                    ChangelogViewer CV = new ChangelogViewer();
+                    var CV = new ChangelogViewer();
                     CV.StartPosition = FormStartPosition.CenterScreen;
                     CV.cversion.Text = WNMP_VER.ToString();
                     CV.newversion.Text = NEW_WNMP_VERSION.ToString();
@@ -229,7 +229,7 @@ namespace Wnmp.Helpers
                 {
                     if (Main.GetCPVER.CompareTo(NEW_CP_VERSION) < 0)
                     {
-                        ChangelogViewer CV = new ChangelogViewer();
+                        var CV = new ChangelogViewer();
                         CV.StartPosition = FormStartPosition.CenterScreen;
                         CV.cversion.Text = Main.GetCPVER.ToString();
                         CV.newversion.Text = NEW_CP_VERSION.ToString();
@@ -254,13 +254,13 @@ namespace Wnmp.Helpers
         /// </summary>
         private static void DoBackUp()
         {
-            string wd = Main.StartupPath;
+            var wd = Main.StartupPath;
             string[] files = { wd + "/php/php.ini", wd + "/conf/nginx.conf", wd + "/mariadb/my.ini" };
-            foreach (string file in files)
+            foreach (var file in files)
             {
                 if (File.Exists(file))
                 {
-                    string dest = String.Format("{0}.old", file);
+                    var dest = String.Format("{0}.old", file);
                     File.Copy(file, dest, true);
                     Log.wnmp_log_notice("Backed up " + file + " to " + dest, Log.LogSection.WNMP_MAIN);
                 }
@@ -289,8 +289,8 @@ namespace Wnmp.Helpers
             {
                 if (IsSet(Options.settings.Lastcheckforupdate))
                 {
-                    DateTime LastCheckForUpdate = Options.settings.Lastcheckforupdate;
-                    DateTime expiryDate = LastCheckForUpdate.AddDays(days);
+                    var LastCheckForUpdate = Options.settings.Lastcheckforupdate;
+                    var expiryDate = LastCheckForUpdate.AddDays(days);
                     if (DateTime.Now > expiryDate)
                     {
                         CheckForUpdates();
@@ -339,15 +339,15 @@ namespace Wnmp.Helpers
         private static void KillProcesses()
         {
             string[] processtokill = { "php-cgi", "nginx", "mysqld" };
-            Process[] processes = Process.GetProcesses();
+            var processes = Process.GetProcesses();
 
-            for (int i = 0; i < processes.Length; i++)
+            for (var i = 0; i < processes.Length; i++)
             {
-                for (int j = 0; j < processtokill.Length; j++)
+                for (var j = 0; j < processtokill.Length; j++)
                 {
                     try
                     {
-                        string tempProcess = processes[i].ProcessName;
+                        var tempProcess = processes[i].ProcessName;
 
                         if (tempProcess == processtokill[j]) // If the proccess is the proccess we want to kill
                         {
