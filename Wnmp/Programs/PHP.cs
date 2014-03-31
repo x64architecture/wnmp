@@ -87,7 +87,6 @@ namespace Wnmp.Programs
             try
             {
                 startprocess(Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
-                MessageBox.Show(Options.settings.PHPPort.ToString());
                 PHPStatus = Status.Started;
                 Log.wnmp_log_notice("Attempting to start PHP", Log.LogSection.WNMP_PHP);
                 Declarations.ToStartedLabel(Program.formInstance.phprunning);
