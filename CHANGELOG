@@ -7,6 +7,14 @@ Wnmp 2.0.12: Released: ??/??/2014
    * GUI: Made options form look cleaner
    * GUI: Added option to change PHP port
    * Fixed: Auto check for updates was always enabled even if it was set not to be
+
+- MariaDB
+
+   * Updated to 10.0.10!
+   
+- PHP
+
+   * Updated to 5.5.11
    
 Wnmp 2.0.11: Released: 03/21/2014
 =================================
