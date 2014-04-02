@@ -272,18 +272,23 @@ namespace Wnmp.Forms
 
         #region FormEvents
 
+        private int MinimizeWnmpToTrayCount = 0;
         private void Main_Resize(object sender, EventArgs e)
         {
-            if (Options.settings.Minimizewnmptotray)
-            {
+            if (!Options.settings.Minimizewnmptotray)
+                return;
+
                 if (WindowState == FormWindowState.Minimized)
                 {
                     this.Hide();
+                    if (MinimizeWnmpToTrayCount > 0)
+                        return;
+
+                    MinimizeWnmpToTrayCount++;
                     WnmpTrayIcon.BalloonTipTitle = "Wnmp";
-                    WnmpTrayIcon.BalloonTipText = "Wnmp has been minimized to the taskbar.";
+                    WnmpTrayIcon.BalloonTipText = "Wnmp has been minimized to the tray.";
                     WnmpTrayIcon.ShowBalloonTip(4000);
                 }
-            }
         }
 
         private void Main_Load(object sender, EventArgs e)

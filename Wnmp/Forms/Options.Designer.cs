@@ -63,9 +63,9 @@ namespace Wnmp.Forms
             this.MinimizeWnmpToTray = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.PHP = new System.Windows.Forms.TabPage();
-            this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.PHP_PORT = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
             this.Cancel = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.General.SuspendLayout();
@@ -268,15 +268,6 @@ namespace Wnmp.Forms
             this.PHP.Text = "PHP";
             this.PHP.UseVisualStyleBackColor = true;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(17, 25);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(54, 13);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "PHP Port:";
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.PHP_PORT);
@@ -305,6 +296,15 @@ namespace Wnmp.Forms
             0,
             0});
             this.PHP_PORT.ValueChanged += new System.EventHandler(this.PHP_PORT_ValueChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 25);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(54, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "PHP Port:";
             // 
             // Cancel
             // 
