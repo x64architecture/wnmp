@@ -6,6 +6,7 @@ Wnmp 2.0.12: Released: ??/??/2014
    * GUI: Renamed the Config button to Configuration
    * GUI: Made options form look cleaner
    * GUI: Added option to change PHP port
+   * GUI: The tooltip now only shows once when minimizing to the tray (#25)
    * Fixed: Auto check for updates was always enabled even if it was set not to be
 
 - MariaDB
