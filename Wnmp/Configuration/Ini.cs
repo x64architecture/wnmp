@@ -110,7 +110,7 @@ namespace Wnmp.Configuration
                 sw.WriteLine("; Start all applications when Wnmp starts\r\nstartallapplicationsatlaunch=" + Startallapplicationsatlaunch);
                 sw.WriteLine("; Minimize Wnmp to tray when minimized\r\nminimizewnmptotray=" + Minimizewnmptotray);
                 sw.WriteLine("; Automatically check for updates\r\nautocheckforupdates=" + Autocheckforupdates);
-                sw.WriteLine("; Update frequency(1, 7, 30)\r\ncheckforupdatefrequency=" + Checkforupdatefrequency);
+                sw.WriteLine("; Update frequency(In days)\r\ncheckforupdatefrequency=" + Checkforupdatefrequency);
                 sw.WriteLine("; Last check for update\r\nlastcheckforupdate=" + Lastcheckforupdate);
                 sw.WriteLine("; PHP Port\r\nphpport=" + PHPPort);
                 sw.WriteLine("; First run\r\nfirstrun=" + Firstrun);
