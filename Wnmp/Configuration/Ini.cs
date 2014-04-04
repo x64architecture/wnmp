@@ -105,7 +105,7 @@ namespace Wnmp.Configuration
             using (var sw = new StreamWriter(iniPath))
             {
                 sw.WriteLine("; Wnmp Configuration File\r\n;");
-                sw.WriteLine("; editor path\r\neditorpath=" + Editor);
+                sw.WriteLine("; Editor path\r\neditorpath=" + Editor);
                 sw.WriteLine("; Start Wnmp with Windows\r\nstartupwithwindows=" + Startupwithwindows);
                 sw.WriteLine("; Start all applications when Wnmp starts\r\nstartallapplicationsatlaunch=" + Startallapplicationsatlaunch);
                 sw.WriteLine("; Minimize Wnmp to tray when minimized\r\nminimizewnmptotray=" + Minimizewnmptotray);
