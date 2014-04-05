@@ -103,13 +103,9 @@ namespace Updater
                     }
                     Process.Start(_orig);
                     if (print_log)
-                    {
                         Console.WriteLine("Started Wnmp.exe and exited the updater.");
-                    }
-                    else
-                    {
-                        Process.GetCurrentProcess().Kill();
-                    }
+                        
+                    Process.GetCurrentProcess().Kill();
                 }
             }
             catch (Exception ex)
