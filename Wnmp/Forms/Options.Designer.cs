@@ -320,7 +320,7 @@ namespace Wnmp.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(371, 381);
+            this.ClientSize = new System.Drawing.Size(370, 381);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.Save);
