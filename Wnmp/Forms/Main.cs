@@ -35,7 +35,7 @@ namespace Wnmp.Forms
     {
         public static string StartupPath { get { return Application.StartupPath; } }
 
-        private static readonly Version CPVER = new Version("2.2.4");
+        private static readonly Version CPVER = new Version("2.2.5");
         public static Version GetCPVER { get { return CPVER; } }
 
         internal const string UpdateXMLURL = "https://s3.amazonaws.com/wnmp/update.xml";
