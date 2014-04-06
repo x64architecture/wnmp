@@ -1,4 +1,4 @@
-Wnmp 2.0.12: Released: ??/??/2014
+Wnmp 2.0.12: Released: 04/06/2014
 =================================
 - Wnmp Control Panel 2.2.5
    
@@ -16,6 +16,10 @@ Wnmp 2.0.12: Released: ??/??/2014
 - PHP
 
    * Updated to 5.5.11
+   
+- phpMyAdmin
+
+   * Updated to 4.1.12
    
 Wnmp 2.0.11: Released: 03/21/2014
 =================================
