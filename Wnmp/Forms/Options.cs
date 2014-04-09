@@ -48,13 +48,7 @@ namespace Wnmp.Forms
             }
         }
 
-        private void Options_Load(object sender, EventArgs e)
-        {
-            settings.ReadSettings();
-            UpdateOptions();
-        }
-
-        private void selecteditor_Click(object sender, EventArgs e)
+        private void SetEditor()
         {
             var input = string.Empty;
             var dialog = new OpenFileDialog();
@@ -69,6 +63,17 @@ namespace Wnmp.Forms
             if (input == String.Empty)
                 settings.Editor = "notepad.exe";
             editorTB.Text = settings.Editor;
+        }
+
+        private void Options_Load(object sender, EventArgs e)
+        {
+            settings.ReadSettings();
+            UpdateOptions();
+        }
+
+        private void selecteditor_Click(object sender, EventArgs e)
+        {
+            SetEditor();
         }
 
         private void StartWnmpWithWindows_CheckedChanged(object sender, EventArgs e)
@@ -157,6 +162,11 @@ namespace Wnmp.Forms
         private void Cancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void editorTB_DoubleClick(object sender, EventArgs e)
+        {
+            SetEditor();
         }
     }
 }
