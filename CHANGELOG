@@ -5,8 +5,8 @@ Wnmp 2.0.13: Released: 04/08/2014
    * Updated to 1.5.13
    * Compiled with OpenSSL 1.0.1g to fix
      Heartbleed vulnerability (CVE-2014-0160)
-	 which leads to system memory disclosure.
-	 (Anything in memory e.g. private keys, passwords)
+     which leads to system memory disclosure.
+     (Anything in memory e.g. private keys, passwords)
    
 Wnmp 2.0.12: Released: 04/06/2014
 =================================
