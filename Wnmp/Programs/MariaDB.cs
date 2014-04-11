@@ -38,6 +38,9 @@ namespace Wnmp.Programs
         public static ToolTip MariaDB_start_Tip = new ToolTip(); // Start button ToolTip
         public static ToolTip MariaDB_stop_Tip = new ToolTip(); // Stop button ToolTip
         public static ToolTip MariaDB_opnshell_Tip = new ToolTip(); // Open Shell button ToolTip
+        private static string mysqlExe = Main.StartupPath + "/mariadb/bin/mysql.exe";
+        private static string mysqldExe = Main.StartupPath + "/mariadb/bin/mysqld.exe";
+        private static string mysqladminExe = Main.StartupPath + "/mariadb/bin/mysqladmin.exe";
 
         /// <summary>
         /// Starts an executable file
@@ -61,7 +64,7 @@ namespace Wnmp.Programs
         {
             try
             {
-                startprocess(Main.StartupPath + "/mariadb/bin/mysqld.exe", "", false, true, false);
+                startprocess(mysqldExe, "", false, true, false);
                 Log.wnmp_log_notice("Attempting to start MariaDB", Log.LogSection.WNMP_MARIADB);
                 Common.ToStartedLabel(Program.formInstance.mariadbrunning);
             }
@@ -77,7 +80,7 @@ namespace Wnmp.Programs
             {
                 // MariaDB
                 Log.wnmp_log_notice("Attempting to stop MariaDB", Log.LogSection.WNMP_MARIADB);
-                startprocess(Main.StartupPath + "/mariadb/bin/mysqladmin.exe", "-u root -p shutdown", true, false, false);
+                startprocess(Main.StartupPath + mysqladminExe, "-u root -p shutdown", true, false, false);
                 Common.ToStoppedLabel(Program.formInstance.mariadbrunning);
             }
             catch (Exception ex)
@@ -103,8 +106,8 @@ namespace Wnmp.Programs
 
         private static void mdb_restart()
         {
-            startprocess(Main.StartupPath + "/mariadb/bin/mysqladmin.exe", "-u root -p shutdown", true, false, true);
-            startprocess(Main.StartupPath + "/mariadb/bin/mysqld.exe", "", false, true, false);
+            startprocess(Main.StartupPath + mysqladminExe, "-u root -p shutdown", true, false, true);
+            startprocess(mysqldExe, "", false, true, false);
         }
         private static bool MariaDBIsRunning()
         {
@@ -120,10 +123,10 @@ namespace Wnmp.Programs
                 // MariaDB
                 if (!MariaDBIsRunning())
                 {
-                    startprocess(Main.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true, false);
+                    startprocess(mysqldExe, "", false, true, false);
                 }
                 // MariaDB Shell
-                startprocess(Main.StartupPath + @"\mariadb\bin\mysql.exe", "-u root -p", true, false, false);
+                startprocess(mysqlExe, "-u root -p", true, false, false);
             }
             catch (Exception ex)
             {
