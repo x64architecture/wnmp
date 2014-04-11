@@ -64,30 +64,6 @@ namespace Wnmp.Forms
 		#region functions
 		
         /// <summary>
-        /// Checks if the size of Wnmp.log is greator than 1MB and 
-        /// if it is it gzips it
-        /// </summary>
-        private void DoLogSizeCheck(string path)
-        {
-            try
-            {
-                var file = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-
-                if (file.Length > 1048576) // 1048576 = 1MB
-                {
-                    Log.wnmp_log_notice("Wnmp.log is greator than 1MB compressing it to Wnmp.log.gz...", Log.LogSection.WNMP_MAIN);
-                    CompressFile(path);
-                    file.Dispose();
-                    File.Delete(path);
-                }
-                else
-                {
-                    file.Dispose();
-                }
-            }
-            catch { }
-        }
-        /// <summary>
         /// Saves the current Wnmp log to Wnmp.log
         /// </summary>
         private void DoSaveLog()
@@ -95,8 +71,6 @@ namespace Wnmp.Forms
             try
             {
                 var path = Application.StartupPath + "/Wnmp.log";
-
-                DoLogSizeCheck(path);
 
                 var sw = new StreamWriter(path, true);
                 sw.WriteLine(DateTime.Now.ToLongDateString());
@@ -107,30 +81,6 @@ namespace Wnmp.Forms
                 sw.Close();
             }
             catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
-        }
-        /// <summary>
-        /// Compresses a file using gzip
-        /// </summary>
-        private void CompressFile(string path)
-        {
-            var sourceFile = File.OpenRead(path);
-            var destinationFile = File.Create(path + ".gz");
-
-            var buffer = new byte[sourceFile.Length];
-            sourceFile.Read(buffer, 0, buffer.Length);
-
-            using (var output = new GZipStream(destinationFile,
-                CompressionMode.Compress))
-            {
-                Console.WriteLine("Compressing {0} to {1}.", sourceFile.Name,
-                    destinationFile.Name);
-
-                output.Write(buffer, 0, buffer.Length);
-            }
-
-            // Close the files.
-            sourceFile.Close();
-            destinationFile.Close();
         }
         /// <summary>
         /// Shows the current Wnmp log in notepad
