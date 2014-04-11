@@ -49,7 +49,7 @@ namespace Wnmp.Forms
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.General = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.selecteditor = new System.Windows.Forms.Button();
             this.UpdateCheckInterval = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -109,7 +109,7 @@ namespace Wnmp.Forms
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.selecteditor);
             this.groupBox1.Controls.Add(this.UpdateCheckInterval);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label1);
@@ -129,14 +129,15 @@ namespace Wnmp.Forms
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Application Settings";
             // 
-            // button1
+            // selecteditor
             // 
-            this.button1.Location = new System.Drawing.Point(235, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(26, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "...";
-            this.button1.UseVisualStyleBackColor = true;
+            this.selecteditor.Location = new System.Drawing.Point(235, 20);
+            this.selecteditor.Name = "selecteditor";
+            this.selecteditor.Size = new System.Drawing.Size(26, 23);
+            this.selecteditor.TabIndex = 14;
+            this.selecteditor.Text = "...";
+            this.selecteditor.UseVisualStyleBackColor = true;
+            this.selecteditor.Click += new System.EventHandler(this.selecteditor_Click);
             // 
             // UpdateCheckInterval
             // 
@@ -237,6 +238,7 @@ namespace Wnmp.Forms
             this.editorTB.ReadOnly = true;
             this.editorTB.Size = new System.Drawing.Size(161, 20);
             this.editorTB.TabIndex = 1;
+            this.editorTB.DoubleClick += new System.EventHandler(this.editorTB_DoubleClick);
             // 
             // MinimizeWnmpToTray
             // 
@@ -351,7 +353,7 @@ namespace Wnmp.Forms
         private System.Windows.Forms.TabPage General;
         private System.Windows.Forms.TabPage PHP;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button selecteditor;
         private System.Windows.Forms.NumericUpDown UpdateCheckInterval;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
