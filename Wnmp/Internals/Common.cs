@@ -17,13 +17,19 @@ This file is part of Wnmp.
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using System;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+
+using Wnmp.Forms;
+using Wnmp.Helpers;
 
 namespace Wnmp.Internals
 {
     /// <summary>
-    /// Commonly used variables
+    /// Commonly used variables, functions, etc.
     /// </summary>
     class Common
     {
@@ -46,6 +52,21 @@ namespace Wnmp.Internals
         {
             label.Text = "X";
             label.ForeColor = Color.DarkRed;
+        }
+
+        /// <summary>
+        /// Deletes a file
+        /// </summary>
+        public static void DeleteFile(string file)
+        {
+            if (File.Exists(file))
+            {
+                try
+                {
+                    File.Delete(file);
+                }
+                catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
+            }
         }
     }
 }

@@ -62,21 +62,6 @@ namespace Wnmp.Forms
         }
 		
 		#region functions
-
-        /// <summary>
-        /// Deletes a file
-        /// </summary>
-        private void DeleteFile(string file)
-        {
-            if (File.Exists(file))
-            {
-                try
-                {
-                    File.Delete(file);
-                }
-                catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
-            }
-        }
 		
         /// <summary>
         /// Takes a form and displays it
@@ -86,37 +71,6 @@ namespace Wnmp.Forms
             form.StartPosition = FormStartPosition.CenterParent;
             form.ShowDialog(this);
             form.Focus();
-        }
-		
-        private bool IsFirstRun()
-        {
-            return (Options.settings.Firstrun);
-        }
-
-        private void FirstRun()
-        {
-            if (IsFirstRun())
-            {
-                try
-                {
-                    if (!Directory.Exists(Application.StartupPath + "/conf"))
-                    {
-                        Directory.CreateDirectory(Application.StartupPath + "/conf");
-                    }
-                    File.WriteAllBytes(Application.StartupPath + "/CertGen.exe", Properties.Resources.CertGen);
-                    using (var ps = new Process())
-                    {
-                        ps.StartInfo.FileName = Application.StartupPath + "/CertGen.exe";
-                        ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                        ps.Start();
-                        ps.WaitForExit();
-                        DeleteFile(Application.StartupPath + "/CertGen.exe");
-                        Options.settings.Firstrun = false;
-                        Options.settings.UpdateSettings();
-                    }
-                }
-                catch { }
-            }
         }
 		
 		#endregion
@@ -206,15 +160,14 @@ namespace Wnmp.Forms
 
         private void Main_Load(object sender, EventArgs e)
         {
-            DeleteFile(Application.StartupPath + "/updater.exe");
-            DeleteFile(Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
+            Common.DeleteFile(Application.StartupPath + "/updater.exe");
+            Common.DeleteFile(Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
 
             WnmpTrayIcon.Icon = Properties.Resources.logo;
-            WnmpTrayIcon.Visible = true;
 
             MainHelper.DoStartup();
 
-            var worker = new System.Threading.Thread(FirstRun);
+            var worker = new System.Threading.Thread(MainHelper.FirstRun);
             worker.Start();
         }
 

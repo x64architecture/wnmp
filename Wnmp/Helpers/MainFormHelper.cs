@@ -134,6 +134,39 @@ namespace Wnmp.Helpers
         }
         #endregion
 
+        private static bool IsFirstRun()
+        {
+            return (Options.settings.Firstrun);
+        }
+
+        /// <summary>
+        /// Generate public and private keypair the first time Wnmp is launched
+        /// </summary>
+        internal static void FirstRun()
+        {
+            if (IsFirstRun())
+            {
+                try
+                {
+                    if (!Directory.Exists(Application.StartupPath + "/conf"))
+                    {
+                        Directory.CreateDirectory(Application.StartupPath + "/conf");
+                    }
+                    File.WriteAllBytes(Application.StartupPath + "/CertGen.exe", Properties.Resources.CertGen);
+                    using (var ps = new Process())
+                    {
+                        ps.StartInfo.FileName = Application.StartupPath + "/CertGen.exe";
+                        ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                        ps.Start();
+                        ps.WaitForExit();
+                        Common.DeleteFile(Application.StartupPath + "/CertGen.exe");
+                        Options.settings.Firstrun = false;
+                        Options.settings.UpdateSettings();
+                    }
+                }
+                catch { }
+            }
+        }
 
     }
 }
