@@ -62,46 +62,7 @@ namespace Wnmp.Forms
         }
 		
 		#region functions
-		
-        /// <summary>
-        /// Saves the current Wnmp log to Wnmp.log
-        /// </summary>
-        private void DoSaveLog()
-        {
-            try
-            {
-                var path = Application.StartupPath + "/Wnmp.log";
 
-                var sw = new StreamWriter(path, true);
-                sw.WriteLine(DateTime.Now.ToLongDateString());
-                foreach (var str in log_rtb.Lines)
-                {
-                    sw.WriteLine(str);
-                }
-                sw.Close();
-            }
-            catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
-        }
-        /// <summary>
-        /// Shows the current Wnmp log in notepad
-        /// </summary>
-        private void DoTempLog()
-        {
-            try
-            {
-                var temppath = Path.GetTempPath() + "Wnmp";
-                if (!Directory.Exists(temppath))
-                    Directory.CreateDirectory(temppath);
-                var sw = new StreamWriter(temppath + @"\Wnmp.log");
-                foreach (var str in log_rtb.Lines)
-                {
-                    sw.WriteLine(str);
-                }
-                sw.Close();
-                Process.Start("notepad.exe ", temppath + @"\Wnmp.log");
-            }
-            catch (Exception ex) { Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN); }
-        }
         /// <summary>
         /// Deletes a file
         /// </summary>
@@ -266,16 +227,6 @@ namespace Wnmp.Forms
         private void wnmpdir_Click(object sender, EventArgs e)
         {
             Process.Start("explorer.exe", Application.StartupPath);
-        }
-
-        private void log_rtb_DoubleClick(object sender, EventArgs e)
-        {
-            DoTempLog();
-        }
-
-        private void Main_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            DoSaveLog();
         }
 
         #endregion
