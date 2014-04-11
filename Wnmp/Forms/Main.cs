@@ -193,7 +193,7 @@ namespace Wnmp.Forms
 
                 if (WindowState == FormWindowState.Minimized)
                 {
-                    this.Hide();
+                    Hide();
                     if (MinimizeWnmpToTrayCount > 0)
                         return;
 
@@ -220,8 +220,8 @@ namespace Wnmp.Forms
 
         private void WnmpTrayIcon_Click(object sender, EventArgs e)
         {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
+            Show();
+            WindowState = FormWindowState.Normal;
         }
 
         private void wnmpdir_Click(object sender, EventArgs e)
