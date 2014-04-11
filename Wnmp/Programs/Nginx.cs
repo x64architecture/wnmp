@@ -38,7 +38,7 @@ namespace Wnmp.Programs
         private static readonly ToolTip nginx_stop_Tip = new ToolTip(); // Stop button ToolTip
         private static readonly ToolTip nginx_reload_Tip = new ToolTip(); // Reload button ToolTip
 
-        private static readonly string NginxExe = Application.StartupPath.Replace(@"\", "/") + "/nginx.exe";
+        private static readonly string NginxExe = Main.StartupPath.Replace(@"\", "/") + "/nginx.exe";
 
         /// <summary>
         /// Starts an executable file
@@ -51,7 +51,7 @@ namespace Wnmp.Programs
             ps.StartInfo.Arguments = args; // Parameters to pass to program
             ps.StartInfo.UseShellExecute = false;
             ps.StartInfo.RedirectStandardOutput = true; // Set output of program to be written to process output stream
-            ps.StartInfo.WorkingDirectory = Application.StartupPath;
+            ps.StartInfo.WorkingDirectory = Main.StartupPath;
             ps.StartInfo.CreateNoWindow = true; // Excute with no window
             ps.Start(); // Start the process
         }
@@ -124,7 +124,7 @@ namespace Wnmp.Programs
 
         static void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.Editor, Application.StartupPath + "/conf/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.Editor, Main.StartupPath + "/conf/" + e.ClickedItem.Text);
         }
 
         internal static void ngx_log_Click(object sender, EventArgs e)
@@ -139,7 +139,7 @@ namespace Wnmp.Programs
 
         static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.Editor, Application.StartupPath + "/logs/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.Editor, Main.StartupPath + "/logs/" + e.ClickedItem.Text);
         }
     }
 }

@@ -80,7 +80,7 @@ namespace Wnmp.Helpers
         {
             try
             {
-                var dinfo = new DirectoryInfo(Application.StartupPath + path);
+                var dinfo = new DirectoryInfo(Main.StartupPath + path);
                 var Files = dinfo.GetFiles(GetFiles);
                 foreach (var file in Files)
                 {
@@ -148,18 +148,18 @@ namespace Wnmp.Helpers
             {
                 try
                 {
-                    if (!Directory.Exists(Application.StartupPath + "/conf"))
+                    if (!Directory.Exists(Main.StartupPath + "/conf"))
                     {
-                        Directory.CreateDirectory(Application.StartupPath + "/conf");
+                        Directory.CreateDirectory(Main.StartupPath + "/conf");
                     }
-                    File.WriteAllBytes(Application.StartupPath + "/CertGen.exe", Properties.Resources.CertGen);
+                    File.WriteAllBytes(Main.StartupPath + "/CertGen.exe", Properties.Resources.CertGen);
                     using (var ps = new Process())
                     {
-                        ps.StartInfo.FileName = Application.StartupPath + "/CertGen.exe";
+                        ps.StartInfo.FileName = Main.StartupPath + "/CertGen.exe";
                         ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                         ps.Start();
                         ps.WaitForExit();
-                        Common.DeleteFile(Application.StartupPath + "/CertGen.exe");
+                        Common.DeleteFile(Main.StartupPath + "/CertGen.exe");
                         Options.settings.Firstrun = false;
                         Options.settings.UpdateSettings();
                     }

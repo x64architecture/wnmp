@@ -50,7 +50,7 @@ namespace Wnmp.Programs
             ps.StartInfo.Arguments = args; // Parameters to pass to program
             ps.StartInfo.UseShellExecute = shellexc;
             ps.StartInfo.RedirectStandardOutput = redirectso; // Set output of program to be written to process output stream
-            ps.StartInfo.WorkingDirectory = Application.StartupPath;
+            ps.StartInfo.WorkingDirectory = Main.StartupPath;
             ps.StartInfo.CreateNoWindow = true; // Excute with no window
             ps.Start(); // Start the process
             if (wfe)
@@ -61,7 +61,7 @@ namespace Wnmp.Programs
         {
             try
             {
-                startprocess(Application.StartupPath + "/mariadb/bin/mysqld.exe", "", false, true, false);
+                startprocess(Main.StartupPath + "/mariadb/bin/mysqld.exe", "", false, true, false);
                 Log.wnmp_log_notice("Attempting to start MariaDB", Log.LogSection.WNMP_MARIADB);
                 Common.ToStartedLabel(Program.formInstance.mariadbrunning);
             }
@@ -77,7 +77,7 @@ namespace Wnmp.Programs
             {
                 // MariaDB
                 Log.wnmp_log_notice("Attempting to stop MariaDB", Log.LogSection.WNMP_MARIADB);
-                startprocess(Application.StartupPath + "/mariadb/bin/mysqladmin.exe", "-u root -p shutdown", true, false, false);
+                startprocess(Main.StartupPath + "/mariadb/bin/mysqladmin.exe", "-u root -p shutdown", true, false, false);
                 Common.ToStoppedLabel(Program.formInstance.mariadbrunning);
             }
             catch (Exception ex)
@@ -103,8 +103,8 @@ namespace Wnmp.Programs
 
         private static void mdb_restart()
         {
-            startprocess(Application.StartupPath + "/mariadb/bin/mysqladmin.exe", "-u root -p shutdown", true, false, true);
-            startprocess(Application.StartupPath + "/mariadb/bin/mysqld.exe", "", false, true, false);
+            startprocess(Main.StartupPath + "/mariadb/bin/mysqladmin.exe", "-u root -p shutdown", true, false, true);
+            startprocess(Main.StartupPath + "/mariadb/bin/mysqld.exe", "", false, true, false);
         }
         private static bool MariaDBIsRunning()
         {
@@ -120,10 +120,10 @@ namespace Wnmp.Programs
                 // MariaDB
                 if (!MariaDBIsRunning())
                 {
-                    startprocess(Application.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true, false);
+                    startprocess(Main.StartupPath + @"\mariadb\bin\mysqld.exe", "", false, true, false);
                 }
                 // MariaDB Shell
-                startprocess(Application.StartupPath + @"\mariadb\bin\mysql.exe", "-u root -p", true, false, false);
+                startprocess(Main.StartupPath + @"\mariadb\bin\mysql.exe", "-u root -p", true, false, false);
             }
             catch (Exception ex)
             {
@@ -168,7 +168,7 @@ namespace Wnmp.Programs
 
         static void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.Editor, Application.StartupPath + "/mariadb/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.Editor, Main.StartupPath + "/mariadb/" + e.ClickedItem.Text);
         }
 
         internal static void mdb_log_Click(object sender, EventArgs e)
@@ -183,7 +183,7 @@ namespace Wnmp.Programs
 
         static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.Editor, Application.StartupPath + "/mariadb/data/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.Editor, Main.StartupPath + "/mariadb/data/" + e.ClickedItem.Text);
         }
     }
 }

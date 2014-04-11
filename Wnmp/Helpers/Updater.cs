@@ -37,9 +37,9 @@ namespace Wnmp.Helpers
         private static Version NEW_CP_VERSION; // Control panel version in the XML
         private static Uri CP_UPDATE_URL; // Control panel url (link to CP exe)
         private static readonly Version WNMP_VER = new Version(Application.ProductVersion); // Current program version
-        private static readonly string UpdateExe = Application.StartupPath + "/Wnmp-Upgrade-Installer.exe";
-        private static readonly string WNMP_NEW = Application.StartupPath + "/Wnmp_new.exe";
-        private static readonly string UPDATER = Application.StartupPath + "/updater.exe";
+        private static readonly string UpdateExe = Main.StartupPath + "/Wnmp-Upgrade-Installer.exe";
+        private static readonly string WNMP_NEW = Main.StartupPath + "/Wnmp_new.exe";
+        private static readonly string UPDATER = Main.StartupPath + "/updater.exe";
         private static WebClient webClient;
 
         #region ReadUpdateXML

@@ -39,7 +39,7 @@ namespace Wnmp.Programs
         public static ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
         public static ToolTip PHP_start_Tip = new ToolTip(); // Start button ToolTip
         public static ToolTip PHP_stop_Tip = new ToolTip(); // Stop button ToolTip
-        internal static string pini = Application.StartupPath + "/php/php.ini"; // Location of php.ini to pass on to php
+        internal static string pini = Main.StartupPath + "/php/php.ini"; // Location of php.ini to pass on to php
 
         private enum Status
         {
@@ -60,7 +60,7 @@ namespace Wnmp.Programs
             ps.StartInfo.Arguments = args; // Parameters to pass to program
             ps.StartInfo.UseShellExecute = false;
             ps.StartInfo.RedirectStandardOutput = true; // Set output of program to be written to process output stream
-            ps.StartInfo.WorkingDirectory = Application.StartupPath;
+            ps.StartInfo.WorkingDirectory = Main.StartupPath;
             ps.StartInfo.CreateNoWindow = true; // Excute with no window
             ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             ps.StartInfo.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", "2000"); // After 2000 requests php-cgi.exe will kill its process
@@ -78,7 +78,7 @@ namespace Wnmp.Programs
                so we have to restart it once it exits or set 'PHP_FCGI_MAX_REQUESTS' variable to 0. I've looked and people are recommending just to restart it. */
             if (PHPStatus != Status.Stopped)
             {
-                startprocess(Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
+                startprocess(Main.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
             }
         }
 
@@ -86,7 +86,7 @@ namespace Wnmp.Programs
         {
             try
             {
-                startprocess(Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
+                startprocess(Main.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
                 PHPStatus = Status.Started;
                 Log.wnmp_log_notice("Attempting to start PHP", Log.LogSection.WNMP_PHP);
                 Common.ToStartedLabel(Program.formInstance.phprunning);
@@ -130,7 +130,7 @@ namespace Wnmp.Programs
                 }
 
                 // Start PHP
-                startprocess(Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
+                startprocess(Main.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
             }
             catch (Exception ex)
             {
@@ -166,7 +166,7 @@ namespace Wnmp.Programs
 
         static void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.Editor, Application.StartupPath + "/php/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.Editor, Main.StartupPath + "/php/" + e.ClickedItem.Text);
         }
 
         internal static void php_log_Click(object sender, EventArgs e)
@@ -181,7 +181,7 @@ namespace Wnmp.Programs
 
         static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.Editor, Application.StartupPath + "/php/logs/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.Editor, Main.StartupPath + "/php/logs/" + e.ClickedItem.Text);
         }
     }
 }
