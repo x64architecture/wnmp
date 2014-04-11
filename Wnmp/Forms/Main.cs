@@ -28,6 +28,8 @@ using Wnmp.Helpers;
 using Wnmp.Internals;
 namespace Wnmp.Forms
 {
+    // TODO: Refractor this class
+
     /// <summary>
     /// Main form of Wnmp
     /// </summary>
