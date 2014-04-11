@@ -63,7 +63,7 @@ namespace Wnmp.Programs
             {
                 startprocess(Application.StartupPath + "/mariadb/bin/mysqld.exe", "", false, true, false);
                 Log.wnmp_log_notice("Attempting to start MariaDB", Log.LogSection.WNMP_MARIADB);
-                Declarations.ToStartedLabel(Program.formInstance.mariadbrunning);
+                Common.ToStartedLabel(Program.formInstance.mariadbrunning);
             }
             catch (Exception ex)
             {
@@ -78,7 +78,7 @@ namespace Wnmp.Programs
                 // MariaDB
                 Log.wnmp_log_notice("Attempting to stop MariaDB", Log.LogSection.WNMP_MARIADB);
                 startprocess(Application.StartupPath + "/mariadb/bin/mysqladmin.exe", "-u root -p shutdown", true, false, false);
-                Declarations.ToStoppedLabel(Program.formInstance.mariadbrunning);
+                Common.ToStoppedLabel(Program.formInstance.mariadbrunning);
             }
             catch (Exception ex)
             {
@@ -93,7 +93,7 @@ namespace Wnmp.Programs
                 Log.wnmp_log_notice("Attempting to restart MariaDB", Log.LogSection.WNMP_MARIADB);
                 var thread = new Thread(mdb_restart);
                 thread.Start();
-                Declarations.ToStartedLabel((Program.formInstance.mariadbrunning));
+                Common.ToStartedLabel((Program.formInstance.mariadbrunning));
             }
             catch (Exception ex)
             {

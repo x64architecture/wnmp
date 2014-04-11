@@ -25,7 +25,7 @@ namespace Wnmp.Internals
     /// <summary>
     /// Commonly used variables
     /// </summary>
-    class Declarations
+    class Common
     {
         public const int WS_THICKFRAME = 0x00040000;
 

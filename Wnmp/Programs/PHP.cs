@@ -89,7 +89,7 @@ namespace Wnmp.Programs
                 startprocess(Application.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
                 PHPStatus = Status.Started;
                 Log.wnmp_log_notice("Attempting to start PHP", Log.LogSection.WNMP_PHP);
-                Declarations.ToStartedLabel(Program.formInstance.phprunning);
+                Common.ToStartedLabel(Program.formInstance.phprunning);
             }
             catch (Exception ex)
             {
@@ -113,7 +113,7 @@ namespace Wnmp.Programs
                 Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_PHP);
             }
             Log.wnmp_log_notice("Attempting to stop PHP", Log.LogSection.WNMP_PHP);
-            Declarations.ToStoppedLabel(Program.formInstance.phprunning);
+            Common.ToStoppedLabel(Program.formInstance.phprunning);
         }
 
         internal static void php_restart_Click(object sender, EventArgs e)
@@ -136,7 +136,7 @@ namespace Wnmp.Programs
             {
                 Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_PHP);
             }
-            Declarations.ToStartedLabel(Program.formInstance.phprunning);
+            Common.ToStartedLabel(Program.formInstance.phprunning);
         }
 
         internal static void php_start_MouseHover(object sender, EventArgs e)

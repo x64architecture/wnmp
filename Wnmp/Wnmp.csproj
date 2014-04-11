@@ -78,7 +78,7 @@
     <Compile Include="Forms\HttpHeaders.designer.cs">
       <DependentUpon>HttpHeaders.cs</DependentUpon>
     </Compile>
-    <Compile Include="Internals\Declarations.cs" />
+    <Compile Include="Internals\Common.cs" />
     <Compile Include="Helpers\Log.cs" />
     <Compile Include="Internals\NativeMethods.cs" />
     <Compile Include="Forms\ChangelogViewer.cs">

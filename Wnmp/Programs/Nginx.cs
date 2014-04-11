@@ -62,7 +62,7 @@ namespace Wnmp.Programs
             {
                 startprocess(NginxExe, "");
                 Log.wnmp_log_notice("Attempting to start Nginx", Log.LogSection.WNMP_NGINX);
-                Declarations.ToStartedLabel(Program.formInstance.nginxrunning);
+                Common.ToStartedLabel(Program.formInstance.nginxrunning);
             }
             catch (Exception ex)
             {
@@ -76,7 +76,7 @@ namespace Wnmp.Programs
             {
                 startprocess(NginxExe, "-s stop");
                 Log.wnmp_log_notice("Attempting to stop Nginx", Log.LogSection.WNMP_NGINX);
-                Declarations.ToStoppedLabel(Program.formInstance.nginxrunning);
+                Common.ToStoppedLabel(Program.formInstance.nginxrunning);
             }
             catch (Exception ex)
             {

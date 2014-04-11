@@ -103,27 +103,27 @@ namespace Wnmp.Helpers
         {
             if (check_if_running("nginx"))
             {
-                Declarations.ToStartedLabel(Program.formInstance.nginxrunning);
+                Common.ToStartedLabel(Program.formInstance.nginxrunning);
             }
             else
             {
-                Declarations.ToStoppedLabel(Program.formInstance.nginxrunning);
+                Common.ToStoppedLabel(Program.formInstance.nginxrunning);
             }
             if (check_if_running("mysqld"))
             {
-                Declarations.ToStartedLabel(Program.formInstance.mariadbrunning);
+                Common.ToStartedLabel(Program.formInstance.mariadbrunning);
             }
             else
             {
-                Declarations.ToStoppedLabel(Program.formInstance.mariadbrunning);
+                Common.ToStoppedLabel(Program.formInstance.mariadbrunning);
             }
             if (check_if_running("php-cgi"))
             {
-                Declarations.ToStartedLabel(Program.formInstance.phprunning);
+                Common.ToStartedLabel(Program.formInstance.phprunning);
             }
             else
             {
-                Declarations.ToStoppedLabel(Program.formInstance.phprunning);
+                Common.ToStoppedLabel(Program.formInstance.phprunning);
             }
         }
 
