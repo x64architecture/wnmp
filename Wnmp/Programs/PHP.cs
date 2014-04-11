@@ -39,7 +39,8 @@ namespace Wnmp.Programs
         public static ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
         public static ToolTip PHP_start_Tip = new ToolTip(); // Start button ToolTip
         public static ToolTip PHP_stop_Tip = new ToolTip(); // Stop button ToolTip
-        internal static string pini = Main.StartupPath + "/php/php.ini"; // Location of php.ini to pass on to php
+        private static string pini = Main.StartupPath + "/php/php.ini"; // Location of php.ini to pass on to php
+        private static string PHPExe = Main.StartupPath + "/php/php-cgi.exe";
 
         private enum Status
         {
@@ -78,7 +79,7 @@ namespace Wnmp.Programs
                so we have to restart it once it exits or set 'PHP_FCGI_MAX_REQUESTS' variable to 0. I've looked and people are recommending just to restart it. */
             if (PHPStatus != Status.Stopped)
             {
-                startprocess(Main.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
+                startprocess(PHPExe, String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
             }
         }
 
@@ -86,7 +87,7 @@ namespace Wnmp.Programs
         {
             try
             {
-                startprocess(Main.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
+                startprocess(PHPExe, String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
                 PHPStatus = Status.Started;
                 Log.wnmp_log_notice("Attempting to start PHP", Log.LogSection.WNMP_PHP);
                 Common.ToStartedLabel(Program.formInstance.phprunning);
@@ -130,7 +131,7 @@ namespace Wnmp.Programs
                 }
 
                 // Start PHP
-                startprocess(Main.StartupPath + "/php/php-cgi.exe", String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
+                startprocess(PHPExe, String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
             }
             catch (Exception ex)
             {
