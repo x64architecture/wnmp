@@ -59,9 +59,7 @@ namespace Wnmp.Helpers
             Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
 
             if (Options.settings.Startallapplicationsatlaunch)
-            {
                 General.start_Click(null, null);
-            }
 
             DirFiles("/conf", "*.conf", Nginx.cms);
             DirFiles("/mariadb", "my.ini", MariaDB.cms);
