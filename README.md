@@ -71,7 +71,7 @@ If you do please tell us your suggestions [here][10].
 ###### [View the FAQ on getwnmp.org][6]
 
 
-[1]: https://github.com/wnmp/wnmp/releases/download/2.0.13/Wnmp-2.0.13.exe
+[1]: http://sourceforge.net/projects/wnmp-env/files/latest/download
 [2]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P7LAQRRNF6AVE
 [3]: https://www.x64architecture.com/wp-content/uploads/2014/02/akdlbutton.png
 [4]: https://s0.wp.com/imgpress?url=http%3A%2F%2Fs1.softpedia-static.com/base_img/softpedia_free_award_f.gif
