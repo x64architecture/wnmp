@@ -55,7 +55,6 @@ namespace Wnmp.Helpers
             Log.wnmp_log_notice(OSVersionInfo.WindowsVersionString(), Log.LogSection.WNMP_MAIN);
             Log.wnmp_log_notice("Wnmp Directory: " + Application.StartupPath, Log.LogSection.WNMP_MAIN);
             checkforapps();
-            CheckIfAppsAreRunning();
             Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
 
             if (Options.settings.Startallapplicationsatlaunch)
@@ -71,6 +70,7 @@ namespace Wnmp.Helpers
             if (Options.settings.Autocheckforupdates)
                 Updater.DoDateEclasped();
         }
+
         /// <summary>
         /// Adds configuration files to the Config buttons context menu strip
         /// </summary>
@@ -88,7 +88,19 @@ namespace Wnmp.Helpers
             catch { }
         }
 
-        internal static void timer1_Tick()
+        /// <summary>
+        /// Sets up the timer to check if the applications are running
+        /// </summary>
+        private static void DoTimer()
+        {
+            CheckIfAppsAreRunning(); // First we check at startup
+            Timer timer = new Timer();
+            timer.Interval = 10000; // 10 seconds
+            timer.Tick += CheckIfAppsAreRunningTimer_Tick;
+            timer.Start();
+        }
+
+        private static void CheckIfAppsAreRunningTimer_Tick(object sender, System.EventArgs e)
         {
             CheckIfAppsAreRunning();
         }
