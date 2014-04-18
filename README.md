@@ -60,8 +60,6 @@ If you do please tell us your suggestions [here][10].
 
 ### Mailing list links
 
-###### Report any issues with the mailing list to kurt@x64architecture.com
-
 [wnmp mailing list][7]
 
 [wnmp announcements list][8]
