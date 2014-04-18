@@ -205,50 +205,48 @@ namespace Wnmp.Helpers
         {
             var FoundWnmpUpdate = false; // Since were checking for two updates we have to check if it found the main one.
 
-            if (ReadUpdateXML())
-            {
+            if (!ReadUpdateXML())
+                return;
 
-                if (WNMP_VER.CompareTo(NEW_WNMP_VERSION) < 0) // If it returns less than 0 than theres a new version
+            if (WNMP_VER.CompareTo(NEW_WNMP_VERSION) < 0) // If it returns less than 0 than theres a new version
+            {
+                var CV = new ChangelogViewer();
+                CV.StartPosition = FormStartPosition.CenterScreen;
+                CV.cversion.Text = WNMP_VER.ToString();
+                CV.newversion.Text = NEW_WNMP_VERSION.ToString();
+                if (CV.ShowDialog() == DialogResult.Yes)
+                {
+                    FoundWnmpUpdate = true;
+                    DownloadWnmpUpdate(Wnmp_Upgrade_URL, UpdateExe);
+                }
+            }
+            else
+            {
+                Log.wnmp_log_notice("Your version: " + WNMP_VER + " is up to date.", Log.LogSection.WNMP_MAIN);
+            }
+            if (FoundWnmpUpdate != true)
+            {
+                if (Main.GetCPVER.CompareTo(NEW_CP_VERSION) < 0)
                 {
                     var CV = new ChangelogViewer();
                     CV.StartPosition = FormStartPosition.CenterScreen;
-                    CV.cversion.Text = WNMP_VER.ToString();
-                    CV.newversion.Text = NEW_WNMP_VERSION.ToString();
+                    CV.cversion.Text = Main.GetCPVER.ToString();
+                    CV.newversion.Text = NEW_CP_VERSION.ToString();
+
                     if (CV.ShowDialog() == DialogResult.Yes)
                     {
-                        FoundWnmpUpdate = true;
-                        DownloadWnmpUpdate(Wnmp_Upgrade_URL, UpdateExe);
+                        DownloadCPUpdate(CP_UPDATE_URL, WNMP_NEW);
                     }
                 }
                 else
                 {
-                    Log.wnmp_log_notice("Your version: " + WNMP_VER + " is up to date.", Log.LogSection.WNMP_MAIN);
+                    Log.wnmp_log_notice("Your control panel version: " + Main.GetCPVER + " is up to date.", Log.LogSection.WNMP_MAIN);
                 }
-
-                if (FoundWnmpUpdate != true)
-                {
-                    if (Main.GetCPVER.CompareTo(NEW_CP_VERSION) < 0)
-                    {
-                        var CV = new ChangelogViewer();
-                        CV.StartPosition = FormStartPosition.CenterScreen;
-                        CV.cversion.Text = Main.GetCPVER.ToString();
-                        CV.newversion.Text = NEW_CP_VERSION.ToString();
-
-                        if (CV.ShowDialog() == DialogResult.Yes)
-                        {
-                            DownloadCPUpdate(CP_UPDATE_URL, WNMP_NEW);
-                        }
-                    }
-                    else
-                    {
-                        Log.wnmp_log_notice("Your control panel version: " + Main.GetCPVER + " is up to date.", Log.LogSection.WNMP_MAIN);
-                    }
-                }
-                if (AutoUpdate)
-                {
-                    Options.settings.Lastcheckforupdate = DateTime.Now;
-                    Options.settings.UpdateSettings();
-                }
+            }
+            if (AutoUpdate)
+            {
+                Options.settings.Lastcheckforupdate = DateTime.Now;
+                Options.settings.UpdateSettings();
             }
         }
 
