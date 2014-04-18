@@ -95,7 +95,7 @@ namespace Wnmp.Helpers
         {
             CheckIfAppsAreRunning(); // First we check at startup
             Timer timer = new Timer();
-            timer.Interval = 10000; // 10 seconds
+            timer.Interval = 30000; // 30 seconds
             timer.Tick += CheckIfAppsAreRunningTimer_Tick;
             timer.Start();
         }
