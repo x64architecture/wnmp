@@ -40,9 +40,9 @@ int main()
 	PEM_write_X509(stdout, x509);
 
 	if (!(fp = fopen(KEY_PUB, "w")))
-		printf("Error writing to pub file");
+		printf("Error writing to public key file");
 	if (PEM_write_X509(fp, x509) != 1)
-		printf("Error while writing pub file");
+		printf("Error while writing public key");
 	fclose(fp);
 
 	if (!(fp = fopen(KEY_PRV, "w")))
