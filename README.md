@@ -77,7 +77,7 @@ If you do please tell us your suggestions [here][10].
 [4]: https://s0.wp.com/imgpress?url=http%3A%2F%2Fs1.softpedia-static.com/base_img/softpedia_free_award_f.gif
 [5]: http://www.softpedia.com/get/Internet/Servers/Server-Tools/Kurt-Wnmp.shtml
 [6]: http://getwnmp.org/faq
-[7]: https://mailman.getwnmp.org/mailman/listinfo/wnmp
-[8]: https://mailman.getwnmp.org/mailman/listinfo/wnmp-announce
-[9]: https://mailman.getwnmp.org/mailman/listinfo/wnmp-dev
+[7]: http://mailman.getwnmp.org/mailman/listinfo/wnmp
+[8]: http://mailman.getwnmp.org/mailman/listinfo/wnmp-announce
+[9]: http://mailman.getwnmp.org/mailman/listinfo/wnmp-dev
 [10]: https://github.com/wnmp/wnmp/issues/new
