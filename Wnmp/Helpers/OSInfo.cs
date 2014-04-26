@@ -163,12 +163,16 @@ namespace Wnmp.Helpers
 
                 var osVersion = Environment.OSVersion;
                 var osVersionInfo = new NativeMethods.OSVERSIONINFOEX();
+                // Microsoft decided to lie to us so....
+                FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Environment.SystemDirectory + "/Kernel32.dll");
+                
+
                 osVersionInfo.dwOSVersionInfoSize = Marshal.SizeOf(typeof(NativeMethods.OSVERSIONINFOEX));
 
                 if (NativeMethods.GetVersionEx(ref osVersionInfo))
                 {
-                    var majorVersion = osVersion.Version.Major;
-                    var minorVersion = osVersion.Version.Minor;
+                    var majorVersion = fvi.FileMajorPart;
+                    var minorVersion = fvi.FileMinorPart;
                     var productType = osVersionInfo.wProductType;
                     var suiteMask = osVersionInfo.wSuiteMask;
 
@@ -570,16 +574,18 @@ namespace Wnmp.Helpers
                 if (s_Name != null)
                     return s_Name;  //***** RETURN *****//
 
-                var name = "unknown";
+                var name = "Unknown";
 
                 var osVersion = Environment.OSVersion;
                 var osVersionInfo = new NativeMethods.OSVERSIONINFOEX();
                 osVersionInfo.dwOSVersionInfoSize = Marshal.SizeOf(typeof(NativeMethods.OSVERSIONINFOEX));
+                // Microsoft decided to lie to us so....
+                FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Environment.SystemDirectory + "/Kernel32.dll");
 
                 if (NativeMethods.GetVersionEx(ref osVersionInfo))
                 {
-                    var majorVersion = osVersion.Version.Major;
-                    var minorVersion = osVersion.Version.Minor;
+                    var majorVersion = fvi.FileMajorPart;
+                    var minorVersion = fvi.FileMinorPart;
 
                     switch (osVersion.Platform)
                     {
