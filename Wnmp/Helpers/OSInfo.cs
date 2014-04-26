@@ -165,8 +165,6 @@ namespace Wnmp.Helpers
                 var osVersionInfo = new NativeMethods.OSVERSIONINFOEX();
                 // Microsoft decided to lie to us so....
                 FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Environment.SystemDirectory + "/Kernel32.dll");
-                
-
                 osVersionInfo.dwOSVersionInfoSize = Marshal.SizeOf(typeof(NativeMethods.OSVERSIONINFOEX));
 
                 if (NativeMethods.GetVersionEx(ref osVersionInfo))
@@ -492,7 +490,7 @@ namespace Wnmp.Helpers
                                     break;
                                 case PRODUCT_MULTIPOINT_PREMIUM_SERVER:
                                     edition = "Windows MultiPoint Server Premium (full installation)";
-                                        break;
+                                    break;
                                 case PRODUCT_STANDARD_EVALUATION_SERVER:
                                     edition = "Server Standard (evaluation installation)";
                                     break;
@@ -504,22 +502,22 @@ namespace Wnmp.Helpers
                                     break;
                                 case PRODUCT_EMBEDDED_AUTOMOTIVE:
                                     edition = "PRODUCT_EMBEDDED_AUTOMOTIVE"; // No known definition
-                                        break;
+                                    break;
                                 case PRODUCT_EMBEDDED_INDUSTRY_A:
-                                        edition = "PRODUCT_EMBEDDED_INDUSTRY_A"; // No known definition
-                                        break;
+                                    edition = "PRODUCT_EMBEDDED_INDUSTRY_A"; // No known definition
+                                    break;
                                 case PRODUCT_THINPC:
-                                        edition = "PRODUCT_THINPC"; // No known definition
-                                        break;
+                                    edition = "PRODUCT_THINPC"; // No known definition
+                                    break;
                                 case PRODUCT_EMBEDDED_A:
                                     edition = "PRODUCT_EMBEDDED_A"; // No known definition
-                                        break;
+                                    break;
                                 case PRODUCT_EMBEDDED_INDUSTRY:
-                                        edition = "PRODUCT_EMBEDDED_INDUSTRY"; // No known definition
-                                        break;
+                                    edition = "PRODUCT_EMBEDDED_INDUSTRY"; // No known definition
+                                    break;
                                 case PRODUCT_EMBEDDED_E:
-                                        edition = "PRODUCT_EMBEDDED_E"; // No known definition
-                                        break;
+                                    edition = "PRODUCT_EMBEDDED_E"; // No known definition
+                                    break;
                                 case PRODUCT_EMBEDDED_INDUSTRY_E:
                                     edition = "PRODUCT_EMBEDDED_INDUSTRY_E"; // No known definition
                                     break;
