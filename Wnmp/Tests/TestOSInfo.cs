@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using NUnit.Framework;
 using Wnmp.Helpers;
 
@@ -9,8 +10,9 @@ namespace Wnmp.Tests
         [Test]
         public void TestW81OSName()
         {
-            var major = Environment.OSVersion.Version.Major;
-            var minor = Environment.OSVersion.Version.Minor;
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Environment.SystemDirectory + "/Kernel32.dll");
+            var major = fvi.FileMajorPart;
+            var minor = fvi.FileMinorPart;
 
             if (major == 6 && minor == 3)
             {
