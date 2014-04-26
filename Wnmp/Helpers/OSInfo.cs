@@ -154,7 +154,6 @@ namespace Wnmp.Helpers
         /// </summary>
         static public string Edition
         {
-            [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
             get
             {
                 if (s_Edition != null)
@@ -566,7 +565,6 @@ namespace Wnmp.Helpers
         /// </summary>
         static public string Name
         {
-            [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
             get
             {
                 if (s_Name != null)
@@ -719,7 +717,6 @@ namespace Wnmp.Helpers
         /// </summary>
         static public string ServicePack
         {
-            [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
             get
             {
 
