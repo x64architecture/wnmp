@@ -168,5 +168,10 @@ namespace Wnmp.Forms
         {
             SetEditor();
         }
+
+        private void UpdateCheckInterval_ValueChanged(object sender, EventArgs e)
+        {
+            settings.Checkforupdatefrequency = Convert.ToInt32(UpdateCheckInterval.Value);
+        }
     }
 }

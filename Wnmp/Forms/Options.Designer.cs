@@ -155,6 +155,7 @@ namespace Wnmp.Forms
             0,
             0,
             0});
+            this.UpdateCheckInterval.ValueChanged += new System.EventHandler(this.UpdateCheckInterval_ValueChanged);
             // 
             // label6
             // 
