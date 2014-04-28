@@ -62,7 +62,6 @@ int main()
 #define MS_CALLBACK
 #define MS_FAR
 
-
 static void MS_CALLBACK callback(p, n, arg)
 int p;
 int n;
