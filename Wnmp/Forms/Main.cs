@@ -61,8 +61,6 @@ namespace Wnmp.Forms
             }
         }
 		
-		#region functions
-		
         /// <summary>
         /// Takes a form and displays it
         /// </summary>
@@ -72,10 +70,7 @@ namespace Wnmp.Forms
             form.ShowDialog(this);
             form.Focus();
         }
-		
-		#endregion
 
-        #region MenuStripItems
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Updater.CheckForUpdates(false);
@@ -99,7 +94,7 @@ namespace Wnmp.Forms
 
         private void Report_BugToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                Process.Start("https://github.com/wnmp/wnmp/issues/new");
+            Process.Start("https://github.com/wnmp/wnmp/issues/new");
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -134,10 +129,6 @@ namespace Wnmp.Forms
             var form = new HttpHeaders();
             ShowForm(form);
         }
-
-        #endregion
-
-        #region FormEvents
 
         private int MinimizeWnmpToTrayCount = 0;
         private void Main_Resize(object sender, EventArgs e)
@@ -182,9 +173,6 @@ namespace Wnmp.Forms
             Process.Start("explorer.exe", Application.StartupPath);
         }
 
-        #endregion
-
-        #region events
         private void setevents()
         {
             Log.setLogComponent(log_rtb);
@@ -226,6 +214,5 @@ namespace Wnmp.Forms
             php_restart.MouseHover += PHP.php_restart_MouseHover;
             // End
         }
-        #endregion
     }
 }
