@@ -32,12 +32,12 @@
             this.Closebtn = new System.Windows.Forms.Button();
             this.AboutTabCtrl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.wnmpwebsiteLabel = new System.Windows.Forms.Label();
+            this.copyrightLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.wnmpcpversionLabel = new System.Windows.Forms.Label();
+            this.wnmpversionLabel = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.License = new System.Windows.Forms.TabPage();
@@ -72,12 +72,12 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.wnmpwebsiteLabel);
+            this.tabPage1.Controls.Add(this.copyrightLabel);
             this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.wnmpcpversionLabel);
+            this.tabPage1.Controls.Add(this.wnmpversionLabel);
             this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -87,27 +87,27 @@
             this.tabPage1.Text = "Version";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // wnmpwebsiteLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(240, 271);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(178, 20);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "http://www.getwnmp.org";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
-            this.label5.MouseLeave += new System.EventHandler(this.label5_MouseLeave);
-            this.label5.MouseHover += new System.EventHandler(this.label5_MouseHover);
+            this.wnmpwebsiteLabel.AutoSize = true;
+            this.wnmpwebsiteLabel.Location = new System.Drawing.Point(240, 271);
+            this.wnmpwebsiteLabel.Name = "wnmpwebsiteLabel";
+            this.wnmpwebsiteLabel.Size = new System.Drawing.Size(178, 20);
+            this.wnmpwebsiteLabel.TabIndex = 5;
+            this.wnmpwebsiteLabel.Text = "http://www.getwnmp.org";
+            this.wnmpwebsiteLabel.Click += new System.EventHandler(this.wnmpwebsiteLabel_Click);
+            this.wnmpwebsiteLabel.MouseLeave += new System.EventHandler(this.wnmpwebsiteLabel_MouseLeave);
+            this.wnmpwebsiteLabel.MouseHover += new System.EventHandler(this.wnmpwebsiteLabel_MouseHover);
             // 
-            // label4
+            // copyrightLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(190, 241);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(282, 18);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Copyright (C) 2012-2014 by Kurt Cancemi";
+            this.copyrightLabel.AutoSize = true;
+            this.copyrightLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.copyrightLabel.Location = new System.Drawing.Point(190, 241);
+            this.copyrightLabel.Name = "copyrightLabel";
+            this.copyrightLabel.Size = new System.Drawing.Size(282, 18);
+            this.copyrightLabel.TabIndex = 4;
+            this.copyrightLabel.Text = "Copyright (C) 2012-2014 by Kurt Cancemi";
             // 
             // pictureBox1
             // 
@@ -131,25 +131,25 @@
             this.label3.Text = "Wnmp is a client which launches Nginx, MariaDB & PHP on Windows XP - Windows 8. \r" +
     "\nWhen Wnmp is distributed it includes Nginx, MariaDB, PHP, and phpMyAdmin.";
             // 
-            // label2
+            // wnmpcpversionLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 54);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(231, 18);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Wnmp Control Panel Version:";
+            this.wnmpcpversionLabel.AutoSize = true;
+            this.wnmpcpversionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.wnmpcpversionLabel.Location = new System.Drawing.Point(6, 54);
+            this.wnmpcpversionLabel.Name = "wnmpcpversionLabel";
+            this.wnmpcpversionLabel.Size = new System.Drawing.Size(231, 18);
+            this.wnmpcpversionLabel.TabIndex = 1;
+            this.wnmpcpversionLabel.Text = "Wnmp Control Panel Version:";
             // 
-            // label1
+            // wnmpversionLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 18);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Wnmp Version:";
+            this.wnmpversionLabel.AutoSize = true;
+            this.wnmpversionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.wnmpversionLabel.Location = new System.Drawing.Point(6, 15);
+            this.wnmpversionLabel.Name = "wnmpversionLabel";
+            this.wnmpversionLabel.Size = new System.Drawing.Size(123, 18);
+            this.wnmpversionLabel.TabIndex = 0;
+            this.wnmpversionLabel.Text = "Wnmp Version:";
             // 
             // tabPage2
             // 
@@ -225,13 +225,13 @@
         private System.Windows.Forms.Button Closebtn;
         private System.Windows.Forms.TabControl AboutTabCtrl;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label wnmpcpversionLabel;
+        private System.Windows.Forms.Label wnmpversionLabel;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label wnmpwebsiteLabel;
+        private System.Windows.Forms.Label copyrightLabel;
         private System.Windows.Forms.TabPage License;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.RichTextBox richTextBox2;

@@ -50,25 +50,25 @@ namespace Wnmp.Forms
             this.Close();
         }
 
-        private void label5_Click(object sender, EventArgs e)
+        private void wnmpwebsiteLabel_Click(object sender, EventArgs e)
         {
             Process.Start("http://www.getwnmp.org");
         }
 
         private void About_Load(object sender, EventArgs e)
         {
-            label1.Text = "Wnmp Version: " + Application.ProductVersion;
-            label2.Text = "Wnmp Control Panel Version: " + Main.GetCPVER;
+            wnmpversionLabel.Text = "Wnmp Version: " + Application.ProductVersion;
+            wnmpcpversionLabel.Text = "Wnmp Control Panel Version: " + Main.GetCPVER;
         }
 
-        private void label5_MouseHover(object sender, EventArgs e)
+        private void wnmpwebsiteLabel_MouseHover(object sender, EventArgs e)
         {
-            label5.ForeColor = Color.Blue;
+            wnmpwebsiteLabel.ForeColor = Color.Blue;
         }
 
-        private void label5_MouseLeave(object sender, EventArgs e)
+        private void wnmpwebsiteLabel_MouseLeave(object sender, EventArgs e)
         {
-            label5.ForeColor = Color.Black;
+            wnmpwebsiteLabel.ForeColor = Color.Black;
         }
     }
 }
