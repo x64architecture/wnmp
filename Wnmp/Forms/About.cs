@@ -47,7 +47,7 @@ namespace Wnmp.Forms
 
         private void Closebtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void wnmpwebsiteLabel_Click(object sender, EventArgs e)
