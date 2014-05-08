@@ -41,6 +41,7 @@ namespace Wnmp.Helpers
         private static readonly string WNMP_NEW = Main.StartupPath + "/Wnmp_new.exe";
         private static readonly string UPDATER = Main.StartupPath + "/updater.exe";
         private static WebClient webClient;
+        private const string UpdateXMLURL = "http://wnmp.x64architecture.com/update.xml";
 
         #region ReadUpdateXML
         /// <summary>
@@ -49,7 +50,7 @@ namespace Wnmp.Helpers
         /// <returns>True on sucess and False on failure</returns>
         private static bool ReadUpdateXML()
         {
-            const string xmlUrl = Main.UpdateXMLURL;
+            const string xmlUrl = UpdateXMLURL;
             var elementName = "";
 
             int returnvalue;

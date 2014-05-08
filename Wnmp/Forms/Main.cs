@@ -40,8 +40,6 @@ namespace Wnmp.Forms
         private static readonly Version CPVER = new Version("2.2.6");
         public static Version GetCPVER { get { return CPVER; } }
 
-        internal const string UpdateXMLURL = "https://s3.amazonaws.com/wnmp/update.xml";
-
         private readonly NotifyIcon WnmpTrayIcon = new NotifyIcon();
 
         public Main()
