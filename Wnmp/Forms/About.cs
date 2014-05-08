@@ -52,7 +52,7 @@ namespace Wnmp.Forms
 
         private void label5_Click(object sender, EventArgs e)
         {
-            Process.Start("http://getwnmp.org");
+            Process.Start("http://www.getwnmp.org");
         }
 
         private void About_Load(object sender, EventArgs e)

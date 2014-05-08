@@ -90,11 +90,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(262, 271);
+            this.label5.Location = new System.Drawing.Point(240, 271);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(141, 20);
+            this.label5.Size = new System.Drawing.Size(178, 20);
             this.label5.TabIndex = 5;
-            this.label5.Text = "http://getwnmp.org";
+            this.label5.Text = "http://www.getwnmp.org";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             this.label5.MouseLeave += new System.EventHandler(this.label5_MouseLeave);
             this.label5.MouseHover += new System.EventHandler(this.label5_MouseHover);
