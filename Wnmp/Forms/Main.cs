@@ -149,15 +149,18 @@ namespace Wnmp.Forms
 
         private void Main_Load(object sender, EventArgs e)
         {
-            Common.DeleteFile(Application.StartupPath + "/updater.exe");
-            Common.DeleteFile(Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
-
             WnmpTrayIcon.Icon = Properties.Resources.logo;
 
             MainHelper.DoStartup();
 
             var worker = new System.Threading.Thread(MainHelper.FirstRun);
             worker.Start();
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Common.DeleteFile(Application.StartupPath + "/updater.exe");
+            Common.DeleteFile(Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
         }
 
         private void WnmpTrayIcon_Click(object sender, EventArgs e)
