@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
-using Wnmp.Configuration;
 
+using Wnmp.Configuration;
 namespace Wnmp.Tests
 {
     class TestOptions

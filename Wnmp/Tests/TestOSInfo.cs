@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using NUnit.Framework;
-using Wnmp.Helpers;
 
+using Wnmp.Helpers;
 namespace Wnmp.Tests
 {
     class TestOSInfo

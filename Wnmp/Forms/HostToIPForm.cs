@@ -19,8 +19,8 @@ This file is part of Wnmp.
 using System;
 using System.Net;
 using System.Windows.Forms;
-using Wnmp.Internals;
 
+using Wnmp.Internals;
 namespace Wnmp.Forms
 {
     public partial class HostToIPForm : Form

@@ -20,7 +20,6 @@ using System;
 using System.Windows.Forms;
 
 using Wnmp.Internals;
-
 namespace Wnmp.Forms
 {
     /// <summary>

@@ -18,13 +18,11 @@ This file is part of Wnmp.
 */
 
 using System;
-using System.Diagnostics;
-using System.IO;
-using System.IO.Compression;
 using System.Windows.Forms;
+using System.Diagnostics;
+
 using Wnmp.Programs;
 using Wnmp.Helpers;
-
 using Wnmp.Internals;
 namespace Wnmp.Forms
 {

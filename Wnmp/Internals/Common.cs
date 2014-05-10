@@ -25,7 +25,6 @@ using System.Windows.Forms;
 
 using Wnmp.Forms;
 using Wnmp.Helpers;
-
 namespace Wnmp.Internals
 {
     /// <summary>

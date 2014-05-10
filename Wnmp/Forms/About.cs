@@ -22,7 +22,6 @@ using System.Windows.Forms;
 using System.Diagnostics;
 
 using Wnmp.Internals;
-
 namespace Wnmp.Forms
 {
     /// <summary>

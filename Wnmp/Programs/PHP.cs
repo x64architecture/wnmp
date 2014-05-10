@@ -22,11 +22,10 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using System.Diagnostics;
+
 using Wnmp.Forms;
 using Wnmp.Helpers;
 using Wnmp.Internals;
-using Wnmp.Configuration;
-
 namespace Wnmp.Programs
 {
     /// <summary>

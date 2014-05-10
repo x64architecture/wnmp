@@ -16,17 +16,14 @@ This file is part of Wnmp.
     You should have received a copy of the GNU General Public License
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Security;
-using System.Security.Permissions;
 using System.Text;
 
 using Wnmp.Helpers;
 using Wnmp.Internals;
-
 namespace Wnmp.Helpers
 {
     /// <summary>
