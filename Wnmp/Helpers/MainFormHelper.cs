@@ -55,6 +55,7 @@ namespace Wnmp.Helpers
             Log.wnmp_log_notice(OSVersionInfo.WindowsVersionString(), Log.LogSection.WNMP_MAIN);
             Log.wnmp_log_notice("Wnmp Directory: " + Application.StartupPath, Log.LogSection.WNMP_MAIN);
             checkforapps();
+            DoTimer();
             Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
 
             if (Options.settings.Startallapplicationsatlaunch)
@@ -103,44 +104,24 @@ namespace Wnmp.Helpers
             CheckIfAppsAreRunning();
         }
 
-        #region CheckIfRunning
         /// <summary>
         /// Checks if Nginx, MariaDB or PHP is running
         /// </summary>
         internal static void CheckIfAppsAreRunning()
         {
-            if (check_if_running("nginx"))
-            {
-                Common.ToStartedLabel(Program.formInstance.nginxrunning);
-            }
-            else
-            {
-                Common.ToStoppedLabel(Program.formInstance.nginxrunning);
-            }
-            if (check_if_running("mysqld"))
-            {
-                Common.ToStartedLabel(Program.formInstance.mariadbrunning);
-            }
-            else
-            {
-                Common.ToStoppedLabel(Program.formInstance.mariadbrunning);
-            }
-            if (check_if_running("php-cgi"))
-            {
-                Common.ToStartedLabel(Program.formInstance.phprunning);
-            }
-            else
-            {
-                Common.ToStoppedLabel(Program.formInstance.phprunning);
-            }
+            check_if_running("nginx", Program.formInstance.nginxrunning);
+            check_if_running("mysqld", Program.formInstance.mariadbrunning);
+            check_if_running("php-cgi", Program.formInstance.phprunning);
         }
 
-        private static bool check_if_running(string application)
+        private static void check_if_running(string application, Label label)
         {
             var _Process = Process.GetProcessesByName(application);
-            return _Process.Length != 0;
+            if (_Process.Length != 0)
+                Common.ToStartedLabel(label);
+            else
+                Common.ToStoppedLabel(label);
         }
-        #endregion
 
         private static bool IsFirstRun()
         {
