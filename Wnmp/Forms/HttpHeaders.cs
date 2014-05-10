@@ -28,20 +28,9 @@ namespace Wnmp.Forms
         {
             InitializeComponent();
         }
-        /// <summary>
-        /// Checks if a string contains a valid http prefix
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        private bool StringContainsHTTPProtocol(string s)
-        {
-            return s.Contains("http://") || s.Contains("https://");
-        }
 
         private void getHeadersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (StringContainsHTTPProtocol(urlTextBox.Text))
-            {
                 HTTPHeaderslistView.Items.Clear();
                 try
                 {
@@ -61,13 +50,8 @@ namespace Wnmp.Forms
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    MessageBox.Show(ex.Message);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Not a valid URL", "ERROR");
-            }
         }
     }
 }

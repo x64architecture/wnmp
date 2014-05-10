@@ -34,7 +34,7 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Checks if Nginx, MariaDB, and PHP exist in the Wnmp directory
         /// </summary>
-        internal static void checkforapps()
+        private static void checkforapps()
         {
             Log.wnmp_log_notice("Checking for applications", Log.LogSection.WNMP_MAIN);
             if (!File.Exists(Application.StartupPath + "/nginx.exe"))
@@ -74,18 +74,16 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Adds configuration files to the Config buttons context menu strip
         /// </summary>
-        internal static void DirFiles(string path, string GetFiles, ContextMenuStrip cms)
+        private static void DirFiles(string path, string GetFiles, ContextMenuStrip cms)
         {
-            try
+            var dinfo = new DirectoryInfo(Main.StartupPath + path);
+            if (!dinfo.Exists)
+                return;
+            var Files = dinfo.GetFiles(GetFiles);
+            foreach (var file in Files)
             {
-                var dinfo = new DirectoryInfo(Main.StartupPath + path);
-                var Files = dinfo.GetFiles(GetFiles);
-                foreach (var file in Files)
-                {
-                    cms.Items.Add(file.Name, null);
-                }
+                cms.Items.Add(file.Name, null);
             }
-            catch { }
         }
 
         /// <summary>
@@ -150,31 +148,27 @@ namespace Wnmp.Helpers
         }
 
         /// <summary>
-        /// Generate public and private keypair the first time Wnmp is launched
+        /// Generates a public and private keypair the first time Wnmp is launched
         /// </summary>
         internal static void FirstRun()
         {
             if (IsFirstRun())
             {
-                try
+                if (!Directory.Exists(Main.StartupPath + "/conf"))
                 {
-                    if (!Directory.Exists(Main.StartupPath + "/conf"))
-                    {
-                        Directory.CreateDirectory(Main.StartupPath + "/conf");
-                    }
-                    File.WriteAllBytes(Main.StartupPath + "/CertGen.exe", Properties.Resources.CertGen);
-                    using (var ps = new Process())
-                    {
-                        ps.StartInfo.FileName = Main.StartupPath + "/CertGen.exe";
-                        ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                        ps.Start();
-                        ps.WaitForExit();
-                        Common.DeleteFile(Main.StartupPath + "/CertGen.exe");
-                        Options.settings.Firstrun = false;
-                        Options.settings.UpdateSettings();
-                    }
+                    Directory.CreateDirectory(Main.StartupPath + "/conf");
                 }
-                catch { }
+                File.WriteAllBytes(Main.StartupPath + "/CertGen.exe", Properties.Resources.CertGen);
+                using (var ps = new Process())
+                {
+                    ps.StartInfo.FileName = Main.StartupPath + "/CertGen.exe";
+                    ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                    ps.Start();
+                    ps.WaitForExit();
+                    Common.DeleteFile(Main.StartupPath + "/CertGen.exe");
+                    Options.settings.Firstrun = false;
+                    Options.settings.UpdateSettings();
+                }
             }
         }
 

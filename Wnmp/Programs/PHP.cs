@@ -85,58 +85,37 @@ namespace Wnmp.Programs
 
         internal static void php_start_Click(object sender, EventArgs e)
         {
-            try
-            {
-                startprocess(PHPExe, String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
-                PHPStatus = Status.Started;
-                Log.wnmp_log_notice("Attempting to start PHP", Log.LogSection.WNMP_PHP);
-                Common.ToStartedLabel(Program.formInstance.phprunning);
-            }
-            catch (Exception ex)
-            {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_PHP);
-            }
+            startprocess(PHPExe, String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
+            PHPStatus = Status.Started;
+            Log.wnmp_log_notice("Attempting to start PHP", Log.LogSection.WNMP_PHP);
+            Common.ToStartedLabel(Program.formInstance.phprunning);
         }
 
         internal static void php_stop_Click(object sender, EventArgs e)
         {
-            try
-            {
-                PHPStatus = Status.Stopped;
-                var phps = Process.GetProcessesByName("php-cgi");
-                foreach (var currentProc in phps)
-                {
-                    currentProc.Kill();
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_PHP);
-            }
             Log.wnmp_log_notice("Attempting to stop PHP", Log.LogSection.WNMP_PHP);
+            PHPStatus = Status.Stopped;
+            var phps = Process.GetProcessesByName("php-cgi");
+            foreach (var currentProc in phps)
+            {
+                currentProc.Kill();
+            }
             Common.ToStoppedLabel(Program.formInstance.phprunning);
         }
 
         internal static void php_restart_Click(object sender, EventArgs e)
         {
             Log.wnmp_log_notice("Attempting to restart PHP", Log.LogSection.WNMP_PHP);
-            try
+            // Kill PHP
+            PHPStatus = Status.Stopped;
+            var phps = Process.GetProcessesByName("php-cgi");
+            foreach (var currentProc in phps)
             {
-                // Kill PHP
-                PHPStatus = Status.Stopped;
-                var phps = Process.GetProcessesByName("php-cgi");
-                foreach (var currentProc in phps)
-                {
-                    currentProc.Kill();
-                }
+                currentProc.Kill();
+            }
 
-                // Start PHP
-                startprocess(PHPExe, String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
-            }
-            catch (Exception ex)
-            {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_PHP);
-            }
+            // Start PHP
+            startprocess(PHPExe, String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
             Common.ToStartedLabel(Program.formInstance.phprunning);
         }
 

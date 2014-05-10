@@ -62,46 +62,26 @@ namespace Wnmp.Programs
 
         internal static void mdb_start_Click(object sender, EventArgs e)
         {
-            try
-            {
-                startprocess(mysqldExe, "", false, true, false);
-                Log.wnmp_log_notice("Attempting to start MariaDB", Log.LogSection.WNMP_MARIADB);
-                Common.ToStartedLabel(Program.formInstance.mariadbrunning);
-            }
-            catch (Exception ex)
-            {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
-            }
+            startprocess(mysqldExe, "", false, true, false);
+            Log.wnmp_log_notice("Attempting to start MariaDB", Log.LogSection.WNMP_MARIADB);
+            Common.ToStartedLabel(Program.formInstance.mariadbrunning);
         }
 
         internal static void mdb_stop_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // MariaDB
-                Log.wnmp_log_notice("Attempting to stop MariaDB", Log.LogSection.WNMP_MARIADB);
-                startprocess(Main.StartupPath + mysqladminExe, "-u root -p shutdown", true, false, false);
-                Common.ToStoppedLabel(Program.formInstance.mariadbrunning);
-            }
-            catch (Exception ex)
-            {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
-            }
+            // MariaDB
+            Log.wnmp_log_notice("Attempting to stop MariaDB", Log.LogSection.WNMP_MARIADB);
+            startprocess(Main.StartupPath + mysqladminExe, "-u root -p shutdown", true, false, false);
+            Common.ToStoppedLabel(Program.formInstance.mariadbrunning);
         }
+
         internal static void mdb_restart_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // MariaDB
-                Log.wnmp_log_notice("Attempting to restart MariaDB", Log.LogSection.WNMP_MARIADB);
-                var thread = new Thread(mdb_restart);
-                thread.Start();
-                Common.ToStartedLabel((Program.formInstance.mariadbrunning));
-            }
-            catch (Exception ex)
-            {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
-            }
+            // MariaDB
+            Log.wnmp_log_notice("Attempting to restart MariaDB", Log.LogSection.WNMP_MARIADB);
+            var thread = new Thread(mdb_restart);
+            thread.Start();
+            Common.ToStartedLabel((Program.formInstance.mariadbrunning));
         }
 
         private static void mdb_restart()
@@ -117,21 +97,14 @@ namespace Wnmp.Programs
         }
         internal static void mdb_shell_Click(object sender, EventArgs e)
         {
-            try
+            Log.wnmp_log_notice("Attempting to start MariaDB shell", Log.LogSection.WNMP_MARIADB);
+            // MariaDB
+            if (!MariaDBIsRunning())
             {
-                Log.wnmp_log_notice("Attempting to start MariaDB shell", Log.LogSection.WNMP_MARIADB);
-                // MariaDB
-                if (!MariaDBIsRunning())
-                {
-                    startprocess(mysqldExe, "", false, true, false);
-                }
-                // MariaDB Shell
-                startprocess(mysqlExe, "-u root -p", true, false, false);
+                startprocess(mysqldExe, "", false, true, false);
             }
-            catch (Exception ex)
-            {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
-            }
+            // MariaDB Shell
+            startprocess(mysqlExe, "-u root -p", true, false, false);
         }
 
         internal static void mdb_start_MouseHover(object sender, EventArgs e)

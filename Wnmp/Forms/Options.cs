@@ -78,26 +78,20 @@ namespace Wnmp.Forms
 
         private void StartWnmpWithWindows_CheckedChanged(object sender, EventArgs e)
         {
-            try
+            // TODO: Should we use the registry or use the users Startup Folder?
+            if (StartWnmpWithWindows.Checked)
             {
-                if (StartWnmpWithWindows.Checked)
-                {
-                    var add =
-                        Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                    add.SetValue("Wnmp", "\"" + Application.ExecutablePath + "\"");
-                    settings.Startupwithwindows = true;
-                }
-                else
-                {
-                    var remove =
-                        Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                    remove.DeleteValue("Wnmp");
-                    settings.Startupwithwindows = false;
-                }
+                var addReg =
+                    Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                addReg.SetValue("Wnmp", "\"" + Application.ExecutablePath + "\"");
+                settings.Startupwithwindows = true;
             }
-            catch (Exception ex)
+            else
             {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
+                var remove =
+                    Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                remove.DeleteValue("Wnmp");
+                settings.Startupwithwindows = false;
             }
         }
 

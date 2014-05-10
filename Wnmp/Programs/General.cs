@@ -41,38 +41,24 @@ namespace Wnmp.Programs
 
         internal static void start_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Log.wnmp_log_notice("Attempting to start all the applications", Log.LogSection.WNMP_MAIN);
-                // Nginx
-                Nginx.ngx_start_Click(sender, e);
-                // PHP
-                PHP.php_start_Click(sender, e);
-                // MariaDB
-                MariaDB.mdb_start_Click(sender, e);
-            }
-            catch (Exception ex)
-            {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
-            }
+            Log.wnmp_log_notice("Attempting to start all the applications", Log.LogSection.WNMP_MAIN);
+            // Nginx
+            Nginx.ngx_start_Click(sender, e);
+            // PHP
+            PHP.php_start_Click(sender, e);
+            // MariaDB
+            MariaDB.mdb_start_Click(sender, e);
         }
 
         internal static void stop_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // Nginx
-                Nginx.ngx_stop_Click(sender, e);
-                // PHP
-                PHP.php_stop_Click(sender, e);
-                // MariaDB
-                MariaDB.mdb_stop_Click(sender, e);
-                Log.wnmp_log_notice("Attempting to stop all the applications", Log.LogSection.WNMP_MAIN);
-            }
-            catch (Exception ex)
-            {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
-            }
+            Log.wnmp_log_notice("Attempting to stop all the applications", Log.LogSection.WNMP_MAIN);
+            // Nginx
+            Nginx.ngx_stop_Click(sender, e);
+            // PHP
+            PHP.php_stop_Click(sender, e);
+            // MariaDB
+            MariaDB.mdb_stop_Click(sender, e);
         }
     }
 }

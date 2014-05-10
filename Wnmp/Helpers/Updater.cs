@@ -60,8 +60,6 @@ namespace Wnmp.Helpers
                 return false;
             }
 
-            try
-            {
                 var reader = new XmlTextReader(xmlUrl);
                 reader.MoveToContent();
 
@@ -94,12 +92,6 @@ namespace Wnmp.Helpers
                         }
                     }
                 }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return false;
-            }
             return true;
         }
         #endregion
@@ -271,42 +263,25 @@ namespace Wnmp.Helpers
 
         #region AutoCheckForUpdates
         /// <summary>
-        /// Checks if a string is empty
-        /// </summary>
-        /// <param name="dt"></param>
-        /// <returns>True if the datetime is set else it returns false</returns>
-        public static bool IsSet(DateTime dt)
-        {
-            return dt != DateTime.MinValue;
-        }
-
-        /// <summary>
         /// Checks if the curent date if greater than the selected update freqency
         /// and excutes the updater if true.
         /// </summary>
         /// <param name="days"></param>
         internal static void DoDateEclasped()
         {
-            try
+            if (Options.settings.Lastcheckforupdate != DateTime.MinValue)
             {
-                if (IsSet(Options.settings.Lastcheckforupdate))
+                var LastCheckForUpdate = Options.settings.Lastcheckforupdate;
+                var expiryDate = LastCheckForUpdate.AddDays(Options.settings.Checkforupdatefrequency);
+                if (DateTime.Now > expiryDate)
                 {
-                    var LastCheckForUpdate = Options.settings.Lastcheckforupdate;
-                    var expiryDate = LastCheckForUpdate.AddDays(Options.settings.Checkforupdatefrequency);
-                    if (DateTime.Now > expiryDate)
-                    {
-                        CheckForUpdates(true);
-                    }
-                }
-                else
-                {
-                    Options.settings.Lastcheckforupdate = DateTime.Now;
-                    Options.settings.UpdateSettings();
+                    CheckForUpdates(true);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
+                Options.settings.Lastcheckforupdate = DateTime.Now;
+                Options.settings.UpdateSettings();
             }
         }
         #endregion
@@ -323,16 +298,12 @@ namespace Wnmp.Helpers
             {
                 for (var j = 0; j < processtokill.Length; j++)
                 {
-                    try
-                    {
-                        var tempProcess = processes[i].ProcessName;
+                    var tempProcess = processes[i].ProcessName;
 
-                        if (tempProcess == processtokill[j]) // If the proccess is the proccess we want to kill
-                        {
-                            processes[i].Kill(); break; // Kill the proccess
-                        }
+                    if (tempProcess == processtokill[j]) // If the proccess is the proccess we want to kill
+                    {
+                        processes[i].Kill(); break; // Kill the proccess
                     }
-                    catch { }
                 }
             }
         } // End of KillProcesses()

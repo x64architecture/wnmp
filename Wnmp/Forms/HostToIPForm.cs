@@ -57,20 +57,18 @@ namespace Wnmp.Forms
             {
                 try
                 {
-                    if (host.Text.Contains("http://") || host.Text.Contains("https://"))
-                    { MessageBox.Show("Invalid Format"); }
-                    else
-                    {
-                        IPAddress[] ips;
-                        HostToIP(host.Text, out ips);
+                    IPAddress[] ips;
+                    HostToIP(host.Text, out ips);
 
-                        foreach (var ip in ips)
-                        {
-                            IPAddresses.Items.Add(ip.ToString());
-                        }
+                    foreach (var ip in ips)
+                    {
+                        IPAddresses.Items.Add(ip.ToString());
                     }
                 }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

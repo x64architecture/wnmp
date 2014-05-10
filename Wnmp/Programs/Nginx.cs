@@ -58,43 +58,22 @@ namespace Wnmp.Programs
 
         internal static void ngx_start_Click(object sender, EventArgs e)
         {
-            try
-            {
                 startprocess(NginxExe, "");
                 Log.wnmp_log_notice("Attempting to start Nginx", Log.LogSection.WNMP_NGINX);
                 Common.ToStartedLabel(Program.formInstance.nginxrunning);
-            }
-            catch (Exception ex)
-            {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_NGINX);
-            }
         }
 
         internal static void ngx_stop_Click(object sender, EventArgs e)
         {
-            try
-            {
                 startprocess(NginxExe, "-s stop");
                 Log.wnmp_log_notice("Attempting to stop Nginx", Log.LogSection.WNMP_NGINX);
                 Common.ToStoppedLabel(Program.formInstance.nginxrunning);
-            }
-            catch (Exception ex)
-            {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_NGINX);
-            }
         }
 
         internal static void ngx_reload_Click(object sender, EventArgs e)
         {
-            try
-            {
                 startprocess(NginxExe, "-s reload");
                 Log.wnmp_log_notice("Attempting to reload Nginx", Log.LogSection.WNMP_NGINX);
-            }
-            catch (Exception ex)
-            {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_NGINX);
-            }
         }
 
         internal static void ngx_stop_MouseHover(object sender, EventArgs e)
