@@ -7,6 +7,7 @@ Prerequisites
 + Visual C++ Express 2008 with Service Pack 1(if you want to build CertGen)
 + NUnit 2.6.3
 + Inno Setup 5.5.4
++ Git for Windows
  
 Building Wnmp
 =============
