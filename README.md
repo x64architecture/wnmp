@@ -73,7 +73,7 @@ If you do please tell us your suggestions [here][10].
 
 [1]: http://sourceforge.net/projects/wnmp-env/files/latest/download
 [2]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P7LAQRRNF6AVE
-[3]: https://www.x64architecture.com/wp-content/uploads/2014/02/akdlbutton.png
+[3]: http://www.getwnmp.org/wp-content/uploads/2014/05/download_icon_128x128x32.png
 [4]: https://s0.wp.com/imgpress?url=http%3A%2F%2Fs1.softpedia-static.com/base_img/softpedia_free_award_f.gif
 [5]: http://www.softpedia.com/get/Internet/Servers/Server-Tools/Kurt-Wnmp.shtml
 [6]: http://getwnmp.org/faq
