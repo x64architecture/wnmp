@@ -1,3 +1,14 @@
+Wnmp 2.0.14: Released: 06/??/2014
+=================================
+- Wnmp
+  ****INCOMPATIABLE CHANGES****
+  * Windows XP support dropped permanently
+  * .Net Framework 4.0 now required
+  * Visual Studio 2012 Redistributable now required
+
+- Wnmp Control Panel 2.3
+  * Upgraded to .Net 4.0
+
 Wnmp 2.0.13: Released: 04/08/2014
 =================================
 - Nginx
