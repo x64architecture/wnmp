@@ -18,8 +18,9 @@ This file is part of Wnmp.
 */
 using System;
 using System.Windows.Forms;
-using Wnmp.Forms;
+using System.Diagnostics;
 
+using Wnmp.Forms;
 namespace Wnmp
 {
     static class Program
@@ -32,8 +33,22 @@ namespace Wnmp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            OSVersionCheck();
             Application.Run(formInstance = new Main());
         }
         public static Main formInstance;
+
+        /// <summary>
+        /// Checks if the OS is Vista+
+        /// </summary>
+        private static void OSVersionCheck()
+        {
+            if (Environment.OSVersion.Version.Major <= 6)
+            {
+                MessageBox.Show("Windows Vista+ is required to run Wnmp");
+                Process process = Process.GetCurrentProcess();
+                process.Kill();
+            }
+        }
     }
 }
