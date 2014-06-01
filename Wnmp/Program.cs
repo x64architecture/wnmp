@@ -43,7 +43,7 @@ namespace Wnmp
         /// </summary>
         private static void OSVersionCheck()
         {
-            if (Environment.OSVersion.Version.Major <= 6)
+            if (Environment.OSVersion.Version.Major < 6)
             {
                 MessageBox.Show("Windows Vista+ is required to run Wnmp");
                 Process process = Process.GetCurrentProcess();
