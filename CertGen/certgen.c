@@ -110,7 +110,10 @@ int days;
 	else
 		x = *x509p;
 
+#pragma warning(disable:4113)
 	rsa = RSA_generate_key(bits, RSA_F4, callback, NULL);
+#pragma warning(default:4113)
+
 	if (!EVP_PKEY_assign_RSA(pk, rsa))
 	{
 		abort();
