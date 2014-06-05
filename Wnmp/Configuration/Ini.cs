@@ -18,7 +18,8 @@ This file is part of Wnmp.
 */
 using System;
 using System.IO;
-
+using System.Text;
+using System.Windows.Forms;
 using Wnmp.Forms;
 using Wnmp.Programs;
 namespace Wnmp.Configuration
@@ -41,6 +42,29 @@ namespace Wnmp.Configuration
         public bool Firstrun = true; // First run
 
         /// <summary>
+        /// Reads an ini value and returns it
+        /// </summary>
+        /// <param name="Option"></param>
+        /// <returns></returns>
+        private string ReadIniValue(string Option)
+        {
+            if (File.Exists(iniPath))
+            {
+                string str = Option + "=";
+                using (var sr = new StreamReader(iniPath))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null) // Read every line while not null
+                    {
+                        if (line.StartsWith(str))
+                            return line.Remove(0, str.Length);
+                    }
+                }
+            }
+            return "";
+        }
+
+        /// <summary>
         /// Reads the settings from the ini
         /// </summary>
         public void ReadSettings()
@@ -50,52 +74,16 @@ namespace Wnmp.Configuration
                 UpdateSettings(); // Update options with default values
             }
 
-            if (File.Exists(iniPath))
-            {
-                using (var sr = new StreamReader(iniPath))
-                {
-                    string line;
-                    while ((line = sr.ReadLine()) != null) // Read every line while not null
-                    {
-                        if (line.StartsWith("editorpath="))
-                        {
-                            Editor = line.Remove(0, 11);
-                        }
-                        if (line.StartsWith("startupwithwindows="))
-                        {
-                            Boolean.TryParse(line.Remove(0, 19), out Startupwithwindows);
-                        }
-                        if (line.StartsWith("startallapplicationsatlaunch="))
-                        {
-                            Boolean.TryParse(line.Remove(0, 29), out Startallapplicationsatlaunch);
-                        }
-                        if (line.StartsWith("minimizewnmptotray="))
-                        {
-                            Boolean.TryParse(line.Remove(0, 19), out Minimizewnmptotray);
-                        }
-                        if (line.StartsWith("autocheckforupdates="))
-                        {
-                            Boolean.TryParse(line.Remove(0, 20), out Autocheckforupdates);
-                        }
-                        if (line.StartsWith("checkforupdatefrequency="))
-                        {
-                            int.TryParse(line.Remove(0, 24), out Checkforupdatefrequency);
-                        }
-                        if (line.StartsWith("lastcheckforupdate="))
-                        {
-                            DateTime.TryParse(line.Remove(0, 19), out Lastcheckforupdate);
-                        }
-                        if (line.StartsWith("phpport="))
-                        {
-                            int.TryParse(line.Remove(0, 8), out PHPPort);
-                        }
-                        if (line.StartsWith("firstrun="))
-                        {
-                            Boolean.TryParse(line.Remove(0, 9), out Firstrun);
-                        }
-                    }
-                }
-            }
+            Editor = ReadIniValue("editorpath");
+            Boolean.TryParse(ReadIniValue("startupwithwindows"), out Startupwithwindows);
+            Boolean.TryParse(ReadIniValue("startallapplicationsatlaunch"), out Startallapplicationsatlaunch);
+            Boolean.TryParse(ReadIniValue("minimizewnmptotray"), out Minimizewnmptotray);
+            Boolean.TryParse(ReadIniValue("autocheckforupdates"), out Autocheckforupdates);
+            int.TryParse(ReadIniValue("checkforupdatefrequency"), out Checkforupdatefrequency);
+            DateTime.TryParse(ReadIniValue("lastcheckforupdate"), out Lastcheckforupdate);
+            int.TryParse(ReadIniValue("phpport"), out PHPPort);
+            Boolean.TryParse(ReadIniValue("firstrun"), out Firstrun);
+
         }
         /// <summary>
         /// Updates the settings to the ini
