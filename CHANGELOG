@@ -8,6 +8,7 @@ Wnmp 2.0.14: Released: 06/??/2014
 
 - Wnmp Control Panel 2.3
   * Upgraded to .Net 4.0
+  * Fixed checking if the applications were running
 
 Wnmp 2.0.13: Released: 04/08/2014
 =================================
