@@ -18,8 +18,7 @@ This file is part of Wnmp.
 */
 using System;
 using System.IO;
-using System.Text;
-using System.Windows.Forms;
+
 using Wnmp.Forms;
 using Wnmp.Programs;
 namespace Wnmp.Configuration
