@@ -71,7 +71,7 @@ namespace Wnmp.Programs
         {
             // MariaDB
             Log.wnmp_log_notice("Attempting to stop MariaDB", Log.LogSection.WNMP_MARIADB);
-            startprocess(Main.StartupPath + mysqladminExe, "-u root -p shutdown", true, false, false);
+            startprocess(mysqladminExe, "-u root -p shutdown", true, false, false);
             Common.ToStoppedLabel(Program.formInstance.mariadbrunning);
         }
 
@@ -86,7 +86,7 @@ namespace Wnmp.Programs
 
         private static void mdb_restart()
         {
-            startprocess(Main.StartupPath + mysqladminExe, "-u root -p shutdown", true, false, true);
+            startprocess(mysqladminExe, "-u root -p shutdown", true, false, true);
             startprocess(mysqldExe, "", false, true, false);
         }
         private static bool MariaDBIsRunning()
