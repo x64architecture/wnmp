@@ -2,7 +2,7 @@
 ;Inno Setup http://www.jrsoftware.org/isdl.php#stable
 
 #define Name "Wnmp"
-#define Version "2.0.14"
+#define Version "2.1.0"
 #define Publisher "Kurt Cancemi"
 #define URL "http://wnmp.x64architecture.com"
 #define ExeName "Wnmp.exe"

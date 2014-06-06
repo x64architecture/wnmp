@@ -7,26 +7,26 @@ Wnmp values security, stability and user friendliness.
 
 ### Current Wnmp Versions:
 
-  * Wnmp 2.0.13
-  * Wnmp Control Panel 2.2.6
+  * Wnmp 2.1.0
+  * Wnmp Control Panel 2.3.0
 
 ----
 
 ### Versions of the software(Updated: April 6th 2014):
 
-  * Nginx 1.5.13
+  * Nginx 1.7.1
 
-  * MariaDB 10.0.10
+  * MariaDB 10.0.11
 
-  * PHP 5.5.11 (Non Thread Safe + FastCGI)
+  * PHP 5.5.13 (Non Thread Safe + FastCGI)
 
-  * phpMyAdmin 4.1.12
+  * phpMyAdmin 4.2.2
   
 ----
 
 ### How to Install
 
-  1. To install download the latest version of Wnmp [here][1] (latest version 2.0.13)
+  1. To install download the latest version of Wnmp [here][1] (latest version 2.1.0)
   2. Then open *Wnmp.exe* and install it anywhere.
   3. And then run *Wnmp.exe*(which is located in the Wnmp folder)
   4. And then press the Start all button.
