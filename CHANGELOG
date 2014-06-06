@@ -10,6 +10,23 @@ Wnmp 2.0.15: Released: 06/06/2014
   * Upgraded to .Net 4.0
   * Fixed checking if the applications were running
 
+- Nginx
+  * Updated to 1.7.1
+  * Compiled with OpenSSL 1.0.1h to fix
+    Man in the middle vulnerability (CVE-2014-0224)
+    and others vulnerabilitys: CVE-2014-0221, CVE-2014-0195,
+    CVE-2014-0198, CVE-2010-5298, CVE-2014-3470
+
+- MariaDB
+  * Updated to 10.0.11
+
+- PHP
+  * PHP updated to 5.5.13
+  * Dropped XP support
+
+-phpMyAdmin
+  * Updated to 4.2.2
+
 Wnmp 2.0.13: Released: 04/08/2014
 =================================
 - Nginx
