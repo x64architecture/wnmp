@@ -26,7 +26,6 @@ using Wnmp.Helpers;
 using Wnmp.Internals;
 namespace Wnmp.Forms
 {
-    // TODO: Refractor this class
 
     /// <summary>
     /// Main form of Wnmp
@@ -35,7 +34,7 @@ namespace Wnmp.Forms
     {
         public static string StartupPath { get { return Application.StartupPath; } }
 
-        private static readonly Version CPVER = new Version("2.2.6");
+        private static readonly Version CPVER = new Version("2.3");
         public static Version GetCPVER { get { return CPVER; } }
 
         private readonly NotifyIcon WnmpTrayIcon = new NotifyIcon();
@@ -148,6 +147,7 @@ namespace Wnmp.Forms
         private void Main_Load(object sender, EventArgs e)
         {
             WnmpTrayIcon.Icon = Properties.Resources.logo;
+            WnmpTrayIcon.Visible = true;
 
             MainHelper.DoStartup();
 
