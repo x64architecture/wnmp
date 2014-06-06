@@ -157,6 +157,7 @@ namespace Wnmp.Forms
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
+            WnmpTrayIcon.Dispose();
             Common.DeleteFile(Application.StartupPath + "/updater.exe");
             Common.DeleteFile(Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
         }
