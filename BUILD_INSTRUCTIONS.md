@@ -4,7 +4,7 @@ Wnmp Build Instructions
 Prerequisites
 =============
 + Visual Studio Express 2013
-+ Visual C++ Express 2008 with Service Pack 1(if you want to build CertGen)
++ Visual Studio Express 2012 (if you want to build CertGen)
 + NUnit 2.6.3
 + Inno Setup 5.5.4
 + Git for Windows
