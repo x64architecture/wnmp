@@ -20,9 +20,9 @@ int main()
 	EVP_PKEY *pKey;
 	RSA *rsa;
 	X509 *x509;
-	FILE *fp;
 	X509_NAME *name;
 	X509_EXTENSION *ex;
+	FILE *fp;
 	int KEY_SIZE = 2048;
 	int days = 365;
 
@@ -35,7 +35,7 @@ int main()
 		NULL      // Callback argument
 		);
 
-		EVP_PKEY_assign_RSA(pKey, rsa);
+	EVP_PKEY_assign_RSA(pKey, rsa);
 
 	x509 = X509_new();
 
