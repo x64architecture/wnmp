@@ -124,11 +124,6 @@ namespace Wnmp.Programs
             toolTip.Show("Restart MariaDB", Program.formInstance.mdb_restart);
         }
 
-        internal static void mdb_help_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("The default login for MariaDB/phpMyAdmin is:" + "\n" + "Username: root" + "\n" + "Password: password");
-        }
-
         internal static void mdb_cfg_Click(object sender, EventArgs e)
         {
             var btnSender = (Button)sender;
