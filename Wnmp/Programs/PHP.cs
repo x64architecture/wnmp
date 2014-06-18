@@ -19,7 +19,6 @@ This file is part of Wnmp.
 using System;
 using System.Configuration;
 using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
 using System.Diagnostics;
 
