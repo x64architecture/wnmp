@@ -35,9 +35,7 @@ namespace Wnmp.Programs
         public static Process ps; // Avoid GC
         public static ContextMenuStrip cms = new ContextMenuStrip(); // Config button context menu
         public static ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
-        public static ToolTip MariaDB_start_Tip = new ToolTip(); // Start button ToolTip
-        public static ToolTip MariaDB_stop_Tip = new ToolTip(); // Stop button ToolTip
-        public static ToolTip MariaDB_opnshell_Tip = new ToolTip(); // Open Shell button ToolTip
+        public static readonly ToolTip toolTip = new ToolTip(); // ToolTip
         private static string mysqlExe = Main.StartupPath + "/mariadb/bin/mysql.exe";
         private static string mysqldExe = Main.StartupPath + "/mariadb/bin/mysqld.exe";
         private static string mysqladminExe = Main.StartupPath + "/mariadb/bin/mysqladmin.exe";
@@ -108,22 +106,22 @@ namespace Wnmp.Programs
 
         internal static void mdb_start_MouseHover(object sender, EventArgs e)
         {
-            MariaDB_start_Tip.Show("Start MariaDB", Program.formInstance.mdb_start);
+            toolTip.Show("Start MariaDB", Program.formInstance.mdb_start);
         }
 
         internal static void mdb_stop_MouseHover(object sender, EventArgs e)
         {
-            MariaDB_stop_Tip.Show("Stop MariaDB", Program.formInstance.mdb_stop);
+            toolTip.Show("Stop MariaDB", Program.formInstance.mdb_stop);
         }
 
         internal static void mdb_shell_MouseHover(object sender, EventArgs e)
         {
-            MariaDB_opnshell_Tip.Show("Open MariaDB Shell", Program.formInstance.mdb_shell);
+            toolTip.Show("Open MariaDB Shell", Program.formInstance.mdb_shell);
         }
 
         internal static void mdb_restart_MouseHover(object sender, EventArgs e)
         {
-            MariaDB_opnshell_Tip.Show("Restart MariaDB", Program.formInstance.mdb_restart);
+            toolTip.Show("Restart MariaDB", Program.formInstance.mdb_restart);
         }
 
         internal static void mdb_help_Click(object sender, EventArgs e)

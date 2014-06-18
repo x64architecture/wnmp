@@ -35,10 +35,9 @@ namespace Wnmp.Programs
         public static Process ps; // Avoid GC
         public static ContextMenuStrip cms = new ContextMenuStrip(); // Config button context menu
         public static ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
-        public static ToolTip PHP_start_Tip = new ToolTip(); // Start button ToolTip
-        public static ToolTip PHP_stop_Tip = new ToolTip(); // Stop button ToolTip
-        private static string pini = Main.StartupPath + "/php/php.ini"; // Location of php.ini to pass on to php
-        private static string PHPExe = Main.StartupPath + "/php/php-cgi.exe";
+        private static readonly ToolTip toolTip = new ToolTip(); // ToolTip
+        private static readonly string pini = Main.StartupPath + "/php/php.ini"; // Location of php.ini to pass on to php
+        private static readonly string PHPExe = Main.StartupPath + "/php/php-cgi.exe";
 
         private enum Status
         {
@@ -118,17 +117,17 @@ namespace Wnmp.Programs
 
         internal static void php_start_MouseHover(object sender, EventArgs e)
         {
-            PHP_start_Tip.Show("Start PHP-CGI", Program.formInstance.php_start);
+            toolTip.Show("Start PHP-CGI", Program.formInstance.php_start);
         }
 
         internal static void php_stop_MouseHover(object sender, EventArgs e)
         {
-            PHP_stop_Tip.Show("Stop PHP-CGI", Program.formInstance.php_stop);
+            toolTip.Show("Stop PHP-CGI", Program.formInstance.php_stop);
         }
 
         internal static void php_restart_MouseHover(object sender, EventArgs e)
         {
-            PHP_stop_Tip.Show("Restart PHP-CGI", Program.formInstance.php_restart);
+            toolTip.Show("Restart PHP-CGI", Program.formInstance.php_restart);
         }
 
         internal static void php_cfg_Click(object sender, EventArgs e)

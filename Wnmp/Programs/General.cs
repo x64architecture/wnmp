@@ -27,16 +27,16 @@ namespace Wnmp.Programs
     /// </summary>
     public static class General
     {
+        private static readonly ToolTip toolTip = new ToolTip();
+
         internal static void start_MouseHover()
         {
-            var start_all_Tip = new ToolTip();
-            start_all_Tip.Show("Starts Nginx, PHP-CGI & MariaDB", Program.formInstance.start);
+            toolTip.Show("Starts Nginx, PHP-CGI & MariaDB", Program.formInstance.start);
         }
 
         internal static void stop_MouseHover()
         {
-            var stop_all_Tip = new ToolTip();
-            stop_all_Tip.Show("Stops Nginx, PHP-CGI & MariaDB", Program.formInstance.stop);
+            toolTip.Show("Stops Nginx, PHP-CGI & MariaDB", Program.formInstance.stop);
         }
 
         internal static void start_Click(object sender, EventArgs e)
