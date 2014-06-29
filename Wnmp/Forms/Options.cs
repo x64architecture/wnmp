@@ -119,7 +119,7 @@ namespace Wnmp.Forms
 
         private void PHP_PORT_ValueChanged(object sender, EventArgs e)
         {
-            settings.PHPPort = Convert.ToInt32(PHP_PORT.Value);
+            settings.PHPPort = (int)PHP_PORT.Value;
         }
 
         private void Save_Click(object sender, EventArgs e)
@@ -164,7 +164,7 @@ namespace Wnmp.Forms
 
         private void UpdateCheckInterval_ValueChanged(object sender, EventArgs e)
         {
-            settings.Checkforupdatefrequency = Convert.ToInt32(UpdateCheckInterval.Value);
+            settings.Checkforupdatefrequency = (int)UpdateCheckInterval.Value;
         }
     }
 }
