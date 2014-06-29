@@ -203,7 +203,7 @@ namespace Wnmp.Helpers
 
             if (WNMP_VER.CompareTo(NEW_WNMP_VERSION) < 0) // If it returns less than 0 than theres a new version
             {
-                var CV = new ChangelogViewer();
+                var CV = new UpdatePrompt();
                 CV.StartPosition = FormStartPosition.CenterScreen;
                 CV.cversion.Text = WNMP_VER.ToString();
                 CV.newversion.Text = NEW_WNMP_VERSION.ToString();
@@ -221,7 +221,7 @@ namespace Wnmp.Helpers
             {
                 if (Main.GetCPVER.CompareTo(NEW_CP_VERSION) < 0)
                 {
-                    var CV = new ChangelogViewer();
+                    var CV = new UpdatePrompt();
                     CV.StartPosition = FormStartPosition.CenterScreen;
                     CV.cversion.Text = Main.GetCPVER.ToString();
                     CV.newversion.Text = NEW_CP_VERSION.ToString();

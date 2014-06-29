@@ -1,6 +1,6 @@
 ﻿namespace Wnmp.Forms
 {
-    partial class ChangelogViewer
+    partial class UpdatePrompt
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChangelogViewer));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdatePrompt));
             this.Yes = new System.Windows.Forms.Button();
             this.No = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();

@@ -80,11 +80,11 @@
     <Compile Include="Internals\Common.cs" />
     <Compile Include="Helpers\Log.cs" />
     <Compile Include="Internals\NativeMethods.cs" />
-    <Compile Include="Forms\ChangelogViewer.cs">
+    <Compile Include="Forms\UpdatePrompt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ChangelogViewer.Designer.cs">
-      <DependentUpon>ChangelogViewer.cs</DependentUpon>
+    <Compile Include="Forms\UpdatePrompt.Designer.cs">
+      <DependentUpon>UpdatePrompt.cs</DependentUpon>
     </Compile>
     <Compile Include="Programs\General.cs" />
     <Compile Include="Helpers\Updater.cs" />
@@ -122,8 +122,8 @@
     <Compile Include="Configuration\Ini.cs" />
     <Compile Include="Tests\TestOptions.cs" />
     <Compile Include="Tests\TestOSInfo.cs" />
-    <EmbeddedResource Include="Forms\ChangelogViewer.resx">
-      <DependentUpon>ChangelogViewer.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\UpdatePrompt.resx">
+      <DependentUpon>UpdatePrompt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\About.resx">
       <DependentUpon>About.cs</DependentUpon>

@@ -25,9 +25,9 @@ namespace Wnmp.Forms
     /// <summary>
     /// Form for viewing the changelog and asking if the user would like to update
     /// </summary>
-    public partial class ChangelogViewer : Form
+    public partial class UpdatePrompt : Form
     {
-        public ChangelogViewer()
+        public UpdatePrompt()
         {
             InitializeComponent();
         }
