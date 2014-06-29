@@ -43,13 +43,12 @@ namespace Wnmp.Programs
         /// <summary>
         /// Starts an executable file
         /// </summary>
-        public static void startprocess(string p, string args, bool shellexc, bool redirectso, bool wfe)
+        public static void startprocess(string p, string args, bool wfe)
         {
             ps = new Process(); // Create process
             ps.StartInfo.FileName = p; // p is the path and file name of the file to run
             ps.StartInfo.Arguments = args; // Parameters to pass to program
-            ps.StartInfo.UseShellExecute = shellexc;
-            ps.StartInfo.RedirectStandardOutput = redirectso; // Set output of program to be written to process output stream
+            ps.StartInfo.UseShellExecute = false;
             ps.StartInfo.WorkingDirectory = Main.StartupPath;
             ps.StartInfo.CreateNoWindow = true; // Excute with no window
             ps.Start(); // Start the process
@@ -59,7 +58,7 @@ namespace Wnmp.Programs
 
         internal static void mdb_start_Click(object sender, EventArgs e)
         {
-            startprocess(mysqldExe, "", false, true, false);
+            startprocess(mysqldExe, "", false);
             Log.wnmp_log_notice("Attempting to start MariaDB", Log.LogSection.WNMP_MARIADB);
             Common.ToStartedLabel(Program.formInstance.mariadbrunning);
         }
@@ -68,7 +67,7 @@ namespace Wnmp.Programs
         {
             // MariaDB
             Log.wnmp_log_notice("Attempting to stop MariaDB", Log.LogSection.WNMP_MARIADB);
-            startprocess(mysqladminExe, "-u root -p shutdown", true, false, false);
+            Process.Start(mysqladminExe, "-u root -p shutdown");
             Common.ToStoppedLabel(Program.formInstance.mariadbrunning);
         }
 
@@ -83,8 +82,8 @@ namespace Wnmp.Programs
 
         private static void mdb_restart()
         {
-            startprocess(mysqladminExe, "-u root -p shutdown", true, false, true);
-            startprocess(mysqldExe, "", false, true, false);
+            startprocess(mysqladminExe, "-u root -p shutdown", true);
+            startprocess(mysqldExe, "", false);
         }
         private static bool MariaDBIsRunning()
         {
@@ -98,10 +97,10 @@ namespace Wnmp.Programs
             // MariaDB
             if (!MariaDBIsRunning())
             {
-                startprocess(mysqldExe, "", false, true, false);
+                startprocess(mysqldExe, "", false);
             }
             // MariaDB Shell
-            startprocess(mysqlExe, "-u root -p", true, false, false);
+            Process.Start(mysqlExe, "-u root -p");
         }
 
         internal static void mdb_start_MouseHover(object sender, EventArgs e)
