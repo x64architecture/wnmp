@@ -52,7 +52,7 @@ namespace Wnmp.Forms
             var input = string.Empty;
             var dialog = new OpenFileDialog();
             dialog.Filter =
-                "excutable files (*.exe)|*.exe|All files (*.*)|*.*";
+                "executable files (*.exe)|*.exe|All files (*.*)|*.*";
             dialog.Title = "Select an editor";
             if (dialog.ShowDialog() == DialogResult.OK)
                 input = dialog.FileName;
