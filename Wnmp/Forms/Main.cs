@@ -84,7 +84,7 @@ namespace Wnmp.Forms
 
         private void SupportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("https://mailman.getwnmp.org/mailman/listinfo/wnmp");
+            Process.Start("http://mailman.getwnmp.org/mailman/listinfo/wnmp");
         }
 
         private void Report_BugToolStripMenuItem_Click(object sender, EventArgs e)
@@ -100,7 +100,7 @@ namespace Wnmp.Forms
 
         private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("http://getwnmp.org");
+            Process.Start("http://www.getwnmp.org");
         }
 
         private void donateToolStripMenuItem_Click(object sender, EventArgs e)
