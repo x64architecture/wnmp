@@ -35,20 +35,15 @@ namespace Updater
         /// <returns>True on sucess else false</returns>
         public static bool FindAndKillProcess(string name)
         {
-            foreach (Process process in Process.GetProcesses())
-            {
-                if (process.ProcessName.Contains(name))
-                {
-                    try
-                    {
-                        process.Kill();
-                    }
-                    catch (Exception ex)
-                    {
-                        File.WriteAllText("updaterlog.txt", ex.ToString());
-                        Console.WriteLine(ex.Message);
-                        return false;
-                    }
+            foreach (Process process in Process.GetProcesses()) {
+                if (process.ProcessName.Contains(name)) {
+					try {
+						process.Kill();
+					} catch (Exception ex) {
+						File.WriteAllText("updaterlog.txt", ex.ToString());
+						Console.WriteLine(ex.Message);
+						return false;
+					}
                     return true;
                 }
             }
@@ -63,8 +58,7 @@ namespace Updater
             string _orig = Path.Combine(curDir, "Wnmp.exe");
             string _new = Path.Combine(curDir, "Wnmp_new.exe");
 
-            if (!FindAndKillProcess("Wnmp"))
-            {
+            if (!FindAndKillProcess("Wnmp")) {
                 Console.WriteLine("Failed To Kill the process");
                 return;
             }
