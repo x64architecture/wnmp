@@ -5,7 +5,7 @@ Prerequisites
 =============
 + Visual Studio Express 2013
 + Visual Studio Express 2012 (if you want to build CertGen)
-+ NUnit 2.6.3
++ NUnit 2.6.3 (if you want to build the tests)
 + Inno Setup 5.5.4
 + Git for Windows
  
