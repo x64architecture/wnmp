@@ -4,7 +4,7 @@ using NUnit.Framework;
 using Wnmp.Configuration;
 namespace Wnmp.Tests
 {
-    class TestOptions
+    public class TestOptions
     {
         private readonly Ini ini = new Ini();
 

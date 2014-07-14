@@ -5,7 +5,7 @@ using NUnit.Framework;
 using Wnmp.Helpers;
 namespace Wnmp.Tests
 {
-    class TestOSInfo
+    public class TestOSInfo
     {
         [Test]
         public void TestW81OSName()
