@@ -150,7 +150,7 @@ namespace Wnmp.Helpers
         /// Gets the edition of the operating system running on this computer.
         /// </summary>
         static public string Edition
-		{
+        {
             get {
                 if (s_Edition != null)
                     return s_Edition;
@@ -172,12 +172,12 @@ namespace Wnmp.Helpers
                     #region VERSION 4
                     if (majorVersion == 4) {
                         if (productType == VER_NT_WORKSTATION)
-							edition = "Workstation"; // Windows NT 4.0 Workstation
+                            edition = "Workstation"; // Windows NT 4.0 Workstation
                         else if (productType == VER_NT_SERVER) {
                             if ((suiteMask & VER_SUITE_ENTERPRISE) != 0)
-								edition = "Enterprise Server"; // Windows NT 4.0 Server Enterprise
+                                edition = "Enterprise Server"; // Windows NT 4.0 Server Enterprise
                             else
-								edition = "Standard Server"; // Windows NT 4.0 Server
+                                edition = "Standard Server"; // Windows NT 4.0 Server
                         }
                     }
                     #endregion VERSION 4
@@ -196,20 +196,20 @@ namespace Wnmp.Helpers
                         } else if (productType == VER_NT_SERVER) {
                             if (minorVersion == 0) {
                                 if ((suiteMask & VER_SUITE_DATACENTER) != 0)
-									edition = "Datacenter Server"; // Windows 2000 Datacenter Server
+                                    edition = "Datacenter Server"; // Windows 2000 Datacenter Server
                                 else if ((suiteMask & VER_SUITE_ENTERPRISE) != 0)
-									edition = "Advanced Server"; // Windows 2000 Advanced Server
+                                    edition = "Advanced Server"; // Windows 2000 Advanced Server
                                 else
-									edition = "Server"; // Windows 2000 Server
+                                    edition = "Server"; // Windows 2000 Server
                             } else {
                                 if ((suiteMask & VER_SUITE_DATACENTER) != 0)
-									edition = "Datacenter"; // Windows Server 2003 Datacenter Edition
+                                    edition = "Datacenter"; // Windows Server 2003 Datacenter Edition
                                 else if ((suiteMask & VER_SUITE_ENTERPRISE) != 0)
-									edition = "Enterprise"; // Windows Server 2003 Enterprise Edition
+                                    edition = "Enterprise"; // Windows Server 2003 Enterprise Edition
                                 else if ((suiteMask & VER_SUITE_BLADE) != 0)
-									edition = "Web Edition"; // Windows Server 2003 Web Edition
+                                    edition = "Web Edition"; // Windows Server 2003 Web Edition
                                 else
-									edition = "Standard"; // Windows Server 2003 Standard Edition
+                                    edition = "Standard"; // Windows Server 2003 Standard Edition
                             }
                         }
                     }
@@ -529,121 +529,121 @@ namespace Wnmp.Helpers
                 // Microsoft decided to lie to us so....
                 FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Environment.SystemDirectory + "/Kernel32.dll");
 
-				if (NativeMethods.GetVersionEx(ref osVersionInfo)) {
-					var majorVersion = fvi.FileMajorPart;
-					var minorVersion = fvi.FileMinorPart;
+                if (NativeMethods.GetVersionEx(ref osVersionInfo)) {
+                    var majorVersion = fvi.FileMajorPart;
+                    var minorVersion = fvi.FileMinorPart;
 
-					switch (osVersion.Platform) {
-						case PlatformID.Win32S:
-							name = "Windows 3.1";
-							break;
-						case PlatformID.WinCE:
-							name = "Windows CE";
-							break;
-						case PlatformID.Win32Windows: {
-								if (majorVersion == 4) {
-									var csdVersion = osVersionInfo.szCSDVersion;
-									switch (minorVersion) {
-										case 0:
-											if (csdVersion == "B" || csdVersion == "C")
-												name = "Windows 95 OSR2";
-											else
-												name = "Windows 95";
-											break;
-										case 10:
-											if (csdVersion == "A")
-												name = "Windows 98 Second Edition";
-											else
-												name = "Windows 98";
-											break;
-										case 90:
-											name = "Windows Me";
-											break;
-									}
-								}
-								break;
-							}
-						case PlatformID.Win32NT: 
-						{
-								var productType = osVersionInfo.wProductType;
+                    switch (osVersion.Platform) {
+                        case PlatformID.Win32S:
+                            name = "Windows 3.1";
+                            break;
+                        case PlatformID.WinCE:
+                            name = "Windows CE";
+                            break;
+                        case PlatformID.Win32Windows: {
+                                if (majorVersion == 4) {
+                                    var csdVersion = osVersionInfo.szCSDVersion;
+                                    switch (minorVersion) {
+                                        case 0:
+                                            if (csdVersion == "B" || csdVersion == "C")
+                                                name = "Windows 95 OSR2";
+                                            else
+                                                name = "Windows 95";
+                                            break;
+                                        case 10:
+                                            if (csdVersion == "A")
+                                                name = "Windows 98 Second Edition";
+                                            else
+                                                name = "Windows 98";
+                                            break;
+                                        case 90:
+                                            name = "Windows Me";
+                                            break;
+                                    }
+                                }
+                                break;
+                            }
+                        case PlatformID.Win32NT: 
+                        {
+                                var productType = osVersionInfo.wProductType;
 
-								switch (majorVersion) {
-									case 3:
-										name = "Windows NT 3.51";
-										break;
-									case 4:
-										switch (productType) {
-											case 1:
-												name = "Windows NT 4.0";
-												break;
-											case 3:
-												name = "Windows NT 4.0 Server";
-												break;
-										}
-										break;
-									case 5:
-										switch (minorVersion) {
-											case 0:
-												name = "Windows 2000";
-												break;
-											case 1:
-												name = "Windows XP";
-												break;
-											case 2:
-												name = "Windows Server 2003";
-												break;
-										}
-										break;
-									case 6:
-										switch (minorVersion) {
-											case 0:
-												switch (productType) {
-													case 1:
-														name = "Windows Vista";
-														break;
-													case 3:
-														name = "Windows Server 2008";
-														break;
-												}
-												break;
+                                switch (majorVersion) {
+                                    case 3:
+                                        name = "Windows NT 3.51";
+                                        break;
+                                    case 4:
+                                        switch (productType) {
+                                            case 1:
+                                                name = "Windows NT 4.0";
+                                                break;
+                                            case 3:
+                                                name = "Windows NT 4.0 Server";
+                                                break;
+                                        }
+                                        break;
+                                    case 5:
+                                        switch (minorVersion) {
+                                            case 0:
+                                                name = "Windows 2000";
+                                                break;
+                                            case 1:
+                                                name = "Windows XP";
+                                                break;
+                                            case 2:
+                                                name = "Windows Server 2003";
+                                                break;
+                                        }
+                                        break;
+                                    case 6:
+                                        switch (minorVersion) {
+                                            case 0:
+                                                switch (productType) {
+                                                    case 1:
+                                                        name = "Windows Vista";
+                                                        break;
+                                                    case 3:
+                                                        name = "Windows Server 2008";
+                                                        break;
+                                                }
+                                                break;
 
-											case 1:
-												switch (productType) {
-													case 1:
-														name = "Windows 7";
-														break;
-													case 3:
-														name = "Windows Server 2008 R2";
-														break;
-												}
-												break;
-											case 2:
-												switch (productType) {
-													case 1:
-														name = "Windows 8";
-														break;
-													case 3:
-														name = "Windows Server 2012";
-														break;
-												}
-												break;
-											case 3:
-												switch (productType) {
-													case 1:
-														name = "Windows 8.1";
-														break;
-													case 3:
-														name = "Windows Server 2012 R2";
-														break;
-												}
-												break;
-										}
-										break;
-								}
-								break;
-						}
-					}
-				}
+                                            case 1:
+                                                switch (productType) {
+                                                    case 1:
+                                                        name = "Windows 7";
+                                                        break;
+                                                    case 3:
+                                                        name = "Windows Server 2008 R2";
+                                                        break;
+                                                }
+                                                break;
+                                            case 2:
+                                                switch (productType) {
+                                                    case 1:
+                                                        name = "Windows 8";
+                                                        break;
+                                                    case 3:
+                                                        name = "Windows Server 2012";
+                                                        break;
+                                                }
+                                                break;
+                                            case 3:
+                                                switch (productType) {
+                                                    case 1:
+                                                        name = "Windows 8.1";
+                                                        break;
+                                                    case 3:
+                                                        name = "Windows Server 2012 R2";
+                                                        break;
+                                                }
+                                                break;
+                                        }
+                                        break;
+                                }
+                                break;
+                        }
+                    }
+                }
 
                 s_Name = name;
                 return name;

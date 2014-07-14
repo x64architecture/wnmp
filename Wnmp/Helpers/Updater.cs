@@ -48,45 +48,45 @@ namespace Wnmp.Helpers
         /// Fetches and reads the update xml
         /// </summary>
         /// <returns>True on sucess and False on failure</returns>
-		private static bool ReadUpdateXML()
-		{
-			const string xmlUrl = UpdateXMLURL;
-			var elementName = "";
+        private static bool ReadUpdateXML()
+        {
+            const string xmlUrl = UpdateXMLURL;
+            var elementName = "";
 
-			int returnvalue;
-			if (!NativeMethods.InternetGetConnectedState(out returnvalue, 0)) {
-				MessageBox.Show("No active network connection detected", "Can't Check For Updates");
-				return false;
-			}
+            int returnvalue;
+            if (!NativeMethods.InternetGetConnectedState(out returnvalue, 0)) {
+                MessageBox.Show("No active network connection detected", "Can't Check For Updates");
+                return false;
+            }
 
-			var reader = new XmlTextReader(xmlUrl);
-			reader.MoveToContent();
+            var reader = new XmlTextReader(xmlUrl);
+            reader.MoveToContent();
 
-			if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "appinfo")) {
-				do {
-					if (reader.NodeType == XmlNodeType.Element)
-						elementName = reader.Name;
-					else {
-						if ((reader.NodeType == XmlNodeType.Text) && (reader.HasValue))
-							switch (elementName) {
-								case "version":
-									NEW_WNMP_VERSION = new Version(reader.Value);
-									break;
-								case "upgradeurl":
-									Wnmp_Upgrade_URL = new Uri(reader.Value);
-									break;
-								case "cpversion":
-									NEW_CP_VERSION = new Version(reader.Value);
-									break;
-								case "cpupdateurl":
-									CP_UPDATE_URL = new Uri(reader.Value);
-									break;
-							}
-					}
-				} while (reader.Read());
-			}
-			return true;
-		}
+            if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "appinfo")) {
+                do {
+                    if (reader.NodeType == XmlNodeType.Element)
+                        elementName = reader.Name;
+                    else {
+                        if ((reader.NodeType == XmlNodeType.Text) && (reader.HasValue))
+                            switch (elementName) {
+                                case "version":
+                                    NEW_WNMP_VERSION = new Version(reader.Value);
+                                    break;
+                                case "upgradeurl":
+                                    Wnmp_Upgrade_URL = new Uri(reader.Value);
+                                    break;
+                                case "cpversion":
+                                    NEW_CP_VERSION = new Version(reader.Value);
+                                    break;
+                                case "cpupdateurl":
+                                    CP_UPDATE_URL = new Uri(reader.Value);
+                                    break;
+                            }
+                    }
+                } while (reader.Read());
+            }
+            return true;
+        }
         #endregion
         /// <summary>
         /// Downloads the update for Wnmp
@@ -257,10 +257,10 @@ namespace Wnmp.Helpers
                 for (var j = 0; j < processtokill.Length; j++) {
                     var tempProcess = processes[i].ProcessName;
 
-					if (tempProcess == processtokill[j]) { // If the proccess is the proccess we want to kill
-						processes[i].Kill(); // Kill the proccess
-						break;
-					}
+                    if (tempProcess == processtokill[j]) { // If the proccess is the proccess we want to kill
+                        processes[i].Kill(); // Kill the proccess
+                        break;
+                    }
                 }
             }
         } // End of KillProcesses()

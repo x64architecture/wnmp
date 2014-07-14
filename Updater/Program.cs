@@ -37,13 +37,13 @@ namespace Updater
         {
             foreach (Process process in Process.GetProcesses()) {
                 if (process.ProcessName.Contains(name)) {
-					try {
-						process.Kill();
-					} catch (Exception ex) {
-						File.WriteAllText("updaterlog.txt", ex.ToString());
-						Console.WriteLine(ex.Message);
-						return false;
-					}
+                    try {
+                        process.Kill();
+                    } catch (Exception ex) {
+                        File.WriteAllText("updaterlog.txt", ex.ToString());
+                        Console.WriteLine(ex.Message);
+                        return false;
+                    }
                     return true;
                 }
             }

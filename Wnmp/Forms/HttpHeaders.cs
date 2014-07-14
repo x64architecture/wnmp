@@ -31,22 +31,22 @@ namespace Wnmp.Forms
 
         private void getHeadersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			HTTPHeaderslistView.Items.Clear();
-			try {
-				var request = (HttpWebRequest)WebRequest.Create(urlTextBox.Text);
-				request.Method = "GET";
-				request.ContentType = "application/x-www-form-urlencoded";
-				using (var response = request.GetResponse()) {
-					foreach (var s in response.Headers.AllKeys) {
-						var item = new ListViewItem();
-						item.Text = s;
-						item.SubItems.Add(response.Headers[s]);
-						HTTPHeaderslistView.Items.Add(item);
-					}
-				}
-			} catch (Exception ex) {
+            HTTPHeaderslistView.Items.Clear();
+            try {
+                var request = (HttpWebRequest)WebRequest.Create(urlTextBox.Text);
+                request.Method = "GET";
+                request.ContentType = "application/x-www-form-urlencoded";
+                using (var response = request.GetResponse()) {
+                    foreach (var s in response.Headers.AllKeys) {
+                        var item = new ListViewItem();
+                        item.Text = s;
+                        item.SubItems.Add(response.Headers[s]);
+                        HTTPHeaderslistView.Items.Add(item);
+                    }
+                }
+            } catch (Exception ex) {
                     MessageBox.Show(ex.Message);
-			}
+            }
         }
     }
 }

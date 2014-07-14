@@ -103,10 +103,10 @@ namespace Wnmp.Forms
 
         private void AutoUpdate_CheckedChanged(object sender, EventArgs e)
         {
-			if (AutoUpdate.Checked)
-				settings.Autocheckforupdates = true;
-			else
-				settings.Autocheckforupdates = false;
+            if (AutoUpdate.Checked)
+                settings.Autocheckforupdates = true;
+            else
+                settings.Autocheckforupdates = false;
         }
 
         private void PHP_PORT_ValueChanged(object sender, EventArgs e)

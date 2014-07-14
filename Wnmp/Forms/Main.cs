@@ -54,11 +54,11 @@ namespace Wnmp.Forms
                 return myCp;
             }
         }
-		
+        
         /// <summary>
         /// Takes a form and displays it
         /// </summary>
-		private void ShowForm(Form form)
+        private void ShowForm(Form form)
         {
             form.StartPosition = FormStartPosition.CenterParent;
             form.ShowDialog(this);
@@ -129,11 +129,11 @@ namespace Wnmp.Forms
         {
             if (!Options.settings.Minimizewnmptotray)
                 return;
-			
-			if (WindowState == FormWindowState.Minimized) {
-				this.Hide();
-				if (MinimizeWnmpToTrayCount > 0)
-					return;
+            
+            if (WindowState == FormWindowState.Minimized) {
+                this.Hide();
+                if (MinimizeWnmpToTrayCount > 0)
+                    return;
 
                 MinimizeWnmpToTrayCount++;
                 WnmpTrayIcon.BalloonTipTitle = "Wnmp";

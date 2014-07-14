@@ -58,13 +58,13 @@ namespace Wnmp.Internals
         /// </summary>
         public static void DeleteFile(string file)
         {
-			if (!File.Exists(file))
-				return;
-			try {
-				File.Delete(file);
-			} catch (Exception ex) {
-				Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
-			}
+            if (!File.Exists(file))
+                return;
+            try {
+                File.Delete(file);
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
+            }
         }
     }
 }

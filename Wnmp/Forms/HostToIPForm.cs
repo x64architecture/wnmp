@@ -52,18 +52,18 @@ namespace Wnmp.Forms
         private void Go_Click(object sender, EventArgs e)
         {
             IPAddresses.Items.Clear();
-			if (host.Text == String.Empty)
-				return;
-			try {
-				IPAddress[] ips;
-				HostToIP(host.Text, out ips);
-				
-				foreach (var ip in ips)
-					IPAddresses.Items.Add(ip.ToString());
-			} catch (Exception ex) {
-				MessageBox.Show(ex.Message);
-			}
-		}
+            if (host.Text == String.Empty)
+                return;
+            try {
+                IPAddress[] ips;
+                HostToIP(host.Text, out ips);
+                
+                foreach (var ip in ips)
+                    IPAddresses.Items.Add(ip.ToString());
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
     }
 }

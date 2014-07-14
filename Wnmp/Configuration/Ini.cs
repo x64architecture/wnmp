@@ -47,17 +47,17 @@ namespace Wnmp.Configuration
         /// <returns></returns>
         private string ReadIniValue(string Option)
         {
-			if (!File.Exists(iniPath))
-				return "";
-			
-			string str = Option + "=";
-			using (var sr = new StreamReader(iniPath)) {
-				string line;
-				while ((line = sr.ReadLine()) != null) { // Read every line while not null
+            if (!File.Exists(iniPath))
+                return "";
+            
+            string str = Option + "=";
+            using (var sr = new StreamReader(iniPath)) {
+                string line;
+                while ((line = sr.ReadLine()) != null) { // Read every line while not null
                         if (line.StartsWith(str))
                             return line.Remove(0, str.Length);
                 }
-			}
+            }
             return "";
         }
 
