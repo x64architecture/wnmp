@@ -78,13 +78,13 @@ namespace Wnmp.Helpers
         private static void DirFiles(string path, string GetFiles, ContextMenuStrip cms)
         {
             var dinfo = new DirectoryInfo(Main.StartupPath + path);
+
             if (!dinfo.Exists)
                 return;
+
             var Files = dinfo.GetFiles(GetFiles);
             foreach (var file in Files)
-            {
                 cms.Items.Add(file.Name, null);
-            }
         }
 
         /// <summary>
@@ -131,27 +131,24 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Generates a public and private keypair the first time Wnmp is launched
         /// </summary>
-        internal static void FirstRun()
-        {
-            if (IsFirstRun())
-            {
-                if (!Directory.Exists(Main.StartupPath + "/conf"))
-                {
-                    Directory.CreateDirectory(Main.StartupPath + "/conf");
-                }
-                File.WriteAllBytes(Main.StartupPath + "/CertGen.exe", Properties.Resources.CertGen);
-                using (var ps = new Process())
-                {
-                    ps.StartInfo.FileName = Main.StartupPath + "/CertGen.exe";
-                    ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                    ps.Start();
-                    ps.WaitForExit();
-                    Common.DeleteFile(Main.StartupPath + "/CertGen.exe");
-                    Options.settings.Firstrun = false;
-                    Options.settings.UpdateSettings();
-                }
-            }
-        }
+		internal static void FirstRun()
+		{
+			if (!IsFirstRun())
+				return;
 
+			if (!Directory.Exists(Main.StartupPath + "/conf"))
+				Directory.CreateDirectory(Main.StartupPath + "/conf");
+			File.WriteAllBytes(Main.StartupPath + "/CertGen.exe", Properties.Resources.CertGen);
+
+			using (var ps = new Process()) {
+				ps.StartInfo.FileName = Main.StartupPath + "/CertGen.exe";
+				ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+				ps.Start();
+				ps.WaitForExit();
+				Common.DeleteFile(Main.StartupPath + "/CertGen.exe");
+				Options.settings.Firstrun = false;
+				Options.settings.UpdateSettings();
+			}
+		}
     }
 }

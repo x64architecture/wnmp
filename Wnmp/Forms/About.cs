@@ -36,8 +36,7 @@ namespace Wnmp.Forms
 
         protected override CreateParams CreateParams
         {
-            get
-            {
+            get {
                 var myCp = base.CreateParams;
                 myCp.Style = myCp.Style & ~Common.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
                 return myCp;
@@ -46,7 +45,7 @@ namespace Wnmp.Forms
 
         private void Closebtn_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
         }
 
         private void wnmpwebsiteLabel_Click(object sender, EventArgs e)

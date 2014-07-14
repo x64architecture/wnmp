@@ -96,9 +96,7 @@ namespace Wnmp.Programs
             Log.wnmp_log_notice("Attempting to start MariaDB shell", Log.LogSection.WNMP_MARIADB);
             // MariaDB
             if (!MariaDBIsRunning())
-            {
                 startprocess(mysqldExe, "", false);
-            }
             // MariaDB Shell
             Process.Start(mysqlExe, "-u root -p");
         }

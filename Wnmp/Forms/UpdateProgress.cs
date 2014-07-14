@@ -34,8 +34,7 @@ namespace Wnmp.Forms
 
         protected override CreateParams CreateParams
         {
-            get
-            {
+            get {
                 var myCp = base.CreateParams;
                 myCp.Style = myCp.Style & ~Common.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
                 return myCp;

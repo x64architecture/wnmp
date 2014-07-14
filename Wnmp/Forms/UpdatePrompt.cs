@@ -17,6 +17,7 @@ This file is part of Wnmp.
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 using Wnmp.Internals;
@@ -34,8 +35,7 @@ namespace Wnmp.Forms
 
         protected override CreateParams CreateParams
         {
-            get
-            {
+            get {
                 var myCp = base.CreateParams;
                 myCp.Style = myCp.Style & ~Common.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
                 return myCp;
@@ -56,7 +56,7 @@ namespace Wnmp.Forms
 
         private void viewchange_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.getwnmp.org/WhatsNew");
+            Process.Start("http://www.getwnmp.org/WhatsNew");
         }
     }
 }

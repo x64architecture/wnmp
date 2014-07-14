@@ -48,8 +48,7 @@ namespace Wnmp.Forms
 
         protected override CreateParams CreateParams
         {
-            get
-            {
+            get {
                 var myCp = base.CreateParams;
                 myCp.Style = myCp.Style & ~Common.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
                 return myCp;
@@ -130,18 +129,17 @@ namespace Wnmp.Forms
         {
             if (!Options.settings.Minimizewnmptotray)
                 return;
+			
+			if (WindowState == FormWindowState.Minimized) {
+				this.Hide();
+				if (MinimizeWnmpToTrayCount > 0)
+					return;
 
-                if (WindowState == FormWindowState.Minimized)
-                {
-                    Hide();
-                    if (MinimizeWnmpToTrayCount > 0)
-                        return;
-
-                    MinimizeWnmpToTrayCount++;
-                    WnmpTrayIcon.BalloonTipTitle = "Wnmp";
-                    WnmpTrayIcon.BalloonTipText = "Wnmp has been minimized to the tray.";
-                    WnmpTrayIcon.ShowBalloonTip(4000);
-                }
+                MinimizeWnmpToTrayCount++;
+                WnmpTrayIcon.BalloonTipTitle = "Wnmp";
+                WnmpTrayIcon.BalloonTipText = "Wnmp has been minimized to the tray.";
+                WnmpTrayIcon.ShowBalloonTip(4000);
+           }
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -164,8 +162,8 @@ namespace Wnmp.Forms
 
         private void WnmpTrayIcon_Click(object sender, EventArgs e)
         {
-            Show();
-            WindowState = FormWindowState.Normal;
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
         }
 
         private void wnmpdir_Click(object sender, EventArgs e)

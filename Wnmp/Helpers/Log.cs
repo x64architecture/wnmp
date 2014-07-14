@@ -37,9 +37,7 @@ namespace Wnmp.Helpers
         {
             var customAttributes = value.GetType().GetField(value.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), true);
             if (customAttributes.Length > 0)
-            {
                 return ((DescriptionAttribute)customAttributes[0]).Description;
-            }
 
             return string.Empty;
         }
@@ -49,8 +47,7 @@ namespace Wnmp.Helpers
             var str = string.Format("{0} [{1}] - {2}", DateTime.Now.ToString(), GetEnumDescription(logSection), message);
             var textLength = rtfLog.TextLength;
             rtfLog.AppendText(str + "\n");
-            if (rtfLog.Find(GetEnumDescription(logSection), textLength, RichTextBoxFinds.MatchCase) != -1)
-            {
+            if (rtfLog.Find(GetEnumDescription(logSection), textLength, RichTextBoxFinds.MatchCase) != -1) {
                 rtfLog.SelectionLength = GetEnumDescription(logSection).Length;
                 rtfLog.SelectionColor = color;
             }

@@ -32,8 +32,7 @@ namespace Wnmp.Forms
 
         protected override CreateParams CreateParams
         {
-            get
-            {
+            get {
                 var myCp = base.CreateParams;
                 myCp.Style = myCp.Style & ~Common.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
                 return myCp;
@@ -53,24 +52,18 @@ namespace Wnmp.Forms
         private void Go_Click(object sender, EventArgs e)
         {
             IPAddresses.Items.Clear();
-            if (host.Text != String.Empty)
-            {
-                try
-                {
-                    IPAddress[] ips;
-                    HostToIP(host.Text, out ips);
-
-                    foreach (var ip in ips)
-                    {
-                        IPAddresses.Items.Add(ip.ToString());
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
+			if (host.Text == String.Empty)
+				return;
+			try {
+				IPAddress[] ips;
+				HostToIP(host.Text, out ips);
+				
+				foreach (var ip in ips)
+					IPAddresses.Items.Add(ip.ToString());
+			} catch (Exception ex) {
+				MessageBox.Show(ex.Message);
+			}
+		}
 
     }
 }
