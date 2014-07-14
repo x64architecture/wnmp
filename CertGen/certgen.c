@@ -73,7 +73,7 @@ int main()
 
 	if (!(fp = fopen(KEY_PUB, "w"))) {
 		printf("Error writing to public key file");
-		return 1;
+		return -1;
 	}
 	if (PEM_write_X509(fp, x509) != 1)
 		printf("Error while writing public key");
@@ -81,7 +81,7 @@ int main()
 
 	if (!(fp = fopen(KEY_PRV, "w"))) {
 		printf("Error writing to private key file");
-		return 1;
+		return -1;
 	}
 	if (PEM_write_PrivateKey(fp, pKey, NULL, NULL, 0, NULL, NULL) != 1)
 		printf("Error while writing private key");
