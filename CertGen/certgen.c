@@ -71,8 +71,7 @@ int main()
 
 	X509_sign(x509, pKey, EVP_sha1());
 
-	if (!(fp = fopen(KEY_PUB, "w")))
-	{
+	if (!(fp = fopen(KEY_PUB, "w"))) {
 		printf("Error writing to public key file");
 		return 1;
 	}
@@ -80,8 +79,7 @@ int main()
 		printf("Error while writing public key");
 	fclose(fp);
 
-	if (!(fp = fopen(KEY_PRV, "w")))
-	{
+	if (!(fp = fopen(KEY_PRV, "w"))) {
 		printf("Error writing to private key file");
 		return 1;
 	}
