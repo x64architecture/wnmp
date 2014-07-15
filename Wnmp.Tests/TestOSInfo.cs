@@ -8,7 +8,7 @@ namespace Wnmp.Tests
     public class TestOSInfo
     {
         [Test]
-        public void TestW81OSName()
+        public void TestOSName()
         {
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Environment.SystemDirectory + "/Kernel32.dll");
             var major = fvi.FileMajorPart;
