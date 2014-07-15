@@ -181,14 +181,13 @@ namespace Wnmp.Helpers
                 return;
 
             if (WNMP_VER.CompareTo(NEW_WNMP_VERSION) < 0) { // If it returns less than 0 than theres a new version
+                FoundWnmpUpdate = true;
                 var CV = new UpdatePrompt();
                 CV.StartPosition = FormStartPosition.CenterScreen;
                 CV.cversion.Text = WNMP_VER.ToString();
                 CV.newversion.Text = NEW_WNMP_VERSION.ToString();
-                if (CV.ShowDialog() == DialogResult.Yes) {
-                    FoundWnmpUpdate = true;
+                if (CV.ShowDialog() == DialogResult.Yes)
                     DownloadWnmpUpdate(Wnmp_Upgrade_URL, UpdateExe);
-                }
             } else
                 Log.wnmp_log_notice("Your version: " + WNMP_VER + " is up to date.", Log.LogSection.WNMP_MAIN);
             if (FoundWnmpUpdate != true) {
