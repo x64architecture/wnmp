@@ -83,7 +83,7 @@ namespace Wnmp.Forms
 
         private void SupportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("http://mailman.getwnmp.org/mailman/listinfo/wnmp");
+            Process.Start("http://mailman.getwnmp.org/mailman/listinfo/wnmp-users");
         }
 
         private void Report_BugToolStripMenuItem_Click(object sender, EventArgs e)
