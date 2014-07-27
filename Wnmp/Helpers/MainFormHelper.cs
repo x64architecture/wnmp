@@ -34,7 +34,7 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Checks if Nginx, MariaDB, and PHP exist in the Wnmp directory
         /// </summary>
-        private static void checkforapps()
+        public static void checkforapps()
         {
             Log.wnmp_log_notice("Checking for applications", Log.LogSection.WNMP_MAIN);
             if (!File.Exists(Application.StartupPath + "/nginx.exe"))
@@ -48,34 +48,10 @@ namespace Wnmp.Helpers
         }
         #endregion checkforapps
 
-        internal static void DoStartup()
-        {
-            Log.wnmp_log_notice("Control Panel Version: " + Main.GetCPVER, Log.LogSection.WNMP_MAIN);
-            Log.wnmp_log_notice("Wnmp Version: " + Application.ProductVersion, Log.LogSection.WNMP_MAIN);
-            Log.wnmp_log_notice(OSVersionInfo.WindowsVersionString(), Log.LogSection.WNMP_MAIN);
-            Log.wnmp_log_notice("Wnmp Directory: " + Application.StartupPath, Log.LogSection.WNMP_MAIN);
-            checkforapps();
-            DoTimer();
-            Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
-
-            if (Options.settings.Startallapplicationsatlaunch)
-                General.start_Click(null, null);
-
-            DirFiles("/conf", "*.conf", Nginx.cms);
-            DirFiles("/mariadb", "my.ini", MariaDB.cms);
-            DirFiles("/php", "php.ini", PHP.cms);
-            DirFiles("/logs", "*.log", Nginx.lms);
-            DirFiles("/mariadb/data", "*.log", MariaDB.lms);
-            DirFiles("/php/logs", "*.log", PHP.lms);
-
-            if (Options.settings.Autocheckforupdates)
-                Updater.DoDateEclasped();
-        }
-
         /// <summary>
         /// Adds configuration files to the Config buttons context menu strip
         /// </summary>
-        private static void DirFiles(string path, string GetFiles, ContextMenuStrip cms)
+        public static void DirFiles(string path, string GetFiles, ContextMenuStrip cms)
         {
             var dinfo = new DirectoryInfo(Main.StartupPath + path);
 
@@ -90,7 +66,7 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Sets up the timer to check if the applications are running
         /// </summary>
-        private static void DoTimer()
+        public static void DoTimer()
         {
             CheckIfAppsAreRunning(); // First we check at startup
             Timer timer = new Timer();
@@ -107,7 +83,7 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Checks if Nginx, MariaDB or PHP is running
         /// </summary>
-        internal static void CheckIfAppsAreRunning()
+        public static void CheckIfAppsAreRunning()
         {
             check_if_running("nginx", Program.formInstance.nginxrunning);
             check_if_running("mysqld", Program.formInstance.mariadbrunning);
@@ -131,7 +107,7 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Generates a public and private keypair the first time Wnmp is launched
         /// </summary>
-        internal static void FirstRun()
+        public static void FirstRun()
         {
             if (!IsFirstRun())
                 return;

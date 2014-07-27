@@ -29,17 +29,17 @@ namespace Wnmp.Programs
     {
         private static readonly ToolTip toolTip = new ToolTip();
 
-        internal static void start_MouseHover()
+        public static void start_MouseHover()
         {
             toolTip.Show("Starts Nginx, PHP-CGI & MariaDB", Program.formInstance.start);
         }
 
-        internal static void stop_MouseHover()
+        public static void stop_MouseHover()
         {
             toolTip.Show("Stops Nginx, PHP-CGI & MariaDB", Program.formInstance.stop);
         }
 
-        internal static void start_Click(object sender, EventArgs e)
+        public static void start_Click(object sender, EventArgs e)
         {
             Log.wnmp_log_notice("Attempting to start all the applications", Log.LogSection.WNMP_MAIN);
             // Nginx
@@ -50,7 +50,7 @@ namespace Wnmp.Programs
             MariaDB.mdb_start_Click(sender, e);
         }
 
-        internal static void stop_Click(object sender, EventArgs e)
+        public static void stop_Click(object sender, EventArgs e)
         {
             Log.wnmp_log_notice("Attempting to stop all the applications", Log.LogSection.WNMP_MAIN);
             // Nginx

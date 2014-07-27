@@ -30,7 +30,7 @@ namespace Wnmp.Internals
 
         #region PRODUCT INFO
         [DllImport("Kernel32.dll")]
-        internal static extern bool GetProductInfo(
+        public static extern bool GetProductInfo(
             int osMajorVersion,
             int osMinorVersion,
             int spMajorVersion,
@@ -40,17 +40,17 @@ namespace Wnmp.Internals
 
         #region VERSION
         [DllImport("kernel32.dll")]
-        internal static extern bool GetVersionEx(ref OSVERSIONINFOEX osVersionInfo);
+        public static extern bool GetVersionEx(ref OSVERSIONINFOEX osVersionInfo);
         #endregion VERSION
 
         #region SYSTEMMETRICS
         [DllImport("user32")]
-        internal static extern int GetSystemMetrics(int nIndex);
+        public static extern int GetSystemMetrics(int nIndex);
         #endregion SYSTEMMETRICS
 
         #region OSVERSIONINFOEX
         [StructLayout(LayoutKind.Sequential)]
-        internal struct OSVERSIONINFOEX
+        public struct OSVERSIONINFOEX
         {
             public int dwOSVersionInfoSize;
             public int dwMajorVersion;
@@ -69,10 +69,10 @@ namespace Wnmp.Internals
 
         #region InternetGetConnectedState
         [DllImport("wininet.dll", SetLastError = true)]
-        internal static extern bool InternetGetConnectedState(out int lpdwFlags, int dwReserved);
+        public static extern bool InternetGetConnectedState(out int lpdwFlags, int dwReserved);
 
         [Flags]
-        internal enum ConnectionStates
+        public enum ConnectionStates
         {
             Modem = 0x1, // 1
             LAN = 0x2, // 2

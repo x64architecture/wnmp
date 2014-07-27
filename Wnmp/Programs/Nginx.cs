@@ -53,42 +53,42 @@ namespace Wnmp.Programs
             ps.Start(); // Start the process
         }
 
-        internal static void ngx_start_Click(object sender, EventArgs e)
+        public static void ngx_start_Click(object sender, EventArgs e)
         {
                 startprocess(NginxExe, "");
                 Log.wnmp_log_notice("Attempting to start Nginx", Log.LogSection.WNMP_NGINX);
                 Common.ToStartedLabel(Program.formInstance.nginxrunning);
         }
 
-        internal static void ngx_stop_Click(object sender, EventArgs e)
+        public static void ngx_stop_Click(object sender, EventArgs e)
         {
                 startprocess(NginxExe, "-s stop");
                 Log.wnmp_log_notice("Attempting to stop Nginx", Log.LogSection.WNMP_NGINX);
                 Common.ToStoppedLabel(Program.formInstance.nginxrunning);
         }
 
-        internal static void ngx_reload_Click(object sender, EventArgs e)
+        public static void ngx_reload_Click(object sender, EventArgs e)
         {
                 startprocess(NginxExe, "-s reload");
                 Log.wnmp_log_notice("Attempting to reload Nginx", Log.LogSection.WNMP_NGINX);
         }
 
-        internal static void ngx_stop_MouseHover(object sender, EventArgs e)
+        public static void ngx_stop_MouseHover(object sender, EventArgs e)
         {
             toolTip.Show("Stop Nginx", Program.formInstance.ngx_stop);
         }
 
-        internal static void ngx_start_MouseHover(object sender, EventArgs e)
+        public static void ngx_start_MouseHover(object sender, EventArgs e)
         {
             toolTip.Show("Start Nginx", Program.formInstance.ngx_start);
         }
 
-        internal static void ngx_reload_MouseHover(object sender, EventArgs e)
+        public static void ngx_reload_MouseHover(object sender, EventArgs e)
         {
             toolTip.Show("Reloads Nginx configuration without restart", Program.formInstance.ngx_reload);
         }
 
-        internal static void ngx_cfg_Click(object sender, EventArgs e)
+        public static void ngx_cfg_Click(object sender, EventArgs e)
         {
             var btnSender = (Button)sender;
             var ptLowerLeft = new Point(0, btnSender.Height);
@@ -103,7 +103,7 @@ namespace Wnmp.Programs
             Process.Start(Options.settings.Editor, Main.StartupPath + "/conf/" + e.ClickedItem.Text);
         }
 
-        internal static void ngx_log_Click(object sender, EventArgs e)
+        public static void ngx_log_Click(object sender, EventArgs e)
         {
             var btnSender = (Button)sender;
             var ptLowerLeft = new Point(0, btnSender.Height);

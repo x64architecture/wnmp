@@ -230,7 +230,7 @@ namespace Wnmp.Helpers
         /// and excutes the updater if true.
         /// </summary>
         /// <param name="days"></param>
-        internal static void DoDateEclasped()
+        public static void DoDateEclasped()
         {
             if (Options.settings.Lastcheckforupdate != DateTime.MinValue) {
                 var LastCheckForUpdate = Options.settings.Lastcheckforupdate;

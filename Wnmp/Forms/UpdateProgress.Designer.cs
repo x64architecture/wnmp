@@ -92,8 +92,8 @@
         #endregion
 
         private System.Windows.Forms.Button Canceldl;
-        internal System.Windows.Forms.Label label1;
-        internal System.Windows.Forms.ProgressBar progressBar1;
-        internal System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.ProgressBar progressBar1;
+        public System.Windows.Forms.Label label2;
     }
 }

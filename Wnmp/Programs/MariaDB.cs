@@ -56,14 +56,14 @@ namespace Wnmp.Programs
                 ps.WaitForExit();
         }
 
-        internal static void mdb_start_Click(object sender, EventArgs e)
+        public static void mdb_start_Click(object sender, EventArgs e)
         {
             startprocess(mysqldExe, "", false);
             Log.wnmp_log_notice("Attempting to start MariaDB", Log.LogSection.WNMP_MARIADB);
             Common.ToStartedLabel(Program.formInstance.mariadbrunning);
         }
 
-        internal static void mdb_stop_Click(object sender, EventArgs e)
+        public static void mdb_stop_Click(object sender, EventArgs e)
         {
             // MariaDB
             Log.wnmp_log_notice("Attempting to stop MariaDB", Log.LogSection.WNMP_MARIADB);
@@ -71,7 +71,7 @@ namespace Wnmp.Programs
             Common.ToStoppedLabel(Program.formInstance.mariadbrunning);
         }
 
-        internal static void mdb_restart_Click(object sender, EventArgs e)
+        public static void mdb_restart_Click(object sender, EventArgs e)
         {
             // MariaDB
             Log.wnmp_log_notice("Attempting to restart MariaDB", Log.LogSection.WNMP_MARIADB);
@@ -91,7 +91,7 @@ namespace Wnmp.Programs
 
             return ptcf.Length == 0;
         }
-        internal static void mdb_shell_Click(object sender, EventArgs e)
+        public static void mdb_shell_Click(object sender, EventArgs e)
         {
             Log.wnmp_log_notice("Attempting to start MariaDB shell", Log.LogSection.WNMP_MARIADB);
             // MariaDB
@@ -101,27 +101,27 @@ namespace Wnmp.Programs
             Process.Start(mysqlExe, "-u root -p");
         }
 
-        internal static void mdb_start_MouseHover(object sender, EventArgs e)
+        public static void mdb_start_MouseHover(object sender, EventArgs e)
         {
             toolTip.Show("Start MariaDB", Program.formInstance.mdb_start);
         }
 
-        internal static void mdb_stop_MouseHover(object sender, EventArgs e)
+        public static void mdb_stop_MouseHover(object sender, EventArgs e)
         {
             toolTip.Show("Stop MariaDB", Program.formInstance.mdb_stop);
         }
 
-        internal static void mdb_shell_MouseHover(object sender, EventArgs e)
+        public static void mdb_shell_MouseHover(object sender, EventArgs e)
         {
             toolTip.Show("Open MariaDB Shell", Program.formInstance.mdb_shell);
         }
 
-        internal static void mdb_restart_MouseHover(object sender, EventArgs e)
+        public static void mdb_restart_MouseHover(object sender, EventArgs e)
         {
             toolTip.Show("Restart MariaDB", Program.formInstance.mdb_restart);
         }
 
-        internal static void mdb_cfg_Click(object sender, EventArgs e)
+        public static void mdb_cfg_Click(object sender, EventArgs e)
         {
             var btnSender = (Button)sender;
             var ptLowerLeft = new Point(0, btnSender.Height);
@@ -136,7 +136,7 @@ namespace Wnmp.Programs
             Process.Start(Options.settings.Editor, Main.StartupPath + "/mariadb/" + e.ClickedItem.Text);
         }
 
-        internal static void mdb_log_Click(object sender, EventArgs e)
+        public static void mdb_log_Click(object sender, EventArgs e)
         {
             var btnSender = (Button)sender;
             var ptLowerLeft = new Point(0, btnSender.Height);

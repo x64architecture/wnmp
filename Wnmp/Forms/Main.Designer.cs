@@ -592,13 +592,13 @@ namespace Wnmp.Forms
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        internal System.Windows.Forms.Button mdb_shell;
-        internal System.Windows.Forms.Button mdb_stop;
-        internal System.Windows.Forms.Button php_start;
-        internal System.Windows.Forms.Button php_stop;
-        internal System.Windows.Forms.Button ngx_stop;
-        internal System.Windows.Forms.Button start;
-        internal System.Windows.Forms.Button stop;
+        public System.Windows.Forms.Button mdb_shell;
+        public System.Windows.Forms.Button mdb_stop;
+        public System.Windows.Forms.Button php_start;
+        public System.Windows.Forms.Button php_stop;
+        public System.Windows.Forms.Button ngx_stop;
+        public System.Windows.Forms.Button start;
+        public System.Windows.Forms.Button stop;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button ngx_config;
         private System.Windows.Forms.Button php_cfg;
@@ -608,15 +608,15 @@ namespace Wnmp.Forms
         private System.Windows.Forms.Button mdb_log;
         private System.Windows.Forms.Button ngx_log;
         private System.Windows.Forms.Button wnmpdir;
-        internal System.Windows.Forms.RichTextBox log_rtb;
+        public System.Windows.Forms.RichTextBox log_rtb;
         protected System.Windows.Forms.Label label4;
         protected System.Windows.Forms.Label label8;
         protected System.Windows.Forms.Label label7;
-        internal System.Windows.Forms.Label nginxrunning;
-        internal System.Windows.Forms.Label mariadbrunning;
-        internal System.Windows.Forms.Button mdb_start;
-        internal System.Windows.Forms.Button ngx_start;
-        internal System.Windows.Forms.Button ngx_reload;
+        public System.Windows.Forms.Label nginxrunning;
+        public System.Windows.Forms.Label mariadbrunning;
+        public System.Windows.Forms.Button mdb_start;
+        public System.Windows.Forms.Button ngx_start;
+        public System.Windows.Forms.Button ngx_reload;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem donateToolStripMenuItem;
@@ -628,12 +628,12 @@ namespace Wnmp.Forms
         private System.Windows.Forms.ToolStripMenuItem reportBugToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem localhostToolStripMenuItem;
-        internal System.Windows.Forms.Label phprunning;
+        public System.Windows.Forms.Label phprunning;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hostToIPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem getHTTPHeadersToolStripMenuItem;
-        internal System.Windows.Forms.Button php_restart;
-        internal System.Windows.Forms.Button mdb_restart;
+        public System.Windows.Forms.Button php_restart;
+        public System.Windows.Forms.Button mdb_restart;
 
     }
 }

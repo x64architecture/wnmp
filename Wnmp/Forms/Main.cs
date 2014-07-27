@@ -39,6 +39,16 @@ namespace Wnmp.Forms
 
         private readonly NotifyIcon WnmpTrayIcon = new NotifyIcon();
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                var myCp = base.CreateParams;
+                myCp.Style = myCp.Style & ~Common.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
+                return myCp;
+            }
+        }
+
         public Main()
         {
             InitializeComponent();
@@ -46,13 +56,43 @@ namespace Wnmp.Forms
             Options.settings.ReadSettings();
         }
 
-        protected override CreateParams CreateParams
+        private void Main_Load(object sender, EventArgs e)
         {
-            get {
-                var myCp = base.CreateParams;
-                myCp.Style = myCp.Style & ~Common.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
-                return myCp;
-            }
+            Log.setLogComponent(log_rtb);
+            WnmpTrayIcon.Icon = Properties.Resources.logo;
+            WnmpTrayIcon.Visible = true;
+
+            MainHelper.checkforapps();
+            MainHelper.DoTimer();
+
+            PopulateMenus();
+
+            if (Options.settings.Startallapplicationsatlaunch)
+                General.start_Click(null, null);
+
+            if (Options.settings.Autocheckforupdates)
+                Updater.DoDateEclasped();
+
+            Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
+        }
+
+        private void CheckFirstRun()
+        {
+            var worker = new System.Threading.Thread(MainHelper.FirstRun);
+            worker.Start();
+        }
+
+        /// <summary>
+        /// Populate configuration and log menus
+        /// </summary>
+        private void PopulateMenus()
+        {
+            MainHelper.DirFiles("/conf", "*.conf", Nginx.cms);
+            MainHelper.DirFiles("/mariadb", "my.ini", MariaDB.cms);
+            MainHelper.DirFiles("/php", "php.ini", PHP.cms);
+            MainHelper.DirFiles("/logs", "*.log", Nginx.lms);
+            MainHelper.DirFiles("/mariadb/data", "*.log", MariaDB.lms);
+            MainHelper.DirFiles("/php/logs", "*.log", PHP.lms);
         }
         
         /// <summary>
@@ -142,17 +182,6 @@ namespace Wnmp.Forms
            }
         }
 
-        private void Main_Load(object sender, EventArgs e)
-        {
-            WnmpTrayIcon.Icon = Properties.Resources.logo;
-            WnmpTrayIcon.Visible = true;
-
-            MainHelper.DoStartup();
-
-            var worker = new System.Threading.Thread(MainHelper.FirstRun);
-            worker.Start();
-        }
-
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             WnmpTrayIcon.Dispose();
@@ -173,7 +202,6 @@ namespace Wnmp.Forms
 
         private void setevents()
         {
-            Log.setLogComponent(log_rtb);
             WnmpTrayIcon.Click += WnmpTrayIcon_Click;
             // General Events Start
             start.Click += General.start_Click;

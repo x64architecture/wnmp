@@ -76,7 +76,7 @@ namespace Wnmp.Programs
                 startprocess(PHPExe, String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
         }
 
-        internal static void php_start_Click(object sender, EventArgs e)
+        public static void php_start_Click(object sender, EventArgs e)
         {
             startprocess(PHPExe, String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
             PHPStatus = Status.Started;
@@ -84,7 +84,7 @@ namespace Wnmp.Programs
             Common.ToStartedLabel(Program.formInstance.phprunning);
         }
 
-        internal static void php_stop_Click(object sender, EventArgs e)
+        public static void php_stop_Click(object sender, EventArgs e)
         {
             Log.wnmp_log_notice("Attempting to stop PHP", Log.LogSection.WNMP_PHP);
             PHPStatus = Status.Stopped;
@@ -95,7 +95,7 @@ namespace Wnmp.Programs
             Common.ToStoppedLabel(Program.formInstance.phprunning);
         }
 
-        internal static void php_restart_Click(object sender, EventArgs e)
+        public static void php_restart_Click(object sender, EventArgs e)
         {
             Log.wnmp_log_notice("Attempting to restart PHP", Log.LogSection.WNMP_PHP);
             // Kill PHP
@@ -109,22 +109,22 @@ namespace Wnmp.Programs
             Common.ToStartedLabel(Program.formInstance.phprunning);
         }
 
-        internal static void php_start_MouseHover(object sender, EventArgs e)
+        public static void php_start_MouseHover(object sender, EventArgs e)
         {
             toolTip.Show("Start PHP-CGI", Program.formInstance.php_start);
         }
 
-        internal static void php_stop_MouseHover(object sender, EventArgs e)
+        public static void php_stop_MouseHover(object sender, EventArgs e)
         {
             toolTip.Show("Stop PHP-CGI", Program.formInstance.php_stop);
         }
 
-        internal static void php_restart_MouseHover(object sender, EventArgs e)
+        public static void php_restart_MouseHover(object sender, EventArgs e)
         {
             toolTip.Show("Restart PHP-CGI", Program.formInstance.php_restart);
         }
 
-        internal static void php_cfg_Click(object sender, EventArgs e)
+        public static void php_cfg_Click(object sender, EventArgs e)
         {
             var btnSender = (Button)sender;
             var ptLowerLeft = new Point(0, btnSender.Height);
@@ -139,7 +139,7 @@ namespace Wnmp.Programs
             Process.Start(Options.settings.Editor, Main.StartupPath + "/php/" + e.ClickedItem.Text);
         }
 
-        internal static void php_log_Click(object sender, EventArgs e)
+        public static void php_log_Click(object sender, EventArgs e)
         {
             var btnSender = (Button)sender;
             var ptLowerLeft = new Point(0, btnSender.Height);
