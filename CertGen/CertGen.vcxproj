@@ -42,6 +42,10 @@
     <IncludePath>D:\ossl\1.0.1h\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\ossl\1.0.1h\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>D:\ossl\1.0.1h\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\ossl\1.0.1h\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>

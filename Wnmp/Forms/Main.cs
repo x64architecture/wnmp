@@ -34,7 +34,7 @@ namespace Wnmp.Forms
     {
         public static string StartupPath { get { return Application.StartupPath; } }
 
-        private static readonly Version CPVER = new Version("2.3");
+        private static readonly Version CPVER = new Version("2.3.1");
         public static Version GetCPVER { get { return CPVER; } }
 
         private readonly NotifyIcon WnmpTrayIcon = new NotifyIcon();
@@ -66,6 +66,7 @@ namespace Wnmp.Forms
             MainHelper.DoTimer();
 
             PopulateMenus();
+            CheckFirstRun();
 
             if (Options.settings.Startallapplicationsatlaunch)
                 General.start_Click(null, null);

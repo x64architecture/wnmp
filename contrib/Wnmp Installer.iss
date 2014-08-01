@@ -2,9 +2,9 @@
 ;Inno Setup http://www.jrsoftware.org/isdl.php#stable
 
 #define Name "Wnmp"
-#define Version "2.1.0"
+#define Version "2.1.1"
 #define Publisher "Kurt Cancemi"
-#define URL "http://wnmp.x64architecture.com"
+#define URL "http://www.getwnmp.org"
 #define ExeName "Wnmp.exe"
 #define Year "2014"
 
@@ -37,6 +37,7 @@ InternalCompressLevel=max
 SolidCompression=yes
 PrivilegesRequired=none
 RestartIfNeededByRun=no
+DirExistsWarning=no
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -48,8 +49,6 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 [Files]
 Source: "Wnmp.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "*"; Excludes: "mariadb\mysql-test\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "../vc_2008_sp1_redist_x86.exe"; DestDir: {tmp}; Flags: deleteafterinstall
-Source: "../vc_2012_redist_x86.exe"; DestDir: {tmp}; Flags: deleteafterinstall
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -60,7 +59,5 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#Name}"; Filename
 [Run]
 Filename: "{app}\{#ExeName}"; Description: "{cm:LaunchProgram,{#StringChange(Name, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 Filename: "{app}\contrib\ReadMe.html"; Description: "View the ReadMe.html"; Flags: postinstall shellexec skipifsilent unchecked
-Filename: "{tmp}\vc_2008_sp1_redist_x86.exe";
-Filename: "{tmp}\vc_2012_redist_x86.exe";
 Filename: "http://www.getwnmp.org/"; Flags: shellexec runasoriginaluser postinstall unchecked; Description: "View Wnmp Website";
 Filename: "http://www.getwnmp.org/contributing/"; Flags: shellexec runasoriginaluser postinstall; Description: "Make a contribution to Wnmp";

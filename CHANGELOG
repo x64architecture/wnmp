@@ -1,5 +1,23 @@
+Wnmp 2.1.1: Released: 08/01/2014
+================================
+- Wnmp Control Panel 2.3.1
+  * Fixed annoying double update prompt.
+  * Lots of internal changes
+
+- Nginx
+  * Updated to 1.7.3
+
+- MariaDB
+  * Updated to 10.0.12
+
+- PHP
+  * PHP updated to 5.5.15
+
+- phpMyAdmin
+  * Updated to 4.2.7
+
 Wnmp 2.1.0: Released: 06/06/2014
-=================================
+================================
 - Wnmp
   ****INCOMPATIABLE CHANGES****
   * Windows XP support dropped permanently
@@ -24,7 +42,7 @@ Wnmp 2.1.0: Released: 06/06/2014
   * PHP updated to 5.5.13
   * Dropped XP support
 
--phpMyAdmin
+- phpMyAdmin
   * Updated to 4.2.2
 
 Wnmp 2.0.13: Released: 04/08/2014
