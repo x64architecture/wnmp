@@ -81,7 +81,7 @@ int main()
     X509_add_ext(x509, ex, -1);
     X509_EXTENSION_free(ex);
 
-    X509_sign(x509, pKey, EVP_sha1());
+    X509_sign(x509, pKey, EVP_sha256());
 
     if (!(fp = fopen(KEY_PUB, "w"))) {
         printf("Error writing to public key file");
