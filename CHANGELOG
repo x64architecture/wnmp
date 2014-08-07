@@ -1,7 +1,16 @@
-Wnmp 2.1.2: Released: 08/??/2014
+Wnmp 2.1.1: Released: 08/07/2014
 ================================
 - Wnmp Control Panel 2.3.2
     *) Changed: CertGen now uses SHA-256 to sign certificates.
+
+- OpenSSL
+    *) Security: Fix for CVE-2014-3507, Fix for CVE-2014-3506, Fix for CVE-2014-3505,
+       Fix for CVE-2014-3509, Fix for CVE-2014-5139, Fix for CVE-2014-3508
+    *) Updated to 1.0.1i
+
+- Nginx
+    *) Security: Fix for CVE-2014-3556
+    *) Updated to 1.7.4
 
 Wnmp 2.1.1: Released: 08/01/2014
 ================================
