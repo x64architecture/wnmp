@@ -133,7 +133,7 @@ namespace Wnmp.Programs
 
         static void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.Editor, Main.StartupPath + "/mariadb/" + e.ClickedItem.Text);
+            Process.Start(Options.settings.Editor, Main.StartupPath + "/mariadb/data/" + e.ClickedItem.Text);
         }
 
         public static void mdb_log_Click(object sender, EventArgs e)

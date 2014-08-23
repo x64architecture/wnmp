@@ -92,7 +92,7 @@ namespace Wnmp.Forms
             MainHelper.DirFiles("/mariadb", "my.ini", MariaDB.cms);
             MainHelper.DirFiles("/php", "php.ini", PHP.cms);
             MainHelper.DirFiles("/logs", "*.log", Nginx.lms);
-            MainHelper.DirFiles("/mariadb/data", "*.log", MariaDB.lms);
+            MainHelper.DirFiles("/mariadb/data", "*.err", MariaDB.lms);
             MainHelper.DirFiles("/php/logs", "*.log", PHP.lms);
         }
         
