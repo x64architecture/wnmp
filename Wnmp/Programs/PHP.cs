@@ -78,15 +78,24 @@ namespace Wnmp.Programs
 
         public static void php_start_Click(object sender, EventArgs e)
         {
-            startprocess(PHPExe, String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
+            int i;
+            int pp = Options.settings.PHPProcesses;
+            int port = Options.settings.PHPPort;
+
+            for (i = 1; i <= pp; i++) {
+                startprocess(PHPExe, String.Format("-b localhost:{0} -c {1}", port, pini));
+                Log.wnmp_log_notice("Starting PHP " + i + "/" + pp + " On port: " + port, Log.LogSection.WNMP_PHP);
+                port++;
+            }
+            Log.wnmp_log_notice("PHP started", Log.LogSection.WNMP_PHP);
+
             PHPStatus = Status.Started;
-            Log.wnmp_log_notice("Attempting to start PHP", Log.LogSection.WNMP_PHP);
             Common.ToStartedLabel(Program.formInstance.phprunning);
         }
 
         public static void php_stop_Click(object sender, EventArgs e)
         {
-            Log.wnmp_log_notice("Attempting to stop PHP", Log.LogSection.WNMP_PHP);
+            Log.wnmp_log_notice("Stopping PHP", Log.LogSection.WNMP_PHP);
             PHPStatus = Status.Stopped;
             var phps = Process.GetProcessesByName("php-cgi");
             foreach (var currentProc in phps)
@@ -105,8 +114,7 @@ namespace Wnmp.Programs
                 currentProc.Kill();
 
             // Start PHP
-            startprocess(PHPExe, String.Format("-b localhost:{0} -c {1}", Options.settings.PHPPort, pini));
-            Common.ToStartedLabel(Program.formInstance.phprunning);
+            php_start_Click(null, null);
         }
 
         public static void php_start_MouseHover(object sender, EventArgs e)

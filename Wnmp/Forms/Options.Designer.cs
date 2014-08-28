@@ -67,6 +67,8 @@ namespace Wnmp.Forms
             this.PHP_PORT = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.Cancel = new System.Windows.Forms.Button();
+            this.PHP_PROCESSES = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.General.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -74,6 +76,7 @@ namespace Wnmp.Forms
             this.PHP.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PHP_PORT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PHP_PROCESSES)).BeginInit();
             this.SuspendLayout();
             // 
             // Save
@@ -273,18 +276,20 @@ namespace Wnmp.Forms
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.PHP_PROCESSES);
+            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.PHP_PORT);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(327, 66);
+            this.groupBox2.Size = new System.Drawing.Size(327, 85);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "PHP Settings";
             // 
             // PHP_PORT
             // 
-            this.PHP_PORT.Location = new System.Drawing.Point(77, 23);
+            this.PHP_PORT.Location = new System.Drawing.Point(108, 50);
             this.PHP_PORT.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -303,7 +308,7 @@ namespace Wnmp.Forms
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(17, 25);
+            this.label7.Location = new System.Drawing.Point(18, 52);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(54, 13);
             this.label7.TabIndex = 0;
@@ -318,6 +323,33 @@ namespace Wnmp.Forms
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
+            // 
+            // PHP_PROCESSES
+            // 
+            this.PHP_PROCESSES.Location = new System.Drawing.Point(108, 25);
+            this.PHP_PROCESSES.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.PHP_PROCESSES.Name = "PHP_PROCESSES";
+            this.PHP_PROCESSES.Size = new System.Drawing.Size(69, 20);
+            this.PHP_PROCESSES.TabIndex = 3;
+            this.PHP_PROCESSES.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.PHP_PROCESSES.ValueChanged += new System.EventHandler(this.PHP_PROCESSES_ValueChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(18, 27);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(84, 13);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "PHP Processes:";
             // 
             // Options
             // 
@@ -343,6 +375,7 @@ namespace Wnmp.Forms
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PHP_PORT)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PHP_PROCESSES)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -371,6 +404,8 @@ namespace Wnmp.Forms
         private System.Windows.Forms.NumericUpDown PHP_PORT;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button Cancel;
+        private System.Windows.Forms.NumericUpDown PHP_PROCESSES;
+        private System.Windows.Forms.Label label8;
 
     }
 }

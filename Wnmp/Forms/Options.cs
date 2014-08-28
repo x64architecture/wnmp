@@ -23,6 +23,7 @@ using Microsoft.Win32;
 
 using Wnmp.Configuration;
 using Wnmp.Internals;
+using System.IO;
 namespace Wnmp.Forms
 {
     /// <summary>
@@ -109,6 +110,12 @@ namespace Wnmp.Forms
                 settings.Autocheckforupdates = false;
         }
 
+        private void PHP_PROCESSES_ValueChanged(object sender, EventArgs e)
+        {
+            settings.PHPProcesses = (int)PHP_PROCESSES.Value;
+            UpdatePHPngxCfg();
+        }
+
         private void PHP_PORT_ValueChanged(object sender, EventArgs e)
         {
             settings.PHPPort = (int)PHP_PORT.Value;
@@ -117,7 +124,7 @@ namespace Wnmp.Forms
         private void Save_Click(object sender, EventArgs e)
         {
             settings.UpdateSettings();
-            Close();
+            this.Close();
         }
 
         #region UpdateOptions
@@ -139,7 +146,26 @@ namespace Wnmp.Forms
 
             UpdateCheckInterval.Value = settings.Checkforupdatefrequency;
 
+            PHP_PROCESSES.Value = settings.PHPProcesses;
+
             PHP_PORT.Value = settings.PHPPort;
+        }
+
+        private void UpdatePHPngxCfg()
+        {
+            int i;
+            int pp = Options.settings.PHPProcesses;
+            int port = Options.settings.PHPPort;
+
+            using (var sw = new StreamWriter(Main.StartupPath + "/conf/php_processes.conf")) {
+                sw.WriteLine("# DO NOT MODIFY!!! THIS FILE IS MANAGED BY THE WNMP CONTROL PANEL.\r\n");
+                sw.WriteLine("upstream php_processes {");
+                for (i = 1; i <= pp; i++) {
+                    sw.WriteLine("    server 127.0.0.1:" + port + " weight=1;");
+                    port++;
+                }
+                sw.WriteLine("}");
+            }
         }
 
         #endregion

@@ -37,6 +37,7 @@ namespace Wnmp.Configuration
         public bool Autocheckforupdates = true; // Auto check for updates
         public int Checkforupdatefrequency = 7; // Check for update frequency
         public int PHPPort = 9000; // PHP Port
+        public int PHPProcesses = 2; // Amount of PHP processes
         public DateTime Lastcheckforupdate = DateTime.MinValue;
         public bool Firstrun = true; // First run
 
@@ -45,7 +46,7 @@ namespace Wnmp.Configuration
         /// </summary>
         /// <param name="Option"></param>
         /// <returns></returns>
-        private string ReadIniValue(string Option)
+        private string ReadIniValue(string Option, object defobj)
         {
             if (!File.Exists(iniPath))
                 return "";
@@ -58,7 +59,7 @@ namespace Wnmp.Configuration
                             return line.Remove(0, str.Length);
                 }
             }
-            return "";
+            return defobj.ToString(); // Return the default value as a string
         }
 
         /// <summary>
@@ -69,16 +70,27 @@ namespace Wnmp.Configuration
             if (!File.Exists(iniPath))
                 UpdateSettings(); // Update options with default values
 
-            Editor = ReadIniValue("editorpath");
-            Boolean.TryParse(ReadIniValue("startupwithwindows"), out Startupwithwindows);
-            Boolean.TryParse(ReadIniValue("startallapplicationsatlaunch"), out Startallapplicationsatlaunch);
-            Boolean.TryParse(ReadIniValue("minimizewnmptotray"), out Minimizewnmptotray);
-            Boolean.TryParse(ReadIniValue("autocheckforupdates"), out Autocheckforupdates);
-            int.TryParse(ReadIniValue("checkforupdatefrequency"), out Checkforupdatefrequency);
-            DateTime.TryParse(ReadIniValue("lastcheckforupdate"), out Lastcheckforupdate);
-            int.TryParse(ReadIniValue("phpport"), out PHPPort);
-            Boolean.TryParse(ReadIniValue("firstrun"), out Firstrun);
+            Editor = ReadIniValue("editorpath", Editor);
+            Boolean.TryParse(ReadIniValue("startupwithwindows", Startupwithwindows),
+                             out Startupwithwindows);
+            Boolean.TryParse(ReadIniValue("startallapplicationsatlaunch", Startallapplicationsatlaunch),
+                             out Startallapplicationsatlaunch);
+            Boolean.TryParse(ReadIniValue("minimizewnmptotray", Minimizewnmptotray),
+                             out Minimizewnmptotray);
+            Boolean.TryParse(ReadIniValue("autocheckforupdates", Autocheckforupdates),
+                             out Autocheckforupdates);
+            Boolean.TryParse(ReadIniValue("firstrun", Firstrun),
+                 out Firstrun);
+            int.TryParse(ReadIniValue("checkforupdatefrequency", Checkforupdatefrequency),
+                         out Checkforupdatefrequency);
+            int.TryParse(ReadIniValue("phpprocesses", PHPProcesses),
+                         out PHPProcesses);
+            int.TryParse(ReadIniValue("phpport", PHPPort),
+                         out PHPPort);
+            DateTime.TryParse(ReadIniValue("lastcheckforupdate", Lastcheckforupdate),
+                  out Lastcheckforupdate);
 
+            UpdateSettings();
         }
         /// <summary>
         /// Updates the settings to the ini
@@ -94,6 +106,7 @@ namespace Wnmp.Configuration
                 sw.WriteLine("; Automatically check for updates\r\nautocheckforupdates=" + Autocheckforupdates);
                 sw.WriteLine("; Update frequency(In days)\r\ncheckforupdatefrequency=" + Checkforupdatefrequency);
                 sw.WriteLine("; Last check for update\r\nlastcheckforupdate=" + Lastcheckforupdate);
+                sw.WriteLine("; Amount of PHP processes\r\nphpprocesses=" + PHPProcesses);
                 sw.WriteLine("; PHP Port\r\nphpport=" + PHPPort);
                 sw.WriteLine("; First run\r\nfirstrun=" + Firstrun);
             }
