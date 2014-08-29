@@ -1,8 +1,6 @@
-;Wnmp Installer Script
-;Inno Setup http://www.jrsoftware.org/isdl.php#stable
-
+; Wnmp iss
 #define Name "Wnmp"
-#define Version "2.1.2"
+#define Version "2.1.3"
 #define Publisher "Kurt Cancemi"
 #define URL "http://www.getwnmp.org"
 #define ExeName "Wnmp.exe"
@@ -34,7 +32,7 @@ OutputDir=../Wnmp Output
 SetupIconFile=contrib\logo.ico
 Compression=lzma2
 InternalCompressLevel=max
-SolidCompression=yes
+SolidCompression=no
 PrivilegesRequired=none
 RestartIfNeededByRun=no
 DirExistsWarning=no

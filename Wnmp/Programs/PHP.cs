@@ -36,7 +36,7 @@ namespace Wnmp.Programs
         public static ContextMenuStrip cms = new ContextMenuStrip(); // Config button context menu
         public static ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
         private static readonly ToolTip toolTip = new ToolTip(); // ToolTip
-        private static readonly string pini = Main.StartupPath + "/php/php.ini"; // Location of php.ini to pass on to php
+        private static readonly string pini = String.Format("\"{0}/php/php.ini\"", Main.StartupPath); // Location of php.ini to pass on to php
         private static readonly string PHPExe = Main.StartupPath + "/php/php-cgi.exe";
 
         private enum Status
