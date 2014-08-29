@@ -114,14 +114,13 @@ namespace Wnmp.Helpers
 
             if (!Directory.Exists(Main.StartupPath + "/conf"))
                 Directory.CreateDirectory(Main.StartupPath + "/conf");
-            File.WriteAllBytes(Main.StartupPath + "/CertGen.exe", Properties.Resources.CertGen);
+            else if (!File.Exists(Main.StartupPath + "/bin/CertGen.exe"))
+                return; // CertGen.exe doesn't exist. (FAILURE)
 
             using (var ps = new Process()) {
-                ps.StartInfo.FileName = Main.StartupPath + "/CertGen.exe";
+                ps.StartInfo.FileName = Main.StartupPath + "/bin/CertGen.exe";
                 ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 ps.Start();
-                ps.WaitForExit();
-                Common.DeleteFile(Main.StartupPath + "/CertGen.exe");
                 Options.settings.Firstrun = false;
                 Options.settings.UpdateSettings();
             }

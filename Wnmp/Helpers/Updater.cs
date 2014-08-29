@@ -34,8 +34,6 @@ namespace Wnmp.Helpers
     {
         private static Uri Wnmp_Upgrade_URL; // Wnmp upgrade installer url
         private static Version NEW_WNMP_VERSION; // Wnmp version in the XML
-        private static Version NEW_CP_VERSION; // Control panel version in the XML
-        private static Uri CP_UPDATE_URL; // Control panel url (link to CP exe)
         private static readonly Version WNMP_VER = new Version(Application.ProductVersion); // Current program version
         private static readonly string UpdateExe = Main.StartupPath + "/Wnmp-Upgrade-Installer.exe";
         private static readonly string WNMP_NEW = Main.StartupPath + "/Wnmp_new.exe";
@@ -74,12 +72,6 @@ namespace Wnmp.Helpers
                                     break;
                                 case "upgradeurl":
                                     Wnmp_Upgrade_URL = new Uri(reader.Value);
-                                    break;
-                                case "cpversion":
-                                    NEW_CP_VERSION = new Version(reader.Value);
-                                    break;
-                                case "cpupdateurl":
-                                    CP_UPDATE_URL = new Uri(reader.Value);
                                     break;
                             }
                     }
@@ -131,77 +123,24 @@ namespace Wnmp.Helpers
         }
 
         /// <summary>
-        /// Downloads the update for the control panel
-        /// </summary>
-        /// <param name="uri"></param>
-        /// <param name="path"></param>
-        private static void DownloadCPUpdate(Uri uri, string path)
-        {
-            webClient = new WebClient();
-            var frm = new UpdateProgress();
-            frm.StartPosition = FormStartPosition.CenterScreen;
-            frm.Show();
-            Program.formInstance.Enabled = false;
-
-            frm.FormClosed += (s, e) => {
-                Program.formInstance.Enabled = true;
-                webClient.CancelAsync();
-            };
-
-            webClient.DownloadProgressChanged += (s, e) => {
-                frm.progressBar1.Value = e.ProgressPercentage;
-                frm.label2.Text = e.ProgressPercentage.ToString() + "%";
-            };
-
-            webClient.DownloadFileCompleted += (s, e) => {
-                if (!e.Cancelled) {
-                    webClient.Dispose();
-                    frm.Close();
-                    File.WriteAllBytes(UPDATER, Properties.Resources.updater);
-                    Process.Start(UPDATER);
-                    Application.Exit();
-                    Process.GetCurrentProcess().Kill();
-                } else
-                    webClient.Dispose();
-            };
-
-            webClient.DownloadFileAsync(uri, path);
-
-            webClient.Dispose();
-        }
-
-        /// <summary>
         /// Checks for updates
         /// </summary>
         public static void CheckForUpdates(bool AutoUpdate)
         {
-            var FoundWnmpUpdate = false; // Since were checking for two updates we have to check if it found the main one.
-
             if (!ReadUpdateXML())
                 return;
 
             if (WNMP_VER.CompareTo(NEW_WNMP_VERSION) < 0) { // If it returns less than 0 than theres a new version
-                FoundWnmpUpdate = true;
                 var CV = new UpdatePrompt();
                 CV.StartPosition = FormStartPosition.CenterScreen;
                 CV.cversion.Text = WNMP_VER.ToString();
                 CV.newversion.Text = NEW_WNMP_VERSION.ToString();
                 if (CV.ShowDialog() == DialogResult.Yes)
                     DownloadWnmpUpdate(Wnmp_Upgrade_URL, UpdateExe);
-            } else
+            } else {
                 Log.wnmp_log_notice("Your version: " + WNMP_VER + " is up to date.", Log.LogSection.WNMP_MAIN);
-            if (FoundWnmpUpdate != true) {
-                if (Main.GetCPVER.CompareTo(NEW_CP_VERSION) < 0) {
-                    var CV = new UpdatePrompt();
-                    CV.StartPosition = FormStartPosition.CenterScreen;
-                    CV.cversion.Text = Main.GetCPVER.ToString();
-                    CV.newversion.Text = NEW_CP_VERSION.ToString();
-
-                    if (CV.ShowDialog() == DialogResult.Yes)
-                        DownloadCPUpdate(CP_UPDATE_URL, WNMP_NEW);
-                } else
-                    Log.wnmp_log_notice("Your control panel version: " + Main.GetCPVER + " is up to date.", Log.LogSection.WNMP_MAIN);
             }
+
             if (AutoUpdate) {
                 Options.settings.Lastcheckforupdate = DateTime.Now;
                 Options.settings.UpdateSettings();

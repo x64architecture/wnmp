@@ -176,9 +176,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\updater.exe" />
     <None Include="Resources\Wnmp.png" />
-    <None Include="Resources\CertGen.exe" />
     <Content Include="Resources\logo.ico" />
   </ItemGroup>
   <ItemGroup>
