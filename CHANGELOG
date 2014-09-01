@@ -1,6 +1,6 @@
 Wnmp 2.1.3: Released: 08/29/2014
 ================================
-- Wnmp Control Panel 2.3.2
+- Wnmp Control Panel 2.3.3
     *) Fixed: Use correct log file for MariaDB.
     *) Feature: Added an option to start multiple php processes, defaults to 2.
        Wnmp->Options->PHP->PHP Processes
