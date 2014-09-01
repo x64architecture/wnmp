@@ -332,6 +332,11 @@ namespace Wnmp.Forms
             0,
             0,
             0});
+            this.PHP_PROCESSES.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.PHP_PROCESSES.Name = "PHP_PROCESSES";
             this.PHP_PROCESSES.Size = new System.Drawing.Size(69, 20);
             this.PHP_PROCESSES.TabIndex = 3;
