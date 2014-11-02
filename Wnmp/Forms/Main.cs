@@ -66,7 +66,7 @@ namespace Wnmp.Forms
             MainHelper.DoTimer();
 
             PopulateMenus();
-            CheckFirstRun();
+            MainHelper.FirstRun();
 
             if (Options.settings.Startallapplicationsatlaunch)
                 General.start_Click(null, null);
@@ -75,12 +75,6 @@ namespace Wnmp.Forms
                 Updater.DoDateEclasped();
 
             Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
-        }
-
-        private void CheckFirstRun()
-        {
-            var worker = new System.Threading.Thread(MainHelper.FirstRun);
-            worker.Start();
         }
 
         /// <summary>
