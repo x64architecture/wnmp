@@ -1,6 +1,6 @@
 ; Wnmp iss
 #define Name "Wnmp"
-#define Version "2.1.3"
+#define Version "2.1.4"
 #define Publisher "Kurt Cancemi"
 #define URL "http://www.getwnmp.org"
 #define ExeName "Wnmp.exe"

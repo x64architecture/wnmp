@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Wnmp")]
-[assembly: AssemblyDescription("Windows, Nginx, MariaDB & PHP Contol Panel")]
+[assembly: AssemblyDescription("Windows, Nginx, MariaDB & PHP Control Panel")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kurt Cancemi")]
 [assembly: AssemblyProduct("Wnmp")]
@@ -47,5 +47,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.1.3.0")]
-[assembly: AssemblyFileVersion("2.1.3.0")]
+[assembly: AssemblyVersion("2.1.4.0")]
+[assembly: AssemblyFileVersion("2.1.4.0")]
