@@ -39,8 +39,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\ossl\1.0.1i\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\ossl\1.0.1i\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\openssl\1.0.1j\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\openssl\1.0.1j\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>D:\ossl\1.0.1h\include;$(IncludePath)</IncludePath>
