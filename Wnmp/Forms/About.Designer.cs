@@ -94,7 +94,7 @@
             this.wnmpwebsiteLabel.Name = "wnmpwebsiteLabel";
             this.wnmpwebsiteLabel.Size = new System.Drawing.Size(178, 20);
             this.wnmpwebsiteLabel.TabIndex = 5;
-            this.wnmpwebsiteLabel.Text = "http://www.getwnmp.org";
+            this.wnmpwebsiteLabel.Text = "https://www.getwnmp.org";
             this.wnmpwebsiteLabel.Click += new System.EventHandler(this.wnmpwebsiteLabel_Click);
             this.wnmpwebsiteLabel.MouseLeave += new System.EventHandler(this.wnmpwebsiteLabel_MouseLeave);
             this.wnmpwebsiteLabel.MouseHover += new System.EventHandler(this.wnmpwebsiteLabel_MouseHover);

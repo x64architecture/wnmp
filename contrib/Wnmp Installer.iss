@@ -2,7 +2,7 @@
 #define Name "Wnmp"
 #define Version "2.1.4"
 #define Publisher "Kurt Cancemi"
-#define URL "http://www.getwnmp.org"
+#define URL "https://www.getwnmp.org"
 #define ExeName "Wnmp.exe"
 #define Year "2014"
 
@@ -57,5 +57,5 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#Name}"; Filename
 [Run]
 Filename: "{app}\{#ExeName}"; Description: "{cm:LaunchProgram,{#StringChange(Name, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 Filename: "{app}\contrib\ReadMe.html"; Description: "View the ReadMe.html"; Flags: postinstall shellexec skipifsilent unchecked
-Filename: "http://www.getwnmp.org/"; Flags: shellexec runasoriginaluser postinstall unchecked; Description: "View Wnmp Website";
-Filename: "http://www.getwnmp.org/contributing/"; Flags: shellexec runasoriginaluser postinstall; Description: "Make a contribution to Wnmp";
+Filename: "https://www.getwnmp.org/"; Flags: shellexec runasoriginaluser postinstall unchecked; Description: "View Wnmp Website";
+Filename: "https://www.getwnmp.org/contributing/"; Flags: shellexec runasoriginaluser postinstall; Description: "Make a contribution to Wnmp";

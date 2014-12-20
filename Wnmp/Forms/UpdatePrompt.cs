@@ -56,7 +56,7 @@ namespace Wnmp.Forms
 
         private void viewchange_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://www.getwnmp.org/WhatsNew");
+            Process.Start("https://www.getwnmp.org/WhatsNew");
         }
     }
 }

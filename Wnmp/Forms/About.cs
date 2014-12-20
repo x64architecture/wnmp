@@ -50,7 +50,7 @@ namespace Wnmp.Forms
 
         private void wnmpwebsiteLabel_Click(object sender, EventArgs e)
         {
-            Process.Start("http://www.getwnmp.org");
+            Process.Start("https://www.getwnmp.org");
         }
 
         private void About_Load(object sender, EventArgs e)

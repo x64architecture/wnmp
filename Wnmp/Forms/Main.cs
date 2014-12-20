@@ -134,7 +134,7 @@ namespace Wnmp.Forms
 
         private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("http://www.getwnmp.org");
+            Process.Start("https://www.getwnmp.org");
         }
 
         private void donateToolStripMenuItem_Click(object sender, EventArgs e)
