@@ -1,3 +1,20 @@
+Wnmp 2.1.5: Released: 12/21/2014
+================================
+- Wnmp Control Panel 2.3.5
+    *) Version bump
+
+- Nginx
+    *) Updated to 1.7.8
+
+- MariaDB
+    *) Updated to 10.0.15
+
+- PHP
+    *) Updated to 5.6.4
+
+- phpMyAdmin
+    *) Updated to 4.3.2
+
 Wnmp 2.1.4: Released: 11/09/2014
 ================================
 - Wnmp Control Panel 2.3.4
