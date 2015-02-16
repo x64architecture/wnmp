@@ -1,5 +1,5 @@
 /*
-Copyright (c) Kurt Cancemi 2012-2014
+Copyright (c) Kurt Cancemi 2012-2015
 
 This file is part of Wnmp.
 
@@ -34,7 +34,7 @@ namespace Wnmp.Forms
     {
         public static string StartupPath { get { return Application.StartupPath; } }
 
-        private static readonly Version CPVER = new Version("2.3.5");
+        private static readonly Version CPVER = new Version("2.3.6");
         public static Version GetCPVER { get { return CPVER; } }
 
         private readonly NotifyIcon WnmpTrayIcon = new NotifyIcon();
@@ -139,7 +139,7 @@ namespace Wnmp.Forms
 
         private void donateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P7LAQRRNF6AVE");
+            Process.Start("https://www.getwnmp.org/contributing/");
         }
 
         private void localhostToolStripMenuItem_Click(object sender, EventArgs e)

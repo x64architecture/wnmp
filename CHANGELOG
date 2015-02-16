@@ -1,3 +1,23 @@
+Wnmp 2.1.6: Released: 02/16/2015
+================================
+- Wnmp Control Panel 2.3.6
+    *) Use VigorTLS (https://github.com/vigortls/vigortls)
+       instead of OpenSSL
+
+- Nginx
+    *) Updated to 1.7.10
+    *) Use VigorTLS (https://github.com/vigortls/vigortls)
+       instead of OpenSSL
+
+- MariaDB
+    *) Updated to 10.0.16
+
+- PHP
+    *) Updated to 5.6.5
+
+- phpMyAdmin
+    *) Updated to 4.3.9
+
 Wnmp 2.1.5: Released: 12/21/2014
 ================================
 - Wnmp Control Panel 2.3.5

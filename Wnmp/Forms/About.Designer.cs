@@ -92,7 +92,7 @@
             this.wnmpwebsiteLabel.AutoSize = true;
             this.wnmpwebsiteLabel.Location = new System.Drawing.Point(240, 271);
             this.wnmpwebsiteLabel.Name = "wnmpwebsiteLabel";
-            this.wnmpwebsiteLabel.Size = new System.Drawing.Size(178, 20);
+            this.wnmpwebsiteLabel.Size = new System.Drawing.Size(186, 20);
             this.wnmpwebsiteLabel.TabIndex = 5;
             this.wnmpwebsiteLabel.Text = "https://www.getwnmp.org";
             this.wnmpwebsiteLabel.Click += new System.EventHandler(this.wnmpwebsiteLabel_Click);
@@ -107,7 +107,7 @@
             this.copyrightLabel.Name = "copyrightLabel";
             this.copyrightLabel.Size = new System.Drawing.Size(282, 18);
             this.copyrightLabel.TabIndex = 4;
-            this.copyrightLabel.Text = "Copyright (C) 2012-2014 by Kurt Cancemi";
+            this.copyrightLabel.Text = "Copyright (C) 2012-2015 by Kurt Cancemi";
             // 
             // pictureBox1
             // 
