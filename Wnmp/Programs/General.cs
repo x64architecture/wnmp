@@ -18,47 +18,40 @@ This file is part of Wnmp.
 */
 using System;
 using System.Windows.Forms;
-
+using Wnmp.Forms;
 using Wnmp.Helpers;
 namespace Wnmp.Programs
 {
     /// <summary>
     /// Functions/Handlers releated to the general applications (ex. start all apps)
     /// </summary>
-    public static class General
+    class General
     {
-        private static readonly ToolTip toolTip = new ToolTip();
+        public Main form;
+        public Nginx nginx;
+        public MariaDB mariadb;
+        public PHP php;
 
-        public static void start_MouseHover()
-        {
-            toolTip.Show("Starts Nginx, PHP-CGI & MariaDB", Program.formInstance.start);
-        }
-
-        public static void stop_MouseHover()
-        {
-            toolTip.Show("Stops Nginx, PHP-CGI & MariaDB", Program.formInstance.stop);
-        }
-
-        public static void start_Click(object sender, EventArgs e)
+        public void StartAllProgs()
         {
             Log.wnmp_log_notice("Attempting to start all the applications", Log.LogSection.WNMP_MAIN);
             // Nginx
-            Nginx.ngx_start_Click(sender, e);
+            nginx.StartNginx();
             // PHP
-            PHP.php_start_Click(sender, e);
+            php.StartPHP();
             // MariaDB
-            MariaDB.mdb_start_Click(sender, e);
+            mariadb.StartMariaDB();
         }
 
-        public static void stop_Click(object sender, EventArgs e)
+        public void StopAllProgs()
         {
             Log.wnmp_log_notice("Attempting to stop all the applications", Log.LogSection.WNMP_MAIN);
             // Nginx
-            Nginx.ngx_stop_Click(sender, e);
+            nginx.StopNginx();
             // PHP
-            PHP.php_stop_Click(sender, e);
+            php.StopPHP();
             // MariaDB
-            MariaDB.mdb_stop_Click(sender, e);
+            mariadb.StopMariaDB();
         }
     }
 }

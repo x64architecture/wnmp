@@ -56,7 +56,7 @@ namespace Wnmp.Forms
         private void About_Load(object sender, EventArgs e)
         {
             wnmpversionLabel.Text = "Wnmp Version: " + Application.ProductVersion;
-            wnmpcpversionLabel.Text = "Wnmp Control Panel Version: " + Main.GetCPVER;
+            wnmpcpversionLabel.Text = "Wnmp Control Panel Version: " + Main.CPVER;
         }
 
         private void wnmpwebsiteLabel_MouseHover(object sender, EventArgs e)

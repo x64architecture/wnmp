@@ -30,11 +30,12 @@ namespace Wnmp.Helpers
     /// </summary>
     class MainHelper
     {
+        public Main form;
         #region checkforapps
         /// <summary>
         /// Checks if Nginx, MariaDB, and PHP exist in the Wnmp directory
         /// </summary>
-        public static void checkforapps()
+        public void checkforapps()
         {
             Log.wnmp_log_notice("Checking for applications", Log.LogSection.WNMP_MAIN);
             if (!File.Exists(Application.StartupPath + "/nginx.exe"))
@@ -51,31 +52,31 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Adds configuration files to the Config buttons context menu strip
         /// </summary>
-        public static void DirFiles(string path, string GetFiles, ContextMenuStrip cms)
+        public void DirFiles(string path, string GetFiles, ContextMenuStrip cms)
         {
             var dinfo = new DirectoryInfo(Main.StartupPath + path);
 
             if (!dinfo.Exists)
                 return;
 
-            var Files = dinfo.GetFiles(GetFiles);
-            foreach (var file in Files)
+            FileInfo[] Files = dinfo.GetFiles(GetFiles);
+            foreach (FileInfo file in Files)
                 cms.Items.Add(file.Name, null);
         }
 
         /// <summary>
         /// Sets up the timer to check if the applications are running
         /// </summary>
-        public static void DoTimer()
+        public void DoTimer()
         {
             CheckIfAppsAreRunning(); // First we check at startup
             Timer timer = new Timer();
-            timer.Interval = 30000; // 30 seconds
+            timer.Interval = 1000; // 1 second
             timer.Tick += CheckIfAppsAreRunningTimer_Tick;
             timer.Start();
         }
 
-        private static void CheckIfAppsAreRunningTimer_Tick(object sender, System.EventArgs e)
+        private void CheckIfAppsAreRunningTimer_Tick(object sender, System.EventArgs e)
         {
             CheckIfAppsAreRunning();
         }
@@ -83,14 +84,14 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Checks if Nginx, MariaDB or PHP is running
         /// </summary>
-        public static void CheckIfAppsAreRunning()
+        public void CheckIfAppsAreRunning()
         {
-            check_if_running("nginx", Program.formInstance.nginxrunning);
-            check_if_running("mysqld", Program.formInstance.mariadbrunning);
-            check_if_running("php-cgi", Program.formInstance.phprunning);
+            check_if_running("nginx", form.nginxrunning);
+            check_if_running("mysqld", form.mariadbrunning);
+            check_if_running("php-cgi", form.phprunning);
         }
 
-        private static void check_if_running(string application, Label label)
+        private void check_if_running(string application, Label label)
         {
             var _Process = Process.GetProcessesByName(application);
             if (_Process.Length != 0)
@@ -99,7 +100,7 @@ namespace Wnmp.Helpers
                 Common.ToStoppedLabel(label);
         }
 
-        private static bool IsFirstRun()
+        private bool IsFirstRun()
         {
             return (Options.settings.Firstrun);
         }
@@ -107,9 +108,9 @@ namespace Wnmp.Helpers
         /// <summary>
         /// Generates a public and private keypair the first time Wnmp is launched
         /// </summary>
-        public static void FirstRun()
+        public void FirstRun()
         {
-            if (!IsFirstRun())
+            if (IsFirstRun() == false)
                 return;
 
             if (!Directory.Exists(Main.StartupPath + "/conf"))

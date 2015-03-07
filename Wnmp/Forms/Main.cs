@@ -32,17 +32,21 @@ namespace Wnmp.Forms
     /// </summary>
     public partial class Main : Form
     {
+        private General GeneralIns   = new General();
+        private Nginx NginxIns       = new Nginx();
+        private MariaDB MariaDBIns   = new MariaDB();
+        private PHP PHPIns           = new PHP();
+        private Updater UpdaterIns   = new Updater();
+        private MainHelper HelperIns = new MainHelper();
         public static string StartupPath { get { return Application.StartupPath; } }
 
-        private static readonly Version CPVER = new Version("2.3.6");
-        public static Version GetCPVER { get { return CPVER; } }
+        public static readonly Version CPVER = new Version("2.3.6");
 
         private readonly NotifyIcon WnmpTrayIcon = new NotifyIcon();
 
         protected override CreateParams CreateParams
         {
-            get
-            {
+            get {
                 var myCp = base.CreateParams;
                 myCp.Style = myCp.Style & ~Common.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
                 return myCp;
@@ -52,8 +56,16 @@ namespace Wnmp.Forms
         public Main()
         {
             InitializeComponent();
-            setevents();
             Options.settings.ReadSettings();
+            GeneralIns.form = this;
+            NginxIns.form   = this;
+            MariaDBIns.form = this;
+            PHPIns.form     = this;
+            UpdaterIns.form = this;
+            HelperIns.form  = this;
+            GeneralIns.nginx   = NginxIns;
+            GeneralIns.mariadb = MariaDBIns;
+            GeneralIns.php     = PHPIns;
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -62,119 +74,37 @@ namespace Wnmp.Forms
             WnmpTrayIcon.Icon = Properties.Resources.logo;
             WnmpTrayIcon.Visible = true;
 
-            MainHelper.checkforapps();
-            MainHelper.DoTimer();
+            HelperIns.checkforapps();
+            HelperIns.DoTimer();
 
             PopulateMenus();
-            MainHelper.FirstRun();
+            HelperIns.FirstRun();
 
             if (Options.settings.Startallapplicationsatlaunch)
-                General.start_Click(null, null);
+                GeneralIns.StartAllProgs();
 
             if (Options.settings.Autocheckforupdates)
-                Updater.DoDateEclasped();
+                UpdaterIns.DoDateEclasped();
 
             Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
         }
 
-        /// <summary>
-        /// Populate configuration and log menus
-        /// </summary>
-        private void PopulateMenus()
-        {
-            MainHelper.DirFiles("/conf", "*.conf", Nginx.cms);
-            MainHelper.DirFiles("/mariadb", "my.ini", MariaDB.cms);
-            MainHelper.DirFiles("/php", "php.ini", PHP.cms);
-            MainHelper.DirFiles("/logs", "*.log", Nginx.lms);
-            MainHelper.DirFiles("/mariadb/data", "*.err", MariaDB.lms);
-            MainHelper.DirFiles("/php/logs", "*.log", PHP.lms);
-        }
-        
-        /// <summary>
-        /// Takes a form and displays it
-        /// </summary>
-        private void ShowForm(Form form)
-        {
-            form.StartPosition = FormStartPosition.CenterParent;
-            form.ShowDialog(this);
-            form.Focus();
-        }
-
-        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Updater.CheckForUpdates(false);
-        }
-
-        private void wnmpOptionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = new Options();
-            ShowForm(form);
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void SupportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("http://mailman.getwnmp.org/mailman/listinfo/wnmp-users");
-        }
-
-        private void Report_BugToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://github.com/wnmp/wnmp/issues/new");
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var aboutfrm = new About();
-            ShowForm(aboutfrm);
-        }
-
-        private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://www.getwnmp.org");
-        }
-
-        private void donateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://www.getwnmp.org/contributing/");
-        }
-
-        private void localhostToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("http://localhost");
-        }
-
-        private void hostToIPToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = new HostToIPForm();
-            ShowForm(form);
-        }
-
-        private void getHTTPHeadersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = new HttpHeaders();
-            ShowForm(form);
-        }
-
-        private int MinimizeWnmpToTrayCount = 0;
+        private bool NotifyMinimizeWnmp = true;
         private void Main_Resize(object sender, EventArgs e)
         {
-            if (!Options.settings.Minimizewnmptotray)
+            if (Options.settings.Minimizewnmptotray == false)
                 return;
-            
+
             if (WindowState == FormWindowState.Minimized) {
                 this.Hide();
-                if (MinimizeWnmpToTrayCount > 0)
+                if (NotifyMinimizeWnmp == false)
                     return;
 
-                MinimizeWnmpToTrayCount++;
+                NotifyMinimizeWnmp = false;
                 WnmpTrayIcon.BalloonTipTitle = "Wnmp";
                 WnmpTrayIcon.BalloonTipText = "Wnmp has been minimized to the tray.";
                 WnmpTrayIcon.ShowBalloonTip(4000);
-           }
+            }
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -189,50 +119,209 @@ namespace Wnmp.Forms
             this.WindowState = FormWindowState.Normal;
         }
 
+        /// <summary>
+        /// Populate configuration and log menus
+        /// </summary>
+        private void PopulateMenus()
+        {
+            HelperIns.DirFiles("/conf",         "*.conf",  NginxIns.cms);
+            HelperIns.DirFiles("/mariadb",      "my.ini",  MariaDBIns.cms);
+            HelperIns.DirFiles("/php",          "php.ini", PHPIns.cms);
+            HelperIns.DirFiles("/logs",         "*.log",   NginxIns.lms);
+            HelperIns.DirFiles("/mariadb/data", "*.err",   MariaDBIns.lms);
+            HelperIns.DirFiles("/php/logs",     "*.log",   PHPIns.lms);
+        }
+        
+        /// <summary>
+        /// Takes a form and displays it
+        /// </summary>
+        private void ShowForm(Form form)
+        {
+            form.StartPosition = FormStartPosition.CenterParent;
+            form.ShowDialog(this);
+            form.Focus();
+        }
+
+        /* File Menu */
+        private void wnmpOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Options form = new Options();
+            ShowForm(form);
+        }
+
+        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdaterIns.CheckForUpdates(false);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        /* Tools Menu */
+
+        private void hostToIPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HostToIPForm form = new HostToIPForm();
+            ShowForm(form);
+        }
+
+        private void getHTTPHeadersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HttpHeaders form = new HttpHeaders();
+            ShowForm(form);
+        }
+
+        /* Help Menu */
+
+        private void SupportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try {
+                Process.Start(Constants.MailingListUrl);
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
+            }
+        }
+
+        private void Report_BugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try {
+            Process.Start(Constants.ReportBugUrl);
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
+            }
+        }
+
+        private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try {
+                Process.Start(Constants.WnmpWebUrl);
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
+            }
+        }
+
+        private void donateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try {
+                Process.Start(Constants.WnmpContribUrl);
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
+            }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var aboutfrm = new About();
+            ShowForm(aboutfrm);
+        }
+
+        /* Lone button */
+
+        private void localhostToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://localhost");
+        }
+
+        /*  Right Hand Side */
+
+        private void start_Click(object sender, EventArgs e)
+        {
+            GeneralIns.StartAllProgs();
+        }
+
+        private void stop_Click(object sender, EventArgs e)
+        {
+            GeneralIns.StopAllProgs();
+        }
+
+        private void mdb_shell_Click(object sender, EventArgs e)
+        {
+            MariaDBIns.StartMDBShell();
+        }
+
         private void wnmpdir_Click(object sender, EventArgs e)
         {
+            // If this fails.... we have a bigger problem.
             Process.Start("explorer.exe", Application.StartupPath);
         }
 
-        private void setevents()
+        /* Applications Section */
+
+        private void ngx_start_Click(object sender, EventArgs e)
         {
-            WnmpTrayIcon.Click += WnmpTrayIcon_Click;
-            // General Events Start
-            start.Click += General.start_Click;
-            stop.Click += General.stop_Click;
-            // End
-            // Nginx Events Start
-            ngx_start.Click += Nginx.ngx_start_Click;
-            ngx_stop.Click += Nginx.ngx_stop_Click;
-            ngx_reload.Click += Nginx.ngx_reload_Click;
-            ngx_config.Click += Nginx.ngx_cfg_Click;
-            ngx_log.Click += Nginx.ngx_log_Click;
-            ngx_start.MouseHover += Nginx.ngx_start_MouseHover;
-            ngx_stop.MouseHover += Nginx.ngx_stop_MouseHover;
-            ngx_reload.MouseHover += Nginx.ngx_reload_MouseHover;
-            // End
-            // MariaDB Events Start
-            mdb_start.Click += MariaDB.mdb_start_Click;
-            mdb_stop.Click += MariaDB.mdb_stop_Click;
-            mdb_restart.Click += MariaDB.mdb_restart_Click;
-            mdb_shell.Click += MariaDB.mdb_shell_Click;
-            mdb_cfg.Click += MariaDB.mdb_cfg_Click;
-            mdb_log.Click += MariaDB.mdb_log_Click;
-            mdb_start.MouseHover += MariaDB.mdb_start_MouseHover;
-            mdb_stop.MouseHover += MariaDB.mdb_stop_MouseHover;
-            mdb_shell.MouseHover += MariaDB.mdb_shell_MouseHover;
-            mdb_restart.MouseHover += MariaDB.mdb_restart_MouseHover;
-            // End
-            // PHP Events Start
-            php_start.Click += PHP.php_start_Click;
-            php_stop.Click += PHP.php_stop_Click;
-            php_restart.Click += PHP.php_restart_Click;
-            php_cfg.Click += PHP.php_cfg_Click;
-            php_log.Click += PHP.php_log_Click;
-            php_start.MouseHover += PHP.php_start_MouseHover;
-            php_stop.MouseHover += PHP.php_stop_MouseHover;
-            php_restart.MouseHover += PHP.php_restart_MouseHover;
-            // End
+            NginxIns.StartNginx();
+        }
+
+        private void ngx_stop_Click(object sender, EventArgs e)
+        {
+            NginxIns.StopNginx();
+        }
+
+        private void ngx_reload_Click(object sender, EventArgs e)
+        {
+            NginxIns.ReloadNginx();
+        }
+
+        private void ngx_config_Click(object sender, EventArgs e)
+        {
+            NginxIns.NginxConfig(sender);
+        }
+
+        private void ngx_log_Click(object sender, EventArgs e)
+        {
+            NginxIns.NginxLog(sender);
+        }
+
+        private void mdb_start_Click(object sender, EventArgs e)
+        {
+            MariaDBIns.StartMariaDB();
+        }
+
+        private void mdb_stop_Click(object sender, EventArgs e)
+        {
+            MariaDBIns.StopMariaDB();
+        }
+
+        private void mdb_restart_Click(object sender, EventArgs e)
+        {
+            MariaDBIns.RestartMariaDB();
+        }
+
+        private void mdb_cfg_Click(object sender, EventArgs e)
+        {
+            MariaDBIns.MariaDBConfig(sender);
+        }
+
+        private void mdb_log_Click(object sender, EventArgs e)
+        {
+            MariaDBIns.MariaDBLog(sender);
+        }
+
+        private void php_start_Click(object sender, EventArgs e)
+        {
+            PHPIns.StartPHP();
+        }
+
+        private void php_stop_Click(object sender, EventArgs e)
+        {
+            PHPIns.StopPHP();
+        }
+
+        private void php_restart_Click(object sender, EventArgs e)
+        {
+            PHPIns.RestartPHP();
+        }
+
+        private void php_cfg_Click(object sender, EventArgs e)
+        {
+            PHPIns.PHPConfig(sender);
+        }
+
+        private void php_log_Click(object sender, EventArgs e)
+        {
+            PHPIns.PHPLog(sender);
         }
     }
 }

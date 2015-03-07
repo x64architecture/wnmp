@@ -32,25 +32,24 @@ namespace Wnmp.Programs
     /// </summary>
     class PHP
     {
-        public static Process ps; // Avoid GC
-        public static ContextMenuStrip cms = new ContextMenuStrip(); // Config button context menu
-        public static ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
-        private static readonly ToolTip toolTip = new ToolTip(); // ToolTip
-        private static readonly string pini = String.Format("\"{0}/php/php.ini\"", Main.StartupPath); // Location of php.ini to pass on to php
-        private static readonly string PHPExe = Main.StartupPath + "/php/php-cgi.exe";
+        public Main form;
+        public Process ps; // Avoid GC
+        public ContextMenuStrip cms = new ContextMenuStrip(); // Config button context menu
+        public ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
+        private readonly ToolTip toolTip = new ToolTip(); // ToolTip
+        private readonly string pini = String.Format("\"{0}/php/php.ini\"", Main.StartupPath); // Location of php.ini to pass on to php
+        private readonly string PHPExe = Main.StartupPath + "/php/php-cgi.exe";
 
-        private enum Status
+        public PHP()
         {
-            Stopped = 0,
-            Started = 1
+            cms.ItemClicked += cms_ItemClicked;
+            lms.ItemClicked += lms_ItemClicked;
         }
-
-        private static Status PHPStatus = Status.Stopped;
 
         /// <summary>
         /// Starts an executable file
         /// </summary>
-        public static void startprocess(string p, string args)
+        private void StartProcess(string p, string args)
         {
             ps = new Process(); // Create process
             ps.StartInfo.FileName = p; // p is the path and file name of the file to run
@@ -61,90 +60,79 @@ namespace Wnmp.Programs
             ps.StartInfo.CreateNoWindow = true; // Excute with no window
             ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             ps.StartInfo.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", "0"); // Disable auto killing PHP
+            ps.Start();
         }
 
-        public static void php_start_Click(object sender, EventArgs e)
+        private void KillPHP()
+        {
+            try {
+                Process[] phps = Process.GetProcessesByName("php-cgi");
+                foreach (Process currentProc in phps)
+                    currentProc.Kill();
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_PHP);
+            }
+        }
+        public void StartPHP()
         {
             int i;
-            int pp = Options.settings.PHPProcesses;
+            int ProcessCount = Options.settings.PHPProcesses;
             int port = Options.settings.PHPPort;
 
-            for (i = 1; i <= pp; i++) {
-                startprocess(PHPExe, String.Format("-b localhost:{0} -c {1}", port, pini));
-                Log.wnmp_log_notice("Starting PHP " + i + "/" + pp + " On port: " + port, Log.LogSection.WNMP_PHP);
-                port++;
+            try
+            {
+                for (i = 1; i <= ProcessCount; i++)
+                {
+                    StartProcess(PHPExe, String.Format("-b localhost:{0} -c {1}", port, pini));
+                    Log.wnmp_log_notice("Starting PHP " + i + "/" + ProcessCount + " On port: " + port, Log.LogSection.WNMP_PHP);
+                    port++;
+                }
+                Log.wnmp_log_notice("PHP started", Log.LogSection.WNMP_PHP);
+
+                Common.ToStartedLabel(form.phprunning);
             }
-            Log.wnmp_log_notice("PHP started", Log.LogSection.WNMP_PHP);
-
-            PHPStatus = Status.Started;
-            Common.ToStartedLabel(Program.formInstance.phprunning);
+            catch (Exception ex)
+            {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_PHP);
+            }
         }
 
-        public static void php_stop_Click(object sender, EventArgs e)
+        public void StopPHP()
         {
-            Log.wnmp_log_notice("Stopping PHP", Log.LogSection.WNMP_PHP);
-            PHPStatus = Status.Stopped;
-            var phps = Process.GetProcessesByName("php-cgi");
-            foreach (var currentProc in phps)
-                currentProc.Kill();
-
-            Common.ToStoppedLabel(Program.formInstance.phprunning);
+            KillPHP();
+            Log.wnmp_log_notice("Stopped PHP", Log.LogSection.WNMP_PHP);
+            Common.ToStoppedLabel(form.phprunning);
         }
 
-        public static void php_restart_Click(object sender, EventArgs e)
+        public void RestartPHP()
         {
-            Log.wnmp_log_notice("Attempting to restart PHP", Log.LogSection.WNMP_PHP);
-            // Kill PHP
-            PHPStatus = Status.Stopped;
-            var phps = Process.GetProcessesByName("php-cgi");
-            foreach (var currentProc in phps)
-                currentProc.Kill();
-
-            // Start PHP
-            php_start_Click(null, null);
+            StopPHP();
+            StartPHP();
+            Log.wnmp_log_notice("Restarted PHP", Log.LogSection.WNMP_PHP);
         }
 
-        public static void php_start_MouseHover(object sender, EventArgs e)
+        public void PHPConfig(object sender)
         {
-            toolTip.Show("Start PHP-CGI", Program.formInstance.php_start);
-        }
-
-        public static void php_stop_MouseHover(object sender, EventArgs e)
-        {
-            toolTip.Show("Stop PHP-CGI", Program.formInstance.php_stop);
-        }
-
-        public static void php_restart_MouseHover(object sender, EventArgs e)
-        {
-            toolTip.Show("Restart PHP-CGI", Program.formInstance.php_restart);
-        }
-
-        public static void php_cfg_Click(object sender, EventArgs e)
-        {
-            var btnSender = (Button)sender;
-            var ptLowerLeft = new Point(0, btnSender.Height);
+            Button btnSender = (Button)sender;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
             ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
             cms.Show(ptLowerLeft);
-            cms.ItemClicked -= cms_ItemClicked;
-            cms.ItemClicked += cms_ItemClicked;
         }
 
-        static void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             Process.Start(Options.settings.Editor, Main.StartupPath + "/php/" + e.ClickedItem.Text);
         }
 
-        public static void php_log_Click(object sender, EventArgs e)
+        public void PHPLog(object sender)
         {
-            var btnSender = (Button)sender;
-            var ptLowerLeft = new Point(0, btnSender.Height);
+            Button btnSender = (Button)sender;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
             ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
             lms.Show(ptLowerLeft);
-            lms.ItemClicked -= lms_ItemClicked;
-            lms.ItemClicked += lms_ItemClicked;
         }
 
-        static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             Process.Start(Options.settings.Editor, Main.StartupPath + "/php/logs/" + e.ClickedItem.Text);
         }

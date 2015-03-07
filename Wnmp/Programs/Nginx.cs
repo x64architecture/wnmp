@@ -31,17 +31,23 @@ namespace Wnmp.Programs
     /// </summary>
     class Nginx
     {
-        public static Process ps; // Avoid GC
-        public static ContextMenuStrip cms = new ContextMenuStrip(); // Config button context menu
-        public static ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
-        private static readonly ToolTip toolTip = new ToolTip(); // ToolTip
+        public Main form;
+        public Process ps; // Avoid GC
+        public ContextMenuStrip cms = new ContextMenuStrip(); // Config button context menu
+        public ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
+        private readonly ToolTip toolTip = new ToolTip(); // ToolTip
+        private readonly string NginxExe = Main.StartupPath.Replace(@"\", "/") + "/nginx.exe";
 
-        private static readonly string NginxExe = Main.StartupPath.Replace(@"\", "/") + "/nginx.exe";
+        public Nginx()
+        {
+            cms.ItemClicked += cms_ItemClicked;
+            lms.ItemClicked += lms_ItemClicked;
+        }
 
         /// <summary>
         /// Starts an executable file
         /// </summary>
-        public static void startprocess(string p, string args)
+        private void StartProcess(string p, string args)
         {
             ps = new Process(); // Create process
             ps.StartInfo.FileName = p; // p is the path and file name of the file to run
@@ -49,73 +55,84 @@ namespace Wnmp.Programs
             ps.StartInfo.UseShellExecute = false;
             ps.StartInfo.RedirectStandardOutput = true; // Set output of program to be written to process output stream
             ps.StartInfo.WorkingDirectory = Main.StartupPath;
-            ps.StartInfo.CreateNoWindow = true; // Excute with no window
+            ps.StartInfo.CreateNoWindow = true; // Execute with no window
             ps.Start(); // Start the process
         }
 
-        public static void ngx_start_Click(object sender, EventArgs e)
+        private bool NginxIsRunning()
         {
-                startprocess(NginxExe, "");
+            Process[] ptcf = Process.GetProcessesByName("nginx");
+
+            return (ptcf.Length == 0);
+        }
+
+        public void StartNginx()
+        {
+            try {
+                StartProcess(NginxExe, "");
                 Log.wnmp_log_notice("Attempting to start Nginx", Log.LogSection.WNMP_NGINX);
-                Common.ToStartedLabel(Program.formInstance.nginxrunning);
+                Common.ToStartedLabel(form.nginxrunning);
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_NGINX);
+            }
         }
 
-        public static void ngx_stop_Click(object sender, EventArgs e)
+        public void StopNginx()
         {
-                startprocess(NginxExe, "-s stop");
+            try {
+                StartProcess(NginxExe, "-s stop");
                 Log.wnmp_log_notice("Attempting to stop Nginx", Log.LogSection.WNMP_NGINX);
-                Common.ToStoppedLabel(Program.formInstance.nginxrunning);
+                Common.ToStoppedLabel(form.nginxrunning);
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_NGINX);
+            }
         }
 
-        public static void ngx_reload_Click(object sender, EventArgs e)
+        public void ReloadNginx()
         {
-                startprocess(NginxExe, "-s reload");
-                Log.wnmp_log_notice("Attempting to reload Nginx", Log.LogSection.WNMP_NGINX);
+            try {
+                if (NginxIsRunning() == true) {
+                    StartProcess(NginxExe, "-s reload");
+                    Log.wnmp_log_notice("Attempting to reload Nginx", Log.LogSection.WNMP_NGINX);
+                } else
+                    StartNginx();
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_NGINX);
+            }
         }
 
-        public static void ngx_stop_MouseHover(object sender, EventArgs e)
+        public void NginxConfig(object sender)
         {
-            toolTip.Show("Stop Nginx", Program.formInstance.ngx_stop);
-        }
-
-        public static void ngx_start_MouseHover(object sender, EventArgs e)
-        {
-            toolTip.Show("Start Nginx", Program.formInstance.ngx_start);
-        }
-
-        public static void ngx_reload_MouseHover(object sender, EventArgs e)
-        {
-            toolTip.Show("Reloads Nginx configuration without restart", Program.formInstance.ngx_reload);
-        }
-
-        public static void ngx_cfg_Click(object sender, EventArgs e)
-        {
-            var btnSender = (Button)sender;
-            var ptLowerLeft = new Point(0, btnSender.Height);
+            Button btnSender = (Button)sender;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
             ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
             cms.Show(ptLowerLeft);
-            cms.ItemClicked -= cms_ItemClicked;
-            cms.ItemClicked += cms_ItemClicked;
         }
 
-        static void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.Editor, Main.StartupPath + "/conf/" + e.ClickedItem.Text);
+            try {
+                Process.Start(Options.settings.Editor, Main.StartupPath + "/conf/" + e.ClickedItem.Text);
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_NGINX);
+            }
         }
 
-        public static void ngx_log_Click(object sender, EventArgs e)
+        public void NginxLog(object sender)
         {
-            var btnSender = (Button)sender;
-            var ptLowerLeft = new Point(0, btnSender.Height);
+            Button btnSender = (Button)sender;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
             ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
             lms.Show(ptLowerLeft);
-            lms.ItemClicked -= lms_ItemClicked;
-            lms.ItemClicked += lms_ItemClicked;
         }
 
-        static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.Editor, Main.StartupPath + "/logs/" + e.ClickedItem.Text);
+            try {
+                Process.Start(Options.settings.Editor, Main.StartupPath + "/logs/" + e.ClickedItem.Text);
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_NGINX);
+            }
         }
     }
 }

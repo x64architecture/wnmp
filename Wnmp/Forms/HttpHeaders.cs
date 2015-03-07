@@ -33,12 +33,12 @@ namespace Wnmp.Forms
         {
             HTTPHeaderslistView.Items.Clear();
             try {
-                var request = (HttpWebRequest)WebRequest.Create(urlTextBox.Text);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlTextBox.Text);
                 request.Method = "GET";
                 request.ContentType = "application/x-www-form-urlencoded";
                 using (var response = request.GetResponse()) {
-                    foreach (var s in response.Headers.AllKeys) {
-                        var item = new ListViewItem();
+                    foreach (string s in response.Headers.AllKeys) {
+                        ListViewItem item = new ListViewItem();
                         item.Text = s;
                         item.SubItems.Add(response.Headers[s]);
                         HTTPHeaderslistView.Items.Add(item);

@@ -32,123 +32,124 @@ namespace Wnmp.Programs
     /// </summary>
     class MariaDB
     {
-        public static Process ps; // Avoid GC
-        public static ContextMenuStrip cms = new ContextMenuStrip(); // Config button context menu
-        public static ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
-        public static readonly ToolTip toolTip = new ToolTip(); // ToolTip
-        private static string mysqlExe = Main.StartupPath + "/mariadb/bin/mysql.exe";
-        private static string mysqldExe = Main.StartupPath + "/mariadb/bin/mysqld.exe";
-        private static string mysqladminExe = Main.StartupPath + "/mariadb/bin/mysqladmin.exe";
+        public Main form;
+        public Process ps; // Avoid GC
+        public ContextMenuStrip cms = new ContextMenuStrip(); // Config button context menu
+        public ContextMenuStrip lms = new ContextMenuStrip(); // Log button context menu
+        public readonly ToolTip toolTip = new ToolTip(); // ToolTip
+        private string mysqlExe = Main.StartupPath + "/mariadb/bin/mysql.exe";
+        private string mysqldExe = Main.StartupPath + "/mariadb/bin/mysqld.exe";
+        private string mysqladminExe = Main.StartupPath + "/mariadb/bin/mysqladmin.exe";
+
+        public MariaDB()
+        {
+            cms.ItemClicked += cms_ItemClicked;
+            lms.ItemClicked += lms_ItemClicked;
+        }
 
         /// <summary>
         /// Starts an executable file
         /// </summary>
-        public static void startprocess(string p, string args, bool wfe)
+        public void startprocess(string p, string args, bool wfe)
         {
             ps = new Process(); // Create process
             ps.StartInfo.FileName = p; // p is the path and file name of the file to run
             ps.StartInfo.Arguments = args; // Parameters to pass to program
             ps.StartInfo.UseShellExecute = false;
             ps.StartInfo.WorkingDirectory = Main.StartupPath;
-            ps.StartInfo.CreateNoWindow = true; // Excute with no window
+            ps.StartInfo.CreateNoWindow = true; // Execute with no window
             ps.Start(); // Start the process
             if (wfe)
                 ps.WaitForExit();
         }
 
-        public static void mdb_start_Click(object sender, EventArgs e)
+        private bool MariaDBIsRunning()
         {
-            startprocess(mysqldExe, "", false);
-            Log.wnmp_log_notice("Attempting to start MariaDB", Log.LogSection.WNMP_MARIADB);
-            Common.ToStartedLabel(Program.formInstance.mariadbrunning);
+            Process[] ptcf = Process.GetProcessesByName("mysqld");
+
+            return (ptcf.Length == 0);
         }
 
-        public static void mdb_stop_Click(object sender, EventArgs e)
+        public void StartMariaDB()
         {
-            // MariaDB
-            Log.wnmp_log_notice("Attempting to stop MariaDB", Log.LogSection.WNMP_MARIADB);
-            Process.Start(mysqladminExe, "-u root -p shutdown");
-            Common.ToStoppedLabel(Program.formInstance.mariadbrunning);
-        }
-
-        public static void mdb_restart_Click(object sender, EventArgs e)
-        {
-            // MariaDB
-            Log.wnmp_log_notice("Attempting to restart MariaDB", Log.LogSection.WNMP_MARIADB);
-            var thread = new Thread(mdb_restart);
-            thread.Start();
-            Common.ToStartedLabel((Program.formInstance.mariadbrunning));
-        }
-
-        private static void mdb_restart()
-        {
-            startprocess(mysqladminExe, "-u root -p shutdown", true);
-            startprocess(mysqldExe, "", false);
-        }
-        private static bool MariaDBIsRunning()
-        {
-            var ptcf = Process.GetProcessesByName("mysqld");
-
-            return ptcf.Length == 0;
-        }
-        public static void mdb_shell_Click(object sender, EventArgs e)
-        {
-            Log.wnmp_log_notice("Attempting to start MariaDB shell", Log.LogSection.WNMP_MARIADB);
-            // MariaDB
-            if (!MariaDBIsRunning())
+            try {
                 startprocess(mysqldExe, "", false);
-            // MariaDB Shell
-            Process.Start(mysqlExe, "-u root -p");
+                Log.wnmp_log_notice("Attempting to start MariaDB", Log.LogSection.WNMP_MARIADB);
+                Common.ToStartedLabel(form.mariadbrunning);
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
+            }
         }
 
-        public static void mdb_start_MouseHover(object sender, EventArgs e)
+        public void StopMariaDB()
         {
-            toolTip.Show("Start MariaDB", Program.formInstance.mdb_start);
+            try {
+                Process.Start(mysqladminExe, "-u root -p shutdown");
+                Log.wnmp_log_notice("Attempting to stop MariaDB", Log.LogSection.WNMP_MARIADB);
+                Common.ToStoppedLabel(form.mariadbrunning);
+            } catch(Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
+            }
         }
 
-        public static void mdb_stop_MouseHover(object sender, EventArgs e)
+        public void RestartMariaDB()
         {
-            toolTip.Show("Stop MariaDB", Program.formInstance.mdb_stop);
+            try {
+                if (MariaDBIsRunning() == true)
+                    startprocess(mysqladminExe, "-u root -p shutdown", true);
+                startprocess(mysqldExe, "", false);
+                Log.wnmp_log_notice("Restarted MariaDB", Log.LogSection.WNMP_MARIADB);
+                Common.ToStartedLabel(form.mariadbrunning);
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
+            }
+        }
+        public void StartMDBShell()
+        {
+            // MariaDB
+            if (MariaDBIsRunning() == false)
+                StartMariaDB();
+            try {
+                // MariaDB Shell
+                Process.Start(mysqlExe, "-u root -p");
+                Log.wnmp_log_notice("Started MariaDB shell", Log.LogSection.WNMP_MARIADB);
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
+            }
         }
 
-        public static void mdb_shell_MouseHover(object sender, EventArgs e)
+        public void MariaDBConfig(object sender)
         {
-            toolTip.Show("Open MariaDB Shell", Program.formInstance.mdb_shell);
-        }
-
-        public static void mdb_restart_MouseHover(object sender, EventArgs e)
-        {
-            toolTip.Show("Restart MariaDB", Program.formInstance.mdb_restart);
-        }
-
-        public static void mdb_cfg_Click(object sender, EventArgs e)
-        {
-            var btnSender = (Button)sender;
-            var ptLowerLeft = new Point(0, btnSender.Height);
+            Button btnSender = (Button)sender;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
             ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
             cms.Show(ptLowerLeft);
-            cms.ItemClicked -= cms_ItemClicked;
-            cms.ItemClicked += cms_ItemClicked;
         }
 
-        static void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.Editor, Main.StartupPath + "/mariadb/data/" + e.ClickedItem.Text);
+            try {
+                Process.Start(Options.settings.Editor, Main.StartupPath + "/mariadb/data/" + e.ClickedItem.Text);
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
+            }
         }
 
-        public static void mdb_log_Click(object sender, EventArgs e)
+        public void MariaDBLog(object sender)
         {
-            var btnSender = (Button)sender;
-            var ptLowerLeft = new Point(0, btnSender.Height);
+            Button btnSender = (Button)sender;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
             ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
             lms.Show(ptLowerLeft);
-            lms.ItemClicked -= cms_ItemClicked;
-            lms.ItemClicked += cms_ItemClicked;
         }
 
-        static void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        public void lms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Process.Start(Options.settings.Editor, Main.StartupPath + "/mariadb/data/" + e.ClickedItem.Text);
+            try {
+                Process.Start(Options.settings.Editor, Main.StartupPath + "/mariadb/data/" + e.ClickedItem.Text);
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
+            }
         }
     }
 }

@@ -34,9 +34,8 @@ namespace Wnmp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             OSVersionCheck();
-            Application.Run(formInstance = new Main());
+            Application.Run(new Main());
         }
-        public static Main formInstance;
 
         /// <summary>
         /// Checks if the OS is Vista+
