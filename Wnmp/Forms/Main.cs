@@ -40,7 +40,7 @@ namespace Wnmp.Forms
         private MainHelper HelperIns = new MainHelper();
         public static string StartupPath { get { return Application.StartupPath; } }
 
-        public static readonly Version CPVER = new Version("2.3.6");
+        public static readonly Version CPVER = new Version("2.4.0");
 
         private readonly NotifyIcon WnmpTrayIcon = new NotifyIcon();
 
