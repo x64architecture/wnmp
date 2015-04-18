@@ -40,7 +40,7 @@ namespace Wnmp.Helpers
         private readonly string WNMP_NEW = Main.StartupPath + "/Wnmp_new.exe";
         private readonly string UPDATER = Main.StartupPath + "/updater.exe";
         private WebClient webClient;
-        private const string UpdateXMLURL = Constants.UpdateXMLURL;
+        private const string UpdateXMLURL = Constants.UpdateXMLUrl;
 
         #region ReadUpdateXML
         /// <summary>

@@ -1,3 +1,22 @@
+Wnmp 2.1.7: Released: 04/17/2015
+================================
+- Wnmp Control Panel 2.4.0
+    *) PHP no longer automatically kills it processes (Fixed #45)
+
+- Nginx
+    *) Updated to 1.7.12
+    *) Update VigorTLS to latest commit 463c5c4
+    *) nginx.conf: Only declare root once per server (Thanks to Joakim Hedlund)
+
+- MariaDB
+    *) Updated to 10.0.17
+
+- PHP
+    *) Updated to 5.6.8
+
+- phpMyAdmin
+    *) Updated to 4.4.2
+
 Wnmp 2.1.6: Released: 02/16/2015
 ================================
 - Wnmp Control Panel 2.3.6
