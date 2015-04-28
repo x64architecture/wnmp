@@ -76,7 +76,7 @@ namespace Wnmp.Programs
             }
             catch (Exception ex)
             {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_PHP);
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
             }
         }
 
