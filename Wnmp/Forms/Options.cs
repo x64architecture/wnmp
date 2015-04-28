@@ -93,7 +93,7 @@ namespace Wnmp.Forms
 
         private void StartAllProgramsOnLaunch_CheckedChanged(object sender, EventArgs e)
         {
-            settings.Startallapplicationsatlaunch = StartAllProgramsOnLaunch.Checked;
+            settings.Startallappsatlaunch = StartAllProgramsOnLaunch.Checked;
         }
 
         private void MinimizeWnmpToTray_CheckedChanged(object sender, EventArgs e)
@@ -137,7 +137,7 @@ namespace Wnmp.Forms
 
             StartWnmpWithWindows.Checked = settings.Startupwithwindows;
 
-            StartAllProgramsOnLaunch.Checked = settings.Startallapplicationsatlaunch;
+            StartAllProgramsOnLaunch.Checked = settings.Startallappsatlaunch;
 
             MinimizeWnmpToTray.Checked = settings.Minimizewnmptotray;
 

@@ -80,7 +80,7 @@ namespace Wnmp.Forms
             PopulateMenus();
             HelperIns.FirstRun();
 
-            if (Options.settings.Startallapplicationsatlaunch)
+            if (Options.settings.Startallappsatlaunch)
                 GeneralIns.StartAllProgs();
 
             if (Options.settings.Autocheckforupdates)
