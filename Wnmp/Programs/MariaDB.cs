@@ -17,6 +17,7 @@ This file is part of Wnmp.
     along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
+using System.IO;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
@@ -40,6 +41,7 @@ namespace Wnmp.Programs
         private string mysqlExe = Main.StartupPath + "/mariadb/bin/mysql.exe";
         private string mysqldExe = Main.StartupPath + "/mariadb/bin/mysqld.exe";
         private string mysqladminExe = Main.StartupPath + "/mariadb/bin/mysqladmin.exe";
+        private string mdb_pidfile = Main.StartupPath + "/mariadb/data/" + Environment.MachineName + ".pid";
 
         public MariaDB()
         {
@@ -50,7 +52,7 @@ namespace Wnmp.Programs
         /// <summary>
         /// Starts an executable file
         /// </summary>
-        public void startprocess(string p, string args, bool wfe)
+        public void startprocess(string p, string args)
         {
             ps = new Process(); // Create process
             ps.StartInfo.FileName = p; // p is the path and file name of the file to run
@@ -59,8 +61,23 @@ namespace Wnmp.Programs
             ps.StartInfo.WorkingDirectory = Main.StartupPath;
             ps.StartInfo.CreateNoWindow = true; // Execute with no window
             ps.Start(); // Start the process
-            if (wfe)
-                ps.WaitForExit();
+        }
+
+        private void KillMariaDB()
+        {
+            try
+            {
+                Process[] mdbs = Process.GetProcessesByName("mysqld");
+                foreach (Process currentProc in mdbs)
+                    currentProc.Kill();
+                /* Clean up PID file */
+                if (File.Exists(mdb_pidfile))
+                    File.Delete(mdb_pidfile);
+            }
+            catch (Exception ex)
+            {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_PHP);
+            }
         }
 
         private bool MariaDBIsRunning()
@@ -73,7 +90,7 @@ namespace Wnmp.Programs
         public void StartMariaDB()
         {
             try {
-                startprocess(mysqldExe, "", false);
+                startprocess(mysqldExe, "");
                 Log.wnmp_log_notice("Attempting to start MariaDB", Log.LogSection.WNMP_MARIADB);
                 Common.ToStartedLabel(form.mariadbrunning);
             } catch (Exception ex) {
@@ -84,7 +101,7 @@ namespace Wnmp.Programs
         public void StopMariaDB()
         {
             try {
-                Process.Start(mysqladminExe, "-u root -p shutdown");
+                KillMariaDB();
                 Log.wnmp_log_notice("Attempting to stop MariaDB", Log.LogSection.WNMP_MARIADB);
                 Common.ToStoppedLabel(form.mariadbrunning);
             } catch(Exception ex) {
@@ -96,8 +113,8 @@ namespace Wnmp.Programs
         {
             try {
                 if (MariaDBIsRunning() == true)
-                    startprocess(mysqladminExe, "-u root -p shutdown", true);
-                startprocess(mysqldExe, "", false);
+                    KillMariaDB();
+                startprocess(mysqldExe, "");
                 Log.wnmp_log_notice("Restarted MariaDB", Log.LogSection.WNMP_MARIADB);
                 Common.ToStartedLabel(form.mariadbrunning);
             } catch (Exception ex) {
