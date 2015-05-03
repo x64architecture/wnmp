@@ -36,7 +36,7 @@ namespace Wnmp.Configuration
         public bool Minimizewnmptotray = false; // Minimize Wnmp to tray when minimized
         public bool Autocheckforupdates = true; // Auto check for updates
         public int Checkforupdatefrequency = 7; // Check for update frequency
-        public int PHPPort = 9000; // PHP Port
+        public int PHPPort = 9001; // PHP Port
         public int PHPProcesses = 2; // Amount of PHP processes
         public DateTime Lastcheckforupdate = DateTime.MinValue;
         public bool Firstrun = true; // First run
@@ -100,6 +100,10 @@ namespace Wnmp.Configuration
         /// </summary>
         public void UpdateSettings()
         {
+            /* TODO: Remove in a later release */
+            if (PHPPort == 9000)
+                PHPPort++;
+
             using (var sw = new StreamWriter(iniPath)) {
                 sw.WriteLine("; Wnmp Configuration File\r\n;");
                 sw.WriteLine("; Editor path\r\neditorpath=" + Editor);
