@@ -146,7 +146,7 @@ namespace Wnmp.Programs
         private void cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             try {
-                Process.Start(Options.settings.Editor, Main.StartupPath + "/mariadb/data/" + e.ClickedItem.Text);
+                Process.Start(Options.settings.Editor, Main.StartupPath + "/mariadb/" + e.ClickedItem.Text);
             } catch (Exception ex) {
                 Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
             }
