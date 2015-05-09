@@ -12,7 +12,7 @@ Wnmp values security, stability and user friendliness.
 
 ### Versions of the software(Updated: May 8th 2015):
 
-  * Nginx 1.7.12
+  * Nginx 1.9.0
 
   * MariaDB 10.0.18
 
