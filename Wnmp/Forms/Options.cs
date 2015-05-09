@@ -32,6 +32,7 @@ namespace Wnmp.Forms
     public partial class Options : Form
     {
         public static Ini settings = new Ini();
+        private string Editor;
 
         public Options()
         {
@@ -57,11 +58,11 @@ namespace Wnmp.Forms
                 input = dialog.FileName;
 
             editorTB.Text = dialog.FileName;
-            settings.Editor = dialog.FileName;
+            Editor = dialog.FileName;
 
             if (input == "")
-                settings.Editor = "notepad.exe";
-            editorTB.Text = settings.Editor;
+                Editor = "notepad.exe";
+            editorTB.Text = Editor;
         }
 
         private void Options_Load(object sender, EventArgs e)
@@ -75,55 +76,24 @@ namespace Wnmp.Forms
             SetEditor();
         }
 
-        private void StartWnmpWithWindows_CheckedChanged(object sender, EventArgs e)
-        {
-            // TODO: Should we use the registry or use the users Startup Folder?
-            if (StartWnmpWithWindows.Checked) {
-                var addReg =
-                    Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                addReg.SetValue("Wnmp", "\"" + Application.ExecutablePath + "\"");
-                settings.Startupwithwindows = true;
-            } else {
-                var remove =
-                    Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                remove.DeleteValue("Wnmp");
-                settings.Startupwithwindows = false;
-            }
-        }
-
-        private void StartAllProgramsOnLaunch_CheckedChanged(object sender, EventArgs e)
-        {
-            settings.Startallappsatlaunch = StartAllProgramsOnLaunch.Checked;
-        }
-
-        private void MinimizeWnmpToTray_CheckedChanged(object sender, EventArgs e)
-        {
-            settings.Minimizewnmptotray = MinimizeWnmpToTray.Checked;
-        }
-
-        private void AutoUpdate_CheckedChanged(object sender, EventArgs e)
-        {
-            if (AutoUpdate.Checked)
-                settings.Autocheckforupdates = true;
-            else
-                settings.Autocheckforupdates = false;
-        }
-
-        private void PHP_PROCESSES_ValueChanged(object sender, EventArgs e)
-        {
-            settings.PHPProcesses = (int)PHP_PROCESSES.Value;
-            UpdatePHPngxCfg();
-        }
-
-        private void PHP_PORT_ValueChanged(object sender, EventArgs e)
-        {
-            settings.PHPPort = (int)PHP_PORT.Value;
-        }
-
         private void Save_Click(object sender, EventArgs e)
         {
+            SetSettings();
             settings.UpdateSettings();
             this.Close();
+        }
+
+        private void SetSettings()
+        {
+            settings.Editor = Editor;
+            settings.Startupwithwindows = StartWnmpWithWindows.Checked;
+            settings.Startallappsatlaunch = StartAllProgramsOnLaunch.Checked;
+            settings.Minimizewnmptotray = MinimizeWnmpToTray.Checked;
+            settings.Autocheckforupdates = AutoUpdate.Checked;
+            settings.PHPProcesses = (int)PHP_PROCESSES.Value;
+            settings.PHPPort = (int)PHP_PORT.Value;
+            settings.Checkforupdatefrequency = (int)UpdateCheckInterval.Value;
+            UpdatePHPngxCfg();
         }
 
         #region UpdateOptions
@@ -134,32 +104,42 @@ namespace Wnmp.Forms
         private void UpdateOptions()
         {
             editorTB.Text = settings.Editor;
-
             StartWnmpWithWindows.Checked = settings.Startupwithwindows;
-
             StartAllProgramsOnLaunch.Checked = settings.Startallappsatlaunch;
-
             MinimizeWnmpToTray.Checked = settings.Minimizewnmptotray;
-
             AutoUpdate.Checked = settings.Autocheckforupdates;
-
             UpdateCheckInterval.Value = settings.Checkforupdatefrequency;
-
             PHP_PROCESSES.Value = settings.PHPProcesses;
-
             PHP_PORT.Value = settings.PHPPort;
+            UpdatePHPngxCfg();
+            StartWithWindows();
+        }
+
+        private void StartWithWindows()
+        {
+            RegistryKey root;
+            const string key = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
+            if (StartWnmpWithWindows.Checked) {
+                root = Registry.CurrentUser.OpenSubKey(key, true);
+                if (root.GetValue("Wnmp") == null)
+                    root.SetValue("Wnmp", "\"" + Application.ExecutablePath + "\"");
+            } else {
+                root = Registry.CurrentUser.OpenSubKey(key, true);
+                if (root.GetValue("Wnmp") != null)
+                    root.DeleteValue("Wnmp");
+            }
         }
 
         private void UpdatePHPngxCfg()
         {
             int i;
-            int ProcessCount = Options.settings.PHPProcesses;
-            int port = Options.settings.PHPPort;
+            int port = (int)PHP_PORT.Value;
+            int PHPProcesses = (int)PHP_PROCESSES.Value;
 
             using (var sw = new StreamWriter(Main.StartupPath + "/conf/php_processes.conf")) {
                 sw.WriteLine("# DO NOT MODIFY!!! THIS FILE IS MANAGED BY THE WNMP CONTROL PANEL.\r\n");
                 sw.WriteLine("upstream php_processes {");
-                for (i = 1; i <= ProcessCount; i++) {
+                for (i = 1; i <= PHPProcesses; i++) {
                     sw.WriteLine("    server 127.0.0.1:" + port + " weight=1;");
                     port++;
                 }
@@ -177,11 +157,6 @@ namespace Wnmp.Forms
         private void editorTB_DoubleClick(object sender, EventArgs e)
         {
             SetEditor();
-        }
-
-        private void UpdateCheckInterval_ValueChanged(object sender, EventArgs e)
-        {
-            settings.Checkforupdatefrequency = (int)UpdateCheckInterval.Value;
         }
     }
 }

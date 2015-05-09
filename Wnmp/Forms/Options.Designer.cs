@@ -158,7 +158,6 @@ namespace Wnmp.Forms
             0,
             0,
             0});
-            this.UpdateCheckInterval.ValueChanged += new System.EventHandler(this.UpdateCheckInterval_ValueChanged);
             // 
             // label6
             // 
@@ -186,7 +185,6 @@ namespace Wnmp.Forms
             this.StartAllProgramsOnLaunch.Size = new System.Drawing.Size(15, 14);
             this.StartAllProgramsOnLaunch.TabIndex = 7;
             this.StartAllProgramsOnLaunch.UseVisualStyleBackColor = true;
-            this.StartAllProgramsOnLaunch.CheckedChanged += new System.EventHandler(this.StartAllProgramsOnLaunch_CheckedChanged);
             // 
             // label3
             // 
@@ -205,7 +203,6 @@ namespace Wnmp.Forms
             this.StartWnmpWithWindows.Size = new System.Drawing.Size(15, 14);
             this.StartWnmpWithWindows.TabIndex = 4;
             this.StartWnmpWithWindows.UseVisualStyleBackColor = true;
-            this.StartWnmpWithWindows.CheckedChanged += new System.EventHandler(this.StartWnmpWithWindows_CheckedChanged);
             // 
             // label2
             // 
@@ -224,7 +221,6 @@ namespace Wnmp.Forms
             this.AutoUpdate.Size = new System.Drawing.Size(15, 14);
             this.AutoUpdate.TabIndex = 11;
             this.AutoUpdate.UseVisualStyleBackColor = true;
-            this.AutoUpdate.CheckedChanged += new System.EventHandler(this.AutoUpdate_CheckedChanged);
             // 
             // label5
             // 
@@ -252,7 +248,6 @@ namespace Wnmp.Forms
             this.MinimizeWnmpToTray.Size = new System.Drawing.Size(15, 14);
             this.MinimizeWnmpToTray.TabIndex = 9;
             this.MinimizeWnmpToTray.UseVisualStyleBackColor = true;
-            this.MinimizeWnmpToTray.CheckedChanged += new System.EventHandler(this.MinimizeWnmpToTray_CheckedChanged);
             // 
             // label4
             // 
@@ -303,7 +298,6 @@ namespace Wnmp.Forms
             0,
             0,
             0});
-            this.PHP_PORT.ValueChanged += new System.EventHandler(this.PHP_PORT_ValueChanged);
             // 
             // label7
             // 
@@ -345,7 +339,6 @@ namespace Wnmp.Forms
             0,
             0,
             0});
-            this.PHP_PROCESSES.ValueChanged += new System.EventHandler(this.PHP_PROCESSES_ValueChanged);
             // 
             // label8
             // 
