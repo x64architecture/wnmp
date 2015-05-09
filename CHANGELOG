@@ -1,3 +1,22 @@
+Wnmp 2.1.8: Released: 05/08/2015
+================================
+- Wnmp Control Panel 2.4.1
+    *) Feature: Stop MariaDB without the need for a passphrase. (Closes #39)
+    *) Bugfix: Fix Xdebug conflict with PHP (Fixes #47)
+        Thanks to Murray Crowe for reporting this issue.
+    *) Bugfix: Fix MariaDB configuration button
+    *) Improved: Configuration handling
+
+- Nginx
+    *) Updated to 1.9.0
+    *) Update VigorTLS to latest commit 53517e5
+
+- MariaDB
+    *) Updated to 10.0.18
+
+- phpMyAdmin
+    *) Updated to 4.4.6
+
 Wnmp 2.1.7: Released: 04/17/2015
 ================================
 - Wnmp Control Panel 2.4.0

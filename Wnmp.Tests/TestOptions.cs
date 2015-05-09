@@ -32,11 +32,11 @@ namespace Wnmp.Tests
         public void TestStartAllAppsAtLaunchSetting()
         {
             ini.UpdateSettings();
-            ini.Startallapplicationsatlaunch = true;
+            ini.Startallappsatlaunch = true;
             ini.UpdateSettings();
             ini.ReadSettings();
 
-            Assert.AreEqual(true, ini.Startallapplicationsatlaunch);
+            Assert.AreEqual(true, ini.Startallappsatlaunch);
         }
         [Test]
         public void TestMinimizeWnmpToTraySetting()
