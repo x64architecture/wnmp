@@ -26,48 +26,6 @@ namespace Wnmp.Internals
     /// </summary>
     static class NativeMethods
     {
-        #region PINVOKE
-
-        #region PRODUCT INFO
-        [DllImport("Kernel32.dll")]
-        public static extern bool GetProductInfo(
-            int osMajorVersion,
-            int osMinorVersion,
-            int spMajorVersion,
-            int spMinorVersion,
-            out int edition);
-        #endregion PRODUCT INFO
-
-        #region VERSION
-        [DllImport("kernel32.dll")]
-        public static extern bool GetVersionEx(ref OSVERSIONINFOEX osVersionInfo);
-        #endregion VERSION
-
-        #region SYSTEMMETRICS
-        [DllImport("user32")]
-        public static extern int GetSystemMetrics(int nIndex);
-        #endregion SYSTEMMETRICS
-
-        #region OSVERSIONINFOEX
-        [StructLayout(LayoutKind.Sequential)]
-        public struct OSVERSIONINFOEX
-        {
-            public int dwOSVersionInfoSize;
-            public int dwMajorVersion;
-            public int dwMinorVersion;
-            public int dwBuildNumber;
-            public int dwPlatformId;
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-            public string szCSDVersion;
-            public short wServicePackMajor;
-            public short wServicePackMinor;
-            public short wSuiteMask;
-            public byte wProductType;
-            public byte wReserved;
-        }
-        #endregion OSVERSIONINFOEX
-
-        #region InternetGetConnectedState
         [DllImport("wininet.dll", SetLastError = true)]
         public static extern bool InternetGetConnectedState(out int lpdwFlags, int dwReserved);
 
@@ -81,8 +39,5 @@ namespace Wnmp.Internals
             Offline = 0x20, // 32
             Configured = 0x40, // 64
         }
-        #endregion
-
-        #endregion PINVOKE
     }
 }
