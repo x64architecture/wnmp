@@ -91,12 +91,12 @@ namespace Wnmp.Helpers
             var frm = new UpdateProgress();
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
-            //Program.formInstance.Enabled = false;
+            form.Enabled = false;
 
             webClient = new WebClient();
 
             frm.FormClosed += (s, e) => {
-                //Program.formInstance.Enabled = true;
+                form.Enabled = true;
                 webClient.CancelAsync();
             };
 
