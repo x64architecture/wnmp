@@ -64,12 +64,12 @@ namespace Wnmp.Configuration
             string str = Option + "=";
             using (var sr = new StringReader(IniFile)) {
                 string line;
-                while ((line = sr.ReadLine()) != null) { // Read every line while not null
+                while ((line = sr.ReadLine()) != null) {
                         if (line.StartsWith(str))
                             return line.Remove(0, str.Length);
                 }
             }
-            return defobj.ToString(); // Return the default value as a string
+            return defobj.ToString();
         }
 
         /// <summary>
