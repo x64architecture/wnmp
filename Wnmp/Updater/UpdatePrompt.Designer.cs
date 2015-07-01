@@ -33,12 +33,12 @@
             this.No = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.viewchange = new System.Windows.Forms.LinkLabel();
             this.newversion = new System.Windows.Forms.Label();
-            this.cversion = new System.Windows.Forms.Label();
+            this.currentversion = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.viewchange = new System.Windows.Forms.LinkLabel();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,7 +77,7 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.newversion);
             this.panel2.Controls.Add(this.Yes);
-            this.panel2.Controls.Add(this.cversion);
+            this.panel2.Controls.Add(this.currentversion);
             this.panel2.Controls.Add(this.No);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
@@ -88,23 +88,34 @@
             this.panel2.Size = new System.Drawing.Size(303, 165);
             this.panel2.TabIndex = 4;
             // 
+            // viewchange
+            // 
+            this.viewchange.AutoSize = true;
+            this.viewchange.Location = new System.Drawing.Point(101, 75);
+            this.viewchange.Name = "viewchange";
+            this.viewchange.Size = new System.Drawing.Size(84, 13);
+            this.viewchange.TabIndex = 7;
+            this.viewchange.TabStop = true;
+            this.viewchange.Text = "View Changelog";
+            this.viewchange.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.viewchange_LinkClicked);
+            // 
             // newversion
             // 
             this.newversion.AutoSize = true;
             this.newversion.Location = new System.Drawing.Point(111, 47);
             this.newversion.Name = "newversion";
-            this.newversion.Size = new System.Drawing.Size(35, 13);
+            this.newversion.Size = new System.Drawing.Size(67, 13);
             this.newversion.TabIndex = 5;
-            this.newversion.Text = "label7";
+            this.newversion.Text = "New Version";
             // 
-            // cversion
+            // currentversion
             // 
-            this.cversion.AutoSize = true;
-            this.cversion.Location = new System.Drawing.Point(111, 34);
-            this.cversion.Name = "cversion";
-            this.cversion.Size = new System.Drawing.Size(35, 13);
-            this.cversion.TabIndex = 4;
-            this.cversion.Text = "label6";
+            this.currentversion.AutoSize = true;
+            this.currentversion.Location = new System.Drawing.Point(111, 34);
+            this.currentversion.Name = "currentversion";
+            this.currentversion.Size = new System.Drawing.Size(79, 13);
+            this.currentversion.TabIndex = 4;
+            this.currentversion.Text = "Current Version";
             // 
             // label4
             // 
@@ -133,18 +144,7 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "New version found!";
             // 
-            // viewchange
-            // 
-            this.viewchange.AutoSize = true;
-            this.viewchange.Location = new System.Drawing.Point(101, 75);
-            this.viewchange.Name = "viewchange";
-            this.viewchange.Size = new System.Drawing.Size(84, 13);
-            this.viewchange.TabIndex = 7;
-            this.viewchange.TabStop = true;
-            this.viewchange.Text = "View Changelog";
-            this.viewchange.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.viewchange_LinkClicked);
-            // 
-            // ChangelogViewer
+            // UpdatePrompt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -153,7 +153,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ChangelogViewer";
+            this.Name = "UpdatePrompt";
             this.Text = "Check For Updates";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -170,7 +170,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        public System.Windows.Forms.Label cversion;
+        public System.Windows.Forms.Label currentversion;
         public System.Windows.Forms.Label newversion;
         private System.Windows.Forms.LinkLabel viewchange;
     }

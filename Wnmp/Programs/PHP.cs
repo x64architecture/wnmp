@@ -76,8 +76,8 @@ namespace Wnmp.Programs
         public void StartPHP()
         {
             int i;
-            int ProcessCount = Options.settings.PHPProcesses;
-            int port = Options.settings.PHPPort;
+            int ProcessCount = Options.settings.PHP_Processes;
+            int port = Options.settings.PHP_Port;
 
             try
             {

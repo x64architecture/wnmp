@@ -1,21 +1,22 @@
 ﻿/*
-Copyright (c) Kurt Cancemi 2012-2015
+ * Copyright (c) 2012 - 2015, Kurt Cancemi (kurt@x64architecture.com)
+ *
+ * This file is part of Wnmp.
+ *
+ *  Wnmp is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Wnmp is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-This file is part of Wnmp.
-
-    Wnmp is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    Wnmp is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
-*/
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
@@ -31,7 +32,7 @@ namespace Wnmp.Helpers
     class MainHelper
     {
         public Main form;
-        #region checkforapps
+
         /// <summary>
         /// Checks if Nginx, MariaDB, and PHP exist in the Wnmp directory
         /// </summary>
@@ -47,14 +48,13 @@ namespace Wnmp.Helpers
             if (!Directory.Exists(Application.StartupPath + "/php"))
                 Log.wnmp_log_error("Error: PHP Not Found", Log.LogSection.WNMP_PHP);
         }
-        #endregion checkforapps
 
         /// <summary>
         /// Adds configuration files to the Config buttons context menu strip
         /// </summary>
         public void DirFiles(string path, string GetFiles, ContextMenuStrip cms)
         {
-            var dinfo = new DirectoryInfo(Main.StartupPath + path);
+            DirectoryInfo dinfo = new DirectoryInfo(Main.StartupPath + path);
 
             if (!dinfo.Exists)
                 return;
@@ -93,8 +93,8 @@ namespace Wnmp.Helpers
 
         private void check_if_running(string application, Label label)
         {
-            var _Process = Process.GetProcessesByName(application);
-            if (_Process.Length != 0)
+            Process[] process = Process.GetProcessesByName(application);
+            if (process.Length != 0)
                 Common.ToStartedLabel(label);
             else
                 Common.ToStoppedLabel(label);
@@ -102,7 +102,7 @@ namespace Wnmp.Helpers
 
         private bool IsFirstRun()
         {
-            return (Options.settings.Firstrun);
+            return (Options.settings.FirstRun);
         }
 
         /// <summary>
@@ -118,11 +118,11 @@ namespace Wnmp.Helpers
             else if (!File.Exists(Main.StartupPath + "/bin/CertGen.exe"))
                 return; // CertGen.exe doesn't exist. (FAILURE)
 
-            using (var ps = new Process()) {
+            using (Process ps = new Process()) {
                 ps.StartInfo.FileName = Main.StartupPath + "/bin/CertGen.exe";
                 ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 ps.Start();
-                Options.settings.Firstrun = false;
+                Options.settings.FirstRun = false;
                 Options.settings.UpdateSettings();
             }
         }

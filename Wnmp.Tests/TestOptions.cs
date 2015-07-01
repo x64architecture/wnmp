@@ -32,41 +32,41 @@ namespace Wnmp.Tests
         public void TestStartAllAppsAtLaunchSetting()
         {
             ini.UpdateSettings();
-            ini.Startallappsatlaunch = true;
+            ini.RunAppsAtLaunch = true;
             ini.UpdateSettings();
             ini.ReadSettings();
 
-            Assert.AreEqual(true, ini.Startallappsatlaunch);
+            Assert.AreEqual(true, ini.RunAppsAtLaunch);
         }
         [Test]
         public void TestMinimizeWnmpToTraySetting()
         {
             ini.UpdateSettings();
-            ini.Minimizewnmptotray = true;
+            ini.MinimizeWnmpToTray = true;
             ini.UpdateSettings();
             ini.ReadSettings();
 
-            Assert.AreEqual(true, ini.Minimizewnmptotray);
+            Assert.AreEqual(true, ini.MinimizeWnmpToTray);
         }
         [Test]
         public void TestAutoCheckForUpdatesSetting()
         {
             ini.UpdateSettings();
-            ini.Autocheckforupdates = false;
+            ini.AutoCheckForUpdates = false;
             ini.UpdateSettings();
             ini.ReadSettings();
 
-            Assert.AreEqual(false, ini.Autocheckforupdates);
+            Assert.AreEqual(false, ini.AutoCheckForUpdates);
         }
         [Test]
         public void TestCheckForUpdateFrequencySetting()
         {
             ini.UpdateSettings();
-            ini.Checkforupdatefrequency = 1;
+            ini.UpdateFrequency = 1;
             ini.UpdateSettings();
             ini.ReadSettings();
 
-            Assert.AreEqual(1, ini.Checkforupdatefrequency);
+            Assert.AreEqual(1, ini.UpdateFrequency);
         }
         [Test]
         public void TestLastCheckForUpdateSetting()
@@ -82,11 +82,11 @@ namespace Wnmp.Tests
         public void TestFirstRunSetting()
         {
             ini.UpdateSettings();
-            ini.Firstrun = false;
+            ini.FirstRun = false;
             ini.UpdateSettings();
             ini.ReadSettings();
 
-            Assert.AreEqual(false, ini.Firstrun);
+            Assert.AreEqual(false, ini.FirstRun);
         }
 
     }

@@ -16,22 +16,18 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 using System;
-using System.Drawing;
 using System.Windows.Forms;
-using System.Diagnostics;
 
 using Wnmp.Internals;
-
 namespace Wnmp.Forms
 {
     /// <summary>
-    /// Form that shows info about Wnmp
+    /// Form to show the update progress.
     /// </summary>
-    public partial class About : Form
+    public partial class UpdateProgress : Form
     {
-        public About()
+        public UpdateProgress()
         {
             InitializeComponent();
         }
@@ -45,30 +41,9 @@ namespace Wnmp.Forms
             }
         }
 
-        private void Closebtn_Click(object sender, EventArgs e)
+        private void cancelDownload_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void wnmpwebsiteLabel_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://www.getwnmp.org");
-        }
-
-        private void About_Load(object sender, EventArgs e)
-        {
-            wnmpversionLabel.Text = "Wnmp Version: " + Application.ProductVersion;
-            wnmpcpversionLabel.Text = "Wnmp Control Panel Version: " + Main.CPVER;
-        }
-
-        private void wnmpwebsiteLabel_MouseHover(object sender, EventArgs e)
-        {
-            wnmpwebsiteLabel.ForeColor = Color.Blue;
-        }
-
-        private void wnmpwebsiteLabel_MouseLeave(object sender, EventArgs e)
-        {
-            wnmpwebsiteLabel.ForeColor = Color.Black;
         }
     }
 }

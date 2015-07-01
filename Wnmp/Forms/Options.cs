@@ -1,29 +1,30 @@
 ﻿/*
-Copyright (c) Kurt Cancemi 2012-2015
-
-This file is part of Wnmp.
-
-    Wnmp is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    Wnmp is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ * Copyright (c) 2012 - 2015, Kurt Cancemi (kurt@x64architecture.com)
+ *
+ * This file is part of Wnmp.
+ *
+ *  Wnmp is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Wnmp is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 using System;
+using System.IO;
 using System.Windows.Forms;
 using Microsoft.Win32;
 
 using Wnmp.Configuration;
 using Wnmp.Internals;
-using System.IO;
+
 namespace Wnmp.Forms
 {
     /// <summary>
@@ -86,13 +87,13 @@ namespace Wnmp.Forms
         private void SetSettings()
         {
             settings.Editor = Editor;
-            settings.Startupwithwindows = StartWnmpWithWindows.Checked;
-            settings.Startallappsatlaunch = StartAllProgramsOnLaunch.Checked;
-            settings.Minimizewnmptotray = MinimizeWnmpToTray.Checked;
-            settings.Autocheckforupdates = AutoUpdate.Checked;
-            settings.PHPProcesses = (int)PHP_PROCESSES.Value;
-            settings.PHPPort = (int)PHP_PORT.Value;
-            settings.Checkforupdatefrequency = (int)UpdateCheckInterval.Value;
+            settings.StartWithWindows = StartWnmpWithWindows.Checked;
+            settings.RunAppsAtLaunch = StartAllProgramsOnLaunch.Checked;
+            settings.MinimizeWnmpToTray = MinimizeWnmpToTray.Checked;
+            settings.AutoCheckForUpdates = AutoUpdate.Checked;
+            settings.PHP_Processes = (int)PHP_PROCESSES.Value;
+            settings.PHP_Port = (int)PHP_PORT.Value;
+            settings.UpdateFrequency = (int)UpdateCheckInterval.Value;
             UpdatePHPngxCfg();
         }
 
@@ -104,13 +105,13 @@ namespace Wnmp.Forms
         private void UpdateOptions()
         {
             editorTB.Text = settings.Editor;
-            StartWnmpWithWindows.Checked = settings.Startupwithwindows;
-            StartAllProgramsOnLaunch.Checked = settings.Startallappsatlaunch;
-            MinimizeWnmpToTray.Checked = settings.Minimizewnmptotray;
-            AutoUpdate.Checked = settings.Autocheckforupdates;
-            UpdateCheckInterval.Value = settings.Checkforupdatefrequency;
-            PHP_PROCESSES.Value = settings.PHPProcesses;
-            PHP_PORT.Value = settings.PHPPort;
+            StartWnmpWithWindows.Checked = settings.StartWithWindows;
+            StartAllProgramsOnLaunch.Checked = settings.RunAppsAtLaunch;
+            MinimizeWnmpToTray.Checked = settings.MinimizeWnmpToTray;
+            AutoUpdate.Checked = settings.AutoCheckForUpdates;
+            UpdateCheckInterval.Value = settings.UpdateFrequency;
+            PHP_PROCESSES.Value = settings.PHP_Processes;
+            PHP_PORT.Value = settings.PHP_Port;
             UpdatePHPngxCfg();
             StartWithWindows();
         }

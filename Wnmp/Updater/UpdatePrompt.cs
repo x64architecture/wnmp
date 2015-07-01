@@ -16,22 +16,19 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 using System;
-using System.Drawing;
-using System.Windows.Forms;
 using System.Diagnostics;
-
+using System.Windows.Forms;
+using Wnmp.Helpers;
 using Wnmp.Internals;
-
 namespace Wnmp.Forms
 {
     /// <summary>
-    /// Form that shows info about Wnmp
+    /// Form for viewing the changelog and asking if the user would like to update
     /// </summary>
-    public partial class About : Form
+    public partial class UpdatePrompt : Form
     {
-        public About()
+        public UpdatePrompt()
         {
             InitializeComponent();
         }
@@ -45,30 +42,28 @@ namespace Wnmp.Forms
             }
         }
 
-        private void Closebtn_Click(object sender, EventArgs e)
+        private void Yes_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Yes;
             this.Close();
         }
 
-        private void wnmpwebsiteLabel_Click(object sender, EventArgs e)
+        private void No_Click(object sender, EventArgs e)
         {
-            Process.Start("https://www.getwnmp.org");
+            this.DialogResult = DialogResult.No;
+            this.Close();
         }
 
-        private void About_Load(object sender, EventArgs e)
+        private void viewchange_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            wnmpversionLabel.Text = "Wnmp Version: " + Application.ProductVersion;
-            wnmpcpversionLabel.Text = "Wnmp Control Panel Version: " + Main.CPVER;
-        }
-
-        private void wnmpwebsiteLabel_MouseHover(object sender, EventArgs e)
-        {
-            wnmpwebsiteLabel.ForeColor = Color.Blue;
-        }
-
-        private void wnmpwebsiteLabel_MouseLeave(object sender, EventArgs e)
-        {
-            wnmpwebsiteLabel.ForeColor = Color.Black;
+            try
+            {
+                Process.Start(Constants.WhatsNewUrl);
+            }
+            catch (Exception ex)
+            {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
+            }
         }
     }
 }

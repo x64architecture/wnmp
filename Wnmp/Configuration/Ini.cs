@@ -1,21 +1,22 @@
 ﻿/*
-Copyright (c) Kurt Cancemi 2012-2015
+ * Copyright (c) 2012 - 2015, Kurt Cancemi (kurt@x64architecture.com)
+ *
+ * This file is part of Wnmp.
+ *
+ *  Wnmp is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Wnmp is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-This file is part of Wnmp.
-
-    Wnmp is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    Wnmp is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
-*/
 using System;
 using System.IO;
 
@@ -29,17 +30,17 @@ namespace Wnmp.Configuration
     public class Ini
     {
         // Variables that contain the default values
-        private readonly string iniPath = Main.StartupPath + "/Wnmp.ini"; // ini path
-        public string Editor = "notepad.exe"; // editor for viewing config and log files
-        public bool Startupwithwindows = false; // Start Wnmp with Windows
-        public bool Startallappsatlaunch = false; // Start all applications at launch
-        public bool Minimizewnmptotray = false; // Minimize Wnmp to tray when minimized
-        public bool Autocheckforupdates = true; // Auto check for updates
-        public int Checkforupdatefrequency = 7; // Check for update frequency
-        public int PHPPort = 9001; // PHP Port
-        public int PHPProcesses = 2; // Amount of PHP processes
+        private readonly string iniPath = Main.StartupPath + "/Wnmp.ini";
+        public string Editor = "notepad.exe";
+        public bool StartWithWindows = false;
+        public bool RunAppsAtLaunch = false;
+        public bool MinimizeWnmpToTray = false;
+        public bool AutoCheckForUpdates = true;
+        public int UpdateFrequency = 7;
+        public int PHP_Port = 9001;
+        public int PHP_Processes = 2;
         public DateTime Lastcheckforupdate = DateTime.MinValue;
-        public bool Firstrun = true; // First run
+        public bool FirstRun = true;
         private string IniFile;
 
         private bool LoadIniFile()
@@ -83,14 +84,14 @@ namespace Wnmp.Configuration
             if (!LoadIniFile())
                 return;
             Editor = ReadIniValue("editorpath", Editor);
-            Boolean.TryParse(ReadIniValue("startupwithwindows", Startupwithwindows), out Startupwithwindows);
-            Boolean.TryParse(ReadIniValue("startallapplicationsatlaunch", Startallappsatlaunch), out Startallappsatlaunch);
-            Boolean.TryParse(ReadIniValue("minimizewnmptotray", Minimizewnmptotray),  out Minimizewnmptotray);
-            Boolean.TryParse(ReadIniValue("autocheckforupdates", Autocheckforupdates), out Autocheckforupdates);
-            Boolean.TryParse(ReadIniValue("firstrun", Firstrun), out Firstrun);
-            int.TryParse(ReadIniValue("checkforupdatefrequency", Checkforupdatefrequency), out Checkforupdatefrequency);
-            int.TryParse(ReadIniValue("phpprocesses", PHPProcesses), out PHPProcesses);
-            int.TryParse(ReadIniValue("phpport", PHPPort), out PHPPort);
+            Boolean.TryParse(ReadIniValue("startupwithwindows", StartWithWindows), out StartWithWindows);
+            Boolean.TryParse(ReadIniValue("startallapplicationsatlaunch", RunAppsAtLaunch), out RunAppsAtLaunch);
+            Boolean.TryParse(ReadIniValue("minimizewnmptotray", MinimizeWnmpToTray),  out MinimizeWnmpToTray);
+            Boolean.TryParse(ReadIniValue("autocheckforupdates", AutoCheckForUpdates), out AutoCheckForUpdates);
+            Boolean.TryParse(ReadIniValue("firstrun", FirstRun), out FirstRun);
+            int.TryParse(ReadIniValue("checkforupdatefrequency", UpdateFrequency), out UpdateFrequency);
+            int.TryParse(ReadIniValue("phpprocesses", PHP_Processes), out PHP_Processes);
+            int.TryParse(ReadIniValue("phpport", PHP_Port), out PHP_Port);
             DateTime.TryParse(ReadIniValue("lastcheckforupdate", Lastcheckforupdate), out Lastcheckforupdate);
 
             UpdateSettings();
@@ -101,21 +102,21 @@ namespace Wnmp.Configuration
         public void UpdateSettings()
         {
             /* TODO: Remove in a later release */
-            if (PHPPort == 9000)
-                PHPPort++;
+            if (PHP_Port == 9000)
+                PHP_Port++;
 
             using (var sw = new StreamWriter(iniPath)) {
                 sw.WriteLine("; Wnmp Configuration File\r\n;");
                 sw.WriteLine("; Editor path\r\neditorpath=" + Editor);
-                sw.WriteLine("; Start Wnmp with Windows\r\nstartupwithwindows=" + Startupwithwindows);
-                sw.WriteLine("; Start all applications when Wnmp starts\r\nstartallapplicationsatlaunch=" + Startallappsatlaunch);
-                sw.WriteLine("; Minimize Wnmp to tray when minimized\r\nminimizewnmptotray=" + Minimizewnmptotray);
-                sw.WriteLine("; Automatically check for updates\r\nautocheckforupdates=" + Autocheckforupdates);
-                sw.WriteLine("; Update frequency(In days)\r\ncheckforupdatefrequency=" + Checkforupdatefrequency);
+                sw.WriteLine("; Start Wnmp with Windows\r\nstartupwithwindows=" + StartWithWindows);
+                sw.WriteLine("; Start all applications when Wnmp starts\r\nstartallapplicationsatlaunch=" + RunAppsAtLaunch);
+                sw.WriteLine("; Minimize Wnmp to tray when minimized\r\nminimizewnmptotray=" + MinimizeWnmpToTray);
+                sw.WriteLine("; Automatically check for updates\r\nautocheckforupdates=" + AutoCheckForUpdates);
+                sw.WriteLine("; Update frequency(In days)\r\ncheckforupdatefrequency=" + UpdateFrequency);
                 sw.WriteLine("; Last check for update\r\nlastcheckforupdate=" + Lastcheckforupdate);
-                sw.WriteLine("; Amount of PHP processes\r\nphpprocesses=" + PHPProcesses);
-                sw.WriteLine("; PHP Port\r\nphpport=" + PHPPort);
-                sw.WriteLine("; First run\r\nfirstrun=" + Firstrun);
+                sw.WriteLine("; Amount of PHP processes\r\nphpprocesses=" + PHP_Processes);
+                sw.WriteLine("; PHP Port\r\nphpport=" + PHP_Port);
+                sw.WriteLine("; First run\r\nfirstrun=" + FirstRun);
             }
         }
     }

@@ -1,21 +1,21 @@
 /*
-Copyright (c) Kurt Cancemi 2012-2015
-
-This file is part of Wnmp.
-
-    Wnmp is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    Wnmp is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ * Copyright (c) 2012 - 2015, Kurt Cancemi (kurt@x64architecture.com)
+ *
+ * This file is part of Wnmp.
+ *
+ *  Wnmp is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Wnmp is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 using System;
 using System.Windows.Forms;
@@ -24,6 +24,7 @@ using System.Diagnostics;
 using Wnmp.Programs;
 using Wnmp.Helpers;
 using Wnmp.Internals;
+
 namespace Wnmp.Forms
 {
 
@@ -36,7 +37,7 @@ namespace Wnmp.Forms
         private Nginx NginxIns       = new Nginx();
         private MariaDB MariaDBIns   = new MariaDB();
         private PHP PHPIns           = new PHP();
-        private Updater UpdaterIns   = new Updater();
+        private WnmpUpdater UpdaterIns   = new WnmpUpdater();
         private MainHelper HelperIns = new MainHelper();
         public static string StartupPath { get { return Application.StartupPath; } }
 
@@ -61,7 +62,7 @@ namespace Wnmp.Forms
             NginxIns.form   = this;
             MariaDBIns.form = this;
             PHPIns.form     = this;
-            UpdaterIns.form = this;
+            UpdaterIns.mainForm = this;
             HelperIns.form  = this;
             GeneralIns.nginx   = NginxIns;
             GeneralIns.mariadb = MariaDBIns;
@@ -80,10 +81,10 @@ namespace Wnmp.Forms
             PopulateMenus();
             HelperIns.FirstRun();
 
-            if (Options.settings.Startallappsatlaunch)
+            if (Options.settings.RunAppsAtLaunch)
                 GeneralIns.StartAllProgs();
 
-            if (Options.settings.Autocheckforupdates)
+            if (Options.settings.AutoCheckForUpdates)
                 UpdaterIns.DoDateEclasped();
 
             Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
@@ -92,7 +93,7 @@ namespace Wnmp.Forms
         private bool NotifyMinimizeWnmp = true;
         private void Main_Resize(object sender, EventArgs e)
         {
-            if (Options.settings.Minimizewnmptotray == false)
+            if (Options.settings.MinimizeWnmpToTray == false)
                 return;
 
             if (WindowState == FormWindowState.Minimized) {
@@ -151,7 +152,7 @@ namespace Wnmp.Forms
 
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UpdaterIns.CheckForUpdates(false);
+            UpdaterIns.CheckForUpdates();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
