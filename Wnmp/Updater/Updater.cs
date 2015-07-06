@@ -25,7 +25,6 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Xml;
 using Wnmp.Forms;
-using Wnmp.Helpers;
 using System.Windows.Forms;
 
 namespace Wnmp
@@ -116,29 +115,38 @@ namespace Wnmp
         {
             string elementName = "";
 
-            var reader = new XmlTextReader(updateInfoURL.OriginalString);
-            reader.MoveToContent();
+            try {
+                var reader = new XmlTextReader(updateInfoURL.OriginalString);
+                reader.MoveToContent();
 
-            if ((reader.NodeType != XmlNodeType.Element) && (reader.Name != "appinfo"))
-                return false;
+                if ((reader.NodeType != XmlNodeType.Element) && (reader.Name != "appinfo"))
+                    return false;
 
-            while (reader.Read()) {
-                if (reader.NodeType == XmlNodeType.Element) {
-                    elementName = reader.Name;
-                } else {
-                    if ((reader.NodeType == XmlNodeType.Text) && (reader.HasValue))
-                        switch (elementName) {
-                            case "version":
-                                newVersion = new Version(reader.Value);
-                                break;
-                            case "upgradeurl":
-                                UpdateDownloadURL = new Uri(reader.Value);
-                                break;
-                        }
+                while (reader.Read()) {
+                    if (reader.NodeType == XmlNodeType.Element) {
+                        elementName = reader.Name;
+                    } else {
+                        if ((reader.NodeType == XmlNodeType.Text) && (reader.HasValue))
+                            switch (elementName) {
+                                case "version":
+                                    newVersion = new Version(reader.Value);
+                                    break;
+                                case "upgradeurl":
+                                    UpdateDownloadURL = new Uri(reader.Value);
+                                    break;
+                            }
+                    }
                 }
-            }
 
-            return true;
+                return true;
+            } catch (Exception ex) {
+                if (ex.Message.Contains("The remote name could not be resolved")) {
+                    Log.wnmp_log_error("No active internet connection detected!", Log.LogSection.WNMP_MAIN);
+                } else {
+                    Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
+                }
+                return false;
+            }
         }
     }
 }

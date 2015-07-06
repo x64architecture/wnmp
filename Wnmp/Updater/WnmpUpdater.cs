@@ -25,8 +25,6 @@ using System.Diagnostics;
 using System.IO;
 
 using Wnmp.Forms;
-using Wnmp.Internals;
-using Wnmp.Helpers;
 
 namespace Wnmp
 {

@@ -20,10 +20,7 @@
 using System;
 using System.Windows.Forms;
 using System.Diagnostics;
-
-using Wnmp.Programs;
-using Wnmp.Helpers;
-using Wnmp.Internals;
+using System.IO;
 
 namespace Wnmp.Forms
 {
@@ -33,12 +30,10 @@ namespace Wnmp.Forms
     /// </summary>
     public partial class Main : Form
     {
-        private General GeneralIns   = new General();
-        private Nginx NginxIns       = new Nginx();
-        private MariaDB MariaDBIns   = new MariaDB();
-        private PHP PHPIns           = new PHP();
-        private WnmpUpdater UpdaterIns   = new WnmpUpdater();
-        private MainHelper HelperIns = new MainHelper();
+        private WnmpProgram Nginx   = new WnmpProgram();
+        private WnmpProgram MariaDB = new WnmpProgram();
+        private WnmpProgram PHP     = new WnmpProgram();
+        private WnmpUpdater Updater = new WnmpUpdater();
         public static string StartupPath { get { return Application.StartupPath; } }
 
         public static readonly Version CPVER = new Version("2.4.1");
@@ -49,24 +44,73 @@ namespace Wnmp.Forms
         {
             get {
                 var myCp = base.CreateParams;
-                myCp.Style = myCp.Style & ~Common.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
+                myCp.Style = myCp.Style & ~Constants.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
                 return myCp;
             }
+        }
+
+        public void SetupNginx()
+        {
+            Nginx.exeName = StartupPath.Replace(@"\", "/") + "/nginx.exe";
+            Nginx.procName = "nginx";
+            Nginx.progName = "Nginx";
+            Nginx.progLogSection = Log.LogSection.WNMP_NGINX;
+            Nginx.startArgs = "";
+            Nginx.stopArgs = "-s stop";
+            Nginx.killStop = false;
+            Nginx.statusLabel = nginxrunning;
+            Nginx.confDir = "/conf/";
+            Nginx.logDir = "/logs/";
+        }
+
+        public void SetupMariaDB()
+        {
+            MariaDB.exeName = StartupPath + "/mariadb/bin/mysqld.exe";
+            MariaDB.procName = "mysqld";
+            MariaDB.progName = "MariaDB";
+            MariaDB.progLogSection = Log.LogSection.WNMP_MARIADB;
+            MariaDB.startArgs = "";
+            MariaDB.stopArgs = "";
+            MariaDB.killStop = true;
+            MariaDB.statusLabel = mariadbrunning;
+            MariaDB.confDir = "/mariadb/";
+            MariaDB.logDir = "/mariadb/data/";
+        }
+
+        public void SetupPHP()
+        {
+            PHP.exeName = StartupPath + "/php/php-cgi.exe";
+            PHP.procName = "php-cgi";
+            PHP.progName = "PHP";
+            PHP.progLogSection = Log.LogSection.WNMP_PHP;
+            PHP.startArgs = ""; // Special handling see StartPHP() in the WnmpProgram class
+            PHP.stopArgs = "";
+            PHP.killStop = true;
+            PHP.statusLabel = phprunning;
+            PHP.confDir = "/php/";
+            PHP.logDir = "/php/logs/";
         }
 
         public Main()
         {
             InitializeComponent();
             Options.settings.ReadSettings();
-            GeneralIns.form = this;
-            NginxIns.form   = this;
-            MariaDBIns.form = this;
-            PHPIns.form     = this;
-            UpdaterIns.mainForm = this;
-            HelperIns.form  = this;
-            GeneralIns.nginx   = NginxIns;
-            GeneralIns.mariadb = MariaDBIns;
-            GeneralIns.php     = PHPIns;
+            Updater.mainForm = this;
+            SetupNginx();
+            SetupMariaDB();
+            SetupPHP();
+        }
+
+        private void DoCheckIfAppsAreRunningTimer()
+        {
+            Timer timer = new Timer();
+            timer.Interval = 5000; // TODO: 5 seconds sounds reasonable?
+            timer.Tick += (s, e) => {
+                Nginx.SetStatusLabel();
+                MariaDB.SetStatusLabel();
+                PHP.SetStatusLabel();
+            };
+            timer.Start();
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -75,17 +119,17 @@ namespace Wnmp.Forms
             WnmpTrayIcon.Icon = Properties.Resources.logo;
             WnmpTrayIcon.Visible = true;
 
-            HelperIns.checkforapps();
-            HelperIns.DoTimer();
+            CheckForApps();
+            DoCheckIfAppsAreRunningTimer();
 
             PopulateMenus();
-            HelperIns.FirstRun();
+            FirstRun();
 
             if (Options.settings.RunAppsAtLaunch)
-                GeneralIns.StartAllProgs();
+                start_all_Click(null, null);
 
             if (Options.settings.AutoCheckForUpdates)
-                UpdaterIns.DoDateEclasped();
+                Updater.DoDateEclasped();
 
             Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
         }
@@ -110,8 +154,15 @@ namespace Wnmp.Forms
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
+            /* Cleanup */
             WnmpTrayIcon.Dispose();
-            Common.DeleteFile(Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
+            if (File.Exists(Application.StartupPath + "/Wnmp-Upgrade-Installer.exe")) {
+                try {
+                    File.Delete(Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
+                } catch (Exception ex) {
+                    Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
+                }
+            }
         }
 
         private void WnmpTrayIcon_Click(object sender, EventArgs e)
@@ -120,17 +171,70 @@ namespace Wnmp.Forms
             this.WindowState = FormWindowState.Normal;
         }
 
+        private void FirstRun()
+        {
+            if (Options.settings.FirstRun == false)
+                return;
+
+            if (!File.Exists(Main.StartupPath + "/bin/CertGen.exe"))
+                return;
+           if (!Directory.Exists(Main.StartupPath + "/conf"))
+               Directory.CreateDirectory(Main.StartupPath + "/conf");
+
+            using (Process ps = new Process()) {
+                ps.StartInfo.FileName = Main.StartupPath + "/bin/CertGen.exe";
+                ps.StartInfo.UseShellExecute = false;
+                ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                ps.Start();
+                Options.settings.FirstRun = false;
+                Options.settings.UpdateSettings();
+            }
+        }
+
+        /// <summary>
+        /// Checks if Nginx, MariaDB, and PHP exist in the Wnmp directory
+        /// </summary>
+        private void CheckForApps()
+        {
+            Log.wnmp_log_notice("Checking for applications", Log.LogSection.WNMP_MAIN);
+            if (!File.Exists(Application.StartupPath + "/nginx.exe"))
+                Log.wnmp_log_error("Error: Nginx Not Found", Log.LogSection.WNMP_NGINX);
+
+            if (!Directory.Exists(Application.StartupPath + "/mariadb"))
+                Log.wnmp_log_error("Error: MariaDB Not Found", Log.LogSection.WNMP_MARIADB);
+
+            if (!Directory.Exists(Application.StartupPath + "/php"))
+                Log.wnmp_log_error("Error: PHP Not Found", Log.LogSection.WNMP_PHP);
+
+            Log.wnmp_log_notice("Done", Log.LogSection.WNMP_MAIN);
+        }
+
+
+        /// <summary>
+        /// Adds configuration files or log files to the context menu strip
+        /// </summary>
+        private void DirFiles(string path, string GetFiles, ContextMenuStrip cms)
+        {
+            DirectoryInfo dinfo = new DirectoryInfo(Main.StartupPath + path);
+
+            if (!dinfo.Exists)
+                return;
+
+            FileInfo[] Files = dinfo.GetFiles(GetFiles);
+            foreach (FileInfo file in Files)
+                cms.Items.Add(file.Name, null);
+        }
         /// <summary>
         /// Populate configuration and log menus
         /// </summary>
         private void PopulateMenus()
         {
-            HelperIns.DirFiles("/conf",         "*.conf",  NginxIns.cms);
-            HelperIns.DirFiles("/mariadb",      "my.ini",  MariaDBIns.cms);
-            HelperIns.DirFiles("/php",          "php.ini", PHPIns.cms);
-            HelperIns.DirFiles("/logs",         "*.log",   NginxIns.lms);
-            HelperIns.DirFiles("/mariadb/data", "*.err",   MariaDBIns.lms);
-            HelperIns.DirFiles("/php/logs",     "*.log",   PHPIns.lms);
+            DirFiles("/conf",         "*.conf",  Nginx.configContextMenu);
+            DirFiles("/mariadb",      "my.ini",  MariaDB.configContextMenu);
+            DirFiles("/php",          "php.ini", PHP.configContextMenu);
+            DirFiles("/logs",         "*.log",   Nginx.logContextMenu);
+            DirFiles("/mariadb/data", "*.err",   MariaDB.logContextMenu);
+            DirFiles("/php/logs",     "*.log",   PHP.logContextMenu);
         }
         
         /// <summary>
@@ -152,7 +256,7 @@ namespace Wnmp.Forms
 
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UpdaterIns.CheckForUpdates();
+            Updater.CheckForUpdates();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -227,19 +331,31 @@ namespace Wnmp.Forms
 
         /*  Right Hand Side */
 
-        private void start_Click(object sender, EventArgs e)
+        private void start_all_Click(object sender, EventArgs e)
         {
-            GeneralIns.StartAllProgs();
+            Nginx.Start();
+            MariaDB.Start();
+            PHP.Start();
         }
 
-        private void stop_Click(object sender, EventArgs e)
+        private void stop_all_Click(object sender, EventArgs e)
         {
-            GeneralIns.StopAllProgs();
+            Nginx.Stop();
+            MariaDB.Stop();
+            PHP.Stop();
         }
 
         private void mdb_shell_Click(object sender, EventArgs e)
         {
-            MariaDBIns.StartMDBShell();
+            if (MariaDB.IsRunning() == false)
+                MariaDB.Start();
+
+            try {
+                Process.Start(StartupPath + "/mariadb/mysql.exe", "-u root -p");
+                Log.wnmp_log_notice("Started MariaDB shell", Log.LogSection.WNMP_MARIADB);
+            } catch (Exception ex) {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
+            }
         }
 
         private void wnmpdir_Click(object sender, EventArgs e)
@@ -252,77 +368,77 @@ namespace Wnmp.Forms
 
         private void ngx_start_Click(object sender, EventArgs e)
         {
-            NginxIns.StartNginx();
+            Nginx.Start();
         }
 
         private void ngx_stop_Click(object sender, EventArgs e)
         {
-            NginxIns.StopNginx();
+            Nginx.Stop();
         }
 
         private void ngx_reload_Click(object sender, EventArgs e)
         {
-            NginxIns.ReloadNginx();
+            Nginx.Restart();
         }
 
         private void ngx_config_Click(object sender, EventArgs e)
         {
-            NginxIns.NginxConfig(sender);
+            Nginx.ConfigButton(sender);
         }
 
         private void ngx_log_Click(object sender, EventArgs e)
         {
-            NginxIns.NginxLog(sender);
+            Nginx.LogButton(sender);
         }
 
         private void mdb_start_Click(object sender, EventArgs e)
         {
-            MariaDBIns.StartMariaDB();
+            MariaDB.Start();
         }
 
         private void mdb_stop_Click(object sender, EventArgs e)
         {
-            MariaDBIns.StopMariaDB();
+            MariaDB.Stop();
         }
 
         private void mdb_restart_Click(object sender, EventArgs e)
         {
-            MariaDBIns.RestartMariaDB();
+            MariaDB.Restart();
         }
 
         private void mdb_cfg_Click(object sender, EventArgs e)
         {
-            MariaDBIns.MariaDBConfig(sender);
+            MariaDB.ConfigButton(sender);
         }
 
         private void mdb_log_Click(object sender, EventArgs e)
         {
-            MariaDBIns.MariaDBLog(sender);
+            MariaDB.LogButton(sender);
         }
 
         private void php_start_Click(object sender, EventArgs e)
         {
-            PHPIns.StartPHP();
+            PHP.Start();
         }
 
         private void php_stop_Click(object sender, EventArgs e)
         {
-            PHPIns.StopPHP();
+            PHP.Stop();
         }
 
         private void php_restart_Click(object sender, EventArgs e)
         {
-            PHPIns.RestartPHP();
+            PHP.Restart();
         }
 
         private void php_cfg_Click(object sender, EventArgs e)
         {
-            PHPIns.PHPConfig(sender);
+            PHP.ConfigButton(sender);
         }
 
         private void php_log_Click(object sender, EventArgs e)
         {
-            PHPIns.PHPLog(sender);
+            PHP.LogButton(sender);
         }
     }
 }

@@ -21,7 +21,7 @@ using System.Text;
 using System.Management;
 using System.Linq;
 
-namespace Wnmp.Helpers
+namespace Wnmp
 {
     /// <summary>
     /// Provides detailed information about the host operating system.

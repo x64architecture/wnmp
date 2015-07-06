@@ -21,8 +21,6 @@ using System;
 using System.Net;
 using System.Windows.Forms;
 
-using Wnmp.Internals;
-
 namespace Wnmp.Forms
 {
     public partial class HostToIPForm : Form
@@ -36,7 +34,7 @@ namespace Wnmp.Forms
         {
             get {
                 var myCp = base.CreateParams;
-                myCp.Style = myCp.Style & ~Common.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
+                myCp.Style = myCp.Style & ~Constants.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
                 return myCp;
             }
         }

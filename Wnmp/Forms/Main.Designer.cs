@@ -526,7 +526,7 @@ namespace Wnmp.Forms
             this.start_all.TabIndex = 49;
             this.start_all.Text = "Start all";
             this.start_all.UseVisualStyleBackColor = true;
-            this.start_all.Click += new System.EventHandler(this.start_Click);
+            this.start_all.Click += new System.EventHandler(this.start_all_Click);
             // 
             // stop
             // 
@@ -536,7 +536,7 @@ namespace Wnmp.Forms
             this.stop.TabIndex = 50;
             this.stop.Text = "Stop all";
             this.stop.UseVisualStyleBackColor = true;
-            this.stop.Click += new System.EventHandler(this.stop_Click);
+            this.stop.Click += new System.EventHandler(this.stop_all_Click);
             // 
             // panel1
             // 

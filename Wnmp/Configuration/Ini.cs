@@ -21,7 +21,6 @@ using System;
 using System.IO;
 
 using Wnmp.Forms;
-using Wnmp.Programs;
 namespace Wnmp.Configuration
 {
     /// <summary>
@@ -37,7 +36,7 @@ namespace Wnmp.Configuration
         public bool MinimizeWnmpToTray = false;
         public bool AutoCheckForUpdates = true;
         public int UpdateFrequency = 7;
-        public int PHP_Port = 9001;
+        public short PHP_Port = 9001;
         public int PHP_Processes = 2;
         public DateTime Lastcheckforupdate = DateTime.MinValue;
         public bool FirstRun = true;
@@ -91,7 +90,7 @@ namespace Wnmp.Configuration
             Boolean.TryParse(ReadIniValue("firstrun", FirstRun), out FirstRun);
             int.TryParse(ReadIniValue("checkforupdatefrequency", UpdateFrequency), out UpdateFrequency);
             int.TryParse(ReadIniValue("phpprocesses", PHP_Processes), out PHP_Processes);
-            int.TryParse(ReadIniValue("phpport", PHP_Port), out PHP_Port);
+            short.TryParse(ReadIniValue("phpport", PHP_Port), out PHP_Port);
             DateTime.TryParse(ReadIniValue("lastcheckforupdate", Lastcheckforupdate), out Lastcheckforupdate);
 
             UpdateSettings();

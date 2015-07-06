@@ -23,7 +23,8 @@ using System.Drawing;
 using System.Windows.Forms;
 
 using Wnmp.Forms;
-namespace Wnmp.Helpers
+
+namespace Wnmp
 {
     /// <summary>
     /// Logs information and errors to a RichTextBox

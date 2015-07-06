@@ -22,8 +22,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-using Wnmp.Internals;
-
 namespace Wnmp.Forms
 {
     /// <summary>
@@ -40,7 +38,7 @@ namespace Wnmp.Forms
         {
             get {
                 var myCp = base.CreateParams;
-                myCp.Style = myCp.Style & ~Common.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
+                myCp.Style = myCp.Style & ~Constants.WS_THICKFRAME; // Remove WS_THICKFRAME (Disables resizing)
                 return myCp;
             }
         }
