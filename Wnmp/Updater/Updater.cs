@@ -70,7 +70,7 @@ namespace Wnmp
         /// <summary>
         /// Downloads Update
         /// </summary>
-        public void Update(Action UpdateDownloaded, Action UpdateCanceled)
+        public void Update(Action UpdateCanceled, Action UpdateDownloaded)
         {
             updateDownloaded = UpdateDownloaded;
             updateCanceled = UpdateCanceled;

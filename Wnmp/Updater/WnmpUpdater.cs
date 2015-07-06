@@ -54,19 +54,19 @@ namespace Wnmp
                 updatePrompt.newversion.Text = updater.newVersion.ToString();
                 if (updatePrompt.ShowDialog() == DialogResult.Yes) {
                     mainForm.Enabled = false;
-                    updater.Update(UpdateDownloaded, UpdateCanceled);
+                    updater.Update(UpdateCanceled, UpdateDownloaded);
                 }
             } else {
                 Log.wnmp_log_notice("Your version: " + updater.currentVersion + " is up to date.", Log.LogSection.WNMP_MAIN);
             }
         }
 
-        void UpdateCanceled()
+        private void UpdateCanceled()
         {
             mainForm.Enabled = true;
         }
 
-        void UpdateDownloaded()
+        private void UpdateDownloaded()
         {
             KillProcesses();
             DoBackUp();
