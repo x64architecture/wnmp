@@ -205,8 +205,6 @@ namespace Wnmp.Forms
 
             if (!Directory.Exists(Application.StartupPath + "/php"))
                 Log.wnmp_log_error("Error: PHP Not Found", Log.LogSection.WNMP_PHP);
-
-            Log.wnmp_log_notice("Done", Log.LogSection.WNMP_MAIN);
         }
 
 
