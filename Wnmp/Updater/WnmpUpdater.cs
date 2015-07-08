@@ -114,10 +114,10 @@ namespace Wnmp
             DateTime LastCheckForUpdate = Options.settings.Lastcheckforupdate;
             DateTime expiryDate = LastCheckForUpdate.AddDays(Options.settings.UpdateFrequency);
 
-            if (LastCheckForUpdate != DateTime.MinValue) {
-                if (DateTime.Now > expiryDate)
-                    CheckForUpdates();
-            }
+            if (DateTime.Now < expiryDate)
+                return;
+
+            CheckForUpdates();
 
             Options.settings.Lastcheckforupdate = DateTime.Now;
             Options.settings.UpdateSettings();
