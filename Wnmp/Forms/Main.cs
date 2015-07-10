@@ -350,7 +350,7 @@ namespace Wnmp.Forms
                 MariaDB.Start();
 
             try {
-                Process.Start(StartupPath + "/mariadb/mysql.exe", "-u root -p");
+                Process.Start(StartupPath + "/mariadb/bin/mysql.exe", "-u root -p");
                 Log.wnmp_log_notice("Started MariaDB shell", Log.LogSection.WNMP_MARIADB);
             } catch (Exception ex) {
                 Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
