@@ -65,7 +65,7 @@ namespace Wnmp.Forms
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.php_restart = new System.Windows.Forms.Button();
             this.mdb_restart = new System.Windows.Forms.Button();
-            this.ngx_reload = new System.Windows.Forms.Button();
+            this.ngx_restart = new System.Windows.Forms.Button();
             this.php_log = new System.Windows.Forms.Button();
             this.mdb_log = new System.Windows.Forms.Button();
             this.ngx_log = new System.Windows.Forms.Button();
@@ -236,7 +236,7 @@ namespace Wnmp.Forms
             // 
             this.groupBox1.Controls.Add(this.php_restart);
             this.groupBox1.Controls.Add(this.mdb_restart);
-            this.groupBox1.Controls.Add(this.ngx_reload);
+            this.groupBox1.Controls.Add(this.ngx_restart);
             this.groupBox1.Controls.Add(this.php_log);
             this.groupBox1.Controls.Add(this.mdb_log);
             this.groupBox1.Controls.Add(this.ngx_log);
@@ -285,15 +285,15 @@ namespace Wnmp.Forms
             this.mdb_restart.UseVisualStyleBackColor = true;
             this.mdb_restart.Click += new System.EventHandler(this.mdb_restart_Click);
             // 
-            // ngx_reload
+            // ngx_restart
             // 
-            this.ngx_reload.Location = new System.Drawing.Point(276, 45);
-            this.ngx_reload.Name = "ngx_reload";
-            this.ngx_reload.Size = new System.Drawing.Size(50, 28);
-            this.ngx_reload.TabIndex = 76;
-            this.ngx_reload.Text = "Reload";
-            this.ngx_reload.UseVisualStyleBackColor = true;
-            this.ngx_reload.Click += new System.EventHandler(this.ngx_reload_Click);
+            this.ngx_restart.Location = new System.Drawing.Point(276, 45);
+            this.ngx_restart.Name = "ngx_restart";
+            this.ngx_restart.Size = new System.Drawing.Size(50, 28);
+            this.ngx_restart.TabIndex = 76;
+            this.ngx_restart.Text = "Restart";
+            this.ngx_restart.UseVisualStyleBackColor = true;
+            this.ngx_restart.Click += new System.EventHandler(this.ngx_reload_Click);
             // 
             // php_log
             // 
@@ -634,7 +634,7 @@ namespace Wnmp.Forms
         public System.Windows.Forms.Label mariadbrunning;
         public System.Windows.Forms.Button mdb_start;
         public System.Windows.Forms.Button ngx_start;
-        public System.Windows.Forms.Button ngx_reload;
+        public System.Windows.Forms.Button ngx_restart;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem donateToolStripMenuItem;

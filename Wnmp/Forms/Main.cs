@@ -185,6 +185,7 @@ namespace Wnmp.Forms
                 ps.StartInfo.FileName = Main.StartupPath + "/bin/CertGen.exe";
                 ps.StartInfo.UseShellExecute = false;
                 ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                ps.StartInfo.CreateNoWindow = true;
                 ps.Start();
                 Options.settings.FirstRun = false;
                 Options.settings.UpdateSettings();
