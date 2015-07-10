@@ -105,9 +105,9 @@
             this.copyrightLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.copyrightLabel.Location = new System.Drawing.Point(190, 241);
             this.copyrightLabel.Name = "copyrightLabel";
-            this.copyrightLabel.Size = new System.Drawing.Size(282, 18);
+            this.copyrightLabel.Size = new System.Drawing.Size(290, 18);
             this.copyrightLabel.TabIndex = 4;
-            this.copyrightLabel.Text = "Copyright (C) 2012-2015 by Kurt Cancemi";
+            this.copyrightLabel.Text = "Copyright (C) 2012 - 2015 by Kurt Cancemi";
             // 
             // pictureBox1
             // 
@@ -126,10 +126,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(141, 156);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(495, 32);
+            this.label3.Size = new System.Drawing.Size(430, 16);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Wnmp is a client which launches Nginx, MariaDB & PHP on Windows Vista or higher.\r" +
-    "\nWhen Wnmp is distributed it includes Nginx, MariaDB, PHP, and phpMyAdmin.";
+            this.label3.Text = "Wnmp is an easy Nginx, MariaDB, and PHP enviorenment for Windows.";
             // 
             // wnmpcpversionLabel
             // 
@@ -172,7 +171,7 @@
             this.richTextBox2.ReadOnly = true;
             this.richTextBox2.Size = new System.Drawing.Size(651, 313);
             this.richTextBox2.TabIndex = 0;
-            this.richTextBox2.Text = "Programmers\n=========\nKurt Cancemi";
+            this.richTextBox2.Text = "Developers\n=========\nKurt Cancemi <kurt@x64architecture.com>";
             // 
             // License
             // 
