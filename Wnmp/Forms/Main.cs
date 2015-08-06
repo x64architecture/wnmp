@@ -94,6 +94,7 @@ namespace Wnmp.Forms
         public Main()
         {
             InitializeComponent();
+            Options.settings.UpdateSettings();
             Options.settings.ReadSettings();
             Updater.mainForm = this;
             SetupNginx();
