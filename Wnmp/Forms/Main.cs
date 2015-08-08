@@ -94,8 +94,8 @@ namespace Wnmp.Forms
         public Main()
         {
             InitializeComponent();
-            Options.settings.UpdateSettings();
             Options.settings.ReadSettings();
+            Options.settings.UpdateSettings();
             Updater.mainForm = this;
             SetupNginx();
             SetupMariaDB();
