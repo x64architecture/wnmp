@@ -1,3 +1,23 @@
+Wnmp 2.1.9: Released: 08/08/2015
+================================
+- Wnmp Control Panel 3.0.0
+	*) Major code refactor
+	*) Windows 10 detection
+
+- Nginx
+    *) Updated to 1.9.2
+    *) Updated VigorTLS to latest commit 0b89f03
+       Note: VigorTLS *never was* vulnerable to CVE-2015-1793
+
+- MariaDB
+    *) Updated to 10.0.21
+
+- PHP
+    *) Updated to 5.6.12
+
+- phpMyAdmin
+    *) Updated to 4.4.12
+
 Wnmp 2.1.8: Released: 05/08/2015
 ================================
 - Wnmp Control Panel 2.4.1

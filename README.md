@@ -5,20 +5,20 @@ Wnmp values security, stability and user friendliness.
 
 ### Current Wnmp Versions:
 
-  * Wnmp 2.1.8
-  * Wnmp Control Panel 2.4.1
+  * Wnmp 2.1.9
+  * Wnmp Control Panel 3.0.0
 
 ----
 
-### Versions of the software(Updated: May 8th 2015):
+### Versions of the software(Updated: August 6th 2015):
 
-  * Nginx 1.9.0
+  * Nginx 1.9.2
 
-  * MariaDB 10.0.18
+  * MariaDB 10.0.21
 
-  * PHP 5.6.8 (Non Thread Safe + FastCGI)
+  * PHP 5.6.12 (Non Thread Safe + FastCGI)
 
-  * phpMyAdmin 4.4.6
+  * phpMyAdmin 4.4.12
   
 ----
 
