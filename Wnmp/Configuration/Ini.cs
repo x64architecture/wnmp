@@ -36,6 +36,7 @@ namespace Wnmp.Configuration
         public bool MinimizeWnmpToTray = false;
         public bool AutoCheckForUpdates = true;
         public int UpdateFrequency = 7;
+        public string phpBin = "Default";
         public short PHP_Port = 9001;
         public int PHP_Processes = 2;
         public DateTime Lastcheckforupdate = DateTime.MinValue;
@@ -59,7 +60,7 @@ namespace Wnmp.Configuration
         /// </summary>
         /// <param name="Option"></param>
         /// <returns></returns>
-        private string ReadIniValue(string Option, object defobj)
+        private string ReadIniValue(string Option, object defaultValue)
         {      
             string str = Option + "=";
             using (var sr = new StringReader(IniFile)) {
@@ -69,7 +70,7 @@ namespace Wnmp.Configuration
                             return line.Remove(0, str.Length);
                 }
             }
-            return defobj.ToString();
+            return defaultValue.ToString();
         }
 
         /// <summary>
@@ -92,7 +93,7 @@ namespace Wnmp.Configuration
             int.TryParse(ReadIniValue("phpprocesses", PHP_Processes), out PHP_Processes);
             short.TryParse(ReadIniValue("phpport", PHP_Port), out PHP_Port);
             DateTime.TryParse(ReadIniValue("lastcheckforupdate", Lastcheckforupdate), out Lastcheckforupdate);
-
+            phpBin = ReadIniValue("phpbin", phpBin);
             UpdateSettings();
         }
         /// <summary>
@@ -100,12 +101,11 @@ namespace Wnmp.Configuration
         /// </summary>
         public void UpdateSettings()
         {
-            /* TODO: Remove in a later release */
             if (PHP_Port == 9000)
                 PHP_Port++;
 
             using (var sw = new StreamWriter(iniPath)) {
-                sw.WriteLine("; Wnmp Configuration File\r\n;");
+                sw.WriteLine("[WNMP]");
                 sw.WriteLine("; Editor path\r\neditorpath=" + Editor);
                 sw.WriteLine("; Start Wnmp with Windows\r\nstartupwithwindows=" + StartWithWindows);
                 sw.WriteLine("; Start all applications when Wnmp starts\r\nstartallapplicationsatlaunch=" + RunAppsAtLaunch);
@@ -113,9 +113,11 @@ namespace Wnmp.Configuration
                 sw.WriteLine("; Automatically check for updates\r\nautocheckforupdates=" + AutoCheckForUpdates);
                 sw.WriteLine("; Update frequency(In days)\r\ncheckforupdatefrequency=" + UpdateFrequency);
                 sw.WriteLine("; Last check for update\r\nlastcheckforupdate=" + Lastcheckforupdate);
+                sw.WriteLine("; First run\r\nfirstrun=" + FirstRun);
+                sw.WriteLine("[PHP]");
                 sw.WriteLine("; Amount of PHP processes\r\nphpprocesses=" + PHP_Processes);
                 sw.WriteLine("; PHP Port\r\nphpport=" + PHP_Port);
-                sw.WriteLine("; First run\r\nfirstrun=" + FirstRun);
+                sw.WriteLine("; PHP Version to use\r\nphpbin=" + phpBin);
             }
         }
     }

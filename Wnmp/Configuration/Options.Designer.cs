@@ -64,19 +64,21 @@ namespace Wnmp.Forms
             this.label4 = new System.Windows.Forms.Label();
             this.PHP = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.phpBin = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.PHP_PROCESSES = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
             this.PHP_PORT = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.Cancel = new System.Windows.Forms.Button();
-            this.PHP_PROCESSES = new System.Windows.Forms.NumericUpDown();
-            this.label8 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.General.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateCheckInterval)).BeginInit();
             this.PHP.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PHP_PORT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PHP_PROCESSES)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PHP_PORT)).BeginInit();
             this.SuspendLayout();
             // 
             // Save
@@ -271,16 +273,66 @@ namespace Wnmp.Forms
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.phpBin);
+            this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.PHP_PROCESSES);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.PHP_PORT);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(327, 85);
+            this.groupBox2.Size = new System.Drawing.Size(327, 115);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "PHP Settings";
+            // 
+            // phpVersion
+            // 
+            this.phpBin.FormattingEnabled = true;
+            this.phpBin.Location = new System.Drawing.Point(108, 78);
+            this.phpBin.Name = "phpVersion";
+            this.phpBin.Size = new System.Drawing.Size(69, 21);
+            this.phpBin.TabIndex = 5;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(18, 81);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 13);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "PHP Version:";
+            // 
+            // PHP_PROCESSES
+            // 
+            this.PHP_PROCESSES.Location = new System.Drawing.Point(108, 25);
+            this.PHP_PROCESSES.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.PHP_PROCESSES.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.PHP_PROCESSES.Name = "PHP_PROCESSES";
+            this.PHP_PROCESSES.Size = new System.Drawing.Size(69, 20);
+            this.PHP_PROCESSES.TabIndex = 3;
+            this.PHP_PROCESSES.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(18, 27);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(84, 13);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "PHP Processes:";
             // 
             // PHP_PORT
             // 
@@ -318,37 +370,6 @@ namespace Wnmp.Forms
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
-            // PHP_PROCESSES
-            // 
-            this.PHP_PROCESSES.Location = new System.Drawing.Point(108, 25);
-            this.PHP_PROCESSES.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.PHP_PROCESSES.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.PHP_PROCESSES.Name = "PHP_PROCESSES";
-            this.PHP_PROCESSES.Size = new System.Drawing.Size(69, 20);
-            this.PHP_PROCESSES.TabIndex = 3;
-            this.PHP_PROCESSES.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(18, 27);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(84, 13);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "PHP Processes:";
-            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -372,8 +393,8 @@ namespace Wnmp.Forms
             this.PHP.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PHP_PORT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PHP_PROCESSES)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PHP_PORT)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -404,6 +425,7 @@ namespace Wnmp.Forms
         private System.Windows.Forms.Button Cancel;
         private System.Windows.Forms.NumericUpDown PHP_PROCESSES;
         private System.Windows.Forms.Label label8;
-
+        private System.Windows.Forms.ComboBox phpBin;
+        private System.Windows.Forms.Label label9;
     }
 }

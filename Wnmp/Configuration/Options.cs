@@ -23,15 +23,17 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 
 using Wnmp.Configuration;
+using System.Linq;
 
 namespace Wnmp.Forms
 {
     /// <summary>
-    ///     Form that allows configuring Wnmp options.
+    /// Form that allows configuring Wnmp options.
     /// </summary>
     public partial class Options : Form
     {
         public static Ini settings = new Ini();
+        public static Main mainForm;
         private string Editor;
 
         public Options()
@@ -80,6 +82,12 @@ namespace Wnmp.Forms
         {
             SetSettings();
             settings.UpdateSettings();
+            /* Setup custom PHP without restart */
+            if (settings.phpBin == "Default") {
+                mainForm.SetupPHP();
+            } else {
+                mainForm.SetupCustomPHP();
+            }
             this.Close();
         }
 
@@ -94,6 +102,8 @@ namespace Wnmp.Forms
             settings.PHP_Port = (short)PHP_PORT.Value;
             settings.UpdateFrequency = (int)UpdateCheckInterval.Value;
             UpdatePHPngxCfg();
+            settings.phpBin = phpBin.Text;
+            
         }
 
         /// <summary>
@@ -109,6 +119,18 @@ namespace Wnmp.Forms
             UpdateCheckInterval.Value = settings.UpdateFrequency;
             PHP_PROCESSES.Value = settings.PHP_Processes;
             PHP_PORT.Value = settings.PHP_Port;
+            phpBin.Items.Add("Default");
+            foreach (string str in phpVersions()) {
+                phpBin.Items.Add(str);
+            }
+            phpBin.SelectedIndex = phpBin.Items.IndexOf(settings.phpBin);
+        }
+
+        private string[] phpVersions()
+        {
+            if (Directory.Exists(Main.StartupPath + "/php/phpbins") == false)
+                return new string[0];
+            return Directory.GetDirectories(Main.StartupPath + "/php/phpbins").Select(d => new DirectoryInfo(d).Name).ToArray();
         }
 
         private void StartWithWindows()

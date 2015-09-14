@@ -79,6 +79,10 @@ namespace Wnmp.Forms
 
         public void SetupPHP()
         {
+            if (Options.settings.phpBin != "Default") {
+                SetupCustomPHP();
+                return;
+            }
             PHP.exeName = StartupPath + "/php/php-cgi.exe";
             PHP.procName = "php-cgi";
             PHP.progName = "PHP";
@@ -91,12 +95,28 @@ namespace Wnmp.Forms
             PHP.logDir = "/php/logs/";
         }
 
+        public void SetupCustomPHP()
+        {
+            PHP.exeName = StartupPath + "/php/phpbins/" + Options.settings.phpBin + "/php-cgi.exe";
+            PHP.procName = "php-cgi";
+            PHP.progName = "PHP";
+            PHP.progLogSection = Log.LogSection.WNMP_PHP;
+            PHP.startArgs = ""; // Special handling see StartPHP() in the WnmpProgram class
+            PHP.stopArgs = "";
+            PHP.killStop = true;
+            PHP.statusLabel = phprunning;
+            PHP.confDir = "/php/phpbins/" + Options.settings.phpBin + "/";
+            PHP.logDir = "/php/phpbins/" + Options.settings.phpBin + "/logs/";
+        }
+
         public Main()
         {
             InitializeComponent();
             Options.settings.ReadSettings();
             Options.settings.UpdateSettings();
             Updater.mainForm = this;
+            Options.mainForm = this;
+
             SetupNginx();
             SetupMariaDB();
             SetupPHP();

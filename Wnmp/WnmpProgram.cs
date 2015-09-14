@@ -10,7 +10,7 @@ using Wnmp.Forms;
 
 namespace Wnmp
 {
-    class WnmpProgram
+    public class WnmpProgram
     {
         public Label statusLabel { get; set; } // Label that shows the programs status
         public string exeName { get; set; }    // Location of the executable file
