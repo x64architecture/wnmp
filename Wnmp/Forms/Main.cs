@@ -137,6 +137,7 @@ namespace Wnmp.Forms
         private void Main_Load(object sender, EventArgs e)
         {
             Log.setLogComponent(log_rtb);
+            WnmpTrayIcon.Click += WnmpTrayIcon_Click;
             WnmpTrayIcon.Icon = Properties.Resources.logo;
             WnmpTrayIcon.Visible = true;
 
