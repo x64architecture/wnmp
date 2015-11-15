@@ -1,22 +1,23 @@
-Wnmp 2.1.9: Released: 08/08/2015
+Wnmp 2.2.0: Released: 11/15/2015
 ================================
-- Wnmp Control Panel 3.0.0
-	*) Major code refactor
-	*) Windows 10 detection
+- Wnmp Control Panel 3.0.1
+    *) Ability to use custom php versions
+       Just drop in a folder of php in C:\Wnmp\php\phpbins
+       and go to File->Wnmp Options->PHP->PHP Version    
+    *) Bug fixes
 
 - Nginx
-    *) Updated to 1.9.2
-    *) Updated VigorTLS to latest commit 0b89f03
-       Note: VigorTLS *never was* vulnerable to CVE-2015-1793
+    *) Updated to 1.9.6
+    *) Updated VigorTLS to latest commit 5ac8b48
 
 - MariaDB
-    *) Updated to 10.0.21
+    *) Updated to 10.1.8
 
 - PHP
-    *) Updated to 5.6.12
+    *) Updated to 5.6.15
 
 - phpMyAdmin
-    *) Updated to 4.4.12
+    *) Updated to 4.5.1
 
 Wnmp 2.1.8: Released: 05/08/2015
 ================================
