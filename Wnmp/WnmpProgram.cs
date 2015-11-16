@@ -134,9 +134,11 @@ namespace Wnmp
                     Process process = Process.GetProcessById(PID);
                     process.Kill();
                     /* A hack to delete MariaDB's PID file */
-                    if (File.Exists(mdb_pidfile)) {
+                    if (File.Exists(mdb_pidfile))
                         File.Delete(mdb_pidfile);
-                    }
+                    PID = 0;
+                    Log.wnmp_log_notice("Stopped " + progName, progLogSection);
+                    SetStoppedLabel();
                     return;
                 }
                 if (killStop) {
@@ -146,12 +148,13 @@ namespace Wnmp
                     }
                 } else {
                     StartProcess(exeName, stopArgs);
-                    // Make sure the process is closed
-                    Thread.Sleep(100);
-                    Process[] process = Process.GetProcessesByName(procName);
-                    foreach (Process currentProc in process) {
-                        currentProc.Kill();
-                    }
+                    new Thread(delegate() {
+                        Thread.Sleep(2000);
+                        Process[] process = Process.GetProcessesByName(procName);
+                        foreach (Process currentProc in process) {
+                            currentProc.Kill();
+                        }
+                    }).Start();
                 }
                 Log.wnmp_log_notice("Stopped " + progName, progLogSection);
                 SetStoppedLabel();

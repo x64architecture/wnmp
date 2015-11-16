@@ -5,8 +5,8 @@ Wnmp values security, stability and user friendliness.
 
 ### Current Wnmp Versions:
 
-  * Wnmp 2.2.0
-  * Wnmp Control Panel 3.0.1
+  * Wnmp 2.2.1
+  * Wnmp Control Panel 3.0.2
 
 ----
 
@@ -24,7 +24,7 @@ Wnmp values security, stability and user friendliness.
 
 ### How to Install
 
-  1. To install download the latest version of Wnmp [here][1] (latest version 2.2.0)
+  1. To install download the latest version of Wnmp [here][1] (latest version 2.2.1)
   2. Then open *Wnmp.exe* and install it anywhere.
   3. And then run *Wnmp.exe*(which is located in the Wnmp folder)
   4. And then press the Start all button.
