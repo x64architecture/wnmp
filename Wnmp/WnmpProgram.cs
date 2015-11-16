@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using Wnmp.Forms;
 
@@ -22,6 +23,8 @@ namespace Wnmp
         public bool killStop { get; set; }     // Kill process instead of stopping it gracefully
         public string confDir { get; set; }    // Directory where all the programs configuration files are
         public string logDir { get; set; }     // Directory where all the programs log files are
+
+        public int PID { get; private set; }   // PID of process
         public ContextMenuStrip configContextMenu { get; set; } // Displays all the programs config files in |confDir|
         public ContextMenuStrip logContextMenu { get; set; }    // Displays all the programs log files in |logDir|
 
@@ -73,6 +76,7 @@ namespace Wnmp
                 ps.StartInfo.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", "0"); // Disable auto killing PHP
             }
             ps.Start();
+            PID = ps.Id;
         }
 
         private bool IsMariaDB()
@@ -125,19 +129,29 @@ namespace Wnmp
         public void Stop()
         {
             try {
+                /* Only kill our MariaDB instance (doesn't work if Wnmp is closed after starting MDB) */
+                if (IsMariaDB() == true && PID != 0) {
+                    Process process = Process.GetProcessById(PID);
+                    process.Kill();
+                    /* A hack to delete MariaDB's PID file */
+                    if (File.Exists(mdb_pidfile)) {
+                        File.Delete(mdb_pidfile);
+                    }
+                    return;
+                }
                 if (killStop) {
                     Process[] process = Process.GetProcessesByName(procName);
                     foreach (Process currentProc in process) {
                         currentProc.Kill();
                     }
-                    /* A hack to delete MariaDB's PID file */
-                    if (IsMariaDB() == true) {
-                        if (File.Exists(mdb_pidfile)) {
-                            File.Delete(mdb_pidfile);
-                        }
-                    }
                 } else {
                     StartProcess(exeName, stopArgs);
+                    // Make sure the process is closed
+                    Thread.Sleep(100);
+                    Process[] process = Process.GetProcessesByName(procName);
+                    foreach (Process currentProc in process) {
+                        currentProc.Kill();
+                    }
                 }
                 Log.wnmp_log_notice("Stopped " + progName, progLogSection);
                 SetStoppedLabel();
