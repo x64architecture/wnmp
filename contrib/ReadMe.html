@@ -42,6 +42,14 @@
     <p>
       By default, Wnmp installs to <tt>C:\Wnmp</tt>.
     </p>
+	
+	<p>
+      The default login for MariaDB/MySQL is:
+      <br />
+	  Username: <tt>root</tt>
+	  <br />
+	  Password: <tt>password</tt>
+    </p>
 
     <h1>Configuration notes</h1>
     <h4>Default editor</h4>
@@ -55,7 +63,7 @@
     <p>
       The default option for starting Wnmp with Windows is disabled. You can set
       the <tt>Start Wnmp with Windows</tt> setting by going to <tt>File->Wnmp Options</tt> and checking
-	  the check box right next to the <tt>Start Wnmp with Windows</tt> label.
+	  the check box right next to the <tt>Start Wnmp on start up</tt> label.
     </p>
 
 	<h4>Launch all applications when Wnmp starts</h4>
@@ -80,11 +88,33 @@
 	  for updates from the combo box.
     </p>
 	
+	<h4>PHP Processes</h4>
+    <p>
+      The default number of PHP processes is 2 You can set the <tt>PHP Processes</tt> setting by going to <tt>File->Wnmp Options PHP</tt>
+	  and changing the value of the number box right next to the <tt>PHP Processes</tt> label and inputing the desired number of
+	  PHP processes.
+    </p>
+
+	<h4>PHP Port</h4>
+    <p>
+      The default PHP port is 9001 You can set the <tt>PHP Port</tt> setting by going to <tt>File->Wnmp Options PHP</tt>
+	  and changing the value of the number box right next to the <tt>PHP Port</tt> label and inputing the desired number of
+	  PHP port.
+    </p>
+	
+	<h4>PHP Version</h4>
+    <p>
+      The default PHP version is the default included with Wnmp, you have to add desired versions of PHP to
+	  <tt>C:\Wnmp\php\phpbins\</tt>, then going to <tt>File->Wnmp Options PHP</tt> and changing
+	  the value of the combo box right next to the <tt>PHP Version</tt> label and selecting the desired PHP
+	  version.
+    </p>
+	
     <h1>Reporting problems</h1>
 
     <p>
       Before you report any problems, please consult the <a
-      href="https://www.getwnmp.org/FAQ">Wnmp FAQ Page</a>
+      href="https://www.getwnmp.org/faq">Wnmp FAQ Page</a>
       and see if your question is already in our list of Frequently
       Answered Questions</a> (FAQ).
     </p>
@@ -105,7 +135,7 @@
     </p>
 
     <p>
-      Wnmp is Copyright 2012-2015 Kurt Cancemi.
+      Wnmp is Copyright 2012 - 2016 Kurt Cancemi.
     </p>
 
     <p>
