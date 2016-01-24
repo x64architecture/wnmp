@@ -1,10 +1,10 @@
 ; Wnmp iss
 #define MyAppName "Wnmp"
-#define MyAppVersion "2.2.1"
+#define MyAppVersion "2.2.2"
 #define MyAppPublisher "Kurt Cancemi"
 #define MyAppURL "https://www.getwnmp.org"
 #define MyAppExeName "Wnmp.exe"
-#define Year "2015"
+#define Year "2016"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -51,7 +51,7 @@ Source: docs\*; DestDir: {app}\docs; Flags: ignoreversion recursesubdirs createa
 Source: html\*; DestDir: {app}\html; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: logs\*; DestDir: {app}\logs; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: mariadb\bin\*; DestDir: {app}\mariadb\bin; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: mariadb\data\*; DestDir: {app}\mariadb\data; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist
+Source: mariadb\data\*; DestDir: {app}\mariadb\data; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: mariadb\share\*; DestDir: {app}\mariadb\share; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: mariadb\my.ini; DestDir: {app}\mariadb; Flags: ignoreversion
 Source: php\*; DestDir: {app}\php; Flags: ignoreversion recursesubdirs createallsubdirs
@@ -60,6 +60,7 @@ Source: changelog.txt; DestDir: {app}; Flags: ignoreversion
 Source: license.txt; DestDir: {app}; Flags: ignoreversion
 Source: nginx.exe; DestDir: {app}; Flags: ignoreversion
 Source: readme.txt; DestDir: {app}; Flags: ignoreversion
+Source: "vc_redist.x86.exe"; DestDir: {tmp}; Flags: deleteafterinstall
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -69,3 +70,4 @@ Name: {commondesktop}\{#MyAppName}; Filename: {app}\{#MyAppExeName}; Tasks: desk
 
 [Run]
 Filename: {app}\{#MyAppExeName}; Description: {cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}; Flags: nowait postinstall skipifsilent
+Filename: "{tmp}\vc_redist.x86.exe"; Parameters: "/install /passive /norestart"
