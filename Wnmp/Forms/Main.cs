@@ -36,7 +36,7 @@ namespace Wnmp.Forms
         private WnmpUpdater Updater = new WnmpUpdater();
         public static string StartupPath { get { return Application.StartupPath; } }
 
-        public static readonly Version CPVER = new Version("3.0.2");
+        public static readonly Version CPVER = new Version("3.0.3");
 
         private readonly NotifyIcon WnmpTrayIcon = new NotifyIcon();
 

@@ -107,7 +107,7 @@
             this.copyrightLabel.Name = "copyrightLabel";
             this.copyrightLabel.Size = new System.Drawing.Size(290, 18);
             this.copyrightLabel.TabIndex = 4;
-            this.copyrightLabel.Text = "Copyright (C) 2012 - 2015 by Kurt Cancemi";
+            this.copyrightLabel.Text = "Copyright (C) 2012 - 2016 by Kurt Cancemi";
             // 
             // pictureBox1
             // 
