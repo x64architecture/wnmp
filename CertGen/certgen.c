@@ -45,15 +45,15 @@ int generate_keypair(int bits, int days)
 	}
 
 	if ((rsa = RSA_new()) == NULL) {
-		printf("Error generating RSA key\n");
+		printf("Error allocating RSA struct\n");
 		goto err;
 	}
 	if ((bnexp = BN_new()) == NULL) {
-		printf("Error generating bignum\n");
+		printf("Error allocating bignum struct\n");
 		goto err;
 	}
 	if (BN_set_word(bnexp, exp) != 1) {
-		printf("Error setting exponenet\n");
+		printf("Error setting exponent\n");
 		goto err;
 	}
 
