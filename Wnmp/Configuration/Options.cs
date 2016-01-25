@@ -50,61 +50,7 @@ namespace Wnmp.Forms
             }
         }
 
-        private void SetEditor()
-        {
-            string input = "";
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "executable files (*.exe)|*.exe|All files (*.*)|*.*";
-            dialog.Title  = "Select a text editor";
-            if (dialog.ShowDialog() == DialogResult.OK)
-                input = dialog.FileName;
-
-            editorTB.Text = dialog.FileName;
-            Editor = dialog.FileName;
-
-            if (input == "")
-                Editor = "notepad.exe";
-            editorTB.Text = Editor;
-        }
-
-        private void Options_Load(object sender, EventArgs e)
-        {
-            settings.ReadSettings();
-            UpdateOptions();
-        }
-
-        private void selecteditor_Click(object sender, EventArgs e)
-        {
-            SetEditor();
-        }
-
-        private void Save_Click(object sender, EventArgs e)
-        {
-            SetSettings();
-            settings.UpdateSettings();
-            /* Setup custom PHP without restart */
-            if (settings.phpBin == "Default") {
-                mainForm.SetupPHP();
-            } else {
-                mainForm.SetupCustomPHP();
-            }
-            this.Close();
-        }
-
-        private void SetSettings()
-        {
-            settings.Editor = Editor;
-            settings.StartWithWindows = StartWnmpWithWindows.Checked;
-            settings.RunAppsAtLaunch = StartAllProgramsOnLaunch.Checked;
-            settings.MinimizeWnmpToTray = MinimizeWnmpToTray.Checked;
-            settings.AutoCheckForUpdates = AutoUpdate.Checked;
-            settings.PHP_Processes = (int)PHP_PROCESSES.Value;
-            settings.PHP_Port = (short)PHP_PORT.Value;
-            settings.UpdateFrequency = (int)UpdateCheckInterval.Value;
-            UpdatePHPngxCfg();
-            settings.phpBin = phpBin.Text;
-            save_phpextensionopts();
-        }
+        /* Options releated functions */
 
         /// <summary>
         /// Populates the options with there saved values
@@ -126,6 +72,76 @@ namespace Wnmp.Forms
             phpBin.SelectedIndex = phpBin.Items.IndexOf(settings.phpBin);
         }
 
+        private void Options_Load(object sender, EventArgs e)
+        {
+            settings.ReadSettings();
+            UpdateOptions();
+        }
+
+        private void SetSettings()
+        {
+            settings.Editor = Editor;
+            settings.StartWithWindows = StartWnmpWithWindows.Checked;
+            settings.RunAppsAtLaunch = StartAllProgramsOnLaunch.Checked;
+            settings.MinimizeWnmpToTray = MinimizeWnmpToTray.Checked;
+            settings.AutoCheckForUpdates = AutoUpdate.Checked;
+            settings.PHP_Processes = (int)PHP_PROCESSES.Value;
+            settings.PHP_Port = (short)PHP_PORT.Value;
+            settings.UpdateFrequency = (int)UpdateCheckInterval.Value;
+            StartWithWindows();
+            UpdateNgxPHPConfig();
+            settings.phpBin = phpBin.Text;
+            save_phpextensionopts();
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            SetSettings();
+            settings.UpdateSettings();
+            /* Setup custom PHP without restart */
+            if (settings.phpBin == "Default") {
+                mainForm.SetupPHP();
+            }
+            else {
+                mainForm.SetupCustomPHP();
+            }
+            this.Close();
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        /* Editor releated functions */
+
+        private void SetEditor()
+        {
+            string input = "";
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "executable files (*.exe)|*.exe|All files (*.*)|*.*";
+            dialog.Title  = "Select a text editor";
+            if (dialog.ShowDialog() == DialogResult.OK)
+                input = dialog.FileName;
+
+            editorTB.Text = dialog.FileName;
+            Editor = dialog.FileName;
+
+            if (input == "")
+                Editor = "notepad.exe";
+            editorTB.Text = Editor;
+        }
+
+        private void selecteditor_Click(object sender, EventArgs e)
+        {
+            SetEditor();
+        }
+
+        private void editorTB_DoubleClick(object sender, EventArgs e)
+        {
+            SetEditor();
+        }
+
         private string[] phpVersions()
         {
             if (Directory.Exists(Main.StartupPath + "/php/phpbins") == false)
@@ -133,22 +149,8 @@ namespace Wnmp.Forms
             return Directory.GetDirectories(Main.StartupPath + "/php/phpbins").Select(d => new DirectoryInfo(d).Name).ToArray();
         }
 
-        private void StartWithWindows()
-        {
-            RegistryKey root;
-            const string key = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
-            if (StartWnmpWithWindows.Checked) {
-                root = Registry.CurrentUser.OpenSubKey(key, true);
-                if (root.GetValue("Wnmp") == null)
-                    root.SetValue("Wnmp", "\"" + Application.ExecutablePath + "\"");
-            } else {
-                root = Registry.CurrentUser.OpenSubKey(key, true);
-                if (root.GetValue("Wnmp") != null)
-                    root.DeleteValue("Wnmp");
-            }
-        }
 
-        private void UpdatePHPngxCfg()
+        private void UpdateNgxPHPConfig()
         {
             int i;
             int port = (int)PHP_PORT.Value;
@@ -162,6 +164,22 @@ namespace Wnmp.Forms
                     port++;
                 }
                 sw.WriteLine("}");
+            }
+        }
+
+
+        private void StartWithWindows()
+        {
+            RegistryKey root;
+            const string key = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
+            if (StartWnmpWithWindows.Checked) {
+                root = Registry.CurrentUser.OpenSubKey(key, true);
+                if (root.GetValue("Wnmp") == null)
+                    root.SetValue("Wnmp", "\"" + Application.ExecutablePath + "\"");
+            } else {
+                root = Registry.CurrentUser.OpenSubKey(key, true);
+                if (root.GetValue("Wnmp") != null)
+                    root.DeleteValue("Wnmp");
             }
         }
 
@@ -208,8 +226,7 @@ namespace Wnmp.Forms
                     if (phpExtEnabled[i] == true)
                         text = text.Replace("extension=" + phpExtName[i], ";extension=" + phpExtName[i]);
                 }
-            }
-            else { // Special case zend_extension
+            } else { // Special case zend_extension
                 if (enable)
                     text = text.Replace(";zend_extension=" + phpExtName[i], "zend_extension=" + phpExtName[i]);
                 else {
@@ -257,16 +274,6 @@ namespace Wnmp.Forms
         {
             phpExtListBox.Items.Clear();
             load_phpextensions(phpBin.Text);
-        }
-
-        private void Cancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void editorTB_DoubleClick(object sender, EventArgs e)
-        {
-            SetEditor();
         }
     }
 }
