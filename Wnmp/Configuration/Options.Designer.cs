@@ -63,6 +63,8 @@ namespace Wnmp.Forms
             this.MinimizeWnmpToTray = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.PHP = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.phpExtListBox = new System.Windows.Forms.CheckedListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.phpBin = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -71,17 +73,15 @@ namespace Wnmp.Forms
             this.PHP_PORT = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.Cancel = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.phpExtListBox = new System.Windows.Forms.CheckedListBox();
             this.tabControl1.SuspendLayout();
             this.General.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateCheckInterval)).BeginInit();
             this.PHP.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PHP_PROCESSES)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PHP_PORT)).BeginInit();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // Save
@@ -214,9 +214,9 @@ namespace Wnmp.Forms
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(25, 57);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(125, 13);
+            this.label2.Size = new System.Drawing.Size(141, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Start Wnmp on start up?:";
+            this.label2.Text = "Start Wnmp with Windows?:";
             // 
             // AutoUpdate
             // 
@@ -274,6 +274,25 @@ namespace Wnmp.Forms
             this.PHP.TabIndex = 1;
             this.PHP.Text = "PHP";
             this.PHP.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.phpExtListBox);
+            this.groupBox3.Location = new System.Drawing.Point(6, 122);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(326, 174);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "PHP Extensions";
+            // 
+            // phpExtListBox
+            // 
+            this.phpExtListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.phpExtListBox.FormattingEnabled = true;
+            this.phpExtListBox.Location = new System.Drawing.Point(3, 16);
+            this.phpExtListBox.Name = "phpExtListBox";
+            this.phpExtListBox.Size = new System.Drawing.Size(320, 155);
+            this.phpExtListBox.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -375,25 +394,6 @@ namespace Wnmp.Forms
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.phpExtListBox);
-            this.groupBox3.Location = new System.Drawing.Point(6, 122);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(326, 174);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "PHP Extensions";
-            // 
-            // phpExtListBox
-            // 
-            this.phpExtListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.phpExtListBox.FormattingEnabled = true;
-            this.phpExtListBox.Location = new System.Drawing.Point(3, 16);
-            this.phpExtListBox.Name = "phpExtListBox";
-            this.phpExtListBox.Size = new System.Drawing.Size(320, 155);
-            this.phpExtListBox.TabIndex = 0;
-            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -415,11 +415,11 @@ namespace Wnmp.Forms
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateCheckInterval)).EndInit();
             this.PHP.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PHP_PROCESSES)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PHP_PORT)).EndInit();
-            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
