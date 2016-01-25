@@ -103,7 +103,7 @@ namespace Wnmp.Forms
             settings.UpdateFrequency = (int)UpdateCheckInterval.Value;
             UpdatePHPngxCfg();
             settings.phpBin = phpBin.Text;
-            
+            save_phpextensionopts();
         }
 
         /// <summary>
@@ -163,6 +163,100 @@ namespace Wnmp.Forms
                 }
                 sw.WriteLine("}");
             }
+        }
+
+        /* PHP Extensions Manager */
+
+        private string[] phpExtName;
+        private bool[] phpExtEnabled;
+        private int opcacheIndex;
+        private string extPath, iniFile;
+
+        private void parse_phpini(int i)
+        {
+            string str;
+            StreamReader sr = new StreamReader(iniFile);
+            while ((str = sr.ReadLine()) != null) {
+                if (str.StartsWith(";extension=" + phpExtName[i])) {
+                    phpExtEnabled[i] = false;
+                    continue;
+                }
+                if (str.StartsWith("extension=" + phpExtName[i])) {
+                    phpExtEnabled[i] = true;
+                    continue;
+                }
+                if (str.StartsWith(";zend_extension=" + phpExtName[i])) {
+                    phpExtEnabled[i] = false;
+                    opcacheIndex = i;
+                    continue;
+                }
+                if (str.StartsWith("zend_extension=" + phpExtName[i])) {
+                    phpExtEnabled[i] = true;
+                    opcacheIndex = i;
+                    continue;
+                }
+            }
+            sr.Close();
+        }
+        private void set_phpiniopt(int i, bool enable)
+        {
+            string text = File.ReadAllText(iniFile);
+            if (i != opcacheIndex) {
+                if (enable)
+                    text = text.Replace(";extension=" + phpExtName[i], "extension=" + phpExtName[i]);
+                else {
+                    if (phpExtEnabled[i] == true)
+                        text = text.Replace("extension=" + phpExtName[i], ";extension=" + phpExtName[i]);
+                }
+            }
+            else { // Special case zend_extension
+                if (enable)
+                    text = text.Replace(";zend_extension=" + phpExtName[i], "zend_extension=" + phpExtName[i]);
+                else {
+                    if (phpExtEnabled[i] == true)
+                        text = text.Replace("zend_extension=" + phpExtName[i], ";zend_extension=" + phpExtName[i]);
+                }
+            }
+            File.WriteAllText(iniFile, text);
+        }
+
+        private void load_phpextensions(string phpBin)
+        {
+            if (phpBin == "Default") {
+                extPath = Main.StartupPath + "/php/ext/";
+                iniFile = Main.StartupPath + "/php/php.ini";
+            }
+            else {
+                extPath = Main.StartupPath + "/php/phpbins/" + settings.phpBin + "/ext/";
+                iniFile = Main.StartupPath + "/php/phpbins/" + settings.phpBin + "/php.ini";
+            }
+
+            if (!Directory.Exists(extPath))
+                return;
+            phpExtName = Directory.GetFiles(extPath, "*.dll");
+            phpExtEnabled = new bool[phpExtName.Length];
+
+            for (int i = 0; i < phpExtName.Length; i++) {
+                phpExtName[i] = phpExtName[i].Remove(0, extPath.Length);
+                parse_phpini(i);
+                phpExtListBox.Items.Add(phpExtName[i], phpExtEnabled[i]);
+            }
+        }
+
+        private void save_phpextensionopts()
+        {
+            for (int i = 0; i < phpExtListBox.Items.Count; i++) {
+                if (phpExtListBox.GetItemChecked(i))
+                    set_phpiniopt(i, true);
+                else
+                    set_phpiniopt(i, false);
+            }
+        }
+
+        private void phpBin_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            phpExtListBox.Items.Clear();
+            load_phpextensions(phpBin.Text);
         }
 
         private void Cancel_Click(object sender, EventArgs e)

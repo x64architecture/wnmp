@@ -71,6 +71,8 @@ namespace Wnmp.Forms
             this.PHP_PORT = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.Cancel = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.phpExtListBox = new System.Windows.Forms.CheckedListBox();
             this.tabControl1.SuspendLayout();
             this.General.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -79,6 +81,7 @@ namespace Wnmp.Forms
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PHP_PROCESSES)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PHP_PORT)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // Save
@@ -98,7 +101,7 @@ namespace Wnmp.Forms
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(347, 312);
+            this.tabControl1.Size = new System.Drawing.Size(347, 328);
             this.tabControl1.TabIndex = 16;
             // 
             // General
@@ -107,7 +110,7 @@ namespace Wnmp.Forms
             this.General.Location = new System.Drawing.Point(4, 22);
             this.General.Name = "General";
             this.General.Padding = new System.Windows.Forms.Padding(3);
-            this.General.Size = new System.Drawing.Size(339, 286);
+            this.General.Size = new System.Drawing.Size(339, 302);
             this.General.TabIndex = 0;
             this.General.Text = "General";
             this.General.UseVisualStyleBackColor = true;
@@ -262,11 +265,12 @@ namespace Wnmp.Forms
             // 
             // PHP
             // 
+            this.PHP.Controls.Add(this.groupBox3);
             this.PHP.Controls.Add(this.groupBox2);
             this.PHP.Location = new System.Drawing.Point(4, 22);
             this.PHP.Name = "PHP";
             this.PHP.Padding = new System.Windows.Forms.Padding(3);
-            this.PHP.Size = new System.Drawing.Size(339, 286);
+            this.PHP.Size = new System.Drawing.Size(339, 302);
             this.PHP.TabIndex = 1;
             this.PHP.Text = "PHP";
             this.PHP.UseVisualStyleBackColor = true;
@@ -281,18 +285,19 @@ namespace Wnmp.Forms
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(327, 115);
+            this.groupBox2.Size = new System.Drawing.Size(327, 110);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "PHP Settings";
             // 
-            // phpVersion
+            // phpBin
             // 
             this.phpBin.FormattingEnabled = true;
             this.phpBin.Location = new System.Drawing.Point(108, 78);
-            this.phpBin.Name = "phpVersion";
+            this.phpBin.Name = "phpBin";
             this.phpBin.Size = new System.Drawing.Size(69, 21);
             this.phpBin.TabIndex = 5;
+            this.phpBin.SelectedIndexChanged += new System.EventHandler(this.phpBin_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -370,6 +375,25 @@ namespace Wnmp.Forms
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.phpExtListBox);
+            this.groupBox3.Location = new System.Drawing.Point(6, 122);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(326, 174);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "PHP Extensions";
+            // 
+            // phpExtListBox
+            // 
+            this.phpExtListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.phpExtListBox.FormattingEnabled = true;
+            this.phpExtListBox.Location = new System.Drawing.Point(3, 16);
+            this.phpExtListBox.Name = "phpExtListBox";
+            this.phpExtListBox.Size = new System.Drawing.Size(320, 155);
+            this.phpExtListBox.TabIndex = 0;
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -395,6 +419,7 @@ namespace Wnmp.Forms
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PHP_PROCESSES)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PHP_PORT)).EndInit();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -427,5 +452,7 @@ namespace Wnmp.Forms
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox phpBin;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckedListBox phpExtListBox;
     }
 }
