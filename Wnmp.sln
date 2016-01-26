@@ -20,15 +20,15 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Debug|Win32.ActiveCfg = Debug|x86
 		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Debug|Win32.Build.0 = Debug|x86
 		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Debug|x86.ActiveCfg = Debug|x86
 		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Debug|x86.Build.0 = Debug|x86
 		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Release|Any CPU.ActiveCfg = Release|x86
-		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Release|Mixed Platforms.Build.0 = Release|x86
+		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Release|Win32.ActiveCfg = Release|x86
 		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Release|Win32.Build.0 = Release|x86
 		{3B41DEBC-B05F-4C1C-8812-E556D988A443}.Release|x86.ActiveCfg = Release|x86
