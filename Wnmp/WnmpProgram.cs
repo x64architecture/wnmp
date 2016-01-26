@@ -100,7 +100,7 @@ namespace Wnmp
             try {
                 for (i = 1; i <= ProcessCount; i++) {
                     StartProcess(exeName, String.Format("-b localhost:{0} -c {1}", port, phpini));
-                    Log.wnmp_log_notice("Starting PHP " + i + "/" + ProcessCount + " On port: " + port, progLogSection);
+                    Log.wnmp_log_notice("Starting PHP " + i + "/" + ProcessCount + " on port: " + port, progLogSection);
                     port++;
                 }
                 Log.wnmp_log_notice("PHP started", progLogSection);
