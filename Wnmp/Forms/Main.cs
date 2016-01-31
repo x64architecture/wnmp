@@ -147,13 +147,17 @@ namespace Wnmp.Forms
             PopulateMenus();
             FirstRun();
 
-            if (Options.settings.RunAppsAtLaunch)
-                start_all_Click(null, null);
-
             if (Options.settings.AutoCheckForUpdates)
                 Updater.DoDateEclasped();
 
             Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
+
+            if (Options.settings.StartNginxOnLaunch)
+                Nginx.Start();
+            if (Options.settings.StartMySQLOnLaunch)
+                MariaDB.Start();
+            if (Options.settings.StartPHPOnLaunch)
+                PHP.Start();
         }
 
         private bool NotifyMinimizeWnmp = true;

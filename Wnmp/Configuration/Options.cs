@@ -59,7 +59,9 @@ namespace Wnmp.Forms
         {
             editorTB.Text = settings.Editor;
             StartWnmpWithWindows.Checked = settings.StartWithWindows;
-            StartAllProgramsOnLaunch.Checked = settings.RunAppsAtLaunch;
+            StartNginxLaunchCB.Checked = settings.StartNginxOnLaunch;
+            StartMySQLLaunchCB.Checked = settings.StartMySQLOnLaunch;
+            StartPHPLaunchCB.Checked = settings.StartPHPOnLaunch;
             MinimizeWnmpToTray.Checked = settings.MinimizeWnmpToTray;
             AutoUpdate.Checked = settings.AutoCheckForUpdates;
             UpdateCheckInterval.Value = settings.UpdateFrequency;
@@ -82,7 +84,9 @@ namespace Wnmp.Forms
         {
             settings.Editor = editorTB.Text;
             settings.StartWithWindows = StartWnmpWithWindows.Checked;
-            settings.RunAppsAtLaunch = StartAllProgramsOnLaunch.Checked;
+            settings.StartNginxOnLaunch = StartNginxLaunchCB.Checked;
+            settings.StartMySQLOnLaunch = StartMySQLLaunchCB.Checked;
+            settings.StartPHPOnLaunch = StartPHPLaunchCB.Checked;
             settings.MinimizeWnmpToTray = MinimizeWnmpToTray.Checked;
             settings.AutoCheckForUpdates = AutoUpdate.Checked;
             settings.PHP_Processes = (int)PHP_PROCESSES.Value;

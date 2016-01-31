@@ -32,7 +32,9 @@ namespace Wnmp.Configuration
         private readonly string iniPath = Main.StartupPath + "/Wnmp.ini";
         public string Editor = "notepad.exe";
         public bool StartWithWindows = false;
-        public bool RunAppsAtLaunch = false;
+        public bool StartNginxOnLaunch = false;
+        public bool StartMySQLOnLaunch = false;
+        public bool StartPHPOnLaunch = false;
         public bool MinimizeWnmpToTray = false;
         public bool AutoCheckForUpdates = true;
         public int UpdateFrequency = 7;
@@ -84,11 +86,13 @@ namespace Wnmp.Configuration
             if (!LoadIniFile())
                 return;
             Editor = ReadIniValue("editorpath", Editor);
-            Boolean.TryParse(ReadIniValue("startupwithwindows", StartWithWindows), out StartWithWindows);
-            Boolean.TryParse(ReadIniValue("startallapplicationsatlaunch", RunAppsAtLaunch), out RunAppsAtLaunch);
-            Boolean.TryParse(ReadIniValue("minimizewnmptotray", MinimizeWnmpToTray),  out MinimizeWnmpToTray);
-            Boolean.TryParse(ReadIniValue("autocheckforupdates", AutoCheckForUpdates), out AutoCheckForUpdates);
-            Boolean.TryParse(ReadIniValue("firstrun", FirstRun), out FirstRun);
+            bool.TryParse(ReadIniValue("startupwithwindows", StartWithWindows), out StartWithWindows);
+            bool.TryParse(ReadIniValue("startnginxonlaunch", StartNginxOnLaunch), out StartNginxOnLaunch);
+            bool.TryParse(ReadIniValue("startmysqlonlaunch", StartMySQLOnLaunch), out StartMySQLOnLaunch);
+            bool.TryParse(ReadIniValue("startphponlaunch", StartPHPOnLaunch), out StartPHPOnLaunch);
+            bool.TryParse(ReadIniValue("minimizewnmptotray", MinimizeWnmpToTray),  out MinimizeWnmpToTray);
+            bool.TryParse(ReadIniValue("autocheckforupdates", AutoCheckForUpdates), out AutoCheckForUpdates);
+            bool.TryParse(ReadIniValue("firstrun", FirstRun), out FirstRun);
             int.TryParse(ReadIniValue("checkforupdatefrequency", UpdateFrequency), out UpdateFrequency);
             int.TryParse(ReadIniValue("phpprocesses", PHP_Processes), out PHP_Processes);
             short.TryParse(ReadIniValue("phpport", PHP_Port), out PHP_Port);
@@ -108,7 +112,9 @@ namespace Wnmp.Configuration
                 sw.WriteLine("[WNMP]");
                 sw.WriteLine("; Editor path\r\neditorpath=" + Editor);
                 sw.WriteLine("; Start Wnmp with Windows\r\nstartupwithwindows=" + StartWithWindows);
-                sw.WriteLine("; Start all applications when Wnmp starts\r\nstartallapplicationsatlaunch=" + RunAppsAtLaunch);
+                sw.WriteLine("; Start Nginx when Wnmp starts\r\nstartnginxonlaunch=" + StartNginxOnLaunch);
+                sw.WriteLine("; Start MySQL when Wnmp starts\r\nstartmysqlonlaunch=" + StartMySQLOnLaunch);
+                sw.WriteLine("; Start PHP when Wnmp starts\r\nstartphponlaunch=" + StartPHPOnLaunch);
                 sw.WriteLine("; Minimize Wnmp to tray when minimized\r\nminimizewnmptotray=" + MinimizeWnmpToTray);
                 sw.WriteLine("; Automatically check for updates\r\nautocheckforupdates=" + AutoCheckForUpdates);
                 sw.WriteLine("; Update frequency(In days)\r\ncheckforupdatefrequency=" + UpdateFrequency);

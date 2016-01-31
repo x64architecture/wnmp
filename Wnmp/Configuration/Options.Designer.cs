@@ -53,7 +53,7 @@ namespace Wnmp.Forms
             this.UpdateCheckInterval = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.StartAllProgramsOnLaunch = new System.Windows.Forms.CheckBox();
+            this.StartPHPLaunchCB = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.StartWnmpWithWindows = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -73,6 +73,10 @@ namespace Wnmp.Forms
             this.PHP_PORT = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.Cancel = new System.Windows.Forms.Button();
+            this.StartMySQLLaunchCB = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.StartNginxLaunchCB = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.General.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -117,11 +121,15 @@ namespace Wnmp.Forms
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.StartNginxLaunchCB);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.StartMySQLLaunchCB);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.selecteditor);
             this.groupBox1.Controls.Add(this.UpdateCheckInterval);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.StartAllProgramsOnLaunch);
+            this.groupBox1.Controls.Add(this.StartPHPLaunchCB);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.StartWnmpWithWindows);
             this.groupBox1.Controls.Add(this.label2);
@@ -132,7 +140,7 @@ namespace Wnmp.Forms
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(327, 190);
+            this.groupBox1.Size = new System.Drawing.Size(327, 230);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Application Settings";
@@ -149,7 +157,7 @@ namespace Wnmp.Forms
             // 
             // UpdateCheckInterval
             // 
-            this.UpdateCheckInterval.Location = new System.Drawing.Point(195, 154);
+            this.UpdateCheckInterval.Location = new System.Drawing.Point(195, 196);
             this.UpdateCheckInterval.Maximum = new decimal(new int[] {
             365,
             0,
@@ -167,7 +175,7 @@ namespace Wnmp.Forms
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(25, 156);
+            this.label6.Location = new System.Drawing.Point(25, 198);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(157, 13);
             this.label6.TabIndex = 12;
@@ -182,23 +190,23 @@ namespace Wnmp.Forms
             this.label1.TabIndex = 0;
             this.label1.Text = "Editor:";
             // 
-            // StartAllProgramsOnLaunch
+            // StartPHPLaunchCB
             // 
-            this.StartAllProgramsOnLaunch.AutoSize = true;
-            this.StartAllProgramsOnLaunch.Location = new System.Drawing.Point(195, 79);
-            this.StartAllProgramsOnLaunch.Name = "StartAllProgramsOnLaunch";
-            this.StartAllProgramsOnLaunch.Size = new System.Drawing.Size(15, 14);
-            this.StartAllProgramsOnLaunch.TabIndex = 7;
-            this.StartAllProgramsOnLaunch.UseVisualStyleBackColor = true;
+            this.StartPHPLaunchCB.AutoSize = true;
+            this.StartPHPLaunchCB.Location = new System.Drawing.Point(195, 123);
+            this.StartPHPLaunchCB.Name = "StartPHPLaunchCB";
+            this.StartPHPLaunchCB.Size = new System.Drawing.Size(15, 14);
+            this.StartPHPLaunchCB.TabIndex = 7;
+            this.StartPHPLaunchCB.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 80);
+            this.label3.Location = new System.Drawing.Point(25, 123);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(147, 13);
+            this.label3.Size = new System.Drawing.Size(113, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Start all programs on launch?:";
+            this.label3.Text = "Start PHP on launch?:";
             // 
             // StartWnmpWithWindows
             // 
@@ -221,7 +229,7 @@ namespace Wnmp.Forms
             // AutoUpdate
             // 
             this.AutoUpdate.AutoSize = true;
-            this.AutoUpdate.Location = new System.Drawing.Point(195, 130);
+            this.AutoUpdate.Location = new System.Drawing.Point(195, 172);
             this.AutoUpdate.Name = "AutoUpdate";
             this.AutoUpdate.Size = new System.Drawing.Size(15, 14);
             this.AutoUpdate.TabIndex = 11;
@@ -230,7 +238,7 @@ namespace Wnmp.Forms
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 130);
+            this.label5.Location = new System.Drawing.Point(25, 172);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(167, 13);
             this.label5.TabIndex = 10;
@@ -248,7 +256,7 @@ namespace Wnmp.Forms
             // MinimizeWnmpToTray
             // 
             this.MinimizeWnmpToTray.AutoSize = true;
-            this.MinimizeWnmpToTray.Location = new System.Drawing.Point(195, 105);
+            this.MinimizeWnmpToTray.Location = new System.Drawing.Point(195, 147);
             this.MinimizeWnmpToTray.Name = "MinimizeWnmpToTray";
             this.MinimizeWnmpToTray.Size = new System.Drawing.Size(15, 14);
             this.MinimizeWnmpToTray.TabIndex = 9;
@@ -257,7 +265,7 @@ namespace Wnmp.Forms
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 105);
+            this.label4.Location = new System.Drawing.Point(25, 147);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(140, 13);
             this.label4.TabIndex = 8;
@@ -394,6 +402,42 @@ namespace Wnmp.Forms
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
+            // StartMySQLLaunchCB
+            // 
+            this.StartMySQLLaunchCB.AutoSize = true;
+            this.StartMySQLLaunchCB.Location = new System.Drawing.Point(195, 101);
+            this.StartMySQLLaunchCB.Name = "StartMySQLLaunchCB";
+            this.StartMySQLLaunchCB.Size = new System.Drawing.Size(15, 14);
+            this.StartMySQLLaunchCB.TabIndex = 16;
+            this.StartMySQLLaunchCB.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(25, 101);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(126, 13);
+            this.label10.TabIndex = 15;
+            this.label10.Text = "Start MySQL on launch?:";
+            // 
+            // StartNginxLaunchCB
+            // 
+            this.StartNginxLaunchCB.AutoSize = true;
+            this.StartNginxLaunchCB.Location = new System.Drawing.Point(195, 79);
+            this.StartNginxLaunchCB.Name = "StartNginxLaunchCB";
+            this.StartNginxLaunchCB.Size = new System.Drawing.Size(15, 14);
+            this.StartNginxLaunchCB.TabIndex = 18;
+            this.StartNginxLaunchCB.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(25, 79);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(118, 13);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "Start Nginx on launch?:";
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -435,7 +479,7 @@ namespace Wnmp.Forms
         private System.Windows.Forms.NumericUpDown UpdateCheckInterval;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox StartAllProgramsOnLaunch;
+        private System.Windows.Forms.CheckBox StartPHPLaunchCB;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox StartWnmpWithWindows;
         private System.Windows.Forms.Label label2;
@@ -454,5 +498,9 @@ namespace Wnmp.Forms
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckedListBox phpExtListBox;
+        private System.Windows.Forms.CheckBox StartNginxLaunchCB;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.CheckBox StartMySQLLaunchCB;
+        private System.Windows.Forms.Label label10;
     }
 }
