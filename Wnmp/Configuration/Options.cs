@@ -244,8 +244,8 @@ namespace Wnmp.Forms
                 iniFile = Main.StartupPath + "/php/php.ini";
             }
             else {
-                extPath = Main.StartupPath + "/php/phpbins/" + settings.phpBin + "/ext/";
-                iniFile = Main.StartupPath + "/php/phpbins/" + settings.phpBin + "/php.ini";
+                extPath = Main.StartupPath + "/php/phpbins/" + phpBin + "/ext/";
+                iniFile = Main.StartupPath + "/php/phpbins/" + phpBin + "/php.ini";
             }
 
             if (!Directory.Exists(extPath))
