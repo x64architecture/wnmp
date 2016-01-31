@@ -49,7 +49,7 @@ namespace Wnmp.Forms
             }
         }
 
-        public void SetupNginx()
+        private void SetupNginx()
         {
             Nginx.exeName = StartupPath.Replace(@"\", "/") + "/nginx.exe";
             Nginx.procName = "nginx";
@@ -63,7 +63,7 @@ namespace Wnmp.Forms
             Nginx.logDir = "/logs/";
         }
 
-        public void SetupMariaDB()
+        private void SetupMariaDB()
         {
             MariaDB.exeName = StartupPath + "/mariadb/bin/mysqld.exe";
             MariaDB.procName = "mysqld";
@@ -363,11 +363,16 @@ namespace Wnmp.Forms
             PHP.Start();
         }
 
-        private void stop_all_Click(object sender, EventArgs e)
+        public void StopAll()
         {
             Nginx.Stop();
             MariaDB.Stop();
             PHP.Stop();
+        }
+
+        private void stop_all_Click(object sender, EventArgs e)
+        {
+            StopAll();
         }
 
         private void mdb_shell_Click(object sender, EventArgs e)

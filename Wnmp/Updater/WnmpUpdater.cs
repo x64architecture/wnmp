@@ -68,8 +68,9 @@ namespace Wnmp
 
         private void UpdateDownloaded()
         {
-            KillProcesses();
+            mainForm.StopAll();
             DoBackUp();
+            KillProcesses();
             Process.Start(updater.SaveName);
             Application.Exit();
         }
