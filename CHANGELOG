@@ -2,9 +2,7 @@ Wnmp 2.2.2: ?? Feb 2016
 =======================
 - Wnmp Control Panel 4.0.0
     *) Added PHP Extension Manager, this allows you to manage php extensions in
-       php.ini for the default php as well as custom versions. The extension options
-       must be in the *exact* following format (they are like this be default)
-       "extension=php_foo.dll" for enabled and ";extension=php_foo.dll" for disabled.
+       the php.ini for the default php version as well as custom versions.
     *) MariaDB is now controlled through a service managed by Wnmp. This has
        required Wnmp to need administrator privileges. This alleviates many
        problems (such as closing MariaDB properly).
