@@ -80,7 +80,7 @@ namespace Wnmp.Forms
 
         private void SetSettings()
         {
-            settings.Editor = EditorTB.Text;
+            settings.Editor = editorTB.Text;
             settings.StartWithWindows = StartWnmpWithWindows.Checked;
             settings.RunAppsAtLaunch = StartAllProgramsOnLaunch.Checked;
             settings.MinimizeWnmpToTray = MinimizeWnmpToTray.Checked;
