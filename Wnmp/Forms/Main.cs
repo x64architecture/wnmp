@@ -69,8 +69,8 @@ namespace Wnmp.Forms
             MariaDB.procName = "mysqld";
             MariaDB.progName = "MariaDB";
             MariaDB.progLogSection = Log.LogSection.WNMP_MARIADB;
-            MariaDB.startArgs = "";
-            MariaDB.stopArgs = "";
+            MariaDB.startArgs = "--install-manual Wnmp-MySQL";
+            MariaDB.stopArgs = "--remove Wnmp-MySQL";
             MariaDB.killStop = true;
             MariaDB.statusLabel = mariadbrunning;
             MariaDB.confDir = "/mariadb/";
@@ -125,7 +125,7 @@ namespace Wnmp.Forms
         private void DoCheckIfAppsAreRunningTimer()
         {
             Timer timer = new Timer();
-            timer.Interval = 5000; // TODO: 5 seconds sounds reasonable?
+            timer.Interval = 1000;
             timer.Tick += (s, e) => {
                 Nginx.SetStatusLabel();
                 MariaDB.SetStatusLabel();

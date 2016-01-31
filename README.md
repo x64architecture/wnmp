@@ -22,7 +22,8 @@ Wnmp values security, stability and user friendliness.
   
 ----
 
-### Prerequisites 
+### Prerequisites
+  * Requires Administator Rights
   * [Visual Studio C++ 2015 (x86) Redistributable](https://www.microsoft.com/en-us/download/details.aspx?id=48145)
   * [.NET Framework 4](https://www.microsoft.com/en-us/download/details.aspx?id=17851)
 

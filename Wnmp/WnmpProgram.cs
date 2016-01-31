@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.ServiceProcess;
 using System.Threading;
 using System.Windows.Forms;
 using Wnmp.Forms;
@@ -23,10 +24,9 @@ namespace Wnmp
         public bool killStop { get; set; }     // Kill process instead of stopping it gracefully
         public string confDir { get; set; }    // Directory where all the programs configuration files are
         public string logDir { get; set; }     // Directory where all the programs log files are
-
-        public int PID { get; private set; }   // PID of process
         public ContextMenuStrip configContextMenu { get; set; } // Displays all the programs config files in |confDir|
         public ContextMenuStrip logContextMenu { get; set; }    // Displays all the programs log files in |logDir|
+        private ServiceController mysqlController = new ServiceController();
 
         public WnmpProgram()
         {
@@ -34,6 +34,9 @@ namespace Wnmp
             logContextMenu = new ContextMenuStrip();
             configContextMenu.ItemClicked += configContextMenu_ItemClicked;
             logContextMenu.ItemClicked += logContextMenu_ItemClicked;
+            /* Set MariaDB service details */
+            mysqlController.MachineName = Environment.MachineName;
+            mysqlController.ServiceName = "Wnmp-MySQL";
         }
 
         /// <summary>
@@ -62,7 +65,7 @@ namespace Wnmp
                 SetStoppedLabel();
         }
 
-        private void StartProcess(string exe, string args)
+        private void StartProcess(string exe, string args, bool wait)
         {
             Process ps = new Process();
             ps.StartInfo.FileName = exe;
@@ -76,7 +79,9 @@ namespace Wnmp
                 ps.StartInfo.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", "0"); // Disable auto killing PHP
             }
             ps.Start();
-            PID = ps.Id;
+            if (wait) {
+                ps.WaitForExit();
+            }
         }
 
         private bool IsMariaDB()
@@ -103,14 +108,13 @@ namespace Wnmp
 
             try {
                 for (i = 1; i <= ProcessCount; i++) {
-                    StartProcess(exeName, String.Format("-b localhost:{0} -c {1}", port, phpini));
+                    StartProcess(exeName, String.Format("-b localhost:{0} -c {1}", port, phpini), false);
                     Log.wnmp_log_notice("Starting PHP " + i + "/" + ProcessCount + " on port: " + port, progLogSection);
                     port++;
                 }
                 Log.wnmp_log_notice("PHP started", progLogSection);
-                SetStartedLabel();
             } catch (Exception ex) {
-                Log.wnmp_log_error(ex.Message, progLogSection);
+                Log.wnmp_log_error("StartPHP(): " + ex.Message, progLogSection);
             }
         }
 
@@ -120,51 +124,50 @@ namespace Wnmp
                 StartPHP();
                 return;
             }
+            if (IsMariaDB() == true) {
+                try {
+                    StartProcess(exeName, startArgs, true); // Install MySQL service
+                    mysqlController.Start(); // Start MySQL service
+                    Log.wnmp_log_notice("Started " + progName, progLogSection);
+                }
+                catch (Exception ex) {
+                    Log.wnmp_log_error(ex.Message, progLogSection);
+                }
+                return;
+            }
             try {
-                StartProcess(exeName, startArgs);
+                StartProcess(exeName, startArgs, false);
                 Log.wnmp_log_notice("Started " + progName, progLogSection);
-                SetStartedLabel();
             } catch (Exception ex) {
-                Log.wnmp_log_error(ex.Message, progLogSection);
+                Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
             }
         }
 
-        private string mdb_pidfile = Main.StartupPath + "/mariadb/data/" + Environment.MachineName + ".pid";
         public void Stop()
         {
-            try {
-                /* Only kill our MariaDB instance (doesn't work if Wnmp is closed after starting MDB) */
-                if (IsMariaDB() == true && PID != 0) {
-                    Process process = Process.GetProcessById(PID);
-                    process.Kill();
-                    /* A hack to delete MariaDB's PID file */
-                    if (File.Exists(mdb_pidfile))
-                        File.Delete(mdb_pidfile);
-                    PID = 0;
-                    Log.wnmp_log_notice("Stopped " + progName, progLogSection);
-                    SetStoppedLabel();
-                    return;
-                }
-                if (killStop) {
-                    Process[] process = Process.GetProcessesByName(procName);
-                    foreach (Process currentProc in process) {
-                        currentProc.Kill();
-                    }
-                } else {
-                    StartProcess(exeName, stopArgs);
-                    new Thread(delegate() {
-                        Thread.Sleep(2000);
-                        Process[] process = Process.GetProcessesByName(procName);
-                        foreach (Process currentProc in process) {
-                            currentProc.Kill();
-                        }
-                    }).Start();
+            if (IsMariaDB() == true) {
+                try {
+                    mysqlController.Stop(); // Stop MySQL service
+                    StartProcess(exeName, stopArgs, false); // Remove MySQL service
+                } catch (Exception ex) {
+                    Log.wnmp_log_notice("Stop(): " + ex.Message, progLogSection);
                 }
                 Log.wnmp_log_notice("Stopped " + progName, progLogSection);
-                SetStoppedLabel();
-            } catch (Exception ex) {
-                Log.wnmp_log_error(ex.Message, progLogSection);
+                return;
             }
+            if (killStop) {
+                Process[] process = Process.GetProcessesByName(procName);
+                foreach (Process currentProc in process) {
+                    currentProc.Kill();
+                }
+            } else {
+                StartProcess(exeName, stopArgs, true);
+                Process[] process = Process.GetProcessesByName(procName);
+                foreach (Process currentProc in process) {
+                    currentProc.Kill();
+                }
+            }
+            Log.wnmp_log_notice("Stopped " + progName, progLogSection);
         }
 
         public void Restart()
