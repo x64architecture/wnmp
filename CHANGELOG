@@ -1,5 +1,8 @@
-Wnmp 2.2.1: Released: 11/15/2015
-================================
+Wnmp 2.2.2: ?? Feb 2016
+=======================
+
+Wnmp 2.2.1: 15 Nov 2015
+=======================
 - Wnmp Control Panel 3.0.2
     *) #64, Ensure processes are killed after trying to close them properly.
        (nginx doesn't like to close right)
@@ -9,8 +12,8 @@ Wnmp 2.2.1: Released: 11/15/2015
 - MariaDB
     *) Upgrade databases to make them work
 
-Wnmp 2.2.0: Released: 11/15/2015
-================================
+Wnmp 2.2.0: 15 Nov 2015
+=======================
 - Wnmp Control Panel 3.0.1
     *) Ability to use custom php versions
        Just drop in a folder of php in C:\Wnmp\php\phpbins
@@ -30,8 +33,8 @@ Wnmp 2.2.0: Released: 11/15/2015
 - phpMyAdmin
     *) Updated to 4.5.1
 
-Wnmp 2.1.9: Released: 08/08/2015
-================================
+Wnmp 2.1.9: 08 Aug 2015
+=======================
 - Wnmp Control Panel 3.0.0
 	*) Major code refactor
 	*) Windows 10 detection
@@ -50,8 +53,8 @@ Wnmp 2.1.9: Released: 08/08/2015
 - phpMyAdmin
     *) Updated to 4.4.12
 
-Wnmp 2.1.8: Released: 05/08/2015
-================================
+Wnmp 2.1.8: 08 May 2015
+=======================
 - Wnmp Control Panel 2.4.1
     *) Feature: Stop MariaDB without the need for a passphrase. (Closes #39)
     *) Bugfix: Fix Xdebug conflict with PHP (Fixes #47)
@@ -69,8 +72,8 @@ Wnmp 2.1.8: Released: 05/08/2015
 - phpMyAdmin
     *) Updated to 4.4.6
 
-Wnmp 2.1.7: Released: 04/17/2015
-================================
+Wnmp 2.1.7: 17 Apr 2015
+=======================
 - Wnmp Control Panel 2.4.0
     *) PHP no longer automatically kills it processes (Fixed #45)
 
@@ -88,8 +91,8 @@ Wnmp 2.1.7: Released: 04/17/2015
 - phpMyAdmin
     *) Updated to 4.4.2
 
-Wnmp 2.1.6: Released: 02/16/2015
-================================
+Wnmp 2.1.6: 16 Feb 2015
+=======================
 - Wnmp Control Panel 2.3.6
     *) Use VigorTLS (https://github.com/vigortls/vigortls)
        instead of OpenSSL
@@ -108,7 +111,7 @@ Wnmp 2.1.6: Released: 02/16/2015
 - phpMyAdmin
     *) Updated to 4.3.9
 
-Wnmp 2.1.5: Released: 12/21/2014
+Wnmp 2.1.5: 21 Dec 2014
 ================================
 - Wnmp Control Panel 2.3.5
     *) Version bump
@@ -125,8 +128,8 @@ Wnmp 2.1.5: Released: 12/21/2014
 - phpMyAdmin
     *) Updated to 4.3.2
 
-Wnmp 2.1.4: Released: 11/09/2014
-================================
+Wnmp 2.1.4: 09 Nov 2014
+=======================
 - Wnmp Control Panel 2.3.4
     *) Fixed: Add minimum amount of PHP processes
     *) Fixed: Don't run first run check on a thread
@@ -143,8 +146,8 @@ Wnmp 2.1.4: Released: 11/09/2014
 - phpMyAdmin
     *) Updated to 4.2.11
 
-Wnmp 2.1.3: Released: 08/29/2014
-================================
+Wnmp 2.1.3: 29 Aug 2014
+=======================
 - Wnmp Control Panel 2.3.3
     *) Fixed: Use correct log file for MariaDB.
     *) Feature: Added an option to start multiple php processes, defaults to 2.
@@ -160,8 +163,8 @@ Wnmp 2.1.3: Released: 08/29/2014
 - phpMyAdmin
     *) Updated to 4.2.7.1
 
-Wnmp 2.1.2: Released: 08/07/2014
-================================
+Wnmp 2.1.2: 07 Aug 2014
+=======================
 - Wnmp Control Panel 2.3.2
     *) Changed: CertGen now uses SHA-256 to sign certificates.
 
@@ -174,8 +177,8 @@ Wnmp 2.1.2: Released: 08/07/2014
     *) Security: Fix for CVE-2014-3556
     *) Updated to 1.7.4
 
-Wnmp 2.1.1: Released: 08/01/2014
-================================
+Wnmp 2.1.1: 01 Aug 2014
+=======================
 - Wnmp Control Panel 2.3.1
     *) Fixed annoying double update prompt.
     *) Lots of internal changes
@@ -192,8 +195,8 @@ Wnmp 2.1.1: Released: 08/01/2014
 - phpMyAdmin
     *) Updated to 4.2.7
 
-Wnmp 2.1.0: Released: 06/06/2014
-================================
+Wnmp 2.1.0: 06 Jun 2014
+=======================
 - Wnmp
     ****INCOMPATIABLE CHANGES****
     *) Windows XP support dropped permanently
@@ -222,15 +225,15 @@ Wnmp 2.1.0: Released: 06/06/2014
     *) Updated to 4.2.2
     
 
-Wnmp 2.0.13: Released: 04/08/2014
-=================================
+Wnmp 2.0.13: 08 Apr 2014
+========================
 - Nginx
     *) Updated to 1.5.13
     *) Compiled with OpenSSL 1.0.1g to fix Heartbleed vulnerability (CVE-2014-0160) which
        leads to system memory disclosure. (Anything in memory e.g. private keys, passwords)
    
-Wnmp 2.0.12: Released: 04/06/2014
-=================================
+Wnmp 2.0.12: 06 Apr 2014
+========================
 - Wnmp Control Panel 2.2.5
     *) GUI: Added restart buttons for MariaDB and PHP
     *) GUI: Renamed the Config button to Configuration
@@ -248,8 +251,8 @@ Wnmp 2.0.12: Released: 04/06/2014
 - phpMyAdmin
     *) Updated to 4.1.12
    
-Wnmp 2.0.11: Released: 03/21/2014
-=================================
+Wnmp 2.0.11: 21 Mar 2014
+========================
 - Wnmp Control Panel 2.2.4
     *) Feature: Get the http headers of a website. (Tools->Get HTTP Headers)
     *) Fixed: Added Windows XP/2008 support back!
@@ -263,12 +266,12 @@ Wnmp 2.0.11: Released: 03/21/2014
  - PHP
     *) Now supports Windows XP!
 
-Wnmp 2.0.10: Released: 03/20/2014
-=================================
+Wnmp 2.0.10: 20 Mar 2014
+========================
 REMOVED DUE TO A REGGRESSION
   
-Wnmp 2.0.9: Released: 03/07/2014
-================================
+Wnmp 2.0.9: 07 Mar 2014
+=======================
 - Wnmp Control Panel 2.2.1
     *) Fixed: The million tooltips that would show up if you hovered over the buttons a few times.
     *) Fixed: Calling session_destroy results in 502 gateway error. (#23)
@@ -282,8 +285,8 @@ Wnmp 2.0.9: Released: 03/07/2014
 - phpMyAdmin
     *) Updated to 4.1.9
 
-Wnmp 2.0.8: Released: 03/02/2014
-================================
+Wnmp 2.0.8: 02 Mar 2014
+=======================
 - Wnmp Control Panel 2.2
     *) Feature: Wnmp now generates a SSL certificate for you!
     *) Feature: Wnmp has a new configuration system. Wnmp path/Wnmp.ini so
@@ -303,8 +306,8 @@ Wnmp 2.0.8: Released: 03/02/2014
 - phpMyAdmin
     *) Updated to 4.1.8
   
-Wnmp 2.0.7: Released: 02/02/2014
-================================
+Wnmp 2.0.7: 02 Feb 2014
+=======================
 - Wnmp Control Panel 2.1.2
     *) Fixed: Windows 8.1 version detection.
     *) Fixed: an invalid url and other misc changes
@@ -328,13 +331,13 @@ Wnmp 2.0.7: Released: 02/02/2014
   
     *) Updated to 4.1.6
 
-Wnmp 2.0.6: Released: 12/25/2013
+Wnmp 2.0.6: 25 Dec 2013
 ================================
 - Wnmp Control Panel 2.1.1
     *) Fixed #19, Checking for updates crashes the application
 
-Wnmp 2.0.5: Released: 12/24/2013
-================================
+Wnmp 2.0.5: 24 Dec 2013
+=======================
 - Wnmp Control Panel 2.1.0
     *) Fixed #17, Bug with config and log button menu items.
     *) Fixed #18, Wnmp shows two windows when an update if found.
@@ -346,8 +349,8 @@ Wnmp 2.0.5: Released: 12/24/2013
 - phpMyAdmin
     *) Updated to 4.1.2
 
-Wnmp 2.0.4: Released: 11/26/2013
-================================
+Wnmp 2.0.4: 26 Nov 2013
+=======================
 - Wnmp Control Panel 2.0.9
     *) Wnmp now backups configuration files and overwrite the old ones.
     *) Implemented Automatic Check For Updates Feature, see #15.
@@ -358,8 +361,8 @@ Wnmp 2.0.4: Released: 11/26/2013
 - MariaDB
     *) Updated to 5.5.34
 
-Wnmp 2.0.3: Released: 11/17/2013
-================================
+Wnmp 2.0.3: 17 Nov 2013
+=======================
 - Wnmp Control Panel 2.0.8
     *) Faster control panel startup(0.15348 vs. 0.183).
     *) Windows XP/2003 support dropped.
@@ -374,8 +377,8 @@ Wnmp 2.0.3: Released: 11/17/2013
 - phpMyAdmin
     *) Updated to 4.0.9 
 
-Wnmp 2.0.2.9: Released: 10/03/2013
-==================================
+Wnmp 2.0.2.9: 03 Oct 2013
+=========================
 - Wnmp
     *) Removed All occurrences of the word "MySQL" and replaced them with "MariaDB"
     *) Updated PRODUCT_* definitions
@@ -390,13 +393,13 @@ Wnmp 2.0.2.9: Released: 10/03/2013
 - phpMyAdmin
     *) Updated to 4.0.7
 
-Wnmp 2.0.2.8: Released: 09/10/2013
-==================================
+Wnmp 2.0.2.8: 10 Sep 2013
+=========================
 - Wnmp
     *) Fixed some things: Changed installer files due to modified configuration files.
 
-Wnmp 2.0.2.7: Released: 09/08/2013
-==================================
+Wnmp 2.0.2.7: 08 Sep 2013
+=========================
 - Wnmp
     *) Added link to localhost
     *) Added percent for update download progress
@@ -413,13 +416,13 @@ Wnmp 2.0.2.7: Released: 09/08/2013
 - phpMyAdmin
     *) Updated to 4.0.6
 
-Wnmp 2.0.2.6 Released: 08/07/2013
-=================================
+Wnmp 2.0.2.6: 07 Aug 2013
+=========================
 - Wnmp
     *) Fixed Critical bug #8, PHP Crashes
 
-Wnmp 2.0.2.5 Released: 08/06/2013
-=================================
+Wnmp 2.0.2.5:  06 Aug 2013
+==========================
 
 - Wnmp
     *) Fixed bug #6, Nginx config button shows Nginx logs menu.
@@ -438,8 +441,8 @@ Wnmp 2.0.2.5 Released: 08/06/2013
 - MariaDB
     *) Updated to 5.5.32
 
-Wnmp 2.0.2.4 Released: 07/05/2013
-=================================
+Wnmp 2.0.2.4: 05 Jul 2013
+=========================
 
 - Wnmp
     *) Fixed issue #1: Missing icon
@@ -459,8 +462,8 @@ Wnmp 2.0.2.4 Released: 07/05/2013
 - PHP
     *) Updated to 5.4.17
 
-Wnmp 2.0.2.3 Released: 07/05/2013
-=================================
+Wnmp 2.0.2.3: 05 Jul 2013
+=========================
    
 - phpMyAdmin
     *) Updated to 4.0.3
@@ -471,8 +474,8 @@ Wnmp 2.0.2.3 Released: 07/05/2013
 - PHP
     *) Updated to 5.4.16
 
-Wnmp 2.0.2.2 Released: 05/23/2013
-=================================
+Wnmp 2.0.2.2: 23 May 2013
+=========================
 
 - Wnmp
     *) Fixed bug #5 (Pressing the Open MySQL Shell button gave the message "The system cannot find the file specified")
@@ -486,13 +489,13 @@ Wnmp 2.0.2.2 Released: 05/23/2013
   
     *) Updated to 5.5.31
 
-Wnmp 2.0.2.1 Released: 05/11/2013
-=================================
+Wnmp 2.0.2.1: 11 May 2013
+=========================
 - Wnmp
     *) Fixed viewing of configuration files and log files
 
-Wnmp 2.0.2: Released: 05/09/2013
-================================
+Wnmp 2.0.2: 09 May 2013
+=======================
 - Wnmp
     *) Lots of GUI changes
     *) Added option to view logs inside the GUI
@@ -510,8 +513,8 @@ Wnmp 2.0.2: Released: 05/09/2013
 - phpMyAdmin
     *) Updated to 4.0.0
 
-Wnmp 2.0.1.2: Released: 04/25/2013
-==================================
+Wnmp 2.0.1.2: 25 Apr 2013
+=========================
 - Wnmp
     *) Removed batch scripts now it is all done in the program!
     *) Added the option to start the MySQL shell from the program
@@ -526,8 +529,8 @@ Wnmp 2.0.1.2: Released: 04/25/2013
 - phpMyAdmin
     *) Updated to 3.5.8.1
 
-Wnmp 2.0.1.1: Released: 04/02/2013
-==================================
+Wnmp 2.0.1.1: 02 Apr 2013
+=========================
 - Wnmp
     *) Feature: Check for updates (File->Check For Updates)
     *) Change: Removed batch scripts now it is all done in the program!
@@ -542,8 +545,8 @@ Wnmp 2.0.1.1: Released: 04/02/2013
 - PHP    
     *) Updated to 5.4.13
 
-Wnmp 2.0.1: Released: 02/24/2013
-================================
+Wnmp 2.0.1: 24 Feb 2013
+=======================
 - Wnmp
     *) Change: PHP is now hidden
 
@@ -553,8 +556,8 @@ Wnmp 2.0.1: Released: 02/24/2013
 - phpMyAdmin
     *) Updated to 3.5.7
 
-Wnmp 2.0: Released: 02/14/2013
-==============================
+Wnmp 2.0.0: 14 Feb 2013
+=======================
 - Wnmp
     *) Added control panel. 
     *) Feature: You can now place the Wnmp folder anywhere
@@ -566,8 +569,8 @@ Wnmp 2.0: Released: 02/14/2013
 - phpMyAdmin
     *) phpMyAdmin wasn't working due to APC 3.1.14
 
-Wnmp 1.3: Released: 01/20/2013
-==============================
+Wnmp 1.3.0: 20 Jan 2013
+=======================
 
 - Nginx
     *) Updated to 1.2.6
@@ -581,6 +584,6 @@ Wnmp 1.3: Released: 01/20/2013
 - phpMyAdmin
     *) Updated to 3.5.5
   
-Wnmp 1.0: Released: 10/07/2012
-==============================
+Wnmp 1.0.0.0: 07 Oct 2012
+=========================
     *) Initial release
