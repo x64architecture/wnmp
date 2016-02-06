@@ -24,16 +24,18 @@ DefaultGroupName={#MyAppName}
 VersionInfoDescription=Wnmp (version {#MyAppVersion})
 VersionInfoCopyright=Copyright 2012-{#Year} Kurt Cancemi
 VersionInfoCompany=Kurt Cancemi
-LicenseFile=license.txt
+LicenseFile=docs\Wnmp.LICENSE
 InfoBeforeFile=
 InfoAfterFile=contrib\postinstall.txt
 OutputDir=../Wnmp Output
 OutputBaseFilename=Wnmp-{#MyAppVersion}
 SetupIconFile=contrib\logo.ico
-Compression=lzma
+Compression=lzma2
+LZMADictionarySize=24000
+LZMANumBlockThreads=4
 SolidCompression=false
 RestartIfNeededByRun=false
-PrivilegesRequired=none
+PrivilegesRequired=admin
 DirExistsWarning=no
 
 [Languages]
@@ -49,6 +51,7 @@ Source: conf\*; DestDir: {app}\conf; Flags: ignoreversion recursesubdirs createa
 Source: contrib\*; DestDir: {app}\contrib; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: docs\*; DestDir: {app}\docs; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: html\*; DestDir: {app}\html; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: html\index.php; DestDir: {app}\html; Flags: ignoreversion onlyifdoesntexist
 Source: logs\*; DestDir: {app}\logs; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: mariadb\bin\*; DestDir: {app}\mariadb\bin; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: mariadb\data\*; DestDir: {app}\mariadb\data; Flags: ignoreversion recursesubdirs createallsubdirs
@@ -57,7 +60,6 @@ Source: mariadb\my.ini; DestDir: {app}\mariadb; Flags: ignoreversion
 Source: php\*; DestDir: {app}\php; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: temp\*; DestDir: {app}\temp; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: changelog.txt; DestDir: {app}; Flags: ignoreversion
-Source: license.txt; DestDir: {app}; Flags: ignoreversion
 Source: nginx.exe; DestDir: {app}; Flags: ignoreversion
 Source: readme.txt; DestDir: {app}; Flags: ignoreversion
 Source: "vc_redist.x86.exe"; DestDir: {tmp}; Flags: deleteafterinstall

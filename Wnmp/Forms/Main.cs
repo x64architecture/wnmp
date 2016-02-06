@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 - 2015, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2016, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -36,7 +36,7 @@ namespace Wnmp.Forms
         private WnmpUpdater Updater = new WnmpUpdater();
         public static string StartupPath { get { return Application.StartupPath; } }
 
-        public static readonly Version CPVER = new Version("3.0.3");
+        public static readonly Version CPVER = new Version("4.0.0");
 
         private readonly NotifyIcon WnmpTrayIcon = new NotifyIcon();
 
