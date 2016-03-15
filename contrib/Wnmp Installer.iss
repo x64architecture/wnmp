@@ -1,6 +1,6 @@
 ; Wnmp iss
 #define MyAppName "Wnmp"
-#define MyAppVersion "2.2.2"
+#define MyAppVersion "2.2.3"
 #define MyAppPublisher "Kurt Cancemi"
 #define MyAppURL "https://www.getwnmp.org"
 #define MyAppExeName "Wnmp.exe"
@@ -32,7 +32,7 @@ OutputBaseFilename=Wnmp-{#MyAppVersion}
 SetupIconFile=contrib\logo.ico
 Compression=lzma2
 LZMADictionarySize=24000
-LZMANumBlockThreads=4
+LZMANumBlockThreads=8
 SolidCompression=false
 RestartIfNeededByRun=false
 PrivilegesRequired=admin

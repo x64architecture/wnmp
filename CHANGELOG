@@ -1,3 +1,26 @@
+Wnmp 2.2.3: 15 Mar 2016
+=======================
+- Wnmp Control Panel 4.0.1
+    *) #44, Enabled xdebug by default, display_errors
+       and display_startup_errors
+    *) #71, Add MySQL timezone data
+        Thanks to Paul Norman for reporting this issue.
+    *) #72, Add CA Root Certificates
+        Thanks to Paul Norman for reporting this issue.
+
+- Nginx
+    *) Updated to 1.9.12
+    *) Updated VigorTLS to latest commit b692860
+
+- MariaDB
+    *) Updated to 10.1.12
+
+- PHP
+    *) Updated to 7.0.4
+
+- phpMyAdmin
+    *) Updated to 4.5.5.1
+
 Wnmp 2.2.2: 06 Feb 2016
 =======================
 - Wnmp Control Panel 4.0.0
