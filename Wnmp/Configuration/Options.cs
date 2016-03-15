@@ -191,7 +191,7 @@ namespace Wnmp.Forms
 
         private string[] phpExtName;
         private bool[] phpExtEnabled;
-        private int opcacheIndex;
+        private bool[] zendExt;
         private string extPath, iniFile;
 
         private void parse_phpini(int i)
@@ -201,20 +201,22 @@ namespace Wnmp.Forms
             while ((str = sr.ReadLine()) != null) {
                 if (str.StartsWith(";extension=" + phpExtName[i])) {
                     phpExtEnabled[i] = false;
+                    zendExt[i] = false;
                     continue;
                 }
                 if (str.StartsWith("extension=" + phpExtName[i])) {
                     phpExtEnabled[i] = true;
+                    zendExt[i] = false;
                     continue;
                 }
                 if (str.StartsWith(";zend_extension=" + phpExtName[i])) {
                     phpExtEnabled[i] = false;
-                    opcacheIndex = i;
+                    zendExt[i] = true;
                     continue;
                 }
                 if (str.StartsWith("zend_extension=" + phpExtName[i])) {
                     phpExtEnabled[i] = true;
-                    opcacheIndex = i;
+                    zendExt[i] = true;
                     continue;
                 }
             }
@@ -223,7 +225,7 @@ namespace Wnmp.Forms
         private void set_phpiniopt(int i, bool enable)
         {
             string text = File.ReadAllText(iniFile);
-            if (i != opcacheIndex) {
+            if (zendExt[i] == false) {
                 if (enable)
                     text = text.Replace(";extension=" + phpExtName[i], "extension=" + phpExtName[i]);
                 else {
@@ -256,6 +258,7 @@ namespace Wnmp.Forms
                 return;
             phpExtName = Directory.GetFiles(extPath, "*.dll");
             phpExtEnabled = new bool[phpExtName.Length];
+            zendExt = new bool[phpExtName.Length];
 
             for (int i = 0; i < phpExtName.Length; i++) {
                 phpExtName[i] = phpExtName[i].Remove(0, extPath.Length);
