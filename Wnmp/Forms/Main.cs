@@ -21,6 +21,7 @@ using System;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Wnmp.Forms
 {
@@ -77,6 +78,26 @@ namespace Wnmp.Forms
             MariaDB.logDir = "/mariadb/data/";
         }
 
+        private void SetCurlCAPath()
+        {
+            string phpini = Main.StartupPath + "/php/php.ini";
+
+            string file = File.ReadAllText(phpini);
+            using (StringReader reader = new StringReader(file)) {
+                string line;
+                while ((line = reader.ReadLine()) != null) {
+                    if (line.Contains("curl.cainfo") == false)
+                        continue;
+
+                    Regex reg = new Regex("\".*?\"");
+                    string replace = "\"" + Main.StartupPath + @"\contrib\cacert.pem" + "\"";
+                    file = file.Replace(reg.Match(line).ToString(), replace);
+                    File.WriteAllText(phpini, file);
+                    break;
+                }
+            }
+        }
+
         public void SetupPHP()
         {
             if (Options.settings.phpBin != "Default") {
@@ -93,6 +114,7 @@ namespace Wnmp.Forms
             PHP.statusLabel = phprunning;
             PHP.confDir = "/php/";
             PHP.logDir = "/php/logs/";
+            SetCurlCAPath();
         }
 
         public void SetupCustomPHP()
