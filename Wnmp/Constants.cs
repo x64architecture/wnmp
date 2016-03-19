@@ -24,7 +24,7 @@ namespace Wnmp
         public const string WnmpWebUrl = "https://www.getwnmp.org";
         public const string WnmpContribUrl = "https://www.getwnmp.org/contributing";
         public const string WhatsNewUrl = "https://www.getwnmp.org/CHANGELOG";
-        public const string MailingListUrl = "http://mailman.getwnmp.org/mailman/listinfo/wnmp-users";
+        public const string MailingListUrl = "https://mailman.x64architecture.com/pipermail/wnmp-users";
         public const string ReportBugUrl = "https://github.com/wnmp/wnmp/issues/new";
         public const string UpdateXMLUrl = "https://www.getwnmp.org/update.xml";
         public const int WS_THICKFRAME = 0x00040000;
