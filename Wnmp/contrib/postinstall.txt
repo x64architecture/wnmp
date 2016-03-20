@@ -1,0 +1,9 @@
+Welcome to Wnmp!
+-------------------
+
+For configuration and usage directions, please read the ReadMe.html
+file that comes with this package.
+
+Also check the changelog at:
+
+ https://www.getwnmp.org/CHANGELOG

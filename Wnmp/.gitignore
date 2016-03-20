@@ -1,0 +1,28 @@
+# binary files
+*.dll
+*.exe
+/conf/*.pem
+
+# MariaDB
+/mariadb/*
+!/mariadb/bin
+!/mariadb/data
+!/mariadb/share
+!/mariadb/my.ini
+
+# PHP
+/php/*
+!/php/phpbins
+!/php/logs
+!/php/logs/sys.log
+!/php/php.ini
+
+# phpMyAdmin
+/html/phpmyadmin/*
+!/html/phpmyadmin/config.inc.php
+
+# misc
+!/bin
+!/logs
+changelog.txt
+Wnmp.ini
