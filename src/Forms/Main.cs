@@ -31,10 +31,10 @@ namespace Wnmp.Forms
     /// </summary>
     public partial class Main : Form
     {
-        private WnmpProgram Nginx   = new WnmpProgram();
-        private WnmpProgram MariaDB = new WnmpProgram();
-        private WnmpProgram PHP     = new WnmpProgram();
-        private WnmpUpdater Updater = new WnmpUpdater();
+        private MariaDBProgram MariaDB = new MariaDBProgram();
+        private WnmpProgram    Nginx   = new WnmpProgram();
+        private PHPProgram     PHP     = new PHPProgram();
+        private WnmpUpdater    Updater = new WnmpUpdater();
         public static string StartupPath { get { return Application.StartupPath; } }
 
         public static readonly Version CPVER = new Version("4.0.1");
@@ -71,7 +71,7 @@ namespace Wnmp.Forms
             MariaDB.progName = "MariaDB";
             MariaDB.progLogSection = Log.LogSection.WNMP_MARIADB;
             MariaDB.startArgs = "--install-manual Wnmp-MySQL";
-            MariaDB.stopArgs = "--remove Wnmp-MySQL";
+            MariaDB.stopArgs = "/c sc delete Wnmp-MySQL";
             MariaDB.killStop = true;
             MariaDB.statusLabel = mariadbrunning;
             MariaDB.confDir = "/mariadb/";

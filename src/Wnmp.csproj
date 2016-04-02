@@ -90,7 +90,9 @@
     </Compile>
     <Compile Include="Log.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="WnmpProgram.cs" />
+    <Compile Include="Programs\PHP.cs" />
+    <Compile Include="Programs\MariaDB.cs" />
+    <Compile Include="Programs\WnmpProgram.cs" />
     <Compile Include="Updater\UpdatePrompt.cs">
       <SubType>Form</SubType>
     </Compile>

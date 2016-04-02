@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.ServiceProcess;
-using System.Threading;
 using System.Windows.Forms;
 using Wnmp.Forms;
 
@@ -26,7 +20,8 @@ namespace Wnmp
         public string logDir { get; set; }     // Directory where all the programs log files are
         public ContextMenuStrip configContextMenu { get; set; } // Displays all the programs config files in |confDir|
         public ContextMenuStrip logContextMenu { get; set; }    // Displays all the programs log files in |logDir|
-        private ServiceController mysqlController = new ServiceController();
+  
+        public Process ps = new Process();
 
         public WnmpProgram()
         {
@@ -34,9 +29,6 @@ namespace Wnmp
             logContextMenu = new ContextMenuStrip();
             configContextMenu.ItemClicked += configContextMenu_ItemClicked;
             logContextMenu.ItemClicked += logContextMenu_ItemClicked;
-            /* Set MariaDB service details */
-            mysqlController.MachineName = Environment.MachineName;
-            mysqlController.ServiceName = "Wnmp-MySQL";
         }
 
         /// <summary>
@@ -65,9 +57,8 @@ namespace Wnmp
                 SetStoppedLabel();
         }
 
-        private void StartProcess(string exe, string args, bool wait)
+        public void StartProcess(string exe, string args, bool wait = false)
         {
-            Process ps = new Process();
             ps.StartInfo.FileName = exe;
             ps.StartInfo.Arguments = args;
             ps.StartInfo.UseShellExecute = false;
@@ -75,86 +66,24 @@ namespace Wnmp
             ps.StartInfo.WorkingDirectory = Main.StartupPath;
             ps.StartInfo.CreateNoWindow = true;
             ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            if (this.IsPHP() == true) {
-                ps.StartInfo.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", "0"); // Disable auto killing PHP
-            }
             ps.Start();
+
             if (wait) {
                 ps.WaitForExit();
             }
         }
-
-        private bool IsMariaDB()
+        public virtual void Start()
         {
-            return (progLogSection == Log.LogSection.WNMP_MARIADB);
-        }
-
-        private bool IsPHP()
-        {
-            return (progLogSection == Log.LogSection.WNMP_PHP);
-        }
-
-        /* PHP needs special handling so we have to create a seperate function */
-        private void StartPHP()
-        {
-            int i;
-            int ProcessCount = Options.settings.PHP_Processes;
-            short port = Options.settings.PHP_Port;
-            string phpini;
-            if (Options.settings.phpBin == "Default")
-                phpini = Main.StartupPath + "/php/php.ini";
-            else
-                phpini = Main.StartupPath + "/php/phpbins/" + Options.settings.phpBin + "/php.ini";
-
             try {
-                for (i = 1; i <= ProcessCount; i++) {
-                    StartProcess(exeName, String.Format("-b localhost:{0} -c {1}", port, phpini), false);
-                    Log.wnmp_log_notice("Starting PHP " + i + "/" + ProcessCount + " on port: " + port, progLogSection);
-                    port++;
-                }
-                Log.wnmp_log_notice("PHP started", progLogSection);
-            } catch (Exception ex) {
-                Log.wnmp_log_error("StartPHP(): " + ex.Message, progLogSection);
-            }
-        }
-
-        public void Start()
-        {
-            if (IsPHP() == true) {
-                StartPHP();
-                return;
-            }
-            if (IsMariaDB() == true) {
-                try {
-                    StartProcess(exeName, startArgs, true); // Install MySQL service
-                    mysqlController.Start(); // Start MySQL service
-                    Log.wnmp_log_notice("Started " + progName, progLogSection);
-                }
-                catch (Exception ex) {
-                    Log.wnmp_log_error(ex.Message, progLogSection);
-                }
-                return;
-            }
-            try {
-                StartProcess(exeName, startArgs, false);
+                StartProcess(exeName, startArgs);
                 Log.wnmp_log_notice("Started " + progName, progLogSection);
             } catch (Exception ex) {
                 Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
             }
         }
 
-        public void Stop()
+        public virtual void Stop()
         {
-            if (IsMariaDB() == true) {
-                try {
-                    mysqlController.Stop(); // Stop MySQL service
-                    StartProcess(exeName, stopArgs, false); // Remove MySQL service
-                } catch (Exception ex) {
-                    Log.wnmp_log_notice("Stop(): " + ex.Message, progLogSection);
-                }
-                Log.wnmp_log_notice("Stopped " + progName, progLogSection);
-                return;
-            }
             if (killStop) {
                 Process[] process = Process.GetProcessesByName(procName);
                 foreach (Process currentProc in process) {
