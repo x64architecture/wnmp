@@ -7,6 +7,7 @@ WnmpOutput/
 *.sln.docstates
 
 *.VC.opendb
+*.VC.db
 
 # Visual C++ cache files
 ipch/
