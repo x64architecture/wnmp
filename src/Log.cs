@@ -56,6 +56,7 @@ namespace Wnmp
             }
 
             rtfLog.ScrollToCaret();
+            rtfLog.SelectionStart = rtfLog.Text.Length; // Deselect text
         }
         /// <summary>
         /// Log error
