@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2015, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2016, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -32,31 +31,42 @@ namespace Wnmp
     public static class Log
     {
         private static RichTextBox rtfLog;
-        /// <summary>
-        /// Returns the DescriptionAttribute string
-        /// </summary>
-        /// <returns>Enum DescriptionAttribute string</returns>
-        public static string GetEnumDescription(Enum value)
-        {
-            var customAttributes = value.GetType().GetField(value.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), true);
-            if (customAttributes.Length > 0)
-                return ((DescriptionAttribute)customAttributes[0]).Description;
 
-            return string.Empty;
+        public enum LogSection
+        {
+            WNMP_MAIN = 0,
+            WNMP_NGINX,
+            WNMP_MARIADB,
+            WNMP_PHP,
         }
+        public static string LogSectionToString(LogSection logSection)
+        {
+            switch (logSection) {
+                case LogSection.WNMP_MAIN:
+                    return "Wnmp Main";
+                case LogSection.WNMP_NGINX:
+                    return "Wnmp Nginx";
+                case LogSection.WNMP_MARIADB:
+                    return "Wnmp MariaDB";
+                case LogSection.WNMP_PHP:
+                    return "Wnmp PHP";
+                default:
+                    return "";
+            }
+    }
 
         private static void wnmp_log(string message, Color color, LogSection logSection)
         {
-            var str = string.Format("{0} [{1}] - {2}", DateTime.Now.ToString(), GetEnumDescription(logSection), message);
-            var textLength = rtfLog.TextLength;
+            string SectionName = LogSectionToString(logSection);
+            string str = String.Format("{0} [{1}] - {2}", DateTime.Now.ToString(), SectionName, message);
             rtfLog.AppendText(str + "\n");
-            if (rtfLog.Find(GetEnumDescription(logSection), textLength, RichTextBoxFinds.MatchCase) != -1) {
-                rtfLog.SelectionLength = GetEnumDescription(logSection).Length;
+            if (rtfLog.Find(SectionName, rtfLog.TextLength, RichTextBoxFinds.MatchCase) != -1) {
+                rtfLog.SelectionLength = SectionName.Length;
                 rtfLog.SelectionColor = color;
             }
 
             rtfLog.ScrollToCaret();
-            rtfLog.SelectionStart = rtfLog.Text.Length; // Deselect text
+            rtfLog.SelectionStart = rtfLog.TextLength; // Deselect text
         }
         /// <summary>
         /// Log error
@@ -77,22 +87,10 @@ namespace Wnmp
         {
             rtfLog = logRichTextBox;
             wnmp_log_notice("Initializing Control Panel", LogSection.WNMP_MAIN);
-            Log.wnmp_log_notice("Control Panel Version: " + Main.CPVER, Log.LogSection.WNMP_MAIN);
-            Log.wnmp_log_notice("Wnmp Version: " + Application.ProductVersion, Log.LogSection.WNMP_MAIN);
-            Log.wnmp_log_notice(OSVersionInfo.WindowsVersionString(), Log.LogSection.WNMP_MAIN);
-            Log.wnmp_log_notice("Wnmp Directory: " + Application.StartupPath, Log.LogSection.WNMP_MAIN);
-        }
-
-        public enum LogSection
-        {
-            [Description("Wnmp Main")]
-            WNMP_MAIN = 0,
-            [Description("Wnmp Nginx")]
-            WNMP_NGINX = 1,
-            [Description("Wnmp PHP")]
-            WNMP_PHP = 2,
-            [Description("Wnmp MariaDB")]
-            WNMP_MARIADB = 3
+            wnmp_log_notice("Control Panel Version: " + Main.CPVER, LogSection.WNMP_MAIN);
+            wnmp_log_notice("Wnmp Version: " + Application.ProductVersion, LogSection.WNMP_MAIN);
+            wnmp_log_notice(OSVersionInfo.WindowsVersionString(), LogSection.WNMP_MAIN);
+            wnmp_log_notice("Wnmp Directory: " + Application.StartupPath, LogSection.WNMP_MAIN);
         }
     }
 }
