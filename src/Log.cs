@@ -87,6 +87,14 @@ namespace Wnmp
         public static void setLogComponent(RichTextBox logRichTextBox)
         {
             rtfLog = logRichTextBox;
+            ContextMenu logContextMenu = new ContextMenu();
+            MenuItem CopyItem = new MenuItem("&Copy");
+            CopyItem.Click += (s, e) => {
+                Clipboard.SetText(rtfLog.SelectedText);
+            };
+            logContextMenu.MenuItems.Add(CopyItem);
+            rtfLog.ContextMenu = logContextMenu;
+
             wnmp_log_notice("Initializing Control Panel", LogSection.WNMP_MAIN);
             wnmp_log_notice("Control Panel Version: " + Main.CPVER, LogSection.WNMP_MAIN);
             wnmp_log_notice("Wnmp Version: " + Application.ProductVersion, LogSection.WNMP_MAIN);
