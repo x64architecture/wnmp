@@ -22,6 +22,8 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace Wnmp.Forms
 {
@@ -131,8 +133,15 @@ namespace Wnmp.Forms
             PHP.logDir = "/php/phpbins/" + Options.settings.phpBin + "/logs/";
         }
 
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern bool SetDllDirectory(string path);
+
         public Main()
         {
+            string path = StartupPath + @"\bin\" +
+                (Environment.Is64BitProcess ? "x64" : "x86");
+            if (!SetDllDirectory(path))
+                throw new Win32Exception();
             InitializeComponent();
             Options.settings.ReadSettings();
             Options.settings.UpdateSettings();

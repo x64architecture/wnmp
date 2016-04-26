@@ -59,8 +59,9 @@ namespace Wnmp
         {
             string SectionName = LogSectionToString(logSection);
             string str = String.Format("{0} [{1}] - {2}", DateTime.Now.ToString(), SectionName, message);
+            int textLength = rtfLog.TextLength;
             rtfLog.AppendText(str + "\n");
-            if (rtfLog.Find(SectionName, rtfLog.TextLength, RichTextBoxFinds.MatchCase) != -1) {
+            if (rtfLog.Find(SectionName, textLength, RichTextBoxFinds.MatchCase) != -1) {
                 rtfLog.SelectionLength = SectionName.Length;
                 rtfLog.SelectionColor = color;
             }
@@ -89,7 +90,12 @@ namespace Wnmp
             wnmp_log_notice("Initializing Control Panel", LogSection.WNMP_MAIN);
             wnmp_log_notice("Control Panel Version: " + Main.CPVER, LogSection.WNMP_MAIN);
             wnmp_log_notice("Wnmp Version: " + Application.ProductVersion, LogSection.WNMP_MAIN);
-            wnmp_log_notice(OSVersionInfo.WindowsVersionString(), LogSection.WNMP_MAIN);
+            SystemInfo systemInfo = new SystemInfo();
+            wnmp_log_notice(systemInfo.WindowsVersionString(), LogSection.WNMP_MAIN);
+            if (systemInfo.icuid.CPUIDSupported()) {
+                wnmp_log_notice("CPU: " + systemInfo.icuid.GetBrandString(), LogSection.WNMP_MAIN);
+                wnmp_log_notice("CPU Features: " + systemInfo.CommonCPUFeatures(), LogSection.WNMP_MAIN);
+            }
             wnmp_log_notice("Wnmp Directory: " + Application.StartupPath, LogSection.WNMP_MAIN);
         }
     }
