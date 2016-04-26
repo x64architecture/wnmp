@@ -60,6 +60,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <OutputPath>bin\Release\</OutputPath>
+    <Optimize>true</Optimize>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -91,6 +92,7 @@
     <Compile Include="ICUID.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="OSVersionInfo.cs" />
     <Compile Include="Programs\PHP.cs" />
     <Compile Include="Programs\MariaDB.cs" />
     <Compile Include="Programs\WnmpProgram.cs" />

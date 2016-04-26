@@ -18,11 +18,8 @@
  */
 
 using System.Text;
-using System.Management;
-using System.Linq;
 using System;
 using static Wnmp.ICUID.cpuid_feature_t;
-using System.Runtime.InteropServices;
 
 namespace Wnmp
 {
@@ -32,6 +29,7 @@ namespace Wnmp
     public class SystemInfo
     {
         public ICUID icuid = new ICUID();
+        OSVersionInfo OVI = new OSVersionInfo();
 
         public string CommonCPUFeatures()
         {
@@ -65,9 +63,7 @@ namespace Wnmp
         }
         public string WindowsVersionString()
         {
-            var name = (from x in new ManagementObjectSearcher("SELECT Caption FROM Win32_OperatingSystem").Get().Cast<ManagementObject>()
-                        select x.GetPropertyValue("Caption")).First();
-            return name != null ? name.ToString() : "Unknown";
+            return OVI.WindowsVersionString();
         }
     }
 }
