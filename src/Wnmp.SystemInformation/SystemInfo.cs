@@ -19,9 +19,9 @@
 
 using System.Text;
 using System;
-using static Wnmp.ICUID.cpuid_feature_t;
+using static Wnmp.SystemInformation.ICUID.cpuid_feature_t;
 
-namespace Wnmp
+namespace Wnmp.SystemInformation
 {
     /// <summary>
     /// Provides detailed information about the host operating system.
@@ -29,11 +29,11 @@ namespace Wnmp
     public class SystemInfo
     {
         public ICUID icuid = new ICUID();
-        OSVersionInfo OVI = new OSVersionInfo();
+        private readonly OSVersionInfo OVI = new OSVersionInfo();
 
         public string CommonCPUFeatures()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             if (icuid.CPUSupports(CPU_FEATURE_SSE))
                 sb.Append(" SSE,");

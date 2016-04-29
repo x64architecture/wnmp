@@ -1,0 +1,3 @@
+[submodule "src/vigortls"]
+	path = src/vigortls
+	url = https://github.com/vigortls/vigortls.git

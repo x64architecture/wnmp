@@ -19,9 +19,10 @@
 
 using System;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
-using Wnmp.Forms;
+using Wnmp.SystemInformation;
 
 namespace Wnmp
 {
@@ -57,9 +58,10 @@ namespace Wnmp
 
         private static void wnmp_log(string message, Color color, LogSection logSection)
         {
-            string SectionName = LogSectionToString(logSection);
-            string str = String.Format("{0} [{1}] - {2}", DateTime.Now.ToString(), SectionName, message);
-            int textLength = rtfLog.TextLength;
+            var SectionName = LogSectionToString(logSection);
+            var DateNow = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+            var str = $"{DateNow} [{SectionName}] - {message}";
+            var textLength = rtfLog.TextLength;
             rtfLog.AppendText(str + "\n");
             if (rtfLog.Find(SectionName, textLength, RichTextBoxFinds.MatchCase) != -1) {
                 rtfLog.SelectionLength = SectionName.Length;
@@ -87,8 +89,8 @@ namespace Wnmp
         public static void setLogComponent(RichTextBox logRichTextBox)
         {
             rtfLog = logRichTextBox;
-            ContextMenu logContextMenu = new ContextMenu();
-            MenuItem CopyItem = new MenuItem("&Copy");
+            var logContextMenu = new ContextMenu();
+            var CopyItem = new MenuItem("&Copy");
             CopyItem.Click += (s, e) => {
                 Clipboard.SetText(rtfLog.SelectedText);
             };
@@ -96,9 +98,9 @@ namespace Wnmp
             rtfLog.ContextMenu = logContextMenu;
 
             wnmp_log_notice("Initializing Control Panel", LogSection.WNMP_MAIN);
-            wnmp_log_notice("Control Panel Version: " + Main.CPVER, LogSection.WNMP_MAIN);
+            wnmp_log_notice("Control Panel Version: " + Constants.CPVER, LogSection.WNMP_MAIN);
             wnmp_log_notice("Wnmp Version: " + Application.ProductVersion, LogSection.WNMP_MAIN);
-            SystemInfo systemInfo = new SystemInfo();
+            var systemInfo = new SystemInfo();
             wnmp_log_notice(systemInfo.WindowsVersionString(), LogSection.WNMP_MAIN);
             if (systemInfo.icuid.CPUIDSupported()) {
                 wnmp_log_notice("CPU: " + systemInfo.icuid.GetBrandString(), LogSection.WNMP_MAIN);

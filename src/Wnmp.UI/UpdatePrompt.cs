@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2015, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2016, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -18,18 +18,17 @@
  */
 
 using System;
-using System.Drawing;
-using System.Windows.Forms;
 using System.Diagnostics;
+using System.Windows.Forms;
 
-namespace Wnmp.Forms
+namespace Wnmp.UI
 {
     /// <summary>
-    /// Form that shows info about Wnmp
+    /// Form for viewing the changelog and asking if the user would like to update
     /// </summary>
-    public partial class About : Form
+    public partial class UpdatePrompt : Form
     {
-        public About()
+        public UpdatePrompt()
         {
             InitializeComponent();
         }
@@ -43,30 +42,28 @@ namespace Wnmp.Forms
             }
         }
 
-        private void Closebtn_Click(object sender, EventArgs e)
+        private void Yes_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Yes;
             this.Close();
         }
 
-        private void wnmpwebsiteLabel_Click(object sender, EventArgs e)
+        private void No_Click(object sender, EventArgs e)
         {
-            Process.Start("https://www.getwnmp.org");
+            this.DialogResult = DialogResult.No;
+            this.Close();
         }
 
-        private void About_Load(object sender, EventArgs e)
+        private void viewchange_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            wnmpversionLabel.Text = "Wnmp Version: " + Application.ProductVersion;
-            wnmpcpversionLabel.Text = "Wnmp Control Panel Version: " + Main.CPVER;
-        }
-
-        private void wnmpwebsiteLabel_MouseHover(object sender, EventArgs e)
-        {
-            wnmpwebsiteLabel.ForeColor = Color.Blue;
-        }
-
-        private void wnmpwebsiteLabel_MouseLeave(object sender, EventArgs e)
-        {
-            wnmpwebsiteLabel.ForeColor = Color.Black;
+            try
+            {
+                Process.Start(Constants.WhatsNewUrl);
+            }
+            catch (Exception ex)
+            {
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
+            }
         }
     }
 }

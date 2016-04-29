@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2015, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2016, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -19,14 +19,13 @@
 
 using System;
 using System.Windows.Forms;
-using System.Xml;
-using System.Net;
 using System.Diagnostics;
 using System.IO;
 
-using Wnmp.Forms;
+using Wnmp.Configuration;
+using Wnmp.UI;
 
-namespace Wnmp
+namespace Wnmp.Updater
 {
     /// <summary>
     /// Updater for Wnmp
@@ -34,7 +33,8 @@ namespace Wnmp
     class WnmpUpdater
     {
         public Main mainForm;
-        private Updater updater = new Updater();
+        public Ini Settings;
+        private readonly Updater updater = new Updater();
 
         /// <summary>
         /// Checks for updates
@@ -48,10 +48,15 @@ namespace Wnmp
             updater.CheckForUpdate();
 
             if (updater.UpdateAvailable) {
-                UpdatePrompt updatePrompt = new UpdatePrompt();
-                updatePrompt.StartPosition = FormStartPosition.CenterParent;
-                updatePrompt.currentversion.Text = updater.currentVersion.ToString();
-                updatePrompt.newversion.Text = updater.newVersion.ToString();
+                var updatePrompt = new UpdatePrompt {
+                    StartPosition = FormStartPosition.CenterParent,
+                    currentversion = {
+                        Text = updater.currentVersion.ToString()
+                    },
+                    newversion = {
+                        Text = updater.newVersion.ToString()
+                    }
+                };
                 if (updatePrompt.ShowDialog() == DialogResult.Yes) {
                     mainForm.Enabled = false;
                     updater.Update(UpdateCanceled, UpdateDownloaded);
@@ -83,7 +88,7 @@ namespace Wnmp
             string[] files = { Main.StartupPath + "/php/php.ini", Main.StartupPath + "/conf/nginx.conf", Main.StartupPath + "/mariadb/my.ini" };
             foreach (string file in files) {
                 if (File.Exists(file)) {
-                    var dest = String.Format("{0}.old", file);
+                    var dest = $"{file}.old";
                     File.Copy(file, dest, true);
                     Log.wnmp_log_notice("Backed up " + file + " to " + dest, Log.LogSection.WNMP_MAIN);
                 }
@@ -95,15 +100,13 @@ namespace Wnmp
         /// </summary>
         private void KillProcesses()
         {
-            string[] processtokill = { "php-cgi", "nginx", "mysqld" };
+            string[] processestokill = { "php-cgi", "nginx", "mysqld" };
             var processes = Process.GetProcesses();
 
-            for (var i = 0; i < processes.Length; i++) {
-                for (var j = 0; j < processtokill.Length; j++) {
-                    var tempProcess = processes[i].ProcessName;
-
-                    if (tempProcess == processtokill[j]) {
-                        processes[i].Kill();
+            foreach (var process in processes) {
+                foreach (var processToKill in processestokill) {
+                    if (process.ProcessName == processToKill) {
+                        process.Kill();
                         break;
                     }
                 }
@@ -112,16 +115,16 @@ namespace Wnmp
 
         public void DoDateEclasped()
         {
-            DateTime LastCheckForUpdate = Options.settings.Lastcheckforupdate;
-            DateTime expiryDate = LastCheckForUpdate.AddDays(Options.settings.UpdateFrequency);
+            DateTime LastCheckForUpdate = Settings.LastCheckForUpdate.Value;
+            DateTime expiryDate = LastCheckForUpdate.AddDays(Settings.UpdateFrequency.Value);
 
             if (DateTime.Now < expiryDate)
                 return;
 
             CheckForUpdates();
 
-            Options.settings.Lastcheckforupdate = DateTime.Now;
-            Options.settings.UpdateSettings();
+            Settings.LastCheckForUpdate.Value = DateTime.Now;
+            Settings.UpdateSettings();
         }
     }
 }

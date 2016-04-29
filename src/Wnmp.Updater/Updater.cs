@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2015, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2016, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -18,16 +18,14 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
-using System.Text;
 using System.Xml;
-using Wnmp.Forms;
 using System.Windows.Forms;
 
-namespace Wnmp
+using Wnmp.UI;
+
+namespace Wnmp.Updater
 {
     class Updater
     {
@@ -61,10 +59,7 @@ namespace Wnmp
                 return;
             }
 
-            if (currentVersion.CompareTo(newVersion) < 0)
-                UpdateAvailable = true;
-            else
-                UpdateAvailable = false;
+            UpdateAvailable = currentVersion.CompareTo(newVersion) < 0;
         }
 
         /// <summary>
@@ -126,15 +121,16 @@ namespace Wnmp
                     if (reader.NodeType == XmlNodeType.Element) {
                         elementName = reader.Name;
                     } else {
-                        if ((reader.NodeType == XmlNodeType.Text) && (reader.HasValue))
-                            switch (elementName) {
-                                case "version":
-                                    newVersion = new Version(reader.Value);
-                                    break;
-                                case "upgradeurl":
-                                    UpdateDownloadURL = new Uri(reader.Value);
-                                    break;
-                            }
+                        if ((reader.NodeType != XmlNodeType.Text) || !reader.HasValue)
+                            continue;
+                        switch (elementName) {
+                            case "version":
+                                newVersion = new Version(reader.Value);
+                                break;
+                            case "upgradeurl":
+                                UpdateDownloadURL = new Uri(reader.Value);
+                                break;
+                        }
                     }
                 }
 

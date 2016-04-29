@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2015, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2016, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -21,11 +21,11 @@ using System;
 using System.Net;
 using System.Windows.Forms;
 
-namespace Wnmp.Forms
+namespace Wnmp.UI
 {
-    public partial class HostToIPForm : Form
+    public partial class HostToIP : Form
     {
-        public HostToIPForm()
+        public HostToIP()
         {
             InitializeComponent();
         }
@@ -39,9 +39,9 @@ namespace Wnmp.Forms
             }
         }
 
-        private void HostToIP(string host, out IPAddress[] ip)
+        private void HostToIPAddress(string hostname, out IPAddress[] ip)
         {
-            ip = Dns.GetHostAddresses(host);
+            ip = Dns.GetHostAddresses(hostname);
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -54,12 +54,12 @@ namespace Wnmp.Forms
             IPAddresses.Items.Clear();
             try {
                 IPAddress[] ips;
-                HostToIP(host.Text, out ips);
+                HostToIPAddress(host.Text, out ips);
                 
                 foreach (var ip in ips)
                     IPAddresses.Items.Add(ip.ToString());
             } catch (Exception ex) {
-                MessageBox.Show(ex.Message);
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
             }
         }
 

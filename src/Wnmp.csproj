@@ -56,6 +56,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -77,80 +78,81 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\HostToIPForm.cs">
+    <Compile Include="Wnmp.Configuration\Option.cs" />
+    <Compile Include="Wnmp.UI\HostToIP.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\HostToIPForm.Designer.cs">
-      <DependentUpon>HostToIPForm.cs</DependentUpon>
+    <Compile Include="Wnmp.UI\HostToIP.Designer.cs">
+      <DependentUpon>HostToIP.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\HttpHeaders.cs">
+    <Compile Include="Wnmp.UI\HttpHeaders.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\HttpHeaders.designer.cs">
+    <Compile Include="Wnmp.UI\HttpHeaders.designer.cs">
       <DependentUpon>HttpHeaders.cs</DependentUpon>
     </Compile>
-    <Compile Include="ICUID.cs" />
+    <Compile Include="Wnmp.SystemInformation\ICUID.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="OSVersionInfo.cs" />
-    <Compile Include="Programs\PHP.cs" />
-    <Compile Include="Programs\MariaDB.cs" />
-    <Compile Include="Programs\WnmpProgram.cs" />
-    <Compile Include="SystemInfo.cs" />
-    <Compile Include="Updater\UpdatePrompt.cs">
+    <Compile Include="Wnmp.SystemInformation\OSVersionInfo.cs" />
+    <Compile Include="Wnmp.Programs\PHP.cs" />
+    <Compile Include="Wnmp.Programs\MariaDB.cs" />
+    <Compile Include="Wnmp.Programs\WnmpProgram.cs" />
+    <Compile Include="Wnmp.SystemInformation\SystemInfo.cs" />
+    <Compile Include="Wnmp.UI\UpdatePrompt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Updater\UpdatePrompt.Designer.cs">
+    <Compile Include="Wnmp.UI\UpdatePrompt.Designer.cs">
       <DependentUpon>UpdatePrompt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\About.cs">
+    <Compile Include="Wnmp.UI\About.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\About.Designer.cs">
+    <Compile Include="Wnmp.UI\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Updater\UpdateProgress.cs">
+    <Compile Include="Wnmp.UI\UpdateProgress.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Updater\UpdateProgress.Designer.cs">
+    <Compile Include="Wnmp.UI\UpdateProgress.Designer.cs">
       <DependentUpon>UpdateProgress.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Main.cs">
+    <Compile Include="Wnmp.UI\Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Main.Designer.cs">
+    <Compile Include="Wnmp.UI\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Configuration\Options.cs">
+    <Compile Include="Wnmp.UI\Options.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Configuration\Options.Designer.cs">
+    <Compile Include="Wnmp.UI\Options.Designer.cs">
       <DependentUpon>Options.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Configuration\Ini.cs" />
-    <Compile Include="Updater\Updater.cs" />
-    <Compile Include="Updater\WnmpUpdater.cs" />
-    <EmbeddedResource Include="Updater\UpdatePrompt.resx">
+    <Compile Include="Wnmp.Configuration\Ini.cs" />
+    <Compile Include="Wnmp.Updater\Updater.cs" />
+    <Compile Include="Wnmp.Updater\WnmpUpdater.cs" />
+    <EmbeddedResource Include="Wnmp.UI\UpdatePrompt.resx">
       <DependentUpon>UpdatePrompt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\About.resx">
+    <EmbeddedResource Include="Wnmp.UI\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\HostToIPForm.resx">
-      <DependentUpon>HostToIPForm.cs</DependentUpon>
+    <EmbeddedResource Include="Wnmp.UI\HostToIP.resx">
+      <DependentUpon>HostToIP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\HttpHeaders.resx">
+    <EmbeddedResource Include="Wnmp.UI\HttpHeaders.resx">
       <DependentUpon>HttpHeaders.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Updater\UpdateProgress.resx">
+    <EmbeddedResource Include="Wnmp.UI\UpdateProgress.resx">
       <DependentUpon>UpdateProgress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Main.resx">
+    <EmbeddedResource Include="Wnmp.UI\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Configuration\Options.resx">
+    <EmbeddedResource Include="Wnmp.UI\Options.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

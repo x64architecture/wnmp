@@ -21,7 +21,6 @@ using System;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-using Wnmp.Forms;
 namespace Wnmp
 {
     static class Program
@@ -30,12 +29,12 @@ namespace Wnmp
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] args)
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             OSVersionCheck();
-            Application.Run(new Main());
+            Application.Run(new UI.Main());
         }
 
         /// <summary>
@@ -43,11 +42,11 @@ namespace Wnmp
         /// </summary>
         private static void OSVersionCheck()
         {
-            if (Environment.OSVersion.Version.Major < 6) {
-                MessageBox.Show("Windows Vista+ is required to run Wnmp");
-                Process process = Process.GetCurrentProcess();
-                process.Kill();
-            }
+            if (Environment.OSVersion.Version.Major >= 6)
+                return;
+            MessageBox.Show("Windows Vista+ is required to run Wnmp");
+            Process process = Process.GetCurrentProcess();
+            process.Kill();
         }
     }
 }

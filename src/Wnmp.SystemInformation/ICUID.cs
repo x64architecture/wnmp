@@ -17,7 +17,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Wnmp
+namespace Wnmp.SystemInformation
 {
     public class ICUID
     {
@@ -196,7 +196,7 @@ namespace Wnmp
             public string vendor_str;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 48)]
             public string brand_str;
-            public ICUID.cpu_vendor_t vendor;
+            public cpu_vendor_t vendor;
             public byte family;
             public byte model;
             public byte stepping;
@@ -234,7 +234,7 @@ namespace Wnmp
         private static extern int cpuid_is_supported();
 
         [DllImport("libicuid.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern IntPtr cpu_feature_str(ICUID.cpuid_feature_t feature);
+        private static extern IntPtr cpu_feature_str(cpuid_feature_t feature);
 
         public ICUID()
         {
@@ -246,8 +246,13 @@ namespace Wnmp
         public string GetCodenameString() { return Marshal.PtrToStringAnsi(data.codename); }
         public string FeatureToString(cpuid_feature_t feature)
         {
-            return Marshal.PtrToStringAnsi(cpu_feature_str(feature)).ToUpper();
+            var FeatureStr = Marshal.PtrToStringAnsi(cpu_feature_str(feature));
+            if (FeatureStr != null)
+                return FeatureStr.ToUpper();
+
+            return "";
         }
+
         public bool CPUSupports(cpuid_feature_t feature)
         {
             return Convert.ToBoolean(data.flags[(int)feature]);

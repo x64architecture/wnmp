@@ -21,9 +21,11 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using Wnmp.Forms;
 
-namespace Wnmp
+using Wnmp.Configuration;
+using Wnmp.UI;
+
+namespace Wnmp.Programs
 {
     public class WnmpProgram
     {
@@ -37,6 +39,7 @@ namespace Wnmp
         public bool killStop { get; set; }     // Kill process instead of stopping it gracefully
         public string confDir { get; set; }    // Directory where all the programs configuration files are
         public string logDir { get; set; }     // Directory where all the programs log files are
+        public Ini Settings { get; set; }
         public ContextMenuStrip configContextMenu { get; set; } // Displays all the programs config files in |confDir|
         public ContextMenuStrip logContextMenu { get; set; }    // Displays all the programs log files in |logDir|
   
@@ -103,17 +106,12 @@ namespace Wnmp
 
         public virtual void Stop()
         {
-            if (killStop) {
-                Process[] process = Process.GetProcessesByName(procName);
-                foreach (Process currentProc in process) {
-                    currentProc.Kill();
-                }
-            } else {
+            if (killStop == false)
                 StartProcess(exeName, stopArgs, true);
-                Process[] process = Process.GetProcessesByName(procName);
-                foreach (Process currentProc in process) {
-                    currentProc.Kill();
-                }
+
+            var processes = Process.GetProcessesByName(procName);
+            foreach (var process in processes) {
+                    process.Kill();
             }
             Log.wnmp_log_notice("Stopped " + progName, progLogSection);
         }
@@ -127,16 +125,16 @@ namespace Wnmp
 
         public void ConfigButton(object sender)
         {
-            Button btnSender = (Button)sender;
-            Point ptLowerLeft = new Point(0, btnSender.Height);
+            var btnSender = (Button)sender;
+            var ptLowerLeft = new Point(0, btnSender.Height);
             ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
             configContextMenu.Show(ptLowerLeft);
         }
 
         public void LogButton(object sender)
         {
-            Button btnSender = (Button)sender;
-            Point ptLowerLeft = new Point(0, btnSender.Height);
+            var btnSender = (Button)sender;
+            var ptLowerLeft = new Point(0, btnSender.Height);
             ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
             logContextMenu.Show(ptLowerLeft);
         }
@@ -144,7 +142,7 @@ namespace Wnmp
         private void configContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             try {
-                Process.Start(Options.settings.Editor, Main.StartupPath + confDir + e.ClickedItem.Text);
+                Process.Start(Settings.Editor.Value, Main.StartupPath + confDir + e.ClickedItem.Text);
             } catch (Exception ex) {
                 Log.wnmp_log_error(ex.Message, progLogSection);
             }
@@ -153,7 +151,7 @@ namespace Wnmp
         private void logContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             try {
-                Process.Start(Options.settings.Editor, Main.StartupPath + logDir + e.ClickedItem.Text);
+                Process.Start(Settings.Editor.Value, Main.StartupPath + logDir + e.ClickedItem.Text);
             } catch (Exception ex) {
                 Log.wnmp_log_error(ex.Message, progLogSection);
             }
@@ -161,9 +159,9 @@ namespace Wnmp
 
         public bool IsRunning()
         {
-            Process[] process = Process.GetProcessesByName(procName);
+            var processes = Process.GetProcessesByName(procName);
 
-            return (process.Length != 0);
+            return (processes.Length != 0);
         }
     }
 }

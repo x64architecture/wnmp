@@ -40,13 +40,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\vigortls\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\vigortls\build\crypto;C:\vigortls\build\ssl;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)src\vigortls\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)src\vigortls\build\crypto;$(SolutionDir)src\vigortls\build\ssl;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)src\bin\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\vigortls\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\vigortls\build\crypto;C:\vigortls\build\ssl;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)src\vigortls\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)src\vigortls\build\crypto;${SolutionDir}\src\vigortls\build\ssl;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)src\bin\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -54,7 +54,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>E:\vigortls\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\vigortls\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
@@ -73,7 +73,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>E:\vigortls\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\vigortls\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsC</CompileAs>
       <DebugInformationFormat>None</DebugInformationFormat>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>

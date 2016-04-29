@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2015, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2016, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -16,18 +16,20 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
  */
-using System;
-using System.Diagnostics;
-using System.Windows.Forms;
 
-namespace Wnmp.Forms
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Diagnostics;
+
+namespace Wnmp.UI
 {
     /// <summary>
-    /// Form for viewing the changelog and asking if the user would like to update
+    /// Form that shows info about Wnmp
     /// </summary>
-    public partial class UpdatePrompt : Form
+    public partial class About : Form
     {
-        public UpdatePrompt()
+        public About()
         {
             InitializeComponent();
         }
@@ -41,28 +43,30 @@ namespace Wnmp.Forms
             }
         }
 
-        private void Yes_Click(object sender, EventArgs e)
+        private void Closebtn_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Yes;
             this.Close();
         }
 
-        private void No_Click(object sender, EventArgs e)
+        private void wnmpwebsiteLabel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.No;
-            this.Close();
+            Process.Start(Constants.WnmpWebUrl);
         }
 
-        private void viewchange_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void About_Load(object sender, EventArgs e)
         {
-            try
-            {
-                Process.Start(Constants.WhatsNewUrl);
-            }
-            catch (Exception ex)
-            {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
-            }
+            wnmpversionLabel.Text = "Wnmp Version: " + Application.ProductVersion;
+            wnmpcpversionLabel.Text = "Wnmp Control Panel Version: " + Constants.CPVER;
+        }
+
+        private void wnmpwebsiteLabel_MouseHover(object sender, EventArgs e)
+        {
+            wnmpwebsiteLabel.ForeColor = Color.Blue;
+        }
+
+        private void wnmpwebsiteLabel_MouseLeave(object sender, EventArgs e)
+        {
+            wnmpwebsiteLabel.ForeColor = Color.Black;
         }
     }
 }

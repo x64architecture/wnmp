@@ -1,6 +1,6 @@
-﻿namespace Wnmp.Forms
+﻿namespace Wnmp.UI
 {
-    partial class HostToIPForm
+    partial class HostToIP
     {
         /// <summary>
         /// Required designer variable.
@@ -13,8 +13,7 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
+            if (disposing && (components != null)) {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -28,7 +27,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HostToIPForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HostToIP));
             this.host = new System.Windows.Forms.TextBox();
             this.Go = new System.Windows.Forms.Button();
             this.close = new System.Windows.Forms.Button();

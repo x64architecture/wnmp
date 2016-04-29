@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2015, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2016, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -19,7 +19,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace Wnmp.Forms
+namespace Wnmp.UI
 {
     /// <summary>
     /// Form to show the update progress.

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2015, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2016, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -25,15 +25,15 @@ using Microsoft.Win32;
 using Wnmp.Configuration;
 using System.Linq;
 
-namespace Wnmp.Forms
+namespace Wnmp.UI
 {
     /// <summary>
     /// Form that allows configuring Wnmp options.
     /// </summary>
     public partial class Options : Form
     {
-        public static Ini settings = new Ini();
-        public static Main mainForm;
+        public Main mainForm;
+        public Ini Settings;
         private string Editor;
 
         public Options()
@@ -57,56 +57,55 @@ namespace Wnmp.Forms
         /// </summary>
         private void UpdateOptions()
         {
-            editorTB.Text = settings.Editor;
-            StartWnmpWithWindows.Checked = settings.StartWithWindows;
-            StartNginxLaunchCB.Checked = settings.StartNginxOnLaunch;
-            StartMySQLLaunchCB.Checked = settings.StartMySQLOnLaunch;
-            StartPHPLaunchCB.Checked = settings.StartPHPOnLaunch;
-            MinimizeWnmpToTray.Checked = settings.MinimizeWnmpToTray;
-            AutoUpdate.Checked = settings.AutoCheckForUpdates;
-            UpdateCheckInterval.Value = settings.UpdateFrequency;
-            PHP_PROCESSES.Value = settings.PHP_Processes;
-            PHP_PORT.Value = settings.PHP_Port;
+            editorTB.Text = Settings.Editor.Value;
+            StartWnmpWithWindows.Checked = Settings.StartWithWindows.Value;
+            StartNginxLaunchCB.Checked = Settings.StartNginxOnLaunch.Value;
+            StartMySQLLaunchCB.Checked = Settings.StartMySQLOnLaunch.Value;
+            StartPHPLaunchCB.Checked = Settings.StartPHPOnLaunch.Value;
+            MinimizeWnmpToTray.Checked = Settings.MinimizeWnmpToTray.Value;
+            AutoUpdate.Checked = Settings.AutoCheckForUpdates.Value;
+            UpdateCheckInterval.Value = Settings.UpdateFrequency.Value;
+            PHP_PROCESSES.Value = Settings.PHP_Processes.Value;
+            PHP_PORT.Value = Settings.PHP_Port.Value;
             phpBin.Items.Add("Default");
-            foreach (string str in phpVersions()) {
+            foreach (var str in phpVersions()) {
                 phpBin.Items.Add(str);
             }
-            phpBin.SelectedIndex = phpBin.Items.IndexOf(settings.phpBin);
+            phpBin.SelectedIndex = phpBin.Items.IndexOf(Settings.phpBin.Value);
         }
 
         private void Options_Load(object sender, EventArgs e)
         {
-            settings.ReadSettings();
+            Settings.ReadSettings();
             UpdateOptions();
         }
 
         private void SetSettings()
         {
-            settings.Editor = editorTB.Text;
-            settings.StartWithWindows = StartWnmpWithWindows.Checked;
-            settings.StartNginxOnLaunch = StartNginxLaunchCB.Checked;
-            settings.StartMySQLOnLaunch = StartMySQLLaunchCB.Checked;
-            settings.StartPHPOnLaunch = StartPHPLaunchCB.Checked;
-            settings.MinimizeWnmpToTray = MinimizeWnmpToTray.Checked;
-            settings.AutoCheckForUpdates = AutoUpdate.Checked;
-            settings.PHP_Processes = (int)PHP_PROCESSES.Value;
-            settings.PHP_Port = (short)PHP_PORT.Value;
-            settings.UpdateFrequency = (int)UpdateCheckInterval.Value;
+            Settings.Editor.Value = editorTB.Text;
+            Settings.StartWithWindows.Value = StartWnmpWithWindows.Checked;
+            Settings.StartNginxOnLaunch.Value = StartNginxLaunchCB.Checked;
+            Settings.StartMySQLOnLaunch.Value = StartMySQLLaunchCB.Checked;
+            Settings.StartPHPOnLaunch.Value = StartPHPLaunchCB.Checked;
+            Settings.MinimizeWnmpToTray.Value = MinimizeWnmpToTray.Checked;
+            Settings.AutoCheckForUpdates.Value = AutoUpdate.Checked;
+            Settings.PHP_Processes.Value = (int)PHP_PROCESSES.Value;
+            Settings.PHP_Port.Value = (short)PHP_PORT.Value;
+            Settings.UpdateFrequency.Value = (int)UpdateCheckInterval.Value;
             StartWithWindows();
             UpdateNgxPHPConfig();
-            settings.phpBin = phpBin.Text;
+            Settings.phpBin.Value = phpBin.Text;
             save_phpextensionopts();
         }
 
         private void Save_Click(object sender, EventArgs e)
         {
             SetSettings();
-            settings.UpdateSettings();
+            Settings.UpdateSettings();
             /* Setup custom PHP without restart */
-            if (settings.phpBin == "Default") {
+            if (Settings.phpBin.Value == "Default") {
                 mainForm.SetupPHP();
-            }
-            else {
+            } else {
                 mainForm.SetupCustomPHP();
             }
             this.Close();
@@ -121,10 +120,11 @@ namespace Wnmp.Forms
 
         private void SetEditor()
         {
-            string input = "";
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "executable files (*.exe)|*.exe|All files (*.*)|*.*";
-            dialog.Title  = "Select a text editor";
+            var input = "";
+            var dialog = new OpenFileDialog {
+                Filter = "executable files (*.exe)|*.exe|All files (*.*)|*.*",
+                Title = "Select a text editor"
+            };
             if (dialog.ShowDialog() == DialogResult.OK)
                 input = dialog.FileName;
 
@@ -153,17 +153,15 @@ namespace Wnmp.Forms
             return Directory.GetDirectories(Main.StartupPath + "/php/phpbins").Select(d => new DirectoryInfo(d).Name).ToArray();
         }
 
-
         private void UpdateNgxPHPConfig()
         {
-            int i;
             int port = (int)PHP_PORT.Value;
             int PHPProcesses = (int)PHP_PROCESSES.Value;
 
             using (var sw = new StreamWriter(Main.StartupPath + "/conf/php_processes.conf")) {
                 sw.WriteLine("# DO NOT MODIFY!!! THIS FILE IS MANAGED BY THE WNMP CONTROL PANEL.\r\n");
                 sw.WriteLine("upstream php_processes {");
-                for (i = 1; i <= PHPProcesses; i++) {
+                for (var i = 1; i <= PHPProcesses; i++) {
                     sw.WriteLine("    server 127.0.0.1:" + port + " weight=1;");
                     port++;
                 }
@@ -174,17 +172,16 @@ namespace Wnmp.Forms
 
         private void StartWithWindows()
         {
-            RegistryKey root;
-            const string key = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
+            var root = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            if (root == null)
+                return;
             if (StartWnmpWithWindows.Checked) {
-                root = Registry.CurrentUser.OpenSubKey(key, true);
-                if (root.GetValue("Wnmp") == null)
-                    root.SetValue("Wnmp", "\"" + Application.ExecutablePath + "\"");
-            } else {
-                root = Registry.CurrentUser.OpenSubKey(key, true);
-                if (root.GetValue("Wnmp") != null)
-                    root.DeleteValue("Wnmp");
-            }
+                    if (root.GetValue("Wnmp") == null)
+                        root.SetValue("Wnmp", "\"" + Application.ExecutablePath + "\"");
+                } else {
+                    if (root.GetValue("Wnmp") != null)
+                        root.DeleteValue("Wnmp");
+                }
         }
 
         /* PHP Extensions Manager */
@@ -197,7 +194,7 @@ namespace Wnmp.Forms
         private void parse_phpini(int i)
         {
             string str;
-            StreamReader sr = new StreamReader(iniFile);
+            var sr = new StreamReader(iniFile);
             while ((str = sr.ReadLine()) != null) {
                 if (str.StartsWith(";extension=" + phpExtName[i])) {
                     phpExtEnabled[i] = false;
@@ -243,15 +240,15 @@ namespace Wnmp.Forms
             File.WriteAllText(iniFile, text);
         }
 
-        private void load_phpextensions(string phpBin)
+        private void load_phpextensions(string phpBinPath)
         {
-            if (phpBin == "Default") {
+            if (phpBinPath == "Default") {
                 extPath = Main.StartupPath + "/php/ext/";
                 iniFile = Main.StartupPath + "/php/php.ini";
             }
             else {
-                extPath = Main.StartupPath + "/php/phpbins/" + phpBin + "/ext/";
-                iniFile = Main.StartupPath + "/php/phpbins/" + phpBin + "/php.ini";
+                extPath = Main.StartupPath + "/php/phpbins/" + phpBinPath + "/ext/";
+                iniFile = Main.StartupPath + "/php/phpbins/" + phpBinPath + "/php.ini";
             }
 
             if (!Directory.Exists(extPath))
@@ -260,7 +257,7 @@ namespace Wnmp.Forms
             phpExtEnabled = new bool[phpExtName.Length];
             zendExt = new bool[phpExtName.Length];
 
-            for (int i = 0; i < phpExtName.Length; i++) {
+            for (var i = 0; i < phpExtName.Length; i++) {
                 phpExtName[i] = phpExtName[i].Remove(0, extPath.Length);
                 parse_phpini(i);
                 phpExtListBox.Items.Add(phpExtName[i], phpExtEnabled[i]);
@@ -269,11 +266,8 @@ namespace Wnmp.Forms
 
         private void save_phpextensionopts()
         {
-            for (int i = 0; i < phpExtListBox.Items.Count; i++) {
-                if (phpExtListBox.GetItemChecked(i))
-                    set_phpiniopt(i, true);
-                else
-                    set_phpiniopt(i, false);
+            for (var i = 0; i < phpExtListBox.Items.Count; i++) {
+                set_phpiniopt(i, phpExtListBox.GetItemChecked(i));
             }
         }
 

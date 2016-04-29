@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2015, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2016, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -21,7 +21,7 @@ using System;
 using System.Net;
 using System.Windows.Forms;
 
-namespace Wnmp.Forms
+namespace Wnmp.UI
 {
     public partial class HttpHeaders : Form
     {
@@ -34,19 +34,20 @@ namespace Wnmp.Forms
         {
             HTTPHeaderslistView.Items.Clear();
             try {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlTextBox.Text);
+                var request = (HttpWebRequest)WebRequest.Create(urlTextBox.Text);
                 request.Method = "GET";
                 request.ContentType = "application/x-www-form-urlencoded";
                 using (var response = request.GetResponse()) {
-                    foreach (string s in response.Headers.AllKeys) {
-                        ListViewItem item = new ListViewItem();
-                        item.Text = s;
-                        item.SubItems.Add(response.Headers[s]);
+                    foreach (var str in response.Headers.AllKeys) {
+                        var item = new ListViewItem {
+                            Text = str
+                        };
+                        item.SubItems.Add(response.Headers[str]);
                         HTTPHeaderslistView.Items.Add(item);
                     }
                 }
             } catch (Exception ex) {
-                    MessageBox.Show(ex.Message);
+                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
             }
         }
     }

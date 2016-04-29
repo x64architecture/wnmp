@@ -25,7 +25,11 @@ using System.Text.RegularExpressions;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 
-namespace Wnmp.Forms
+using Wnmp.Configuration;
+using Wnmp.Programs;
+using Wnmp.Updater;
+
+namespace Wnmp.UI
 {
 
     /// <summary>
@@ -33,13 +37,13 @@ namespace Wnmp.Forms
     /// </summary>
     public partial class Main : Form
     {
-        private MariaDBProgram MariaDB = new MariaDBProgram();
-        private WnmpProgram    Nginx   = new WnmpProgram();
-        private PHPProgram     PHP     = new PHPProgram();
-        private WnmpUpdater    Updater = new WnmpUpdater();
+        private readonly MariaDBProgram MariaDB = new MariaDBProgram();
+        private readonly WnmpProgram    Nginx   = new WnmpProgram();
+        private readonly PHPProgram     PHP     = new PHPProgram();
+        private readonly WnmpUpdater    Updater = new WnmpUpdater(); 
         public static string StartupPath { get { return Application.StartupPath; } }
 
-        public static readonly Version CPVER = new Version("4.0.1");
+        public Ini Settings = new Ini();
 
         private readonly NotifyIcon WnmpTrayIcon = new NotifyIcon();
 
@@ -54,6 +58,7 @@ namespace Wnmp.Forms
 
         private void SetupNginx()
         {
+            Nginx.Settings = Settings;
             Nginx.exeName = StartupPath.Replace(@"\", "/") + "/nginx.exe";
             Nginx.procName = "nginx";
             Nginx.progName = "Nginx";
@@ -68,6 +73,7 @@ namespace Wnmp.Forms
 
         private void SetupMariaDB()
         {
+            MariaDB.Settings = Settings;
             MariaDB.exeName = StartupPath + "/mariadb/bin/mysqld.exe";
             MariaDB.procName = "mysqld";
             MariaDB.progName = "MariaDB";
@@ -82,9 +88,9 @@ namespace Wnmp.Forms
 
         private void SetCurlCAPath()
         {
-            string phpini = Main.StartupPath + "/php/php.ini";
+            var phpini = StartupPath + "/php/php.ini";
 
-            string file = File.ReadAllText(phpini);
+            var file = File.ReadAllText(phpini);
             using (StringReader reader = new StringReader(file)) {
                 string line;
                 while ((line = reader.ReadLine()) != null) {
@@ -92,7 +98,7 @@ namespace Wnmp.Forms
                         continue;
 
                     Regex reg = new Regex("\".*?\"");
-                    string replace = "\"" + Main.StartupPath + @"\contrib\cacert.pem" + "\"";
+                    string replace = "\"" + StartupPath + @"\contrib\cacert.pem" + "\"";
                     file = file.Replace(reg.Match(line).ToString(), replace);
                     File.WriteAllText(phpini, file);
                     break;
@@ -102,10 +108,11 @@ namespace Wnmp.Forms
 
         public void SetupPHP()
         {
-            if (Options.settings.phpBin != "Default") {
+            if (Settings.phpBin.Value != "Default") {
                 SetupCustomPHP();
                 return;
             }
+            PHP.Settings = Settings;
             PHP.exeName = StartupPath + "/php/php-cgi.exe";
             PHP.procName = "php-cgi";
             PHP.progName = "PHP";
@@ -121,7 +128,7 @@ namespace Wnmp.Forms
 
         public void SetupCustomPHP()
         {
-            PHP.exeName = StartupPath + "/php/phpbins/" + Options.settings.phpBin + "/php-cgi.exe";
+            PHP.exeName = StartupPath + "/php/phpbins/" + Settings.phpBin + "/php-cgi.exe";
             PHP.procName = "php-cgi";
             PHP.progName = "PHP";
             PHP.progLogSection = Log.LogSection.WNMP_PHP;
@@ -129,8 +136,8 @@ namespace Wnmp.Forms
             PHP.stopArgs = "";
             PHP.killStop = true;
             PHP.statusLabel = phprunning;
-            PHP.confDir = "/php/phpbins/" + Options.settings.phpBin + "/";
-            PHP.logDir = "/php/phpbins/" + Options.settings.phpBin + "/logs/";
+            PHP.confDir = "/php/phpbins/" + Settings.phpBin + "/";
+            PHP.logDir = "/php/phpbins/" + Settings.phpBin + "/logs/";
         }
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -138,15 +145,15 @@ namespace Wnmp.Forms
 
         public Main()
         {
-            string path = StartupPath + @"\bin\" +
+            var path = StartupPath + @"\bin\" +
                 (Environment.Is64BitProcess ? "x64" : "x86");
             if (!SetDllDirectory(path))
                 throw new Win32Exception();
             InitializeComponent();
-            Options.settings.ReadSettings();
-            Options.settings.UpdateSettings();
+            Settings.ReadSettings();
+            Settings.UpdateSettings();
             Updater.mainForm = this;
-            Options.mainForm = this;
+            Updater.Settings = Settings;
 
             SetupNginx();
             SetupMariaDB();
@@ -155,8 +162,7 @@ namespace Wnmp.Forms
 
         private void DoCheckIfAppsAreRunningTimer()
         {
-            Timer timer = new Timer();
-            timer.Interval = 1000;
+            var timer = new Timer { Interval = 1000 };
             timer.Tick += (s, e) => {
                 Nginx.SetStatusLabel();
                 MariaDB.SetStatusLabel();
@@ -178,23 +184,23 @@ namespace Wnmp.Forms
             PopulateMenus();
             FirstRun();
 
-            if (Options.settings.AutoCheckForUpdates)
+            if (Settings.AutoCheckForUpdates.Value)
                 Updater.DoDateEclasped();
 
             Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
 
-            if (Options.settings.StartNginxOnLaunch)
+            if (Settings.StartNginxOnLaunch.Value)
                 Nginx.Start();
-            if (Options.settings.StartMySQLOnLaunch)
+            if (Settings.StartMySQLOnLaunch.Value)
                 MariaDB.Start();
-            if (Options.settings.StartPHPOnLaunch)
+            if (Settings.StartPHPOnLaunch.Value)
                 PHP.Start();
         }
 
         private bool NotifyMinimizeWnmp = true;
         private void Main_Resize(object sender, EventArgs e)
         {
-            if (Options.settings.MinimizeWnmpToTray == false)
+            if (Settings.MinimizeWnmpToTray.Value == false)
                 return;
 
             if (WindowState == FormWindowState.Minimized) {
@@ -230,22 +236,22 @@ namespace Wnmp.Forms
 
         private void FirstRun()
         {
-            if (Options.settings.FirstRun == false)
+            if (Settings.FirstRun.Value == false)
                 return;
 
-            if (!File.Exists(Main.StartupPath + "/bin/CertGen.exe"))
+            if (!File.Exists(StartupPath + "/bin/CertGen.exe"))
                 return;
-           if (!Directory.Exists(Main.StartupPath + "/conf"))
-               Directory.CreateDirectory(Main.StartupPath + "/conf");
+           if (!Directory.Exists(StartupPath + "/conf"))
+               Directory.CreateDirectory(StartupPath + "/conf");
 
-            using (Process ps = new Process()) {
-                ps.StartInfo.FileName = Main.StartupPath + "/bin/CertGen.exe";
+            using (var ps = new Process()) {
+                ps.StartInfo.FileName = StartupPath + "/bin/CertGen.exe";
                 ps.StartInfo.UseShellExecute = false;
                 ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 ps.StartInfo.CreateNoWindow = true;
                 ps.Start();
-                Options.settings.FirstRun = false;
-                Options.settings.UpdateSettings();
+                Settings.FirstRun.Value = false;
+                Settings.UpdateSettings();
             }
         }
 
@@ -271,13 +277,13 @@ namespace Wnmp.Forms
         /// </summary>
         private void DirFiles(string path, string GetFiles, ContextMenuStrip cms)
         {
-            DirectoryInfo dinfo = new DirectoryInfo(Main.StartupPath + path);
+            var dinfo = new DirectoryInfo(StartupPath + path);
 
             if (!dinfo.Exists)
                 return;
 
-            FileInfo[] Files = dinfo.GetFiles(GetFiles);
-            foreach (FileInfo file in Files)
+            var files = dinfo.GetFiles(GetFiles);
+            foreach (var file in files)
                 cms.Items.Add(file.Name, null);
         }
         /// <summary>
@@ -306,7 +312,10 @@ namespace Wnmp.Forms
         /* File Menu */
         private void wnmpOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Options form = new Options();
+            var form = new Options {
+                mainForm = this,
+                Settings = Settings
+            };
             ShowForm(form);
         }
 
@@ -324,13 +333,13 @@ namespace Wnmp.Forms
 
         private void hostToIPToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HostToIPForm form = new HostToIPForm();
+            var form = new HostToIP();
             ShowForm(form);
         }
 
         private void getHTTPHeadersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HttpHeaders form = new HttpHeaders();
+            var form = new HttpHeaders();
             ShowForm(form);
         }
 
@@ -338,38 +347,22 @@ namespace Wnmp.Forms
 
         private void SupportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try {
-                Process.Start(Constants.MailingListUrl);
-            } catch (Exception ex) {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
-            }
+            Process.Start(Constants.MailingListUrl);
         }
 
         private void Report_BugToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try {
             Process.Start(Constants.ReportBugUrl);
-            } catch (Exception ex) {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
-            }
         }
 
         private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try {
-                Process.Start(Constants.WnmpWebUrl);
-            } catch (Exception ex) {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
-            }
+            Process.Start(Constants.WnmpWebUrl);
         }
 
         private void donateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try {
-                Process.Start(Constants.WnmpContribUrl);
-            } catch (Exception ex) {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
-            }
+            Process.Start(Constants.WnmpContribUrl);
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -421,7 +414,6 @@ namespace Wnmp.Forms
 
         private void wnmpdir_Click(object sender, EventArgs e)
         {
-            // If this fails.... we have a bigger problem.
             Process.Start("explorer.exe", Application.StartupPath);
         }
 

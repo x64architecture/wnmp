@@ -20,11 +20,11 @@
 using System;
 using System.ServiceProcess;
 
-namespace Wnmp
+namespace Wnmp.Programs
 {
     class MariaDBProgram : WnmpProgram
     {
-        private ServiceController mysqlController = new ServiceController();
+        private readonly ServiceController mysqlController = new ServiceController();
 
         public MariaDBProgram()
         {

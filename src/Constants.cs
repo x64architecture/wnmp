@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2015, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2016, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -17,10 +17,13 @@
  *  along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using System;
+
 namespace Wnmp
 {
     class Constants
     {
+        public static readonly Version CPVER = new Version("4.0.1");
         public const string WnmpWebUrl = "https://www.getwnmp.org";
         public const string WnmpContribUrl = "https://www.getwnmp.org/contributing";
         public const string WhatsNewUrl = "https://www.getwnmp.org/CHANGELOG";

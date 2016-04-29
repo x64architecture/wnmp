@@ -18,9 +18,10 @@
  */
 
 using System;
-using Wnmp.Forms;
 
-namespace Wnmp
+using Wnmp.UI;
+
+namespace Wnmp.Programs
 {
     class PHPProgram : WnmpProgram
     {
@@ -31,22 +32,21 @@ namespace Wnmp
 
         private string GetPHPIniPath()
         {
-            if (Options.settings.phpBin == "Default")
+            if (Settings.phpBin.Value == "Default")
                 return Main.StartupPath + "/php/php.ini";
             else
-                return Main.StartupPath + "/php/phpbins/" + Options.settings.phpBin + "/php.ini";
+                return Main.StartupPath + "/php/phpbins/" + Settings.phpBin + "/php.ini";
         }
 
         public override void Start()
         {
-            int i;
-            int ProcessCount = Options.settings.PHP_Processes;
-            short port = Options.settings.PHP_Port;
+            int ProcessCount = Settings.PHP_Processes.Value;
+            short port = Settings.PHP_Port.Value;
             string phpini = GetPHPIniPath();
 
             try {
-                for (i = 1; i <= ProcessCount; i++) {
-                    StartProcess(exeName, String.Format("-b localhost:{0} -c {1}", port, phpini), false);
+                for (var i = 1; i <= ProcessCount; i++) {
+                    StartProcess(exeName, $"-b localhost:{port} -c {phpini}");
                     Log.wnmp_log_notice("Starting PHP " + i + "/" + ProcessCount + " on port: " + port, progLogSection);
                     port++;
                 }

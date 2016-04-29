@@ -1,4 +1,4 @@
-﻿namespace Wnmp.Forms
+﻿namespace Wnmp.UI
 {
     partial class UpdateProgress
     {

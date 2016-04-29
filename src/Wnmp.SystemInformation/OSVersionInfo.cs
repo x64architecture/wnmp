@@ -22,7 +22,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Wnmp
+namespace Wnmp.SystemInformation
 {
     public class OSVersionInfo
     {
@@ -127,27 +127,30 @@ namespace Wnmp
 
         #region VERSIONS
         private const int VER_NT_WORKSTATION = 1;
-        private const int VER_NT_DOMAIN_CONTROLLER = 2;
+        //private const int VER_NT_DOMAIN_CONTROLLER = 2;
         private const int VER_NT_SERVER = 3;
-        private const int VER_SUITE_SMALLBUSINESS = 1;
-        private const int VER_SUITE_ENTERPRISE = 2;
-        private const int VER_SUITE_TERMINAL = 16;
-        private const int VER_SUITE_DATACENTER = 128;
-        private const int VER_SUITE_SINGLEUSERTS = 256;
-        private const int VER_SUITE_PERSONAL = 512;
-        private const int VER_SUITE_BLADE = 1024;
+        //private const int VER_SUITE_SMALLBUSINESS = 1;
+        //private const int VER_SUITE_ENTERPRISE = 2;
+        //private const int VER_SUITE_TERMINAL = 16;
+        //private const int VER_SUITE_DATACENTER = 128;
+        //private const int VER_SUITE_SINGLEUSERTS = 256;
+        //private const int VER_SUITE_PERSONAL = 512;
+        //private const int VER_SUITE_BLADE = 1024;
         #endregion VERSIONS
 
         #region EditionToString
         private string EditionToString(int ed)
         {
-            string edition = "";
+            var edition = "";
             switch (ed) {
                 case PRODUCT_BUSINESS:
                     edition = "Business";
                     break;
                 case PRODUCT_BUSINESS_N:
                     edition = "Business N";
+                    break;
+                case PRODUCT_HOME_SERVER:
+                    edition = "Storage Server 2008 R2 Essentials";
                     break;
                 case PRODUCT_CLUSTER_SERVER:
                     edition = "HPC Edition";
@@ -450,21 +453,22 @@ namespace Wnmp
         private static extern bool GetVersionEx(ref OSVERSIONINFOEX osVersionInfo);
 
         private OSVERSIONINFOEX osVersionInfo;
-        private int major;
-        private int minor;
+        private readonly int major;
+        private readonly int minor;
         public OSVersionInfo()
         {
-            osVersionInfo = new OSVERSIONINFOEX();
-            osVersionInfo.dwOSVersionInfoSize = Marshal.SizeOf(typeof(OSVERSIONINFOEX));
+            osVersionInfo = new OSVERSIONINFOEX {
+                dwOSVersionInfoSize = Marshal.SizeOf(typeof (OSVERSIONINFOEX))
+            };
             GetVersionEx(ref osVersionInfo);
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Environment.SystemDirectory + "/kernel32.dll");
+            var fvi = FileVersionInfo.GetVersionInfo(Environment.SystemDirectory + "/kernel32.dll");
             major = fvi.FileMajorPart;
             minor = fvi.FileMinorPart;
         }
 
         private string GetName()
         {
-            string name = "Unknown Name";
+            var name = "Unknown Name";
             switch (Environment.OSVersion.Platform) {
                 case PlatformID.Win32NT:
                     var productType = osVersionInfo.wProductType;
@@ -533,7 +537,7 @@ namespace Wnmp
 
         private string GetEdition()
         {
-            string edition = "";
+            var edition = "";
 
             // We only support Windows Vista+
             if (major == 6) {
@@ -561,7 +565,7 @@ namespace Wnmp
 
         public string WindowsVersionString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             string name = GetName();
             string edition = GetEdition();
             string servicepack = GetServicePack();
