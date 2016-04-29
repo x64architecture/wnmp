@@ -43,10 +43,10 @@ namespace Wnmp.Configuration
         /// <summary>
         /// Reads an ini value and returns it
         /// </summary>
-        public string GetIniValue(string IniFile)
+        public string GetIniValue(string IniFileStr)
         {
             var OptionName = IniName + "=";
-            using (var sr = new StringReader(IniFile)) {
+            using (var sr = new StringReader(IniFileStr)) {
                 string line;
                 while ((line = sr.ReadLine()) != null) {
                     if (line.StartsWith(OptionName))

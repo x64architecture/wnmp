@@ -41,21 +41,15 @@ namespace Wnmp.Configuration
         public Option<DateTime> LastCheckForUpdate = new Option<DateTime>("lastcheckforupdate", "Last check for update", DateTime.MinValue);
         public Option<bool> FirstRun = new Option<bool>("firstrun", "First run", true);
 
-        public string StartupPath { get; set; }
-        private readonly string iniPath;
-        public Ini()
-        {
-            iniPath = StartupPath + @"\Wnmp.ini";
-        }
-
-        private string IniFile;
+        private readonly string IniFile = UI.Main.StartupPath + @"\Wnmp.ini";
+        private string IniFileStr;
         private bool LoadIniFile()
         {
-            if (!File.Exists(iniPath))
+            if (!File.Exists(IniFile))
                 return false;
 
-            var sr = new StreamReader(iniPath);
-            IniFile = sr.ReadToEnd();
+            var sr = new StreamReader(IniFile);
+            IniFileStr = sr.ReadToEnd();
             sr.Close();
 
             return true;
@@ -66,25 +60,25 @@ namespace Wnmp.Configuration
         /// </summary>
         public void ReadSettings()
         {
-            if (!File.Exists(iniPath))
+            if (!File.Exists(IniFile))
                 UpdateSettings(); // Update options with default values
 
             if (!LoadIniFile())
                 return;
 
-            Editor.Value = Editor.GetIniValue(IniFile);
-            bool.TryParse(StartWithWindows.GetIniValue(IniFile), out StartWithWindows.Value);
-            bool.TryParse(StartNginxOnLaunch.GetIniValue(IniFile), out StartNginxOnLaunch.Value);
-            bool.TryParse(StartMySQLOnLaunch.GetIniValue(IniFile), out StartMySQLOnLaunch.Value);
-            bool.TryParse(StartPHPOnLaunch.GetIniValue(IniFile), out StartPHPOnLaunch.Value);
-            bool.TryParse(MinimizeWnmpToTray.GetIniValue(IniFile),  out MinimizeWnmpToTray.Value);
-            bool.TryParse(AutoCheckForUpdates.GetIniValue(IniFile), out AutoCheckForUpdates.Value);
-            bool.TryParse(FirstRun.GetIniValue(IniFile), out FirstRun.Value);
-            int.TryParse(UpdateFrequency.GetIniValue(IniFile), out UpdateFrequency.Value);
-            int.TryParse(PHP_Processes.GetIniValue(IniFile), out PHP_Processes.Value);
-            short.TryParse(PHP_Port.GetIniValue(IniFile), out PHP_Port.Value);
-            DateTime.TryParse(LastCheckForUpdate.GetIniValue(IniFile), out LastCheckForUpdate.Value);
-            phpBin.Value = phpBin.GetIniValue(IniFile);
+            Editor.Value = Editor.GetIniValue(IniFileStr);
+            bool.TryParse(StartWithWindows.GetIniValue(IniFileStr), out StartWithWindows.Value);
+            bool.TryParse(StartNginxOnLaunch.GetIniValue(IniFileStr), out StartNginxOnLaunch.Value);
+            bool.TryParse(StartMySQLOnLaunch.GetIniValue(IniFileStr), out StartMySQLOnLaunch.Value);
+            bool.TryParse(StartPHPOnLaunch.GetIniValue(IniFileStr), out StartPHPOnLaunch.Value);
+            bool.TryParse(MinimizeWnmpToTray.GetIniValue(IniFileStr),  out MinimizeWnmpToTray.Value);
+            bool.TryParse(AutoCheckForUpdates.GetIniValue(IniFileStr), out AutoCheckForUpdates.Value);
+            bool.TryParse(FirstRun.GetIniValue(IniFileStr), out FirstRun.Value);
+            int.TryParse(UpdateFrequency.GetIniValue(IniFileStr), out UpdateFrequency.Value);
+            int.TryParse(PHP_Processes.GetIniValue(IniFileStr), out PHP_Processes.Value);
+            short.TryParse(PHP_Port.GetIniValue(IniFileStr), out PHP_Port.Value);
+            DateTime.TryParse(LastCheckForUpdate.GetIniValue(IniFileStr), out LastCheckForUpdate.Value);
+            phpBin.Value = phpBin.GetIniValue(IniFileStr);
             UpdateSettings();
         }
 
@@ -96,7 +90,7 @@ namespace Wnmp.Configuration
             if (PHP_Port.Value == 9000)
                 PHP_Port.Value++;
 
-            using (var sw = new StreamWriter(iniPath)) {
+            using (var sw = new StreamWriter(IniFile)) {
                 sw.WriteLine("[WNMP]");
                 Editor.PrintIniOption(sw);
                 StartWithWindows.PrintIniOption(sw);
