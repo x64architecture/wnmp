@@ -3,13 +3,6 @@
 *.exe
 /conf/*.pem
 
-# MariaDB
-/mariadb/*
-!/mariadb/bin
-!/mariadb/data
-!/mariadb/share
-!/mariadb/my.ini
-
 # PHP
 /php/*
 !/php/phpbins
