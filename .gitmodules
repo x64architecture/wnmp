@@ -1,3 +1,6 @@
 [submodule "src/vigortls"]
 	path = src/vigortls
 	url = https://github.com/vigortls/vigortls.git
+[submodule "src/libicuid"]
+	path = src/libicuid
+	url = https://github.com/x64architecture/libicuid.git
