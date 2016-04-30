@@ -92,19 +92,18 @@ namespace Wnmp.UI
         {
             var phpini = StartupPath + "/php/php.ini";
 
-            var file = File.ReadAllText(phpini);
-            using (StringReader reader = new StringReader(file)) {
-                string line;
-                while ((line = reader.ReadLine()) != null) {
-                    if (line.Contains("curl.cainfo") == false)
-                        continue;
+            string[] file = File.ReadAllLines(phpini);
+            for (int i = 0; i < file.Length; i++) {
+                if (file[i].Contains("curl.cainfo") == false)
+                    continue;
 
-                    Regex reg = new Regex("\".*?\"");
-                    string replace = "\"" + StartupPath + @"\contrib\cacert.pem" + "\"";
-                    file = file.Replace(reg.Match(line).ToString(), replace);
-                    File.WriteAllText(phpini, file);
-                    break;
-                }
+                Regex reg = new Regex("\".*?\"");
+                string replace = "\"" + StartupPath + @"\contrib\cacert.pem" + "\"";
+                file[i] = file[i].Replace(reg.Match(file[i]).ToString(), replace);
+            }
+            using (var sw = new StreamWriter(phpini)) {
+                foreach (var line in file)
+                    sw.WriteLine(line);
             }
         }
 
