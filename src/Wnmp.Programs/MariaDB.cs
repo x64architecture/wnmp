@@ -24,31 +24,39 @@ namespace Wnmp.Programs
 {
     class MariaDBProgram : WnmpProgram
     {
-        private readonly ServiceController mysqlController = new ServiceController();
+        private readonly ServiceController MariaDBController = new ServiceController();
 
         public MariaDBProgram()
         {
             /* Set MariaDB service details */
-            mysqlController.MachineName = Environment.MachineName;
-            mysqlController.ServiceName = "Wnmp-MySQL";
+            MariaDBController.MachineName = Environment.MachineName;
+            MariaDBController.ServiceName = "Wnmp-MariaDB";
         }
 
         private void RemoveService()
         {
-            StartProcess("cmd.exe", stopArgs, true); // Remove Service
+            StartProcess("cmd.exe", stopArgs, true);
         }
 
-        private void InstallService()
+        public void InstallService()
         {
             StartProcess(exeName, startArgs, true);
+        }
+
+        public bool ServiceExists()
+        {
+            ServiceController[] services = ServiceController.GetServices();
+            foreach (var service in services) {
+                if (service.ServiceName == "Wnmp-MariaDB")
+                    return true;
+            }
+            return false;
         }
 
         public override void Start()
         {
             try {
-                RemoveService();
-                InstallService();
-                mysqlController.Start();
+                MariaDBController.Start();
                 Log.wnmp_log_notice("Started " + progName, progLogSection);
             } catch (Exception ex) {
                 Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
@@ -58,8 +66,7 @@ namespace Wnmp.Programs
         public override void Stop()
         {
             try {
-                mysqlController.Stop(); // Stop MySQL service
-                StartProcess("cmd.exe", stopArgs, true); // Remove MySQL service
+                MariaDBController.Stop();
                 Log.wnmp_log_notice("Stopped " + progName, progLogSection);
             } catch (Exception ex) {
                 Log.wnmp_log_notice("Stop(): " + ex.Message, progLogSection);

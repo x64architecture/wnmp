@@ -78,12 +78,14 @@ namespace Wnmp.UI
             MariaDB.procName = "mysqld";
             MariaDB.progName = "MariaDB";
             MariaDB.progLogSection = Log.LogSection.WNMP_MARIADB;
-            MariaDB.startArgs = "--install-manual Wnmp-MySQL";
-            MariaDB.stopArgs = "/c sc delete Wnmp-MySQL";
+            MariaDB.startArgs = "--install-manual Wnmp-MariaDB";
+            MariaDB.stopArgs = "/c sc delete Wnmp-MariaDB";
             MariaDB.killStop = true;
             MariaDB.statusLabel = mariadbrunning;
             MariaDB.confDir = "/mariadb/";
             MariaDB.logDir = "/mariadb/data/";
+            if (!MariaDB.ServiceExists())
+                MariaDB.InstallService();
         }
 
         private void SetCurlCAPath()
