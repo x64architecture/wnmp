@@ -119,8 +119,6 @@ namespace Wnmp.UI
             PHP.procName = "php-cgi";
             PHP.progName = "PHP";
             PHP.progLogSection = Log.LogSection.WNMP_PHP;
-            PHP.startArgs = ""; // Special handling see StartPHP() in the WnmpProgram class
-            PHP.stopArgs = "";
             PHP.killStop = true;
             PHP.statusLabel = phprunning;
             PHP.confDir = "/php/";
@@ -134,8 +132,6 @@ namespace Wnmp.UI
             PHP.procName = "php-cgi";
             PHP.progName = "PHP";
             PHP.progLogSection = Log.LogSection.WNMP_PHP;
-            PHP.startArgs = ""; // Special handling see StartPHP() in the WnmpProgram class
-            PHP.stopArgs = "";
             PHP.killStop = true;
             PHP.statusLabel = phprunning;
             PHP.confDir = "/php/phpbins/" + Settings.phpBin + "/";
