@@ -46,24 +46,52 @@ Name: english; MessagesFile: compiler:Default.isl
 Name: desktopicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; Flags: unchecked
 
 [Files]
-Source: Wnmp.exe; DestDir: {app}; Flags: ignoreversion
-Source: bin\*; DestDir: {app}\bin; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: conf\*; DestDir: {app}\conf; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: bin\x64\libicuid.dll; DestDir: {app}\bin\x64; Flags: ignoreversion
+Source: bin\x86\libicuid.dll; DestDir: {app}\bin\x86; Flags: ignoreversion
+Source: bin\CertGen.exe; DestDir: {app}\bin; Flags: ignoreversion
+Source: conf\fastcgi.conf; DestDir: {app}\conf; Flags: ignoreversion
+Source: conf\fastcgi_params; DestDir: {app}\conf; Flags: ignoreversion
+Source: conf\koi-utf; DestDir: {app}\conf; Flags: ignoreversion
+Source: conf\koi-win; DestDir: {app}\conf; Flags: ignoreversion
+Source: conf\mime.types; DestDir: {app}\conf; Flags: ignoreversion
+Source: conf\nginx.conf; DestDir: {app}\conf; Flags: ignoreversion
+Source: conf\php_processes.conf; DestDir: {app}\conf; Flags: ignoreversion
+Source: conf\scgi_params; DestDir: {app}\conf; Flags: ignoreversion
+Source: conf\uwsgi_params; DestDir: {app}\conf; Flags: ignoreversion
+Source: conf\win-utf; DestDir: {app}\conf; Flags: ignoreversion
 Source: contrib\*; DestDir: {app}\contrib; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: docs\*; DestDir: {app}\docs; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: html\*; DestDir: {app}\html; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: html\index.php; DestDir: {app}\html; Flags: ignoreversion onlyifdoesntexist
 Source: logs\*; DestDir: {app}\logs; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: mariadb\bin\*; DestDir: {app}\mariadb\bin; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: mariadb\data\*; DestDir: {app}\mariadb\data; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: mariadb\share\*; DestDir: {app}\mariadb\share; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: mariadb\bin\aria_dump_log.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\aria_pack.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\aria_read_log.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\echo.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\mysql.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\mysql_config.pl; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\mysql_convert_table_format.pl; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\mysql_secure_installation.pl; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\mysql_upgrade.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\mysqladmin.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\mysqlbinlog.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\mysqlcheck.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\mysqld.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\mysqld_multi.pl; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\mysqldump.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\mysqldumpslow.pl; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\mysqlhotcopy.pl; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\replace.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\data\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\data; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: mariadb\share\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\share; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: mariadb\my.ini; DestDir: {app}\mariadb; Flags: ignoreversion
-Source: php\*; DestDir: {app}\php; Excludes: ".gitignore"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: php\*; DestDir: {app}\php; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: temp\*; DestDir: {app}\temp; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: changelog.txt; DestDir: {app}; Flags: ignoreversion
 Source: nginx.exe; DestDir: {app}; Flags: ignoreversion
 Source: readme.txt; DestDir: {app}; Flags: ignoreversion
-Source: "vc_redist.x86.exe"; DestDir: {tmp}; Flags: deleteafterinstall
+Source: "vc_redist.x86.exe"; DestDir: {tmp}; Flags: ignoreversion deleteafterinstall
+Source: Wnmp.exe; DestDir: {app}; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
