@@ -89,9 +89,9 @@ namespace Wnmp.UI
             Settings.StartPHPOnLaunch.Value = StartPHPLaunchCB.Checked;
             Settings.MinimizeWnmpToTray.Value = MinimizeWnmpToTray.Checked;
             Settings.AutoCheckForUpdates.Value = AutoUpdate.Checked;
-            Settings.PHP_Processes.Value = (int)PHP_PROCESSES.Value;
+            Settings.PHP_Processes.Value = (uint)PHP_PROCESSES.Value;
             Settings.PHP_Port.Value = (short)PHP_PORT.Value;
-            Settings.UpdateFrequency.Value = (int)UpdateCheckInterval.Value;
+            Settings.UpdateFrequency.Value = (uint)UpdateCheckInterval.Value;
             StartWithWindows();
             UpdateNgxPHPConfig();
             Settings.phpBin.Value = phpBin.Text;

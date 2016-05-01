@@ -17,43 +17,61 @@
  *  along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.ComponentModel;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Wnmp.Configuration
 {
-    public class Option<T>
+    public interface IOption
     {
-        public string IniName;
+        void ReadIniValue(string IniFileStr);
+        void Convert();
+        void PrintIniOption(StreamWriter sw);
+    }
+
+    public class Option<T> : IOption
+    {
+        public string Name;
         public string Description;
+        public string iniValue;
         public T Value;
 
-        public Option(string IniName, string Description, T Value)
+        public void ReadIniValue(string IniFileStr)
         {
-            this.IniName = IniName;
-            this.Description = Description;
-            this.Value = Value;
+            string key = Name + "=";
+            using (var sr = new StringReader(IniFileStr)) {
+                string line;
+                while ((line = sr.ReadLine()) != null) {
+                    if (line.StartsWith(key)) {
+                        iniValue = line.Remove(0, key.Length);
+                        return;
+                    }
+                }
+            }
+            iniValue = "";
         }
 
         public void PrintIniOption(StreamWriter sw)
         {
             sw.WriteLine("; " + Description);
-            sw.WriteLine(IniName + "=" + Value.ToString());
+            sw.WriteLine(Name + "=" + Value.ToString());
         }
 
-        /// <summary>
-        /// Reads an ini value and returns it
-        /// </summary>
-        public string GetIniValue(string IniFileStr)
+        public void Convert()
         {
-            var OptionName = IniName + "=";
-            using (var sr = new StringReader(IniFileStr)) {
-                string line;
-                while ((line = sr.ReadLine()) != null) {
-                    if (line.StartsWith(OptionName))
-                        return line.Remove(0, OptionName.Length);
+            var converter = TypeDescriptor.GetConverter(typeof(T));
+            if (converter != null) {
+                try {
+                    Value = (T)converter.ConvertFromString(iniValue);
+                } catch (Exception ex) {
+                    // Could be made a bit more elegant but considering its a rare user-caused exception....
+                    var message =
+                        $"{Name}={iniValue}\n{ex.Message}\n\nThe Default Value '{Value.ToString()}' will be used instead.";
+                    MessageBox.Show(message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            return Value.ToString();
         }
     }
 }

@@ -40,7 +40,7 @@ namespace Wnmp.Programs
 
         public override void Start()
         {
-            int ProcessCount = Settings.PHP_Processes.Value;
+            uint ProcessCount = Settings.PHP_Processes.Value;
             short port = Settings.PHP_Port.Value;
             string phpini = GetPHPIniPath();
 

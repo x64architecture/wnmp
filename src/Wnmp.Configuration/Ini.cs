@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Wnmp.Configuration
@@ -27,19 +28,64 @@ namespace Wnmp.Configuration
     /// </summary>
     public class Ini
     {
-        public Option<string> Editor = new Option<string>("editor", "Editor Path", "notepad.exe");
-        public Option<bool> StartWithWindows = new Option<bool>("startupwithwindows", "Start Wnmp with Windows", false);
-        public Option<bool> StartNginxOnLaunch = new Option<bool>("startnginxonlaunch", "Start Nginx when Wnmp starts", false);
-        public Option<bool> StartMySQLOnLaunch = new Option<bool>("startmysqlonlaunch", "Start MySQL when Wnmp starts", false);
-        public Option<bool> StartPHPOnLaunch = new Option<bool>("startphponlaunch", "Start PHP when Wnmp starts", false);
-        public Option<bool> MinimizeWnmpToTray = new Option<bool>("minimizewnmptotray", "Minimize Wnmp to tray when minimized", false);
-        public Option<bool> AutoCheckForUpdates = new Option<bool>("autocheckforupdates", "Automatically check for updates", true);
-        public Option<int> UpdateFrequency = new Option<int>("updatefrequency", "Update frequency(In days)", 7);
-        public Option<string> phpBin = new Option<string>("phpbin", "PHP version to use", "Default");
-        public Option<short> PHP_Port = new Option<short>("phpport", "Starting PHP Port", 9001);
-        public Option<int> PHP_Processes = new Option<int>("phpprocesses", "Amount of PHP processes", 2);
-        public Option<DateTime> LastCheckForUpdate = new Option<DateTime>("lastcheckforupdate", "Last check for update", DateTime.MinValue);
-        public Option<bool> FirstRun = new Option<bool>("firstrun", "First run", true);
+        public Option<string> Editor = new Option<string> {
+            Name = "editor", Description = "Editor Path", Value = "notepad.exe",
+        };
+        public Option<bool> StartWithWindows = new Option<bool> {
+            Name = "startupwithwindows", Description = "Start Wnmp with Windows", Value = false,
+        };
+        public Option<bool> StartNginxOnLaunch = new Option<bool> {
+            Name = "startnginxonlaunch", Description = "Start Nginx when Wnmp starts", Value = false,
+        };
+        public Option<bool> StartMySQLOnLaunch = new Option<bool> {
+            Name = "startmysqlonlaunch", Description = "Start MySQL when Wnmp starts", Value = false,
+        };
+        public Option<bool> StartPHPOnLaunch = new Option<bool> {
+            Name = "startphponlaunch", Description = "Start PHP when Wnmp starts", Value = false,
+        };
+        public Option<bool> MinimizeWnmpToTray = new Option<bool> {
+            Name = "minimizewnmptotray", Description = "Minimize Wnmp to tray when minimized", Value = false,
+        };
+        public Option<bool> AutoCheckForUpdates = new Option<bool> {
+            Name = "autocheckforupdates", Description = "Automatically check for updates", Value = false,
+        };
+        public Option<uint> UpdateFrequency = new Option<uint> {
+            Name = "updatefrequency", Description = "Update frequency(In days)", Value = 7,
+        };
+        public Option<string> phpBin = new Option<string> {
+            Name = "phpbin", Description = "PHP version to use", Value = "Default",
+        };
+        public Option<short> PHP_Port = new Option<short> {
+            Name = "phpport", Description = "Starting PHP Port", Value = 9001,
+        };
+        public Option<uint> PHP_Processes = new Option<uint> {
+            Name = "phpprocesses", Description = "Update frequency(In days)", Value = 7,
+        };
+        public Option<DateTime> LastCheckForUpdate = new Option<DateTime> {
+            Name = "lastcheckforupdate", Description = "Last check for update", Value = DateTime.MinValue,
+        };
+        public Option<bool> FirstRun = new Option<bool> {
+            Name = "firstrun", Description = "First run", Value = true,
+        };
+
+        private List<IOption> options = new List<IOption>();
+
+        public Ini()
+        {
+            options.Add(Editor);
+            options.Add(StartWithWindows);
+            options.Add(StartNginxOnLaunch);
+            options.Add(StartMySQLOnLaunch);
+            options.Add(StartPHPOnLaunch);
+            options.Add(MinimizeWnmpToTray);
+            options.Add(AutoCheckForUpdates);
+            options.Add(FirstRun);
+            options.Add(UpdateFrequency);
+            options.Add(PHP_Processes);
+            options.Add(PHP_Port);
+            options.Add(LastCheckForUpdate);
+            options.Add(phpBin);
+        }
 
         private readonly string IniFile = UI.Main.StartupPath + @"\Wnmp.ini";
         private string IniFileStr;
@@ -48,9 +94,9 @@ namespace Wnmp.Configuration
             if (!File.Exists(IniFile))
                 return false;
 
-            var sr = new StreamReader(IniFile);
-            IniFileStr = sr.ReadToEnd();
-            sr.Close();
+            using (var sr = new StreamReader(IniFile)) {
+                IniFileStr = sr.ReadToEnd();
+            }
 
             return true;
         }
@@ -60,25 +106,16 @@ namespace Wnmp.Configuration
         /// </summary>
         public void ReadSettings()
         {
-            if (!File.Exists(IniFile))
-                UpdateSettings(); // Update options with default values
-
-            if (!LoadIniFile())
+            if (!LoadIniFile()) {
+                UpdateSettings(); // Add options with default values
                 return;
+            }
 
-            Editor.Value = Editor.GetIniValue(IniFileStr);
-            bool.TryParse(StartWithWindows.GetIniValue(IniFileStr), out StartWithWindows.Value);
-            bool.TryParse(StartNginxOnLaunch.GetIniValue(IniFileStr), out StartNginxOnLaunch.Value);
-            bool.TryParse(StartMySQLOnLaunch.GetIniValue(IniFileStr), out StartMySQLOnLaunch.Value);
-            bool.TryParse(StartPHPOnLaunch.GetIniValue(IniFileStr), out StartPHPOnLaunch.Value);
-            bool.TryParse(MinimizeWnmpToTray.GetIniValue(IniFileStr),  out MinimizeWnmpToTray.Value);
-            bool.TryParse(AutoCheckForUpdates.GetIniValue(IniFileStr), out AutoCheckForUpdates.Value);
-            bool.TryParse(FirstRun.GetIniValue(IniFileStr), out FirstRun.Value);
-            int.TryParse(UpdateFrequency.GetIniValue(IniFileStr), out UpdateFrequency.Value);
-            int.TryParse(PHP_Processes.GetIniValue(IniFileStr), out PHP_Processes.Value);
-            short.TryParse(PHP_Port.GetIniValue(IniFileStr), out PHP_Port.Value);
-            DateTime.TryParse(LastCheckForUpdate.GetIniValue(IniFileStr), out LastCheckForUpdate.Value);
-            phpBin.Value = phpBin.GetIniValue(IniFileStr);
+            foreach (var option in options) {
+                option.ReadIniValue(IniFileStr);
+                option.Convert();
+            }
+
             UpdateSettings();
         }
 
@@ -87,26 +124,11 @@ namespace Wnmp.Configuration
         /// </summary>
         public void UpdateSettings()
         {
-            if (PHP_Port.Value == 9000)
-                PHP_Port.Value++;
-
             using (var sw = new StreamWriter(IniFile)) {
                 sw.WriteLine("[WNMP]");
-                Editor.PrintIniOption(sw);
-                StartWithWindows.PrintIniOption(sw);
-                StartNginxOnLaunch.PrintIniOption(sw);
-                StartMySQLOnLaunch.PrintIniOption(sw);
-                StartPHPOnLaunch.PrintIniOption(sw);
-                MinimizeWnmpToTray.PrintIniOption(sw);
-                AutoCheckForUpdates.PrintIniOption(sw);
-                UpdateFrequency.PrintIniOption(sw);
-                LastCheckForUpdate.PrintIniOption(sw);
-                FirstRun.PrintIniOption(sw);
-                sw.WriteLine("[PHP]");
-                PHP_Processes.PrintIniOption(sw);
-                PHP_Port.PrintIniOption(sw);
-                phpBin.PrintIniOption(sw);
-                sw.Close();
+                foreach (var option in options) {
+                    option.PrintIniOption(sw);
+                }
             }
         }
     }
