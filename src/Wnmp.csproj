@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Wnmp.Configuration\Option.cs" />
+    <Compile Include="Wnmp.Configuration\PHPConfigurationManager.cs" />
     <Compile Include="Wnmp.UI\HostToIP.cs">
       <SubType>Form</SubType>
     </Compile>
