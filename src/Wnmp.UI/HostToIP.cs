@@ -39,11 +39,6 @@ namespace Wnmp.UI
             }
         }
 
-        private void HostToIPAddress(string hostname, out IPAddress[] ip)
-        {
-            ip = Dns.GetHostAddresses(hostname);
-        }
-
         private void close_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -53,11 +48,9 @@ namespace Wnmp.UI
         {
             IPAddresses.Items.Clear();
             try {
-                IPAddress[] ips;
-                HostToIPAddress(host.Text, out ips);
-                
-                foreach (var ip in ips)
-                    IPAddresses.Items.Add(ip.ToString());
+                IPAddress[] IPs = Dns.GetHostAddresses(host.Text);
+                foreach (var IP in IPs)
+                    IPAddresses.Items.Add(IP.ToString());
             } catch (Exception ex) {
                 Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
             }
