@@ -126,9 +126,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(141, 156);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(430, 16);
+            this.label3.Size = new System.Drawing.Size(422, 16);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Wnmp is an easy Nginx, MariaDB, and PHP enviorenment for Windows.";
+            this.label3.Text = "Wnmp is an easy Nginx, MariaDB, and PHP environment for Windows.";
             // 
             // wnmpcpversionLabel
             // 
