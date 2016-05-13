@@ -1,3 +1,24 @@
+Wnmp 2.2.4: 13 May 2016
+=======================
+- Wnmp Control Panel 4.0.2
+    *) CPU Information is now shown in the log.
+    *) MariaDB is no longer installed and deinstalled after
+       each click of start or stop.
+    *) Major Internal Code Cleanup
+
+- Nginx
+    *) Updated to 1.9.15
+    *) Updated VigorTLS to latest commit 013a618
+
+- MariaDB
+    *) Updated to 10.1.14
+
+- PHP
+    *) Updated to 7.0.6
+
+- phpMyAdmin
+    *) Updated to 4.6.1
+
 Wnmp 2.2.3: 15 Mar 2016
 =======================
 - Wnmp Control Panel 4.0.1

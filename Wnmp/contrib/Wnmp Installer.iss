@@ -1,6 +1,6 @@
 ; Wnmp iss
 #define MyAppName "Wnmp"
-#define MyAppVersion "2.2.3"
+#define MyAppVersion "2.2.4"
 #define MyAppPublisher "Kurt Cancemi"
 #define MyAppURL "https://www.getwnmp.org"
 #define MyAppExeName "Wnmp.exe"
@@ -63,7 +63,7 @@ Source: contrib\*; DestDir: {app}\contrib; Flags: ignoreversion recursesubdirs c
 Source: docs\*; DestDir: {app}\docs; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: html\*; DestDir: {app}\html; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: html\index.php; DestDir: {app}\html; Flags: ignoreversion onlyifdoesntexist
-Source: logs\*; DestDir: {app}\logs; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: logs\*; Excludes: ".gitignore"; DestDir: {app}\logs; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: mariadb\bin\aria_dump_log.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
 Source: mariadb\bin\aria_pack.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
 Source: mariadb\bin\aria_read_log.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
