@@ -47,7 +47,7 @@ namespace Wnmp.Configuration
             Name = "minimizewnmptotray", Description = "Minimize Wnmp to tray when minimized", Value = false,
         };
         public Option<bool> AutoCheckForUpdates = new Option<bool> {
-            Name = "autocheckforupdates", Description = "Automatically check for updates", Value = false,
+            Name = "autocheckforupdates", Description = "Automatically check for updates", Value = true,
         };
         public Option<uint> UpdateFrequency = new Option<uint> {
             Name = "updatefrequency", Description = "Update frequency(In days)", Value = 7,
@@ -59,7 +59,7 @@ namespace Wnmp.Configuration
             Name = "phpport", Description = "Starting PHP Port", Value = 9001,
         };
         public Option<uint> PHP_Processes = new Option<uint> {
-            Name = "phpprocesses", Description = "Update frequency(In days)", Value = 7,
+            Name = "phpprocesses", Description = "Update frequency(In days)", Value = 2,
         };
         public Option<DateTime> LastCheckForUpdate = new Option<DateTime> {
             Name = "lastcheckforupdate", Description = "Last check for update", Value = DateTime.MinValue,
