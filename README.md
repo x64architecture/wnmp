@@ -5,20 +5,20 @@ Wnmp values security, stability and user friendliness.
 
 ### Current Wnmp Versions:
 
-  * Wnmp 2.2.3
-  * Wnmp Control Panel 4.0.1
+  * Wnmp 2.2.4
+  * Wnmp Control Panel 4.0.2
 
 ----
 
 ### Versions of the software(Updated: March 15th 2016):
 
-  * Nginx 1.9.11
+  * Nginx 1.9.15
 
-  * MariaDB 10.1.12
+  * MariaDB 10.1.14
 
-  * PHP 7.0.4 (Non Thread Safe + FastCGI)
+  * PHP 7.0.6 (Non Thread Safe + FastCGI)
 
-  * phpMyAdmin 4.5.5.1
+  * phpMyAdmin 4.6.1
   
 ----
 
@@ -30,7 +30,7 @@ Wnmp values security, stability and user friendliness.
 
 ### How to Install
 
-  1. To install download the latest version of Wnmp [here][1] (latest version 2.2.3)
+  1. To install download the latest version of Wnmp [here][1] (latest version 2.2.4)
   2. Then open *Wnmp.exe* and install it anywhere.
   3. And then run *Wnmp.exe*(which is located in the Wnmp folder)
   4. And then press the Start all button.
@@ -64,10 +64,6 @@ If you do please tell us your suggestions [here][10].
 
 [wnmp-users mailing list][7]
 
-[wnmp announcements list][8]
-
-[wnmp development mailing list][9]
-
 ### FAQ
 
 ###### [View the FAQ on getwnmp.org][6]
@@ -78,8 +74,6 @@ If you do please tell us your suggestions [here][10].
 [4]: https://s0.wp.com/imgpress?url=http%3A%2F%2Fs1.softpedia-static.com/base_img/softpedia_free_award_f.gif
 [5]: http://www.softpedia.com/get/Internet/Servers/Server-Tools/Kurt-Wnmp.shtml
 [6]: https://www.getwnmp.org/faq
-[7]: https://mailman.x64architecture.com/mailman/listinfo/wnmp-users
-[8]: https://mailman.x64architecture.com/mailman/listinfo/wnmp-announce
-[9]: https://mailman.x64architecture.com/mailman/listinfo/wnmp-dev
+[7]: https://groups.google.com/forum/#!forum/wnmp-users
 [10]: https://github.com/wnmp/wnmp/issues/new
 [11]: https://www.getwnmp.org/contributing
