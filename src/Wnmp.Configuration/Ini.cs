@@ -59,7 +59,7 @@ namespace Wnmp.Configuration
             Name = "phpport", Description = "Starting PHP Port", Value = 9001,
         };
         public Option<uint> PHP_Processes = new Option<uint> {
-            Name = "phpprocesses", Description = "Update frequency(In days)", Value = 2,
+            Name = "phpprocesses", Description = "Amount of PHP processes", Value = 2,
         };
         public Option<DateTime> LastCheckForUpdate = new Option<DateTime> {
             Name = "lastcheckforupdate", Description = "Last check for update", Value = DateTime.MinValue,
