@@ -68,6 +68,7 @@ namespace Wnmp.UI
             UpdateCheckInterval.Value = Settings.UpdateFrequency.Value;
             PHP_PROCESSES.Value = Settings.PHP_Processes.Value;
             PHP_PORT.Value = Settings.PHP_Port.Value;
+            MinimizeToTrayInsteadOfClosing.Checked = Settings.MinimizeInsteadOfClosing.Value;
             phpBin.Items.Add("Default");
             foreach (var str in phpVersions()) {
                 phpBin.Items.Add(str);
@@ -89,6 +90,7 @@ namespace Wnmp.UI
             Settings.StartMySQLOnLaunch.Value = StartMySQLLaunchCB.Checked;
             Settings.StartPHPOnLaunch.Value = StartPHPLaunchCB.Checked;
             Settings.MinimizeWnmpToTray.Value = MinimizeWnmpToTray.Checked;
+            Settings.MinimizeInsteadOfClosing.Value = MinimizeToTrayInsteadOfClosing.Checked;
             Settings.AutoCheckForUpdates.Value = AutoUpdate.Checked;
             Settings.PHP_Processes.Value = (uint)PHP_PROCESSES.Value;
             Settings.PHP_Port.Value = (short)PHP_PORT.Value;

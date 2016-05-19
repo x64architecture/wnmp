@@ -45,7 +45,11 @@ namespace Wnmp.UI
 
         public Ini Settings = new Ini();
 
-        private readonly NotifyIcon WnmpTrayIcon = new NotifyIcon();
+        private readonly NotifyIcon WnmpTrayIcon = new NotifyIcon {
+            BalloonTipIcon = ToolTipIcon.Info, BalloonTipTitle = "Wnmp",
+            BalloonTipText = "Wnmp has been minimized to the tray.",
+
+        };
 
         protected override CreateParams CreateParams
         {
@@ -206,16 +210,32 @@ namespace Wnmp.UI
                     return;
 
                 NotifyMinimizeWnmp = false;
-                WnmpTrayIcon.BalloonTipTitle = "Wnmp";
-                WnmpTrayIcon.BalloonTipText = "Wnmp has been minimized to the tray.";
                 WnmpTrayIcon.ShowBalloonTip(4000);
+            }
+        }
+
+        private bool NotifyMinimizeWnmp2 = true;
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (e.CloseReason != CloseReason.UserClosing ||
+                Settings.MinimizeInsteadOfClosing.Value == false)
+            {
+                base.OnFormClosing(e);
+                return;
+            }
+
+            this.Hide();
+            e.Cancel = true;
+            if (NotifyMinimizeWnmp2 == true) {
+                WnmpTrayIcon.ShowBalloonTip(4000);
+                NotifyMinimizeWnmp2 = false;
             }
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             /* Cleanup */
-            WnmpTrayIcon.Dispose();
+            WnmpTrayIcon.Visible = false;
             if (File.Exists(Application.StartupPath + "/Wnmp-Upgrade-Installer.exe")) {
                 try {
                     File.Delete(Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");

@@ -61,6 +61,8 @@ namespace Wnmp.Configuration
 
         public void Convert()
         {
+            if (iniValue == "")
+                return;
             var converter = TypeDescriptor.GetConverter(typeof(T));
             if (converter != null) {
                 try {

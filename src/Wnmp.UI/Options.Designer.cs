@@ -33,6 +33,10 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.General = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.StartNginxLaunchCB = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.StartMySQLLaunchCB = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.selecteditor = new System.Windows.Forms.Button();
             this.UpdateCheckInterval = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
@@ -57,10 +61,8 @@
             this.PHP_PORT = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.Cancel = new System.Windows.Forms.Button();
-            this.StartMySQLLaunchCB = new System.Windows.Forms.CheckBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.StartNginxLaunchCB = new System.Windows.Forms.CheckBox();
-            this.label11 = new System.Windows.Forms.Label();
+            this.MinimizeToTrayInsteadOfClosing = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.General.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -105,6 +107,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.MinimizeToTrayInsteadOfClosing);
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.StartNginxLaunchCB);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.StartMySQLLaunchCB);
@@ -124,10 +128,46 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(327, 230);
+            this.groupBox1.Size = new System.Drawing.Size(327, 225);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Application Settings";
+            // 
+            // StartNginxLaunchCB
+            // 
+            this.StartNginxLaunchCB.AutoSize = true;
+            this.StartNginxLaunchCB.Location = new System.Drawing.Point(226, 70);
+            this.StartNginxLaunchCB.Name = "StartNginxLaunchCB";
+            this.StartNginxLaunchCB.Size = new System.Drawing.Size(15, 14);
+            this.StartNginxLaunchCB.TabIndex = 18;
+            this.StartNginxLaunchCB.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(25, 70);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(109, 13);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "Start Nginx on launch";
+            // 
+            // StartMySQLLaunchCB
+            // 
+            this.StartMySQLLaunchCB.AutoSize = true;
+            this.StartMySQLLaunchCB.Location = new System.Drawing.Point(226, 90);
+            this.StartMySQLLaunchCB.Name = "StartMySQLLaunchCB";
+            this.StartMySQLLaunchCB.Size = new System.Drawing.Size(15, 14);
+            this.StartMySQLLaunchCB.TabIndex = 16;
+            this.StartMySQLLaunchCB.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(25, 90);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(117, 13);
+            this.label10.TabIndex = 15;
+            this.label10.Text = "Start MySQL on launch";
             // 
             // selecteditor
             // 
@@ -141,7 +181,7 @@
             // 
             // UpdateCheckInterval
             // 
-            this.UpdateCheckInterval.Location = new System.Drawing.Point(195, 196);
+            this.UpdateCheckInterval.Location = new System.Drawing.Point(226, 190);
             this.UpdateCheckInterval.Maximum = new decimal(new int[] {
             365,
             0,
@@ -159,11 +199,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(25, 198);
+            this.label6.Location = new System.Drawing.Point(25, 193);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(157, 13);
+            this.label6.Size = new System.Drawing.Size(154, 13);
             this.label6.TabIndex = 12;
-            this.label6.Text = "Update check interval (in days):";
+            this.label6.Text = "Update check interval (in days)";
             // 
             // label1
             // 
@@ -177,7 +217,7 @@
             // StartPHPLaunchCB
             // 
             this.StartPHPLaunchCB.AutoSize = true;
-            this.StartPHPLaunchCB.Location = new System.Drawing.Point(195, 123);
+            this.StartPHPLaunchCB.Location = new System.Drawing.Point(226, 110);
             this.StartPHPLaunchCB.Name = "StartPHPLaunchCB";
             this.StartPHPLaunchCB.Size = new System.Drawing.Size(15, 14);
             this.StartPHPLaunchCB.TabIndex = 7;
@@ -186,16 +226,16 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 123);
+            this.label3.Location = new System.Drawing.Point(25, 110);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 13);
+            this.label3.Size = new System.Drawing.Size(104, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Start PHP on launch?:";
+            this.label3.Text = "Start PHP on launch";
             // 
             // StartWnmpWithWindows
             // 
             this.StartWnmpWithWindows.AutoSize = true;
-            this.StartWnmpWithWindows.Location = new System.Drawing.Point(195, 57);
+            this.StartWnmpWithWindows.Location = new System.Drawing.Point(226, 50);
             this.StartWnmpWithWindows.Name = "StartWnmpWithWindows";
             this.StartWnmpWithWindows.Size = new System.Drawing.Size(15, 14);
             this.StartWnmpWithWindows.TabIndex = 4;
@@ -204,16 +244,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 57);
+            this.label2.Location = new System.Drawing.Point(25, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 13);
+            this.label2.Size = new System.Drawing.Size(132, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Start Wnmp with Windows?:";
+            this.label2.Text = "Start Wnmp with Windows";
             // 
             // AutoUpdate
             // 
             this.AutoUpdate.AutoSize = true;
-            this.AutoUpdate.Location = new System.Drawing.Point(195, 172);
+            this.AutoUpdate.Location = new System.Drawing.Point(226, 170);
             this.AutoUpdate.Name = "AutoUpdate";
             this.AutoUpdate.Size = new System.Drawing.Size(15, 14);
             this.AutoUpdate.TabIndex = 11;
@@ -222,11 +262,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 172);
+            this.label5.Location = new System.Drawing.Point(25, 170);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(167, 13);
+            this.label5.Size = new System.Drawing.Size(158, 13);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Automatically check for updates?:";
+            this.label5.Text = "Automatically check for updates";
             // 
             // editorTB
             // 
@@ -240,7 +280,7 @@
             // MinimizeWnmpToTray
             // 
             this.MinimizeWnmpToTray.AutoSize = true;
-            this.MinimizeWnmpToTray.Location = new System.Drawing.Point(195, 147);
+            this.MinimizeWnmpToTray.Location = new System.Drawing.Point(226, 130);
             this.MinimizeWnmpToTray.Name = "MinimizeWnmpToTray";
             this.MinimizeWnmpToTray.Size = new System.Drawing.Size(15, 14);
             this.MinimizeWnmpToTray.TabIndex = 9;
@@ -249,11 +289,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 147);
+            this.label4.Location = new System.Drawing.Point(25, 130);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(140, 13);
+            this.label4.Size = new System.Drawing.Size(178, 13);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Minimize Wnmp to the tray?:";
+            this.label4.Text = "Minimize to tray instead of minimizing";
             // 
             // PHP
             // 
@@ -386,41 +426,23 @@
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
-            // StartMySQLLaunchCB
+            // MinimizeToTrayInsteadOfClosing
             // 
-            this.StartMySQLLaunchCB.AutoSize = true;
-            this.StartMySQLLaunchCB.Location = new System.Drawing.Point(195, 101);
-            this.StartMySQLLaunchCB.Name = "StartMySQLLaunchCB";
-            this.StartMySQLLaunchCB.Size = new System.Drawing.Size(15, 14);
-            this.StartMySQLLaunchCB.TabIndex = 16;
-            this.StartMySQLLaunchCB.UseVisualStyleBackColor = true;
+            this.MinimizeToTrayInsteadOfClosing.AutoSize = true;
+            this.MinimizeToTrayInsteadOfClosing.Location = new System.Drawing.Point(226, 150);
+            this.MinimizeToTrayInsteadOfClosing.Name = "MinimizeToTrayInsteadOfClosing";
+            this.MinimizeToTrayInsteadOfClosing.Size = new System.Drawing.Size(15, 14);
+            this.MinimizeToTrayInsteadOfClosing.TabIndex = 22;
+            this.MinimizeToTrayInsteadOfClosing.UseVisualStyleBackColor = true;
             // 
-            // label10
+            // label12
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(25, 101);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(126, 13);
-            this.label10.TabIndex = 15;
-            this.label10.Text = "Start MySQL on launch?:";
-            // 
-            // StartNginxLaunchCB
-            // 
-            this.StartNginxLaunchCB.AutoSize = true;
-            this.StartNginxLaunchCB.Location = new System.Drawing.Point(195, 79);
-            this.StartNginxLaunchCB.Name = "StartNginxLaunchCB";
-            this.StartNginxLaunchCB.Size = new System.Drawing.Size(15, 14);
-            this.StartNginxLaunchCB.TabIndex = 18;
-            this.StartNginxLaunchCB.UseVisualStyleBackColor = true;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(25, 79);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(118, 13);
-            this.label11.TabIndex = 17;
-            this.label11.Text = "Start Nginx on launch?:";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(25, 150);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(164, 13);
+            this.label12.TabIndex = 21;
+            this.label12.Text = "Minimize to tray instead of closing";
             // 
             // Options
             // 
@@ -486,5 +508,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckBox StartMySQLLaunchCB;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.CheckBox MinimizeToTrayInsteadOfClosing;
+        private System.Windows.Forms.Label label12;
     }
 }
