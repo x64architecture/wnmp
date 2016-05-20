@@ -44,7 +44,7 @@ namespace Wnmp.Configuration
             Name = "startphponlaunch", Description = "Start PHP when Wnmp starts", Value = false,
         };
         public Option<bool> MinimizeWnmpToTray = new Option<bool> {
-            Name = "minimizewnmptotray", Description = "Minimize to tray instread of minimizing", Value = false,
+            Name = "minimizewnmptotray", Description = "Minimize to tray instead of minimizing", Value = false,
         };
         public Option<bool> AutoCheckForUpdates = new Option<bool> {
             Name = "autocheckforupdates", Description = "Automatically check for updates", Value = true,
@@ -70,6 +70,9 @@ namespace Wnmp.Configuration
         public Option<bool> MinimizeInsteadOfClosing = new Option<bool> {
             Name = "minimizeinsteadofclosing", Description = "Minimize to tray instead of closing", Value = false,
         };
+        public Option<bool> StartMinimizedToTray = new Option<bool> {
+            Name = "startminimizedtotray", Description = "Start Wnmp minimized to tray", Value = false,
+        };
 
         private List<IOption> options = new List<IOption>();
 
@@ -80,6 +83,7 @@ namespace Wnmp.Configuration
             options.Add(StartNginxOnLaunch);
             options.Add(StartMySQLOnLaunch);
             options.Add(StartPHPOnLaunch);
+            options.Add(StartMinimizedToTray);
             options.Add(MinimizeWnmpToTray);
             options.Add(MinimizeInsteadOfClosing);
             options.Add(AutoCheckForUpdates);

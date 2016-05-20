@@ -33,6 +33,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.General = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.MinimizeToTrayInsteadOfClosing = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.StartNginxLaunchCB = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
             this.StartMySQLLaunchCB = new System.Windows.Forms.CheckBox();
@@ -61,8 +63,8 @@
             this.PHP_PORT = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.Cancel = new System.Windows.Forms.Button();
-            this.MinimizeToTrayInsteadOfClosing = new System.Windows.Forms.CheckBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.StartMinimizedToTray = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.General.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -107,6 +109,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.StartMinimizedToTray);
+            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.MinimizeToTrayInsteadOfClosing);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.StartNginxLaunchCB);
@@ -128,10 +132,28 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(327, 225);
+            this.groupBox1.Size = new System.Drawing.Size(327, 240);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Application Settings";
+            // 
+            // MinimizeToTrayInsteadOfClosing
+            // 
+            this.MinimizeToTrayInsteadOfClosing.AutoSize = true;
+            this.MinimizeToTrayInsteadOfClosing.Location = new System.Drawing.Point(226, 150);
+            this.MinimizeToTrayInsteadOfClosing.Name = "MinimizeToTrayInsteadOfClosing";
+            this.MinimizeToTrayInsteadOfClosing.Size = new System.Drawing.Size(15, 14);
+            this.MinimizeToTrayInsteadOfClosing.TabIndex = 22;
+            this.MinimizeToTrayInsteadOfClosing.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(25, 150);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(164, 13);
+            this.label12.TabIndex = 21;
+            this.label12.Text = "Minimize to tray instead of closing";
             // 
             // StartNginxLaunchCB
             // 
@@ -181,7 +203,7 @@
             // 
             // UpdateCheckInterval
             // 
-            this.UpdateCheckInterval.Location = new System.Drawing.Point(226, 190);
+            this.UpdateCheckInterval.Location = new System.Drawing.Point(226, 210);
             this.UpdateCheckInterval.Maximum = new decimal(new int[] {
             365,
             0,
@@ -199,7 +221,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(25, 193);
+            this.label6.Location = new System.Drawing.Point(25, 213);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(154, 13);
             this.label6.TabIndex = 12;
@@ -253,7 +275,7 @@
             // AutoUpdate
             // 
             this.AutoUpdate.AutoSize = true;
-            this.AutoUpdate.Location = new System.Drawing.Point(226, 170);
+            this.AutoUpdate.Location = new System.Drawing.Point(226, 190);
             this.AutoUpdate.Name = "AutoUpdate";
             this.AutoUpdate.Size = new System.Drawing.Size(15, 14);
             this.AutoUpdate.TabIndex = 11;
@@ -262,7 +284,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 170);
+            this.label5.Location = new System.Drawing.Point(25, 190);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(158, 13);
             this.label5.TabIndex = 10;
@@ -426,23 +448,23 @@
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
-            // MinimizeToTrayInsteadOfClosing
+            // label13
             // 
-            this.MinimizeToTrayInsteadOfClosing.AutoSize = true;
-            this.MinimizeToTrayInsteadOfClosing.Location = new System.Drawing.Point(226, 150);
-            this.MinimizeToTrayInsteadOfClosing.Name = "MinimizeToTrayInsteadOfClosing";
-            this.MinimizeToTrayInsteadOfClosing.Size = new System.Drawing.Size(15, 14);
-            this.MinimizeToTrayInsteadOfClosing.TabIndex = 22;
-            this.MinimizeToTrayInsteadOfClosing.UseVisualStyleBackColor = true;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(25, 170);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(111, 13);
+            this.label13.TabIndex = 23;
+            this.label13.Text = "Start Wnmp minimized";
             // 
-            // label12
+            // StartMinimizedToTray
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(25, 150);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(164, 13);
-            this.label12.TabIndex = 21;
-            this.label12.Text = "Minimize to tray instead of closing";
+            this.StartMinimizedToTray.AutoSize = true;
+            this.StartMinimizedToTray.Location = new System.Drawing.Point(226, 170);
+            this.StartMinimizedToTray.Name = "StartMinimizedToTray";
+            this.StartMinimizedToTray.Size = new System.Drawing.Size(15, 14);
+            this.StartMinimizedToTray.TabIndex = 24;
+            this.StartMinimizedToTray.UseVisualStyleBackColor = true;
             // 
             // Options
             // 
@@ -510,5 +532,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox MinimizeToTrayInsteadOfClosing;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.CheckBox StartMinimizedToTray;
+        private System.Windows.Forms.Label label13;
     }
 }

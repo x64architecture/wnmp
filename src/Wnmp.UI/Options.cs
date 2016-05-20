@@ -63,6 +63,7 @@ namespace Wnmp.UI
             StartNginxLaunchCB.Checked = Settings.StartNginxOnLaunch.Value;
             StartMySQLLaunchCB.Checked = Settings.StartMySQLOnLaunch.Value;
             StartPHPLaunchCB.Checked = Settings.StartPHPOnLaunch.Value;
+            StartMinimizedToTray.Checked = Settings.StartMinimizedToTray.Value;
             MinimizeWnmpToTray.Checked = Settings.MinimizeWnmpToTray.Value;
             AutoUpdate.Checked = Settings.AutoCheckForUpdates.Value;
             UpdateCheckInterval.Value = Settings.UpdateFrequency.Value;
@@ -89,6 +90,7 @@ namespace Wnmp.UI
             Settings.StartNginxOnLaunch.Value = StartNginxLaunchCB.Checked;
             Settings.StartMySQLOnLaunch.Value = StartMySQLLaunchCB.Checked;
             Settings.StartPHPOnLaunch.Value = StartPHPLaunchCB.Checked;
+            Settings.StartMinimizedToTray.Value = StartMinimizedToTray.Checked;
             Settings.MinimizeWnmpToTray.Value = MinimizeWnmpToTray.Checked;
             Settings.MinimizeInsteadOfClosing.Value = MinimizeToTrayInsteadOfClosing.Checked;
             Settings.AutoCheckForUpdates.Value = AutoUpdate.Checked;

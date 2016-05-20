@@ -48,7 +48,7 @@ namespace Wnmp.UI
         private readonly NotifyIcon WnmpTrayIcon = new NotifyIcon {
             BalloonTipIcon = ToolTipIcon.Info, BalloonTipTitle = "Wnmp",
             BalloonTipText = "Wnmp has been minimized to the tray.",
-
+            Icon = Properties.Resources.logo,
         };
 
         protected override CreateParams CreateParams
@@ -156,6 +156,12 @@ namespace Wnmp.UI
             Updater.mainForm = this;
             Updater.Settings = Settings;
 
+            WnmpTrayIcon.Click += WnmpTrayIcon_Click;
+            WnmpTrayIcon.Visible = true;
+
+            if (Settings.StartMinimizedToTray.Value == true)
+                visiblecore = false;
+
             SetupNginx();
             SetupMariaDB();
             SetupPHP();
@@ -172,12 +178,20 @@ namespace Wnmp.UI
             timer.Start();
         }
 
+        private bool visiblecore = true;
+        protected override void SetVisibleCore(bool value)
+        {
+            if (visiblecore == false) {
+                value = false;
+                if (!this.IsHandleCreated)
+                    CreateHandle();
+            }
+            base.SetVisibleCore(value);
+        }
+
         private void Main_Load(object sender, EventArgs e)
         {
             Log.setLogComponent(log_rtb);
-            WnmpTrayIcon.Click += WnmpTrayIcon_Click;
-            WnmpTrayIcon.Icon = Properties.Resources.logo;
-            WnmpTrayIcon.Visible = true;
 
             CheckForApps();
             DoCheckIfAppsAreRunningTimer();
@@ -247,6 +261,8 @@ namespace Wnmp.UI
 
         private void WnmpTrayIcon_Click(object sender, EventArgs e)
         {
+            visiblecore = true;
+            base.SetVisibleCore(true);
             this.Show();
             this.WindowState = FormWindowState.Normal;
         }

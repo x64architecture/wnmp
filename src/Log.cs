@@ -59,7 +59,7 @@ namespace Wnmp
         private static void wnmp_log(string message, Color color, LogSection logSection)
         {
             var SectionName = LogSectionToString(logSection);
-            var DateNow = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+            var DateNow = DateTime.Now.ToString();
             var str = $"{DateNow} [{SectionName}] - {message}";
             var textLength = rtfLog.TextLength;
             rtfLog.AppendText(str + "\n");
