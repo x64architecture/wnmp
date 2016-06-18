@@ -250,6 +250,7 @@ namespace Wnmp.UI
         {
             /* Cleanup */
             WnmpTrayIcon.Visible = false;
+            MariaDB.RemoveService();
             if (File.Exists(Application.StartupPath + "/Wnmp-Upgrade-Installer.exe")) {
                 try {
                     File.Delete(Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");

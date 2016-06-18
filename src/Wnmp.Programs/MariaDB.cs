@@ -33,7 +33,7 @@ namespace Wnmp.Programs
             MariaDBController.ServiceName = "Wnmp-MariaDB";
         }
 
-        private void RemoveService()
+        public void RemoveService()
         {
             StartProcess("cmd.exe", stopArgs, true);
         }
