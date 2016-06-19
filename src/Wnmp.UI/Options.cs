@@ -203,8 +203,10 @@ namespace Wnmp.UI
         {
             phpExtListBox.Items.Clear();
             PHPConfigurationMgr.LoadPHPExtensions(phpBin.Text);
+
             for (var i = 0; i < PHPConfigurationMgr.phpExtName.Length; i++) {
-                phpExtListBox.Items.Add(PHPConfigurationMgr.phpExtName[i], PHPConfigurationMgr.phpExtEnabled[i]);
+                phpExtListBox.Items.Add(PHPConfigurationMgr.phpExtName[i],
+                    PHPConfigurationMgr.PHPExtensions[i].HasFlag(PHPConfigurationManager.PHPExtension.Enabled));
             }
         }
     }

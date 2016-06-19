@@ -17,17 +17,24 @@
  *  along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.IO;
 
 namespace Wnmp.Configuration
 {
     class PHPConfigurationManager
     {
+        [Flags]
+        public enum PHPExtension
+        {
+            Disabled = 1,
+            Enabled  = 2,
+            ZendExt  = 3,
+        }
         public bool[] UserPHPExtentionValues;
         public string[] phpExtName;
-        public bool[] phpExtEnabled;
+        public PHPExtension[] PHPExtensions;
 
-        private bool[] zendExt;
         private string ExtensionPath;
         private string IniFilePath;
         private string TmpIniFile;
@@ -50,8 +57,7 @@ namespace Wnmp.Configuration
             if (!Directory.Exists(ExtensionPath))
                 return;
             phpExtName = Directory.GetFiles(ExtensionPath, "*.dll");
-            phpExtEnabled = new bool[phpExtName.Length];
-            zendExt = new bool[phpExtName.Length];
+            PHPExtensions = new PHPExtension[phpExtName.Length];
             UserPHPExtentionValues = new bool[phpExtName.Length];
 
             for (var i = 0; i < phpExtName.Length; i++) {
@@ -69,23 +75,19 @@ namespace Wnmp.Configuration
                 while ((str = sr.ReadLine()) != null) {
                     for (var i = 0; i < phpExtName.Length; i++) {
                         if (str.StartsWith(";extension=" + phpExtName[i])) {
-                            phpExtEnabled[i] = false;
-                            zendExt[i] = false;
+                            PHPExtensions[i] = PHPExtension.Disabled;
                             break;
                         }
                         if (str.StartsWith("extension=" + phpExtName[i])) {
-                            phpExtEnabled[i] = true;
-                            zendExt[i] = false;
+                            PHPExtensions[i] = PHPExtension.Enabled;
                             break;
                         }
                         if (str.StartsWith(";zend_extension=" + phpExtName[i])) {
-                            phpExtEnabled[i] = false;
-                            zendExt[i] = true;
+                            PHPExtensions[i] = PHPExtension.Disabled | PHPExtension.ZendExt;
                             break;
                         }
                         if (str.StartsWith("zend_extension=" + phpExtName[i])) {
-                            phpExtEnabled[i] = true;
-                            zendExt[i] = true;
+                            PHPExtensions[i] = PHPExtension.Enabled | PHPExtension.ZendExt;
                             break;
                         }
                     }
@@ -96,20 +98,20 @@ namespace Wnmp.Configuration
         public void SavePHPIniOptions()
         {
             for (var i = 0; i < phpExtName.Length; i++) {
-                if (zendExt[i] == false) {
+                if (!PHPExtensions[i].HasFlag(PHPExtension.ZendExt)) {
                     if (UserPHPExtentionValues[i]) {
-                        if (phpExtEnabled[i] == false)
+                        if (PHPExtensions[i].HasFlag(PHPExtension.Disabled))
                             TmpIniFile = TmpIniFile.Replace(";extension=" + phpExtName[i], "extension=" + phpExtName[i]);
                     } else {
-                        if (phpExtEnabled[i] == true)
+                        if (PHPExtensions[i].HasFlag(PHPExtension.Enabled))
                             TmpIniFile = TmpIniFile.Replace("extension=" + phpExtName[i], ";extension=" + phpExtName[i]);
                     }
                 } else { // Special case zend_extension
                     if (UserPHPExtentionValues[i]) {
-                        if (phpExtEnabled[i] == false)
+                        if (PHPExtensions[i].HasFlag(PHPExtension.Disabled))
                             TmpIniFile = TmpIniFile.Replace(";zend_extension=" + phpExtName[i], "zend_extension=" + phpExtName[i]);
                     } else {
-                        if (phpExtEnabled[i] == true)
+                        if (PHPExtensions[i].HasFlag(PHPExtension.Enabled))
                             TmpIniFile = TmpIniFile.Replace("zend_extension=" + phpExtName[i], ";zend_extension=" + phpExtName[i]);
                     }
                 }
