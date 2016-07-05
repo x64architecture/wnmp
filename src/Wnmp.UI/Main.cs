@@ -113,11 +113,11 @@ namespace Wnmp.UI
 
         public void SetupPHP()
         {
+            PHP.Settings = Settings;
             if (Settings.phpBin.Value != "Default") {
                 SetupCustomPHP();
                 return;
             }
-            PHP.Settings = Settings;
             PHP.exeName = StartupPath + "/php/php-cgi.exe";
             PHP.procName = "php-cgi";
             PHP.progName = "PHP";
@@ -131,14 +131,14 @@ namespace Wnmp.UI
 
         public void SetupCustomPHP()
         {
-            PHP.exeName = StartupPath + "/php/phpbins/" + Settings.phpBin + "/php-cgi.exe";
+            PHP.exeName = StartupPath + "/php/phpbins/" + Settings.phpBin.Value + "/php-cgi.exe";
             PHP.procName = "php-cgi";
             PHP.progName = "PHP";
             PHP.progLogSection = Log.LogSection.WNMP_PHP;
             PHP.killStop = true;
             PHP.statusLabel = phprunning;
-            PHP.confDir = "/php/phpbins/" + Settings.phpBin + "/";
-            PHP.logDir = "/php/phpbins/" + Settings.phpBin + "/logs/";
+            PHP.confDir = "/php/phpbins/" + Settings.phpBin.Value + "/";
+            PHP.logDir = "/php/phpbins/" + Settings.phpBin.Value + "/logs/";
         }
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
