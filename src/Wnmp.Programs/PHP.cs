@@ -35,7 +35,7 @@ namespace Wnmp.Programs
             if (Settings.phpBin.Value == "Default")
                 return Main.StartupPath + "/php/php.ini";
             else
-                return Main.StartupPath + "/php/phpbins/" + Settings.phpBin + "/php.ini";
+                return Main.StartupPath + "/php/phpbins/" + Settings.phpBin.Value + "/php.ini";
         }
 
         public override void Start()
