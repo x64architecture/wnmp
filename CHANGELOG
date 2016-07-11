@@ -1,11 +1,11 @@
 Wnmp 2.2.5: 11 Jul 2016
 =======================
 - Wnmp Control Panel 4.0.3
-	*) #31, Add option to start Wnmp minimized
+    *) #31, Add option to start Wnmp minimized
     *) #38, Add option to minimize to tray instead of closing
-	*) #73, Remove MariaDB service on exit
+    *) #73, Remove MariaDB service on exit
     *) #75, Fix adding new version of PHP
-	    Thanks to Nicolas Liu.
+       Thanks to Nicolas Liu.
 
 - Nginx
     *) Updated to 1.11.2
