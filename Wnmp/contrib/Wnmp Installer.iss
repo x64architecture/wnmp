@@ -1,6 +1,6 @@
 ; Wnmp iss
 #define MyAppName "Wnmp"
-#define MyAppVersion "2.2.4"
+#define MyAppVersion "2.2.5"
 #define MyAppPublisher "Kurt Cancemi"
 #define MyAppURL "https://www.getwnmp.org"
 #define MyAppExeName "Wnmp.exe"
