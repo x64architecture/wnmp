@@ -92,7 +92,8 @@ namespace Wnmp
             var logContextMenu = new ContextMenu();
             var CopyItem = new MenuItem("&Copy");
             CopyItem.Click += (s, e) => {
-                Clipboard.SetText(rtfLog.SelectedText);
+                if (rtfLog.SelectedText != String.Empty)
+                    Clipboard.SetText(rtfLog.SelectedText);
             };
             logContextMenu.MenuItems.Add(CopyItem);
             rtfLog.ContextMenu = logContextMenu;
