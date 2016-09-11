@@ -19,7 +19,6 @@
 
 using System.Text;
 using System;
-using static Wnmp.SystemInformation.ICUID.cpuid_feature_t;
 
 namespace Wnmp.SystemInformation
 {
@@ -28,39 +27,7 @@ namespace Wnmp.SystemInformation
     /// </summary>
     public class SystemInfo
     {
-        public ICUID icuid = new ICUID();
         private readonly OSVersionInfo OVI = new OSVersionInfo();
-
-        public string CommonCPUFeatures()
-        {
-            var sb = new StringBuilder();
-
-            if (icuid.CPUSupports(CPU_FEATURE_SSE))
-                sb.Append(" SSE,");
-            if (icuid.CPUSupports(CPU_FEATURE_SSE2))
-                sb.Append(" SSE2,");
-            if (icuid.CPUSupports(CPU_FEATURE_PNI))
-                sb.Append(" SSE3,");
-            if (icuid.CPUSupports(CPU_FEATURE_SSSE3))
-                sb.Append(" SSSE3,");
-            if (icuid.CPUSupports(CPU_FEATURE_VMX))
-                sb.Append(" VT-x,");
-            if (icuid.CPUSupports(CPU_FEATURE_SVM))
-                sb.Append(" AMD-V,");
-            if (icuid.CPUSupports(CPU_FEATURE_AES))
-                sb.Append(" AES,");
-            if (icuid.CPUSupports(CPU_FEATURE_AVX))
-                sb.Append(" AVX,");
-            if (icuid.CPUSupports(CPU_FEATURE_AVX2))
-                sb.Append(" AVX2,");
-
-            try {
-                sb.Remove(0, 1);
-                sb.Remove(sb.Length - 1, 1);
-            } catch (IndexOutOfRangeException) { }
-
-            return sb.ToString();
-        }
         public string WindowsVersionString()
         {
             return OVI.WindowsVersionString();

@@ -92,7 +92,6 @@
     <Compile Include="Wnmp.UI\HttpHeaders.designer.cs">
       <DependentUpon>HttpHeaders.cs</DependentUpon>
     </Compile>
-    <Compile Include="Wnmp.SystemInformation\ICUID.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Wnmp.SystemInformation\OSVersionInfo.cs" />
