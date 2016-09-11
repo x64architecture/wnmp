@@ -102,7 +102,7 @@ namespace Wnmp
             wnmp_log_notice("Control Panel Version: " + Constants.CPVER, LogSection.WNMP_MAIN);
             wnmp_log_notice("Wnmp Version: " + Application.ProductVersion, LogSection.WNMP_MAIN);
             var systemInfo = new SystemInfo();
-            wnmp_log_notice(systemInfo.WindowsVersionString(), LogSection.WNMP_MAIN);
+            wnmp_log_notice("OS: " + systemInfo.WindowsVersionString(), LogSection.WNMP_MAIN);
             wnmp_log_notice("Wnmp Directory: " + Application.StartupPath, LogSection.WNMP_MAIN);
         }
     }
