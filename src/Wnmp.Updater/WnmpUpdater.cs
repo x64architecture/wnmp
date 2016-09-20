@@ -62,7 +62,7 @@ namespace Wnmp.Updater
                     updater.Update(UpdateCanceled, UpdateDownloaded);
                 }
             } else {
-                Log.wnmp_log_notice("Your version: " + updater.currentVersion + " is up to date.", Log.LogSection.WNMP_MAIN);
+                Log.Notice("Your version: " + updater.currentVersion + " is up to date.", Log.LogSection.WNMP_MAIN);
             }
         }
 
@@ -90,7 +90,7 @@ namespace Wnmp.Updater
                 if (File.Exists(file)) {
                     var dest = $"{file}.old";
                     File.Copy(file, dest, true);
-                    Log.wnmp_log_notice("Backed up " + file + " to " + dest, Log.LogSection.WNMP_MAIN);
+                    Log.Notice("Backed up " + file + " to " + dest, Log.LogSection.WNMP_MAIN);
                 }
             }
         }

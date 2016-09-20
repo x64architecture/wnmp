@@ -50,12 +50,12 @@ namespace Wnmp.Updater
         public void CheckForUpdate()
         {
             if (!NetworkInterface.GetIsNetworkAvailable()) {
-                Log.wnmp_log_error("No active internet connection detected!", Log.LogSection.WNMP_MAIN);
+                Log.Error("No active internet connection detected!", Log.LogSection.WNMP_MAIN);
                 return;
             }
 
             if (!ReadUpdateXML()) {
-                Log.wnmp_log_error("Couldn't read update information.", Log.LogSection.WNMP_MAIN);
+                Log.Error("Couldn't read update information.", Log.LogSection.WNMP_MAIN);
                 return;
             }
 
@@ -137,9 +137,9 @@ namespace Wnmp.Updater
                 return true;
             } catch (Exception ex) {
                 if (ex.Message.Contains("The remote name could not be resolved")) {
-                    Log.wnmp_log_error("No active internet connection detected!", Log.LogSection.WNMP_MAIN);
+                    Log.Error("No active internet connection detected!", Log.LogSection.WNMP_MAIN);
                 } else {
-                    Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
+                    Log.Error(ex.Message, Log.LogSection.WNMP_MAIN);
                 }
                 return false;
             }

@@ -57,9 +57,9 @@ namespace Wnmp.Programs
         {
             try {
                 MariaDBController.Start();
-                Log.wnmp_log_notice("Started " + progName, progLogSection);
+                Log.Notice("Started " + progName, progLogSection);
             } catch (Exception ex) {
-                Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
+                Log.Error("Start(): " + ex.Message, progLogSection);
             }
         }
 
@@ -67,9 +67,9 @@ namespace Wnmp.Programs
         {
             try {
                 MariaDBController.Stop();
-                Log.wnmp_log_notice("Stopped " + progName, progLogSection);
+                Log.Notice("Stopped " + progName, progLogSection);
             } catch (Exception ex) {
-                Log.wnmp_log_notice("Stop(): " + ex.Message, progLogSection);
+                Log.Notice("Stop(): " + ex.Message, progLogSection);
             }
         }
 

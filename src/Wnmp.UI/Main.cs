@@ -202,7 +202,7 @@ namespace Wnmp.UI
             if (Settings.AutoCheckForUpdates.Value)
                 Updater.DoDateEclasped();
 
-            Log.wnmp_log_notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
+            Log.Notice("Wnmp ready to go!", Log.LogSection.WNMP_MAIN);
 
             if (Settings.StartNginxOnLaunch.Value)
                 Nginx.Start();
@@ -255,7 +255,7 @@ namespace Wnmp.UI
                 try {
                     File.Delete(Application.StartupPath + "/Wnmp-Upgrade-Installer.exe");
                 } catch (Exception ex) {
-                    Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
+                    Log.Error(ex.Message, Log.LogSection.WNMP_MAIN);
                 }
             }
         }
@@ -294,15 +294,15 @@ namespace Wnmp.UI
         /// </summary>
         private void CheckForApps()
         {
-            Log.wnmp_log_notice("Checking for applications", Log.LogSection.WNMP_MAIN);
+            Log.Notice("Checking for applications", Log.LogSection.WNMP_MAIN);
             if (!File.Exists(Application.StartupPath + "/nginx.exe"))
-                Log.wnmp_log_error("Error: Nginx Not Found", Log.LogSection.WNMP_NGINX);
+                Log.Error("Error: Nginx Not Found", Log.LogSection.WNMP_NGINX);
 
             if (!Directory.Exists(Application.StartupPath + "/mariadb"))
-                Log.wnmp_log_error("Error: MariaDB Not Found", Log.LogSection.WNMP_MARIADB);
+                Log.Error("Error: MariaDB Not Found", Log.LogSection.WNMP_MARIADB);
 
             if (!Directory.Exists(Application.StartupPath + "/php"))
-                Log.wnmp_log_error("Error: PHP Not Found", Log.LogSection.WNMP_PHP);
+                Log.Error("Error: PHP Not Found", Log.LogSection.WNMP_PHP);
         }
 
 
@@ -440,9 +440,9 @@ namespace Wnmp.UI
 
             try {
                 Process.Start(StartupPath + "/mariadb/bin/mysql.exe", "-u root -p");
-                Log.wnmp_log_notice("Started MariaDB shell", Log.LogSection.WNMP_MARIADB);
+                Log.Notice("Started MariaDB shell", Log.LogSection.WNMP_MARIADB);
             } catch (Exception ex) {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MARIADB);
+                Log.Error(ex.Message, Log.LogSection.WNMP_MARIADB);
             }
         }
 

@@ -19,7 +19,6 @@
 
 using System;
 using System.Drawing;
-using System.Globalization;
 using System.Windows.Forms;
 
 using Wnmp.SystemInformation;
@@ -74,14 +73,14 @@ namespace Wnmp
         /// <summary>
         /// Log error
         /// </summary>
-        public static void wnmp_log_error(string message, LogSection logSection)
+        public static void Error(string message, LogSection logSection)
         {
             wnmp_log(message, Color.Red, logSection);
         }
         /// <summary>
         /// Log information
         /// </summary>
-        public static void wnmp_log_notice(string message, LogSection logSection)
+        public static void Notice(string message, LogSection logSection)
         {
             wnmp_log(message, Color.DarkBlue, logSection);
         }
@@ -98,12 +97,12 @@ namespace Wnmp
             logContextMenu.MenuItems.Add(CopyItem);
             rtfLog.ContextMenu = logContextMenu;
 
-            wnmp_log_notice("Initializing Control Panel", LogSection.WNMP_MAIN);
-            wnmp_log_notice("Control Panel Version: " + Constants.CPVER, LogSection.WNMP_MAIN);
-            wnmp_log_notice("Wnmp Version: " + Application.ProductVersion, LogSection.WNMP_MAIN);
+            Notice("Initializing Control Panel", LogSection.WNMP_MAIN);
+            Notice("Control Panel Version: " + Constants.CPVER, LogSection.WNMP_MAIN);
+            Notice("Wnmp Version: " + Application.ProductVersion, LogSection.WNMP_MAIN);
             var systemInfo = new SystemInfo();
-            wnmp_log_notice("OS: " + systemInfo.WindowsVersionString(), LogSection.WNMP_MAIN);
-            wnmp_log_notice("Wnmp Directory: " + Application.StartupPath, LogSection.WNMP_MAIN);
+            Notice("OS: " + systemInfo.WindowsVersionString(), LogSection.WNMP_MAIN);
+            Notice("Wnmp Directory: " + Application.StartupPath, LogSection.WNMP_MAIN);
         }
     }
 }

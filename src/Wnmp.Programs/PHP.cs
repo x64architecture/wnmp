@@ -47,12 +47,12 @@ namespace Wnmp.Programs
             try {
                 for (var i = 1; i <= ProcessCount; i++) {
                     StartProcess(exeName, $"-b localhost:{port} -c {phpini}");
-                    Log.wnmp_log_notice("Starting PHP " + i + "/" + ProcessCount + " on port: " + port, progLogSection);
+                    Log.Notice("Starting PHP " + i + "/" + ProcessCount + " on port: " + port, progLogSection);
                     port++;
                 }
-                Log.wnmp_log_notice("PHP started", progLogSection);
+                Log.Notice("PHP started", progLogSection);
             } catch (Exception ex) {
-                Log.wnmp_log_error("StartPHP(): " + ex.Message, progLogSection);
+                Log.Error("StartPHP(): " + ex.Message, progLogSection);
             }
         }
 

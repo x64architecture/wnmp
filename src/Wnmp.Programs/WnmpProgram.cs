@@ -98,9 +98,9 @@ namespace Wnmp.Programs
         {
             try {
                 StartProcess(exeName, startArgs);
-                Log.wnmp_log_notice("Started " + progName, progLogSection);
+                Log.Notice("Started " + progName, progLogSection);
             } catch (Exception ex) {
-                Log.wnmp_log_error("Start(): " + ex.Message, progLogSection);
+                Log.Error("Start(): " + ex.Message, progLogSection);
             }
         }
 
@@ -113,14 +113,14 @@ namespace Wnmp.Programs
             foreach (var process in processes) {
                     process.Kill();
             }
-            Log.wnmp_log_notice("Stopped " + progName, progLogSection);
+            Log.Notice("Stopped " + progName, progLogSection);
         }
 
         public void Restart()
         {
             this.Stop();
             this.Start();
-            Log.wnmp_log_notice("Restarted " + progName, progLogSection);
+            Log.Notice("Restarted " + progName, progLogSection);
         }
 
         public void ConfigButton(object sender)
@@ -144,7 +144,7 @@ namespace Wnmp.Programs
             try {
                 Process.Start(Settings.Editor.Value, Main.StartupPath + confDir + e.ClickedItem.Text);
             } catch (Exception ex) {
-                Log.wnmp_log_error(ex.Message, progLogSection);
+                Log.Error(ex.Message, progLogSection);
             }
         }
 
@@ -153,7 +153,7 @@ namespace Wnmp.Programs
             try {
                 Process.Start(Settings.Editor.Value, Main.StartupPath + logDir + e.ClickedItem.Text);
             } catch (Exception ex) {
-                Log.wnmp_log_error(ex.Message, progLogSection);
+                Log.Error(ex.Message, progLogSection);
             }
         }
 

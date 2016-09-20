@@ -52,7 +52,7 @@ namespace Wnmp.UI
                 foreach (var IP in IPs)
                     IPAddresses.Items.Add(IP.ToString());
             } catch (Exception ex) {
-                Log.wnmp_log_error(ex.Message, Log.LogSection.WNMP_MAIN);
+                Log.Error(ex.Message, Log.LogSection.WNMP_MAIN);
             }
         }
 
