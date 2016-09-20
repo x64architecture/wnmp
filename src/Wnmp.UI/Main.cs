@@ -102,8 +102,11 @@ namespace Wnmp.UI
                     continue;
 
                 Regex reg = new Regex("\".*?\"");
+                string orginal = reg.Match(file[i]).ToString();
+                if (orginal == String.Empty)
+                    continue;
                 string replace = "\"" + StartupPath + @"\contrib\cacert.pem" + "\"";
-                file[i] = file[i].Replace(reg.Match(file[i]).ToString(), replace);
+                file[i] = file[i].Replace(orginal, replace);
             }
             using (var sw = new StreamWriter(phpini)) {
                 foreach (var line in file)
