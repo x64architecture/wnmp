@@ -94,7 +94,9 @@ namespace Wnmp.UI
 
         private void SetCurlCAPath()
         {
-            var phpini = StartupPath + "/php/php.ini";
+            string phpini = StartupPath + "/php/php.ini";
+            if (!File.Exists(phpini))
+                return;
 
             string[] file = File.ReadAllLines(phpini);
             for (int i = 0; i < file.Length; i++) {
