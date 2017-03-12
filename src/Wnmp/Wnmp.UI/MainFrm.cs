@@ -141,13 +141,8 @@ namespace Wnmp.UI
             string keyFile = ConfDir + "\\key.pem";
             string certFile = ConfDir + "\\cert.pem";
 
-            //if (File.Exists(keyFile) || File.Exists(certFile))
-            //    return;
-
             CertGen certgen = new CertGen();
             certgen.GenerateSelfSignedCertificate("Wnmp", 2048, keyFile, certFile);
-            //File.WriteAllBytes(keyFile, cert.GetEncoded());
-            //File.WriteAllText(certFile, cert.ToString());
         }
 
         public MainFrm()
@@ -162,8 +157,7 @@ namespace Wnmp.UI
             SetupPHP();
             SetupConfigAndLogMenuStrips();
             updater = new WnmpUpdater(this);
-            //if (Properties.Settings.Default.FirstLaunch)
-            {
+            if (Properties.Settings.Default.FirstLaunch) {
                 CreateWnmpCertificate();
                 Properties.Settings.Default.FirstLaunch = false;
             }
