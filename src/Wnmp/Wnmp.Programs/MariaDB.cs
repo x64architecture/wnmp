@@ -38,9 +38,7 @@ namespace Wnmp.Programs
 
         public void RemoveService()
         {
-            new Thread(() => {
-                StartProcess("cmd.exe", StopArgs);
-            }).Start();
+            StartProcess("cmd.exe", StopArgs);
         }
 
         public void InstallService()
@@ -49,11 +47,9 @@ namespace Wnmp.Programs
                 Log.Error("File " + ExeFileName + " not found.", ProgLogSection);
                 return;
             }
-            new Thread(() => {
-                if (ServiceExists())
-                    RemoveService();
-                StartProcess(ExeFileName, StartArgs);
-            }).Start();
+            if (ServiceExists())
+                RemoveService();
+            StartProcess(ExeFileName, StartArgs);
         }
 
         public bool ServiceExists()
@@ -91,5 +87,10 @@ namespace Wnmp.Programs
             }
         }
 
+        public override bool IsRunning()
+        {
+            MariaDBController.Refresh();
+            return MariaDBController.Status == ServiceControllerStatus.Running;
+        }
     }
 }

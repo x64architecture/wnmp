@@ -69,9 +69,7 @@ namespace Wnmp.Programs
                 Log.Error("Already running.", ProgLogSection);
                 return;
             }
-            new Thread(() => {
-                StartProcess(ExeFileName, StartArgs);
-            }).Start();
+            StartProcess(ExeFileName, StartArgs);
             Log.Notice("Started", ProgLogSection);
         }
 
@@ -85,15 +83,13 @@ namespace Wnmp.Programs
                 Log.Error("Not running.", ProgLogSection);
                 return;
             }
-            new Thread(() => {
-                if (StopArgs != null) {
-                    StartProcess(ExeFileName, StopArgs, true);
-                }
-                var procs = Process.GetProcessesByName(processName);
-                for (var i = 0; i < procs.Length; i++) {
-                    procs[i].Kill();
-                }
-            }).Start();
+            if (StopArgs != null) {
+                StartProcess(ExeFileName, StopArgs, true);
+            }
+            var procs = Process.GetProcessesByName(processName);
+            for (var i = 0; i < procs.Length; i++) {
+                procs[i].Kill();
+            }
             Log.Notice("Stopped", ProgLogSection);
         }
 
@@ -104,7 +100,7 @@ namespace Wnmp.Programs
             Log.Notice("Restarted", ProgLogSection);
         }
 
-        public bool IsRunning()
+        public virtual bool IsRunning()
         {
             return Process.GetProcessesByName(processName).Length != 0;
         }

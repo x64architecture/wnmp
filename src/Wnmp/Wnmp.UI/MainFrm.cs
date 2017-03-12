@@ -339,6 +339,29 @@ namespace Wnmp.UI
             Misc.StartProcessAsync("https://github.com/wnmp/wnmp/issues/new");
         }
 
+        private void SetRunningStatusLabel(Label label, bool running)
+        {
+            if (running) {
+                label.Text = "✓";
+                label.ForeColor = Color.Green;
+            } else {
+                label.Text = "X";
+                label.ForeColor = Color.DarkRed;
+            }
+        }
+
+        private void AppsRunningTimer_Tick(object sender, EventArgs e)
+        {
+            SetRunningStatusLabel(nginxrunning, Nginx.IsRunning());
+            SetRunningStatusLabel(phprunning, PHP.IsRunning());
+            SetRunningStatusLabel(mariadbrunning, MariaDB.IsRunning());
+        }
+
+        private void LocalhostToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Misc.StartProcessAsync("http://localhost");
+        }
+
         private void OpenMariaDBShellButton_Click(object sender, EventArgs e)
         {
             MariaDB.OpenShell();

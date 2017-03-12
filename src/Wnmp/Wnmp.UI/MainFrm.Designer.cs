@@ -27,6 +27,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrm));
             this.WnmpMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,6 +76,7 @@
             this.startAllButton = new System.Windows.Forms.Button();
             this.stopAllButton = new System.Windows.Forms.Button();
             this.openMariaDBShellButton = new System.Windows.Forms.Button();
+            this.AppsRunningTimer = new System.Windows.Forms.Timer(this.components);
             this.WnmpMenuStrip.SuspendLayout();
             this.applicationsGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -209,6 +211,7 @@
             this.localhostToolStripMenuItem.Name = "localhostToolStripMenuItem";
             this.localhostToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.localhostToolStripMenuItem.Text = "localhost";
+            this.localhostToolStripMenuItem.Click += new System.EventHandler(this.LocalhostToolStripMenuItem_Click);
             // 
             // wnmpDirButton
             // 
@@ -541,6 +544,12 @@
             this.openMariaDBShellButton.UseVisualStyleBackColor = true;
             this.openMariaDBShellButton.Click += new System.EventHandler(this.OpenMariaDBShellButton_Click);
             // 
+            // AppsRunningTimer
+            // 
+            this.AppsRunningTimer.Enabled = true;
+            this.AppsRunningTimer.Interval = 1000;
+            this.AppsRunningTimer.Tick += new System.EventHandler(this.AppsRunningTimer_Tick);
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -617,5 +626,6 @@
         private System.Windows.Forms.Label mariadbrunning;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label nginxrunning;
+        private System.Windows.Forms.Timer AppsRunningTimer;
     }
 }
