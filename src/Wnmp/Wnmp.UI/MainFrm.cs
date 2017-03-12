@@ -369,6 +369,7 @@ namespace Wnmp.UI
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
             MariaDB.RemoveService();
+            Properties.Settings.Default.Save();
         }
     }
 }
