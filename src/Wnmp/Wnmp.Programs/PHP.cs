@@ -18,11 +18,14 @@
  */
 
 using System;
+using System.Net;
+using System.Net.Sockets;
 
 namespace Wnmp.Programs
 {
     class PHPProgram : WnmpProgram
     {
+        private Socket sock;
         public PHPProgram(string exeFile) : base(exeFile)
         {
 
@@ -47,11 +50,17 @@ namespace Wnmp.Programs
                 return;
             }
 
+            if (sock != null)
+                sock.Close();
+            sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            sock.Bind(new IPEndPoint(IPAddress.Any, port));
+            sock.Listen(16384);
+
             try {
                 for (var i = 1; i <= ProcessCount; i++) {
                     StartProcess(ExeFileName, $"-b localhost:{port} -c {phpini}");
-                    Log.Notice("Starting PHP " + i + "/" + ProcessCount + " on port: " + port, ProgLogSection);
-                    port++;
+                    Log.Notice("Starting PHP " + i + "/" + ProcessCount, ProgLogSection);
                 }
                 Log.Notice("PHP started", ProgLogSection);
             } catch (Exception ex) {

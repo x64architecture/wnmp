@@ -164,10 +164,7 @@ namespace Wnmp.UI
             using (var sw = new StreamWriter(Program.StartupPath + "/conf/php_processes.conf")) {
                 sw.WriteLine("# DO NOT MODIFY!!! THIS FILE IS MANAGED BY THE WNMP CONTROL PANEL.\r\n");
                 sw.WriteLine("upstream php_processes {");
-                for (var i = 1; i <= PHPProcesses; i++) {
-                    sw.WriteLine("    server 127.0.0.1:" + port + " weight=1;");
-                    port++;
-                }
+                sw.WriteLine("    server 127.0.0.1:" + port + " weight=1;");
                 sw.WriteLine("}");
             }
         }
