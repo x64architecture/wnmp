@@ -1,3 +1,24 @@
+Wnmp 3.0.0: ?? Mar 2017
+=======================
+- Wnmp
+    *) MAJOR: Wnmp will now require a 64-bit version of Windows.
+
+- Wnmp Control Panel 5.0.0
+	*) Various improvements
+    *) Rewritten to be more maintainable
+
+- Nginx
+    *)
+
+- MariaDB
+    *)
+
+- PHP
+    *)
+
+- phpMyAdmin
+    *)
+
 Wnmp 2.2.5: 11 Jul 2016
 =======================
 - Wnmp Control Panel 4.0.3
