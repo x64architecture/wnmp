@@ -52,7 +52,7 @@ namespace Wnmp.Updater
             updater.CheckForUpdate();
 
             if (updater.UpdateAvailable) {
-                var UpdatePrompt = new UpdatePromptFrm("https://www.getwnmp.org/CHANGELOG", updater.CurrentVersion, updater.NewVersion) {
+                var UpdatePrompt = new UpdatePromptFrm("https://github.com/wnmp/wnmp/releases/latest", updater.CurrentVersion, updater.NewVersion) {
                     StartPosition = FormStartPosition.CenterParent
                 };
                 if (UpdatePrompt.ShowDialog() == DialogResult.Yes) {
