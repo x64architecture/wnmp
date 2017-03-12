@@ -18,106 +18,72 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Wnmp.Configuration
 {
     class PHPConfigurationManager
     {
-        [Flags]
-        public enum PHPExtension
+        public class PHPExtension
         {
-            Disabled = 1,
-            Enabled = 2,
-            ZendExt = 3,
+            public int LineNum;
+            public string Name;
+            public bool Enabled;
+            public bool ZendExtension;
         }
-        public bool[] UserPHPExtentionValues;
-        public string[] phpExtName;
-        public PHPExtension[] PHPExtensions;
 
-        private string ExtensionPath;
+        public List<PHPExtension> PHPExtensions;
+
         private string IniFilePath;
-        private string TmpIniFile;
+        private string[] TmpIniFile;
 
         private void LoadPHPIni()
         {
-            TmpIniFile = File.ReadAllText(IniFilePath);
+            TmpIniFile = File.ReadAllLines(IniFilePath);
         }
 
         public void LoadPHPExtensions(string phpBinPath)
         {
-            if (phpBinPath == "Default") {
-                ExtensionPath = Program.StartupPath + "/php/ext/";
+            if (phpBinPath == "Default")
                 IniFilePath = Program.StartupPath + "/php/php.ini";
-            } else {
-                ExtensionPath = Program.StartupPath + "/php/phpbins/" + phpBinPath + "/ext/";
+            else
                 IniFilePath = Program.StartupPath + "/php/phpbins/" + phpBinPath + "/php.ini";
-            }
-
-            if (!Directory.Exists(ExtensionPath))
-                return;
-            phpExtName = Directory.GetFiles(ExtensionPath, "*.dll");
-            PHPExtensions = new PHPExtension[phpExtName.Length];
-            UserPHPExtentionValues = new bool[phpExtName.Length];
-
-            for (var i = 0; i < phpExtName.Length; i++) {
-                phpExtName[i] = phpExtName[i].Remove(0, ExtensionPath.Length);
-            }
 
             LoadPHPIni();
-            ParsePHPIni();
-        }
+            PHPExtensions = new List<PHPExtension>();
 
-        public void ParsePHPIni()
-        {
-            using (var sr = new StringReader(TmpIniFile)) {
-                string str;
-                while ((str = sr.ReadLine()) != null) {
-                    str = str.Trim();
-                    for (var i = 0; i < phpExtName.Length; i++) {
-                        if (str.StartsWith(";extension=" + phpExtName[i])) {
-                            PHPExtensions[i] = PHPExtension.Disabled;
-                            break;
-                        }
-                        if (str.StartsWith("extension=" + phpExtName[i])) {
-                            PHPExtensions[i] = PHPExtension.Enabled;
-                            break;
-                        }
-                        if (str.StartsWith(";zend_extension=" + phpExtName[i])) {
-                            PHPExtensions[i] = PHPExtension.Disabled | PHPExtension.ZendExt;
-                            break;
-                        }
-                        if (str.StartsWith("zend_extension=" + phpExtName[i])) {
-                            PHPExtensions[i] = PHPExtension.Enabled | PHPExtension.ZendExt;
-                            break;
-                        }
-                    }
+            for (int linenum = 0; linenum < TmpIniFile.Length; linenum++) {
+                string str = TmpIniFile[linenum].Trim();
+                if (str == String.Empty)
+                    continue;
+                if (str[0] == ';') {
+                    string tmp = str.Substring(1);
+                    if (!tmp.StartsWith("extension") && !tmp.StartsWith("zend_extension"))
+                        continue;
+                }
+                // (zend_extension|extension)\s*\=\s*["]?(.*?\.dll)
+                var m = Regex.Match(str, @"(zend_extension|extension)\s*\=\s*[""]?(.*?\.dll)");
+                if (m.Success) {
+                    PHPExtension Ext = new PHPExtension() {
+                        Name = m.Groups[2].Value,
+                        ZendExtension = m.Groups[1].Value == "zend_extension",
+                        Enabled = str[0] != ';',
+                        LineNum = linenum,
+                    };
+                    PHPExtensions.Add(Ext);
                 }
             }
         }
 
         public void SavePHPIniOptions()
         {
-            for (var i = 0; i < phpExtName.Length; i++) {
-                if (!PHPExtensions[i].HasFlag(PHPExtension.ZendExt)) {
-                    if (UserPHPExtentionValues[i]) {
-                        if (PHPExtensions[i].HasFlag(PHPExtension.Disabled))
-                            TmpIniFile = TmpIniFile.Replace(";extension=" + phpExtName[i], "extension=" + phpExtName[i]);
-                    } else {
-                        if (PHPExtensions[i].HasFlag(PHPExtension.Enabled))
-                            TmpIniFile = TmpIniFile.Replace("extension=" + phpExtName[i], ";extension=" + phpExtName[i]);
-                    }
-                } else { // Special case zend_extension
-                    if (UserPHPExtentionValues[i]) {
-                        if (PHPExtensions[i].HasFlag(PHPExtension.Disabled))
-                            TmpIniFile = TmpIniFile.Replace(";zend_extension=" + phpExtName[i], "zend_extension=" + phpExtName[i]);
-                    } else {
-                        if (PHPExtensions[i].HasFlag(PHPExtension.Enabled))
-                            TmpIniFile = TmpIniFile.Replace("zend_extension=" + phpExtName[i], ";zend_extension=" + phpExtName[i]);
-                    }
-                }
+            foreach (var ext in PHPExtensions) {
+                string extension_token = ext.ZendExtension ? "zend_extension" : "extension";
+                TmpIniFile[ext.LineNum] = String.Format("{0}{1}={2}", ext.Enabled ? "" : ";", extension_token, ext.Name);
             }
-            File.WriteAllText(IniFilePath, TmpIniFile);
+            File.WriteAllLines(IniFilePath, TmpIniFile);
         }
     }
 }

@@ -189,7 +189,7 @@ namespace Wnmp.UI
         private void Save_PHPExtOptions()
         {
             for (var i = 0; i < phpExtListBox.Items.Count; i++) {
-                PHPConfigurationMgr.UserPHPExtentionValues[i] = phpExtListBox.GetItemChecked(i);
+                PHPConfigurationMgr.PHPExtensions[i].Enabled = phpExtListBox.GetItemChecked(i);
             }
             PHPConfigurationMgr.SavePHPIniOptions();
         }
@@ -199,10 +199,8 @@ namespace Wnmp.UI
             phpExtListBox.Items.Clear();
             PHPConfigurationMgr.LoadPHPExtensions(phpBin.Text);
 
-            for (var i = 0; i < PHPConfigurationMgr.phpExtName.Length; i++) {
-                phpExtListBox.Items.Add(PHPConfigurationMgr.phpExtName[i],
-                    PHPConfigurationMgr.PHPExtensions[i].HasFlag(PHPConfigurationManager.PHPExtension.Enabled));
-            }
+            foreach (var ext in PHPConfigurationMgr.PHPExtensions)
+                phpExtListBox.Items.Add(ext.Name, ext.Enabled);
         }
     }
 }
