@@ -1,0 +1,112 @@
+﻿/*
+ * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ *
+ * This file is part of Wnmp.
+ *
+ *  Wnmp is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Wnmp is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Threading;
+using System.Windows.Forms;
+
+namespace Wnmp.Programs
+{
+    public class WnmpProgram
+    {
+        public string ExeFileName { get; set; }    // Location of the executable file
+        public Log.LogSection ProgLogSection { get; set; } // LogSection of the program
+        public string StartArgs { get; set; }  // Start Arguments
+        public string StopArgs { get; set; }   // Stop Arguments
+        public string ConfDir { get; set; }    // Directory where all the programs configuration files are
+        public string LogDir { get; set; }     // Directory where all the programs log files are
+
+        private string processName;
+
+        public WnmpProgram(string exeFile)
+        {
+            ExeFileName = exeFile;
+            processName = Path.GetFileNameWithoutExtension(ExeFileName);
+        }
+
+        protected void StartProcess(string exe, string args, bool waitforexit = false)
+        {
+            Process process = new Process();
+            process.StartInfo.RedirectStandardError = true;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.WorkingDirectory = Program.StartupPath;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            process.StartInfo.FileName = ExeFileName;
+            process.StartInfo.Arguments = args;
+            process.Start();
+            if (waitforexit)
+                process.WaitForExit();
+        }
+
+        public virtual void Start()
+        {
+            if (!File.Exists(ExeFileName)) {
+                Log.Error("File " + ExeFileName + " not found.", ProgLogSection);
+                return;
+            }
+            if (IsRunning()) {
+                Log.Error("Already running.", ProgLogSection);
+                return;
+            }
+            new Thread(() => {
+                StartProcess(ExeFileName, StartArgs);
+            }).Start();
+            Log.Notice("Started", ProgLogSection);
+        }
+
+        public virtual void Stop()
+        {
+            if (!File.Exists(ExeFileName)) {
+                Log.Error("File " + ExeFileName + " not found.", ProgLogSection);
+                return;
+            }
+            if (!IsRunning()) {
+                Log.Error("Not running.", ProgLogSection);
+                return;
+            }
+            new Thread(() => {
+                if (StopArgs != null) {
+                    StartProcess(ExeFileName, StopArgs, true);
+                }
+                var procs = Process.GetProcessesByName(processName);
+                for (var i = 0; i < procs.Length; i++) {
+                    procs[i].Kill();
+                }
+            }).Start();
+            Log.Notice("Stopped", ProgLogSection);
+        }
+
+        public void Restart()
+        {
+            Stop();
+            Start();
+            Log.Notice("Restarted", ProgLogSection);
+        }
+
+        public bool IsRunning()
+        {
+            return Process.GetProcessesByName(processName).Length != 0;
+        }
+    }
+}

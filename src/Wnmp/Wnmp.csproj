@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wnmp</RootNamespace>
+    <AssemblyName>Wnmp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <BaseIntermediateOutputPath>..\..\obj\</BaseIntermediateOutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\</OutputPath>
+    <BaseIntermediateOutputPath>..\..\obj\</BaseIntermediateOutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CertGen.cs" />
+    <Compile Include="Wnmp.Configuration\PHPConfigurationManager.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Wnmp.Programs\MariaDB.cs" />
+    <Compile Include="Wnmp.Programs\PHP.cs" />
+    <Compile Include="Wnmp.Programs\WnmpProgram.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Wnmp.UI\AboutFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wnmp.UI\AboutFrm.Designer.cs">
+      <DependentUpon>AboutFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wnmp.UI\HostToIPFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wnmp.UI\HostToIPFrm.Designer.cs">
+      <DependentUpon>HostToIPFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wnmp.UI\HTTPHeadersFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wnmp.UI\HTTPHeadersFrm.Designer.cs">
+      <DependentUpon>HTTPHeadersFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wnmp.UI\MainFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wnmp.UI\MainFrm.Designer.cs">
+      <DependentUpon>MainFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wnmp.UI\Misc.cs" />
+    <Compile Include="Wnmp.UI\OptionsFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wnmp.UI\OptionsFrm.Designer.cs">
+      <DependentUpon>OptionsFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wnmp.Updater\UpdateProgressFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wnmp.Updater\UpdateProgressFrm.Designer.cs">
+      <DependentUpon>UpdateProgressFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wnmp.Updater\UpdatePromptFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wnmp.Updater\UpdatePromptFrm.Designer.cs">
+      <DependentUpon>UpdatePromptFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wnmp.Updater\Updater.cs" />
+    <Compile Include="Wnmp.Updater\WnmpUpdater.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Wnmp.UI\AboutFrm.resx">
+      <DependentUpon>AboutFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wnmp.UI\HostToIPFrm.resx">
+      <DependentUpon>HostToIPFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wnmp.UI\HTTPHeadersFrm.resx">
+      <DependentUpon>HTTPHeadersFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wnmp.UI\MainFrm.resx">
+      <DependentUpon>MainFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wnmp.UI\OptionsFrm.resx">
+      <DependentUpon>OptionsFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wnmp.Updater\UpdateProgressFrm.resx">
+      <DependentUpon>UpdateProgressFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wnmp.Updater\UpdatePromptFrm.resx">
+      <DependentUpon>UpdatePromptFrm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\bc-csharp\crypto\BouncyCastle.csproj">
+      <Project>{4c235092-820c-4deb-9074-d356fb797d8b}</Project>
+      <Name>BouncyCastle</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
