@@ -49,13 +49,6 @@ namespace Wnmp.Updater
         /// </summary>
         public void CheckForUpdate()
         {
-            try {
-                Dns.GetHostAddresses("getwnmp.org");
-            } catch (Exception) {
-                Log.Error("Couldn't connect to update server.");
-                return;
-            }
-
             if (!ReadUpdateXML()) {
                 Log.Error("Couldn't read update information.");
                 return;

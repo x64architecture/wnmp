@@ -19,6 +19,7 @@
 
 using System;
 using System.Windows.Forms;
+using Wnmp.UI;
 
 namespace Wnmp.Wnmp.UI
 {
@@ -37,6 +38,11 @@ namespace Wnmp.Wnmp.UI
         private void CloseButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void wnmpWebsiteLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Misc.StartProcessAsync("https://wnmp.x64architecture.com");
         }
     }
 }

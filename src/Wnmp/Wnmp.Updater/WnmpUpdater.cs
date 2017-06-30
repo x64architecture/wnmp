@@ -46,7 +46,7 @@ namespace Wnmp.Updater
         public void CheckForUpdates()
         {
             updater.CurrentVersion = new Version(Application.ProductVersion);
-            updater.UpdateInfoURL = new Uri("https://www.getwnmp.org/update.xml");
+            updater.UpdateInfoURL = new Uri("https://wnmp.x64architecture.com/update.xml");
             updater.SaveFileName = Program.StartupPath + "\\Wnmp-Upgrade-Installer.exe";
 
             updater.CheckForUpdate();

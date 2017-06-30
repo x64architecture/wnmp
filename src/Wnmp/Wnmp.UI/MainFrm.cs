@@ -312,12 +312,12 @@ namespace Wnmp.UI
 
         private void WebsiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Misc.StartProcessAsync("https://www.getwnmp.org");
+            Misc.StartProcessAsync("https://wnmp.x64architecture.com");
         }
 
         private void DonateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Misc.StartProcessAsync("https://www.getwnmp.org/contributing");
+            Misc.StartProcessAsync("https://wnmp.x64architecture.com/contributing");
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
