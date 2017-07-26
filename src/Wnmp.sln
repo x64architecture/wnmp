@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wnmp", "Wnmp\Wnmp.csproj", "{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}"
 EndProject
@@ -10,22 +10,37 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 		Signed|Any CPU = Signed|Any CPU
+		Signed|x64 = Signed|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Debug|x64.ActiveCfg = Debug|x64
+		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Debug|x64.Build.0 = Debug|x64
 		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Release|x64.ActiveCfg = Release|x64
+		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Release|x64.Build.0 = Release|x64
 		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Signed|Any CPU.ActiveCfg = Release|Any CPU
 		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Signed|Any CPU.Build.0 = Release|Any CPU
+		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Signed|x64.ActiveCfg = Release|x64
+		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Signed|x64.Build.0 = Release|x64
 		{4C235092-820C-4DEB-9074-D356FB797D8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4C235092-820C-4DEB-9074-D356FB797D8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C235092-820C-4DEB-9074-D356FB797D8B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4C235092-820C-4DEB-9074-D356FB797D8B}.Debug|x64.Build.0 = Debug|Any CPU
 		{4C235092-820C-4DEB-9074-D356FB797D8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C235092-820C-4DEB-9074-D356FB797D8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C235092-820C-4DEB-9074-D356FB797D8B}.Release|x64.ActiveCfg = Release|Any CPU
+		{4C235092-820C-4DEB-9074-D356FB797D8B}.Release|x64.Build.0 = Release|Any CPU
 		{4C235092-820C-4DEB-9074-D356FB797D8B}.Signed|Any CPU.ActiveCfg = Release|Any CPU
 		{4C235092-820C-4DEB-9074-D356FB797D8B}.Signed|Any CPU.Build.0 = Release|Any CPU
+		{4C235092-820C-4DEB-9074-D356FB797D8B}.Signed|x64.ActiveCfg = Release|Any CPU
+		{4C235092-820C-4DEB-9074-D356FB797D8B}.Signed|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -52,7 +52,7 @@ namespace Wnmp.Programs
             process.StartInfo.WorkingDirectory = Program.StartupPath;
             process.StartInfo.CreateNoWindow = true;
             process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            process.StartInfo.FileName = ExeFileName;
+            process.StartInfo.FileName = exe;
             process.StartInfo.Arguments = args;
             process.Start();
             if (waitforexit)

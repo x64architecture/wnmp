@@ -1,10 +1,10 @@
 ; Wnmp iss
 #define MyAppName "Wnmp"
-#define MyAppVersion "2.2.5"
+#define MyAppVersion "3.0.0"
 #define MyAppPublisher "Kurt Cancemi"
-#define MyAppURL "https://www.getwnmp.org"
+#define MyAppURL "https://wnmp.x64architecture.com"
 #define MyAppExeName "Wnmp.exe"
-#define Year "2016"
+#define Year "2017"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -29,7 +29,7 @@ InfoBeforeFile=
 InfoAfterFile=contrib\postinstall.txt
 OutputDir=../WnmpOutput
 OutputBaseFilename=Wnmp-{#MyAppVersion}
-SetupIconFile=../src/Resources/logo.ico
+SetupIconFile=../src/Wnmp/logo.ico
 Compression=lzma2
 LZMADictionarySize=24000
 LZMANumBlockThreads=8
@@ -46,9 +46,6 @@ Name: english; MessagesFile: compiler:Default.isl
 Name: desktopicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; Flags: unchecked
 
 [Files]
-Source: bin\x64\libicuid.dll; DestDir: {app}\bin\x64; Flags: ignoreversion
-Source: bin\x86\libicuid.dll; DestDir: {app}\bin\x86; Flags: ignoreversion
-Source: bin\CertGen.exe; DestDir: {app}\bin; Flags: ignoreversion
 Source: conf\fastcgi.conf; DestDir: {app}\conf; Flags: ignoreversion
 Source: conf\fastcgi_params; DestDir: {app}\conf; Flags: ignoreversion
 Source: conf\koi-utf; DestDir: {app}\conf; Flags: ignoreversion
@@ -90,7 +87,8 @@ Source: temp\*; DestDir: {app}\temp; Flags: ignoreversion recursesubdirs createa
 Source: changelog.txt; DestDir: {app}; Flags: ignoreversion
 Source: nginx.exe; DestDir: {app}; Flags: ignoreversion
 Source: readme.txt; DestDir: {app}; Flags: ignoreversion
-Source: "vc_redist.x86.exe"; DestDir: {tmp}; Flags: ignoreversion deleteafterinstall
+Source: "vc_redist.x64.exe"; DestDir: {tmp}; Flags: ignoreversion deleteafterinstall
+Source: BouncyCastle.dll; DestDir: {app}; Flags: ignoreversion
 Source: Wnmp.exe; DestDir: {app}; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
@@ -101,4 +99,4 @@ Name: {commondesktop}\{#MyAppName}; Filename: {app}\{#MyAppExeName}; Tasks: desk
 
 [Run]
 Filename: {app}\{#MyAppExeName}; Description: {cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}; Flags: nowait postinstall shellexec
-Filename: "{tmp}\vc_redist.x86.exe"; Parameters: "/install /passive /norestart"
+Filename: "{tmp}\vc_redist.x64.exe"; Parameters: "/install /passive /norestart"

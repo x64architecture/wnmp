@@ -6,4 +6,4 @@ file that comes with this package.
 
 Also check the changelog at:
 
- https://www.getwnmp.org/CHANGELOG
+ https://wnmp.x64architecture.com/CHANGELOG

@@ -1,6 +1,6 @@
-Copyright (c) 2012 - 2016, Kurt Cancemi (kurt@x64architecture.com)
-Donations are appreciated no matter if big or small via Amazon or Bitcoin.
-https://www.getwnmp.org/donate/
+Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+Donations are appreciated no matter if big or small via Amazon.
+https://wnmp.x64architecture.com/donate/
 
 Wnmp is an easy Nginx, MariaDB and PHP environment for Windows.
 

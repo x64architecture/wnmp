@@ -17,9 +17,6 @@
     <Setting Name="TextEditor" Type="System.String" Scope="User">
       <Value Profile="(Default)">notepad.exe</Value>
     </Setting>
-    <Setting Name="FirstLaunch" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="MinimizeInsteadOfClosing" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>

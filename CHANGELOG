@@ -1,23 +1,33 @@
-Wnmp 3.0.0: ?? Mar 2017
+Wnmp 3.0.0: 25 Jul 2017
 =======================
 - Wnmp
     *) MAJOR: Wnmp will now require a 64-bit version of Windows.
+	*) New homepage https://wnmp.x64architecture.com
+	*) All binaries signed with my certificate:
+	   Thumbprint: ‎1c 91 c7 af 64 44 6d 0c b2 47 32 db 2a 9f 1f b8 90 21 40 64
 
 - Wnmp Control Panel 5.0.0
 	*) Various improvements
     *) Rewritten to be more maintainable
+	*) PHP now starts on a port configured with the SO_REUSEPORT
+	   option so the php processes will liston on the same port
+	   which should resolve various hangs
 
 - Nginx
-    *)
+    *) Updated to 1.13.4
+	*) Temporarily switched to OpenSSL 1.1.0f
+	*) Now compiled as a 64-bit binary
 
 - MariaDB
-    *)
+    *) Updated to 10.2.7
+	*) Now compiled as a 64-bit binary
 
 - PHP
-    *)
+    *) Updated to 7.1.7
+	*) Now compiled as a 64-bit binary
 
 - phpMyAdmin
-    *)
+    *) Updated to 4.7.3
 
 Wnmp 2.2.5: 11 Jul 2016
 =======================

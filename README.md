@@ -5,32 +5,32 @@ Wnmp values security, stability and user friendliness.
 
 ### Current Wnmp Versions:
 
-  * Wnmp 2.2.5
-  * Wnmp Control Panel 4.0.3
+  * Wnmp 3.0.0
+  * Wnmp Control Panel 5.0.0
 
 ----
 
-### Versions of the software(Updated: July 11th 2016):
+### Versions of the software(Updated: July 25th 2017):
 
-  * Nginx 1.11.2
+  * Nginx 1.13.4
 
-  * MariaDB 10.1.14
+  * MariaDB 10.2.7
 
-  * PHP 7.0.8 (Non Thread Safe + FastCGI)
+  * PHP 7.1.7 (Non Thread Safe + FastCGI)
 
-  * phpMyAdmin 4.6.3
+  * phpMyAdmin 4.7.3
   
 ----
 
 ### Prerequisites
-  * Windows Vista/Server 2008 or higher version
+  * Windows Vista/Server 2008 x64 or higher version
   * Requires Administator Rights
-  * [Visual Studio C++ 2015 (x86) Redistributable](https://www.microsoft.com/en-us/download/details.aspx?id=48145)
+  * [Visual Studio C++ 2017 (x64) Redistributable](https://go.microsoft.com/fwlink/?LinkId=746572)
   * [.NET Framework 4](https://www.microsoft.com/en-us/download/details.aspx?id=17851)
 
 ### How to Install
 
-  1. To install download the latest version of Wnmp [here][1] (latest version 2.2.5)
+  1. To install download the latest version of Wnmp [here][1] (latest version 3.0.0)
   2. Then open *Wnmp.exe* and install it anywhere.
   3. And then run *Wnmp.exe*(which is located in the Wnmp folder)
   4. And then press the Start all button.
@@ -66,7 +66,7 @@ If you do please tell us your suggestions [here][10].
 
 ### FAQ
 
-###### [View the FAQ on getwnmp.org][6]
+###### [View the FAQ on wnmp.x64architecture.com][6]
 
 
 [1]: https://wnmp.x64architecture.com/downloads
