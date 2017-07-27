@@ -20,6 +20,7 @@
 using System;
 using System.Drawing;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Wnmp.Programs;
 using Wnmp.Updater;
@@ -76,7 +77,31 @@ namespace Wnmp.UI
                 ConfDir = Program.StartupPath + "\\php\\",
                 LogDir = Program.StartupPath + "\\php\\logs\\"
             };
-            //SetCurlCAPath();
+            SetCurlCAPath();
+        }
+
+        private void SetCurlCAPath()
+        {
+            string phpini = Program.StartupPath + "/php/php.ini";
+            if (!File.Exists(phpini))
+                return;
+
+            string[] file = File.ReadAllLines(phpini);
+            for (int i = 0; i < file.Length; i++) {
+                if (file[i].Contains("curl.cainfo") == false)
+                    continue;
+
+                Regex reg = new Regex("\".*?\"");
+                string orginal = reg.Match(file[i]).ToString();
+                if (orginal == String.Empty)
+                    continue;
+                string replace = "\"" + Program.StartupPath + @"\contrib\cacert.pem" + "\"";
+                file[i] = file[i].Replace(orginal, replace);
+            }
+            using (var sw = new StreamWriter(phpini)) {
+                foreach (var line in file)
+                    sw.WriteLine(line);
+            }
         }
 
         /// <summary>
