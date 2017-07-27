@@ -127,16 +127,25 @@ namespace Wnmp.UI
                 Misc.OpenFileEditor(Nginx.ConfDir + e.ClickedItem.ToString());
             };
             NginxLogContextMenuStrip = new ContextMenuStrip();
+            NginxLogContextMenuStrip.ItemClicked += (s, e) => {
+                Misc.OpenFileEditor(Nginx.LogDir + e.ClickedItem.ToString());
+            };
             MariaDBConfigContextMenuStrip = new ContextMenuStrip();
             MariaDBConfigContextMenuStrip.ItemClicked += (s, e) => {
                 Misc.OpenFileEditor(MariaDB.ConfDir + e.ClickedItem.ToString());
             };
             MariaDBLogContextMenuStrip = new ContextMenuStrip();
+            MariaDBLogContextMenuStrip.ItemClicked += (s, e) => {
+                Misc.OpenFileEditor(MariaDB.LogDir + e.ClickedItem.ToString());
+            };
             PHPConfigContextMenuStrip = new ContextMenuStrip();
             PHPConfigContextMenuStrip.ItemClicked += (s, e) => {
                 Misc.OpenFileEditor(PHP.ConfDir + e.ClickedItem.ToString());
             };
             PHPLogContextMenuStrip = new ContextMenuStrip();
+            PHPLogContextMenuStrip.ItemClicked += (s, e) => {
+                Misc.OpenFileEditor(PHP.LogDir + e.ClickedItem.ToString());
+            };
             DirFiles(Nginx.ConfDir, "*.conf", NginxConfigContextMenuStrip);
             DirFiles(MariaDB.ConfDir, "my.ini", MariaDBConfigContextMenuStrip);
             DirFiles(PHP.ConfDir, "php.ini", PHPConfigContextMenuStrip);
