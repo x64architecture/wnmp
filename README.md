@@ -3,14 +3,13 @@ Windows, Nginx, MariaDB And PHP (Wnmp)
 Wnmp values security, stability and user friendliness.
 ------------------------------------------------------
 
-### Current Wnmp Versions:
+### Current Wnmp Version:
 
-  * Wnmp 3.0.0
-  * Wnmp Control Panel 5.0.0
+  * Wnmp 3.0.1
 
 ----
 
-### Versions of the software(Updated: July 25th 2017):
+### Versions of the software(Updated: July 27th 2017):
 
   * Nginx 1.13.4
 
@@ -30,7 +29,7 @@ Wnmp values security, stability and user friendliness.
 
 ### How to Install
 
-  1. To install download the latest version of Wnmp [here][1] (latest version 3.0.0)
+  1. To install download the latest version of Wnmp [here][1] (latest version 3.0.1)
   2. Then open *Wnmp.exe* and install it anywhere.
   3. And then run *Wnmp.exe*(which is located in the Wnmp folder)
   4. And then press the Start all button.
