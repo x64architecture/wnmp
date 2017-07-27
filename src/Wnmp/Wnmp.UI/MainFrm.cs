@@ -67,7 +67,6 @@ namespace Wnmp.UI
                 ConfDir = Program.StartupPath + "\\mariadb\\",
                 LogDir = Program.StartupPath + "\\mariadb\\data\\"
             };
-            MariaDB.InstallService();
         }
 
         public void SetupPHP()
@@ -368,7 +367,6 @@ namespace Wnmp.UI
 
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MariaDB.RemoveService();
             Properties.Settings.Default.Save();
         }
     }

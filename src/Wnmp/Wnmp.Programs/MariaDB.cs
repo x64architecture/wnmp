@@ -27,18 +27,22 @@ namespace Wnmp.Programs
 {
     class MariaDBProgram : WnmpProgram
     {
-        private readonly ServiceController MariaDBController = new ServiceController();
+        private const string ServiceName = "Wnmp-MariaDB";
+        private ServiceController MariaDBController = new ServiceController();
 
         public MariaDBProgram(string exeFile) : base(exeFile)
         {
             /* Set MariaDB service details */
             MariaDBController.MachineName = Environment.MachineName;
-            MariaDBController.ServiceName = "Wnmp-MariaDB";
+            MariaDBController.ServiceName = ServiceName;
         }
 
         public void RemoveService()
         {
-            StartProcess("cmd.exe", StopArgs);
+            try {
+                MariaDBController.Close();
+                StartProcess("cmd.exe", StopArgs, true);
+            } catch (Exception) { }
         }
 
         public void InstallService()
@@ -49,14 +53,14 @@ namespace Wnmp.Programs
             }
             if (ServiceExists())
                 RemoveService();
-            StartProcess(ExeFileName, StartArgs);
+            StartProcess(ExeFileName, StartArgs, true);
         }
 
         public bool ServiceExists()
         {
             ServiceController[] services = ServiceController.GetServices();
             for (var i = 0; i < services.Length; i++) {
-                if (services[i].ServiceName == "Wnmp-MariaDB")
+                if (services[i].ServiceName == ServiceName)
                     return true;
             }
             return false;
@@ -73,24 +77,34 @@ namespace Wnmp.Programs
 
         public override void Start()
         {
-            MariaDBController.Start();
-            Log.Notice("Started ", ProgLogSection);
+            try {
+                InstallService();
+                MariaDBController.Start();
+                Log.Notice("Started", ProgLogSection);
+            } catch (Exception ex) {
+                Log.Error("Start():" + ex.Message, ProgLogSection);
+            }
         }
 
         public override void Stop()
         {
             try {
                 MariaDBController.Stop();
-                Log.Notice("Stopped ", ProgLogSection);
+                RemoveService();
+                Log.Notice("Stopped", ProgLogSection);
             } catch (Exception ex) {
-                Log.Error("Stop(): " + ex.Message, ProgLogSection);
+                Log.Error("Stop():" + ex.Message, ProgLogSection);
             }
         }
 
         public override bool IsRunning()
         {
-            MariaDBController.Refresh();
-            return MariaDBController.Status == ServiceControllerStatus.Running;
+            try {
+                MariaDBController.Refresh();
+                return MariaDBController.Status == ServiceControllerStatus.Running;
+            } catch (Exception) {
+                return false;
+            }
         }
     }
 }
