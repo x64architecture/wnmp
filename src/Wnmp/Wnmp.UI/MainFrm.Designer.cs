@@ -568,6 +568,7 @@
             this.Name = "MainFrm";
             this.Text = "Wnmp Control Panel";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrm_FormClosing);
+            this.Resize += new System.EventHandler(this.MainFrm_Resize);
             this.WnmpMenuStrip.ResumeLayout(false);
             this.WnmpMenuStrip.PerformLayout();
             this.applicationsGroupBox.ResumeLayout(false);

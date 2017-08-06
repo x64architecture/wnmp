@@ -111,12 +111,12 @@ namespace Wnmp.UI
             } else {
                 mainForm.SetupCustomPHP();
             }
-            this.Close();
+            Close();
         }
 
         private void Cancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         /* Editor releated functions */

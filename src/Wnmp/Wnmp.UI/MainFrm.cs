@@ -47,6 +47,8 @@ namespace Wnmp.UI
         ContextMenuStrip MariaDBConfigContextMenuStrip, MariaDBLogContextMenuStrip;
         ContextMenuStrip PHPConfigContextMenuStrip, PHPLogContextMenuStrip;
         private WnmpUpdater updater;
+        private NotifyIcon ni = new NotifyIcon();
+        private bool visiblecore = true;
 
         private void SetupNginx()
         {
@@ -181,8 +183,68 @@ namespace Wnmp.UI
             certgen.GenerateSelfSignedCertificate("Wnmp", 2048, keyFile, certFile);
         }
 
+        private MenuItem CreateWnmpProgramMenuItem(WnmpProgram prog)
+        {
+            MenuItem item = new MenuItem();
+
+            item.Text = Log.LogSectionToString(prog.ProgLogSection);
+            MenuItem start = item.MenuItems.Add("Start");
+            start.Click += (s, e) => { prog.Start(); };
+            MenuItem stop = item.MenuItems.Add("Stop");
+            stop.Click += (s, e) => { prog.Stop(); };
+            MenuItem restart = item.MenuItems.Add("Restart");
+            restart.Click += (s, e) => { prog.Restart(); };
+
+            return item;
+        }
+
+        private void SetupTrayMenu()
+        {
+            MenuItem controlpanel = new MenuItem("Wnmp Control Panel");
+            controlpanel.Click += (s, e) => {
+                visiblecore = true;
+                base.SetVisibleCore(true);
+                WindowState = FormWindowState.Normal;
+                Show();
+            };
+            ContextMenu cm = new ContextMenu();
+            cm.MenuItems.Add(controlpanel);
+            cm.MenuItems.Add("-");
+            cm.MenuItems.Add(CreateWnmpProgramMenuItem(Nginx));
+            cm.MenuItems.Add(CreateWnmpProgramMenuItem(MariaDB));
+            cm.MenuItems.Add(CreateWnmpProgramMenuItem(PHP));
+            cm.MenuItems.Add("-");
+            MenuItem exit = new MenuItem("Exit");
+            exit.Click += (s, e) => { Application.Exit(); };
+            cm.MenuItems.Add(exit);
+            cm.MenuItems.Add("-");
+            ni.ContextMenu = cm;
+            ni.Icon = Properties.Resources.logo;
+            ni.Click += (s, e) => {
+                visiblecore = true;
+                base.SetVisibleCore(true);
+                WindowState = FormWindowState.Normal;
+                Show();
+            };
+            ni.Visible = true;
+        }
+
+        protected override void SetVisibleCore(bool value)
+        {
+            if (visiblecore == false) {
+                value = false;
+                if (!IsHandleCreated)
+                    CreateHandle();
+            }
+            base.SetVisibleCore(value);
+        }
+
         public MainFrm()
         {
+            if (Properties.Settings.Default.StartMinimizedToTray) {
+                Visible = false;
+                Hide();
+            }
             InitializeComponent();
             Log.SetLogComponent(logRichTextBox);
             Log.Notice("Initializing Control Panel");
@@ -192,8 +254,26 @@ namespace Wnmp.UI
             SetupMariaDB();
             SetupPHP();
             SetupConfigAndLogMenuStrips();
+            SetupTrayMenu();
             updater = new WnmpUpdater(this);
             CreateWnmpCertificate();
+
+            if (Properties.Settings.Default.StartMinimizedToTray) {
+                visiblecore = false;
+                base.SetVisibleCore(false);
+            }
+
+            if (Properties.Settings.Default.StartNginxOnLaunch) {
+                Nginx.Start();
+            }
+
+            if (Properties.Settings.Default.StartMariaDBOnLaunch) {
+                MariaDB.Start();
+            }
+
+            if (Properties.Settings.Default.StartPHPOnLaunch) {
+                PHP.Start();
+            }
         }
 
         /* Menu */
@@ -401,7 +481,21 @@ namespace Wnmp.UI
 
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Properties.Settings.Default.Save();
+            if (e.CloseReason == CloseReason.UserClosing && Properties.Settings.Default.MinimizeInsteadOfClosing) {
+                e.Cancel = true;
+                Hide();
+            } else {
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        private void MainFrm_Resize(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.MinimizeToTray == false)
+                return;
+
+            if (WindowState == FormWindowState.Minimized)
+                Hide();
         }
     }
 }
