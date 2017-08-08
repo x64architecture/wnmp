@@ -160,10 +160,11 @@ namespace Wnmp.UI
         public void SetupCustomPHP()
         {
             string phpVersion = Properties.Settings.Default.PHPVersion;
-            PHP.ExeFileName = Program.StartupPath + "/php/phpbins/" + phpVersion + "/php-cgi.exe";
-            PHP.ProgLogSection = Log.LogSection.PHP;
-            PHP.ConfDir = "/php/phpbins/" + phpVersion + "/";
-            PHP.LogDir = "/php/phpbins/" + phpVersion + "/logs/";
+            PHP = new PHPProgram(Program.StartupPath + "\\php\\phpbins\\" + phpVersion + "\\php-cgi.exe") {
+                ProgLogSection = Log.LogSection.PHP,
+                ConfDir = Program.StartupPath + "\\php\\phpbins\\" + phpVersion + "\\",
+                LogDir = Program.StartupPath + "\\php\\phpbins\\" + phpVersion + "\\logs\\",
+            };
         }
 
         private void CreateWnmpCertificate()

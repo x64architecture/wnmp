@@ -145,3 +145,6 @@ UpgradeLog*.htm
 
 # CodeRush
 .cr/
+
+/build
+/WnmpOutput
