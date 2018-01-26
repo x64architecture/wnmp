@@ -39,7 +39,7 @@ Hope Author could come back soon.
 
 ### How to Install
 
-  1. To install download the latest version of Wnmp [here][1] (latest version 3.1.0)
+  1. To install download the latest version of Wnmp [here][12] (latest version 3.1.0)
   2. Then open *Wnmp.exe* and install it anywhere.
   3. And then run *Wnmp.exe*(which is located in the Wnmp folder)
   4. And then press the Start all button.
