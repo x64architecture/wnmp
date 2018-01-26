@@ -3,13 +3,15 @@ Windows, Nginx, MariaDB And PHP (Wnmp)
 Wnmp values security, stability and user friendliness.
 ------------------------------------------------------
 
+
 2018/01/26
-
+------------------------------------------------------
 The Author HomePage has been down.I will fix some bugs for this project.
-
+------------------------------------------------------
 Cover by Nash-x9.
-
+------------------------------------------------------
 Hope Author could come back soon.
+------------------------------------------------------
 
 ### Current Wnmp Version:
 
