@@ -253,7 +253,16 @@ namespace Wnmp.UI
             Log.Notice("Wnmp Directory: " + Program.StartupPath);
             SetupNginx();
             SetupMariaDB();
-            SetupPHP();
+            /*Updated By Nash-x9:Fixd when startup,php will start with default version.*/
+            if (Properties.Settings.Default.PHPVersion == "Default")
+            {
+                SetupPHP();
+            }
+            else
+            {
+                SetupCustomPHP();
+            }
+            /*Updated End*/
             SetupConfigAndLogMenuStrips();
             SetupTrayMenu();
             updater = new WnmpUpdater(this);
