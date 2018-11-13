@@ -1,3 +1,18 @@
+Wnmp 3.2.0: 12 Nov 2018
+=======================
+- Wnmp Control Panel
+    *) Project has been revived!
+    *) Fixed #101
+
+- Nginx
+    *) Updated to 1.15.6
+
+- MariaDB
+    *) Updated to 10.3.10
+
+- PHP
+    *) Updated to 7.2.12
+
 Wnmp 3.1.0: 06 Aug 2017
 =======================
 - Wnmp Control Panel

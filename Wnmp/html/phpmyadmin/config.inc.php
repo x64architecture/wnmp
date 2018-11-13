@@ -39,9 +39,9 @@ $cfg['Servers'][$i]['AllowNoPassword'] = false;
  */
 
 /* User used to manipulate with storage */
-$cfg['Servers'][$i]['controlhost'] = '';
-$cfg['Servers'][$i]['controluser'] = 'phpmyadmin';
-$cfg['Servers'][$i]['controlpass'] = 'pmapass';
+//$cfg['Servers'][$i]['controlhost'] = '';
+//$cfg['Servers'][$i]['controluser'] = 'phpmyadmin';
+//$cfg['Servers'][$i]['controlpass'] = 'pmapass';
 
 /* Storage database and tables */
 $cfg['Servers'][$i]['pmadb'] = 'phpmyadmin';

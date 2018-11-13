@@ -1,10 +1,10 @@
 ; Wnmp iss
 #define MyAppName "Wnmp"
-#define MyAppVersion "3.1.0"
+#define MyAppVersion "3.2.0"
 #define MyAppPublisher "Kurt Cancemi"
 #define MyAppURL "https://wnmp.x64architecture.com"
 #define MyAppExeName "Wnmp.exe"
-#define Year "2017"
+#define Year "2018"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -13,6 +13,7 @@
 AppId={{44CF85C5-C9D2-435F-941B-75597AA9A6FB}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
+SignTool=tools
 ;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}

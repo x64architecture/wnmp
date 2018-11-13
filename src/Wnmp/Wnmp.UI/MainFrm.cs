@@ -253,7 +253,10 @@ namespace Wnmp.UI
             Log.Notice("Wnmp Directory: " + Program.StartupPath);
             SetupNginx();
             SetupMariaDB();
-            SetupPHP();
+            if (Properties.Settings.Default.PHPVersion == "Default")
+                SetupPHP();
+            else
+                SetupCustomPHP();
             SetupConfigAndLogMenuStrips();
             SetupTrayMenu();
             updater = new WnmpUpdater(this);

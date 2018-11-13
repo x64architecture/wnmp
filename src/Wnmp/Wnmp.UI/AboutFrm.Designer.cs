@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutFrm));
             this.AboutTabCtrl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.wnmpWebsiteLabel = new System.Windows.Forms.LinkLabel();
             this.copyrightLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,7 +41,6 @@
             this.License = new System.Windows.Forms.TabPage();
             this.licenseRichTextBox = new System.Windows.Forms.RichTextBox();
             this.CloseButton = new System.Windows.Forms.Button();
-            this.wnmpWebsiteLabel = new System.Windows.Forms.LinkLabel();
             this.AboutTabCtrl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -75,6 +75,17 @@
             this.tabPage1.Text = "Version";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // wnmpWebsiteLabel
+            // 
+            this.wnmpWebsiteLabel.AutoSize = true;
+            this.wnmpWebsiteLabel.Location = new System.Drawing.Point(214, 197);
+            this.wnmpWebsiteLabel.Name = "wnmpWebsiteLabel";
+            this.wnmpWebsiteLabel.Size = new System.Drawing.Size(246, 20);
+            this.wnmpWebsiteLabel.TabIndex = 6;
+            this.wnmpWebsiteLabel.TabStop = true;
+            this.wnmpWebsiteLabel.Text = "https://wnmp.x64architecture.com";
+            this.wnmpWebsiteLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.wnmpWebsiteLabel_LinkClicked);
+            // 
             // copyrightLabel
             // 
             this.copyrightLabel.AutoSize = true;
@@ -83,7 +94,7 @@
             this.copyrightLabel.Name = "copyrightLabel";
             this.copyrightLabel.Size = new System.Drawing.Size(287, 18);
             this.copyrightLabel.TabIndex = 4;
-            this.copyrightLabel.Text = "Copyright (c) 2012 - 2017 by Kurt Cancemi";
+            this.copyrightLabel.Text = "Copyright (c) 2012 - 2018 by Kurt Cancemi";
             // 
             // pictureBox1
             // 
@@ -170,17 +181,6 @@
             this.CloseButton.Text = "Close";
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
-            // 
-            // wnmpWebsiteLabel
-            // 
-            this.wnmpWebsiteLabel.AutoSize = true;
-            this.wnmpWebsiteLabel.Location = new System.Drawing.Point(214, 197);
-            this.wnmpWebsiteLabel.Name = "wnmpWebsiteLabel";
-            this.wnmpWebsiteLabel.Size = new System.Drawing.Size(246, 20);
-            this.wnmpWebsiteLabel.TabIndex = 6;
-            this.wnmpWebsiteLabel.TabStop = true;
-            this.wnmpWebsiteLabel.Text = "https://wnmp.x64architecture.com";
-            this.wnmpWebsiteLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.wnmpWebsiteLabel_LinkClicked);
             // 
             // AboutFrm
             // 
