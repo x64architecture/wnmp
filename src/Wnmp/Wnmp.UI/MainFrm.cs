@@ -93,12 +93,12 @@ namespace Wnmp.UI
                 if (file[i].Contains("curl.cainfo") == false)
                     continue;
 
-                Regex reg = new Regex("\".*?\"");
+                Regex reg = new Regex("(curl\\.cainfo).*?(=)");
                 string orginal = reg.Match(file[i]).ToString();
                 if (orginal == String.Empty)
                     continue;
-                string replace = "\"" + Program.StartupPath + @"\contrib\cacert.pem" + "\"";
-                file[i] = file[i].Replace(orginal, replace);
+                string replace = "curl.cainfo = " + "\"" + Program.StartupPath + @"\contrib\cacert.pem" + "\"";
+                file[i] = replace;
             }
             using (var sw = new StreamWriter(phpini)) {
                 foreach (var line in file)

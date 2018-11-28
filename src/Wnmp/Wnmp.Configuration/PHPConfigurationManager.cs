@@ -64,10 +64,10 @@ namespace Wnmp.Configuration
                         continue;
                 }
                 // (zend_extension|extension)\s*\=\s*["]?(.*?\.dll)
-                var m = Regex.Match(str, @"(zend_extension|extension)\s*\=\s*[""]?(.*?\.dll)");
+                var m = Regex.Match(str, @"(zend_extension|extension)(=)((?:[a-z][a-z0-9_]*))");
                 if (m.Success) {
                     PHPExtension Ext = new PHPExtension() {
-                        Name = m.Groups[2].Value,
+                        Name = m.Groups[3].Value,
                         ZendExtension = m.Groups[1].Value == "zend_extension",
                         Enabled = str[0] != ';',
                         LineNum = linenum,
