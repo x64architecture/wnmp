@@ -1,3 +1,11 @@
+Wnmp 3.2.1: 28 Nov 2018
+=======================
+- Wnmp Control Panel
+    *) Fixed #107
+
+- Nginx
+    *) Updated to 1.15.7
+
 Wnmp 3.2.0: 12 Nov 2018
 =======================
 - Wnmp Control Panel

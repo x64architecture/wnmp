@@ -1,6 +1,6 @@
 ; Wnmp iss
 #define MyAppName "Wnmp"
-#define MyAppVersion "3.2.0"
+#define MyAppVersion "3.2.1"
 #define MyAppPublisher "Kurt Cancemi"
 #define MyAppURL "https://wnmp.x64architecture.com"
 #define MyAppExeName "Wnmp.exe"
@@ -62,27 +62,10 @@ Source: docs\*; DestDir: {app}\docs; Flags: ignoreversion recursesubdirs createa
 Source: html\*; DestDir: {app}\html; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: html\index.php; DestDir: {app}\html; Flags: ignoreversion onlyifdoesntexist
 Source: logs\*; Excludes: ".gitignore"; DestDir: {app}\logs; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: mariadb\bin\aria_dump_log.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\aria_pack.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\aria_read_log.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\echo.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\mysql.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\mysql_config.pl; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\mysql_convert_table_format.pl; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\mysql_secure_installation.pl; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\mysql_upgrade.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\mysqladmin.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\mysqlbinlog.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\mysqlcheck.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\mysqld.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\mysqld_multi.pl; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\mysqldump.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\mysqldumpslow.pl; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\mysqlhotcopy.pl; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\bin\replace.exe; DestDir: {app}\mariadb\bin; Flags: ignoreversion
+Source: mariadb\bin\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\bin; Flags: ignoreversion
 Source: mariadb\data\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\data; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: mariadb\include\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\include; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: mariadb\share\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\share; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: mariadb\my.ini; DestDir: {app}\mariadb; Flags: ignoreversion
 Source: php\*; DestDir: {app}\php; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: temp\*; DestDir: {app}\temp; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: changelog.txt; DestDir: {app}; Flags: ignoreversion
