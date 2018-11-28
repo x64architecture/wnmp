@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -43,7 +44,7 @@ namespace Wnmp.Programs
             processName = Path.GetFileNameWithoutExtension(ExeFileName);
         }
 
-        protected void StartProcess(string exe, string args, bool waitforexit = false)
+        protected void StartProcess(string exe, string args, bool waitforexit = false, Dictionary<string, string> envvariables = null)
         {
             Process process = new Process();
             process.StartInfo.RedirectStandardError = true;
@@ -54,6 +55,11 @@ namespace Wnmp.Programs
             process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             process.StartInfo.FileName = exe;
             process.StartInfo.Arguments = args;
+            if (envvariables != null)
+            {
+                foreach (var v in envvariables)
+                    process.StartInfo.EnvironmentVariables.Add(v.Key, v.Value);
+            }
             process.Start();
             if (waitforexit)
                 process.WaitForExit();
@@ -93,9 +99,11 @@ namespace Wnmp.Programs
             Log.Notice("Stopped", ProgLogSection);
         }
 
-        public void Restart()
+        public virtual void Restart()
         {
+
             Stop();
+            Thread.Sleep(1000);
             Start();
             Log.Notice("Restarted", ProgLogSection);
         }

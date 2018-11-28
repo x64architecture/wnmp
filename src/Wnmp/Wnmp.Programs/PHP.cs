@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 
@@ -56,14 +57,23 @@ namespace Wnmp.Programs
             sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             sock.Bind(new IPEndPoint(IPAddress.Any, port));
             sock.Listen(16384);
+            var env_vars = new Dictionary<string, string>
+            {
+                { "PHP_FCGI_MAX_REQUESTS", "0" }
+            };
 
-            try {
-                for (var i = 1; i <= ProcessCount; i++) {
-                    StartProcess(ExeFileName, $"-b localhost:{port} -c {phpini}");
+            try
+            {
+                for (var i = 1; i <= ProcessCount; i++)
+                {
+
+                    StartProcess(ExeFileName, $"-b localhost:{port} -c {phpini}", false, env_vars);
                     Log.Notice("Starting PHP " + i + "/" + ProcessCount, ProgLogSection);
                 }
                 Log.Notice("PHP started", ProgLogSection);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 Log.Error("StartPHP(): " + ex.Message, ProgLogSection);
             }
         }
