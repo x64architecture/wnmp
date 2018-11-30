@@ -5,13 +5,13 @@ Wnmp values security, stability and user friendliness.
 
 ### Current Wnmp Version:
 
-  * Wnmp 3.2.0
+  * Wnmp 3.2.1
 
 ----
 
-### Versions of the software(Updated: November 12th 2018):
+### Versions of the software(Updated: November 28th 2018):
 
-  * Nginx 1.15.6
+  * Nginx 1.15.7
 
   * MariaDB 10.3.10
 
@@ -25,11 +25,11 @@ Wnmp values security, stability and user friendliness.
   * Windows Vista/Server 2008 x64 or higher version
   * Requires Administator Rights
   * [Visual Studio C++ 2017 (x64) Redistributable](https://go.microsoft.com/fwlink/?LinkId=746572)
-  * [.NET Framework 4](https://www.microsoft.com/en-us/download/details.aspx?id=17851)
+  * [.NET Framework 4.6](https://www.microsoft.com/en-us/download/details.aspx?id=48130)
 
 ### How to Install
 
-  1. To install download the latest version of Wnmp [here][1] (latest version 3.2.0)
+  1. To install download the latest version of Wnmp [here][1] (latest version 3.2.1)
   2. Then open *Wnmp.exe* and install it anywhere.
   3. And then run *Wnmp.exe*(which is located in the Wnmp folder)
   4. And then press the Start all button.
@@ -70,7 +70,7 @@ If you do please tell us your suggestions [here][10].
 
 [1]: https://wnmp.x64architecture.com/downloads
 [2]: https://wnmp.x64architecture.com/donate
-[4]: https://s0.wp.com/imgpress?url=http%3A%2F%2Fs1.softpedia-static.com/base_img/softpedia_free_award_f.gif
+[4]: https://s1.softpedia-static.com/_img/sp100free.png?1
 [5]: http://www.softpedia.com/get/Internet/Servers/Server-Tools/Kurt-Wnmp.shtml
 [6]: https://wnmp.x64architecture.com/faq
 [7]: https://groups.google.com/forum/#!forum/wnmp-users
