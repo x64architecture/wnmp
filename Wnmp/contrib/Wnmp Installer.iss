@@ -1,10 +1,10 @@
 ; Wnmp iss
 #define MyAppName "Wnmp"
-#define MyAppVersion "3.2.1"
+#define MyAppVersion "3.2.2"
 #define MyAppPublisher "Kurt Cancemi"
 #define MyAppURL "https://wnmp.x64architecture.com"
 #define MyAppExeName "Wnmp.exe"
-#define Year "2018"
+#define Year "2019"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -84,3 +84,4 @@ Name: {commondesktop}\{#MyAppName}; Filename: {app}\{#MyAppExeName}; Tasks: desk
 [Run]
 Filename: {app}\{#MyAppExeName}; Description: {cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}; Flags: nowait postinstall shellexec
 Filename: "{tmp}\vc_redist.x64.exe"; Parameters: "/install /passive /norestart"
+Filename: iexplore.exe; Parameters: "https://wnmp.x64architecture.com"; Verb: open; Flags: shellexec runasoriginaluser

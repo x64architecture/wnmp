@@ -1,3 +1,15 @@
+Wnmp 3.2.2: 26 Jan 2019
+=======================
+- Nginx
+    *) Updated to 1.15.8
+
+- MariaDB
+    *) Updated to 10.3.12
+
+- PHP
+    *) Updated to 7.3.1
+
+
 Wnmp 3.2.1: 28 Nov 2018
 =======================
 - Wnmp Control Panel
