@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Wnmp]]></title>
-  <link href="https://www.getwnmp.org/atom.xml" rel="self"/>
-  <link href="https://www.getwnmp.org/"/>
-  <updated>2019-01-23T19:09:01-05:00</updated>
-  <id>https://www.getwnmp.org/</id>
+  <link href="https://wnmp.x64architecture.com/atom.xml" rel="self"/>
+  <link href="https://wnmp.x64architecture.com/"/>
+  <updated>2019-01-29T19:46:43-05:00</updated>
+  <id>https://wnmp.x64architecture.com/</id>
   <author>
     <name><![CDATA[Kurt Cancemi]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Dummy Post]]></title>
-    <link href="https://www.getwnmp.org/blog/2015/11/15/dummy-post/"/>
+    <link href="https://wnmp.x64architecture.com/blog/2015/11/15/dummy-post/"/>
     <updated>2015-11-15T13:30:47-05:00</updated>
-    <id>https://www.getwnmp.org/blog/2015/11/15/dummy-post</id>
+    <id>https://wnmp.x64architecture.com/blog/2015/11/15/dummy-post</id>
     <content type="html"><![CDATA[<p>DUMMY TEXT</p>
 ]]></content>
   </entry>

@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: https://www.getwnmp.org/sitemap.xml 
+Sitemap: https://wnmp.x64architecture.com/sitemap.xml 
