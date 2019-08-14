@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29209.62
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wnmp", "Wnmp\Wnmp.csproj", "{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}"
 EndProject
@@ -23,8 +23,8 @@ Global
 		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Release|x64.ActiveCfg = Release|x64
 		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Release|x64.Build.0 = Release|x64
-		{4C235092-820C-4DEB-9074-D356FB797D8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C235092-820C-4DEB-9074-D356FB797D8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C235092-820C-4DEB-9074-D356FB797D8B}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{4C235092-820C-4DEB-9074-D356FB797D8B}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{4C235092-820C-4DEB-9074-D356FB797D8B}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{4C235092-820C-4DEB-9074-D356FB797D8B}.Debug|x64.Build.0 = Debug|Any CPU
 		{4C235092-820C-4DEB-9074-D356FB797D8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -34,5 +34,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {85E82AF9-9CDF-467F-BA11-039E9704D007}
 	EndGlobalSection
 EndGlobal
