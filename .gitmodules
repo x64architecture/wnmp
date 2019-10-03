@@ -1,3 +1,0 @@
-[submodule "src/bc-csharp"]
-	path = src/bc-csharp
-	url = https://github.com/bcgit/bc-csharp.git
