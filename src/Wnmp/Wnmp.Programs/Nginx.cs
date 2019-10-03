@@ -25,9 +25,9 @@ using System.Threading;
 
 namespace Wnmp.Programs
 {
-    class Nginx : WnmpProgram
+    class NginxProgram : WnmpProgram
     {
-        public Nginx(string exeFile) : base(exeFile)
+        public NginxProgram(string exeFile) : base(exeFile)
         {
         }
 
@@ -41,6 +41,19 @@ namespace Wnmp.Programs
             catch (Exception ex)
             {
                 Log.Error("Start():" + ex.Message, ProgLogSection);
+            }
+        }
+
+        public void GenerateSSLKeyPair()
+        {
+            try
+            {
+                StartProcess(ExeFileName, "-b");
+                Log.Notice("Generated SSL Keypair", ProgLogSection);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Failed to generate SSL Keypair: " + ex.Message, ProgLogSection);
             }
         }
     }

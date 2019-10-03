@@ -39,7 +39,7 @@ namespace Wnmp.UI
             }
         }
 
-        WnmpProgram Nginx;
+        NginxProgram Nginx;
         MariaDBProgram MariaDB;
         PHPProgram PHP;
 
@@ -52,7 +52,7 @@ namespace Wnmp.UI
 
         private void SetupNginx()
         {
-            Nginx = new WnmpProgram(Program.StartupPath + "\\nginx.exe") {
+            Nginx = new NginxProgram(Program.StartupPath + "\\nginx.exe") {
                 ProgLogSection = Log.LogSection.Nginx,
                 StartArgs = "",
                 StopArgs = "-s stop",
@@ -180,8 +180,7 @@ namespace Wnmp.UI
             if (File.Exists(keyFile) && File.Exists(certFile))
                 return;
 
-            CertGen certgen = new CertGen();
-            certgen.GenerateSelfSignedCertificate("Wnmp", 2048, keyFile, certFile);
+            Nginx.GenerateSSLKeyPair();
         }
 
         private MenuItem CreateWnmpProgramMenuItem(WnmpProgram prog)
