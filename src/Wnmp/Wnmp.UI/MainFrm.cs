@@ -482,7 +482,7 @@ namespace Wnmp.UI
 
         private void setupMariaDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var setupMariaDBFrm = new SetupMariaDB(MariaDB, true))
+            using (var setupMariaDBFrm = new SetupMariaDB(MariaDB))
             {
                 setupMariaDBFrm.StartPosition = FormStartPosition.CenterParent;
                 setupMariaDBFrm.ShowDialog(this);
@@ -498,7 +498,7 @@ namespace Wnmp.UI
         {
             if (Properties.Settings.Default.FirstLaunch)
             {
-                using (var setupMariaDBFrm = new SetupMariaDB(MariaDB, false))
+                using (var setupMariaDBFrm = new SetupMariaDB(MariaDB))
                 {
                     setupMariaDBFrm.StartPosition = FormStartPosition.CenterParent;
                     setupMariaDBFrm.ShowDialog(this);

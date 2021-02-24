@@ -31,24 +31,21 @@ namespace Wnmp.Wnmp.UI
         private readonly string installExe = Program.StartupPath + "\\mariadb\\bin\\mysql_install_db.exe";
         private readonly MariaDBProgram MariaDB;
 
-        public SetupMariaDB(MariaDBProgram mariaDB, bool controlBox)
+        public SetupMariaDB(MariaDBProgram mariaDB)
         {
             MariaDB = mariaDB;
-            ControlBox = controlBox;
             InitializeComponent();
         }
 
         private void setupButton_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(rootPasswordTextBox.Text) || rootPasswordTextBox.Text.Any(Char.IsWhiteSpace))
-            {
+            if (String.IsNullOrWhiteSpace(rootPasswordTextBox.Text) || rootPasswordTextBox.Text.Any(Char.IsWhiteSpace)) {
                 MessageBox.Show("Password may not be blank or contain spaces.", "Invalid Password Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             MariaDB.RemoveService();
             string args = $"--service={MariaDBProgram.ServiceName} --password={rootPasswordTextBox.Text}";
-            if (allowRemoteRootAccessCheckbox.Checked)
-            {
+            if (allowRemoteRootAccessCheckbox.Checked) {
                 args += " --allow-remote-root-access";
             }
             WnmpProgram.StartProcessAsAdmin(installExe, args, true);
@@ -62,17 +59,19 @@ namespace Wnmp.Wnmp.UI
 
         private void SetupMariaDB_Shown(object sender, EventArgs e)
         {
-            if (Directory.Exists(dataDirectory))
-            {
+            if (Directory.Exists(dataDirectory)) {
                 DialogResult result = MessageBox.Show("The MariaDB data directory \'" + dataDirectory + "\' already exists, to continue with the setup it will be deleted. Is that OK? Please backup any data that you don't want lost in that directory before proceeding.", "MariaDB Setup", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result == DialogResult.No)
-                {
+                if (result == DialogResult.No) {
                     Close();
                     return;
                 }
                 else
                 {
-                    Directory.Delete(dataDirectory, true);
+                    try {
+                        Directory.Delete(dataDirectory, true);
+                    } catch (Exception ex) {
+                        Log.Error(ex.Message);
+                    }
                 }
 
             }
