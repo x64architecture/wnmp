@@ -57,10 +57,11 @@ Source: conf\php_processes.conf; DestDir: {app}\conf; Flags: ignoreversion
 Source: conf\scgi_params; DestDir: {app}\conf; Flags: ignoreversion
 Source: conf\uwsgi_params; DestDir: {app}\conf; Flags: ignoreversion
 Source: conf\win-utf; DestDir: {app}\conf; Flags: ignoreversion
+Source: conf\conf.d*; Excludes: ".gitignore"; DestDir: {app}\conf\conf.d; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: contrib\*; DestDir: {app}\contrib; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: docs\*; DestDir: {app}\docs; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: html\*; DestDir: {app}\html; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: html\index.php; DestDir: {app}\html; Flags: ignoreversion onlyifdoesntexist
+Source: www\*; DestDir: {app}\www; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: www\index.php; DestDir: {app}\www; Flags: ignoreversion onlyifdoesntexist
 Source: logs\*; Excludes: ".gitignore"; DestDir: {app}\logs; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: mariadb\bin\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\bin; Flags: ignoreversion
 Source: mariadb\include\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\include; Flags: ignoreversion recursesubdirs createallsubdirs

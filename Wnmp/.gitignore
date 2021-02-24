@@ -16,8 +16,8 @@
 /mariadb/include
 
 # phpMyAdmin
-/html/phpmyadmin/*
-!/html/phpmyadmin/config.inc.php
+/www/phpmyadmin/*
+!/www/phpmyadmin/config.inc.php
 
 # misc
 !/bin
