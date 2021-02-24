@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2021, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -44,25 +44,48 @@ namespace Wnmp.Programs
             processName = Path.GetFileNameWithoutExtension(ExeFileName);
         }
 
-        protected void StartProcess(string exe, string args, bool waitforexit = false, Dictionary<string, string> envvariables = null)
+        public static void StartProcess(
+            string exe,
+            string args,
+            bool waitforexit = false,
+            Dictionary<string, string> envvariables = null)
         {
-            Process process = new Process();
-            process.StartInfo.RedirectStandardError = true;
-            process.StartInfo.RedirectStandardOutput = true;
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.WorkingDirectory = Program.StartupPath;
-            process.StartInfo.CreateNoWindow = true;
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            process.StartInfo.FileName = exe;
-            process.StartInfo.Arguments = args;
-            if (envvariables != null)
+            using (Process process = new Process())
             {
-                foreach (var v in envvariables)
-                    process.StartInfo.EnvironmentVariables.Add(v.Key, v.Value);
+                process.StartInfo.RedirectStandardError = true;
+                process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.CreateNoWindow = true;
+                process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                process.StartInfo.WorkingDirectory = Program.StartupPath;
+                process.StartInfo.FileName = exe;
+                process.StartInfo.Arguments = args;
+                if (envvariables != null)
+                {
+                    foreach (var v in envvariables)
+                        process.StartInfo.EnvironmentVariables.Add(v.Key, v.Value);
+                }
+                process.Start();
+                if (waitforexit)
+                    process.WaitForExit();
             }
-            process.Start();
-            if (waitforexit)
-                process.WaitForExit();
+        }
+
+        public static void StartProcessAsAdmin(
+            string exe,
+            string args,
+            bool waitforexit = false)
+        {
+            using (Process process = new Process())
+            {
+                process.StartInfo.WorkingDirectory = Program.StartupPath;
+                process.StartInfo.FileName = exe;
+                process.StartInfo.Arguments = args;
+                process.StartInfo.Verb = "runas";
+                process.Start();
+                if (waitforexit)
+                    process.WaitForExit();
+            }
         }
 
         public virtual void Start()

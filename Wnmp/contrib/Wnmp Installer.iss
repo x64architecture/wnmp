@@ -1,10 +1,10 @@
 ; Wnmp iss
 #define MyAppName "Wnmp"
-#define MyAppVersion "3.2.2"
+#define MyAppVersion "4.0.0"
 #define MyAppPublisher "Kurt Cancemi"
 #define MyAppURL "https://wnmp.x64architecture.com"
 #define MyAppExeName "Wnmp.exe"
-#define Year "2019"
+#define Year "2021"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -63,16 +63,14 @@ Source: html\*; DestDir: {app}\html; Flags: ignoreversion recursesubdirs createa
 Source: html\index.php; DestDir: {app}\html; Flags: ignoreversion onlyifdoesntexist
 Source: logs\*; Excludes: ".gitignore"; DestDir: {app}\logs; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: mariadb\bin\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\data\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\data; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: mariadb\include\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\include; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: mariadb\lib\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\data; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: mariadb\share\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\share; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: php\*; DestDir: {app}\php; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: temp\*; DestDir: {app}\temp; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: changelog.txt; DestDir: {app}; Flags: ignoreversion
 Source: nginx.exe; DestDir: {app}; Flags: ignoreversion
 Source: readme.txt; DestDir: {app}; Flags: ignoreversion
-Source: "vc_redist.x64.exe"; DestDir: {tmp}; Flags: ignoreversion deleteafterinstall
-Source: BouncyCastle.dll; DestDir: {app}; Flags: ignoreversion
+Source: "VC_redist.x64.exe"; DestDir: {tmp}; Flags: ignoreversion deleteafterinstall
 Source: Wnmp.exe; DestDir: {app}; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
@@ -83,5 +81,5 @@ Name: {commondesktop}\{#MyAppName}; Filename: {app}\{#MyAppExeName}; Tasks: desk
 
 [Run]
 Filename: {app}\{#MyAppExeName}; Description: {cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}; Flags: nowait postinstall shellexec
-Filename: "{tmp}\vc_redist.x64.exe"; Parameters: "/install /passive /norestart"
+Filename: "{tmp}\VC_redist.x64.exe"; Parameters: "/install /passive /norestart"
 Filename: iexplore.exe; Parameters: "https://wnmp.x64architecture.com"; Verb: open; Flags: shellexec runasoriginaluser

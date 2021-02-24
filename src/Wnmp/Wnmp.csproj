@@ -127,6 +127,12 @@
     <Compile Include="Wnmp.UI\OptionsFrm.Designer.cs">
       <DependentUpon>OptionsFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Wnmp.UI\SetupMariaDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wnmp.UI\SetupMariaDB.Designer.cs">
+      <DependentUpon>SetupMariaDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Wnmp.Updater\UpdateProgressFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Wnmp.UI\OptionsFrm.resx">
       <DependentUpon>OptionsFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wnmp.UI\SetupMariaDB.resx">
+      <DependentUpon>SetupMariaDB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Wnmp.Updater\UpdateProgressFrm.resx">
       <DependentUpon>UpdateProgressFrm.cs</DependentUpon>

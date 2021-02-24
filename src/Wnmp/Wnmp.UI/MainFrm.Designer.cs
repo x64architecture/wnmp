@@ -46,6 +46,7 @@
             this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.localhostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setupMariaDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wnmpDirButton = new System.Windows.Forms.Button();
             this.logRichTextBox = new System.Windows.Forms.RichTextBox();
             this.applicationsGroupBox = new System.Windows.Forms.GroupBox();
@@ -87,7 +88,8 @@
             this.fileToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem,
-            this.localhostToolStripMenuItem});
+            this.localhostToolStripMenuItem,
+            this.setupMariaDBToolStripMenuItem});
             this.WnmpMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.WnmpMenuStrip.Name = "WnmpMenuStrip";
             this.WnmpMenuStrip.Size = new System.Drawing.Size(647, 24);
@@ -136,20 +138,20 @@
             this.hostToIPToolStripMenuItem,
             this.getHTTPHeadersToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // hostToIPToolStripMenuItem
             // 
             this.hostToIPToolStripMenuItem.Name = "hostToIPToolStripMenuItem";
-            this.hostToIPToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.hostToIPToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.hostToIPToolStripMenuItem.Text = "Host To IP";
             this.hostToIPToolStripMenuItem.Click += new System.EventHandler(this.HostToIPToolStripMenuItem_Click);
             // 
             // getHTTPHeadersToolStripMenuItem
             // 
             this.getHTTPHeadersToolStripMenuItem.Name = "getHTTPHeadersToolStripMenuItem";
-            this.getHTTPHeadersToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.getHTTPHeadersToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.getHTTPHeadersToolStripMenuItem.Text = "Get HTTP Headers";
             this.getHTTPHeadersToolStripMenuItem.Click += new System.EventHandler(this.GetHTTPHeadersToolStripMenuItem_Click);
             // 
@@ -212,6 +214,13 @@
             this.localhostToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.localhostToolStripMenuItem.Text = "localhost";
             this.localhostToolStripMenuItem.Click += new System.EventHandler(this.LocalhostToolStripMenuItem_Click);
+            // 
+            // setupMariaDBToolStripMenuItem
+            // 
+            this.setupMariaDBToolStripMenuItem.Name = "setupMariaDBToolStripMenuItem";
+            this.setupMariaDBToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
+            this.setupMariaDBToolStripMenuItem.Text = "Setup MariaDB";
+            this.setupMariaDBToolStripMenuItem.Click += new System.EventHandler(this.setupMariaDBToolStripMenuItem_Click);
             // 
             // wnmpDirButton
             // 
@@ -568,6 +577,7 @@
             this.Name = "MainFrm";
             this.Text = "Wnmp Control Panel";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrm_FormClosing);
+            this.Shown += new System.EventHandler(this.MainFrm_Shown);
             this.Resize += new System.EventHandler(this.MainFrm_Resize);
             this.WnmpMenuStrip.ResumeLayout(false);
             this.WnmpMenuStrip.PerformLayout();
@@ -628,5 +638,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label nginxrunning;
         private System.Windows.Forms.Timer AppsRunningTimer;
+        private System.Windows.Forms.ToolStripMenuItem setupMariaDBToolStripMenuItem;
     }
 }

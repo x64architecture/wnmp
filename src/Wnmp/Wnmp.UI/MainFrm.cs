@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2021, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -266,15 +266,18 @@ namespace Wnmp.UI
                 base.SetVisibleCore(false);
             }
 
-            if (Properties.Settings.Default.StartNginxOnLaunch) {
+            if (Properties.Settings.Default.StartNginxOnLaunch)
+            {
                 Nginx.Start();
             }
 
-            if (Properties.Settings.Default.StartMariaDBOnLaunch) {
+            if (Properties.Settings.Default.StartMariaDBOnLaunch)
+            {
                 MariaDB.Start();
             }
 
-            if (Properties.Settings.Default.StartPHPOnLaunch) {
+            if (Properties.Settings.Default.StartPHPOnLaunch)
+            {
                 PHP.Start();
             }
         }
@@ -477,9 +480,30 @@ namespace Wnmp.UI
             MariaDB.OpenShell();
         }
 
+        private void setupMariaDBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var setupMariaDBFrm = new SetupMariaDB(MariaDB, true))
+            {
+                setupMariaDBFrm.StartPosition = FormStartPosition.CenterParent;
+                setupMariaDBFrm.ShowDialog(this);
+            }
+        }
+
         private void WnmpDirButton_Click(object sender, EventArgs e)
         {
             Misc.StartProcessAsync("explorer.exe", Program.StartupPath);
+        }
+
+        private void MainFrm_Shown(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.FirstLaunch)
+            {
+                using (var setupMariaDBFrm = new SetupMariaDB(MariaDB, false))
+                {
+                    setupMariaDBFrm.StartPosition = FormStartPosition.CenterParent;
+                    setupMariaDBFrm.ShowDialog(this);
+                }
+            }
         }
 
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2021, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -21,13 +21,12 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.ServiceProcess;
-using System.Threading;
 
 namespace Wnmp.Programs
 {
     class MariaDBProgram : WnmpProgram
     {
-        private const string ServiceName = "Wnmp-MariaDB";
+        public const string ServiceName = "Wnmp-MariaDB";
         private ServiceController MariaDBController = new ServiceController();
 
         public MariaDBProgram(string exeFile) : base(exeFile)
