@@ -51,19 +51,19 @@ namespace Wnmp.Programs
                 return;
             }
 
-            if (sock != null)
-                sock.Close();
-            sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-            sock.Bind(new IPEndPoint(IPAddress.Any, port));
-            sock.Listen(16384);
-            var env_vars = new Dictionary<string, string>
-            {
-                { "PHP_FCGI_MAX_REQUESTS", "0" }
-            };
+            try {
+                if (sock != null)
+                    sock.Close();
+                sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                sock.Bind(new IPEndPoint(IPAddress.Any, port));
+                sock.Listen(16384);
+                var env_vars = new Dictionary<string, string>
+                {
+                    { "PHP_FCGI_MAX_REQUESTS", "0" }
+                };
 
-            try
-            {
+
                 for (var i = 1; i <= ProcessCount; i++)
                 {
 
