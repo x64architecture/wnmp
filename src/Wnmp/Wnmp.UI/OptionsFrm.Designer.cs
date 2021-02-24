@@ -139,7 +139,7 @@
             // StartMinimizedToTray
             // 
             this.StartMinimizedToTray.AutoSize = true;
-            this.StartMinimizedToTray.Location = new System.Drawing.Point(226, 170);
+            this.StartMinimizedToTray.Location = new System.Drawing.Point(15, 169);
             this.StartMinimizedToTray.Name = "StartMinimizedToTray";
             this.StartMinimizedToTray.Size = new System.Drawing.Size(15, 14);
             this.StartMinimizedToTray.TabIndex = 24;
@@ -148,7 +148,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(25, 170);
+            this.label13.Location = new System.Drawing.Point(32, 170);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(111, 13);
             this.label13.TabIndex = 23;
@@ -157,7 +157,7 @@
             // MinimizeToTrayInsteadOfClosing
             // 
             this.MinimizeToTrayInsteadOfClosing.AutoSize = true;
-            this.MinimizeToTrayInsteadOfClosing.Location = new System.Drawing.Point(226, 150);
+            this.MinimizeToTrayInsteadOfClosing.Location = new System.Drawing.Point(15, 149);
             this.MinimizeToTrayInsteadOfClosing.Name = "MinimizeToTrayInsteadOfClosing";
             this.MinimizeToTrayInsteadOfClosing.Size = new System.Drawing.Size(15, 14);
             this.MinimizeToTrayInsteadOfClosing.TabIndex = 22;
@@ -166,7 +166,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(25, 150);
+            this.label12.Location = new System.Drawing.Point(32, 150);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(164, 13);
             this.label12.TabIndex = 21;
@@ -175,7 +175,7 @@
             // StartNginxLaunchCB
             // 
             this.StartNginxLaunchCB.AutoSize = true;
-            this.StartNginxLaunchCB.Location = new System.Drawing.Point(226, 70);
+            this.StartNginxLaunchCB.Location = new System.Drawing.Point(15, 69);
             this.StartNginxLaunchCB.Name = "StartNginxLaunchCB";
             this.StartNginxLaunchCB.Size = new System.Drawing.Size(15, 14);
             this.StartNginxLaunchCB.TabIndex = 18;
@@ -184,7 +184,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(25, 70);
+            this.label11.Location = new System.Drawing.Point(32, 70);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(109, 13);
             this.label11.TabIndex = 17;
@@ -193,7 +193,7 @@
             // StartMySQLLaunchCB
             // 
             this.StartMySQLLaunchCB.AutoSize = true;
-            this.StartMySQLLaunchCB.Location = new System.Drawing.Point(226, 90);
+            this.StartMySQLLaunchCB.Location = new System.Drawing.Point(15, 89);
             this.StartMySQLLaunchCB.Name = "StartMySQLLaunchCB";
             this.StartMySQLLaunchCB.Size = new System.Drawing.Size(15, 14);
             this.StartMySQLLaunchCB.TabIndex = 16;
@@ -202,17 +202,17 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(25, 90);
+            this.label10.Location = new System.Drawing.Point(32, 90);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(117, 13);
+            this.label10.Size = new System.Drawing.Size(123, 13);
             this.label10.TabIndex = 15;
-            this.label10.Text = "Start MySQL on launch";
+            this.label10.Text = "Start MariaDB on launch";
             // 
             // selecteditor
             // 
-            this.selecteditor.Location = new System.Drawing.Point(218, 20);
+            this.selecteditor.Location = new System.Drawing.Point(205, 22);
             this.selecteditor.Name = "selecteditor";
-            this.selecteditor.Size = new System.Drawing.Size(26, 23);
+            this.selecteditor.Size = new System.Drawing.Size(26, 20);
             this.selecteditor.TabIndex = 14;
             this.selecteditor.Text = "...";
             this.selecteditor.UseVisualStyleBackColor = true;
@@ -220,7 +220,7 @@
             // 
             // updateCheckIntervalNumericUpDown
             // 
-            this.updateCheckIntervalNumericUpDown.Location = new System.Drawing.Point(226, 210);
+            this.updateCheckIntervalNumericUpDown.Location = new System.Drawing.Point(191, 208);
             this.updateCheckIntervalNumericUpDown.Maximum = new decimal(new int[] {
             365,
             0,
@@ -238,7 +238,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(25, 213);
+            this.label6.Location = new System.Drawing.Point(32, 210);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(154, 13);
             this.label6.TabIndex = 12;
@@ -247,7 +247,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 25);
+            this.label1.Location = new System.Drawing.Point(15, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 13);
             this.label1.TabIndex = 0;
@@ -256,7 +256,7 @@
             // StartPHPLaunchCB
             // 
             this.StartPHPLaunchCB.AutoSize = true;
-            this.StartPHPLaunchCB.Location = new System.Drawing.Point(226, 110);
+            this.StartPHPLaunchCB.Location = new System.Drawing.Point(15, 109);
             this.StartPHPLaunchCB.Name = "StartPHPLaunchCB";
             this.StartPHPLaunchCB.Size = new System.Drawing.Size(15, 14);
             this.StartPHPLaunchCB.TabIndex = 7;
@@ -265,7 +265,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 110);
+            this.label3.Location = new System.Drawing.Point(32, 110);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 13);
             this.label3.TabIndex = 6;
@@ -274,7 +274,7 @@
             // StartWnmpWithWindows
             // 
             this.StartWnmpWithWindows.AutoSize = true;
-            this.StartWnmpWithWindows.Location = new System.Drawing.Point(226, 50);
+            this.StartWnmpWithWindows.Location = new System.Drawing.Point(15, 49);
             this.StartWnmpWithWindows.Name = "StartWnmpWithWindows";
             this.StartWnmpWithWindows.Size = new System.Drawing.Size(15, 14);
             this.StartWnmpWithWindows.TabIndex = 4;
@@ -283,7 +283,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 50);
+            this.label2.Location = new System.Drawing.Point(32, 50);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 13);
             this.label2.TabIndex = 3;
@@ -292,7 +292,7 @@
             // autoUpdateCheckBox
             // 
             this.autoUpdateCheckBox.AutoSize = true;
-            this.autoUpdateCheckBox.Location = new System.Drawing.Point(226, 190);
+            this.autoUpdateCheckBox.Location = new System.Drawing.Point(15, 189);
             this.autoUpdateCheckBox.Name = "autoUpdateCheckBox";
             this.autoUpdateCheckBox.Size = new System.Drawing.Size(15, 14);
             this.autoUpdateCheckBox.TabIndex = 11;
@@ -301,7 +301,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 190);
+            this.label5.Location = new System.Drawing.Point(32, 190);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(158, 13);
             this.label5.TabIndex = 10;
@@ -309,7 +309,7 @@
             // 
             // editorTB
             // 
-            this.editorTB.Location = new System.Drawing.Point(68, 22);
+            this.editorTB.Location = new System.Drawing.Point(54, 22);
             this.editorTB.Name = "editorTB";
             this.editorTB.ReadOnly = true;
             this.editorTB.Size = new System.Drawing.Size(144, 20);
@@ -318,7 +318,7 @@
             // MinimizeWnmpToTray
             // 
             this.MinimizeWnmpToTray.AutoSize = true;
-            this.MinimizeWnmpToTray.Location = new System.Drawing.Point(226, 130);
+            this.MinimizeWnmpToTray.Location = new System.Drawing.Point(15, 129);
             this.MinimizeWnmpToTray.Name = "MinimizeWnmpToTray";
             this.MinimizeWnmpToTray.Size = new System.Drawing.Size(15, 14);
             this.MinimizeWnmpToTray.TabIndex = 9;
@@ -327,7 +327,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 130);
+            this.label4.Location = new System.Drawing.Point(32, 130);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(178, 13);
             this.label4.TabIndex = 8;
