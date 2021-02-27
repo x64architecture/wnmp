@@ -13,7 +13,7 @@
 AppId={{44CF85C5-C9D2-435F-941B-75597AA9A6FB}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-SignTool=tools
+WizardStyle=modern
 ;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
@@ -31,9 +31,8 @@ InfoAfterFile=contrib\postinstall.txt
 OutputDir=../WnmpOutput
 OutputBaseFilename=Wnmp-{#MyAppVersion}
 SetupIconFile=../src/Wnmp/logo.ico
-Compression=lzma2
-LZMADictionarySize=24000
-LZMANumBlockThreads=8
+Compression=lzma2/normal
+LZMANumBlockThreads=4
 LZMAUseSeparateProcess=yes
 SolidCompression=false
 RestartIfNeededByRun=false
@@ -46,30 +45,27 @@ Name: english; MessagesFile: compiler:Default.isl
 [Tasks]
 Name: desktopicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; Flags: unchecked
 
+[Dirs]
+Name: "{app}\nginx-bins\default\logs\"
+
 [Files]
-Source: conf\fastcgi.conf; DestDir: {app}\conf; Flags: ignoreversion
-Source: conf\fastcgi_params; DestDir: {app}\conf; Flags: ignoreversion
-Source: conf\koi-utf; DestDir: {app}\conf; Flags: ignoreversion
-Source: conf\koi-win; DestDir: {app}\conf; Flags: ignoreversion
-Source: conf\mime.types; DestDir: {app}\conf; Flags: ignoreversion
-Source: conf\nginx.conf; DestDir: {app}\conf; Flags: ignoreversion
-Source: conf\php_processes.conf; DestDir: {app}\conf; Flags: ignoreversion
-Source: conf\scgi_params; DestDir: {app}\conf; Flags: ignoreversion
-Source: conf\uwsgi_params; DestDir: {app}\conf; Flags: ignoreversion
-Source: conf\win-utf; DestDir: {app}\conf; Flags: ignoreversion
-Source: conf\conf.d*; Excludes: ".gitignore"; DestDir: {app}\conf\conf.d; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: contrib\*; DestDir: {app}\contrib; Flags: ignoreversion recursesubdirs createallsubdirs
+
 Source: docs\*; DestDir: {app}\docs; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: www\*; DestDir: {app}\www; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: www\index.php; DestDir: {app}\www; Flags: ignoreversion onlyifdoesntexist
-Source: logs\*; Excludes: ".gitignore"; DestDir: {app}\logs; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: mariadb\bin\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\bin; Flags: ignoreversion
-Source: mariadb\include\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\include; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: mariadb\lib\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\data; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: mariadb\share\*; Excludes: ".gitignore"; DestDir: {app}\mariadb\share; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: php\*; DestDir: {app}\php; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: temp\*; DestDir: {app}\temp; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: nginx.exe; DestDir: {app}; Flags: ignoreversion
+
+Source: mariadb-bins\default\bin\*; DestDir: {app}\mariadb-bins\default\bin; Flags: ignoreversion
+Source: mariadb-bins\default\include\*; DestDir: {app}\mariadb-bins\default\include; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: mariadb-bins\default\lib\*; DestDir: {app}\mariadb-bins\default\lib; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: mariadb-bins\default\share\*; DestDir: {app}\mariadb-bins\default\share; Flags: ignoreversion recursesubdirs createallsubdirs
+
+Source: nginx-bins\default\conf\*; Excludes: "key.pem,cert.pem,.gitignore"; DestDir: {app}\nginx-bins\default\conf; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: nginx-bins\default\temp\*; DestDir: {app}\nginx-bins\default\temp; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: nginx-bins\default\www\phpmyadmin\*; Excludes: ".gitignore"; DestDir: {app}\nginx-bins\default\www\phpmyadmin; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: nginx-bins\default\www\index.php; DestDir: {app}\nginx-bins\default\www; Flags: ignoreversion onlyifdoesntexist
+Source: nginx-bins\default\nginx.exe; DestDir: {app}\nginx-bins\default; Flags: ignoreversion
+
+Source: php-bins\default\*; Excludes: ".gitignore"; DestDir: {app}\php-bins\default; Flags: ignoreversion recursesubdirs createallsubdirs
+
 Source: readme.txt; DestDir: {app}; Flags: ignoreversion
 Source: "VC_redist.x64.exe"; DestDir: {tmp}; Flags: ignoreversion deleteafterinstall
 Source: Wnmp.exe; DestDir: {app}; Flags: ignoreversion

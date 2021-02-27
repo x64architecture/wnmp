@@ -24,7 +24,7 @@ using System.ServiceProcess;
 
 namespace Wnmp.Programs
 {
-    class MariaDBProgram : WnmpProgram
+    public class MariaDBProgram : WnmpProgram
     {
         public const string ServiceName = "Wnmp-MariaDB";
         private ServiceController MariaDBController = new ServiceController();
@@ -40,7 +40,7 @@ namespace Wnmp.Programs
         {
             try {
                 MariaDBController.Close();
-                StartProcess("cmd.exe", StopArgs, true);
+                StartProcess("cmd.exe", StopArgs, WorkingDir, true);
             } catch (Exception) { }
         }
 
@@ -52,7 +52,7 @@ namespace Wnmp.Programs
             }
             if (ServiceExists())
                 RemoveService();
-            StartProcess(ExeFileName, StartArgs, true);
+            StartProcess(ExeFileName, StartArgs, WorkingDir, true);
         }
 
         public bool ServiceExists()
@@ -70,8 +70,15 @@ namespace Wnmp.Programs
             if (IsRunning() == false)
                 Start();
 
-            Process.Start(Program.StartupPath + "/mariadb/bin/mysql.exe", "-u root -p");
-            Log.Notice("Started MariaDB shell", ProgLogSection);
+            try
+            {
+                Process.Start(Program.StartupPath + "/mariadb/bin/mysql.exe", "-u root -p");
+                Log.Notice("Started MariaDB shell", ProgLogSection);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message, ProgLogSection);
+            }
         }
 
         public override void Start()

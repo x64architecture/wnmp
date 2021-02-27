@@ -92,9 +92,9 @@
             this.copyrightLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.copyrightLabel.Location = new System.Drawing.Point(191, 170);
             this.copyrightLabel.Name = "copyrightLabel";
-            this.copyrightLabel.Size = new System.Drawing.Size(287, 18);
+            this.copyrightLabel.Size = new System.Drawing.Size(378, 18);
             this.copyrightLabel.TabIndex = 4;
-            this.copyrightLabel.Text = "Copyright (c) 2012 - 2019 by Kurt Cancemi";
+            this.copyrightLabel.Text = "Copyright (c) 2012 - {CURRENTYEAR} by Kurt Cancemi";
             // 
             // pictureBox1
             // 

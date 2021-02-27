@@ -2,25 +2,12 @@
 *.lib
 *.dll
 *.exe
-/conf/*.pem
 
-# PHP
-/php/*
-!/php/phpbins
-!/php/logs
-!/php/logs/sys.log
-!/php/php.ini
+nginx\
+mariadb\
+mariadb-bins
+php\
+www\
 
-# MariaDB
-/mariadb/lib
-/mariadb/include
-
-# phpMyAdmin
-/www/phpmyadmin/*
-!/www/phpmyadmin/config.inc.php
-
-# misc
-!/bin
-!/logs
 changelog.txt
 Wnmp.ini

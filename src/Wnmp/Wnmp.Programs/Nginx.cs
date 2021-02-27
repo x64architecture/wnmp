@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2021, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -18,14 +18,10 @@
  */
 
 using System;
-using System.Diagnostics;
-using System.IO;
-using System.ServiceProcess;
-using System.Threading;
 
 namespace Wnmp.Programs
 {
-    class NginxProgram : WnmpProgram
+    public class NginxProgram : WnmpProgram
     {
         public NginxProgram(string exeFile) : base(exeFile)
         {
@@ -35,7 +31,7 @@ namespace Wnmp.Programs
         {
             try
             {
-                StartProcess(ExeFileName, "-s reload");
+                StartProcess(ExeFileName, "-s reload", WorkingDir);
                 Log.Notice("Started", ProgLogSection);
             }
             catch (Exception ex)
@@ -48,7 +44,7 @@ namespace Wnmp.Programs
         {
             try
             {
-                StartProcess(ExeFileName, "-b");
+                StartProcess(ExeFileName, "-b", WorkingDir);
                 Log.Notice("Generated SSL Keypair", ProgLogSection);
             }
             catch (Exception ex)

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2021, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -24,7 +24,7 @@ using System.Net.Sockets;
 
 namespace Wnmp.Programs
 {
-    class PHPProgram : WnmpProgram
+    public class PHPProgram : WnmpProgram
     {
         private Socket sock;
         public PHPProgram(string exeFile) : base(exeFile)
@@ -32,19 +32,11 @@ namespace Wnmp.Programs
 
         }
 
-        private string GetPHPIniPath()
-        {
-            if (Properties.Settings.Default.PHPVersion == "Default")
-                return Program.StartupPath + "/php/php.ini";
-            else
-                return Program.StartupPath + "/php/phpbins/" + Properties.Settings.Default.PHPVersion + "/php.ini";
-        }
-
         public override void Start()
         {
             uint ProcessCount = Properties.Settings.Default.PHPProcessCount;
             ushort port = Properties.Settings.Default.PHPPort;
-            string phpini = GetPHPIniPath();
+            string phpini = Program.StartupPath + "\\php\\php.ini";
 
             if (IsRunning()) {
                 Log.Error("Already running.", ProgLogSection);
@@ -67,7 +59,7 @@ namespace Wnmp.Programs
                 for (var i = 1; i <= ProcessCount; i++)
                 {
 
-                    StartProcess(ExeFileName, $"-b localhost:{port} -c {phpini}", false, env_vars);
+                    StartProcess(ExeFileName, $"-b localhost:{port} -c {phpini}", WorkingDir, false, env_vars);
                     Log.Notice("Starting PHP " + i + "/" + ProcessCount, ProgLogSection);
                 }
                 Log.Notice("PHP started", ProgLogSection);

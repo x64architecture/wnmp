@@ -12,7 +12,7 @@ namespace Wnmp.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.3.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -157,7 +157,7 @@ namespace Wnmp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Default")]
+        [global::System.Configuration.DefaultSettingValueAttribute("default")]
         public string PHPVersion {
             get {
                 return ((string)(this["PHPVersion"]));
@@ -193,13 +193,37 @@ namespace Wnmp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool FirstLaunch {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool MariaDBIsSetup {
             get {
-                return ((bool)(this["FirstLaunch"]));
+                return ((bool)(this["MariaDBIsSetup"]));
             }
             set {
-                this["FirstLaunch"] = value;
+                this["MariaDBIsSetup"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("default")]
+        public string NginxVersion {
+            get {
+                return ((string)(this["NginxVersion"]));
+            }
+            set {
+                this["NginxVersion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("default")]
+        public string MariaDBVersion {
+            get {
+                return ((string)(this["MariaDBVersion"]));
+            }
+            set {
+                this["MariaDBVersion"] = value;
             }
         }
     }

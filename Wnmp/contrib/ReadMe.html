@@ -35,8 +35,8 @@
     <p>Welcome to Wnmp!</p>
 
     <p>
-	  Wnmp is a client which launches Nginx, MariaDB & PHP on Windows Vista - Windows 10. 
-	  When Wnmp is distributed it includes Nginx, MariaDB, PHP, & phpMyAdmin.
+	  Wnmp is a distribution of Nginx, MariaDB and PHP distributed with a
+      simple yet feature rich control panel to manage them.
     </p>
 
     <p>
@@ -66,18 +66,46 @@
 	  the check box right next to the <tt>Start Wnmp on start up</tt> label.
     </p>
 
-	<h4>Launch all applications when Wnmp starts</h4>
+    <h4>Start Nginx on launch</h4>
     <p>
-      The default option for starting all applications when Wnmp starts is disabled. You can set
-      the <tt>Start all programs on launch</tt> setting by going to <tt>File->Wnmp Options</tt> and checking
-	  the check box right next to the <tt>Start all programs on launch</tt> label.
+      The default option for starting nginx when Wnmp starts is disabled. You can set
+      the <tt>Start Nginx on launch</tt> setting by going to <tt>File->Wnmp Options</tt> and checking
+	  the check box right next to the <tt>Start Nginx on launch</tt> label.
+    </p>
+
+    <h4>Start MariaDB on launch</h4>
+    <p>
+      The default option for starting MariaDB when Wnmp starts is disabled. You can set
+      the <tt>Start MariaDB on launch</tt> setting by going to <tt>File->Wnmp Options</tt> and checking
+	  the check box right next to the <tt>Start MariaDB on launch</tt> label.
+    </p>
+
+    <h4>Start PHP on launch</h4>
+    <p>
+      The default option for starting PHP when Wnmp starts is disabled. You can set
+      the <tt>Start PHP on launch</tt> setting by going to <tt>File->Wnmp Options</tt> and checking
+	  the check box right next to the <tt>Start PHP on launch</tt> label.
     </p>
 	
-	<h4>Minimize Wnmp to tray</h4>
+	<h4>Minimize Wnmp to tray instead of minimizing</h4>
     <p>
-      The default option for minimizing Wnmp to the tray is disabled. You can set
-      the <tt>Minimize Wnmp to tray</tt> setting by going to <tt>File->Wnmp Options</tt> and checking
-	  the check box right next to the <tt>Minimize Wnmp to tray</tt> label.
+      The default option for minimizing Wnmp to the tray when clicking the minimize box is disabled. You can set
+      the <tt>Minimize Wnmp to tray instead of minimizing</tt> setting by going to <tt>File->Wnmp Options</tt> and checking
+	  the check box right next to the <tt>Minimize Wnmp to tray instead of minimizing</tt> label.
+    </p>
+
+	<h4>Minimize Wnmp to tray instead of closing</h4>
+    <p>
+      The default option for minimizing Wnmp to the tray when clicking the X box is disabled. You can set
+      the <tt>Minimize Wnmp to tray instead of closing</tt> setting by going to <tt>File->Wnmp Options</tt> and checking
+	  the check box right next to the <tt>Minimize Wnmp to tray instead of closing</tt> label.
+    </p>
+
+	<h4>Start Wnmp minimized</h4>
+    <p>
+      The default option for starting Wnmp in the minimized state is disabled. You can set
+      the <tt>Start Wnmp minimized</tt> setting by going to <tt>File->Wnmp Options</tt> and checking
+	  the check box right next to the <tt>Start Wnmp minimized</tt> label.
     </p>
 	
 	<h4>Automatically check for updates</h4>
@@ -86,6 +114,22 @@
       the <tt>Automatically check for updates</tt> setting by going to <tt>File->Wnmp Options</tt> and checking
 	  the check box right next to the <tt>Automatically check for updates</tt> label and selecting the desired frequency to check
 	  for updates from the combo box.
+    </p>
+
+	<h4>Nginx Version</h4>
+    <p>
+      The default nginx version is the default included with Wnmp, you have to add desired versions of nginx to
+	  <tt>C:\Wnmp\nginx-bins\</tt>, then going to <tt>File->Wnmp Options Nginx</tt> and changing
+	  the value of the combo box right next to the <tt>Nginx Version</tt> label and selecting the desired Nginx
+	  version.
+    </p>
+
+	<h4>MariaDB Version</h4>
+    <p>
+      The default MariaDB version is the default included with Wnmp, you have to add desired versions of MariaDB to
+	  <tt>C:\Wnmp\mariadb-bins\</tt>, then going to <tt>File->Wnmp Options MariaDB</tt> and changing
+	  the value of the combo box right next to the <tt>MariaDB Version</tt> label and selecting the desired MariaDB
+	  version.
     </p>
 	
 	<h4>PHP Processes</h4>
@@ -105,7 +149,7 @@
 	<h4>PHP Version</h4>
     <p>
       The default PHP version is the default included with Wnmp, you have to add desired versions of PHP to
-	  <tt>C:\Wnmp\php\phpbins\</tt>, then going to <tt>File->Wnmp Options PHP</tt> and changing
+	  <tt>C:\Wnmp\php-bins\</tt>, then going to <tt>File->Wnmp Options PHP</tt> and changing
 	  the value of the combo box right next to the <tt>PHP Version</tt> label and selecting the desired PHP
 	  version.
     </p>

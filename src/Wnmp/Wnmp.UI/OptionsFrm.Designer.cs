@@ -64,6 +64,14 @@
             this.PHP_PORT = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.Save = new System.Windows.Forms.Button();
+            this.Nginx = new System.Windows.Forms.TabPage();
+            this.MariaDB = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.nginxBin = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.mariadbBin = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.General.SuspendLayout();
             this.applicationSettingsGroupBox.SuspendLayout();
@@ -73,6 +81,10 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PHP_PROCESSES)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PHP_PORT)).BeginInit();
+            this.Nginx.SuspendLayout();
+            this.MariaDB.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // Cancel
@@ -88,6 +100,8 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.General);
+            this.tabControl1.Controls.Add(this.Nginx);
+            this.tabControl1.Controls.Add(this.MariaDB);
             this.tabControl1.Controls.Add(this.PHP);
             this.tabControl1.Location = new System.Drawing.Point(7, 12);
             this.tabControl1.Name = "tabControl1";
@@ -247,7 +261,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 25);
+            this.label1.Location = new System.Drawing.Point(11, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 13);
             this.label1.TabIndex = 0;
@@ -464,6 +478,83 @@
             this.Save.UseVisualStyleBackColor = true;
             this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
+            // Nginx
+            // 
+            this.Nginx.Controls.Add(this.groupBox1);
+            this.Nginx.Location = new System.Drawing.Point(4, 22);
+            this.Nginx.Name = "Nginx";
+            this.Nginx.Padding = new System.Windows.Forms.Padding(3);
+            this.Nginx.Size = new System.Drawing.Size(339, 302);
+            this.Nginx.TabIndex = 2;
+            this.Nginx.Text = "Nginx";
+            this.Nginx.UseVisualStyleBackColor = true;
+            // 
+            // MariaDB
+            // 
+            this.MariaDB.Controls.Add(this.groupBox4);
+            this.MariaDB.Location = new System.Drawing.Point(4, 22);
+            this.MariaDB.Name = "MariaDB";
+            this.MariaDB.Size = new System.Drawing.Size(339, 302);
+            this.MariaDB.TabIndex = 3;
+            this.MariaDB.Text = "MariaDB";
+            this.MariaDB.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.nginxBin);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Location = new System.Drawing.Point(6, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(327, 60);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Nginx Settings";
+            // 
+            // nginxBin
+            // 
+            this.nginxBin.FormattingEnabled = true;
+            this.nginxBin.Location = new System.Drawing.Point(93, 24);
+            this.nginxBin.Name = "nginxBin";
+            this.nginxBin.Size = new System.Drawing.Size(69, 21);
+            this.nginxBin.TabIndex = 5;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(18, 27);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(75, 13);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "Nginx Version:";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.mariadbBin);
+            this.groupBox4.Controls.Add(this.label15);
+            this.groupBox4.Location = new System.Drawing.Point(6, 6);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(327, 60);
+            this.groupBox4.TabIndex = 3;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "MariaDB Settings";
+            // 
+            // mariadbBin
+            // 
+            this.mariadbBin.FormattingEnabled = true;
+            this.mariadbBin.Location = new System.Drawing.Point(107, 24);
+            this.mariadbBin.Name = "mariadbBin";
+            this.mariadbBin.Size = new System.Drawing.Size(69, 21);
+            this.mariadbBin.TabIndex = 5;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(18, 27);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(89, 13);
+            this.label15.TabIndex = 4;
+            this.label15.Text = "MariaDB Version:";
+            // 
             // OptionsFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -489,6 +580,12 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PHP_PROCESSES)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PHP_PORT)).EndInit();
+            this.Nginx.ResumeLayout(false);
+            this.MariaDB.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -531,5 +628,13 @@
         private System.Windows.Forms.NumericUpDown PHP_PORT;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button Save;
+        private System.Windows.Forms.TabPage Nginx;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox nginxBin;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TabPage MariaDB;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.ComboBox mariadbBin;
+        private System.Windows.Forms.Label label15;
     }
 }

@@ -36,7 +36,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="PHPVersion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Default</Value>
+      <Value Profile="(Default)">default</Value>
     </Setting>
     <Setting Name="PHPPort" Type="System.UInt16" Scope="User">
       <Value Profile="(Default)">9001</Value>
@@ -44,8 +44,14 @@
     <Setting Name="PHPProcessCount" Type="System.UInt32" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="FirstLaunch" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+    <Setting Name="MariaDBIsSetup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="NginxVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">default</Value>
+    </Setting>
+    <Setting Name="MariaDBVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">default</Value>
     </Setting>
   </Settings>
 </SettingsFile>

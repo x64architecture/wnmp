@@ -17,24 +17,22 @@
  *  along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Threading;
-using System.Windows.Forms;
 
 namespace Wnmp.Programs
 {
     public class WnmpProgram
     {
-        public string ExeFileName { get; set; }    // Location of the executable file
+        public string ExeFileName { get; set; }            // Location of the executable file
         public Log.LogSection ProgLogSection { get; set; } // LogSection of the program
-        public string StartArgs { get; set; }  // Start Arguments
-        public string StopArgs { get; set; }   // Stop Arguments
-        public string ConfDir { get; set; }    // Directory where all the programs configuration files are
-        public string LogDir { get; set; }     // Directory where all the programs log files are
+        public string StartArgs { get; set; }              // Start Arguments
+        public string StopArgs { get; set; }               // Stop Arguments
+        public string ConfDir { get; set; }                // Directory where all the programs configuration files are
+        public string LogDir { get; set; }                 // Directory where all the programs log files are
+        public string WorkingDir { get; set; }             // Working directory of the program
 
         private string processName;
 
@@ -47,6 +45,7 @@ namespace Wnmp.Programs
         public static void StartProcess(
             string exe,
             string args,
+            string workingDir = null,
             bool waitforexit = false,
             Dictionary<string, string> envvariables = null)
         {
@@ -57,7 +56,11 @@ namespace Wnmp.Programs
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.CreateNoWindow = true;
                 process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                process.StartInfo.WorkingDirectory = Program.StartupPath;
+                if (workingDir == null)
+                {
+                    workingDir = Program.StartupPath;
+                }
+                process.StartInfo.WorkingDirectory = workingDir;
                 process.StartInfo.FileName = exe;
                 process.StartInfo.Arguments = args;
                 if (envvariables != null)
@@ -98,7 +101,7 @@ namespace Wnmp.Programs
                 Log.Error("Already running.", ProgLogSection);
                 return;
             }
-            StartProcess(ExeFileName, StartArgs);
+            StartProcess(ExeFileName, StartArgs, WorkingDir);
             Log.Notice("Started", ProgLogSection);
         }
 
@@ -113,7 +116,7 @@ namespace Wnmp.Programs
                 return;
             }
             if (StopArgs != null) {
-                StartProcess(ExeFileName, StopArgs, true);
+                StartProcess(ExeFileName, StopArgs, WorkingDir, true);
             }
             var procs = Process.GetProcessesByName(processName);
             for (var i = 0; i < procs.Length; i++) {

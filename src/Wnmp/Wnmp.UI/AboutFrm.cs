@@ -33,6 +33,9 @@ namespace Wnmp.Wnmp.UI
         private void AboutFrm_Load(object sender, EventArgs e)
         {
             wnmpversionLabel.Text = "Wnmp Version: " + Application.ProductVersion;
+
+            copyrightLabel.Text = copyrightLabel.Text.Replace("{CURRENTYEAR}", DateTime.Now.Year.ToString());
+            licenseRichTextBox.Text = licenseRichTextBox.Text.Replace("{CURRENTYEAR}", DateTime.Now.Year.ToString());
         }
 
         private void CloseButton_Click(object sender, EventArgs e)

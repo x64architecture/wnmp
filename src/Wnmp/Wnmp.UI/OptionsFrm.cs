@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2021, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -69,10 +69,19 @@ namespace Wnmp.UI
             PHP_PROCESSES.Value = Properties.Settings.Default.PHPProcessCount;
             PHP_PORT.Value = Properties.Settings.Default.PHPPort;
             MinimizeToTrayInsteadOfClosing.Checked = Properties.Settings.Default.MinimizeInsteadOfClosing;
-            phpBin.Items.Add("Default");
-            foreach (var str in PhpVersions()) {
+            foreach (var str in GetNginxVersions())
+            {
+                nginxBin.Items.Add(str);
+            }
+            foreach (var str in GetMariaDBVersions())
+            {
+                mariadbBin.Items.Add(str);
+            }
+            foreach (var str in GetPHPVersions()) {
                 phpBin.Items.Add(str);
             }
+            nginxBin.SelectedIndex = nginxBin.Items.IndexOf(Properties.Settings.Default.NginxVersion);
+            mariadbBin.SelectedIndex = mariadbBin.Items.IndexOf(Properties.Settings.Default.MariaDBVersion);
             phpBin.SelectedIndex = phpBin.Items.IndexOf(Properties.Settings.Default.PHPVersion);
         }
 
@@ -95,9 +104,30 @@ namespace Wnmp.UI
             Properties.Settings.Default.PHPProcessCount = (uint)PHP_PROCESSES.Value;
             Properties.Settings.Default.PHPPort = (ushort)PHP_PORT.Value;
             Properties.Settings.Default.UpdateFrequency = (uint)updateCheckIntervalNumericUpDown.Value;
-            StartWithWindows();
-            UpdateNgxPHPConfig();
-            Properties.Settings.Default.PHPVersion = phpBin.Text;
+            try
+            {
+                StartWithWindows();
+                UpdateNgxPHPConfig();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+            }
+            if (Properties.Settings.Default.NginxVersion != nginxBin.Text)
+            {
+                Properties.Settings.Default.NginxVersion = nginxBin.Text;
+                mainForm.SetupNginx(true);
+            }
+            if (Properties.Settings.Default.MariaDBVersion != mariadbBin.Text)
+            {
+                Properties.Settings.Default.MariaDBVersion = mariadbBin.Text;
+                mainForm.SetupMariaDB(true);
+            }
+            if (Properties.Settings.Default.PHPVersion != phpBin.Text)
+            {
+                Properties.Settings.Default.PHPVersion = phpBin.Text;
+                mainForm.SetupPHP(true);
+            }
             Save_PHPExtOptions();
         }
 
@@ -105,12 +135,6 @@ namespace Wnmp.UI
         {
             SetSettings();
             Properties.Settings.Default.Save();
-            /* Setup custom PHP without restart */
-            if (Properties.Settings.Default.PHPVersion == "Default") {
-                mainForm.SetupPHP();
-            } else {
-                mainForm.SetupCustomPHP();
-            }
             Close();
         }
 
@@ -149,19 +173,32 @@ namespace Wnmp.UI
             SetEditor();
         }
 
-        private string[] PhpVersions()
+        private string[] GetNginxVersions()
         {
-            if (Directory.Exists(Program.StartupPath + "/php/phpbins") == false)
+            if (Directory.Exists(Program.StartupPath + "\\nginx-bins") == false)
                 return new string[0];
-            return Directory.GetDirectories(Program.StartupPath + "/php/phpbins").Select(d => new DirectoryInfo(d).Name).ToArray();
+            return Directory.GetDirectories(Program.StartupPath + "\\nginx-bins").Select(d => new DirectoryInfo(d).Name).ToArray();
+        }
+
+        private string[] GetMariaDBVersions()
+        {
+            if (Directory.Exists(Program.StartupPath + "\\mariadb-bins") == false)
+                return new string[0];
+            return Directory.GetDirectories(Program.StartupPath + "\\mariadb-bins").Select(d => new DirectoryInfo(d).Name).ToArray();
+        }
+
+        private string[] GetPHPVersions()
+        {
+            if (Directory.Exists(Program.StartupPath + "\\php-bins") == false)
+                return new string[0];
+            return Directory.GetDirectories(Program.StartupPath + "\\php-bins").Select(d => new DirectoryInfo(d).Name).ToArray();
         }
 
         private void UpdateNgxPHPConfig()
         {
             short port = (short)PHP_PORT.Value;
-            uint PHPProcesses = (uint)PHP_PROCESSES.Value;
 
-            using (var sw = new StreamWriter(Program.StartupPath + "/conf/php_processes.conf")) {
+            using (var sw = new StreamWriter(mainForm.Nginx.WorkingDir + "\\conf\\php_processes.conf")) {
                 sw.WriteLine("# DO NOT MODIFY!!! THIS FILE IS MANAGED BY THE WNMP CONTROL PANEL.\r\n");
                 sw.WriteLine("upstream php_processes {");
                 sw.WriteLine("    server 127.0.0.1:" + port + " weight=1;");

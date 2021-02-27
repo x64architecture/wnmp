@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2021, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -39,19 +39,10 @@ namespace Wnmp.Configuration
         private string IniFilePath;
         private string[] TmpIniFile;
 
-        private void LoadPHPIni()
-        {
-            TmpIniFile = File.ReadAllLines(IniFilePath);
-        }
-
         public void LoadPHPExtensions(string phpBinPath)
         {
-            if (phpBinPath == "Default")
-                IniFilePath = Program.StartupPath + "/php/php.ini";
-            else
-                IniFilePath = Program.StartupPath + "/php/phpbins/" + phpBinPath + "/php.ini";
-
-            LoadPHPIni();
+            IniFilePath = Program.StartupPath + "\\php-bins\\" + phpBinPath + "\\php.ini";
+            TmpIniFile = File.ReadAllLines(IniFilePath);
             PHPExtensions = new List<PHPExtension>();
 
             for (int linenum = 0; linenum < TmpIniFile.Length; linenum++) {

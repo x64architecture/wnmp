@@ -117,6 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="licenseRichTextBox.Text" xml:space="preserve">
+    <value> Copyright (c) 2012 - {CURRENTYEAR}, Kurt Cancemi (kurt@x64architecture.com)
+
+ Wnmp is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Wnmp is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with Wnmp.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -421,22 +437,6 @@
         pSkxQktLi72IJhZK604Rtzwe8RySLg1H9pOATASWyRWx5ge5r7438J/+L4A4PJupMkpjAAAAAElFTkSu
         QmCC
 </value>
-  </data>
-  <data name="licenseRichTextBox.Text" xml:space="preserve">
-    <value> Copyright (c) 2012 - 2019, Kurt Cancemi (kurt@x64architecture.com)
-
- Wnmp is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
- 
- Wnmp is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with Wnmp.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
