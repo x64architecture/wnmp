@@ -24,7 +24,7 @@ namespace Wnmp
 {
     static class Program
     {
-        public static readonly string StartupPath = Application.StartupPath;
+        public static readonly string StartupPath = Application.StartupPath.TrimEnd('\\');
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

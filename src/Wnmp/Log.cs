@@ -87,14 +87,14 @@ namespace Wnmp
         public static void SetLogComponent(RichTextBox logRichTextBox)
         {
             rtfLog = logRichTextBox;
-            var logContextMenu = new ContextMenu();
-            var CopyItem = new MenuItem("&Copy");
+            var logContextMenu = new ContextMenuStrip();
+            var CopyItem = new ToolStripMenuItem("&Copy");
             CopyItem.Click += (s, e) => {
                 if (rtfLog.SelectedText != String.Empty)
                     Clipboard.SetText(rtfLog.SelectedText);
             };
-            logContextMenu.MenuItems.Add(CopyItem);
-            rtfLog.ContextMenu = logContextMenu;
+            logContextMenu.Items.Add(CopyItem);
+            rtfLog.ContextMenuStrip = logContextMenu;
         }
     }
 }

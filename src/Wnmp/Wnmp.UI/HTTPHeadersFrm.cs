@@ -37,12 +37,12 @@ namespace Wnmp.UI
                 var request = (HttpWebRequest)WebRequest.Create(urlTextBox.Text);
                 request.Method = "GET";
                 request.ContentType = "application/x-www-form-urlencoded";
-                using (var response = request.GetResponse()) {
-                    foreach (var str in response.Headers.AllKeys) {
-                        var item = new ListViewItem(str);
-                        item.SubItems.Add(response.Headers[str]);
-                        httpHeadersListView.Items.Add(item);
-                    }
+                using var response = request.GetResponse();
+                foreach (var str in response.Headers.AllKeys)
+                {
+                    var item = new ListViewItem(str);
+                    item.SubItems.Add(response.Headers[str]);
+                    httpHeadersListView.Items.Add(item);
                 }
             } catch (Exception ex) {
                 Log.Error(ex.Message);

@@ -33,7 +33,7 @@ namespace Wnmp.UI
     {
         public MainFrm mainForm;
         private string Editor;
-        private PHPConfigurationManager PHPConfigurationMgr = new PHPConfigurationManager();
+        private readonly PHPConfigurationManager PHPConfigurationMgr = new PHPConfigurationManager();
 
         public OptionsFrm(MainFrm form)
         {
@@ -173,24 +173,24 @@ namespace Wnmp.UI
             SetEditor();
         }
 
-        private string[] GetNginxVersions()
+        private static string[] GetNginxVersions()
         {
             if (Directory.Exists(Program.StartupPath + "\\nginx-bins") == false)
-                return new string[0];
+                return Array.Empty<string>();
             return Directory.GetDirectories(Program.StartupPath + "\\nginx-bins").Select(d => new DirectoryInfo(d).Name).ToArray();
         }
 
-        private string[] GetMariaDBVersions()
+        private static string[] GetMariaDBVersions()
         {
             if (Directory.Exists(Program.StartupPath + "\\mariadb-bins") == false)
-                return new string[0];
+                return Array.Empty<string>();
             return Directory.GetDirectories(Program.StartupPath + "\\mariadb-bins").Select(d => new DirectoryInfo(d).Name).ToArray();
         }
 
-        private string[] GetPHPVersions()
+        private static string[] GetPHPVersions()
         {
             if (Directory.Exists(Program.StartupPath + "\\php-bins") == false)
-                return new string[0];
+                return Array.Empty<string>();
             return Directory.GetDirectories(Program.StartupPath + "\\php-bins").Select(d => new DirectoryInfo(d).Name).ToArray();
         }
 
@@ -198,12 +198,11 @@ namespace Wnmp.UI
         {
             short port = (short)PHP_PORT.Value;
 
-            using (var sw = new StreamWriter(mainForm.Nginx.WorkingDir + "\\conf\\php_processes.conf")) {
-                sw.WriteLine("# DO NOT MODIFY!!! THIS FILE IS MANAGED BY THE WNMP CONTROL PANEL.\r\n");
-                sw.WriteLine("upstream php_processes {");
-                sw.WriteLine("    server 127.0.0.1:" + port + " weight=1;");
-                sw.WriteLine("}");
-            }
+            using var sw = new StreamWriter(mainForm.Nginx.WorkingDir + "\\conf\\php_processes.conf");
+            sw.WriteLine("# DO NOT MODIFY!!! THIS FILE IS MANAGED BY THE WNMP CONTROL PANEL.\r\n");
+            sw.WriteLine("upstream php_processes {");
+            sw.WriteLine("    server 127.0.0.1:" + port + " weight=1;");
+            sw.WriteLine("}");
         }
 
 

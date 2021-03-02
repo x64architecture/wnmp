@@ -3,11 +3,17 @@
 *.dll
 *.exe
 
-nginx\
-mariadb\
+Wnmp.deps.json
+Wnmp.dll.config
+Wnmp.runtimeconfig.json
+Wnmp.runtimeconfig.dev.json
+
+
+/nginx
+/mariadb
 mariadb-bins
-php\
-www\
+/php
+/www
 
 changelog.txt
 Wnmp.ini

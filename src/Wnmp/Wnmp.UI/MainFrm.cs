@@ -46,8 +46,8 @@ namespace Wnmp.UI
         ContextMenuStrip NginxConfigContextMenuStrip, NginxLogContextMenuStrip;
         ContextMenuStrip MariaDBConfigContextMenuStrip, MariaDBLogContextMenuStrip;
         ContextMenuStrip PHPConfigContextMenuStrip, PHPLogContextMenuStrip;
-        private WnmpUpdater updater;
-        private NotifyIcon ni = new NotifyIcon();
+        private readonly WnmpUpdater updater;
+        private readonly NotifyIcon ni = new NotifyIcon();
         private bool visiblecore = true;
 
         public void SetupNginx(bool deleteOldLink = false)
@@ -97,7 +97,7 @@ namespace Wnmp.UI
             SetCurlCAPath();
         }
 
-        private void SetCurlCAPath()
+        private static void SetCurlCAPath()
         {
             string phpini = Program.StartupPath + "\\php\\php.ini";
             if (!File.Exists(phpini))
@@ -112,19 +112,18 @@ namespace Wnmp.UI
                 string orginal = reg.Match(file[i]).ToString();
                 if (orginal == String.Empty)
                     continue;
-                string replace = "curl.cainfo = " + "\"" + Program.StartupPath + @"\contrib\cacert.pem" + "\"";
+                string replace = "curl.cainfo = " + "\"" + Program.StartupPath + "\\contrib\\cacert.pem" + "\"";
                 file[i] = replace;
             }
-            using (var sw = new StreamWriter(phpini)) {
-                foreach (var line in file)
-                    sw.WriteLine(line);
-            }
+            using var sw = new StreamWriter(phpini);
+            foreach (var line in file)
+                sw.WriteLine(line);
         }
 
         /// <summary>
         /// Adds configuration files or log files to a context menu strip
         /// </summary>
-        private void DirFiles(string path, string directory, ContextMenuStrip cms)
+        private static void DirFiles(string path, string directory, ContextMenuStrip cms)
         {
             var dInfo = new DirectoryInfo(path);
 
@@ -182,16 +181,15 @@ namespace Wnmp.UI
             Nginx.GenerateSSLKeyPair();
         }
 
-        private MenuItem CreateWnmpProgramMenuItem(WnmpProgram prog)
+        private static ToolStripMenuItem CreateWnmpProgramMenuItem(WnmpProgram prog)
         {
-            MenuItem item = new MenuItem();
-
+            ToolStripMenuItem item = new ToolStripMenuItem();
             item.Text = Log.LogSectionToString(prog.ProgLogSection);
-            MenuItem start = item.MenuItems.Add("Start");
+            ToolStripItem start = item.DropDownItems.Add("Start");
             start.Click += (s, e) => { prog.Start(); };
-            MenuItem stop = item.MenuItems.Add("Stop");
+            ToolStripItem stop = item.DropDownItems.Add("Stop");
             stop.Click += (s, e) => { prog.Stop(); };
-            MenuItem restart = item.MenuItems.Add("Restart");
+            ToolStripItem restart = item.DropDownItems.Add("Restart");
             restart.Click += (s, e) => { prog.Restart(); };
 
             return item;
@@ -199,25 +197,25 @@ namespace Wnmp.UI
 
         private void SetupTrayMenu()
         {
-            MenuItem controlpanel = new MenuItem("Wnmp Control Panel");
+            ToolStripMenuItem controlpanel = new ToolStripMenuItem("Wnmp Control Panel");
             controlpanel.Click += (s, e) => {
                 visiblecore = true;
                 base.SetVisibleCore(true);
                 WindowState = FormWindowState.Normal;
                 Show();
             };
-            ContextMenu cm = new ContextMenu();
-            cm.MenuItems.Add(controlpanel);
-            cm.MenuItems.Add("-");
-            cm.MenuItems.Add(CreateWnmpProgramMenuItem(Nginx));
-            cm.MenuItems.Add(CreateWnmpProgramMenuItem(MariaDB));
-            cm.MenuItems.Add(CreateWnmpProgramMenuItem(PHP));
-            cm.MenuItems.Add("-");
-            MenuItem exit = new MenuItem("Exit");
+            ContextMenuStrip cm = new ContextMenuStrip();
+            cm.Items.Add(controlpanel);
+            cm.Items.Add("-");
+            cm.Items.Add(CreateWnmpProgramMenuItem(Nginx));
+            cm.Items.Add(CreateWnmpProgramMenuItem(MariaDB));
+            cm.Items.Add(CreateWnmpProgramMenuItem(PHP));
+            cm.Items.Add("-");
+            ToolStripMenuItem exit = new ToolStripMenuItem("Exit");
             exit.Click += (s, e) => { Application.Exit(); };
-            cm.MenuItems.Add(exit);
-            cm.MenuItems.Add("-");
-            ni.ContextMenu = cm;
+            cm.Items.Add(exit);
+            cm.Items.Add("-");
+            ni.ContextMenuStrip = cm;
             ni.Icon = Properties.Resources.logo;
             ni.Click += (s, e) => {
                 visiblecore = true;
@@ -253,7 +251,6 @@ namespace Wnmp.UI
             SetupNginx();
             SetupMariaDB();
             SetupPHP();
-
             if (!File.Exists(Program.StartupPath + "\\www"))
             {
                 Misc.CreateRelativeLink(Program.StartupPath + "\\www", Program.StartupPath + "\\nginx\\www", Misc.SYMBOLIC_LINK_FLAG.Directory);
@@ -310,7 +307,7 @@ namespace Wnmp.UI
 
         /* Applications Group Box */
 
-        private void CtxButton(object sender, ContextMenuStrip contextMenuStrip)
+        private static void CtxButton(object sender, ContextMenuStrip contextMenuStrip)
         {
             var btnSender = (Button)sender;
             var ptLowerLeft = new Point(0, btnSender.Height);
@@ -511,7 +508,7 @@ namespace Wnmp.UI
             Misc.StartProcessAsync("https://github.com/wnmp/wnmp/issues/new");
         }
 
-        private void SetRunningStatusLabel(Label label, bool running)
+        private static void SetRunningStatusLabel(Label label, bool running)
         {
             if (running) {
                 label.Text = "✓";
@@ -541,11 +538,9 @@ namespace Wnmp.UI
 
         private void setupMariaDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var setupMariaDBFrm = new SetupMariaDB(MariaDB))
-            {
-                setupMariaDBFrm.StartPosition = FormStartPosition.CenterParent;
-                setupMariaDBFrm.ShowDialog(this);
-            }
+            using var setupMariaDBFrm = new SetupMariaDB(MariaDB);
+            setupMariaDBFrm.StartPosition = FormStartPosition.CenterParent;
+            setupMariaDBFrm.ShowDialog(this);
         }
 
         private void WnmpDirButton_Click(object sender, EventArgs e)
