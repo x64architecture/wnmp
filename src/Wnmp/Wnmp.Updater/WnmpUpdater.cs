@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2021, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -24,6 +24,8 @@ using System.IO;
 
 using Wnmp.Configuration;
 using Wnmp.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Wnmp.Updater
 {
@@ -32,8 +34,8 @@ namespace Wnmp.Updater
     /// </summary>
     class WnmpUpdater
     {
-        private MainFrm mainForm;
-        private Updater updater = new Updater();
+        private readonly MainFrm mainForm;
+        private readonly Updater updater = new();
 
         public WnmpUpdater(MainFrm form)
         {
@@ -60,7 +62,7 @@ namespace Wnmp.Updater
                     updater.Update(UpdateCanceled, UpdateDownloaded);
                 }
             } else {
-                Log.Notice("Your version: " + updater.CurrentVersion + " is up to date.");
+                Log.Notice(Language.Resource.YOUR_VERSION_VER_IS_UP_TO_DATE_DOT.Replace("{CURRENTVERSION}", Application.ProductVersion));
             }
         }
 
@@ -81,15 +83,15 @@ namespace Wnmp.Updater
         /// <summary>
         /// Backs up the configuration files for Nginx, MariaDB, and PHP
         /// </summary>
-        private void DoBackUp()
+        private static void DoBackUp()
         {
-            string[] files = { "\\php\\php.ini", "\\conf\\nginx.conf", "\\mariadb\\my.ini" };
-            foreach (string f in files) {
-                string file = Program.StartupPath + f;
-                if (File.Exists(file)) {
-                    var dest = $"{file}.old";
-                    File.Copy(file, dest, true);
-                    Log.Notice("Backed up " + file + " to " + dest);
+            string[] files = { "\\php\\php.ini", "\\conf\\nginx.conf", "\\mariadb\\data\\my.ini" };
+            foreach (string file in files) {
+                string srcFile = Program.StartupPath + file;
+                if (File.Exists(srcFile)) {
+                    string destFile = $"{srcFile}.old";
+                    File.Copy(srcFile, destFile, true);
+                    Log.Notice($"{Language.Resource.BACKED_UP} {srcFile} -> {destFile}");
                 }
             }
         }
@@ -97,18 +99,14 @@ namespace Wnmp.Updater
         /// <summary>
         /// Kills Nginx, MariaDB, and PHP
         /// </summary>
-        private void KillProcesses()
+        private static void KillProcesses()
         {
-            string[] processestokill = { "php-cgi", "nginx", "mysqld" };
-            var processes = Process.GetProcesses();
+            var processesToKill = new HashSet<string>(new string[] { "php-cgi", "nginx", "mysqld" });
+            Process[] processes = Process.GetProcesses();
 
-            foreach (var process in processes) {
-                foreach (var processToKill in processestokill) {
-                    if (process.ProcessName == processToKill) {
-                        process.Kill();
-                        break;
-                    }
-                }
+            foreach (Process process in processes) {
+                if (processesToKill.Contains(process.ProcessName))
+                    process.Kill();
             }
         }
 

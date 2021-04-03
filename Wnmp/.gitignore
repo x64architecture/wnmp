@@ -2,16 +2,14 @@
 *.lib
 *.dll
 *.exe
+*.pdb
 
-Wnmp.deps.json
-Wnmp.dll.config
-Wnmp.runtimeconfig.json
-Wnmp.runtimeconfig.dev.json
-
+*.json
+*.config
 
 /nginx
 /mariadb
-mariadb-bins
+/mariadb-bins
 /php
 /www
 

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2021, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -20,12 +20,22 @@
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using Wnmp.UI;
 
 namespace Wnmp.Updater
 {
     public partial class UpdatePromptFrm : Form
     {
-        private string changeLogUrl;
+        private readonly string changeLogUrl;
+
+        private void SetLanguage()
+        {
+            Text = Language.Resource.NEW_VERSION_FOUND_EX;
+            viewChangelogLabel.Text = Language.Resource.VIEW_CHANGELOG;
+            wouldYouLikeToLabel.Text = Language.Resource.WOULD_YOU_LIKE_TO_DOWNLOAD_THIS_UPDATE_QM;
+            yesButton.Text = Language.Resource.YES;
+            noButton.Text = Language.Resource.NO;
+        }
 
         protected override CreateParams CreateParams
         {
@@ -42,20 +52,21 @@ namespace Wnmp.Updater
             changeLogUrl = ChangeLogUrl;
             currentVersionLabel.Text = CurrentVersion.ToString();
             newVersionLabel.Text = NewVersion.ToString();
+            SetLanguage();
         }
 
         private void ViewChangelogLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(changeLogUrl);
+            Misc.StartProcessAsync(changeLogUrl);
         }
 
-        private void YesButton_Click(object sender, System.EventArgs e)
+        private void YesButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Yes;
             Close();
         }
 
-        private void NoButton_Click(object sender, System.EventArgs e)
+        private void NoButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.No;
             Close();

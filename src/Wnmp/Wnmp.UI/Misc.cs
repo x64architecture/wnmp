@@ -46,7 +46,7 @@ namespace Wnmp.UI
             public string cAlternateFileName;
         }
 
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
         private static extern IntPtr FindFirstFile(string lpFileName, out WIN32_FIND_DATA lpFindFileData);
 
         [Flags]
@@ -63,11 +63,10 @@ namespace Wnmp.UI
 
         private static bool IsSymbolic(string path)
         {
-            FileInfo pathInfo = new FileInfo(path);
+            FileInfo pathInfo = new(path);
             if (pathInfo.Attributes.HasFlag(FileAttributes.ReparsePoint))
             {
-                WIN32_FIND_DATA FindFileData;
-                FindFirstFile(path, out FindFileData);
+                FindFirstFile(path, out WIN32_FIND_DATA FindFileData);
                 if (FindFileData.dwReserved0 == IO_REPARSE_TAG_SYMLINK)
                     return true;
             }
@@ -80,8 +79,8 @@ namespace Wnmp.UI
             {
                 try
                 {
-                    Directory.Move(lpSymlinkFileName, lpSymlinkFileName + ".old");
-                    Log.Notice("Moved " + lpSymlinkFileName + " to " + lpSymlinkFileName + ".old");
+                    Directory.Move(lpSymlinkFileName, $"{lpSymlinkFileName}.old");
+                    Log.Notice($"{Language.Resource.MOVED} {lpSymlinkFileName} -> {lpSymlinkFileName}.old");
                 }
                 catch (Exception ex)
                 {

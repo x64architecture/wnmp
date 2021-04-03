@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2021, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -25,9 +25,19 @@ namespace Wnmp.UI
 {
     public partial class HostToIPFrm : Form
     {
+        private void SetLanguage()
+        {
+            Text = Language.Resource.HOST_TO_IP;
+            hostLabel.Text = Language.Resource.HOST_SC;
+            ipLabel.Text = Language.Resource.IP_S;
+            hostToIPButton.Text = Language.Resource.HOST_TO_IP;
+            closeButton.Text = Language.Resource.CLOSE;
+        }
+
         public HostToIPFrm()
         {
             InitializeComponent();
+            SetLanguage();
         }
 
         private void HostToIpButton_Click(object sender, EventArgs e)

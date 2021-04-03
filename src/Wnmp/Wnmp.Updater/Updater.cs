@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2021, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -50,7 +50,7 @@ namespace Wnmp.Updater
         public void CheckForUpdate()
         {
             if (!ReadUpdateXML()) {
-                Log.Error("Couldn't read update information.");
+                Log.Error(Language.Resource.COULDNT_READ_UPDATE_INFORMATION);
                 return;
             }
 

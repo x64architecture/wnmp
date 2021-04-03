@@ -33,12 +33,30 @@ namespace Wnmp.UI
     {
         public MainFrm mainForm;
         private string Editor;
-        private readonly PHPConfigurationManager PHPConfigurationMgr = new PHPConfigurationManager();
+        private readonly PHPConfigurationManager PHPConfigurationMgr = new();
+
+        private void SetLanguage()
+        {
+            Text = Language.Resource.OPTIONS;
+            optionsTabControl.TabPages[0].Text = Language.Resource.GENERAL;
+            applicationSettingsGroupBox.Text = Language.Resource.APPLICATION_SETTINGS;
+            editorLabel.Text = Language.Resource.EDITOR;
+            startWnmpWithWindowsLabel.Text = Language.Resource.START_WNMP_WITH_WINDOWS;
+            startNginxOnLaunchLabel.Text = Language.Resource.START_NGINX_ON_LAUNCH;
+            startMariaDBOnLaunchLabel.Text = Language.Resource.START_MARIADB_ON_LAUNCH;
+            startPHPOnLaunchLabel.Text = Language.Resource.START_PHP_ON_LAUNCH;
+            minimizeToTrayLabel.Text = Language.Resource.MINIMIZE_TO_TRAY;
+            minimizeToTrayICLabel.Text = Language.Resource.MINIMIZE_TO_TRAY_INSTEAD_OF_CLOSING;
+            startWnmpMinimizedLabel.Text = Language.Resource.START_WNMP_MINIMIZED;
+            automaticallyCheckForUpdatesLabel.Text = Language.Resource.AUTOMATICALLY_CHECK_FOR_UPDATES;
+            updateCheckIntervalLabel.Text = Language.Resource.UPDATE_CHECK_INTERVAL_IN_DAYS;
+        }
 
         public OptionsFrm(MainFrm form)
         {
             mainForm = form;
             InitializeComponent();
+            SetLanguage();
         }
 
         protected override CreateParams CreateParams
@@ -147,18 +165,17 @@ namespace Wnmp.UI
 
         private void SetEditor()
         {
-            var input = "";
-            var dialog = new OpenFileDialog {
-                Filter = "executable files (*.exe)|*.exe|All files (*.*)|*.*",
-                Title = "Select a text editor"
+            var dialog = new OpenFileDialog
+            {
+                Filter = "Executable Files (*.exe)|*.exe|All Files (*.*)|*.*",
+                Title = Language.Resource.SELECT_A_TEXT_EDITOR,
             };
             if (dialog.ShowDialog() == DialogResult.OK)
-                input = dialog.FileName;
+            {
+                Editor = dialog.FileName;
+            }
 
-            editorTB.Text = dialog.FileName;
-            Editor = dialog.FileName;
-
-            if (input == "")
+            if (string.IsNullOrEmpty(Editor))
                 Editor = "notepad.exe";
             editorTB.Text = Editor;
         }
@@ -175,33 +192,33 @@ namespace Wnmp.UI
 
         private static string[] GetNginxVersions()
         {
-            if (Directory.Exists(Program.StartupPath + "\\nginx-bins") == false)
+            if (Directory.Exists($"{Program.StartupPath}\\nginx-bins") == false)
                 return Array.Empty<string>();
             return Directory.GetDirectories(Program.StartupPath + "\\nginx-bins").Select(d => new DirectoryInfo(d).Name).ToArray();
         }
 
         private static string[] GetMariaDBVersions()
         {
-            if (Directory.Exists(Program.StartupPath + "\\mariadb-bins") == false)
+            if (Directory.Exists($"{Program.StartupPath}\\mariadb-bins") == false)
                 return Array.Empty<string>();
             return Directory.GetDirectories(Program.StartupPath + "\\mariadb-bins").Select(d => new DirectoryInfo(d).Name).ToArray();
         }
 
         private static string[] GetPHPVersions()
         {
-            if (Directory.Exists(Program.StartupPath + "\\php-bins") == false)
+            if (Directory.Exists($"{Program.StartupPath}\\php-bins") == false)
                 return Array.Empty<string>();
             return Directory.GetDirectories(Program.StartupPath + "\\php-bins").Select(d => new DirectoryInfo(d).Name).ToArray();
         }
 
         private void UpdateNgxPHPConfig()
         {
-            short port = (short)PHP_PORT.Value;
+            ushort port = (ushort)PHP_PORT.Value;
 
-            using var sw = new StreamWriter(mainForm.Nginx.WorkingDir + "\\conf\\php_processes.conf");
+            using var sw = new StreamWriter($"{mainForm.Nginx.WorkingDir}\\conf\\php_processes.conf");
             sw.WriteLine("# DO NOT MODIFY!!! THIS FILE IS MANAGED BY THE WNMP CONTROL PANEL.\r\n");
             sw.WriteLine("upstream php_processes {");
-            sw.WriteLine("    server 127.0.0.1:" + port + " weight=1;");
+            sw.WriteLine($"    server 127.0.0.1:{port} weight=1;");
             sw.WriteLine("}");
         }
 
@@ -213,7 +230,7 @@ namespace Wnmp.UI
                 return;
             if (StartWnmpWithWindows.Checked) {
                 if (root.GetValue("Wnmp") == null)
-                    root.SetValue("Wnmp", "\"" + Application.ExecutablePath + "\"");
+                    root.SetValue("Wnmp", $"\"{Application.ExecutablePath}\"");
             } else {
                 if (root.GetValue("Wnmp") != null)
                     root.DeleteValue("Wnmp");

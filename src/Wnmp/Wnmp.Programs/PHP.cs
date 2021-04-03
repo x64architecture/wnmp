@@ -38,12 +38,14 @@ namespace Wnmp.Programs
             ushort port = Properties.Settings.Default.PHPPort;
             string phpini = Program.StartupPath + "\\php\\php.ini";
 
-            if (IsRunning()) {
-                Log.Error("Already running.", ProgLogSection);
+            if (IsRunning())
+            {
+                Log.Error(Language.Resource.ALREADY_RUNNING, ProgLogSection);
                 return;
             }
 
-            try {
+            try
+            {
                 if (sock != null)
                     sock.Close();
                 sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -60,13 +62,13 @@ namespace Wnmp.Programs
                 {
 
                     StartProcess(ExeFileName, $"-b localhost:{port} -c {phpini}", WorkingDir, false, env_vars);
-                    Log.Notice("Starting PHP " + i + "/" + ProcessCount, ProgLogSection);
+                    Log.Notice($"{Language.Resource.STARTED} PHP {i}/{ProcessCount}", ProgLogSection);
                 }
-                Log.Notice("PHP started", ProgLogSection);
+                Log.Notice(Language.Resource.STARTED, ProgLogSection);
             }
             catch (Exception ex)
             {
-                Log.Error("StartPHP(): " + ex.Message, ProgLogSection);
+                Log.Error($"StartPHP(): {ex.Message}", ProgLogSection);
             }
         }
     }

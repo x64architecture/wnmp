@@ -29,78 +29,86 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HostToIPFrm));
             this.ipAddressesListBox = new System.Windows.Forms.ListBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ipLabel = new System.Windows.Forms.Label();
+            this.hostLabel = new System.Windows.Forms.Label();
             this.closeButton = new System.Windows.Forms.Button();
-            this.hostToIpButton = new System.Windows.Forms.Button();
+            this.hostToIPButton = new System.Windows.Forms.Button();
             this.hostTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // ipAddressesListBox
             // 
             this.ipAddressesListBox.FormattingEnabled = true;
-            this.ipAddressesListBox.Location = new System.Drawing.Point(45, 53);
+            this.ipAddressesListBox.ItemHeight = 15;
+            this.ipAddressesListBox.Location = new System.Drawing.Point(52, 61);
+            this.ipAddressesListBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ipAddressesListBox.Name = "ipAddressesListBox";
-            this.ipAddressesListBox.Size = new System.Drawing.Size(143, 69);
+            this.ipAddressesListBox.Size = new System.Drawing.Size(166, 79);
             this.ipAddressesListBox.TabIndex = 12;
             // 
-            // label2
+            // ipLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 53);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "IP(s):";
+            this.ipLabel.AutoSize = true;
+            this.ipLabel.Location = new System.Drawing.Point(12, 61);
+            this.ipLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ipLabel.Name = "ipLabel";
+            this.ipLabel.Size = new System.Drawing.Size(33, 15);
+            this.ipLabel.TabIndex = 11;
+            this.ipLabel.Text = "IP(s):";
             // 
-            // label1
+            // hostLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Host:";
+            this.hostLabel.AutoSize = true;
+            this.hostLabel.Location = new System.Drawing.Point(12, 20);
+            this.hostLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.hostLabel.Name = "hostLabel";
+            this.hostLabel.Size = new System.Drawing.Size(35, 15);
+            this.hostLabel.TabIndex = 10;
+            this.hostLabel.Text = "Host:";
             // 
             // closeButton
             // 
-            this.closeButton.Location = new System.Drawing.Point(146, 170);
+            this.closeButton.Location = new System.Drawing.Point(170, 196);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(75, 23);
+            this.closeButton.Size = new System.Drawing.Size(88, 27);
             this.closeButton.TabIndex = 9;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
-            // hostToIpButton
+            // hostToIPButton
             // 
-            this.hostToIpButton.Location = new System.Drawing.Point(77, 128);
-            this.hostToIpButton.Name = "hostToIpButton";
-            this.hostToIpButton.Size = new System.Drawing.Size(75, 23);
-            this.hostToIpButton.TabIndex = 8;
-            this.hostToIpButton.Text = "Host To IP";
-            this.hostToIpButton.UseVisualStyleBackColor = true;
-            this.hostToIpButton.Click += new System.EventHandler(this.HostToIpButton_Click);
+            this.hostToIPButton.Location = new System.Drawing.Point(90, 148);
+            this.hostToIPButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.hostToIPButton.Name = "hostToIPButton";
+            this.hostToIPButton.Size = new System.Drawing.Size(88, 27);
+            this.hostToIPButton.TabIndex = 8;
+            this.hostToIPButton.Text = "Host To IP";
+            this.hostToIPButton.UseVisualStyleBackColor = true;
+            this.hostToIPButton.Click += new System.EventHandler(this.HostToIpButton_Click);
             // 
             // hostTextBox
             // 
-            this.hostTextBox.Location = new System.Drawing.Point(45, 14);
+            this.hostTextBox.Location = new System.Drawing.Point(52, 16);
+            this.hostTextBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.hostTextBox.Name = "hostTextBox";
-            this.hostTextBox.Size = new System.Drawing.Size(143, 20);
+            this.hostTextBox.Size = new System.Drawing.Size(166, 23);
             this.hostTextBox.TabIndex = 7;
             // 
             // HostToIPFrm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(231, 207);
+            this.ClientSize = new System.Drawing.Size(270, 239);
             this.Controls.Add(this.ipAddressesListBox);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ipLabel);
+            this.Controls.Add(this.hostLabel);
             this.Controls.Add(this.closeButton);
-            this.Controls.Add(this.hostToIpButton);
+            this.Controls.Add(this.hostToIPButton);
             this.Controls.Add(this.hostTextBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.Name = "HostToIPFrm";
             this.Text = "Host To IP";
@@ -112,10 +120,10 @@
         #endregion
 
         private System.Windows.Forms.ListBox ipAddressesListBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label ipLabel;
+        private System.Windows.Forms.Label hostLabel;
         private System.Windows.Forms.Button closeButton;
-        private System.Windows.Forms.Button hostToIpButton;
+        private System.Windows.Forms.Button hostToIPButton;
         private System.Windows.Forms.TextBox hostTextBox;
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2021, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -18,13 +18,15 @@
  */
 
 using System;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Wnmp
 {
     static class Program
     {
-        public static readonly string StartupPath = Application.StartupPath.TrimEnd('\\');
+        public static readonly string StartupPath = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

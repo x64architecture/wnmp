@@ -36,17 +36,19 @@
             // progressLabel
             // 
             this.progressLabel.AutoSize = true;
-            this.progressLabel.Location = new System.Drawing.Point(251, 16);
+            this.progressLabel.Location = new System.Drawing.Point(293, 18);
+            this.progressLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.progressLabel.Name = "progressLabel";
-            this.progressLabel.Size = new System.Drawing.Size(15, 13);
+            this.progressLabel.Size = new System.Drawing.Size(17, 15);
             this.progressLabel.TabIndex = 9;
             this.progressLabel.Text = "%";
             // 
             // cancelDownloadButton
             // 
-            this.cancelDownloadButton.Location = new System.Drawing.Point(239, 74);
+            this.cancelDownloadButton.Location = new System.Drawing.Point(279, 85);
+            this.cancelDownloadButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cancelDownloadButton.Name = "cancelDownloadButton";
-            this.cancelDownloadButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelDownloadButton.Size = new System.Drawing.Size(88, 27);
             this.cancelDownloadButton.TabIndex = 7;
             this.cancelDownloadButton.Text = "Cancel";
             this.cancelDownloadButton.Click += new System.EventHandler(this.CancelDownloadButton_Click);
@@ -54,30 +56,33 @@
             // downloadLabel
             // 
             this.downloadLabel.AutoSize = true;
-            this.downloadLabel.Location = new System.Drawing.Point(68, 16);
+            this.downloadLabel.Location = new System.Drawing.Point(79, 18);
+            this.downloadLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.downloadLabel.Name = "downloadLabel";
-            this.downloadLabel.Size = new System.Drawing.Size(177, 13);
+            this.downloadLabel.Size = new System.Drawing.Size(195, 15);
             this.downloadLabel.TabIndex = 8;
             this.downloadLabel.Text = "Download in progress, please wait...";
             // 
             // updateProgressBar
             // 
-            this.updateProgressBar.Location = new System.Drawing.Point(19, 41);
+            this.updateProgressBar.Location = new System.Drawing.Point(22, 47);
+            this.updateProgressBar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.updateProgressBar.Name = "updateProgressBar";
-            this.updateProgressBar.Size = new System.Drawing.Size(277, 23);
+            this.updateProgressBar.Size = new System.Drawing.Size(323, 27);
             this.updateProgressBar.TabIndex = 6;
             // 
             // UpdateProgressFrm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 109);
+            this.ClientSize = new System.Drawing.Size(391, 126);
             this.ControlBox = false;
             this.Controls.Add(this.progressLabel);
             this.Controls.Add(this.cancelDownloadButton);
             this.Controls.Add(this.downloadLabel);
             this.Controls.Add(this.updateProgressBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "UpdateProgressFrm";
             this.Text = "Downloading Update...";
             this.ResumeLayout(false);

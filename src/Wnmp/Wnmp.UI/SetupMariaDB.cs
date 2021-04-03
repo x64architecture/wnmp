@@ -31,16 +31,30 @@ namespace Wnmp.Wnmp.UI
         private readonly string installExe = Program.StartupPath + "\\mariadb\\bin\\mysql_install_db.exe";
         private readonly MariaDBProgram MariaDB;
 
+        private void SetLanguage()
+        {
+            Text = Language.Resource.SETUP_MARIADB;
+            rootPasswordLabel.Text = Language.Resource.ROOT_PASSWORD;
+            allowRemoteRootAccessCheckbox.Text = Language.Resource.ALLOW_REMOTE_ROOT_ACCESS;
+            visibleCheckbox.Text = Language.Resource.VISIBLE;
+            setupButton.Text = Language.Resource.SETUP_MARIADB;
+        }
+
         public SetupMariaDB(MariaDBProgram mariaDB)
         {
             MariaDB = mariaDB;
             InitializeComponent();
+            SetLanguage();
         }
 
         private void setupButton_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(rootPasswordTextBox.Text) || rootPasswordTextBox.Text.Any(Char.IsWhiteSpace)) {
-                MessageBox.Show("Password may not be blank or contain spaces.", "Invalid Password Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (string.IsNullOrWhiteSpace(rootPasswordTextBox.Text) || rootPasswordTextBox.Text.Any(char.IsWhiteSpace)) {
+                MessageBox.Show(Language.Resource.PASSWORD_CREATE_INVALID,
+                    Language.Resource.INVALID_PASSWORD_FORMAT,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
                 return;
             }
             MariaDB.RemoveService();
@@ -60,7 +74,12 @@ namespace Wnmp.Wnmp.UI
         private void SetupMariaDB_Shown(object sender, EventArgs e)
         {
             if (Directory.Exists(dataDirectory)) {
-                DialogResult result = MessageBox.Show("The MariaDB data directory \'" + dataDirectory + "\' already exists, to continue with the setup it will be deleted. Is that OK? Please backup any data that you don't want lost in that directory before proceeding.", "MariaDB Setup", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show(
+                    Language.Resource.MARIADB_DATA_DIR_EXISTS.Replace("{dataDirectory}", dataDirectory),
+                    Language.Resource.MARIADB_SETUP,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                    );
                 if (result == DialogResult.No) {
                     Close();
                     return;

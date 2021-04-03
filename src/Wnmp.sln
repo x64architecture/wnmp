@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wnmp", "Wnmp\Wnmp.csproj", "{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wnmp", "Wnmp\Wnmp.csproj", "{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wnmp.Language", "Wnmp.Language\Wnmp.Language.csproj", "{F26FAE6F-1EAE-4546-91AA-FAEDA1837009}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,14 @@ Global
 		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Release|x64.ActiveCfg = Release|x64
 		{5A96E4F0-F21F-4A3D-9170-88E61B9E6CB3}.Release|x64.Build.0 = Release|x64
+		{F26FAE6F-1EAE-4546-91AA-FAEDA1837009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F26FAE6F-1EAE-4546-91AA-FAEDA1837009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F26FAE6F-1EAE-4546-91AA-FAEDA1837009}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F26FAE6F-1EAE-4546-91AA-FAEDA1837009}.Debug|x64.Build.0 = Debug|Any CPU
+		{F26FAE6F-1EAE-4546-91AA-FAEDA1837009}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F26FAE6F-1EAE-4546-91AA-FAEDA1837009}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F26FAE6F-1EAE-4546-91AA-FAEDA1837009}.Release|x64.ActiveCfg = Release|Any CPU
+		{F26FAE6F-1EAE-4546-91AA-FAEDA1837009}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2021, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -24,6 +24,13 @@ namespace Wnmp.Updater
 {
     public partial class UpdateProgressFrm : Form
     {
+        private void SetLanguage()
+        {
+            Text = Language.Resource.DOWNLOADING_UPDATE;
+            downloadLabel.Text = Language.Resource.DOWNLOAD_IN_PROGRESS_PLEASE_WAIT;
+            cancelDownloadButton.Text = Language.Resource.CANCEL;
+        }
+
         protected override CreateParams CreateParams
         {
             get {
@@ -36,6 +43,7 @@ namespace Wnmp.Updater
         public UpdateProgressFrm()
         {
             InitializeComponent();
+            SetLanguage();
         }
 
         private void CancelDownloadButton_Click(object sender, EventArgs e)

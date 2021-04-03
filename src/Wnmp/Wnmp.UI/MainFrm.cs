@@ -30,6 +30,38 @@ namespace Wnmp.UI
 {
     public partial class MainFrm : Form
     {
+        private void SetLanguage()
+        {
+            Text = Language.Resource.WNMP_CONTROL_PANEL;
+            fileToolStripMenuItem.Text = Language.Resource.FILE_MENU;
+            toolsToolStripMenuItem.Text = Language.Resource.TOOLS_MENU;
+            helpToolStripMenuItem.Text = Language.Resource.HELP_MENU;
+            setupMariaDBToolStripMenuItem.Text = Language.Resource.SETUP_MARIADB;
+            applicationsGroupBox.Text = Language.Resource.APPLICATIONS;
+            runningLabel.Text = Language.Resource.RUNNING;
+            applicationLabel.Text = Language.Resource.APPLICATION;
+            optionsLabel.Text = Language.Resource.OPTIONS;
+            startAllButton.Text = Language.Resource.START_ALL;
+            stopAllButton.Text = Language.Resource.STOP_ALL;
+            openMariaDBShellButton.Text = Language.Resource.OPEN_MARIADB_SHELL;
+            wnmpDirButton.Text = Language.Resource.WNMP_DIRECTORY;
+            nginxStartButton.Text = Language.Resource.START;
+            mariadbStartButton.Text = Language.Resource.START;
+            phpStartButton.Text = Language.Resource.START;
+            nginxStopButton.Text = Language.Resource.STOP;
+            mariadbStopButton.Text = Language.Resource.STOP;
+            phpStopButton.Text = Language.Resource.STOP;
+            nginxRestartButton.Text = Language.Resource.RESTART;
+            mariadbRestartButton.Text = Language.Resource.RESTART;
+            phpRestartButton.Text = Language.Resource.RESTART;
+            nginxConfigButton.Text = Language.Resource.CONFIGURATION;
+            mariadbConfigButton.Text = Language.Resource.CONFIGURATION;
+            phpConfigButton.Text = Language.Resource.CONFIGURATION;
+            nginxLogButton.Text = Language.Resource.LOGS;
+            mariadbLogButton.Text = Language.Resource.LOGS;
+            phpLogButton.Text = Language.Resource.LOGS;
+        }
+
         protected override CreateParams CreateParams
         {
             get {
@@ -47,59 +79,59 @@ namespace Wnmp.UI
         ContextMenuStrip MariaDBConfigContextMenuStrip, MariaDBLogContextMenuStrip;
         ContextMenuStrip PHPConfigContextMenuStrip, PHPLogContextMenuStrip;
         private readonly WnmpUpdater updater;
-        private readonly NotifyIcon ni = new NotifyIcon();
+        private readonly NotifyIcon ni = new();
         private bool visiblecore = true;
 
         public void SetupNginx(bool deleteOldLink = false)
         {
-            Misc.CreateRelativeLink(Program.StartupPath + "\\nginx",
-                Program.StartupPath + "\\nginx-bins\\" + Properties.Settings.Default.NginxVersion,
+            Misc.CreateRelativeLink($"{Program.StartupPath}\\nginx",
+                $"{Program.StartupPath}\\nginx-bins\\{Properties.Settings.Default.NginxVersion}",
                 Misc.SYMBOLIC_LINK_FLAG.Directory, deleteOldLink);
 
-            Nginx = new NginxProgram(Program.StartupPath + "\\nginx\\nginx.exe") {
+            Nginx = new NginxProgram($"{Program.StartupPath}\\nginx\\nginx.exe") {
                 ProgLogSection = Log.LogSection.Nginx,
                 StartArgs = "",
                 StopArgs = "-s stop",
-                ConfDir = Program.StartupPath + "\\nginx\\conf\\",
-                LogDir = Program.StartupPath + "\\nginx\\logs\\",
-                WorkingDir = Program.StartupPath + "\\nginx"
+                ConfDir = $"{Program.StartupPath}\\nginx\\conf\\",
+                LogDir = $"{Program.StartupPath}\\nginx\\logs\\",
+                WorkingDir = $"{Program.StartupPath}\\nginx"
             };
         }
 
         public void SetupMariaDB(bool deleteOldLink = false)
         {
-            Misc.CreateRelativeLink(Program.StartupPath + "\\mariadb",
-                Program.StartupPath + "\\mariadb-bins\\" + Properties.Settings.Default.MariaDBVersion,
+            Misc.CreateRelativeLink($"{Program.StartupPath}\\mariadb",
+                $"{Program.StartupPath}\\mariadb-bins\\{Properties.Settings.Default.MariaDBVersion}",
                 Misc.SYMBOLIC_LINK_FLAG.Directory, deleteOldLink);
 
-            MariaDB = new MariaDBProgram(Program.StartupPath + "\\mariadb\\bin\\mysqld.exe") {
+            MariaDB = new MariaDBProgram($"{Program.StartupPath}\\mariadb\\bin\\mysqld.exe") {
                 ProgLogSection = Log.LogSection.MariaDB,
                 StartArgs = "--install-manual Wnmp-MariaDB",
                 StopArgs = "/c sc delete Wnmp-MariaDB",
-                ConfDir = Program.StartupPath + "\\mariadb\\data\\",
-                LogDir = Program.StartupPath + "\\mariadb\\data\\",
-                WorkingDir = Program.StartupPath + "\\mariadb"
+                ConfDir = $"{Program.StartupPath}\\mariadb\\data\\",
+                LogDir = $"{Program.StartupPath}\\mariadb\\data\\",
+                WorkingDir = $"{Program.StartupPath}\\mariadb"
             };
         }
 
         public void SetupPHP(bool deleteOldLink=false)
         {
-            Misc.CreateRelativeLink(Program.StartupPath + "\\php",
-                Program.StartupPath + "\\php-bins\\" + Properties.Settings.Default.PHPVersion,
+            Misc.CreateRelativeLink($"{Program.StartupPath}\\php",
+                $"{Program.StartupPath}\\php-bins\\{Properties.Settings.Default.PHPVersion}",
                 Misc.SYMBOLIC_LINK_FLAG.Directory, deleteOldLink);
 
-            PHP = new PHPProgram(Program.StartupPath + "\\php\\php-cgi.exe") {
+            PHP = new PHPProgram($"{Program.StartupPath}\\php\\php-cgi.exe") {
                 ProgLogSection = Log.LogSection.PHP,
-                ConfDir = Program.StartupPath + "\\php\\",
-                LogDir = Program.StartupPath + "\\php\\logs\\",
-                WorkingDir = Program.StartupPath + "\\php"
+                ConfDir = $"{Program.StartupPath}\\php\\",
+                LogDir = $"{Program.StartupPath}\\php\\logs\\",
+                WorkingDir = $"{Program.StartupPath}\\php"
             };
             SetCurlCAPath();
         }
 
         private static void SetCurlCAPath()
         {
-            string phpini = Program.StartupPath + "\\php\\php.ini";
+            string phpini = $"{Program.StartupPath}\\php\\php.ini";
             if (!File.Exists(phpini))
                 return;
 
@@ -108,11 +140,11 @@ namespace Wnmp.UI
                 if (file[i].Contains("curl.cainfo") == false)
                     continue;
 
-                Regex reg = new Regex("(curl\\.cainfo).*?(=)");
+                Regex reg = new("(curl\\.cainfo).*?(=)");
                 string orginal = reg.Match(file[i]).ToString();
                 if (orginal == String.Empty)
                     continue;
-                string replace = "curl.cainfo = " + "\"" + Program.StartupPath + "\\contrib\\cacert.pem" + "\"";
+                string replace = $"curl.cainfo = \"{Program.StartupPath}\\contrib\\cacert.pem\"";
                 file[i] = replace;
             }
             using var sw = new StreamWriter(phpini);
@@ -125,15 +157,15 @@ namespace Wnmp.UI
         /// </summary>
         private static void DirFiles(string path, string directory, ContextMenuStrip cms)
         {
-            var dInfo = new DirectoryInfo(path);
+            var dirInfo = new DirectoryInfo(path);
 
-            if (!dInfo.Exists)
+            if (!dirInfo.Exists)
                 return;
 
             cms.Items.Clear();
 
-            var files = dInfo.GetFiles(directory);
-            foreach (var file in files) {
+            FileInfo[] files = dirInfo.GetFiles(directory);
+            foreach (FileInfo file in files) {
                 cms.Items.Add(file.Name);
             }
         }
@@ -172,8 +204,8 @@ namespace Wnmp.UI
             if (!Directory.Exists(Nginx.ConfDir))
                 Directory.CreateDirectory(Nginx.ConfDir);
 
-            string keyFile = Nginx.ConfDir + "\\key.pem";
-            string certFile = Nginx.ConfDir + "\\cert.pem";
+            string keyFile = $"{Nginx.ConfDir}\\key.pem";
+            string certFile = $"{Nginx.ConfDir}\\cert.pem";
 
             if (File.Exists(keyFile) && File.Exists(certFile))
                 return;
@@ -183,13 +215,13 @@ namespace Wnmp.UI
 
         private static ToolStripMenuItem CreateWnmpProgramMenuItem(WnmpProgram prog)
         {
-            ToolStripMenuItem item = new ToolStripMenuItem();
+            ToolStripMenuItem item = new();
             item.Text = Log.LogSectionToString(prog.ProgLogSection);
-            ToolStripItem start = item.DropDownItems.Add("Start");
+            ToolStripItem start = item.DropDownItems.Add(Language.Resource.START);
             start.Click += (s, e) => { prog.Start(); };
-            ToolStripItem stop = item.DropDownItems.Add("Stop");
+            ToolStripItem stop = item.DropDownItems.Add(Language.Resource.STOP);
             stop.Click += (s, e) => { prog.Stop(); };
-            ToolStripItem restart = item.DropDownItems.Add("Restart");
+            ToolStripItem restart = item.DropDownItems.Add(Language.Resource.RESTART);
             restart.Click += (s, e) => { prog.Restart(); };
 
             return item;
@@ -197,21 +229,21 @@ namespace Wnmp.UI
 
         private void SetupTrayMenu()
         {
-            ToolStripMenuItem controlpanel = new ToolStripMenuItem("Wnmp Control Panel");
+            ToolStripMenuItem controlpanel = new(Language.Resource.WNMP_CONTROL_PANEL);
             controlpanel.Click += (s, e) => {
                 visiblecore = true;
                 base.SetVisibleCore(true);
                 WindowState = FormWindowState.Normal;
                 Show();
             };
-            ContextMenuStrip cm = new ContextMenuStrip();
+            ContextMenuStrip cm = new();
             cm.Items.Add(controlpanel);
             cm.Items.Add("-");
             cm.Items.Add(CreateWnmpProgramMenuItem(Nginx));
             cm.Items.Add(CreateWnmpProgramMenuItem(MariaDB));
             cm.Items.Add(CreateWnmpProgramMenuItem(PHP));
             cm.Items.Add("-");
-            ToolStripMenuItem exit = new ToolStripMenuItem("Exit");
+            ToolStripMenuItem exit = new(Language.Resource.EXIT);
             exit.Click += (s, e) => { Application.Exit(); };
             cm.Items.Add(exit);
             cm.Items.Add("-");
@@ -243,17 +275,18 @@ namespace Wnmp.UI
                 Hide();
             }
             InitializeComponent();
+            SetLanguage();
             Log.SetLogComponent(logRichTextBox);
-            Log.Notice("Initializing Control Panel");
-            Log.Notice("Wnmp Version: " + Application.ProductVersion);
-            Log.Notice("Wnmp Directory: " + Program.StartupPath);
+            Log.Notice(Language.Resource.INITIALIZING_CONTROL_PANEL);
+            Log.Notice(Language.Resource.WNMP_VERSION.Replace("{CURRENTVERSION}", Application.ProductVersion));
+            Log.Notice($"{Language.Resource.WNMP_DIRECTORY}: {Program.StartupPath}");
 
             SetupNginx();
             SetupMariaDB();
             SetupPHP();
-            if (!File.Exists(Program.StartupPath + "\\www"))
+            if (!File.Exists($"{Program.StartupPath}\\www"))
             {
-                Misc.CreateRelativeLink(Program.StartupPath + "\\www", Program.StartupPath + "\\nginx\\www", Misc.SYMBOLIC_LINK_FLAG.Directory);
+                Misc.CreateRelativeLink($"{Program.StartupPath}\\www", $"{Program.StartupPath}\\nginx\\www", Misc.SYMBOLIC_LINK_FLAG.Directory);
             }
 
             SetupConfigAndLogMenuStrips();
@@ -466,7 +499,7 @@ namespace Wnmp.UI
 
         private void GetHTTPHeadersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HTTPHeadersFrm httpHeadersFrm = new HTTPHeadersFrm() {
+            HTTPHeadersFrm httpHeadersFrm = new() {
                 StartPosition = FormStartPosition.CenterParent
             };
             httpHeadersFrm.Show(this);
@@ -474,7 +507,7 @@ namespace Wnmp.UI
 
         private void HostToIPToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HostToIPFrm hostToIPFrm = new HostToIPFrm() {
+            HostToIPFrm hostToIPFrm = new() {
                 StartPosition = FormStartPosition.CenterParent
             };
             hostToIPFrm.Show(this);
@@ -550,7 +583,7 @@ namespace Wnmp.UI
 
         private void MainFrm_Shown(object sender, EventArgs e)
         {
-            if (!Properties.Settings.Default.MariaDBIsSetup || !Directory.Exists(Program.StartupPath + "\\mariadb\\data"))
+            if (!Properties.Settings.Default.MariaDBIsSetup || !Directory.Exists($"{Program.StartupPath}\\mariadb\\data"))
             {
                 using (var setupMariaDBFrm = new SetupMariaDB(MariaDB))
                 {

@@ -17,6 +17,7 @@
  *  along with Wnmp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -34,7 +35,7 @@ namespace Wnmp.Programs
         public string LogDir { get; set; }                 // Directory where all the programs log files are
         public string WorkingDir { get; set; }             // Working directory of the program
 
-        private string processName;
+        private readonly string processName;
 
         public WnmpProgram(string exeFile)
         {
@@ -49,29 +50,27 @@ namespace Wnmp.Programs
             bool waitforexit = false,
             Dictionary<string, string> envvariables = null)
         {
-            using (Process process = new Process())
+            using Process process = new();
+            process.StartInfo.RedirectStandardError = true;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            if (workingDir == null)
             {
-                process.StartInfo.RedirectStandardError = true;
-                process.StartInfo.RedirectStandardOutput = true;
-                process.StartInfo.UseShellExecute = false;
-                process.StartInfo.CreateNoWindow = true;
-                process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                if (workingDir == null)
-                {
-                    workingDir = Program.StartupPath;
-                }
-                process.StartInfo.WorkingDirectory = workingDir;
-                process.StartInfo.FileName = exe;
-                process.StartInfo.Arguments = args;
-                if (envvariables != null)
-                {
-                    foreach (var v in envvariables)
-                        process.StartInfo.EnvironmentVariables.Add(v.Key, v.Value);
-                }
-                process.Start();
-                if (waitforexit)
-                    process.WaitForExit();
+                workingDir = Program.StartupPath;
             }
+            process.StartInfo.WorkingDirectory = workingDir;
+            process.StartInfo.FileName = exe;
+            process.StartInfo.Arguments = args;
+            if (envvariables != null)
+            {
+                foreach (var v in envvariables)
+                    process.StartInfo.EnvironmentVariables.Add(v.Key, v.Value);
+            }
+            process.Start();
+            if (waitforexit)
+                process.WaitForExit();
         }
 
         public static void StartProcessAsAdmin(
@@ -79,50 +78,58 @@ namespace Wnmp.Programs
             string args,
             bool waitforexit = false)
         {
-            using (Process process = new Process())
-            {
-                process.StartInfo.WorkingDirectory = Program.StartupPath;
-                process.StartInfo.FileName = exe;
-                process.StartInfo.Arguments = args;
-                process.StartInfo.Verb = "runas";
-                process.Start();
-                if (waitforexit)
-                    process.WaitForExit();
-            }
+            using Process process = new();
+            process.StartInfo.WorkingDirectory = Program.StartupPath;
+            process.StartInfo.FileName = exe;
+            process.StartInfo.Arguments = args;
+            process.StartInfo.Verb = "runas";
+            process.Start();
+            if (waitforexit)
+                process.WaitForExit();
         }
 
         public virtual void Start()
         {
-            if (!File.Exists(ExeFileName)) {
-                Log.Error("File " + ExeFileName + " not found.", ProgLogSection);
-                return;
+            try
+            {
+                if (IsRunning())
+                {
+                    Log.Error(Language.Resource.ALREADY_RUNNING, ProgLogSection);
+                    return;
+                }
+                StartProcess(ExeFileName, StartArgs, WorkingDir);
             }
-            if (IsRunning()) {
-                Log.Error("Already running.", ProgLogSection);
-                return;
+            catch (Exception ex)
+            {
+                Log.Error($"Start(): {ex.Message}", ProgLogSection);
             }
-            StartProcess(ExeFileName, StartArgs, WorkingDir);
-            Log.Notice("Started", ProgLogSection);
+            Log.Notice(Language.Resource.STARTED, ProgLogSection);
         }
 
         public virtual void Stop()
         {
-            if (!File.Exists(ExeFileName)) {
-                Log.Error("File " + ExeFileName + " not found.", ProgLogSection);
-                return;
+            try
+            {
+                if (!IsRunning())
+                {
+                    Log.Error(Language.Resource.NOT_RUNNING, ProgLogSection);
+                    return;
+                }
+                if (StopArgs != null)
+                {
+                    StartProcess(ExeFileName, StopArgs, WorkingDir, true);
+                }
+                Process[] procs = Process.GetProcessesByName(processName);
+                for (int i = 0; i < procs.Length; i++)
+                {
+                    procs[i].Kill();
+                }
             }
-            if (!IsRunning()) {
-                Log.Error("Not running.", ProgLogSection);
-                return;
+            catch (Exception ex)
+            {
+                Log.Error($"Stop(): {ex.Message}", ProgLogSection);
             }
-            if (StopArgs != null) {
-                StartProcess(ExeFileName, StopArgs, WorkingDir, true);
-            }
-            var procs = Process.GetProcessesByName(processName);
-            for (var i = 0; i < procs.Length; i++) {
-                procs[i].Kill();
-            }
-            Log.Notice("Stopped", ProgLogSection);
+            Log.Notice(Language.Resource.STOPPED, ProgLogSection);
         }
 
         public virtual void Restart()
@@ -131,7 +138,7 @@ namespace Wnmp.Programs
             Stop();
             Thread.Sleep(1000);
             Start();
-            Log.Notice("Restarted", ProgLogSection);
+            Log.Notice(Language.Resource.RESTARTED, ProgLogSection);
         }
 
         public virtual bool IsRunning()

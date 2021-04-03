@@ -32,11 +32,11 @@ namespace Wnmp.Programs
             try
             {
                 StartProcess(ExeFileName, "-s reload", WorkingDir);
-                Log.Notice("Started", ProgLogSection);
+                Log.Notice(Language.Resource.RESTARTED, ProgLogSection);
             }
             catch (Exception ex)
             {
-                Log.Error("Start():" + ex.Message, ProgLogSection);
+                Log.Error($"Restart(): {ex.Message}", ProgLogSection);
             }
         }
 
@@ -45,11 +45,11 @@ namespace Wnmp.Programs
             try
             {
                 StartProcess(ExeFileName, "-b", WorkingDir);
-                Log.Notice("Generated SSL Keypair", ProgLogSection);
+                Log.Notice(Language.Resource.GENERATED_SSL_KEYPAIR, ProgLogSection);
             }
             catch (Exception ex)
             {
-                Log.Error("Failed to generate SSL Keypair: " + ex.Message, ProgLogSection);
+                Log.Error($"GenerateSSLKeyPair(): {ex.Message}", ProgLogSection);
             }
         }
     }

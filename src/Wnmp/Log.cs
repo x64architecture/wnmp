@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2021, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -40,18 +40,14 @@ namespace Wnmp
 
         public static string LogSectionToString(LogSection logSection)
         {
-            switch (logSection) {
-                case LogSection.Wnmp:
-                    return "Wnmp";
-                case LogSection.Nginx:
-                    return "Nginx";
-                case LogSection.MariaDB:
-                    return "MariaDB";
-                case LogSection.PHP:
-                    return "PHP";
-                default:
-                    return "";
-            }
+            return logSection switch
+            {
+                LogSection.Wnmp => "Wnmp",
+                LogSection.Nginx => "Nginx",
+                LogSection.MariaDB => "MariaDB",
+                LogSection.PHP => "PHP",
+                _ => String.Empty,
+            };
         }
 
         private static void WnmpLog(string message, Color color, LogSection logSection)
@@ -88,7 +84,7 @@ namespace Wnmp
         {
             rtfLog = logRichTextBox;
             var logContextMenu = new ContextMenuStrip();
-            var CopyItem = new ToolStripMenuItem("&Copy");
+            var CopyItem = new ToolStripMenuItem(Language.Resource.COPY);
             CopyItem.Click += (s, e) => {
                 if (rtfLog.SelectedText != String.Empty)
                     Clipboard.SetText(rtfLog.SelectedText);

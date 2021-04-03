@@ -27,7 +27,7 @@ namespace Wnmp.Programs
     public class MariaDBProgram : WnmpProgram
     {
         public const string ServiceName = "Wnmp-MariaDB";
-        private ServiceController MariaDBController = new ServiceController();
+        private readonly ServiceController MariaDBController = new();
 
         public MariaDBProgram(string exeFile) : base(exeFile)
         {
@@ -46,16 +46,19 @@ namespace Wnmp.Programs
 
         public void InstallService()
         {
-            if (!File.Exists(ExeFileName)) {
-                Log.Error("File " + ExeFileName + " not found.", ProgLogSection);
-                return;
+            try
+            {
+                if (ServiceExists())
+                    RemoveService();
+                StartProcess(ExeFileName, StartArgs, WorkingDir, true);
             }
-            if (ServiceExists())
-                RemoveService();
-            StartProcess(ExeFileName, StartArgs, WorkingDir, true);
+            catch (Exception ex)
+            {
+                Log.Error($"InstallService(): {ex.Message}", ProgLogSection);
+            }
         }
 
-        public bool ServiceExists()
+        public static bool ServiceExists()
         {
             ServiceController[] services = ServiceController.GetServices();
             for (var i = 0; i < services.Length; i++) {
@@ -72,12 +75,12 @@ namespace Wnmp.Programs
 
             try
             {
-                Process.Start(Program.StartupPath + "/mariadb/bin/mysql.exe", "-u root -p");
-                Log.Notice("Started MariaDB shell", ProgLogSection);
+                Process.Start(Program.StartupPath + "\\mariadb\\bin\\mysql.exe", "-u root -p");
+                Log.Notice(Language.Resource.STARTED_MARIADB_SHELL, ProgLogSection);
             }
             catch (Exception ex)
             {
-                Log.Error(ex.Message, ProgLogSection);
+                Log.Error($"OpenShell(): {ex.Message}", ProgLogSection);
             }
         }
 
@@ -86,9 +89,9 @@ namespace Wnmp.Programs
             try {
                 InstallService();
                 MariaDBController.Start();
-                Log.Notice("Started", ProgLogSection);
+                Log.Notice(Language.Resource.STARTED, ProgLogSection);
             } catch (Exception ex) {
-                Log.Error("Start():" + ex.Message, ProgLogSection);
+                Log.Error($"Start(): {ex.Message}", ProgLogSection);
             }
         }
 
@@ -97,9 +100,9 @@ namespace Wnmp.Programs
             try {
                 MariaDBController.Stop();
                 RemoveService();
-                Log.Notice("Stopped", ProgLogSection);
+                Log.Notice(Language.Resource.STOPPED, ProgLogSection);
             } catch (Exception ex) {
-                Log.Error("Stop():" + ex.Message, ProgLogSection);
+                Log.Error($"Stop(): {ex.Message}", ProgLogSection);
             }
         }
 

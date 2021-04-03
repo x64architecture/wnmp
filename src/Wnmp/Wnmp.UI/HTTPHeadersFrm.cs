@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2021, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -25,9 +25,18 @@ namespace Wnmp.UI
 {
     public partial class HTTPHeadersFrm : Form
     {
+        private void SetLanguage()
+        {
+            Text = Language.Resource.GET_HTTP_HEADERS;
+            getHeadersToolStripMenuItem.Text = Language.Resource.GET_HEADERS;
+            httpHeaderName.Text = Language.Resource.HEADER;
+            httpHeaderValue.Text = Language.Resource.VALUE;
+        }
+
         public HTTPHeadersFrm()
         {
             InitializeComponent();
+            SetLanguage();
         }
 
         private void GetHeadersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -37,8 +46,8 @@ namespace Wnmp.UI
                 var request = (HttpWebRequest)WebRequest.Create(urlTextBox.Text);
                 request.Method = "GET";
                 request.ContentType = "application/x-www-form-urlencoded";
-                using var response = request.GetResponse();
-                foreach (var str in response.Headers.AllKeys)
+                using WebResponse response = request.GetResponse();
+                foreach (string str in response.Headers.AllKeys)
                 {
                     var item = new ListViewItem(str);
                     item.SubItems.Add(response.Headers[str]);

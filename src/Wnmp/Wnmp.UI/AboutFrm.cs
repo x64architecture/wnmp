@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 - 2017, Kurt Cancemi (kurt@x64architecture.com)
+ * Copyright (c) 2012 - 2021, Kurt Cancemi (kurt@x64architecture.com)
  *
  * This file is part of Wnmp.
  *
@@ -25,17 +25,24 @@ namespace Wnmp.Wnmp.UI
 {
     public partial class AboutFrm : Form
     {
+        private void SetLanguage()
+        {
+            Text = Language.Resource.ABOUT;
+            aboutTabCtrl.TabPages[0].Text = Language.Resource.VERSION;
+            aboutTabCtrl.TabPages[1].Text = Language.Resource.LICENSE;
+
+            wnmpDescription.Text = Language.Resource.WNMP_DESCRIPTION;
+
+            versionLabel.Text = Language.Resource.WNMP_VERSION.Replace("{CURRENTVERSION}", Application.ProductVersion);
+
+            copyrightLabel.Text = Language.Resource.COPYRIGHT_TEXT.Replace("{CURRENTYEAR}", DateTime.Now.Year.ToString());
+            licenseRichTextBox.Text = licenseRichTextBox.Text.Replace("{CURRENTYEAR}", DateTime.Now.Year.ToString());
+        }
+
         public AboutFrm()
         {
             InitializeComponent();
-        }
-
-        private void AboutFrm_Load(object sender, EventArgs e)
-        {
-            wnmpversionLabel.Text = "Wnmp Version: " + Application.ProductVersion;
-
-            copyrightLabel.Text = copyrightLabel.Text.Replace("{CURRENTYEAR}", DateTime.Now.Year.ToString());
-            licenseRichTextBox.Text = licenseRichTextBox.Text.Replace("{CURRENTYEAR}", DateTime.Now.Year.ToString());
+            SetLanguage();
         }
 
         private void CloseButton_Click(object sender, EventArgs e)

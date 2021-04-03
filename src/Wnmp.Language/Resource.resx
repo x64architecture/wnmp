@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ABOUT" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="ALLOW_REMOTE_ROOT_ACCESS" xml:space="preserve">
+    <value>Allow remote root access</value>
+  </data>
+  <data name="ALREADY_RUNNING" xml:space="preserve">
+    <value>Already running</value>
+  </data>
+  <data name="APPLICATION" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="APPLICATIONS" xml:space="preserve">
+    <value>Applications</value>
+  </data>
+  <data name="APPLICATION_SETTINGS" xml:space="preserve">
+    <value>Application Settings</value>
+  </data>
+  <data name="AUTOMATICALLY_CHECK_FOR_UPDATES" xml:space="preserve">
+    <value>Automatically check for updates</value>
+  </data>
+  <data name="BACKED_UP" xml:space="preserve">
+    <value>Backed up</value>
+  </data>
+  <data name="CANCEL" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CHECK_FOR_UPDATES" xml:space="preserve">
+    <value>Check For Updates</value>
+  </data>
+  <data name="CLOSE" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="COMMUNITY_SUPPORT" xml:space="preserve">
+    <value>Community Support</value>
+  </data>
+  <data name="CONFIGURATION" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="COPY" xml:space="preserve">
+    <value>&amp;Copy</value>
+  </data>
+  <data name="COPYRIGHT_TEXT" xml:space="preserve">
+    <value>Copyright (c) 2012 - {CURRENTYEAR} by Kurt Cancemi</value>
+  </data>
+  <data name="COULDNT_READ_UPDATE_INFORMATION" xml:space="preserve">
+    <value>Couldn't read update information</value>
+  </data>
+  <data name="DONATE" xml:space="preserve">
+    <value>Donate</value>
+  </data>
+  <data name="DOWNLOADING_UPDATE" xml:space="preserve">
+    <value>Downloading Update...</value>
+  </data>
+  <data name="DOWNLOAD_IN_PROGRESS_PLEASE_WAIT" xml:space="preserve">
+    <value>Download in progress, please wait...</value>
+  </data>
+  <data name="EDITOR" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="EXIT" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="FILE_MENU" xml:space="preserve">
+    <value>&amp;File</value>
+  </data>
+  <data name="GENERAL" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="GENERATED_SSL_KEYPAIR" xml:space="preserve">
+    <value>Generated SSL Keypair</value>
+  </data>
+  <data name="GET_HEADERS" xml:space="preserve">
+    <value>Get Headers</value>
+  </data>
+  <data name="GET_HTTP_HEADERS" xml:space="preserve">
+    <value>Get HTTP Headers</value>
+  </data>
+  <data name="HEADER" xml:space="preserve">
+    <value>Header</value>
+  </data>
+  <data name="HELP_MENU" xml:space="preserve">
+    <value>&amp;Help</value>
+  </data>
+  <data name="HOST_SC" xml:space="preserve">
+    <value>Host:</value>
+  </data>
+  <data name="HOST_TO_IP" xml:space="preserve">
+    <value>Host To IP</value>
+  </data>
+  <data name="INITIALIZING_CONTROL_PANEL" xml:space="preserve">
+    <value>Initializing Control Panel</value>
+  </data>
+  <data name="INVALID_PASSWORD_FORMAT" xml:space="preserve">
+    <value>Invalid Password Format</value>
+  </data>
+  <data name="IP_S" xml:space="preserve">
+    <value>IP(s)</value>
+  </data>
+  <data name="LATEST_VERSION_SC" xml:space="preserve">
+    <value>Latest version:</value>
+  </data>
+  <data name="LICENSE" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="LOGS" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="MARIADB_DATA_DIR_EXISTS" xml:space="preserve">
+    <value>The MariaDB data directory '{dataDirectory}' already exists, to continue with the setup it will be deleted. Is that OK? Please backup any data that you don't want lost in that directory before proceeding.</value>
+  </data>
+  <data name="MARIADB_SETUP" xml:space="preserve">
+    <value>MariaDB Setup</value>
+  </data>
+  <data name="MARIADB_VERSION" xml:space="preserve">
+    <value>MariaDB Version:</value>
+  </data>
+  <data name="MINIMIZE_TO_TRAY" xml:space="preserve">
+    <value>Minimize to tray</value>
+  </data>
+  <data name="MINIMIZE_TO_TRAY_INSTEAD_OF_CLOSING" xml:space="preserve">
+    <value>Minimize to tray instead of closing</value>
+  </data>
+  <data name="MOVED" xml:space="preserve">
+    <value>Moved</value>
+  </data>
+  <data name="NEW_VERSION_FOUND_EX" xml:space="preserve">
+    <value>New version found!</value>
+  </data>
+  <data name="NGINX_VERSION" xml:space="preserve">
+    <value>Nginx Version:</value>
+  </data>
+  <data name="NO" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NOT_RUNNING" xml:space="preserve">
+    <value>Not running</value>
+  </data>
+  <data name="OPEN_MARIADB_SHELL" xml:space="preserve">
+    <value>Open MariaDB Shell</value>
+  </data>
+  <data name="OPTIONS" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="PASSWORD_CREATE_INVALID" xml:space="preserve">
+    <value>Password may not be blank or contain spaces.</value>
+  </data>
+  <data name="PHP_EXTENSIONS" xml:space="preserve">
+    <value>PHP Extensions</value>
+  </data>
+  <data name="PHP_PORT" xml:space="preserve">
+    <value>PHP Port:</value>
+  </data>
+  <data name="PHP_PROCESSES" xml:space="preserve">
+    <value>PHP Processes:</value>
+  </data>
+  <data name="PHP_VERSION" xml:space="preserve">
+    <value>PHP Version:</value>
+  </data>
+  <data name="REPORT_BUG" xml:space="preserve">
+    <value>Report Bug</value>
+  </data>
+  <data name="RESTART" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="RESTARTED" xml:space="preserve">
+    <value>Restarted</value>
+  </data>
+  <data name="ROOT_PASSWORD" xml:space="preserve">
+    <value>Root Password:</value>
+  </data>
+  <data name="RUNNING" xml:space="preserve">
+    <value>Running</value>
+  </data>
+  <data name="SAVE" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SELECT_A_TEXT_EDITOR" xml:space="preserve">
+    <value>Select a text editor</value>
+  </data>
+  <data name="SETUP_MARIADB" xml:space="preserve">
+    <value>Setup MariaDB</value>
+  </data>
+  <data name="START" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="STARTED" xml:space="preserve">
+    <value>Started</value>
+  </data>
+  <data name="STARTED_MARIADB_SHELL" xml:space="preserve">
+    <value>Started MariaDB shell</value>
+  </data>
+  <data name="START_ALL" xml:space="preserve">
+    <value>Start All</value>
+  </data>
+  <data name="START_MARIADB_ON_LAUNCH" xml:space="preserve">
+    <value>Start MariaDB on launch</value>
+  </data>
+  <data name="START_NGINX_ON_LAUNCH" xml:space="preserve">
+    <value>Start Nginx on launch</value>
+  </data>
+  <data name="START_PHP_ON_LAUNCH" xml:space="preserve">
+    <value>Start PHP on launch</value>
+  </data>
+  <data name="START_WNMP_MINIMIZED" xml:space="preserve">
+    <value>Start Wnmp minimized</value>
+  </data>
+  <data name="START_WNMP_WITH_WINDOWS" xml:space="preserve">
+    <value>Start Wnmp with Windows</value>
+  </data>
+  <data name="STOP" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="STOPPED" xml:space="preserve">
+    <value>Stopped</value>
+  </data>
+  <data name="STOP_ALL" xml:space="preserve">
+    <value>Stop All</value>
+  </data>
+  <data name="TOOLS_MENU" xml:space="preserve">
+    <value>&amp;Tools</value>
+  </data>
+  <data name="UPDATE_CHECK_INTERVAL_IN_DAYS" xml:space="preserve">
+    <value>Update check interval (in days)</value>
+  </data>
+  <data name="VALUE" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="VERSION" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="VIEW_CHANGELOG" xml:space="preserve">
+    <value>View Changelog</value>
+  </data>
+  <data name="VISIBLE" xml:space="preserve">
+    <value>Visible</value>
+  </data>
+  <data name="WEBSITE" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="WNMP_CONTROL_PANEL" xml:space="preserve">
+    <value>Wnmp Control Panel</value>
+  </data>
+  <data name="WNMP_DESCRIPTION" xml:space="preserve">
+    <value>Wnmp is an easy Nginx, MariaDB, and PHP environment for Windows.</value>
+  </data>
+  <data name="WNMP_DIRECTORY" xml:space="preserve">
+    <value>Wnmp Directory</value>
+  </data>
+  <data name="WNMP_OPTIONS" xml:space="preserve">
+    <value>Wnmp Options</value>
+  </data>
+  <data name="WNMP_VERSION" xml:space="preserve">
+    <value>Wnmp Version: {CURRENTVERSION}</value>
+  </data>
+  <data name="WOULD_YOU_LIKE_TO_DOWNLOAD_THIS_UPDATE_QM" xml:space="preserve">
+    <value>Would you like to download this update?</value>
+  </data>
+  <data name="YES" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="YOUR_VERSION_SC" xml:space="preserve">
+    <value>Your version:</value>
+  </data>
+  <data name="YOUR_VERSION_VER_IS_UP_TO_DATE_DOT" xml:space="preserve">
+    <value>Your version {CURRENTVERSION} is up to date.</value>
+  </data>
+</root>
