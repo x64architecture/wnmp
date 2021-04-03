@@ -39,18 +39,5 @@ namespace Wnmp.Programs
                 Log.Error($"Restart(): {ex.Message}", ProgLogSection);
             }
         }
-
-        public void GenerateSSLKeyPair()
-        {
-            try
-            {
-                StartProcess(ExeFileName, "-b", WorkingDir);
-                Log.Notice(Language.Resource.GENERATED_SSL_KEYPAIR, ProgLogSection);
-            }
-            catch (Exception ex)
-            {
-                Log.Error($"GenerateSSLKeyPair(): {ex.Message}", ProgLogSection);
-            }
-        }
     }
 }

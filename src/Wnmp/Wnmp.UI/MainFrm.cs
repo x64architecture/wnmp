@@ -210,7 +210,19 @@ namespace Wnmp.UI
             if (File.Exists(keyFile) && File.Exists(certFile))
                 return;
 
-            Nginx.GenerateSSLKeyPair();
+            try
+            {
+                WnmpProgram.StartProcess(
+                    $"{Program.StartupPath}\\nginx-bins\\default\\nginx.exe",
+                    "-b",
+                    $"{Program.StartupPath}\\nginx"
+                    );
+                Log.Notice(Language.Resource.GENERATED_SSL_KEYPAIR);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"GenerateSSLKeyPair(): {ex.Message}");
+            }
         }
 
         private static ToolStripMenuItem CreateWnmpProgramMenuItem(WnmpProgram prog)
