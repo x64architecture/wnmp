@@ -57,7 +57,7 @@ namespace Wnmp.Updater
 
         private void ViewChangelogLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Misc.StartProcessAsync(changeLogUrl);
+            Misc.OpenUrlInBrowser(changeLogUrl);
         }
 
         private void YesButton_Click(object sender, EventArgs e)

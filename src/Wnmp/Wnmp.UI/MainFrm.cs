@@ -527,17 +527,17 @@ namespace Wnmp.UI
 
         private void SupportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Misc.StartProcessAsync("https://groups.google.com/forum/#!forum/wnmp-users");
+            Misc.OpenUrlInBrowser("https://groups.google.com/forum/#!forum/wnmp-users");
         }
 
         private void WebsiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Misc.StartProcessAsync("https://wnmp.x64architecture.com");
+            Misc.OpenUrlInBrowser("https://wnmp.x64architecture.com");
         }
 
         private void DonateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Misc.StartProcessAsync("https://wnmp.x64architecture.com/donate");
+            Misc.OpenUrlInBrowser("https://wnmp.x64architecture.com/donate");
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -550,7 +550,7 @@ namespace Wnmp.UI
 
         private void ReportBugToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Misc.StartProcessAsync("https://github.com/wnmp/wnmp/issues/new");
+            Misc.OpenUrlInBrowser("https://github.com/wnmp/wnmp/issues/new");
         }
 
         private static void SetRunningStatusLabel(Label label, bool running)
@@ -573,7 +573,7 @@ namespace Wnmp.UI
 
         private void LocalhostToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Misc.StartProcessAsync("http://localhost");
+            Misc.OpenUrlInBrowser("http://localhost");
         }
 
         private void OpenMariaDBShellButton_Click(object sender, EventArgs e)

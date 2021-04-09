@@ -101,10 +101,39 @@ namespace Wnmp.UI
 
         public static void StartProcessAsync(string filename, string args = "")
         {
-            new Thread(() => {
-                Process.Start(filename, args);
-            }).Start();
+            try
+            {
+                new Thread(() =>
+                {
+                    Process.Start(filename, args);
+                }).Start();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+            }
         }
+
+        public static void OpenUrlInBrowser(string url)
+        {
+            ProcessStartInfo processStartInfo = new()
+            {
+                FileName = url,
+                UseShellExecute = true,
+            };
+            try
+            {
+                new Thread(() =>
+                {
+                    Process.Start(processStartInfo);
+                }).Start();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+            }
+        }
+
         public static void OpenFileEditor(string file)
         {
             try {

@@ -52,7 +52,7 @@ namespace Wnmp.Wnmp.UI
 
         private void wnmpWebsiteLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Misc.StartProcessAsync("https://wnmp.x64architecture.com");
+            Misc.OpenUrlInBrowser("https://wnmp.x64architecture.com");
         }
     }
 }
