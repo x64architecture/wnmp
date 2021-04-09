@@ -40,11 +40,11 @@ namespace Wnmp.UI
             SetLanguage();
         }
 
-        private void HostToIpButton_Click(object sender, EventArgs e)
+        private async void HostToIpButton_Click(object sender, EventArgs e)
         {
             ipAddressesListBox.Items.Clear();
             try {
-                IPAddress[] IPs = Dns.GetHostAddresses(hostTextBox.Text);
+                IPAddress[] IPs = await Dns.GetHostAddressesAsync(hostTextBox.Text);
                 foreach (var IP in IPs)
                     ipAddressesListBox.Items.Add(IP.ToString());
             } catch (Exception ex) {
