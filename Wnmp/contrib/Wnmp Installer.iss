@@ -1,6 +1,6 @@
 ; Wnmp iss
 #define MyAppName "Wnmp"
-#define MyAppVersion "4.0.0"
+#define MyAppVersion "4.0.1"
 #define MyAppPublisher "Kurt Cancemi"
 #define MyAppURL "https://wnmp.x64architecture.com"
 #define MyAppExeName "Wnmp.exe"
@@ -60,7 +60,13 @@ Source: mariadb-bins\default\share\*; DestDir: {app}\mariadb-bins\default\share;
 
 Source: nginx-bins\default\conf\*; Excludes: "key.pem,cert.pem,.gitignore"; DestDir: {app}\nginx-bins\default\conf; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: nginx-bins\default\temp\*; DestDir: {app}\nginx-bins\default\temp; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: nginx-bins\default\www\phpmyadmin\*; Excludes: ".gitignore"; DestDir: {app}\nginx-bins\default\www\phpmyadmin; Flags: ignoreversion recursesubdirs createallsubdirs
+
+Source: nginx-bins\default\www\phpmyadmin\doc\html\_images\*; DestDir: {app}\nginx-bins\default\www\phpmyadmin\doc\html\_images; Flags: ignoreversion nocompression recursesubdirs createallsubdirs
+Source: nginx-bins\default\www\phpmyadmin\themes\metro\img\*; DestDir: {app}\nginx-bins\default\www\phpmyadmin\themes\metro\img; Flags: ignoreversion nocompression recursesubdirs createallsubdirs
+Source: nginx-bins\default\www\phpmyadmin\themes\original\img\*; DestDir: {app}\nginx-bins\default\www\phpmyadmin\themes\original\img; Flags: ignoreversion nocompression recursesubdirs createallsubdirs
+Source: nginx-bins\default\www\phpmyadmin\themes\pmahomme\img\*; DestDir: {app}\nginx-bins\default\www\phpmyadmin\themes\pmahomme\img; Flags: ignoreversion nocompression recursesubdirs createallsubdirs
+Source: nginx-bins\default\www\phpmyadmin\*; Excludes: .gitignore, *.png, *.jpg, *.jpeg; DestDir: {app}\nginx-bins\default\www\phpmyadmin; Flags: ignoreversion recursesubdirs createallsubdirs
+
 Source: nginx-bins\default\www\index.php; DestDir: {app}\nginx-bins\default\www; Flags: ignoreversion onlyifdoesntexist
 Source: nginx-bins\default\nginx.exe; DestDir: {app}\nginx-bins\default; Flags: ignoreversion
 
@@ -68,7 +74,15 @@ Source: php-bins\default\*; Excludes: ".gitignore"; DestDir: {app}\php-bins\defa
 
 Source: readme.txt; DestDir: {app}; Flags: ignoreversion
 Source: "VC_redist.x64.exe"; DestDir: {tmp}; Flags: ignoreversion deleteafterinstall
+Source: System.ServiceProcess.ServiceController.dll; DestDir: {app}; Flags: ignoreversion
+Source: Wnmp.deps.json; DestDir: {app}; Flags: ignoreversion
+Source: Wnmp.dll; DestDir: {app}; Flags: ignoreversion
+Source: Wnmp.dll.config; DestDir: {app}; Flags: ignoreversion
 Source: Wnmp.exe; DestDir: {app}; Flags: ignoreversion
+Source: Wnmp.Language.dll; DestDir: {app}; Flags: ignoreversion
+Source: Wnmp.Language.pdb; DestDir: {app}; Flags: ignoreversion
+Source: Wnmp.pdb; DestDir: {app}; Flags: ignoreversion
+Source: Wnmp.runtimeconfig.json; DestDir: {app}; Flags: ignoreversion onlyifdoesntexist
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

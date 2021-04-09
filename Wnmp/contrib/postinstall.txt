@@ -1,4 +1,5 @@
 Welcome to Wnmp!
+https://wnmp.x64architecture.com/donate/
 -------------------
 
 For configuration and usage directions, please read the ReadMe.html
