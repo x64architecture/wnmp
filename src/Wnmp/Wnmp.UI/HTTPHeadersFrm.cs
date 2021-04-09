@@ -39,14 +39,14 @@ namespace Wnmp.UI
             SetLanguage();
         }
 
-        private void GetHeadersToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void GetHeadersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             httpHeadersListView.Items.Clear();
             try {
                 var request = (HttpWebRequest)WebRequest.Create(urlTextBox.Text);
                 request.Method = "GET";
                 request.ContentType = "application/x-www-form-urlencoded";
-                using WebResponse response = request.GetResponse();
+                using WebResponse response = await request.GetResponseAsync();
                 foreach (string str in response.Headers.AllKeys)
                 {
                     var item = new ListViewItem(str);
