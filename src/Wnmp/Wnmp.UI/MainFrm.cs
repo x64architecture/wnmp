@@ -550,7 +550,7 @@ namespace Wnmp.UI
 
         private void ReportBugToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Misc.OpenUrlInBrowser("https://github.com/wnmp/wnmp/issues/new");
+            Misc.OpenUrlInBrowser("https://github.com/x64architecture/wnmp/issues/new");
         }
 
         private static void SetRunningStatusLabel(Label label, bool running)
