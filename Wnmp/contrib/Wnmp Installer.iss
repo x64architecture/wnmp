@@ -1,6 +1,9 @@
 ; Wnmp iss
+#define public Dependency_NoExampleSetup
+#include "CodeDependencies.iss"
+
 #define MyAppName "Wnmp"
-#define MyAppVersion "4.0.4"
+#define MyAppVersion "4.0.5"
 #define MyAppPublisher "Kurt Cancemi"
 #define MyAppURL "https://wnmp.x64architecture.com"
 #define MyAppExeName "Wnmp.exe"
@@ -38,6 +41,8 @@ SolidCompression=false
 RestartIfNeededByRun=false
 PrivilegesRequired=admin
 DirExistsWarning=no
+ArchitecturesAllowed=x64
+ArchitecturesInstallIn64BitMode=x64
 
 [Languages]
 Name: english; MessagesFile: compiler:Default.isl
@@ -73,7 +78,6 @@ Source: nginx-bins\default\nginx.exe; DestDir: {app}\nginx-bins\default; Flags: 
 Source: php-bins\default\*; Excludes: ".gitignore"; DestDir: {app}\php-bins\default; Flags: ignoreversion recursesubdirs createallsubdirs
 
 Source: readme.txt; DestDir: {app}; Flags: ignoreversion
-Source: "VC_redist.x64.exe"; DestDir: {tmp}; Flags: ignoreversion deleteafterinstall
 Source: System.ServiceProcess.ServiceController.dll; DestDir: {app}; Flags: ignoreversion
 Source: Wnmp.deps.json; DestDir: {app}; Flags: ignoreversion
 Source: Wnmp.dll; DestDir: {app}; Flags: ignoreversion
@@ -92,5 +96,33 @@ Name: {commondesktop}\{#MyAppName}; Filename: {app}\{#MyAppExeName}; Tasks: desk
 
 [Run]
 Filename: {app}\{#MyAppExeName}; Description: {cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}; Flags: nowait postinstall shellexec
-Filename: "{tmp}\VC_redist.x64.exe"; Parameters: "/install /passive /norestart"
 Filename: iexplore.exe; Parameters: "https://wnmp.x64architecture.com"; Verb: open; Flags: shellexec runasoriginaluser
+
+[Code]
+procedure InitializeWizard;
+begin
+  Dependency_InitializeWizard;
+end;
+
+function PrepareToInstall(var NeedsRestart: Boolean): String;
+begin
+  Result := Dependency_PrepareToInstall(NeedsRestart);
+end;
+
+function NeedRestart: Boolean;
+begin
+  Result := Dependency_NeedRestart;
+end;
+
+function UpdateReadyMemo(const Space, NewLine, MemoUserInfoInfo, MemoDirInfo, MemoTypeInfo, MemoComponentsInfo, MemoGroupInfo, MemoTasksInfo: String): String;
+begin
+  Result := Dependency_UpdateReadyMemo(Space, NewLine, MemoUserInfoInfo, MemoDirInfo, MemoTypeInfo, MemoComponentsInfo, MemoGroupInfo, MemoTasksInfo);
+end;
+
+function InitializeSetup: Boolean;
+begin
+  Dependency_AddVC2015To2019;
+  Dependency_AddDotNet50Desktop;
+
+  Result := True;
+end;
