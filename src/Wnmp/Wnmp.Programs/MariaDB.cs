@@ -109,11 +109,13 @@ namespace Wnmp.Programs
         public override bool IsRunning()
         {
             try {
-                MariaDBController.Refresh();
-                return MariaDBController.Status == ServiceControllerStatus.Running;
-            } catch (Exception) {
-                return false;
-            }
+                if (ServiceExists())
+                {
+                    MariaDBController.Refresh();
+                    return MariaDBController.Status == ServiceControllerStatus.Running;
+                }
+            } catch (Exception) { }
+            return false;
         }
     }
 }
