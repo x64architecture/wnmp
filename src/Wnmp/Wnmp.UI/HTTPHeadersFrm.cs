@@ -18,7 +18,9 @@
  */
 
 using System;
-using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Wnmp.UI
@@ -39,22 +41,33 @@ namespace Wnmp.UI
             SetLanguage();
         }
 
+        private async Task<HttpResponseHeaders> GetHeadersForUrl(string url)
+        {
+            using var httpClient = new HttpClient();
+            var msg = await httpClient.GetAsync(urlTextBox.Text).ConfigureAwait(false);
+            return msg.Headers;
+        }
+
         private async void GetHeadersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            httpHeadersListView.Items.Clear();
-            try {
-                var request = (HttpWebRequest)WebRequest.Create(urlTextBox.Text);
-                request.Method = "GET";
-                request.ContentType = "application/x-www-form-urlencoded";
-                using WebResponse response = await request.GetResponseAsync();
-                foreach (string str in response.Headers.AllKeys)
+            try
+            {
+                var headers = await GetHeadersForUrl(urlTextBox.Text);
+
+                httpHeadersListView.Items.Clear();
+                foreach (var header in headers)
                 {
-                    var item = new ListViewItem(str);
-                    item.SubItems.Add(response.Headers[str]);
+                    var item = new ListViewItem(header.Key);
+                    foreach (var value in header.Value)
+                    {
+                        item.SubItems.Add(value);
+                    }
                     httpHeadersListView.Items.Add(item);
                 }
-            } catch (Exception ex) {
+            } catch (Exception ex)
+            {
                 Log.Error(ex.Message);
+                return;
             }
         }
     }
