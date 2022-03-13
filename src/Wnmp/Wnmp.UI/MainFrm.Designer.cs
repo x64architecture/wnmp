@@ -33,6 +33,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wnmpOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setupMariaDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +47,6 @@
             this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.localhostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setupMariaDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wnmpDirButton = new System.Windows.Forms.Button();
             this.logRichTextBox = new System.Windows.Forms.RichTextBox();
             this.applicationsGroupBox = new System.Windows.Forms.GroupBox();
@@ -88,8 +88,7 @@
             this.fileToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem,
-            this.localhostToolStripMenuItem,
-            this.setupMariaDBToolStripMenuItem});
+            this.localhostToolStripMenuItem});
             this.WnmpMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.WnmpMenuStrip.Name = "WnmpMenuStrip";
             this.WnmpMenuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
@@ -101,6 +100,7 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.wnmpOptionsToolStripMenuItem,
             this.checkForUpdatesToolStripMenuItem,
+            this.setupMariaDBToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -110,26 +110,33 @@
             // wnmpOptionsToolStripMenuItem
             // 
             this.wnmpOptionsToolStripMenuItem.Name = "wnmpOptionsToolStripMenuItem";
-            this.wnmpOptionsToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.wnmpOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.wnmpOptionsToolStripMenuItem.Text = "Wnmp Options";
             this.wnmpOptionsToolStripMenuItem.Click += new System.EventHandler(this.WnmpOptionsToolStripMenuItem_Click);
             // 
             // checkForUpdatesToolStripMenuItem
             // 
             this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.checkForUpdatesToolStripMenuItem.Text = "Check For Updates";
             this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.CheckForUpdatesToolStripMenuItem_Click);
+            // 
+            // setupMariaDBToolStripMenuItem
+            // 
+            this.setupMariaDBToolStripMenuItem.Name = "setupMariaDBToolStripMenuItem";
+            this.setupMariaDBToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.setupMariaDBToolStripMenuItem.Text = "Setup MariaDB";
+            this.setupMariaDBToolStripMenuItem.Click += new System.EventHandler(this.setupMariaDBToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(170, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -215,13 +222,6 @@
             this.localhostToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.localhostToolStripMenuItem.Text = "localhost";
             this.localhostToolStripMenuItem.Click += new System.EventHandler(this.LocalhostToolStripMenuItem_Click);
-            // 
-            // setupMariaDBToolStripMenuItem
-            // 
-            this.setupMariaDBToolStripMenuItem.Name = "setupMariaDBToolStripMenuItem";
-            this.setupMariaDBToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
-            this.setupMariaDBToolStripMenuItem.Text = "Setup MariaDB";
-            this.setupMariaDBToolStripMenuItem.Click += new System.EventHandler(this.setupMariaDBToolStripMenuItem_Click);
             // 
             // wnmpDirButton
             // 
