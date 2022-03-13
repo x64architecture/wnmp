@@ -504,9 +504,9 @@ namespace Wnmp.UI
             StopAll();
         }
 
-        private void CheckForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void CheckForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            updater.CheckForUpdates();
+            await updater.CheckForUpdates();
         }
 
         private void GetHTTPHeadersToolStripMenuItem_Click(object sender, EventArgs e)

@@ -26,6 +26,8 @@ using Wnmp.Configuration;
 using Wnmp.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Wnmp.Updater
 {
@@ -45,13 +47,13 @@ namespace Wnmp.Updater
         /// <summary>
         /// Checks for updates
         /// </summary>
-        public void CheckForUpdates()
+        public async Task CheckForUpdates()
         {
             updater.CurrentVersion = new Version(Application.ProductVersion);
             updater.UpdateInfoURL = new Uri("https://wnmp.x64architecture.com/update.xml");
             updater.SaveFileName = Program.StartupPath + "\\Wnmp-Upgrade-Installer.exe";
 
-            updater.CheckForUpdate();
+            await updater.CheckForUpdate();
 
             if (updater.UpdateAvailable) {
                 var UpdatePrompt = new UpdatePromptFrm("https://github.com/wnmp/wnmp/releases/latest", updater.CurrentVersion, updater.NewVersion) {
@@ -59,7 +61,15 @@ namespace Wnmp.Updater
                 };
                 if (UpdatePrompt.ShowDialog() == DialogResult.Yes) {
                     mainForm.Enabled = false;
-                    updater.Update(UpdateCanceled, UpdateDownloaded);
+
+                    var cancelTokenSrc = new CancellationTokenSource();
+                    var updateProgress = new UpdateProgressFrm(cancelTokenSrc)
+                    {
+                        StartPosition = FormStartPosition.CenterParent
+                    };
+                    updateProgress.Show();
+
+                    await updater.UpdateAsync(UpdateCanceled, UpdateDownloaded, updateProgress.ProgressChanged, cancelTokenSrc.Token);
                 }
             } else {
                 Log.Notice(Language.Resource.YOUR_VERSION_VER_IS_UP_TO_DATE_DOT.Replace("{CURRENTVERSION}", Application.ProductVersion));
@@ -110,7 +120,7 @@ namespace Wnmp.Updater
             }
         }
 
-        public void DoDateEclasped()
+        public async void DoDateEclasped()
         {
             DateTime LastCheckForUpdate = Properties.Settings.Default.LastCheckForUpdate;
             DateTime expiryDate = LastCheckForUpdate.AddDays(Properties.Settings.Default.UpdateFrequency);
@@ -118,7 +128,7 @@ namespace Wnmp.Updater
             if (DateTime.Now < expiryDate)
                 return;
 
-            CheckForUpdates();
+            await CheckForUpdates();
 
             Properties.Settings.Default.LastCheckForUpdate = DateTime.Now;
             Properties.Settings.Default.Save();

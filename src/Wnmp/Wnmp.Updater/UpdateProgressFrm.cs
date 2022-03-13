@@ -18,12 +18,15 @@
  */
 
 using System;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Wnmp.Updater
 {
     public partial class UpdateProgressFrm : Form
     {
+        private CancellationTokenSource cancelTokenSrc;
+
         private void SetLanguage()
         {
             Text = Language.Resource.DOWNLOADING_UPDATE;
@@ -40,15 +43,23 @@ namespace Wnmp.Updater
             }
         }
 
-        public UpdateProgressFrm()
+        public UpdateProgressFrm(CancellationTokenSource CancelTokenSrc)
         {
+            cancelTokenSrc = CancelTokenSrc;
             InitializeComponent();
             SetLanguage();
         }
 
         private void CancelDownloadButton_Click(object sender, EventArgs e)
         {
+            cancelTokenSrc.Cancel();
             Close();
+        }
+
+        public void ProgressChanged(int ProgressPercentage)
+        {
+            updateProgressBar.Value = ProgressPercentage;
+            progressLabel.Text = $"{ProgressPercentage}%";
         }
     }
 }

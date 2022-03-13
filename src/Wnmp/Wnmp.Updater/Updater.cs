@@ -24,6 +24,10 @@ using System.Xml;
 using System.Windows.Forms;
 
 using Wnmp.UI;
+using System.Net.Http;
+using System.IO;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace Wnmp.Updater
 {
@@ -36,10 +40,10 @@ namespace Wnmp.Updater
         public Version NewVersion { get; private set; }
 
         private Uri updateDownloadURL;
-        private UpdateProgressFrm updateProgress;
-        private WebClient webClient;
+        private HttpClient httpClient;
         private Action updateDownloaded;
         private Action updateCanceled;
+        private Action<int> updateProgressChanged;
 
         /// <summary>
         /// Checks for update
@@ -47,9 +51,10 @@ namespace Wnmp.Updater
         /// Sets UpdateAvailable to true if an update was found and
         /// Sets UpdateAvailable to false if an update was not found
         /// </summary>
-        public void CheckForUpdate()
+        public async Task CheckForUpdate()
         {
-            if (!ReadUpdateXML()) {
+            if (!await ReadUpdateXML())
+            {
                 Log.Error(Language.Resource.COULDNT_READ_UPDATE_INFORMATION);
                 return;
             }
@@ -60,59 +65,64 @@ namespace Wnmp.Updater
         /// <summary>
         /// Downloads Update
         /// </summary>
-        public void Update(Action UpdateCanceled, Action UpdateDownloaded)
+        public async Task UpdateAsync(Action UpdateCanceled, Action UpdateDownloaded, Action<int> UpdateProgressChanged, CancellationToken CancelToken)
         {
             updateDownloaded = UpdateDownloaded;
             updateCanceled = UpdateCanceled;
+            updateProgressChanged = UpdateProgressChanged;
 
-            updateProgress = new UpdateProgressFrm();
-            updateProgress.FormClosed += UpdateProgress_FormClosed;
-
-            updateProgress.StartPosition = FormStartPosition.CenterParent;
-            updateProgress.Show();
-
-            webClient = new WebClient();
-            webClient.DownloadProgressChanged += WebClient_DownloadProgressChanged;
-            webClient.DownloadFileCompleted += WebClient_DownloadFileCompleted;
-
-            webClient.DownloadFileAsync(updateDownloadURL, SaveFileName);
-        }
-
-        void UpdateProgress_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            webClient.CancelAsync();
-            updateCanceled();
-        }
-
-        void WebClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-        {
-            updateProgress.updateProgressBar.Value = e.ProgressPercentage;
-            updateProgress.progressLabel.Text = e.ProgressPercentage.ToString() + "%";
-        }
-
-        void WebClient_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
-        {
-            if (e.Cancelled) {
-                webClient.Dispose();
-                return;
+            httpClient = new HttpClient();
+            using var response = await httpClient.GetAsync(updateDownloadURL, HttpCompletionOption.ResponseHeadersRead, CancelToken);
+            long? contentLen = response.Content.Headers.ContentLength;
+            using var file = new FileStream(SaveFileName, FileMode.Create, FileAccess.Write, FileShare.None);
+            using var download = await response.Content.ReadAsStreamAsync(CancelToken);
+            if (!contentLen.HasValue)
+            {
+                await download.CopyToAsync(file, CancelToken);
             }
-            webClient.Dispose();
-            updateProgress.Close();
-            updateDownloaded();
+            else
+            {
+                var buffer = new byte[8192];
+                long totalBytesRead = 0;
+                int bytesRead;
+                while ((bytesRead = await download.ReadAsync(buffer.AsMemory(), CancelToken)) != 0)
+                {
+                    await file.WriteAsync(buffer.AsMemory(0, bytesRead), CancelToken);
+                    totalBytesRead += bytesRead;
+                    updateProgressChanged((int)((totalBytesRead / (float)contentLen.Value) * 100f));
+                    if (CancelToken.IsCancellationRequested)
+                    {
+                        httpClient.CancelPendingRequests();
+                        httpClient.Dispose();
+                        updateCanceled();
+                        break;
+                    }
+                }
+                file.Close();
+
+                if (totalBytesRead == contentLen.Value)
+                {
+                    updateDownloaded();
+                }
+
+            }
         }
 
-        private bool ReadUpdateXML()
+        private async Task<bool> ReadUpdateXML()
         {
+            XmlReaderSettings settings = new();
+            settings.Async = true;
+
             string elementName = "";
 
             try {
-                var reader = new XmlTextReader(UpdateInfoURL.OriginalString);
+                using XmlReader reader = XmlReader.Create(UpdateInfoURL.OriginalString, settings);
                 reader.MoveToContent();
 
                 if ((reader.NodeType != XmlNodeType.Element) && (reader.Name != "appinfo"))
                     return false;
 
-                while (reader.Read()) {
+                while (await reader.ReadAsync()) {
                     if (reader.NodeType == XmlNodeType.Element) {
                         elementName = reader.Name;
                     } else {
