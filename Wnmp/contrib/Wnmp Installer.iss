@@ -3,11 +3,11 @@
 #include "CodeDependencies.iss"
 
 #define MyAppName "Wnmp"
-#define MyAppVersion "4.0.5"
+#define MyAppVersion "4.1.0"
 #define MyAppPublisher "Kurt Cancemi"
 #define MyAppURL "https://wnmp.x64architecture.com"
 #define MyAppExeName "Wnmp.exe"
-#define Year "2021"
+#define Year "2022"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -78,6 +78,7 @@ Source: nginx-bins\default\nginx.exe; DestDir: {app}\nginx-bins\default; Flags: 
 Source: php-bins\default\*; Excludes: ".gitignore"; DestDir: {app}\php-bins\default; Flags: ignoreversion recursesubdirs createallsubdirs
 
 Source: readme.txt; DestDir: {app}; Flags: ignoreversion
+Source: System.Diagnostics.EventLog.Messages.dll; DestDir: {app}; Flags: ignoreversion
 Source: System.ServiceProcess.ServiceController.dll; DestDir: {app}; Flags: ignoreversion
 Source: Wnmp.deps.json; DestDir: {app}; Flags: ignoreversion
 Source: Wnmp.dll; DestDir: {app}; Flags: ignoreversion
@@ -86,7 +87,7 @@ Source: Wnmp.exe; DestDir: {app}; Flags: ignoreversion
 Source: Wnmp.Language.dll; DestDir: {app}; Flags: ignoreversion
 Source: Wnmp.Language.pdb; DestDir: {app}; Flags: ignoreversion
 Source: Wnmp.pdb; DestDir: {app}; Flags: ignoreversion
-Source: Wnmp.runtimeconfig.json; DestDir: {app}; Flags: ignoreversion onlyifdoesntexist
+Source: Wnmp.runtimeconfig.json; DestDir: {app}; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -99,30 +100,10 @@ Filename: {app}\{#MyAppExeName}; Description: {cm:LaunchProgram,{#StringChange(M
 Filename: iexplore.exe; Parameters: "https://wnmp.x64architecture.com"; Verb: open; Flags: shellexec runasoriginaluser
 
 [Code]
-procedure InitializeWizard;
-begin
-  Dependency_InitializeWizard;
-end;
-
-function PrepareToInstall(var NeedsRestart: Boolean): String;
-begin
-  Result := Dependency_PrepareToInstall(NeedsRestart);
-end;
-
-function NeedRestart: Boolean;
-begin
-  Result := Dependency_NeedRestart;
-end;
-
-function UpdateReadyMemo(const Space, NewLine, MemoUserInfoInfo, MemoDirInfo, MemoTypeInfo, MemoComponentsInfo, MemoGroupInfo, MemoTasksInfo: String): String;
-begin
-  Result := Dependency_UpdateReadyMemo(Space, NewLine, MemoUserInfoInfo, MemoDirInfo, MemoTypeInfo, MemoComponentsInfo, MemoGroupInfo, MemoTasksInfo);
-end;
-
 function InitializeSetup: Boolean;
 begin
-  Dependency_AddVC2015To2019;
-  Dependency_AddDotNet50Desktop;
+  Dependency_AddVC2015To2022;
+  Dependency_AddDotNet60Desktop;
 
   Result := True;
 end;
