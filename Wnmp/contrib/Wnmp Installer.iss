@@ -3,11 +3,11 @@
 #include "CodeDependencies.iss"
 
 #define MyAppName "Wnmp"
-#define MyAppVersion "4.1.0"
+#define MyAppVersion "4.2.0"
 #define MyAppPublisher "Kurt Cancemi"
 #define MyAppURL "https://wnmp.x64architecture.com"
 #define MyAppExeName "Wnmp.exe"
-#define Year "2022"
+#define Year "2023"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.

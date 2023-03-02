@@ -1,4 +1,4 @@
-Copyright (c) 2012 - 2022, Kurt Cancemi (kurt@x64architecture.com)
+Copyright (c) 2012 - 2023, Kurt Cancemi (kurt@x64architecture.com)
 Donations are appreciated no matter if big or small.
 https://wnmp.x64architecture.com/donate/
 

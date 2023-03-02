@@ -379,11 +379,11 @@ end;
 procedure Dependency_AddDotNet60;
 begin
   // https://dotnet.microsoft.com/download/dotnet/6.0
-  if not Dependency_IsNetCoreInstalled('Microsoft.NETCore.App 6.0.3') then begin
+  if not Dependency_IsNetCoreInstalled('Microsoft.NETCore.App 6.0.11') then begin
     Dependency_Add('dotnet60' + Dependency_ArchSuffix + '.exe',
       '/lcid ' + IntToStr(GetUILanguage) + ' /passive /norestart',
-      '.NET Runtime 6.0.3' + Dependency_ArchTitle,
-      Dependency_String('https://download.visualstudio.microsoft.com/download/pr/fa2aa002-94d8-4882-960f-066edcbcc187/58f85bc6116d65f5bd296f9512690b50/dotnet-runtime-6.0.3-win-x86.exe', 'https://download.visualstudio.microsoft.com/download/pr/1ac0b57e-cf64-487f-aecf-d7df0111fd56/2484cbe1ffacceacaa41eab92a6de998/dotnet-runtime-6.0.3-win-x64.exe'),
+      '.NET Runtime 6.0.11' + Dependency_ArchTitle,
+      Dependency_String('https://download.visualstudio.microsoft.com/download/pr/719bfd7c-bce2-4e73-937c-cbd7a7ace3cb/d4f570d461711d22e277f1e3487ea9c2/dotnet-runtime-6.0.11-win-x86.exe', 'https://download.visualstudio.microsoft.com/download/pr/8cf88855-ed09-4002-95db-8bb0f0eff051/f9006645511830bd3b840be132423768/dotnet-runtime-6.0.11-win-x64.exe'),
       '', False, False);
   end;
 end;
@@ -391,11 +391,11 @@ end;
 procedure Dependency_AddDotNet60Asp;
 begin
   // https://dotnet.microsoft.com/download/dotnet/6.0
-  if not Dependency_IsNetCoreInstalled('Microsoft.AspNetCore.App 6.0.3') then begin
+  if not Dependency_IsNetCoreInstalled('Microsoft.AspNetCore.App 6.0.11') then begin
     Dependency_Add('dotnet60asp' + Dependency_ArchSuffix + '.exe',
       '/lcid ' + IntToStr(GetUILanguage) + ' /passive /norestart',
-      'ASP.NET Core Runtime 6.0.3' + Dependency_ArchTitle,
-      Dependency_String('https://download.visualstudio.microsoft.com/download/pr/93ae486b-e23d-4311-af43-bb5201298e80/860ce9bf78843286a69bb2957456cc4c/aspnetcore-runtime-6.0.3-win-x86.exe', 'https://download.visualstudio.microsoft.com/download/pr/10857513-e4fe-41eb-bb13-7ea5c02dcb00/ca75a693efb0b3c5cebf173eb7f98242/aspnetcore-runtime-6.0.3-win-x64.exe'),
+      'ASP.NET Core Runtime 6.0.11' + Dependency_ArchTitle,
+      Dependency_String('https://download.visualstudio.microsoft.com/download/pr/94504599-143a-4d53-b518-74aee0ebecca/dac4a7b1f7bdc7b4e8441d6befa4941a/aspnetcore-runtime-6.0.11-win-x86.exe', 'https://download.visualstudio.microsoft.com/download/pr/e874914f-d43d-4b61-8479-f6a5536e44b1/7043adfe896aa9f980ce23e884aae37d/aspnetcore-runtime-6.0.11-win-x64.exe'),
       '', False, False);
   end;
 end;
@@ -403,11 +403,11 @@ end;
 procedure Dependency_AddDotNet60Desktop;
 begin
   // https://dotnet.microsoft.com/download/dotnet/6.0
-  if not Dependency_IsNetCoreInstalled('Microsoft.WindowsDesktop.App 6.0.3') then begin
+  if not Dependency_IsNetCoreInstalled('Microsoft.WindowsDesktop.App 6.0.11') then begin
     Dependency_Add('dotnet60desktop' + Dependency_ArchSuffix + '.exe',
       '/lcid ' + IntToStr(GetUILanguage) + ' /passive /norestart',
-      '.NET Desktop Runtime 6.0.3' + Dependency_ArchTitle,
-      Dependency_String('https://download.visualstudio.microsoft.com/download/pr/33dd62b5-7676-483d-836c-e4cb178e3924/0de6894b5fdb6d130eccd57ab5af4cb8/windowsdesktop-runtime-6.0.3-win-x86.exe', 'https://download.visualstudio.microsoft.com/download/pr/7f3a766e-9516-4579-aaf2-2b150caa465c/d57665f880cdcce816b278a944092965/windowsdesktop-runtime-6.0.3-win-x64.exe'),
+      '.NET Desktop Runtime 6.0.11' + Dependency_ArchTitle,
+      Dependency_String('https://download.visualstudio.microsoft.com/download/pr/2a392287-fd51-4ee8-9c15-a672ab9bc55d/03d4784b3a543a0fb9ce5677ed13a9a3/windowsdesktop-runtime-6.0.11-win-x86.exe', 'https://download.visualstudio.microsoft.com/download/pr/0192a249-3ec8-4374-a827-e186dd58d55d/cec046575f3eb2247a10ba3d50f5cf6c/windowsdesktop-runtime-6.0.11-win-x64.exe'),
       '', False, False);
   end;
 end;
